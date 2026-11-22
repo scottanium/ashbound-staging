@@ -1,7 +1,7 @@
 importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
-const CACHE = FAMILY + (CFG.VERSION || 'v51');
+const CACHE = FAMILY + (CFG.VERSION || 'v52');
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

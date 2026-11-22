@@ -1,6 +1,6 @@
 {
-  "name": "Ashbound",
-  "short_name": "Ashbound",
+  "name": "Ashbound TEST",
+  "short_name": "Ashbound TEST",
   "description": "A single-player action RPG. One warden, one kiln, no one else online.",
   "start_url": "./index.html",
   "scope": "./",
