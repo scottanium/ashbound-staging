@@ -10,7 +10,7 @@ A pocket action-RPG (Diablo-style) that runs in the browser and installs as an i
 |------|------------|
 | `index.html` | The whole game: styles, game code, and the `ab-models` data section (3D character models). |
 | `config.js` | The only file that differs between live and staging (`STAGING: false/true`). |
-| `sw.js` | Offline cache. The cache name comes from `config.js` (`ashbound-pages-vNN` live, `ashbound-staging-vNN` staging). This build is v53. |
+| `sw.js` | Offline cache. The cache name comes from `config.js` (`ashbound-pages-vNN` live, `ashbound-staging-vNN` staging). This build is v54. |
 | `manifest.webmanifest`, `icon-*.png` | Home-screen install info and icons. |
 
 ## Changing common things
@@ -20,7 +20,7 @@ A pocket action-RPG (Diablo-style) that runs in the browser and installs as an i
 - **Shading:** `light.aoStrength` (crevice darkening), `light.contactBase` / `light.contactFoot` (darkening near the ground), `camera.outline` ([r,g,b,alpha] of the thin dark edge that keeps characters readable on dark floors; delete it to turn the edge off).
 - **Render cost:** `camera.budgetMs` (ms per game frame spent rendering new character frames).
 - **Graphics option:** Menu → Graphics: High/Low (Low = cheap lighting and a 2x render cap).
-- **Playtest tuning (r4):** the `AB_TUNE` object in `index.html` holds monster speed caps, HP/damage multipliers, damage-number timing, drop-beam sizes, and swing duration. Inventory cell size for short landscape is in the CSS (`--cell` on `.gear-bag .grid`).
+- **Playtest tuning (r4):** the `AB_TUNE` object in `index.html` holds monster speed caps (`normalMax` 2.52, 56% of run 4.5; `heavyMax` 1.65), HP/damage multipliers, damage-number timing, drop-beam sizes, and swing duration. Player–monster overlap is resolved by stopping the player; the player never shoves a monster. Inventory cell size for short landscape is in the CSS (`--cell` on `.gear-bag .grid`).
 - **New release:** bump `VERSION` in `config.js` so phones pick up the new files.
 - **Staging vs live:** the same files are used for both. Only `config.js` changes (`STAGING: true` adds the small STAGING badge, the `ashbound-staging:` storage prefix and its own cache).
 
