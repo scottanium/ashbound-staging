@@ -15,6 +15,7 @@
     ["npcLines", "data/npc-lines.json"],
     ["campaignDifficulty", "data/difficulty.json"],
     ["inventoryLayout", "data/inventory-layout.json"],
+    ["camera", "data/camera.json"],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path]) =>
@@ -36,6 +37,7 @@
     D.characters = bag.characters;
     D.npcLines = bag.npcLines;
     D.rarityTable = bag.rarity;
+    D.camera = bag.camera || {};
     D.inventoryLayout = bag.inventoryLayout || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;
