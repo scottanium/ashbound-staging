@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "ranks": [
+    {
+      "id": "common",
+      "rank": 1,
+      "name": "Common",
+      "color": "#e6dece",
+      "border": "#8d7b68",
+      "bg": "rgba(230, 222, 206, 0.08)",
+      "pip": "circle",
+      "letter": "1",
+      "affixCount": 0,
+      "goldMul": 1
+    },
+    {
+      "id": "magic",
+      "rank": 2,
+      "name": "Magic",
+      "color": "#79b0ff",
+      "border": "#79b0ff",
+      "bg": "rgba(80, 130, 200, 0.2)",
+      "pip": "plus",
+      "letter": "2",
+      "affixCount": 1,
+      "goldMul": 3.2
+    },
+    {
+      "id": "rare",
+      "rank": 3,
+      "name": "Rare",
+      "color": "#f0d56a",
+      "border": "#f0d56a",
+      "bg": "rgba(200, 160, 50, 0.16)",
+      "pip": "diamond",
+      "letter": "3",
+      "affixCount": 2,
+      "goldMul": 8
+    },
+    {
+      "id": "elite",
+      "rank": 4,
+      "name": "Elite",
+      "color": "#c989ff",
+      "border": "#c989ff",
+      "bg": "rgba(150, 80, 200, 0.16)",
+      "pip": "square",
+      "letter": "4",
+      "affixCount": 3,
+      "goldMul": 14
+    },
+    {
+      "id": "epic",
+      "rank": 5,
+      "name": "Epic",
+      "color": "#ff5d4f",
+      "border": "#ff5d4f",
+      "bg": "rgba(200, 60, 50, 0.16)",
+      "pip": "triangle",
+      "letter": "5",
+      "affixCount": 3,
+      "goldMul": 20
+    },
+    {
+      "id": "legendary",
+      "rank": 6,
+      "name": "Legendary",
+      "color": "#e39a45",
+      "border": "#e39a45",
+      "bg": "rgba(200, 110, 40, 0.18)",
+      "pip": "flame",
+      "letter": "6",
+      "affixCount": 4,
+      "goldMul": 32
+    },
+    {
+      "id": "fabled",
+      "rank": 7,
+      "name": "Fabled",
+      "color": "#6cf0d2",
+      "border": "#6cf0d2",
+      "bg": "rgba(60, 180, 150, 0.16)",
+      "pip": "teardrop",
+      "letter": "7",
+      "affixCount": 5,
+      "goldMul": 50
+    },
+    {
+      "id": "mythical",
+      "rank": 8,
+      "name": "Mythical",
+      "color": "#ffe08a",
+      "border": "#ffe08a",
+      "bg": "rgba(240, 200, 80, 0.2)",
+      "pip": "star",
+      "letter": "8",
+      "affixCount": 5,
+      "affixCountNote": "plus a 6th unique capstone, Phase G",
+      "goldMul": 80
+    }
+  ],
+  "strings": {
+    "rankLabel": "Rank {n} {name}",
+    "floorLabel": "Floor: {name}",
+    "uniqueKind": "Unique",
+    "setKind": "Set",
+    "legacyAffixes": "Legacy affixes kept",
+    "colorsHelp": "Elite is the best ordinary early item. Uniques and sets start at Epic. Legendary sits above Epic. Mythical is the top rank."
+  },
+  "legacyGold": {
+    "common": 1,
+    "magic": 3.2,
+    "rare": 8,
+    "set": 12,
+    "unique": 16
+  },
+  "currency": [
+    "rune",
+    "gem",
+    "potion",
+    "gold",
+    "lens"
+  ],
+  "recipesScope": "account",
+  "setSixWornDormant": true,
+  "notes": "Phase A display and migration. Drop tables still use the old five-grade roll; uniques and sets stamp their floor as tier."
+}

@@ -528,7 +528,8 @@
           "ash_strike": 1
         }
       },
-      "flavor": "Warmed each dawn in the public kiln until the steel remembered fire."
+      "flavor": "Warmed each dawn in the public kiln until the steel remembered fire.",
+      "baseRarity": "epic"
     },
     {
       "id": "last_vigil",
@@ -541,7 +542,8 @@
         "defense": 10,
         "moveSpeed": 8
       },
-      "flavor": "The watch-cap of the final shift on the Spire stair."
+      "flavor": "The watch-cap of the final shift on the Spire stair.",
+      "baseRarity": "epic"
     },
     {
       "id": "kilnwalker",
@@ -553,7 +555,8 @@
         "fireResist": 22,
         "life": 16
       },
-      "flavor": "Soot baked into the seams. The floor never quite burns."
+      "flavor": "Soot baked into the seams. The floor never quite burns.",
+      "baseRarity": "epic"
     },
     {
       "id": "spire_widow",
@@ -566,7 +569,8 @@
         "life": 22,
         "fireResist": 10
       },
-      "flavor": "Hung for years on a broken beam, and still keeping watch."
+      "flavor": "Hung for years on a broken beam, and still keeping watch.",
+      "baseRarity": "epic"
     },
     {
       "id": "senns_measure",
@@ -579,7 +583,8 @@
         "lifeRegen": 1.3,
         "magicFind": 10
       },
-      "flavor": "Senn says it counts fair. Count it yourself."
+      "flavor": "Senn says it counts fair. Count it yourself.",
+      "baseRarity": "epic"
     },
     {
       "id": "glass_oath",
@@ -595,7 +600,8 @@
           9
         ]
       },
-      "flavor": "A promise cut thin enough to see through."
+      "flavor": "A promise cut thin enough to see through.",
+      "baseRarity": "epic"
     },
     {
       "id": "kiln_tyrants_collar",
@@ -613,7 +619,8 @@
         ],
         "life": 22
       },
-      "flavor": "The collar cracked when the tyrant did. The heat stayed."
+      "flavor": "The collar cracked when the tyrant did. The heat stayed.",
+      "baseRarity": "legendary"
     },
     {
       "id": "briar_tooth",
@@ -629,7 +636,8 @@
         "attackSpeed": 12,
         "dexterity": 4
       },
-      "flavor": "Snapped from a snare that had already caught something. The sap never dried."
+      "flavor": "Snapped from a snare that had already caught something. The sap never dried.",
+      "baseRarity": "epic"
     },
     {
       "id": "moth_lamp",
@@ -642,7 +650,8 @@
         "magicFind": 8,
         "energy": 3
       },
-      "flavor": "A hood scorched from the inside, as if a small fire had lived there and left."
+      "flavor": "A hood scorched from the inside, as if a small fire had lived there and left.",
+      "baseRarity": "epic"
     },
     {
       "id": "salt_march",
@@ -654,7 +663,8 @@
         "coldResist": 14,
         "dexterity": 4
       },
-      "flavor": "The salt ate the stitching and then, politely, held the boot together anyway."
+      "flavor": "The salt ate the stitching and then, politely, held the boot together anyway.",
+      "baseRarity": "epic"
     },
     {
       "id": "widow_grip",
@@ -666,7 +676,8 @@
         "attackRating": 24,
         "lifeLeech": 3
       },
-      "flavor": "Wrapped for a watch that ended at dawn. The grip stayed warm."
+      "flavor": "Wrapped for a watch that ended at dawn. The grip stayed warm.",
+      "baseRarity": "epic"
     },
     {
       "id": "kiln_oath",
@@ -682,7 +693,8 @@
         "strength": 8,
         "life": 16
       },
-      "flavor": "Sworn on the public kiln. The oath cracked. The maul did not."
+      "flavor": "Sworn on the public kiln. The oath cracked. The maul did not.",
+      "baseRarity": "epic"
     },
     {
       "id": "reed_string",
@@ -698,7 +710,8 @@
         "attackRating": 36,
         "dexterity": 6
       },
-      "flavor": "Strung with a reed that still remembers the mere. It hums when the air is wet."
+      "flavor": "Strung with a reed that still remembers the mere. It hums when the air is wet.",
+      "baseRarity": "epic"
     },
     {
       "id": "hush_staff",
@@ -714,7 +727,8 @@
         ],
         "castSpeed": 8
       },
-      "flavor": "The galleries asked for quiet. The staff agreed, and then it did not."
+      "flavor": "The galleries asked for quiet. The staff agreed, and then it did not.",
+      "baseRarity": "epic"
     },
     {
       "id": "spire_vow",
@@ -727,7 +741,8 @@
         "allResist": 8,
         "critChance": 4
       },
-      "flavor": "A watch-blade left point-down in a cracked step, still keeping the hour."
+      "flavor": "A watch-blade left point-down in a cracked step, still keeping the hour.",
+      "baseRarity": "epic"
     },
     {
       "id": "heart_nail",
@@ -743,7 +758,8 @@
         "life": 28,
         "thorns": 6
       },
-      "flavor": "Used to pin a kiln door that would not stay shut. The door lost."
+      "flavor": "Used to pin a kiln door that would not stay shut. The door lost.",
+      "baseRarity": "epic"
     },
     {
       "id": "last_watch_plate",
@@ -756,7 +772,8 @@
         "life": 30,
         "thorns": 8
       },
-      "flavor": "The last shift wore this until the stairs gave. The plate came back. They did not."
+      "flavor": "The last shift wore this until the stairs gave. The plate came back. They did not.",
+      "baseRarity": "epic"
     },
     {
       "id": "wicker_prayer",
@@ -769,7 +786,8 @@
         "fireResist": 10,
         "thorns": 3
       },
-      "flavor": "A prayer woven in, then smoked over the kiln until the words went black."
+      "flavor": "A prayer woven in, then smoked over the kiln until the words went black.",
+      "baseRarity": "epic"
     },
     {
       "id": "kiln_door",
@@ -782,7 +800,8 @@
         "thorns": 10,
         "life": 18
       },
-      "flavor": "A slice of the kiln door, still convinced it is a door."
+      "flavor": "A slice of the kiln door, still convinced it is a door.",
+      "baseRarity": "epic"
     },
     {
       "id": "garnet_loop",
@@ -795,7 +814,8 @@
         "lifeLeech": 3,
         "fireResist": 8
       },
-      "flavor": "Cut from a garnet that sweated in the heat. It still feels a little alive."
+      "flavor": "Cut from a garnet that sweated in the heat. It still feels a little alive.",
+      "baseRarity": "epic"
     },
     {
       "id": "mere_pearl",
@@ -808,7 +828,8 @@
         "energy": 5,
         "magicFind": 10
       },
-      "flavor": "Fished out of still water. It looks at you the way the mere does."
+      "flavor": "Fished out of still water. It looks at you the way the mere does.",
+      "baseRarity": "epic"
     },
     {
       "id": "glass_cap",
@@ -821,7 +842,8 @@
         "attackRating": 20,
         "dexterity": 5
       },
-      "flavor": "A cap glazed with salt until it rang. The ring is the warning."
+      "flavor": "A cap glazed with salt until it rang. The ring is the warning.",
+      "baseRarity": "epic"
     },
     {
       "id": "beetle_mail",
@@ -834,7 +856,8 @@
         "life": 24,
         "thorns": 6
       },
-      "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans."
+      "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans.",
+      "baseRarity": "epic"
     },
     {
       "id": "silt_shroud",
@@ -849,7 +872,8 @@
         "life": 26,
         "allSkills": 1
       },
-      "flavor": "Morra wore the water. What dried on this coat is not quite mud."
+      "flavor": "Morra wore the water. What dried on this coat is not quite mud.",
+      "baseRarity": "legendary"
     },
     {
       "id": "sallow_crown",
@@ -867,7 +891,8 @@
         ],
         "allSkills": 1
       },
-      "flavor": "Grown, not forged. It fits whoever cut the first tree, and it is still angry."
+      "flavor": "Grown, not forged. It fits whoever cut the first tree, and it is still angry.",
+      "baseRarity": "fabled"
     },
     {
       "id": "root_belt",
@@ -880,7 +905,8 @@
         "poisonResist": 14,
         "lifeRegen": 1.6
       },
-      "flavor": "A root that decided to be a belt. It tightens when you are afraid."
+      "flavor": "A root that decided to be a belt. It tightens when you are afraid.",
+      "baseRarity": "epic"
     },
     {
       "id": "orchard_knife",
@@ -896,7 +922,8 @@
         "critChance": 6,
         "attackSpeed": 10
       },
-      "flavor": "Used on fruit that should not have been red. The edge still smells sweet and wrong."
+      "flavor": "Used on fruit that should not have been red. The edge still smells sweet and wrong.",
+      "baseRarity": "legendary"
     },
     {
       "id": "branded_saber",
@@ -915,7 +942,8 @@
         },
         "fireDamagePercent": 12
       },
-      "flavor": "The brand does not wash off. Ash Strike remembers it."
+      "flavor": "The brand does not wash off. Ash Strike remembers it.",
+      "baseRarity": "epic"
     },
     {
       "id": "callers_cord",
@@ -934,7 +962,8 @@
         },
         "manaRegen": 1.4
       },
-      "flavor": "Tied while the glass was still wet. The bolt comes cheaper."
+      "flavor": "Tied while the glass was still wet. The bolt comes cheaper.",
+      "baseRarity": "epic"
     },
     {
       "id": "row_walkers",
@@ -952,7 +981,8 @@
         },
         "life": 16
       },
-      "flavor": "The rows do not catch these. The snares do the catching."
+      "flavor": "The rows do not catch these. The snares do the catching.",
+      "baseRarity": "epic"
     },
     {
       "id": "unbanked_loop",
@@ -965,7 +995,8 @@
         "life": 20,
         "mana": 20
       },
-      "flavor": "One rank in everything you kept. The kiln does not get a vote."
+      "flavor": "One rank in everything you kept. The kiln does not get a vote.",
+      "baseRarity": "fabled"
     },
     {
       "id": "short_promise",
@@ -981,7 +1012,8 @@
           "red_line": 1
         }
       },
-      "flavor": "A cut that pays you back. Do not stand still to collect."
+      "flavor": "A cut that pays you back. Do not stand still to collect.",
+      "baseRarity": "epic"
     },
     {
       "id": "kept_bell",
@@ -1000,7 +1032,8 @@
         "castSpeed": 12,
         "mana": 24
       },
-      "flavor": "Wrapped, then unwrapped. The note is yours now."
+      "flavor": "Wrapped, then unwrapped. The note is yours now.",
+      "baseRarity": "legendary"
     },
     {
       "id": "sear_cuff",
@@ -1017,7 +1050,8 @@
           "sear_step": 2
         }
       },
-      "flavor": "The step lands hot. The cuff is why."
+      "flavor": "The step lands hot. The cuff is why.",
+      "baseRarity": "epic"
     },
     {
       "id": "vigil_hood",
@@ -1032,7 +1066,8 @@
           "vigil": 2
         }
       },
-      "flavor": "Worn for a watch that did not end. The ring of it still holds."
+      "flavor": "Worn for a watch that did not end. The ring of it still holds.",
+      "baseRarity": "epic"
     },
     {
       "id": "spark_band",
@@ -1046,7 +1081,8 @@
           "cinder_spark": 1
         }
       },
-      "flavor": "A ring that throws the first spark so you do not have to."
+      "flavor": "A ring that throws the first spark so you do not have to.",
+      "baseRarity": "epic"
     },
     {
       "id": "brine_board",
@@ -1061,7 +1097,8 @@
           "brine_ward": 2
         }
       },
-      "flavor": "A board from a stilt that learned to keep the cold off."
+      "flavor": "A board from a stilt that learned to keep the cold off.",
+      "baseRarity": "epic"
     },
     {
       "id": "second_thread",
@@ -1078,7 +1115,8 @@
           "second_voice": 1
         }
       },
-      "flavor": "One more voice in the glass. The coat keeps the seam shut."
+      "flavor": "One more voice in the glass. The coat keeps the seam shut.",
+      "baseRarity": "legendary"
     },
     {
       "id": "jaw_cord",
@@ -1095,7 +1133,8 @@
           "spring_jaw": 2
         }
       },
-      "flavor": "Tied so the snares close when you say so, not when they feel like it."
+      "flavor": "Tied so the snares close when you say so, not when they feel like it.",
+      "baseRarity": "legendary"
     },
     {
       "id": "needle_wrap",
@@ -1112,7 +1151,8 @@
           "needle": 2
         }
       },
-      "flavor": "The point was already in the glove. You just give it a direction."
+      "flavor": "The point was already in the glove. You just give it a direction.",
+      "baseRarity": "legendary"
     },
     {
       "id": "crouch_tread",
@@ -1126,7 +1166,8 @@
           "crouch": 2
         }
       },
-      "flavor": "The rows hear the other boots. These they argue about."
+      "flavor": "The rows hear the other boots. These they argue about.",
+      "baseRarity": "legendary"
     },
     {
       "id": "banked_coal",
@@ -1140,7 +1181,8 @@
           "last_coal": 1
         }
       },
-      "flavor": "One coal kept back from the kiln. It spends itself once, and means it."
+      "flavor": "One coal kept back from the kiln. It spends itself once, and means it.",
+      "baseRarity": "fabled"
     },
     {
       "id": "pale_note",
@@ -1158,7 +1200,8 @@
           "overtone": 2
         }
       },
-      "flavor": "A note cut into the stair and then pulled back out. It still rings."
+      "flavor": "A note cut into the stair and then pulled back out. It still rings.",
+      "baseRarity": "fabled"
     },
     {
       "id": "mawglass",
@@ -1174,7 +1217,8 @@
         "life": 28,
         "fireResist": 16
       },
-      "flavor": "The ring sweats when the floor opens."
+      "flavor": "The ring sweats when the floor opens.",
+      "baseRarity": "fabled"
     },
     {
       "id": "stillbell",
@@ -1187,7 +1231,8 @@
         "allResist": 12,
         "life": 20
       },
-      "flavor": "A bell that was wrapped before it could finish the note."
+      "flavor": "A bell that was wrapped before it could finish the note.",
+      "baseRarity": "fabled"
     },
     {
       "id": "shadechord",
@@ -1204,7 +1249,8 @@
         "mana": 18,
         "moveSpeed": 8
       },
-      "flavor": "Worn by something that stepped out of its own shadow."
+      "flavor": "Worn by something that stepped out of its own shadow.",
+      "baseRarity": "fabled"
     },
     {
       "id": "kilntooth",
@@ -1221,7 +1267,8 @@
         "attackSpeed": 12,
         "critChance": 4
       },
-      "flavor": "A tooth of the kiln. It stays sharp because the fire never left it."
+      "flavor": "A tooth of the kiln. It stays sharp because the fire never left it.",
+      "baseRarity": "fabled"
     }
   ],
   "setItems": [
@@ -1236,7 +1283,8 @@
         "fireResist": 8,
         "life": 10
       },
-      "flavor": "The hood of the first watch. Soot in every seam, and a smell of wet ash."
+      "flavor": "The hood of the first watch. Soot in every seam, and a smell of wet ash.",
+      "baseRarity": "epic"
     },
     {
       "id": "sentinel_coat",
@@ -1249,7 +1297,8 @@
         "life": 16,
         "strength": 4
       },
-      "flavor": "Issued when the march still thought it would come home."
+      "flavor": "Issued when the march still thought it would come home.",
+      "baseRarity": "epic"
     },
     {
       "id": "sentinel_girdle",
@@ -1262,7 +1311,8 @@
         "lifeRegen": 1.1,
         "fireResist": 6
       },
-      "flavor": "Senn knotted it. He counts nails twice. He counts people once."
+      "flavor": "Senn knotted it. He counts nails twice. He counts people once.",
+      "baseRarity": "epic"
     },
     {
       "id": "saltglass_edge",
@@ -1278,7 +1328,8 @@
         ],
         "attackRating": 30
       },
-      "flavor": "An edge that spent a winter in the salt. It cuts cleaner when the air is cold."
+      "flavor": "An edge that spent a winter in the salt. It cuts cleaner when the air is cold.",
+      "baseRarity": "epic"
     },
     {
       "id": "saltglass_band",
@@ -1291,7 +1342,8 @@
         "attackSpeed": 8,
         "critChance": 3
       },
-      "flavor": "A ring of fused salt and glass. It clicks against the saber like a second promise."
+      "flavor": "A ring of fused salt and glass. It clicks against the saber like a second promise.",
+      "baseRarity": "epic"
     },
     {
       "id": "briar_hood",
@@ -1304,7 +1356,8 @@
         "poisonResist": 10,
         "dexterity": 4
       },
-      "flavor": "A hood stitched with thorn-thread. It snags on everything, including luck."
+      "flavor": "A hood stitched with thorn-thread. It snags on everything, including luck.",
+      "baseRarity": "epic"
     },
     {
       "id": "briar_wrap",
@@ -1320,7 +1373,8 @@
         ],
         "life": 14
       },
-      "flavor": "Worn by stalkers who preferred the ground to do their arguing."
+      "flavor": "Worn by stalkers who preferred the ground to do their arguing.",
+      "baseRarity": "epic"
     },
     {
       "id": "briar_fang",
@@ -1336,7 +1390,8 @@
         ],
         "attackSpeed": 8
       },
-      "flavor": "The short tooth of the set. It prefers to be left behind in something living."
+      "flavor": "The short tooth of the set. It prefers to be left behind in something living.",
+      "baseRarity": "epic"
     },
     {
       "id": "bell_loop",
@@ -1349,7 +1404,8 @@
         "mana": 14,
         "magicFind": 8
       },
-      "flavor": "A ring that wants to ring. The wrapping is the only reason it does not."
+      "flavor": "A ring that wants to ring. The wrapping is the only reason it does not.",
+      "baseRarity": "epic"
     },
     {
       "id": "bell_cord",
@@ -1365,7 +1421,8 @@
         ],
         "life": 12
       },
-      "flavor": "Cut from a wrapped bell-rope. It stays quiet if you do."
+      "flavor": "Cut from a wrapped bell-rope. It stays quiet if you do.",
+      "baseRarity": "epic"
     },
     {
       "id": "march_boots",
@@ -1378,7 +1435,8 @@
         "life": 8,
         "fireResist": 6
       },
-      "flavor": "Issued for the first walk out of Hearthveil. The soles are already thin."
+      "flavor": "Issued for the first walk out of Hearthveil. The soles are already thin.",
+      "baseRarity": "epic"
     },
     {
       "id": "march_wraps",
@@ -1390,7 +1448,8 @@
         "attackRating": 16,
         "strength": 3
       },
-      "flavor": "Cloth wraps for hands that were going to hold a hot hilt."
+      "flavor": "Cloth wraps for hands that were going to hold a hot hilt.",
+      "baseRarity": "epic"
     },
     {
       "id": "lamp_hood",
@@ -1403,7 +1462,8 @@
         "poisonResist": 8,
         "energy": 3
       },
-      "flavor": "A hood worn so the moths would not land on your face."
+      "flavor": "A hood worn so the moths would not land on your face.",
+      "baseRarity": "epic"
     },
     {
       "id": "lamp_cord",
@@ -1416,7 +1476,8 @@
         "lifeRegen": 1.2,
         "dexterity": 3
       },
-      "flavor": "Tied like a wick. It smells faintly of fruit you should not eat."
+      "flavor": "Tied like a wick. It smells faintly of fruit you should not eat.",
+      "baseRarity": "epic"
     },
     {
       "id": "pale_hood",
@@ -1429,7 +1490,8 @@
         "coldResist": 12,
         "life": 18
       },
-      "flavor": "The color of the stair. It does not show ash until you are home."
+      "flavor": "The color of the stair. It does not show ash until you are home.",
+      "baseRarity": "fabled"
     },
     {
       "id": "pale_mail",
@@ -1442,7 +1504,8 @@
         "allResist": 6,
         "life": 20
       },
-      "flavor": "Mail for a watch that was supposed to end at the tombs."
+      "flavor": "Mail for a watch that was supposed to end at the tombs.",
+      "baseRarity": "fabled"
     },
     {
       "id": "oath_ring",
@@ -1455,7 +1518,8 @@
         "fireResist": 10,
         "attackRating": 20
       },
-      "flavor": "A name was cut inside it. You can feel the letters and not read them."
+      "flavor": "A name was cut inside it. You can feel the letters and not read them.",
+      "baseRarity": "fabled"
     },
     {
       "id": "oath_cord",
@@ -1471,7 +1535,8 @@
           7
         ]
       },
-      "flavor": "Worn by someone who climbed and came back down without their name."
+      "flavor": "Worn by someone who climbed and came back down without their name.",
+      "baseRarity": "fabled"
     }
   ],
   "setBonuses": {
@@ -1496,7 +1561,8 @@
             }
           }
         }
-      ]
+      ],
+      "baseRarity": "epic"
     },
     "saltglass_pair": {
       "name": "Saltglass Pair",
@@ -1510,7 +1576,8 @@
             "critChance": 4
           }
         }
-      ]
+      ],
+      "baseRarity": "epic"
     },
     "briar_three": {
       "name": "Briar Three",
@@ -1534,7 +1601,8 @@
             "attackSpeed": 10
           }
         }
-      ]
+      ],
+      "baseRarity": "epic"
     },
     "march_pair": {
       "name": "First March",
@@ -1548,7 +1616,8 @@
             "fireResist": 10
           }
         }
-      ]
+      ],
+      "baseRarity": "epic"
     },
     "orchard_lamp": {
       "name": "Orchard Lamp",
@@ -1562,7 +1631,8 @@
             "manaRegen": 1
           }
         }
-      ]
+      ],
+      "baseRarity": "epic"
     },
     "pale_watch": {
       "name": "Pale Watch",
@@ -1575,7 +1645,8 @@
             "allResist": 10
           }
         }
-      ]
+      ],
+      "baseRarity": "fabled"
     },
     "name_oath": {
       "name": "Name Oath",
@@ -1592,7 +1663,8 @@
             ]
           }
         }
-      ]
+      ],
+      "baseRarity": "fabled"
     },
     "wrapped_bells": {
       "name": "Wrapped Bells",
@@ -1606,7 +1678,8 @@
             "allSkills": 1
           }
         }
-      ]
+      ],
+      "baseRarity": "epic"
     }
   },
   "rarity": {
