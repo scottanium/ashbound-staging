@@ -1,0 +1,33 @@
+{
+  "campaignIntro": {
+    "startMul": 0.25,
+    "endMul": 1,
+    "hp": true,
+    "xp": true,
+    "loot": false,
+    "gold": false,
+    "zones": [
+      "cinderwood",
+      "salt_causeway",
+      "ruined_spire",
+      "sunken_kiln",
+      "heart_kiln",
+      "reed_marsh",
+      "mirror_flats",
+      "drowned_archive",
+      "bell_caverns",
+      "queen_pool",
+      "briar_rows",
+      "sap_press",
+      "hush_galleries",
+      "root_nave",
+      "heartwood",
+      "pale_steps",
+      "ember_tombs",
+      "quiet_fields",
+      "stair_of_names",
+      "first_kiln"
+    ],
+    "about": "Monster life and XP start at a quarter of the base values in the first campaign fight zone and rise linearly by zone to the full base in the last campaign zone. Towns are omitted (no packs). Ember Rifts and any zone not on the list stay at 1. Loot and gold are not changed."
+  }
+}

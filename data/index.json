@@ -51,6 +51,7 @@
     "content.json",
     "monsters.json",
     "items.json",
-    "npc-lines.json"
+    "npc-lines.json",
+    "difficulty.json"
   ]
 }
