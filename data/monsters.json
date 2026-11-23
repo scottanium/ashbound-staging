@@ -1060,7 +1060,7 @@
     },
     {
       "id": "glass_kiter",
-      "name": "Glass Kiter",
+      "name": "Glass Kite",
       "shape": "moth",
       "hp": 40,
       "hpLvl": 6,
@@ -1205,7 +1205,7 @@
     },
     {
       "id": "pale_kiter",
-      "name": "Pale Kiter",
+      "name": "Pale Kite",
       "shape": "moth",
       "hp": 88,
       "hpLvl": 6,

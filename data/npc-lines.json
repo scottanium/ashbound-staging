@@ -133,5 +133,113 @@
       "waiting": "{n} of six. Keep your own name in your pocket.",
       "thanks": "The staff still rings. Not at my door."
     }
-  ]
+  ],
+  "coach": {
+    "1": {
+      "cinder_warden": "You smell like the kiln already. Stand in it, not in my light.",
+      "reed_caller": "No still water here. Call what you can out of the slag.",
+      "briar_stalker": "You do not stand where a crowd stands. The wood will suit you.",
+      "salt_reaver": "Quick steel. The salt road is quicker. Buy cord.",
+      "bell_chanter": "Ring it past the arch. Not over my counter."
+    },
+    "2": {
+      "cinder_warden": "Your heat cracks glass. Learn which copy is you before you swing.",
+      "reed_caller": "The mere will answer you. A struck bell answers Morra. Not the same courtesy.",
+      "briar_stalker": "The reeds hide your sort, and worse. Do not make me guess.",
+      "salt_reaver": "Fast steel and a mirror is how people cut themselves.",
+      "bell_chanter": "Hum if you must. One true note and the pool sits up."
+    },
+    "3": {
+      "cinder_warden": "Brand what walks the rows. The rows themselves grow back.",
+      "reed_caller": "Sap fouls glass. Keep your chorus off the fruit.",
+      "briar_stalker": "These rows were made for waiting. You will feel at home. Do not get hungry.",
+      "salt_reaver": "Cut and move. A row closes if you stop to look at it.",
+      "bell_chanter": "The nave already holds a low note. Add yours on the way out."
+    },
+    "4": {
+      "cinder_warden": "The kiln above is the one that taught yours. Do not bow to it.",
+      "reed_caller": "No water on the stair. Call what you brought, and keep climbing.",
+      "briar_stalker": "Nothing up there hides in a bush. You will have to move first.",
+      "salt_reaver": "The steps are narrow for a spin. Save the wide cut for the kiln.",
+      "bell_chanter": "Names come loose if you ring them. Ring Mael. Not the steps."
+    }
+  },
+  "story": {
+    "intro": {
+      "title": "The kiln is still fed",
+      "kicker": "Act I",
+      "act": 1,
+      "who": "Senn",
+      "whoId": "senn",
+      "lines": [
+        "Hearthveil feeds the kiln so the ash will sleep.",
+        "It is not sleeping. The north arch is the road."
+      ]
+    },
+    "act2": {
+      "title": "The Glassmere",
+      "kicker": "Act II",
+      "act": 2,
+      "who": "Brin",
+      "whoId": "brin",
+      "lines": [
+        "North of the salt, the water went to glass.",
+        "Brinehollow stands on stilts. Brin has the nets."
+      ]
+    },
+    "act3": {
+      "title": "The Night Orchard",
+      "kicker": "Act III",
+      "act": 3,
+      "who": "Vetch",
+      "whoId": "vetch",
+      "lines": [
+        "The rows walk after dusk. Vesper keeps the lamps hooded.",
+        "Vetch has the stall. Sallow is the tree that would not be cut."
+      ]
+    },
+    "act4": {
+      "title": "The Pale Stair",
+      "kicker": "Act IV",
+      "act": 4,
+      "who": "Rook",
+      "whoId": "rook",
+      "lines": [
+        "Ashgate is as high as the warm air goes.",
+        "Rook sells here, and no farther. Mael is the fire above the names."
+      ]
+    },
+    "act1end": {
+      "title": "The kiln goes quiet",
+      "boss": "veyra",
+      "lines": [
+        "Veyra is down. The heat stayed in the metal.",
+        "Brinehollow is open. Ask Brin before you trust the water."
+      ]
+    },
+    "act2end": {
+      "title": "The pool settles",
+      "boss": "morra",
+      "lines": [
+        "Morra is under the silt. Leave the water to finish that.",
+        "The roots kept going. Vesper is next. Buy steel there."
+      ]
+    },
+    "act3end": {
+      "title": "The rows stop",
+      "boss": "sallow",
+      "lines": [
+        "Sallow is still. The market can try the apples again.",
+        "Ashgate keeps a door under the pale stair. The fed fire is above it."
+      ]
+    },
+    "finale": {
+      "title": "The ash banks",
+      "boss": "mael",
+      "lines": [
+        "Mael is down. Nobody has to feed the kiln tonight.",
+        "The rift stone is warm if you want a harder road. Or go home and choose the fire."
+      ]
+    }
+  }
 }
