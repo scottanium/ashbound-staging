@@ -1163,7 +1163,7 @@
     ],
     "cooldown": 4,
     "behavior": "melee",
-    "about": "A spin with the saber. Anything in arm's reach gets the edge.",
+    "about": "A spin with the blade. Anything in arm's reach gets the edge.",
     "notes": [
       "Keen Edge can crit the spin. Blood Price drinks it. It does not need a locked target."
     ],

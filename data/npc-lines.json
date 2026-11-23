@@ -1,0 +1,137 @@
+{
+  "idle": {
+    "senn": [
+      "Buying, or warming your hands? Either. Don't block the counter.",
+      "If it bites you, bring the coin back with it. I'll still take the coin.",
+      "The closed box is a gamble. I don't look inside. That's the price."
+    ],
+    "lye": [
+      "Sit. The book takes the points back. I don't haggle with it.",
+      "Gold turns the page. The bruises stay yours.",
+      "Runes are in the codex. Read them. I am not a tutor."
+    ],
+    "pell": [
+      "Quill is the scout. Coin first. The lamp goes where they go.",
+      "If the lamp drops, don't dig a hole. A town can stand them up."
+    ],
+    "brin": [
+      "Nets, oil, cord. The bench still works. The water does not.",
+      "On the flats you will see two of you. Swing at the one who is late.",
+      "Morra answers a struck bell. I am not interested in meeting her."
+    ],
+    "lute": [
+      "The living go in one book. The drowned go in the other. You can guess which is thicker.",
+      "I can unpick a bad set of skills. The mere keeps the gold. So do I."
+    ],
+    "nim": [
+      "Quill knows which reed is a lurker. Coin, then the road.",
+      "Bring them back breathing or not. I can get the lamp lit again."
+    ],
+    "vetch": [
+      "Steel on the left. Fruit on the right. Only one of those is for eating.",
+      "Still here at dusk? Then the rows will do the shopping.",
+      "Gamble if you like. I like the gold. We don't have to share a reason."
+    ],
+    "sile": [
+      "The king was a tree before I had shelves. I keep the pages that still mean something.",
+      "I can unwind a build. The roots will not thank you. The coin will."
+    ],
+    "hest": [
+      "You pay. Quill walks. The lamp stays lit. That is the whole bargain.",
+      "Lamp out in the nave means turn around. You are already behind."
+    ],
+    "rook": [
+      "Last stall with a fire. Past me, the stair does not care who you killed.",
+      "Buy here. I am not carrying a counter up those steps.",
+      "The rift stone stays dark until Mael is quiet. I don't bargain with rocks."
+    ],
+    "ive": [
+      "The steps are already named. Leave yours in your mouth.",
+      "I can give the points back. I cannot give you the step you fell from."
+    ],
+    "nell": [
+      "Quill can climb. Bring the lamp down. Bring Quill, if the stair allows.",
+      "Someone has to keep this door warm. It will be me."
+    ]
+  },
+  "greet": {
+    "1": {
+      "cinder_warden": "Wardens want the heavy mail. I sell what fits. Your back does the rest.",
+      "reed_caller": "A bow in a kiln town. Fine. The arrows are with the cord.",
+      "briar_stalker": "You look ready to leave. Pay before you do.",
+      "salt_reaver": "That edge is already thirsty. I take coin, not blood.",
+      "bell_chanter": "If the bell is the weapon, the staff is for walking. I sell both."
+    },
+    "2": {
+      "cinder_warden": "Nets and oil. Leave the wrapped bronze where it hangs.",
+      "reed_caller": "You will want the still water. It is a tool. It is not kin.",
+      "briar_stalker": "I can see you deciding to wait. The lurkers had that idea first.",
+      "salt_reaver": "Hit the boots that arrive late. Yours are the early pair.",
+      "bell_chanter": "I mend nets. I do not unwrap bells. Do not ask."
+    },
+    "3": {
+      "cinder_warden": "Steel is on the left. You already brought your own brand.",
+      "reed_caller": "Your little glass things hate the sap. So do my boots.",
+      "briar_stalker": "Knife people do well here, until they get curious about the red fruit.",
+      "salt_reaver": "The orchard knights want a long fight. Disappoint them.",
+      "bell_chanter": "Ring the rows, not the market. The moths are listening for an excuse."
+    },
+    "4": {
+      "cinder_warden": "Buy the heavy thing here. I am not carrying it up those steps.",
+      "reed_caller": "Arrows, cord, a flask. The stair does not restock anyone.",
+      "briar_stalker": "You can vanish on a road. A named step does not allow it.",
+      "salt_reaver": "Quick is a gift until the stair turns. Then quick is a fall.",
+      "bell_chanter": "Save the low chord for the kiln. This door has heard enough."
+    }
+  },
+  "quests": [
+    {
+      "id": "senn_nails",
+      "npc": "senn",
+      "zone": "cinderwood",
+      "need": 6,
+      "name": "Nails for the Gate",
+      "reward": "senns_measure",
+      "text": "Senn wants six down in the Cinderwood. The belt comes after.",
+      "offer": "The north road is eating people. Six dead in the Cinderwood. Don't haul them here. The count is enough.",
+      "waiting": "{n}. The gate still rattles.",
+      "thanks": "Six. Take the belt. It counts fairer than I do."
+    },
+    {
+      "id": "brin_copies",
+      "npc": "brin",
+      "zone": "mirror_flats",
+      "need": 6,
+      "name": "Not Your Boots",
+      "reward": "glass_cap",
+      "text": "Brin wants six of the copies on the Mirror Flats put down.",
+      "offer": "Boots on the flats that are not yours. Put six of them down. The wrapped bells are a different job.",
+      "waiting": "{n} of six. Your own shadow is not one of them.",
+      "thanks": "The cap rings when you are about to be stupid. Wear it."
+    },
+    {
+      "id": "vetch_rows",
+      "npc": "vetch",
+      "zone": "briar_rows",
+      "need": 6,
+      "name": "Before the Market",
+      "reward": "orchard_knife",
+      "text": "Vetch wants six of the walking rows down before they reach the stall.",
+      "offer": "The rows are walking into the stall. Six down. The knife is yours. I will not use it on an apple.",
+      "waiting": "{n}. I can hear the sap from here.",
+      "thanks": "Point it at what walks. Not at anything red."
+    },
+    {
+      "id": "rook_names",
+      "npc": "rook",
+      "zone": "pale_steps",
+      "need": 6,
+      "name": "A Name Off the Stair",
+      "reward": "pale_note",
+      "text": "Rook wants six of the nameless things on the Pale Steps put down.",
+      "offer": "Something on the steps is collecting names. Six of those. I am not taking this staff up.",
+      "waiting": "{n} of six. Keep your own name in your pocket.",
+      "thanks": "The staff still rings. Not at my door."
+    }
+  ]
+}

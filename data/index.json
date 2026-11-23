@@ -50,6 +50,7 @@
     "skills.json",
     "content.json",
     "monsters.json",
-    "items.json"
+    "items.json",
+    "npc-lines.json"
   ]
 }
