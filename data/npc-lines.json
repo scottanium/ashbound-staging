@@ -137,7 +137,7 @@
   "coach": {
     "1": {
       "cinder_warden": "You smell like the kiln already. Stand in it, not in my light.",
-      "reed_caller": "No still water here. Call what you can out of the slag.",
+      "reed_caller": "Still water doesn't last here. Call what you can out of the slag.",
       "briar_stalker": "You do not stand where a crowd stands. The wood will suit you.",
       "salt_reaver": "Quick steel. The salt road is quicker. Buy cord.",
       "bell_chanter": "Ring it past the arch. Not over my counter."
@@ -158,7 +158,7 @@
     },
     "4": {
       "cinder_warden": "The kiln above is the one that taught yours. Do not bow to it.",
-      "reed_caller": "No water on the stair. Call what you brought, and keep climbing.",
+      "reed_caller": "The stair is dry. Call what you brought, and keep climbing.",
       "briar_stalker": "Nothing up there hides in a bush. You will have to move first.",
       "salt_reaver": "The steps are narrow for a spin. Save the wide cut for the kiln.",
       "bell_chanter": "Names come loose if you ring them. Ring Mael. Not the steps."
@@ -184,7 +184,7 @@
       "whoId": "brin",
       "lines": [
         "North of the salt, the water went to glass.",
-        "Brinehollow stands on stilts. Brin has the nets."
+        "Brinehollow stands on stilts. I mend the nets."
       ]
     },
     "act3": {
@@ -195,7 +195,7 @@
       "whoId": "vetch",
       "lines": [
         "The rows walk after dusk. Vesper keeps the lamps hooded.",
-        "Vetch has the stall. Sallow is the tree that would not be cut."
+        "I have the stall. Sallow is the tree that would not be cut."
       ]
     },
     "act4": {
@@ -206,14 +206,14 @@
       "whoId": "rook",
       "lines": [
         "Ashgate is as high as the warm air goes.",
-        "Rook sells here, and no farther. Mael is the fire above the names."
+        "I sell here, and no farther. Mael is the fire above the names."
       ]
     },
     "act1end": {
       "title": "The kiln goes quiet",
       "boss": "veyra",
       "lines": [
-        "Veyra is down. The heat stayed in the metal.",
+        "Veyra's fire is out. The heat stayed in the metal.",
         "Brinehollow is open. Ask Brin before you trust the water."
       ]
     },
@@ -237,7 +237,7 @@
       "title": "The ash banks",
       "boss": "mael",
       "lines": [
-        "Mael is down. Nobody has to feed the kiln tonight.",
+        "Mael is banked. Nobody has to feed the kiln tonight.",
         "The rift stone is warm if you want a harder road. Or go home and choose the fire."
       ]
     }
