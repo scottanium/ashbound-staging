@@ -9,6 +9,7 @@
     ["content", "data/content.json"],
     ["monsters", "data/monsters.json"],
     ["items", "data/items.json"],
+    ["rarity", "data/rarity.json"],
     ["telling", "data/telling.json"],
     ["characters", "data/characters.json"],
     ["npcLines", "data/npc-lines.json"],
@@ -32,6 +33,7 @@
     D.telling = bag.telling;
     D.characters = bag.characters;
     D.npcLines = bag.npcLines;
+    D.rarityTable = bag.rarity;
     window.ASHBOUND_DATA = D;
     return D;
   });

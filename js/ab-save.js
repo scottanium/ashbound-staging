@@ -1,8 +1,8 @@
 // Narrow save DTO. Combat/AI live objects are not snapshotted by reference.
-// On-disk shape stays SAVE_VERSION 4 so existing slots keep loading.
+// On-disk shape is SAVE_VERSION 5. v1–v4 still load, then items are mapped to the eight ranks.
 (function (root) {
-  const VERSION = 4;
-  const SUPPORTED = [1, 2, 3, 4];
+  const VERSION = 5;
+  const SUPPORTED = [1, 2, 3, 4, 5];
   const OMIT_PLAYER = { flash: 1, moving: 1, swingT: 1 };
 
   function cloneJson(value, fallback) {
@@ -102,7 +102,11 @@
     for (let n of t.stash && t.stash.items || []) a(n);
     for (let n of Object.values(t.equipment || {})) a(n);
     for (let n of t.belt || []) a(n);
-    e.v = 4;
+    if (typeof root.ABCraft !== "undefined" && root.ABCraft.migrateSave) {
+      root.ABCraft.migrateSave(e);
+    } else {
+      e.v = 5;
+    }
     return e;
   }
 
