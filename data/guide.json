@@ -1,0 +1,31 @@
+{
+  "kicker": "First steps",
+  "total": 3,
+  "steps": [
+    {
+      "id": "learn",
+      "n": 1,
+      "quest": "wood",
+      "zone": "hearthveil",
+      "when": "unlearned",
+      "line": "Open Skills and learn your first skill",
+      "ui": "#btn-panel-skills"
+    },
+    {
+      "id": "gate",
+      "n": 2,
+      "quest": "wood",
+      "zone": "hearthveil",
+      "line": "Walk to the North Gate (follow the arrow)",
+      "target": "gate"
+    },
+    {
+      "id": "cross",
+      "n": 3,
+      "quest": "wood_far",
+      "zone": "cinderwood",
+      "line": "Cross the Cinderwood to the far arch",
+      "target": "exit"
+    }
+  ]
+}

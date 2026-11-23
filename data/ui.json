@@ -1,12 +1,455 @@
 {
-  "about": "UI skin for the game screen and menus (v70). js/ab-ui.js turns this file into one stylesheet that sits on top of the base CSS. No game rules here. frame = the double border and corner marks on panels and cards; button = bevel and gradients; orb = the life/mana rings; tip = item tooltip text; profiles = sizes in CSS pixels per screen kind (desktop is wide and tall, phoneLandscape is a short wide window such as an iPhone on its side, phonePortrait is a narrow tall window). Delete this file and the game looks as it did in v69. Phone profiles only change text and button sizes, never positions, so the phone layouts stay as they were; desktop also resizes and moves the HUD.",
-  "frame": {"line": "#9a7448", "lineHi": "#e6b878", "ring": "rgba(255, 214, 160, 0.16)", "dark": "#0d0907", "corner": "#e8b676", "cornerLen": 11, "cornerW": 2, "shadow": "0 8px 24px rgba(0, 0, 0, 0.55)", "paper": "rgba(255, 236, 205, 0.045)"},
-  "button": {"top": "#4a3425", "bottom": "#2b1d15", "hi": "rgba(255, 226, 190, 0.2)", "edge": "#0e0906", "primaryTop": "#f6ac64", "primaryBottom": "#c0501c", "primaryEdge": "#6a2a0e", "text": "#f8efe2"},
-  "orb": {"rim": "#0e0906", "life": ["#f0785a", "#3a1814", "#a14a3a"], "mana": ["#7aaaf6", "#142033", "#4a6ea0"], "inner": ["#3f2a20", "#0f0a08"], "gloss": 0.2},
-  "tip": {"name": 1.12, "line": 1.38, "gap": 3},
-  "profiles": {
-    "desktop": {"query": "(min-width: 1000px) and (min-height: 640px)", "base": 17, "btnH": 54, "tapMin": 48, "btnFont": 18, "panelH2": 34, "small": 15, "detailFont": 16, "slotName": 14, "topbarW": 560, "topbarTop": 10, "who": 24, "zone": 16, "xpBar": 7, "questTop": 112, "questW": 560, "goal": 17, "bossTop": 118, "bossW": 460, "bossName": 17, "orb": 104, "orbInner": 76, "orbFont": 24, "orbBottom": 176, "orbSide": 28, "dockH": 60, "dockFont": 19, "dockPad": 20, "dockBottom": 14, "flask": 66, "beltLeft": 148, "beltRight": 316, "beltBottom": 18, "skill": 70, "skillKey": 12, "attack": 112, "attackFont": 20, "castRight": 18, "castBottom": 14, "minimapW": 168, "minimapH": 132, "toastTop": 168, "toastW": 380, "toastFont": 15, "hint": 17, "tutor": 17, "tutorTop": 232, "tutorW": 420, "interact": 18, "interactBottom": 96, "joy": 130, "stick": 60},
-    "phoneLandscape": {"query": "(max-height: 430px) and (min-aspect-ratio: 1/1)", "base": 15, "btnH": 46, "tapMin": 44, "btnFont": 16, "panelH2": 22, "small": 13.5, "detailFont": 13.5, "slotName": 12, "who": 16, "zone": 12, "goal": 13, "orbFont": 15, "dockFont": 16, "skillKey": 10, "attackFont": 16, "interact": 15},
-    "phonePortrait": {"query": "(max-width: 520px) and (max-aspect-ratio: 1/1)", "base": 15, "btnH": 46, "tapMin": 44, "btnFont": 16, "panelH2": 26, "small": 14, "detailFont": 14.5, "slotName": 12.5, "who": 17, "zone": 13, "goal": 14, "orbFont": 14, "dockFont": 14, "skillKey": 10, "attackFont": 15, "interact": 14}
+ "about": "UI skin for the game screen and menus (v70). js/ab-ui.js turns this file into one stylesheet that sits on top of the base CSS. No game rules here. frame = the double border and corner marks on panels and cards; button = bevel and gradients; orb = the life/mana rings; tip = item tooltip text; profiles = sizes in CSS pixels per screen kind (desktop is wide and tall, phoneLandscape is a short wide window such as an iPhone on its side, phonePortrait is a narrow tall window). Delete this file and the game looks as it did in v69. Phone profiles only change text and button sizes, never positions, so the phone layouts stay as they were; desktop also resizes and moves the HUD.",
+ "frame": {
+  "line": "#9a7448",
+  "lineHi": "#e6b878",
+  "ring": "rgba(255, 214, 160, 0.16)",
+  "dark": "#0d0907",
+  "corner": "#e8b676",
+  "cornerLen": 11,
+  "cornerW": 2,
+  "shadow": "0 8px 24px rgba(0, 0, 0, 0.55)",
+  "paper": "rgba(255, 236, 205, 0.045)"
+ },
+ "button": {
+  "top": "#4a3425",
+  "bottom": "#2b1d15",
+  "hi": "rgba(255, 226, 190, 0.2)",
+  "edge": "#0e0906",
+  "primaryTop": "#f6ac64",
+  "primaryBottom": "#c0501c",
+  "primaryEdge": "#6a2a0e",
+  "text": "#f8efe2"
+ },
+ "orb": {
+  "rim": "#0e0906",
+  "life": [
+   "#f0785a",
+   "#3a1814",
+   "#a14a3a"
+  ],
+  "mana": [
+   "#7aaaf6",
+   "#142033",
+   "#4a6ea0"
+  ],
+  "inner": [
+   "#3f2a20",
+   "#0f0a08"
+  ],
+  "gloss": 0.2
+ },
+ "tip": {
+  "name": 1.12,
+  "line": 1.38,
+  "gap": 3
+ },
+ "profiles": {
+  "desktop": {
+   "query": "(min-width: 1000px) and (min-height: 640px)",
+   "base": 17,
+   "btnH": 54,
+   "tapMin": 48,
+   "btnFont": 18,
+   "panelH2": 34,
+   "small": 15,
+   "detailFont": 16,
+   "slotName": 14,
+   "topbarW": 560,
+   "topbarTop": 10,
+   "who": 24,
+   "zone": 16,
+   "xpBar": 7,
+   "questTop": 112,
+   "questW": 560,
+   "goal": 17,
+   "bossTop": 118,
+   "bossW": 460,
+   "bossName": 17,
+   "orb": 104,
+   "orbInner": 76,
+   "orbFont": 24,
+   "orbBottom": 176,
+   "orbSide": 28,
+   "dockH": 60,
+   "dockFont": 19,
+   "dockPad": 20,
+   "dockBottom": 14,
+   "flask": 66,
+   "beltLeft": 148,
+   "beltRight": 316,
+   "beltBottom": 18,
+   "skill": 70,
+   "skillKey": 12,
+   "attack": 112,
+   "attackFont": 20,
+   "castRight": 18,
+   "castBottom": 14,
+   "minimapW": 168,
+   "minimapH": 132,
+   "toastTop": 168,
+   "toastW": 380,
+   "toastFont": 15,
+   "hint": 17,
+   "tutor": 17,
+   "tutorTop": 232,
+   "tutorW": 420,
+   "interact": 18,
+   "interactBottom": 96,
+   "joy": 130,
+   "stick": 60
+  },
+  "phoneLandscape": {
+   "query": "(max-height: 430px) and (min-aspect-ratio: 1/1)",
+   "base": 15,
+   "btnH": 46,
+   "tapMin": 44,
+   "btnFont": 16,
+   "panelH2": 22,
+   "small": 13.5,
+   "detailFont": 13.5,
+   "slotName": 12,
+   "who": 16,
+   "zone": 12,
+   "goal": 13,
+   "orbFont": 15,
+   "dockFont": 16,
+   "skillKey": 10,
+   "attackFont": 16,
+   "interact": 15
+  },
+  "phonePortrait": {
+   "query": "(max-width: 520px) and (max-aspect-ratio: 1/1)",
+   "base": 15,
+   "btnH": 46,
+   "tapMin": 44,
+   "btnFont": 16,
+   "panelH2": 26,
+   "small": 14,
+   "detailFont": 14.5,
+   "slotName": 12.5,
+   "who": 17,
+   "zone": 13,
+   "goal": 14,
+   "orbFont": 14,
+   "dockFont": 14,
+   "skillKey": 10,
+   "attackFont": 15,
+   "interact": 14
   }
+ },
+ "arc": {
+  "about": "v71 skill arc around Strike (js/ab-hudarc.js). Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left (right-handed).",
+  "enabled": true,
+  "ringGap": 6,
+  "slotGap": 6,
+  "centerDeg": 135,
+  "minDeg": 80,
+  "maxDeg": 200,
+  "edge": 4,
+  "beltGap": 8,
+  "orbGap": 10,
+  "dockGap": 8
+ },
+ "skillTree": {
+  "labels": {
+   "locked": "Lv {n}",
+   "needs": "Needs {skill}",
+   "ready": "Ready",
+   "open": "Open",
+   "learned": "",
+   "maxed": "Max"
+  }
+ },
+ "runeTips": {
+  "labels": {
+   "head": "Rune \u00b7 Tier {tier}",
+   "effect": "When socketed:",
+   "usedIn": "Used in runewords:",
+   "order": "{runes} \u00b7 {slots}",
+   "none": "Not part of a runeword yet.",
+   "codex": "Effects:"
+  }
+ },
+ "mobCount": {
+  "enabled": true,
+  "hideInTowns": true,
+  "refreshMs": 250,
+  "label": "{name} \u00b7 {n} left",
+  "clear": "{name} \u00b7 Cleared"
+ },
+ "statsTab": {
+  "enabled": true,
+  "tab": "Stats",
+  "text": {
+   "base": "Base",
+   "gear": "Gear",
+   "bonus": "Bonus",
+   "perPoint": "Each point gives:",
+   "toSpend": "to spend",
+   "cap": "cap"
+  },
+  "attributes": [
+   {
+    "id": "strength",
+    "label": "Strength",
+    "perPoint": [
+     {
+      "metric": "dmgAvg",
+      "mode": "pct",
+      "unit": "%",
+      "dp": 1,
+      "label": "weapon damage"
+     }
+    ]
+   },
+   {
+    "id": "dexterity",
+    "label": "Dexterity",
+    "perPoint": [
+     {
+      "metric": "attack",
+      "dp": 0,
+      "label": "attack rating"
+     },
+     {
+      "metric": "crit",
+      "unit": "%",
+      "dp": 2,
+      "label": "crit chance"
+     },
+     {
+      "metric": "defense",
+      "dp": 2,
+      "label": "defense",
+      "hideZero": true
+     },
+     {
+      "metric": "block",
+      "unit": "%",
+      "dp": 1,
+      "label": "block",
+      "hideZero": true
+     }
+    ]
+   },
+   {
+    "id": "vitality",
+    "label": "Vitality",
+    "perPoint": [
+     {
+      "metric": "life",
+      "dp": 0,
+      "label": "life"
+     }
+    ]
+   },
+   {
+    "id": "energy",
+    "label": "Energy",
+    "perPoint": [
+     {
+      "metric": "mana",
+      "dp": 0,
+      "label": "mana"
+     },
+     {
+      "metric": "manaRegen",
+      "dp": 2,
+      "unit": "/s",
+      "label": "mana regen"
+     }
+    ]
+   }
+  ],
+  "groups": [
+   {
+    "title": "Offense",
+    "rows": [
+     {
+      "label": "Damage",
+      "metric": "dmgAvg",
+      "range": [
+       "dmgMin",
+       "dmgMax"
+      ],
+      "dp": 0
+     },
+     {
+      "label": "Fire damage",
+      "metric": "fireAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Cold damage",
+      "metric": "coldAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Lightning damage",
+      "metric": "lightAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Poison damage",
+      "metric": "poisonAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Attack rating",
+      "metric": "attack",
+      "dp": 0
+     },
+     {
+      "label": "Attacks per second",
+      "metric": "aps",
+      "dp": 2
+     },
+     {
+      "label": "Crit chance",
+      "metric": "crit",
+      "unit": "%",
+      "dp": 1
+     },
+     {
+      "label": "Crit damage",
+      "metric": "critMult",
+      "unit": "%",
+      "dp": 0
+     },
+     {
+      "label": "Faster cast",
+      "metric": "fcr",
+      "unit": "%",
+      "dp": 0
+     },
+     {
+      "label": "Life stolen per hit",
+      "metric": "leech",
+      "unit": "%",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Mana stolen per hit",
+      "metric": "manaLeech",
+      "unit": "%",
+      "dp": 1,
+      "hideZero": true
+     }
+    ]
+   },
+   {
+    "title": "Defense",
+    "rows": [
+     {
+      "label": "Defense",
+      "metric": "defense",
+      "dp": 0
+     },
+     {
+      "label": "Block",
+      "metric": "block",
+      "unit": "%",
+      "dp": 0,
+      "hideZero": true
+     },
+     {
+      "label": "Life regeneration",
+      "metric": "lifeRegen",
+      "unit": "/s",
+      "dp": 2
+     },
+     {
+      "label": "Mana regeneration",
+      "metric": "manaRegen",
+      "unit": "/s",
+      "dp": 2
+     },
+     {
+      "label": "Thorns",
+      "metric": "thorns",
+      "dp": 0,
+      "hideZero": true
+     }
+    ]
+   },
+   {
+    "title": "Movement and luck",
+    "rows": [
+     {
+      "label": "Move speed",
+      "metric": "moveSpeed",
+      "unit": " tiles/s",
+      "dp": 2
+     },
+     {
+      "label": "Faster run",
+      "metric": "frw",
+      "unit": "%",
+      "dp": 0
+     },
+     {
+      "label": "Magic find",
+      "metric": "mf",
+      "unit": "%",
+      "dp": 0
+     }
+    ]
+   },
+   {
+    "title": "Resistances",
+    "note": "Each point cuts that damage by 1%. Capped at 75%.",
+    "rows": [
+     {
+      "label": "Fire",
+      "metric": "resFire",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     },
+     {
+      "label": "Cold",
+      "metric": "resCold",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     },
+     {
+      "label": "Lightning",
+      "metric": "resLightning",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     },
+     {
+      "label": "Poison",
+      "metric": "resPoison",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     }
+    ]
+   },
+   {
+    "title": "Chance to be hit",
+    "note": "Armor against a foe's attack rating. Never below 50% or above 94%.",
+    "rows": [
+     {
+      "metric": "hit",
+      "monsters": [
+       "bramble_hound",
+       "orchard_knight",
+       "kiln_drake",
+       "stair_golem"
+      ]
+     }
+    ]
+   }
+  ]
+ }
 }

@@ -315,6 +315,18 @@
         "pauldron": [
           "w",
           "metal"
+        ],
+        "emblem": [
+          "#e8a23a",
+          "glow"
+        ],
+        "tassets": [
+          "w",
+          "metal"
+        ],
+        "kneepad": [
+          "w",
+          "metal"
         ]
       },
       "detail": {
@@ -324,7 +336,9 @@
         "face": true,
         "cape": true,
         "armor": true,
-        "pauldron": true
+        "pauldron": true,
+        "emblem": true,
+        "tassets": true
       }
     },
     "caller": {
@@ -401,6 +415,14 @@
         "pauldron": [
           "b",
           "leather"
+        ],
+        "quiver": [
+          "#6a4a2e",
+          "leather"
+        ],
+        "kneepad": [
+          "b",
+          "leather"
         ]
       },
       "detail": {
@@ -408,7 +430,9 @@
         "belt": true,
         "cuffs": true,
         "face": true,
-        "cape": true
+        "cape": true,
+        "quiver": true,
+        "kneepads": true
       }
     },
     "stalker": {
@@ -485,6 +509,14 @@
         "pauldron": [
           "b",
           "leather"
+        ],
+        "quiver": [
+          "#4a3a26",
+          "leather"
+        ],
+        "strap": [
+          "#5a4228",
+          "leather"
         ]
       },
       "detail": {
@@ -492,7 +524,9 @@
         "belt": true,
         "cuffs": true,
         "face": true,
-        "cape": false
+        "cape": false,
+        "quiver": true,
+        "bandolier": true
       }
     },
     "reaver": {
@@ -573,6 +607,18 @@
         "pauldron": [
           "b",
           "leather"
+        ],
+        "hairTie": [
+          "#c04030",
+          "cloth"
+        ],
+        "strap": [
+          "#3a2a1c",
+          "leather"
+        ],
+        "kneepad": [
+          "w",
+          "metal"
         ]
       },
       "detail": {
@@ -581,7 +627,10 @@
         "cuffs": true,
         "face": true,
         "cape": true,
-        "pauldron": true
+        "pauldron": true,
+        "hair": "tied",
+        "bandolier": true,
+        "kneepads": true
       }
     },
     "chanter": {
@@ -663,6 +712,10 @@
         "pauldron": [
           "b",
           "leather"
+        ],
+        "emblem": [
+          "a",
+          "glow"
         ]
       },
       "detail": {
@@ -670,7 +723,8 @@
         "belt": true,
         "cuffs": true,
         "face": true,
-        "cape": true
+        "cape": true,
+        "emblem": true
       }
     },
     "humanoid": {
@@ -797,6 +851,18 @@
         "pauldron": [
           "w",
           "metal"
+        ],
+        "tassets": [
+          "w",
+          "metal"
+        ],
+        "kneepad": [
+          "w",
+          "metal"
+        ],
+        "emblem": [
+          "#c04030",
+          "glow"
         ]
       },
       "detail": {
@@ -805,7 +871,9 @@
         "belt": true,
         "pauldron": true,
         "cuffs": true,
-        "face": true
+        "face": true,
+        "tassets": true,
+        "emblem": true
       }
     },
     "brute": {
@@ -869,6 +937,14 @@
         "pouch": [
           "b",
           "leather"
+        ],
+        "spike": [
+          "#e8dcc0",
+          "bone"
+        ],
+        "trophy": [
+          "#e8dcc0",
+          "bone"
         ]
       },
       "detail": {
@@ -876,7 +952,9 @@
         "muscles": true,
         "brute": true,
         "loincloth": true,
-        "belt": true
+        "belt": true,
+        "spikes": true,
+        "trophy": true
       },
       "gaitFx": {
         "sway": 0.16,
@@ -929,11 +1007,16 @@
         "trim": [
           "a",
           "stone"
+        ],
+        "runes": [
+          "#ff9a30",
+          "glow"
         ]
       },
       "detail": {
         "chunky": true,
-        "taper": true
+        "taper": true,
+        "runes": true
       },
       "gaitFx": {
         "sway": 0.08,
@@ -995,11 +1078,22 @@
         "trim": [
           "a",
           "skin"
+        ],
+        "wing": [
+          "#7a2a3a",
+          "leather"
+        ],
+        "wingBone": [
+          "#3a1a20",
+          "leather"
         ]
       },
       "gaitFx": {
         "sway": 0.1,
         "roll": -0.08
+      },
+      "detail": {
+        "wings": true
       }
     },
     "hound": {
@@ -1045,12 +1139,22 @@
         "mane": [
           "n",
           "fur"
+        ],
+        "fang": [
+          "#f0e8d4",
+          "bone"
+        ],
+        "spike": [
+          "#2a1c14",
+          "bone"
         ]
       },
       "detail": {
         "fur": 14,
         "mane": true,
-        "muscles": true
+        "muscles": true,
+        "fangs": true,
+        "spikes": 6
       }
     },
     "beast": {
@@ -1096,12 +1200,22 @@
         "mane": [
           "a",
           "fur"
+        ],
+        "fang": [
+          "#f0e8d4",
+          "bone"
+        ],
+        "collar": [
+          "#6a5030",
+          "leather"
         ]
       },
       "detail": {
         "fur": 12,
         "mane": true,
-        "muscles": true
+        "muscles": true,
+        "fangs": true,
+        "collar": true
       }
     },
     "stag": {
@@ -1152,12 +1266,17 @@
         "mane": [
           "a",
           "fur"
+        ],
+        "moss": [
+          "#4a6a3a",
+          "cloth"
         ]
       },
       "detail": {
         "fur": 8,
         "muscles": true,
-        "hooves": true
+        "hooves": true,
+        "moss": true
       }
     },
     "veyra": {
@@ -1189,11 +1308,17 @@
         "loincloth": true,
         "belt": true,
         "flameCrown": true,
-        "emberMantle": true
+        "emberMantle": true,
+        "spikes": false,
+        "trophy": false
       }
     },
     "tyrant": {
-      "extends": "brute"
+      "extends": "brute",
+      "detail": {
+        "spikes": false,
+        "trophy": false
+      }
     },
     "morra": {
       "extends": "chanter",
@@ -1203,7 +1328,8 @@
         "face": true,
         "belt": true,
         "bellCrown": true,
-        "bellSkirt": true
+        "bellSkirt": true,
+        "emblem": false
       },
       "scale": 1.28,
       "headScale": 1.06
@@ -1254,7 +1380,8 @@
         "taper": true,
         "muscles": true,
         "branchCrown": true,
-        "rootFeet": true
+        "rootFeet": true,
+        "runes": false
       },
       "scale": 1.3,
       "bulk": 1.55
@@ -1271,7 +1398,9 @@
         "face": true,
         "cape": true,
         "greatHelm": true,
-        "asymmetric": true
+        "asymmetric": true,
+        "tassets": false,
+        "emblem": false
       },
       "parts": {
         "cape": [
@@ -1291,7 +1420,13 @@
       "detail": {
         "cape": false,
         "armor": false,
-        "pauldron": false
+        "pauldron": false,
+        "emblem": false,
+        "tassets": false,
+        "kneepads": false,
+        "apron": true,
+        "beard": "short",
+        "hair": "short"
       },
       "parts": {
         "club": [
@@ -1309,6 +1444,18 @@
         "skin": [
           "#c08a68",
           "skin"
+        ],
+        "apron": [
+          "#7a5a38",
+          "leather"
+        ],
+        "hair": [
+          "#2a1c14",
+          "fur"
+        ],
+        "apronTrim": [
+          "#6a4a30",
+          "leather"
         ]
       }
     },
@@ -1320,7 +1467,13 @@
       "detail": {
         "cape": false,
         "armor": false,
-        "pauldron": false
+        "pauldron": false,
+        "emblem": false,
+        "tassets": false,
+        "kneepads": false,
+        "hat": "cap",
+        "bandolier": true,
+        "hair": "tied"
       },
       "parts": {
         "skin": [
@@ -1334,6 +1487,22 @@
         "arms": [
           "m",
           "cloth"
+        ],
+        "hat": [
+          "#2a3a52",
+          "cloth"
+        ],
+        "strap": [
+          "#c8b078",
+          "cloth"
+        ],
+        "hair": [
+          "#6a4a2a",
+          "fur"
+        ],
+        "hairTie": [
+          "#c8b078",
+          "cloth"
         ]
       }
     },
@@ -1346,7 +1515,12 @@
       "detail": {
         "cape": false,
         "armor": false,
-        "pauldron": false
+        "pauldron": false,
+        "emblem": false,
+        "tassets": false,
+        "kneepads": false,
+        "apron": true,
+        "hair": "bun"
       },
       "parts": {
         "skin": [
@@ -1364,6 +1538,18 @@
         "pelvis": [
           "n",
           "cloth"
+        ],
+        "apron": [
+          "#f0e8d4",
+          "cloth"
+        ],
+        "hair": [
+          "#6a3a24",
+          "fur"
+        ],
+        "apronTrim": [
+          "#c8b078",
+          "cloth"
         ]
       }
     },
@@ -1374,7 +1560,29 @@
         "skin": [
           "#c89070",
           "skin"
+        ],
+        "hat": [
+          "#a8782c",
+          "cloth"
+        ],
+        "pack": [
+          "#7a5a30",
+          "leather"
+        ],
+        "roll": [
+          "#c8b078",
+          "cloth"
+        ],
+        "hair": [
+          "#2a2018",
+          "fur"
         ]
+      },
+      "detail": {
+        "hat": "wide",
+        "pack": true,
+        "beard": "short",
+        "emblem": false
       }
     },
     "elder": {
@@ -1383,7 +1591,16 @@
         "skin": [
           "#d8b090",
           "skin"
+        ],
+        "hair": [
+          "#e8e4dc",
+          "fur"
         ]
+      },
+      "detail": {
+        "hair": "long",
+        "beard": "long",
+        "emblem": false
       }
     },
     "moth": {
@@ -1733,5 +1950,9 @@
         11.0
       ]
     }
+  },
+  "rich": {
+    "enabled": true,
+    "note": "set enabled:false to bake the v70 look (no hair/apron/quiver/etc.)"
   }
 }

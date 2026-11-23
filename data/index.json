@@ -57,6 +57,7 @@
     "camera.json",
     "icons.json",
     "props3d.json",
-    "ui.json"
+    "ui.json",
+    "guide.json"
   ]
 }

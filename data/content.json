@@ -3,8 +3,18 @@
     {
       "id": "wood",
       "name": "Out of Hearthveil",
-      "track": "Go through the north arch into the Cinderwood.",
-      "text": "Go through the north arch and through the Cinderwood. The far side leads to the Salt Causeway.",
+      "track": "Walk through the North Gate into the Cinderwood.",
+      "text": "The North Gate in the town wall opens on the Cinderwood. Go through it.",
+      "need": {
+        "enter": "cinderwood",
+        "orWaypoint": "salt_causeway"
+      }
+    },
+    {
+      "id": "wood_far",
+      "name": "Through the Cinderwood",
+      "track": "Cross the Cinderwood to the far arch.",
+      "text": "Fight through the Cinderwood. The far arch opens on the Salt Causeway.",
       "need": {
         "waypoint": "salt_causeway"
       }
