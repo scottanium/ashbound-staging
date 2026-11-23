@@ -167,3 +167,23 @@ Learning an active skill already placed it on the first empty bar slot; that sti
 ## v63 — campaign intro difficulty
 
 Starting fights were too hard. Monster life and XP in campaign fight zones now start at 0.25 of the current base in Cinderwood and rise linearly by zone to 1.0 at The First Kiln, the last campaign zone. Towns are not on the list (no packs). Ember Rifts and any other post-campaign zone stay at 1.0. Loot and gold are unchanged; the curve lives in `data/difficulty.json` (`campaignIntro`). Restore point: git tag `pre-difficulty`. Test: `tests/r7_campaign_scale.py`. Staging copy is rebuilt as v63; not uploaded from this tree.
+
+
+## v64 — skills and Strike while moving
+
+Cause: skill buttons (and flasks, Use) fired on the browser's `click`. A `click` is only made from a single-finger tap; while the left thumb holds the move stick, the right thumb's tap is part of a two-finger gesture and no `click` is sent, so the skill never cast. Strike already used `pointerdown`, so it worked. Fix: `cast`, `drink` and `interact` buttons now act on `pointerdown`; the following `click` is ignored if it matches (no double cast). The cast aims through `abSkillAim` as before, and the stick is untouched so movement continues. Keyboard (WASD held + 1-4 / Space) already worked and is now covered by a test. New test `tests/r7_move_cast.py` (CDP multi-touch).
+
+
+## v64 — iPhone 3D fix (baked frames instead of pixel sprites)
+
+Cause: v56 added a second `function ab3Cap()` (the cache-limit getter). In JavaScript the later one wins, so it replaced `ab3Cap(a,b,r,pt)`, the capsule-part builder used by every biped 3D model. Every bake threw (`Cannot read properties of undefined`), was swallowed, and the type stayed queued forever, so `ab3Get` never returned a frame and the game kept drawing the old pixel sprites. It was not iPhone specific; it hit every device from v56 on (desktop looked fine only where cached or non-biped models drew). Fix: rename the limit getter to `ab3Limits()`. Hardening on top: bake canvas DPR capped at 2 (`ab3BakeDpr`), urgent queue and 32 ms budget (`camera.urgentMs`) for frames needed on screen, failed types are marked bad after 3 errors (no endless re-queue), warm set trimmed to idle/walk/run, cache cap 48 MB. `?debug3d=1` shows baked vs pixel counts, queue, errors; `ASHBOUND.stats3d()` exposes the same. New test `tests/r7_3d_mobile.py` (DPR 3, 844x390, 4x CPU throttle).
+
+
+## v65 — inventory layout (Gear > Sheet)
+
+Bigger equipment slots around a taller hero figure, a roomier pack, stats that no longer clip, and a tooltip that has its own place. The ten slot ids (`helm amulet weapon offhand armor gloves belt boots ring1 ring2`) and the save format are unchanged. Sizes live in `data/inventory-layout.json` (profiles `phonePortrait`, `phoneLandscape`, `desktop`) and are applied as `--inv-*` CSS variables by `abInvApply()`; the profile is picked from the window size and re-applied on resize/rotation. Portrait: 74px slots, stats beside the doll, pack below, tooltip as a bottom sheet with a close button (new `deselect` action). Landscape: 58px slots (a 390px-tall screen cannot fit 72), tabs share the title row, stats under the pack, tooltip on the right. Desktop: a wide inset sheet, 108px slots, 74px pack cells, larger type. New test `tests/r7_inventory_layout.py`.
+
+
+## v66 — Koto's full text pass
+
+Applied the rewrites in `/workspace/ashbound-writing/full-text-pass/` (all batch files plus `extra-skill-notes.json` and `extra-misc.json`): 230 strings in `data/*.json` and 27 in `index.html` (toasts, tutor, What's new, rotate prompt, death card). Ids, key paths, placeholders and numbers are unchanged (`check_keys.py` passes; the rest were already live or identical). Effect text was checked against the code and two lines corrected: Warden Shrine now says it also raises fire resist (+40 armor, +15 fire resist), and Quill's blurb no longer says the lamp works "near" Quill (the aura applies whenever Quill is hired and up, and includes +8% fire resist). Fortune Shrine (+45 magic find) and Ember Shrine (+20% fire damage) already matched. Notes: `full-text-pass/code-check-notes.md`. New test `tests/r7_text_pass.py`.

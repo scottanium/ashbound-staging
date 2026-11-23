@@ -83,7 +83,7 @@ v55 still closes over one live state object `o`. New targeting already goes thro
 
 ## Tests
 
-See `TESTS.md`. Scripts are in `tests/`. v62: the skill-point coach tip is visible again; learning an active skill still puts it on the bar; pressing an empty hotkey opens Skills. v63: campaign monster life and XP start at a quarter in Cinderwood and rise by zone to full strength at The First Kiln (`data/difficulty.json`); rifts stay at the base. Baseline: `tests/r5_ai.py` and `tests/r6_v55.py` against `http://127.0.0.1:8907/index.html`. Stress: [STRESS-v55.md](STRESS-v55.md), [STRESS-v54.md](STRESS-v54.md).
+See `TESTS.md`. Scripts are in `tests/`. v62: the skill-point coach tip is visible again; learning an active skill still puts it on the bar; pressing an empty hotkey opens Skills. v66: Koto full text pass applied (`tests/r7_text_pass.py`). v65: Gear sheet redesign, sizes in `data/inventory-layout.json` (`tests/r7_inventory_layout.py`). v64: 3D frames bake again (a duplicate `ab3Cap` name broke every biped bake; `?debug3d=1` shows baked vs pixel counts, `tests/r7_3d_mobile.py`). v64: skills, flasks and Use fire on finger-down, so a skill works while the move stick is held (`tests/r7_move_cast.py`). v63: campaign monster life and XP start at a quarter in Cinderwood and rise by zone to full strength at The First Kiln (`data/difficulty.json`); rifts stay at the base. Baseline: `tests/r5_ai.py` and `tests/r6_v55.py` against `http://127.0.0.1:8907/index.html`. Stress: [STRESS-v55.md](STRESS-v55.md), [STRESS-v54.md](STRESS-v54.md).
 
 ## Overhaul (r7)
 

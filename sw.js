@@ -27,6 +27,7 @@ self.addEventListener('install', (event) => {
     './data/characters.json',
     './data/npc-lines.json',
     './data/difficulty.json',
+    './data/inventory-layout.json',
     './manifest.webmanifest',
     './icon-192.png',
     './icon-512.png',
