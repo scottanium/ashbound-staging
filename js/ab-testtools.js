@@ -1,12 +1,13 @@
 /* Ashbound STAGING-ONLY Test Tools. Loaded by index.html only when ASHBOUND_CONFIG.STAGING === true, and this file does nothing
    unless that is true AND the game handed over its bridge. The live build never loads it and has no menu button or panel for it.
    Panel: Menu > TEST tools. Spawn items (base / rarity / unique / set / runeword / rune / gem / flask / charm, item level, sockets),
-   set the hero's level, add points and gold, ignore level and stat requirements, jump to any zone. */
+   set the hero's level, add points and gold, ignore level and stat requirements, jump to any zone.
+   Also spawn 1/5/10 random maxed uniques raised to Mythical (top upgrade tier; no separate awakened flag) or random maxed set pieces. */
 (function () {
   "use strict";
   var C = self.ASHBOUND_CONFIG, B = self.ABSTG_BRIDGE;
   if (!C || C.STAGING !== true || !B) return;
-  var S = { kind: "gear", base: "", rarity: "rare", ilvl: 20, sockets: 0, unique: "", set: "", word: "", rune: "", gem: "", flask: "life", charm: "small", count: 1, lvl: 30, pts: 5, gold: 1000, zone: "", msg: "" };
+  var S = { kind: "gear", base: "", rarity: "rare", ilvl: 20, sockets: 0, unique: "", set: "", word: "", rune: "", gem: "", flask: "life", charm: "small", count: 1, mythCount: 1, lvl: 30, pts: 5, gold: 1000, zone: "", msg: "" };
   self.ABSTG_IGNORE = false;
   var KINDS = [["gear", "Base item"], ["unique", "Unique"], ["set", "Set item"], ["runeword", "Runeword"], ["rune", "Rune"], ["gem", "Gem"], ["flask", "Flask"], ["charm", "Charm"]];
   function esc(x) { return String(x == null ? "" : x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -43,6 +44,13 @@
     }
     h.push(row("How many", num("count", 1, 20)));
     h.push('<div class="row"><button class="btn primary" data-act="tt-add">Add to pack</button><button class="btn" data-act="tt-equip">Add and equip</button></div></section>');
+    h.push('<section class="tt-card"><h3>Spawn maxed</h3>');
+    h.push('<p class="small muted">Random unique or set piece with best base defense, full sockets, and Mythical rank (the top upgrade tier). There is no separate awakened flag.</p>');
+    h.push('<div class="row tt-counts">' + [1, 5, 10].map(function (n) {
+      return '<button class="btn' + (S.mythCount === n ? " primary" : "") + '" data-act="tt-mc" data-n="' + n + '">' + n + "</button>";
+    }).join("") + "</div>");
+    h.push('<button class="btn primary" data-act="tt-mythic">Spawn random mythic (maxed, awakened)</button>');
+    h.push('<button class="btn primary" data-act="tt-setmax">Spawn random set piece (maxed, awakened)</button></section>');
     h.push('<section class="tt-card"><h3>Hero</h3>');
     h.push(row("Level (now " + p.level + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
     h.push(row("Points", num("pts", 1, 500)));
@@ -58,6 +66,34 @@
     return h.join("");
   }
   function give(item) { return B.q(B.o.player.inventory, item) || B.q(B.o.player.stash, item); }
+  function baseOf(it) {
+    var id = it && it.baseId;
+    for (var i = 0; i < B.bases.length; i++) if (B.bases[i].id === id) return B.bases[i];
+    return null;
+  }
+  function pick(list) { return list[Math.floor(Math.random() * list.length)]; }
+  function maxOut(it) {
+    var b = baseOf(it);
+    if (b) {
+      if (b.defense) it.defense = Array.isArray(b.defense) ? b.defense[b.defense.length - 1] : b.defense;
+      if (b.maxSockets) B.rn(it, b.maxSockets);
+      it.ilvl = Math.max(it.ilvl || 1, b.ilvl || 1, 80);
+    } else it.ilvl = Math.max(it.ilvl || 1, 80);
+    it.tier = "mythical";
+    it.identified = true;
+    return it;
+  }
+  function spawnMaxed(kind, n) {
+    var out = [], i, it, def;
+    n = Math.max(1, Math.min(10, n | 0));
+    for (i = 0; i < n; i++) {
+      it = null;
+      if (kind === "mythic") { def = pick(B.uniques); it = B.Lt(def.id); }
+      else { def = pick(B.sets); it = B._e(def.baseId); B.Ho(it, def); }
+      if (it) out.push(maxOut(it));
+    }
+    return out;
+  }
   function make() {
     var n = [], k = S.kind, p = B.o.player, il = Math.max(1, Math.min(80, S.ilvl | 0)), so = Math.max(0, Math.min(6, S.sockets | 0));
     for (var i = 0; i < Math.max(1, Math.min(20, S.count | 0)); i++) {
@@ -97,6 +133,13 @@
     else if (e === "tt-kill") { if (self.ASHBOUND && self.ASHBOUND.killAll) self.ASHBOUND.killAll(); say("Cleared the zone."); }
     else if (e === "tt-ign") { self.ABSTG_IGNORE = !self.ABSTG_IGNORE; B.se(); say("Requirements " + (self.ABSTG_IGNORE ? "ignored." : "back on.")); }
     else if (e === "tt-tp") { o.ui.panel = null; self.ASHBOUND.travel(S.zone); }
+    else if (e === "tt-mc") { S.mythCount = Math.max(1, Math.min(10, Number(t && t.n) || 1)); }
+    else if (e === "tt-mythic" || e === "tt-setmax") {
+      var kind = e === "tt-mythic" ? "mythic" : "set";
+      var items = spawnMaxed(kind, S.mythCount), ok = 0;
+      items.forEach(function (it) { if (give(it)) ok++; });
+      say(ok ? ("Added " + ok + " maxed " + (kind === "mythic" ? "mythic unique" : "set piece") + (ok === 1 ? "" : "s")) : "Pack and stash are full.");
+    }
     B.se(); B.refresh();
   }
   function onChange(ev) {
@@ -110,7 +153,7 @@
     st.textContent = ".tt{display:flex;flex-direction:column;gap:8px}.tt-card{border:1px solid var(--line-dim);border-radius:12px;background:#1c1612;padding:8px 10px;display:flex;flex-direction:column;gap:6px}" +
       ".tt-card h3{margin:0 0 2px;font-size:14px}.tt-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}.tt-row span{flex:0 0 auto;max-width:42%}" +
       ".tt-in{flex:1 1 auto;min-width:0;min-height:44px;background:#120e0b;color:#f0e2c4;border:1px solid var(--line-dim);border-radius:8px;padding:4px 8px;font:inherit}.tt-num{max-width:130px}" +
-      ".tt .btn{min-height:44px}.tt .row{display:flex;gap:8px;flex-wrap:wrap}.tt .row .btn{flex:1 1 120px}";
+      ".tt .btn{min-height:44px}.tt .row{display:flex;gap:8px;flex-wrap:wrap}.tt .row .btn{flex:1 1 120px}.tt-counts .btn{flex:1 1 44px}";
     document.head.appendChild(st);
   }
   self.ABSTG = { render: render, act: act, state: S };

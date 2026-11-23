@@ -54,6 +54,8 @@
     if (has("goal")) q.push("#hud-goal { font-size: " + px(p.goal) + "; }");
     if (has("orbFont")) q.push(".orb em { font-size: " + px(p.orbFont) + "; }");
     if (has("dockFont")) q.push("#dock button { font-size: " + px(p.dockFont) + "; }");
+    if (has("dockH") || has("tapMin")) q.push("#dock button { min-height: " + px(p.dockH != null ? p.dockH : Math.max(44, p.tapMin)) + "; }");
+    if (has("dockPad")) q.push("#dock button { padding: 0 " + px(p.dockPad) + "; }");
     if (has("attackFont")) q.push("#btn-attack { font-size: " + px(p.attackFont) + "; }");
     if (has("hint")) q.push("#hud #hint { font-size: " + px(p.hint) + "; }");
     if (has("tutor")) q.push("#hud #tutor, #tutor p { font-size: " + px(p.tutor) + "; }");
