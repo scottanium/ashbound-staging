@@ -35,6 +35,8 @@ self.addEventListener('install', (event) => {
     './js/ab-props3d.js',
     './data/ui.json',
     './data/guide.json',
+    './data/feel.json',
+    './js/ab-feel.js',
     './js/ab-ui.js',
     './js/ab-hudarc.js',
     './manifest.webmanifest',

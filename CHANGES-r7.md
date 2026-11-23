@@ -302,3 +302,86 @@ Restore point for the art step: git tag `pre-charart`. Saves stay `SAVE_VERSION`
 ### Perf (same probe as v70: iPhone landscape 844×390, DPR 3, 4× CPU throttle)
 - `r7_iso_perf`: town walk 6.39 fps (v70 7.3), Cinderwood fight 7.68 fps (v70 6.9).
 - `r7_cap` pack-120: 19.4 fps avg (v70 18.2, pass line 18). `all_pass: true`.
+
+
+## v72 — timing and feel
+
+Attack feel, movement, stamina, and built-in boot run speed. All of those numbers live in `data/feel.json`, read through `js/ab-feel.js` (`ABFeel`). Restore points: `pre-version`, `pre-hitfeel`, `pre-runspeed`, `pre-stamina`, `pre-movespeed`. Commits: `12ce023` (version), `6da7f61` (hit feel), `d907af6` (run speed), `9fa81e0` (stamina), `a351219` (boot move speed).
+
+### Attack and hit feel
+- Swing windup/recovery is tighter than v71 (`swingMin` 0.08, `swingMax` 0.18, `swingApsRef` 0.28; v71 was 0.112–0.256 with a 0.38 APS ref). Skill swings use `skillSwing` 0.11.
+- Hit pause, flash and the impact ring come from the file: hit 0.07s, crit 0.11s, kill 0.13s, a big player-hurt 0.055s (threshold 16). Changing a number in the data file changes the next hit.
+- Test: `tests/r7_hitfeel.py`.
+
+### Run speed and gait
+- Run is 15% slower (`runMul` 0.85). Walk is distinctly slower (`walkMul` 0.4 of run, was 0.5). Stick below `walkStick` 0.62 walks. Accel 16 and decel 22 tiles/s².
+- Walk/run animation follows `player.gait`. Walk and run cycle lengths still differ in `data/models.json`.
+- Cinder Warden, no gear: run 3.825 tiles/s (was 4.5), walk 1.53 (was 2.25). In-world vx matches those figures after accel settles.
+- Test: `tests/r7_runspeed.py`.
+
+### Stamina (D2-style)
+- Max = 80 + Vitality × 2.5 (Cinder Warden at 22 Vitality: 135). Drain 16/s while running outside town; regen 22/s walking, 36/s idle; no drain in towns (idle regen still applies). Empty forces a walk until 28% is back.
+- A small gold bar sits just above the life orb (`#stam-bar`, placed by `js/ab-hudarc.js`) and does not overlap the skill arc, Strike, orbs, flasks, dock or stick.
+- Stats tab: Stamina and Stamina per Vitality rows, and the Vitality card lists +2.5 stamina per point.
+- Test: `tests/r7_stamina.py`. Before/after shots: `/workspace/ashbound-overhaul/gfx3-stambar-{before,after}.png`, `gfx3-statstab-{before,after}.png`.
+
+### Boot move speed
+- Every boot has a built-in Faster Run amount by rarity, from `data/feel.json` `bootMove`: Common 5, Magic 8, Rare 12, Elite 16, Epic 22, Legendary 28, Fabled 34, Mythical 40.
+- Fleet is +8% on boots and +5% on rings (`slotMods`); of the Path is +15% on boots. The total FRW cap stays 80% (`frwFloor` −20, `frwCap` 80).
+- Paragon +1% move speed per 10 levels is not built yet (no paragon). Noted in `data/feel.json` `notes.paragon`.
+- Test: `tests/r7_movespeed.py`.
+
+### Staging
+- `VERSION` is v72 in `config.js` and `config.staging.js`. Staging `STORAGE_PREFIX` stays `ashbound-staging-v71:`. Live `config.js` stays `STAGING: false`. The `../staging-upload/` copy was not touched (still the v71 pack).
+
+### Tests
+- New: `r7_version`, `r7_hitfeel`, `r7_runspeed`, `r7_stamina`, `r7_movespeed` (TESTS.md 54–58).
+- Full checklist run after step 5. Known: `r6_v55` still fails; `r7_text_pass` still fails (pre-existing). `r5_ai` passed on this run (it had been listed as a pre-existing fail). Flaky `r7_3d_mobile` (`frames_baked`) failed twice (including a retry); `r7_telling`, `r7_save_dto`, `r7_move_cast`, `r7_inventory_layout` passed. Version-pin checks in `r7_phaseA_migrate`, `r7_phaseA_play`, `r7_skills_play`, and `r7_campaign_scale` were updated from v71 to v72 (`staging-upload` is still asserted as v71).
+
+### Perf (same probe as v71: iPhone landscape 844×390, DPR 3, 4× CPU throttle)
+- `r7_iso_perf`: town walk 6.49 fps (v71 6.39), Cinderwood fight 7.23 fps (v71 7.68).
+- `r7_cap` pack-120: 19.3 fps avg (v71 19.4, pass line 18). `all_pass: true`.
+
+### Bigger Strike and even skill arc
+- Strike is 22% larger (`data/ui.json` arc.strikeScale 1.22) than the CSS size at each breakpoint (64→78 portrait, 78→95 landscape, 112→137 desktop).
+- The four skill slots use even angular spacing around Strike, packed as close as possible without overlapping (ringGap / slotGap still 6). Orbs, belt, dock and the stamina bar still clear the arc.
+- Test: `tests/r7_bigstrike.py`. `r7_skillarc` overlap/tightness still applies. Shots: `/workspace/ashbound-overhaul/gfx3-bigstrike-{before,after}-{portrait,landscape,desktop}.png`.
+
+### Overhead health and mana bars
+- A Settings toggle (default off, saved with the other device settings through `abStore()`, so the staging prefix applies) shows small health and mana bars above the player. Sizes and labels live in `data/ui.json` `overheadBars`. Also listed in the pause menu.
+- Test: `tests/r7_overheadbars.py`. Shots: `/workspace/ashbound-overhaul/gfx3-overheadbars-{before,after}[-settings]-{portrait,landscape,desktop}.png`.
+
+### Bottom-centre orbs
+- Health and mana orbs sit near the bottom centre (health left, mana right), D2/D4 style, instead of out at the left and right edges. The potion belts and the Gear / Skills / Journal / Menu dock move so they do not overlap the orbs, stamina bar, stick or skill arc. Dock buttons stay at least 44px with the profile dock font. Numbers live in `data/ui.json` `hudLayout`.
+- Test: `tests/r7_hudlayout.py`. `r7_skillarc` overlap still passes (the old "orbs raised at the edges" check is now "orbs inboard"). Shots: `/workspace/ashbound-overhaul/gfx3-hudlayout-{before,after}-{portrait,landscape,desktop}.png`.
+
+### Load-in sound
+- The looping act drone no longer starts automatically on first tap (`Kr`), on spawn, or when a zone loads. That was the generic "enter the game" sound, not a fire effect. Default is silence (`data/feel.json` `audio.autoMusic` false, `loadCue.enabled` false). A very soft short cue can be turned on in that file. Mute and the music slider in Settings can still start music if you want it.
+- Restore tag: `pre-loadsound`. Test: `tests/r7_loadsound.py`.
+
+### HUD mute button
+- A speaker-icon mute button sits in the top corner beside the minimap (48px, data in `data/ui.json` `muteBtn`). It toggles all game audio (`settings.muted`, already respected by SFX and music), shows the muted state clearly, and is saved with the other device settings through `abStore()` (staging prefix applies). The same control is in Settings and the pause menu.
+- Test: `tests/r7_mutebtn.py`. Shots: `/workspace/ashbound-overhaul/gfx3-mutebtn-{before,after,after-muted,after-settings}-{portrait,landscape,desktop}.png`.
+
+### Test Tools: random maxed mythic / set
+- Staging Test Tools gains a "Spawn maxed" card: count 1 / 5 / 10, then "Spawn random mythic (maxed, awakened)" or "Spawn random set piece (maxed, awakened)".
+- There is no separate awakened flag in the game, so "maxed + awakened" means best base defense, full sockets, and Mythical rank (the top upgrade tier) on a random unique or set piece.
+- Test: `tests/r7_testtools.py` (extended). Shots: `/workspace/ashbound-overhaul/gfx3-spawnmythic-{before,after}-{portrait,landscape,desktop}.png` and `gfx3-spawnmythic-after-spawned-landscape.png`.
+
+### Stats tab: armor defense percent and hideZero
+- Dexterity's "each point gives" line is now "+0.15% armor defense" (percent per point) instead of a rounded-to-zero "+0.00 defense" when gear defense is tiny. The rate lives in `data/ui.json` (`mode: "rate"`).
+- `hideZero` hides a value when it ROUNDS to zero at that row's display decimal places, not only when it is exact 0 (per-point and derived rows).
+- Stats cards wrap on narrow widths (`minmax(min(100%, 196px), 1fr)`) so labels do not clip on phone or desktop.
+- Test: `tests/r7_statstab.py` (extended). Shots: `/workspace/ashbound-overhaul/gfx3-statstab-{before,after}-{portrait,landscape,desktop}.png`.
+
+### Main stat (D3-style)
+- Each class has a `mainStat` and `mainBonuses` in `data/classes.json`. Cinder Warden: Strength. Briar Stalker and Salt Reaver: Dexterity. Reed Caller and Bell Chanter: Energy.
+- Crit (0.08%/pt) and armor defense (0.15%/pt) now come from the main stat, not from Dex unless Dex is the main. Dexterity still grants attack rating for every class. Rates live in `mainStatRates`.
+- Energy casters get spell damage %/pt on the existing `edmg` (enhancedDamage) sheet stat instead of armor defense, and they keep crit. Skill/spell and minion hits scale with `(1+edmg)` times a per-class `skillDamageMul` (also in `classes.json`) so casters play as glass cannons without running away from the pack in a DPS × eHP sim.
+- The Stats tab lists those per-point rates on the main-stat card.
+- Test: `tests/r7_mainstat.py` (L10/L30/L50 sim vs a 4-hound pack, all products within 15% of the level average). Shots: `/workspace/ashbound-overhaul/gfx3-mainstat-after-{warden,chanter}-{portrait,landscape,desktop}.png`.
+
+### Pre-staging regression fixes
+- Tap-to-move hard-stops when the hero reaches the tapped tile (accel leftover from v72 feel was still carrying them, so the next screen pick was stale). Far floor taps no longer land in the v72 HUD: `r7_iso_camera` skips tiles under the dock, belts, orbs, skill arc and the game's 14px control pad (the old 70px-bottom / 220px-right margins no longer match the bottom-centre layout). That also stopped a Skills-dock miss from opening a panel and freezing flat-mode stick and keyboard.
+- Dock layout no longer forces 36px / 12px buttons. Phone profiles in `data/ui.json` set `dockH` 44 and `dockPad` 8; `ab-ui.js` applies `dockH` / `dockFont` / `dockPad` on every profile; `ab-hudarc.js` only positions the dock. `r7_ui_polish` 44px taps and dock font pass, and `r7_hudlayout` still has no overlap.
+- Restore tag: `pre-regfix`. Tests: `tests/r7_iso_camera.py`, `tests/r7_ui_polish.py`, `tests/r7_hudlayout.py`. Shots: `/workspace/ashbound-overhaul/gfx3-hudlayout-after-{portrait,landscape,desktop}.png` (refreshed).
