@@ -1,0 +1,1567 @@
+{
+  "quests": [
+    {
+      "id": "wood",
+      "name": "Out of Hearthveil",
+      "track": "North arch into Cinderwood.",
+      "text": "North arch, through the Cinderwood. The far side opens the Salt Causeway.",
+      "need": {
+        "waypoint": "salt_causeway"
+      }
+    },
+    {
+      "id": "salt",
+      "name": "Across the salt",
+      "track": "Cross the Salt Causeway to the Spire.",
+      "text": "The white road runs to the Ruined Spire. Walk it to the far arch.",
+      "need": {
+        "waypoint": "ruined_spire"
+      }
+    },
+    {
+      "id": "spire",
+      "name": "Down the spire",
+      "track": "Find the way down to the Sunken Kiln.",
+      "text": "Search the Ruined Spire for the way into the Sunken Kiln.",
+      "need": {
+        "waypoint": "sunken_kiln"
+      }
+    },
+    {
+      "id": "kiln",
+      "name": "Under the kiln",
+      "track": "The Sunken Kiln ends at Veyra.",
+      "text": "The Sunken Kiln goes down to the Heart. Veyra tends the fire there.",
+      "need": {
+        "waypoint": "heart_kiln"
+      }
+    },
+    {
+      "id": "boss",
+      "name": "Stop Veyra",
+      "track": "Kill Veyra. Brinehollow opens after.",
+      "text": "Kill Veyra. When she falls, Brinehollow opens.",
+      "need": {
+        "boss": true
+      }
+    },
+    {
+      "id": "mere",
+      "name": "Reach Brinehollow",
+      "track": "Go to Brinehollow. Ask Brin first.",
+      "text": "Use the gate and go to Brinehollow. Ask Brin before you touch a bell.",
+      "need": {
+        "waypoint": "brinehollow"
+      },
+      "warn": "Ask Brin before you touch a bell.",
+      "warnZone": "brinehollow"
+    },
+    {
+      "id": "marsh",
+      "name": "Through the reeds",
+      "track": "Cross Reed Marsh to the Mirror Flats.",
+      "text": "Pick your way through Reed Marsh. The Mirror Flats start where the water hardens.",
+      "need": {
+        "waypoint": "mirror_flats"
+      }
+    },
+    {
+      "id": "mirror",
+      "name": "Over the glass",
+      "track": "Swing at the late copy on the Flats.",
+      "text": "Cross the Mirror Flats. Swing at the copy, not at yourself. The Archive is past it.",
+      "need": {
+        "waypoint": "drowned_archive"
+      },
+      "warn": "The late pair of boots is the one to hit.",
+      "warnZone": "mirror_flats"
+    },
+    {
+      "id": "archive",
+      "name": "Out of the archive",
+      "track": "Leave the Archive for the caverns.",
+      "text": "The Drowned Archive still files the dead. The Bell Caverns are the way out.",
+      "need": {
+        "waypoint": "bell_caverns"
+      }
+    },
+    {
+      "id": "bells",
+      "name": "The wrapped bells",
+      "track": "Through the caverns. Don't toll.",
+      "text": "The Bell Caverns lead to the Queen Pool. Leave the bronze wrapped.",
+      "need": {
+        "waypoint": "queen_pool"
+      },
+      "warn": "Wrapped bronze stays wrapped.",
+      "warnZone": "bell_caverns"
+    },
+    {
+      "id": "morra",
+      "name": "Stop Morra",
+      "track": "Kill Morra. The orchard opens after.",
+      "text": "Kill Morra the Silt Queen. Vesper Orchard opens after.",
+      "need": {
+        "boss": "morra"
+      }
+    },
+    {
+      "id": "vesper",
+      "name": "The orchard market",
+      "track": "Vesper Orchard. Buy steel, not apples.",
+      "text": "Go to Vesper Orchard. Vetch sells steel. Leave the red fruit.",
+      "need": {
+        "waypoint": "vesper_orchard"
+      },
+      "warn": "The red fruit is not supper.",
+      "warnZone": "vesper_orchard"
+    },
+    {
+      "id": "rows",
+      "name": "Down the rows",
+      "track": "Walk the Briar Rows to the Sap Press.",
+      "text": "Walk the Briar Rows. The Sap Press is at the far end, still turning.",
+      "need": {
+        "waypoint": "sap_press"
+      }
+    },
+    {
+      "id": "press",
+      "name": "Past the press",
+      "track": "Past the press, into the Galleries.",
+      "text": "The screw still turns. Get past it and into the Hush Galleries.",
+      "need": {
+        "waypoint": "hush_galleries"
+      }
+    },
+    {
+      "id": "galleries",
+      "name": "Under the frames",
+      "track": "Cross the Galleries to the Root Nave.",
+      "text": "The faces are gone from the paintings. The Root Nave is under the rooms.",
+      "need": {
+        "waypoint": "root_nave"
+      }
+    },
+    {
+      "id": "nave",
+      "name": "Up the nave",
+      "track": "The Root Nave leads up to Sallow.",
+      "text": "The nave grew its own roof. Heartwood is at the end, and Sallow with it.",
+      "need": {
+        "waypoint": "heartwood"
+      }
+    },
+    {
+      "id": "sallow",
+      "name": "Stop Sallow",
+      "track": "Kill Sallow. Ashgate opens after.",
+      "text": "Kill Sallow the Root King. Ashgate and the Pale Stair open after.",
+      "need": {
+        "boss": "sallow"
+      }
+    },
+    {
+      "id": "ashgate",
+      "name": "The last warm door",
+      "track": "Ashgate, then the Pale Steps.",
+      "text": "Go to Ashgate. Rook keeps the stall. The stair starts at the Pale Steps.",
+      "need": {
+        "waypoint": "ashgate"
+      }
+    },
+    {
+      "id": "steps",
+      "name": "The pale steps",
+      "track": "Climb the Pale Steps to the Tombs.",
+      "text": "Climb the Pale Steps. The wind has teeth. The Ember Tombs are at the top.",
+      "need": {
+        "waypoint": "ember_tombs"
+      }
+    },
+    {
+      "id": "tombs",
+      "name": "The warm graves",
+      "track": "The Tombs open onto the Quiet Fields.",
+      "text": "The graves still give heat. Cross the Ember Tombs onto the Quiet Fields.",
+      "need": {
+        "waypoint": "quiet_fields"
+      }
+    },
+    {
+      "id": "fields",
+      "name": "The quiet fields",
+      "track": "Cross the Fields to the Stair of Names.",
+      "text": "Nothing grew back here. The Stair of Names is cut into the far side.",
+      "need": {
+        "waypoint": "stair_of_names"
+      }
+    },
+    {
+      "id": "names",
+      "name": "Don't add yours",
+      "track": "The Stair ends at the First Kiln.",
+      "text": "Climb the Stair of Names. The First Kiln is the fire they have been feeding.",
+      "need": {
+        "waypoint": "first_kiln"
+      }
+    },
+    {
+      "id": "mael",
+      "name": "Bank the fire",
+      "track": "Kill Mael. The rift stone is warm after.",
+      "text": "Kill Mael the Unbanked. If the kiln goes quiet, the march is over. The rift stone in Ashgate is warm after.",
+      "need": {
+        "boss": "mael"
+      }
+    }
+  ],
+  "bargains": [
+    {
+      "id": "ash_bargain",
+      "name": "Ash Bargain",
+      "text": "The kiln takes a little life and gives the fire back.",
+      "mods": {
+        "life": -12,
+        "fireDamagePercent": 25
+      },
+      "duration": 45
+    },
+    {
+      "id": "glass_quiet",
+      "name": "Quiet Glass",
+      "text": "The glass steadies your mana and your cold ward.",
+      "mods": {
+        "mana": 12,
+        "coldResist": 20
+      },
+      "duration": 45
+    },
+    {
+      "id": "sap_sweet",
+      "name": "Sweet Sap",
+      "text": "The sap sticks. You bleed slower, and so do they.",
+      "mods": {
+        "lifeRegen": 2,
+        "thorns": 6
+      },
+      "duration": 45
+    },
+    {
+      "id": "pale_name",
+      "name": "Uncut Name",
+      "text": "A name that was never cut. Finds come easier. Resists don't.",
+      "mods": {
+        "magicFind": 35,
+        "allResist": -8
+      },
+      "duration": 45
+    }
+  ],
+  "zones": [
+    {
+      "id": "hearthveil",
+      "name": "Hearthveil",
+      "act": 1,
+      "kind": "town",
+      "rec": "Town",
+      "blurb": "A walled refuge where the public kiln still eats scrap wood."
+    },
+    {
+      "id": "cinderwood",
+      "name": "Cinderwood",
+      "act": 1,
+      "kind": "wild",
+      "rec": "1–4",
+      "mlvl": [
+        1,
+        4
+      ],
+      "width": 34,
+      "height": 34,
+      "packs": 8,
+      "packSize": [
+        2,
+        4
+      ],
+      "monsters": [
+        "bramble_hound",
+        "ash_moth",
+        "thorn_kin",
+        "cinder_charger",
+        "kiln_caller"
+      ],
+      "champion": 0.22,
+      "elite": 0.07,
+      "unlocks": "salt_causeway",
+      "palette": "wood",
+      "layout": "road",
+      "named": {
+        "monster": "bramble_hound",
+        "name": "Old Knot",
+        "line": "The hound that sits on the town path and will not move."
+      },
+      "blurb": "Black trees and moths that die in a puff of coals."
+    },
+    {
+      "id": "salt_causeway",
+      "name": "Salt Causeway",
+      "act": 1,
+      "kind": "wild",
+      "rec": "5–9",
+      "mlvl": [
+        5,
+        9
+      ],
+      "width": 36,
+      "height": 36,
+      "packs": 9,
+      "packSize": [
+        3,
+        4
+      ],
+      "monsters": [
+        "salt_raider",
+        "glass_slinger",
+        "dune_stalker",
+        "bramble_hound",
+        "cinder_charger"
+      ],
+      "champion": 0.24,
+      "elite": 0.08,
+      "unlocks": "ruined_spire",
+      "palette": "salt",
+      "layout": "islands",
+      "named": {
+        "monster": "glass_slinger",
+        "name": "Glass Aunt",
+        "line": "She slings at anyone on the white road. Do not wave."
+      },
+      "blurb": "A pale road of salt crust and broken glass."
+    },
+    {
+      "id": "ruined_spire",
+      "name": "Ruined Spire",
+      "act": 1,
+      "kind": "dungeon",
+      "rec": "9–13",
+      "mlvl": [
+        9,
+        13
+      ],
+      "width": 42,
+      "height": 42,
+      "packs": 10,
+      "packSize": [
+        3,
+        4
+      ],
+      "monsters": [
+        "kilnbound",
+        "cinder_wisp",
+        "plate_husk",
+        "thorn_kin",
+        "kiln_caller"
+      ],
+      "champion": 0.26,
+      "elite": 0.1,
+      "unlocks": "sunken_kiln",
+      "palette": "spire",
+      "blurb": "Stairs that forgot which way was up."
+    },
+    {
+      "id": "sunken_kiln",
+      "name": "Sunken Kiln",
+      "act": 1,
+      "kind": "dungeon",
+      "rec": "13–17",
+      "mlvl": [
+        13,
+        17
+      ],
+      "width": 42,
+      "height": 42,
+      "packs": 11,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "ember_golem",
+        "kiln_imp",
+        "ash_priest",
+        "kilnbound",
+        "cinder_wisp",
+        "cinder_charger"
+      ],
+      "champion": 0.28,
+      "elite": 0.12,
+      "unlocks": "heart_kiln",
+      "palette": "kiln",
+      "blurb": "Brick, slag, and things that still think the fire is a god."
+    },
+    {
+      "id": "heart_kiln",
+      "name": "Heart of the Kiln",
+      "act": 1,
+      "kind": "boss",
+      "rec": "18",
+      "mlvl": [
+        18,
+        18
+      ],
+      "boss": "veyra",
+      "palette": "kiln",
+      "blurb": "The fire at the bottom of the old city."
+    },
+    {
+      "id": "brinehollow",
+      "name": "Brinehollow",
+      "act": 2,
+      "kind": "town",
+      "rec": "Town",
+      "palette": "mere",
+      "blurb": "A stilt village where the lamps burn fish oil and the bells are kept wrapped."
+    },
+    {
+      "id": "reed_marsh",
+      "name": "Reed Marsh",
+      "act": 2,
+      "kind": "wild",
+      "rec": "15–19",
+      "mlvl": [
+        15,
+        19
+      ],
+      "width": 32,
+      "height": 32,
+      "packs": 8,
+      "packSize": [
+        3,
+        4
+      ],
+      "monsters": [
+        "reed_lurker",
+        "glass_minnow",
+        "mire_heron",
+        "shield_crab",
+        "glass_kiter"
+      ],
+      "champion": 0.26,
+      "elite": 0.1,
+      "unlocks": "mirror_flats",
+      "palette": "mere",
+      "layout": "islands",
+      "named": {
+        "monster": "reed_lurker",
+        "name": "The Still Lurker",
+        "line": "If the reeds stop moving, it is already there."
+      },
+      "blurb": "Black water and reeds tall enough to hide a lurker."
+    },
+    {
+      "id": "mirror_flats",
+      "name": "Mirror Flats",
+      "act": 2,
+      "kind": "wild",
+      "rec": "19–23",
+      "mlvl": [
+        19,
+        23
+      ],
+      "width": 32,
+      "height": 32,
+      "packs": 8,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "glass_minnow",
+        "mire_heron",
+        "lantern_crab",
+        "reed_lurker",
+        "glass_kiter",
+        "shield_crab"
+      ],
+      "champion": 0.28,
+      "elite": 0.11,
+      "unlocks": "drowned_archive",
+      "palette": "salt",
+      "blurb": "A sheet of broken mirror. Things walk on both sides of it."
+    },
+    {
+      "id": "drowned_archive",
+      "name": "Drowned Archive",
+      "act": 2,
+      "kind": "dungeon",
+      "rec": "21–25",
+      "mlvl": [
+        21,
+        25
+      ],
+      "width": 36,
+      "height": 36,
+      "packs": 8,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "archive_shade",
+        "bell_acolyte",
+        "lantern_crab",
+        "glass_kiter"
+      ],
+      "champion": 0.28,
+      "elite": 0.12,
+      "unlocks": "bell_caverns",
+      "palette": "spire",
+      "blurb": "Shelves gone soft. The shades still file the dead."
+    },
+    {
+      "id": "bell_caverns",
+      "name": "Bell Caverns",
+      "act": 2,
+      "kind": "dungeon",
+      "rec": "24–28",
+      "mlvl": [
+        24,
+        28
+      ],
+      "width": 36,
+      "height": 36,
+      "packs": 8,
+      "packSize": [
+        2,
+        4
+      ],
+      "monsters": [
+        "bell_acolyte",
+        "silt_golem",
+        "archive_shade",
+        "mire_heron",
+        "shield_crab"
+      ],
+      "champion": 0.3,
+      "elite": 0.13,
+      "unlocks": "queen_pool",
+      "palette": "mere",
+      "blurb": "Bells hung in the wet dark, wrapped so they will not ring."
+    },
+    {
+      "id": "queen_pool",
+      "name": "Queen Pool",
+      "act": 2,
+      "kind": "boss",
+      "rec": "28",
+      "mlvl": [
+        28,
+        28
+      ],
+      "boss": "morra",
+      "palette": "mere",
+      "blurb": "The pool under the wrapped dark."
+    },
+    {
+      "id": "vesper_orchard",
+      "name": "Vesper Orchard",
+      "act": 3,
+      "kind": "town",
+      "rec": "Town",
+      "palette": "orchard",
+      "blurb": "A market under black fruit trees. The lamps are hooded so the moths stay out."
+    },
+    {
+      "id": "briar_rows",
+      "name": "Briar Rows",
+      "act": 3,
+      "kind": "wild",
+      "rec": "24–28",
+      "mlvl": [
+        24,
+        28
+      ],
+      "width": 32,
+      "height": 32,
+      "packs": 8,
+      "packSize": [
+        3,
+        4
+      ],
+      "monsters": [
+        "thorn_stag",
+        "sap_crawler",
+        "hush_serpent",
+        "briar_charger",
+        "sap_caller"
+      ],
+      "champion": 0.26,
+      "elite": 0.1,
+      "unlocks": "sap_press",
+      "palette": "orchard",
+      "layout": "road",
+      "named": {
+        "monster": "thorn_stag",
+        "name": "Row Warden",
+        "line": "Same row, every dusk. Step off it."
+      },
+      "blurb": "Straight rows of briar tall enough to hide a stag."
+    },
+    {
+      "id": "sap_press",
+      "name": "Sap Press",
+      "act": 3,
+      "kind": "wild",
+      "rec": "27–31",
+      "mlvl": [
+        27,
+        31
+      ],
+      "width": 32,
+      "height": 32,
+      "packs": 8,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "press_beetle",
+        "sap_crawler",
+        "orchard_knight",
+        "thorn_stag",
+        "briar_charger"
+      ],
+      "champion": 0.28,
+      "elite": 0.11,
+      "unlocks": "hush_galleries",
+      "palette": "orchard",
+      "blurb": "The screw still turns. The sap that comes out is the wrong red."
+    },
+    {
+      "id": "hush_galleries",
+      "name": "Hush Galleries",
+      "act": 3,
+      "kind": "dungeon",
+      "rec": "30–34",
+      "mlvl": [
+        30,
+        34
+      ],
+      "width": 36,
+      "height": 36,
+      "packs": 8,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "gallery_moth",
+        "orchard_knight",
+        "archive_shade",
+        "sap_caller"
+      ],
+      "champion": 0.28,
+      "elite": 0.12,
+      "unlocks": "root_nave",
+      "palette": "spire",
+      "blurb": "Long rooms. The paintings have had their faces taken."
+    },
+    {
+      "id": "root_nave",
+      "name": "Root Nave",
+      "act": 3,
+      "kind": "dungeon",
+      "rec": "33–37",
+      "mlvl": [
+        33,
+        37
+      ],
+      "width": 36,
+      "height": 36,
+      "packs": 8,
+      "packSize": [
+        2,
+        4
+      ],
+      "monsters": [
+        "root_colossus",
+        "orchard_knight",
+        "hush_serpent",
+        "gallery_moth",
+        "briar_charger"
+      ],
+      "champion": 0.3,
+      "elite": 0.13,
+      "unlocks": "heartwood",
+      "palette": "orchard",
+      "blurb": "Pews of root, and a nave that grew its own roof."
+    },
+    {
+      "id": "heartwood",
+      "name": "Heartwood",
+      "act": 3,
+      "kind": "boss",
+      "rec": "36",
+      "mlvl": [
+        36,
+        36
+      ],
+      "boss": "sallow",
+      "palette": "orchard",
+      "blurb": "Where the first cut still argues."
+    },
+    {
+      "id": "ashgate",
+      "name": "Ashgate",
+      "act": 4,
+      "kind": "town",
+      "rec": "Town",
+      "palette": "pale",
+      "blurb": "The last warm door under the pale stair. The kiln smoke still reaches this high."
+    },
+    {
+      "id": "pale_steps",
+      "name": "Pale Steps",
+      "act": 4,
+      "kind": "wild",
+      "rec": "36–40",
+      "mlvl": [
+        36,
+        40
+      ],
+      "width": 36,
+      "height": 36,
+      "packs": 9,
+      "packSize": [
+        3,
+        4
+      ],
+      "monsters": [
+        "pale_wolf",
+        "gale_kite",
+        "kiln_drake",
+        "tomb_shield",
+        "pale_kiter"
+      ],
+      "champion": 0.28,
+      "elite": 0.11,
+      "unlocks": "ember_tombs",
+      "palette": "pale",
+      "layout": "ring",
+      "named": {
+        "monster": "pale_wolf",
+        "name": "Pale Mother",
+        "line": "The stair keeps her instead of a watch."
+      },
+      "blurb": "Switchbacks cut into pale stone. The wind has teeth."
+    },
+    {
+      "id": "ember_tombs",
+      "name": "Ember Tombs",
+      "act": 4,
+      "kind": "dungeon",
+      "rec": "40–44",
+      "mlvl": [
+        40,
+        44
+      ],
+      "width": 40,
+      "height": 40,
+      "packs": 10,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "tomb_warden",
+        "name_wraith",
+        "stair_golem",
+        "tomb_shield"
+      ],
+      "champion": 0.28,
+      "elite": 0.12,
+      "unlocks": "quiet_fields",
+      "palette": "kiln",
+      "blurb": "Graves that still give heat. The names on them are worn smooth."
+    },
+    {
+      "id": "quiet_fields",
+      "name": "Quiet Fields",
+      "act": 4,
+      "kind": "wild",
+      "rec": "44–48",
+      "mlvl": [
+        44,
+        48
+      ],
+      "width": 38,
+      "height": 38,
+      "packs": 10,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "gale_kite",
+        "pale_wolf",
+        "kiln_drake",
+        "tomb_warden",
+        "pale_kiter"
+      ],
+      "champion": 0.3,
+      "elite": 0.12,
+      "unlocks": "stair_of_names",
+      "palette": "pale",
+      "blurb": "Open ground where the ash fell and nothing grew back."
+    },
+    {
+      "id": "stair_of_names",
+      "name": "Stair of Names",
+      "act": 4,
+      "kind": "dungeon",
+      "rec": "48–52",
+      "mlvl": [
+        48,
+        52
+      ],
+      "width": 42,
+      "height": 42,
+      "packs": 11,
+      "packSize": [
+        3,
+        5
+      ],
+      "monsters": [
+        "name_wraith",
+        "stair_golem",
+        "tomb_warden",
+        "kiln_drake",
+        "tomb_shield",
+        "pale_kiter"
+      ],
+      "champion": 0.3,
+      "elite": 0.14,
+      "unlocks": "first_kiln",
+      "palette": "pale",
+      "blurb": "A stair cut with other people's names."
+    },
+    {
+      "id": "first_kiln",
+      "name": "The First Kiln",
+      "act": 4,
+      "kind": "boss",
+      "rec": "54",
+      "mlvl": [
+        54,
+        54
+      ],
+      "boss": "mael",
+      "palette": "kiln",
+      "blurb": "The fire under all the other fires."
+    }
+  ],
+  "runes": [
+    {
+      "id": "an",
+      "name": "An",
+      "tier": 1,
+      "mods": {
+        "strength": 3
+      }
+    },
+    {
+      "id": "bri",
+      "name": "Bri",
+      "tier": 2,
+      "mods": {
+        "life": 8
+      }
+    },
+    {
+      "id": "cal",
+      "name": "Cal",
+      "tier": 3,
+      "mods": {
+        "fireDamage": [
+          1,
+          3
+        ]
+      }
+    },
+    {
+      "id": "dor",
+      "name": "Dor",
+      "tier": 4,
+      "mods": {
+        "defense": 10
+      }
+    },
+    {
+      "id": "fen",
+      "name": "Fen",
+      "tier": 5,
+      "mods": {
+        "attackSpeed": 8
+      }
+    },
+    {
+      "id": "gar",
+      "name": "Gar",
+      "tier": 6,
+      "mods": {
+        "fireResist": 7,
+        "lightningResist": 7
+      }
+    },
+    {
+      "id": "hal",
+      "name": "Hal",
+      "tier": 7,
+      "mods": {
+        "enhancedDamage": 10
+      }
+    },
+    {
+      "id": "ix",
+      "name": "Ix",
+      "tier": 8,
+      "mods": {
+        "lifeLeech": 3,
+        "critChance": 2
+      }
+    }
+  ],
+  "runewords": [
+    {
+      "id": "ashbrand",
+      "name": "Ashbrand",
+      "runes": [
+        "an",
+        "bri",
+        "cal"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 30,
+        "fireDamage": [
+          4,
+          9
+        ],
+        "attackSpeed": 12
+      }
+    },
+    {
+      "id": "hearthwall",
+      "name": "Hearthwall",
+      "runes": [
+        "bri",
+        "dor",
+        "dor"
+      ],
+      "slots": [
+        "armor",
+        "offhand"
+      ],
+      "mods": {
+        "defense": 40,
+        "life": 28,
+        "fireResist": 12
+      }
+    },
+    {
+      "id": "glasspath",
+      "name": "Glasspath",
+      "runes": [
+        "an",
+        "fen"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "attackSpeed": 18,
+        "attackRating": 40,
+        "dexterity": 5
+      }
+    },
+    {
+      "id": "coalfire",
+      "name": "Coalfire",
+      "runes": [
+        "cal",
+        "cal",
+        "ix"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "fireDamage": [
+          8,
+          16
+        ],
+        "lifeLeech": 5,
+        "fireDamagePercent": 6
+      }
+    },
+    {
+      "id": "reedwalk",
+      "name": "Reedwalk",
+      "runes": [
+        "an",
+        "fen",
+        "gar"
+      ],
+      "slots": [
+        "weapon",
+        "armor"
+      ],
+      "mods": {
+        "moveSpeed": 18,
+        "coldResist": 14,
+        "dexterity": 6
+      },
+      "flavor": "A path written in reed-water. The boots remember the way across."
+    },
+    {
+      "id": "briarbind",
+      "name": "Briarbind",
+      "runes": [
+        "bri",
+        "cal",
+        "dor"
+      ],
+      "slots": [
+        "armor",
+        "helm"
+      ],
+      "mods": {
+        "defense": 26,
+        "poisonDamage": [
+          3,
+          8
+        ],
+        "life": 18,
+        "poisonResist": 12
+      },
+      "flavor": "Bound with living thorn. It holds, and it resents being held."
+    },
+    {
+      "id": "siltward",
+      "name": "Siltward",
+      "runes": [
+        "dor",
+        "gar",
+        "hal"
+      ],
+      "slots": [
+        "offhand",
+        "armor"
+      ],
+      "mods": {
+        "defense": 34,
+        "coldResist": 16,
+        "allResist": 6,
+        "life": 16
+      },
+      "flavor": "A ward that settled like silt. Slow to rise, harder to wash off."
+    },
+    {
+      "id": "lantern_oath",
+      "name": "Lantern Oath",
+      "runes": [
+        "fen",
+        "ix"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "attackRating": 48,
+        "critChance": 5,
+        "lifeLeech": 4,
+        "attackSpeed": 10
+      },
+      "flavor": "Sworn under a coal lamp. The light went out. The oath did not."
+    },
+    {
+      "id": "rootking",
+      "name": "Rootking",
+      "runes": [
+        "hal",
+        "ix"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 36,
+        "poisonDamage": [
+          6,
+          12
+        ],
+        "strength": 8
+      },
+      "flavor": "A name the orchard would rather you did not speak into steel."
+    },
+    {
+      "id": "saltedge",
+      "name": "Saltedge",
+      "runes": [
+        "an",
+        "bri"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "attackSpeed": 14,
+        "attackRating": 28,
+        "critChance": 3
+      },
+      "flavor": "Two runes, one edge. Made for someone who would not stand still."
+    },
+    {
+      "id": "bellnote",
+      "name": "Bellnote",
+      "runes": [
+        "fen",
+        "gar"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "lightningDamage": [
+          4,
+          12
+        ],
+        "castSpeed": 10,
+        "mana": 16
+      },
+      "flavor": "The note stays in the steel after you stop singing."
+    },
+    {
+      "id": "palestep",
+      "name": "Palestep",
+      "runes": [
+        "an",
+        "dor"
+      ],
+      "slots": [
+        "armor"
+      ],
+      "mods": {
+        "defense": 22,
+        "moveSpeed": 10,
+        "coldResist": 12
+      },
+      "flavor": "Armor that learned the stair. It is lighter on the way down."
+    },
+    {
+      "id": "maelbank",
+      "name": "Maelbank",
+      "runes": [
+        "hal",
+        "gar",
+        "ix"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 28,
+        "fireDamage": [
+          6,
+          14
+        ],
+        "life": 20,
+        "fireResist": 12
+      },
+      "flavor": "A word for putting the fire back to sleep. It works better in a blade than in a prayer."
+    },
+    {
+      "id": "emberwake",
+      "name": "Emberwake",
+      "runes": [
+        "cal",
+        "bri"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "fireDamage": [
+          4,
+          10
+        ],
+        "fireDamagePercent": 8,
+        "skills": {
+          "kindle": 2
+        }
+      },
+      "flavor": "Two runes and the fire sits up. Kindle comes easier after that."
+    },
+    {
+      "id": "stillchord",
+      "name": "Stillchord",
+      "runes": [
+        "gar",
+        "fen"
+      ],
+      "slots": [
+        "armor"
+      ],
+      "mods": {
+        "defense": 24,
+        "coldResist": 14,
+        "mana": 12,
+        "skills": {
+          "slow_hymn": 2
+        }
+      },
+      "flavor": "The hymn stays in the cloth. The room slows down around whoever wears it."
+    }
+  ],
+  "hirelings": [
+    {
+      "id": "quill",
+      "name": "Quill",
+      "title": "Lantern scout",
+      "blurb": "A quiet archer with a coal lamp. The lamp steadies your eye and your breath.",
+      "costBase": 50,
+      "costPerLevel": 12,
+      "reviveCost": 25,
+      "shape": "humanoid",
+      "color": "#d7c4a2",
+      "accent": "#ffb067",
+      "radius": 0.36,
+      "hp": 36,
+      "hpPerLevel": 9,
+      "dmg": [
+        4,
+        7
+      ],
+      "dmgPerLevel": 0.7,
+      "aps": 1.15,
+      "move": 3.5,
+      "range": 5.6,
+      "ranged": true,
+      "projectile": "cinder",
+      "auraName": "Coal Lamp",
+      "aura": {
+        "lifeRegen": 0.9,
+        "attackRating": 20,
+        "fireResist": 8
+      },
+      "slots": [
+        "weapon",
+        "helm",
+        "armor"
+      ]
+    }
+  ],
+  "difficulties": [
+    {
+      "id": "normal",
+      "name": "Banked Fire",
+      "mlvlAdd": 0,
+      "resistPen": 0,
+      "mf": 0,
+      "hpMul": 1,
+      "dmgMul": 1,
+      "unlock": null,
+      "about": "The first telling. Monster numbers are the ones on the road signs."
+    },
+    {
+      "id": "kindled",
+      "name": "Kindled",
+      "mlvlAdd": 5,
+      "resistPen": 18,
+      "mf": 30,
+      "hpMul": 1.32,
+      "dmgMul": 1.45,
+      "unlock": "veyra",
+      "about": "The second walk, after Veyra. Hits land harder than the level bump, and every resist gives up 18."
+    },
+    {
+      "id": "whiteash",
+      "name": "White Ash",
+      "mlvlAdd": 10,
+      "resistPen": 32,
+      "mf": 60,
+      "hpMul": 1.58,
+      "dmgMul": 1.75,
+      "unlock": "morra",
+      "about": "After Morra. The ash has gone pale. Hits land harder than Kindled, life is higher, and every resist gives up 32."
+    }
+  ],
+  "mapAffixes": [
+    {
+      "id": "thick",
+      "name": "Thick Air",
+      "text": "They have more life.",
+      "hpMul": 1.28,
+      "dmgMul": 1,
+      "mf": 0,
+      "resistPen": 0,
+      "packs": 0
+    },
+    {
+      "id": "keen",
+      "name": "Keen Teeth",
+      "text": "They hit harder.",
+      "hpMul": 1,
+      "dmgMul": 1.32,
+      "mf": 0,
+      "resistPen": 0,
+      "packs": 0
+    },
+    {
+      "id": "ash",
+      "name": "Ash Wind",
+      "text": "Your resists give up a share.",
+      "hpMul": 1.08,
+      "dmgMul": 1.08,
+      "mf": 0,
+      "resistPen": 12,
+      "packs": 0
+    },
+    {
+      "id": "bright",
+      "name": "Bright Finds",
+      "text": "The drops are kinder. The packs are a little tougher.",
+      "hpMul": 1.12,
+      "dmgMul": 1.12,
+      "mf": 45,
+      "resistPen": 0,
+      "packs": 0
+    },
+    {
+      "id": "swarm",
+      "name": "Swarm",
+      "text": "More of them. Each one is a bit thinner.",
+      "hpMul": 0.9,
+      "dmgMul": 1,
+      "mf": 10,
+      "resistPen": 0,
+      "packs": 3
+    },
+    {
+      "id": "champions",
+      "name": "Named Ground",
+      "text": "More champions and elites. They pay for the trouble.",
+      "hpMul": 1.12,
+      "dmgMul": 1.08,
+      "mf": 30,
+      "resistPen": 0,
+      "packs": 0,
+      "champion": 0.55,
+      "elite": 0.22
+    },
+    {
+      "id": "hexed",
+      "name": "Hexed Air",
+      "text": "Your resists fall harder. The finds are richer.",
+      "hpMul": 1.06,
+      "dmgMul": 1.12,
+      "mf": 40,
+      "resistPen": 24,
+      "packs": 0
+    },
+    {
+      "id": "brutal",
+      "name": "Brutal Packs",
+      "text": "Elites carry one more name. The ground pays for it.",
+      "hpMul": 1.16,
+      "dmgMul": 1.14,
+      "mf": 36,
+      "resistPen": 0,
+      "packs": 0,
+      "extraElite": true
+    }
+  ],
+  "namedSpawns": {
+    "cinderwood": {
+      "monster": "bramble_hound",
+      "name": "Old Knot",
+      "line": "The hound that sits on the town path and will not move."
+    },
+    "salt_causeway": {
+      "monster": "glass_slinger",
+      "name": "Glass Aunt",
+      "line": "She slings at anyone on the white road. Do not wave."
+    },
+    "ruined_spire": {
+      "monster": "plate_husk",
+      "name": "Stair Captain",
+      "line": "Still walking the broken watch. The armor is louder than he is."
+    },
+    "sunken_kiln": {
+      "monster": "ember_golem",
+      "name": "Kiln Heart",
+      "line": "A golem that thinks it is the fire. It is not. It is close."
+    },
+    "reed_marsh": {
+      "monster": "reed_lurker",
+      "name": "The Still Lurker",
+      "line": "If the reeds stop moving, it is already there."
+    },
+    "mirror_flats": {
+      "monster": "lantern_crab",
+      "name": "Second Lantern",
+      "line": "The light on its back is not yours. Do not follow it."
+    },
+    "drowned_archive": {
+      "monster": "archive_shade",
+      "name": "Head Archivist",
+      "line": "It files the living under the dead if you stand still."
+    },
+    "bell_caverns": {
+      "monster": "bell_acolyte",
+      "name": "Wrapped Novice",
+      "line": "The only one who still wants the bells to ring."
+    },
+    "briar_rows": {
+      "monster": "thorn_stag",
+      "name": "Row Warden",
+      "line": "Same row, every dusk. Step off it."
+    },
+    "sap_press": {
+      "monster": "press_beetle",
+      "name": "The Screw",
+      "line": "It pushes until something gives. Do not be the something."
+    },
+    "hush_galleries": {
+      "monster": "gallery_moth",
+      "name": "Frame Moth",
+      "line": "It nests in the pictures with the faces scraped off."
+    },
+    "root_nave": {
+      "monster": "root_colossus",
+      "name": "First Pew",
+      "line": "The bench grew legs. It still thinks you should sit."
+    },
+    "pale_steps": {
+      "monster": "pale_wolf",
+      "name": "Pale Mother",
+      "line": "The stair keeps her instead of a watch."
+    },
+    "ember_tombs": {
+      "monster": "tomb_warden",
+      "name": "Warm Grave",
+      "line": "The stone is hot. So is what is walking out of it."
+    },
+    "quiet_fields": {
+      "monster": "kiln_drake",
+      "name": "Ash Kite",
+      "line": "Nothing grows here. That one still hunts."
+    },
+    "stair_of_names": {
+      "monster": "name_wraith",
+      "name": "Unwritten",
+      "line": "Your name is not on the step yet. Keep it that way."
+    }
+  },
+  "statHelp": {
+    "strength": {
+      "title": "Strength",
+      "text": "Strength: +1% damage per point with strength weapons, needed for heavy armor."
+    },
+    "dexterity": {
+      "title": "Dexterity",
+      "text": "Dexterity: attack rating for each point, a little crit and defense, needed for bows and light blades."
+    },
+    "vitality": {
+      "title": "Vitality",
+      "text": "Vitality: life for each point. How much depends on your class."
+    },
+    "energy": {
+      "title": "Energy",
+      "text": "Energy: mana for each point, plus a little mana each second."
+    },
+    "damage": {
+      "title": "Damage",
+      "text": "Damage: the weapon swing, raised by strength and enhanced damage. The high number is the hard hit."
+    },
+    "defense": {
+      "title": "Defense",
+      "text": "Defense: weighed against attack rating. A higher number means more swings miss. Armor, level, and a little dexterity raise it."
+    },
+    "attack": {
+      "title": "Attack rating",
+      "text": "Attack rating: weighed against defense to see if your swing lands."
+    },
+    "resists": {
+      "title": "Resists",
+      "text": "Resists: fire, cold, lightning, then poison. Each point cuts that damage. They cap at 75% and can fall below zero."
+    },
+    "mf": {
+      "title": "Magic find",
+      "text": "Magic find: better odds that a drop is magic, rare, set, or unique."
+    }
+  },
+  "shrines": [
+    {
+      "id": "ember_shrine",
+      "name": "Ember Shrine",
+      "text": "Fire damage surges.",
+      "mods": {
+        "fireDamagePercent": 20
+      },
+      "duration": 50
+    },
+    {
+      "id": "warden_shrine",
+      "name": "Warden Shrine",
+      "text": "Your coat hardens.",
+      "mods": {
+        "defense": 40,
+        "fireResist": 15
+      },
+      "duration": 50
+    },
+    {
+      "id": "fortune_shrine",
+      "name": "Fortune Shrine",
+      "text": "The ash shows you brighter things.",
+      "mods": {
+        "magicFind": 45
+      },
+      "duration": 50
+    }
+  ],
+  "bossLines": {
+    "veyra": {
+      "enter": "This fire is mine. The city went out. I did not.",
+      "death": "Take the heat if you can hold it. I am done tending it."
+    },
+    "morra": {
+      "enter": "You came close to my bell. I answer.",
+      "death": "I am going back under. Leave the bronze wrapped."
+    },
+    "sallow": {
+      "enter": "You brought an axe into my nave. I remember the first one.",
+      "death": "The rows may rest. I am finished arguing."
+    },
+    "mael": {
+      "enter": "You fed me and called it sleep. I am awake.",
+      "death": "Bank the kiln. I have eaten enough."
+    }
+  },
+  "randomNames": [
+    "mawglass",
+    "stillbell",
+    "shadechord",
+    "kilntooth"
+  ],
+  "bossAftermath": {
+    "veyra": "The floor will cool. Brinehollow is open. Ask Brin before you trust the water.",
+    "morra": "The roots kept going. Vesper is next. Buy steel there.",
+    "sallow": "The market can try the apples. Ashgate is the door under the pale stair.",
+    "mael": "Nobody has to feed the kiln tonight. The rift stone in Ashgate is warm, if you want a harder road."
+  }
+}

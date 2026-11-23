@@ -1,0 +1,624 @@
+{
+  "meta": {
+    "game": "Ashbound",
+    "purpose": "Character bible draft. Sample lines must pass the smooth-gears test.",
+    "updated": "8:42 PM ET",
+    "count": 22,
+    "notes": {
+      "veyra_pronouns": "she/her",
+      "salt_reaver_beat": "Arrives with a borrowed glass dirk and earns a saber.",
+      "town_tier": "The twelve standing town NPCs (Senn, Lye, Pell, Brin, Lute, Nim, Vetch, Sile, Hest, Rook, Ive, Nell) already have full entries at major or side. Tier town is used for the five named roadside people (Ode, Nimble, Bram, Tarn, Keel), who have no town stall and no biography in the game data."
+    }
+  },
+  "characters": [
+    {
+      "id": "veyra",
+      "name": "Veyra",
+      "epithet": "the Kiln Tyrant",
+      "tier": "lead",
+      "pronouns": "she/her",
+      "role": "Act I boss",
+      "kind": "Kiln Tyrant",
+      "origin": "She stayed in the Heart of the Kiln when the old city burned and the survivors walled off Hearthveil. She tends a fire that should have gone out with the city. At a third of her life the floor splits and the heat surges. Imps crawl out before that. The collar cracks when she does, and the heat stays in the metal.",
+      "wants": "The fire to stay lit. She will not go out with the city. Tending it is how she stays alive, and she will not hand it over easily.",
+      "voice": {
+        "vocabulary": "Fire, kiln, city, heat, tend, mine, out, done. Few words. No titles for herself.",
+        "rhythm": "Short claims in twos or threes. A stop after each thought. No speeches.",
+        "tics": "She states ownership, then the fact. She does not plead. She does not explain twice.",
+        "sample_lines": [
+          "This fire is mine. The city went out. I did not.",
+          "Take the heat if you can hold it. I am done tending it.",
+          "The fire stays. I stay with it."
+        ]
+      },
+      "source_ids": [
+        "It.veyra.enter",
+        "It.veyra.death"
+      ]
+    },
+    {
+      "id": "morra",
+      "name": "Morra",
+      "epithet": "the Silt Queen",
+      "tier": "lead",
+      "pronouns": "she/her",
+      "role": "Act II boss",
+      "kind": "Silt Queen",
+      "origin": "She keeps the last bell under Queen Pool, in the wrapped dark of the Glassmere. North of the salt, the water went to glass. Brinehollow wraps every bell so it will not ring, because she listens when they do. When she is hurt she lifts the silt, and minnows come out of the shine.",
+      "wants": "The last bell to stay hers, under the water. The bronze to stay wrapped unless someone means to call her. When the fight is over, she wants to go back under and be left there.",
+      "voice": {
+        "vocabulary": "Bell, bronze, under, silt, wrapped, answer, leave. Wet and quiet. No market talk.",
+        "rhythm": "Short answers. One fact, then a rule. She does not hurry.",
+        "tics": "She speaks as if she was already listening. She tells you what to leave alone, then stops.",
+        "sample_lines": [
+          "You came close to my bell. I answer.",
+          "I am going back under. Leave the bronze wrapped.",
+          "The bells stay wrapped. I hear them anyway."
+        ]
+      },
+      "source_ids": [
+        "It.morra.enter",
+        "It.morra.death"
+      ]
+    },
+    {
+      "id": "sallow",
+      "name": "Sallow",
+      "epithet": "the Root King",
+      "tier": "lead",
+      "pronouns": "he/him",
+      "role": "Act III boss",
+      "kind": "Root King",
+      "origin": "He sits in Heartwood, where the first tree was cut and did not agree. A king who was a tree, or a tree that was a king, he has not agreed to be finished. The rows walk for him. His crown was grown, not forged. Hurt him and the roots come up, and sap crawlers follow.",
+      "wants": "Not to be cut. The nave and the rows to keep his argument going. He will rest only when the arguing is done.",
+      "voice": {
+        "vocabulary": "Nave, rows, roots, cut, axe, crown, argue, remember, rest. Old wood, not court talk.",
+        "rhythm": "Slow and even. A memory, then a present fact. He does not rush a sentence.",
+        "tics": "He remembers the first cut. He talks about arguing as if it were work he still has to finish.",
+        "sample_lines": [
+          "You brought an axe into my nave. I remember the first one.",
+          "The rows may rest. I am finished arguing.",
+          "My crown was grown, not forged."
+        ]
+      },
+      "source_ids": [
+        "It.sallow.enter",
+        "It.sallow.death"
+      ]
+    },
+    {
+      "id": "mael",
+      "name": "Mael",
+      "epithet": "the Unbanked",
+      "tier": "lead",
+      "pronouns": "unspecified (speaks as I)",
+      "role": "Act IV boss",
+      "kind": "the Unbanked; the fire under the other fires",
+      "origin": "Mael is what the public kiln was keeping asleep. The survivors in Hearthveil keep that kiln eating wood so the ash will stay down. The Pale Stair climbs to the First Kiln, the fire under all the other fires. The feeding was a meal, and the sleep was a name they gave it.",
+      "wants": "To stay awake and eat. Every scrap fed to the public kiln is a meal. When finally beaten, even Mael will say to bank the kiln. Until then, the fire does not want to be put to sleep again.",
+      "voice": {
+        "vocabulary": "Fed, sleep, awake, eat, bank, kiln, enough. Plain words, no poetry stacked on them.",
+        "rhythm": "An accusation, then a fact. Short. Heavy stops.",
+        "tics": "Turns their feeding back on them. Does not bargain. Names the thing they would rather not name.",
+        "sample_lines": [
+          "You fed me and called it sleep. I am awake.",
+          "Bank the kiln. I have eaten enough.",
+          "Every scrap you burned was a meal."
+        ]
+      },
+      "source_ids": [
+        "It.mael.enter",
+        "It.mael.death"
+      ]
+    },
+    {
+      "id": "quill",
+      "name": "Quill",
+      "epithet": null,
+      "tier": "major",
+      "pronouns": "they/them",
+      "role": "Lantern scout (hireling)",
+      "kind": "lantern scout",
+      "origin": "Quill is not a class. They are a lantern scout hired in any town from the scout-keeper (Pell, Nim, Hest, or Nell). They carry a coal lamp that steadies life, aim, and fire resist while they are standing. A weapon and a helm can be given over. If they fall, the next town raises them. They have no spoken lines in the current pack.",
+      "wants": "To keep the lamp lit and stay with whoever paid. To walk ahead, and to be brought back to a town if they go down.",
+      "voice": {
+        "vocabulary": "Lamp, road, light, town, ahead, down. Quiet. Almost no extra words.",
+        "rhythm": "Very short. A job, then a pause. They do not make a speech while holding a lamp.",
+        "tics": "They talk about the lamp and the road, not about themselves. They use few words and stop early.",
+        "sample_lines": [
+          "Lamp's lit. I'll walk ahead.",
+          "If I go down, take the lamp to town. They can stand me up.",
+          "Stay in the light. I can see the road."
+        ]
+      },
+      "source_ids": [
+        "fs.quill"
+      ]
+    },
+    {
+      "id": "senn",
+      "name": "Senn",
+      "epithet": null,
+      "tier": "major",
+      "pronouns": "unspecified",
+      "role": "Hearthveil quartermaster",
+      "kind": "quartermaster; merchant",
+      "origin": "Senn keeps the stall in Hearthveil, the walled scrap of the burned city. Counts nails twice and people once. Sells, repairs, and gambles a closed box without looking inside. Speaks the first watch at the north arch. The north road is eating people, and Senn wants a count, not bodies hauled back through the gate.",
+      "wants": "The gate to hold, the kiln to be fed, and coin on the counter. A fair count. People not to block the stall or bring the dead into town.",
+      "voice": {
+        "vocabulary": "Coin, count, gate, nails, box, belt, counter, price. Dry and exact.",
+        "rhythm": "Clipped. A question, then a rule. Contractions. Stops as soon as the price is clear.",
+        "tics": "Counts out loud. Takes the coin either way. Will not look inside the closed box.",
+        "sample_lines": [
+          "Buying, or warming your hands? Either. Don't block the counter.",
+          "If it bites you, bring the coin back with it. I'll still take the coin.",
+          "Six. Take the belt. It counts fairer than I do."
+        ]
+      },
+      "source_ids": [
+        "Ma.intro.lines.0",
+        "Ma.intro.lines.1",
+        "Si.1.cinder_warden",
+        "Si.1.reed_caller",
+        "Si.1.briar_stalker",
+        "Si.1.salt_reaver",
+        "Si.1.bell_chanter",
+        "_i.1.cinder_warden",
+        "_i.1.reed_caller",
+        "_i.1.briar_stalker",
+        "_i.1.salt_reaver",
+        "_i.1.bell_chanter",
+        "Ti.senn.0",
+        "Ti.senn.1",
+        "Ti.senn.2",
+        "Ge.senn_nails.offer",
+        "Ge.senn_nails.waiting",
+        "Ge.senn_nails.thanks"
+      ]
+    },
+    {
+      "id": "brin",
+      "name": "Brin",
+      "epithet": null,
+      "tier": "major",
+      "pronouns": "unspecified",
+      "role": "Brinehollow net-mender",
+      "kind": "net-mender; dockhand",
+      "origin": "Brin mends nets on the stilts of Brinehollow, under fish-oil lamps, over a bench of salt. Sells over a wrapped bell and will not let anyone toll it. Speaks the mere card when the salt road opens. Knows the Mirror Flats show a second pair of boots, and that Morra answers a struck bell.",
+      "wants": "The bells to stay wrapped. The bench to keep working. People not to meet Morra. The false copies on the flats put down, so the living can tell which boots are theirs.",
+      "voice": {
+        "vocabulary": "Nets, oil, cord, bells, bronze, flats, boots, water. Work words. Firm nos.",
+        "rhythm": "Lists what is for sale, then the warning. Short refusals. No sermon.",
+        "tics": "Will not unwrap a bell. Points you at the late copy, not at yourself. Says do not ask, and means it.",
+        "sample_lines": [
+          "Nets, oil, cord. The bench still works. The water does not.",
+          "Morra answers a struck bell. I am not interested in meeting her.",
+          "I mend nets. I do not unwrap bells. Do not ask."
+        ]
+      },
+      "source_ids": [
+        "Ma.act2.lines.0",
+        "Ma.act2.lines.1",
+        "Si.2.cinder_warden",
+        "Si.2.reed_caller",
+        "Si.2.briar_stalker",
+        "Si.2.salt_reaver",
+        "Si.2.bell_chanter",
+        "_i.2.cinder_warden",
+        "_i.2.reed_caller",
+        "_i.2.briar_stalker",
+        "_i.2.salt_reaver",
+        "_i.2.bell_chanter",
+        "Ti.brin.0",
+        "Ti.brin.1",
+        "Ti.brin.2",
+        "Ge.brin_copies.offer",
+        "Ge.brin_copies.waiting",
+        "Ge.brin_copies.thanks"
+      ]
+    },
+    {
+      "id": "vetch",
+      "name": "Vetch",
+      "epithet": null,
+      "tier": "major",
+      "pronouns": "unspecified",
+      "role": "Vesper Orchard fruit-seller",
+      "kind": "fruit-seller; merchant",
+      "origin": "Vetch keeps the stall in Vesper Orchard, under hooded lamps so the moths stay out of the market. Turns a black apple and does not bite it. Steel on the left, fruit on the right. Gambles the same closed boxes as Senn, at a ruder price if you are higher. Speaks the orchard card. The rows walk after dusk, and Vetch wants them stopped before they reach the stall.",
+      "wants": "The stall to stay his, the walking rows kept off the market, and gold from the gamble. Nobody eating the red fruit. A knife pointed at what walks, not at an apple.",
+      "voice": {
+        "vocabulary": "Steel, fruit, rows, sap, apples, dusk, gold, red. Market talk with a dry edge.",
+        "rhythm": "Left and right, then the warning. A joke that does not quite smile. Stops on the rule.",
+        "tics": "Will not bite the fruit. Will not share a reason for the gamble. Tells you not to get hungry.",
+        "sample_lines": [
+          "Steel on the left. Fruit on the right. Only one of those is for eating.",
+          "Still here at dusk? Then the rows will do the shopping.",
+          "Point it at what walks. Not at anything red."
+        ]
+      },
+      "source_ids": [
+        "Ma.act3.lines.0",
+        "Ma.act3.lines.1",
+        "Si.3.cinder_warden",
+        "Si.3.reed_caller",
+        "Si.3.briar_stalker",
+        "Si.3.salt_reaver",
+        "Si.3.bell_chanter",
+        "_i.3.cinder_warden",
+        "_i.3.reed_caller",
+        "_i.3.briar_stalker",
+        "_i.3.salt_reaver",
+        "_i.3.bell_chanter",
+        "Ti.vetch.0",
+        "Ti.vetch.1",
+        "Ti.vetch.2",
+        "Ge.vetch_rows.offer",
+        "Ge.vetch_rows.waiting",
+        "Ge.vetch_rows.thanks"
+      ]
+    },
+    {
+      "id": "rook",
+      "name": "Rook",
+      "epithet": null,
+      "tier": "major",
+      "pronouns": "he/him",
+      "role": "Ashgate last stall",
+      "kind": "merchant",
+      "origin": "Rook keeps the last stall with a fire in Ashgate, the last warm door under the Pale Stair. Sells, repairs, and gambles. He will not carry the stall, or a counter, or a staff, up the steps. Speaks the Pale Stair card. The rift stone stays dark until Mael is quiet, and Rook does not bargain with rocks.",
+      "wants": "To keep the stall where the air is still warm. Not to go up. Mael quiet. Names kept off the stair, and off his door.",
+      "voice": {
+        "vocabulary": "Stall, fire, stair, steps, stone, names, door, buy. Final and blunt.",
+        "rhythm": "A fact about how far he will go, then a stop. Tired, not cruel.",
+        "tics": "Repeats that he will not carry anything up the steps. Tells you to buy here. Will not bargain with the stone.",
+        "sample_lines": [
+          "Buy here. I am not carrying a counter up those steps.",
+          "Last stall with a fire. Past me, the stair does not care who you killed.",
+          "The rift stone stays dark until Mael is quiet. I don't bargain with rocks."
+        ]
+      },
+      "source_ids": [
+        "Ma.act4.lines.0",
+        "Ma.act4.lines.1",
+        "Si.4.cinder_warden",
+        "Si.4.reed_caller",
+        "Si.4.briar_stalker",
+        "Si.4.salt_reaver",
+        "Si.4.bell_chanter",
+        "_i.4.cinder_warden",
+        "_i.4.reed_caller",
+        "_i.4.briar_stalker",
+        "_i.4.salt_reaver",
+        "_i.4.bell_chanter",
+        "Ti.rook.0",
+        "Ti.rook.1",
+        "Ti.rook.2",
+        "Ge.rook_names.offer",
+        "Ge.rook_names.waiting",
+        "Ge.rook_names.thanks"
+      ]
+    },
+    {
+      "id": "lye",
+      "name": "Lye",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Hearthveil archivist",
+      "kind": "archivist",
+      "origin": "Lye keeps the rune book in Hearthveil and will unwrite a life for gold. The book takes the points back. The bruises stay with the person who paid.",
+      "wants": "The book to do its work, gold for a page, and not to tutor anyone in runes.",
+      "voice": {
+        "vocabulary": "Book, gold, page, points, runes, bruises, codex. Flat and exact.",
+        "rhythm": "An instruction, then a limit. No comfort around it.",
+        "tics": "Does not haggle with the book. Will not be a tutor. Tells you to sit, then to read.",
+        "sample_lines": [
+          "Sit. The book takes the points back. I don't haggle with it.",
+          "Gold turns the page. The bruises stay yours.",
+          "Runes are in the codex. Read them. I am not a tutor."
+        ]
+      },
+      "source_ids": [
+        "Ti.lye.0",
+        "Ti.lye.1",
+        "Ti.lye.2"
+      ]
+    },
+    {
+      "id": "pell",
+      "name": "Pell",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Hearthveil scout-keeper",
+      "kind": "scout-keeper",
+      "origin": "Pell hires Quill in Hearthveil. Coin first. The coal lamp goes where Quill goes. If the lamp drops, Pell does not want a grave dug in the wood. A town can stand Quill up.",
+      "wants": "Coin on the table, Quill out with the lamp, and no one wasting time burying a scout a town can raise.",
+      "voice": {
+        "vocabulary": "Quill, scout, coin, lamp, town. Procedure, not story.",
+        "rhythm": "The deal in three short beats. Then a warning if they fall.",
+        "tics": "Coin first. Talks about the lamp as much as the scout. Says don't dig a hole.",
+        "sample_lines": [
+          "Quill is the scout. Coin first. The lamp goes where they go.",
+          "If the lamp drops, don't dig a hole. A town can stand them up.",
+          "Pay, then they walk. That's the hire."
+        ]
+      },
+      "source_ids": [
+        "Ti.pell.0",
+        "Ti.pell.1"
+      ]
+    },
+    {
+      "id": "lute",
+      "name": "Lute",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Brinehollow bell-keeper",
+      "kind": "bell-keeper; keeper of the two books",
+      "origin": "Lute files the living in Brinehollow, which is a shorter book than the drowned. Can unpick a bad set of skills. The mere keeps the gold, and so does Lute.",
+      "wants": "The two books kept honest, gold for the unpicking, and people to stay in the thin book if they can.",
+      "voice": {
+        "vocabulary": "Book, living, drowned, gold, mere, skills. Ledger talk, a little dry humor.",
+        "rhythm": "A comparison, then the charge. Lets you guess the rest.",
+        "tics": "Points at which book is thicker. Keeps the gold as surely as the water does.",
+        "sample_lines": [
+          "The living go in one book. The drowned go in the other. You can guess which is thicker.",
+          "I can unpick a bad set of skills. The mere keeps the gold. So do I.",
+          "The living book is the thin one. Try to stay in it."
+        ]
+      },
+      "source_ids": [
+        "Ti.lute.0",
+        "Ti.lute.1"
+      ]
+    },
+    {
+      "id": "nim",
+      "name": "Nim",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Brinehollow scout-keeper",
+      "kind": "scout-keeper",
+      "origin": "Nim hires Quill for the wetter road out of Brinehollow. Same lamp, different ground. Quill knows which reed is a lurker. Nim can get the lamp lit again even if Quill comes back not breathing.",
+      "wants": "Coin, then Quill on the reeds, and the lamp lit again when they return, breathing or not.",
+      "voice": {
+        "vocabulary": "Quill, reed, lurker, coin, road, lamp, breathing. Wet-road practical.",
+        "rhythm": "Coin, then the road. A second line for the return.",
+        "tics": "Treats the lamp as something that can be lit again. Does not dress up a bad return.",
+        "sample_lines": [
+          "Quill knows which reed is a lurker. Coin, then the road.",
+          "Bring them back breathing or not. I can get the lamp lit again.",
+          "The reeds lie. Let Quill pick the path."
+        ]
+      },
+      "source_ids": [
+        "Ti.nim.0",
+        "Ti.nim.1"
+      ]
+    },
+    {
+      "id": "sile",
+      "name": "Sile",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Vesper Orchard shelf-keeper",
+      "kind": "shelf-keeper",
+      "origin": "Sile keeps the shelves in Vesper Orchard, books with the titles scraped off. Unwrites a life, same as Lye. Says the king was a tree before there were shelves, and keeps the pages that still mean something.",
+      "wants": "Pages that still mean something. Coin for unwinding a build. Not to argue with the roots.",
+      "voice": {
+        "vocabulary": "King, tree, shelves, pages, build, roots, coin. Quiet and old.",
+        "rhythm": "A long memory in a short line, then the price.",
+        "tics": "Mentions the king as if it were ordinary history. The coin will thank you; the roots will not.",
+        "sample_lines": [
+          "The king was a tree before I had shelves. I keep the pages that still mean something.",
+          "I can unwind a build. The roots will not thank you. The coin will.",
+          "The titles are gone. The pages still work, if you pay."
+        ]
+      },
+      "source_ids": [
+        "Ti.sile.0",
+        "Ti.sile.1"
+      ]
+    },
+    {
+      "id": "hest",
+      "name": "Hest",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Vesper Orchard lamp-warden",
+      "kind": "lamp-warden",
+      "origin": "Hest sends Quill into the rows from Vesper Orchard. The bargain is the whole job: you pay, Quill walks, the lamp stays lit. If the lamp goes out in the Root Nave, the advice is to turn around. You are already behind.",
+      "wants": "The bargain kept simple, and people to turn back if the lamp goes out in the nave.",
+      "voice": {
+        "vocabulary": "Pay, Quill, lamp, nave, bargain, rows. Spare. No extra comfort.",
+        "rhythm": "The deal in three beats, then a hard stop. Warnings are one line.",
+        "tics": "Calls the hire 'the whole bargain.' Treats a dark nave as a reason to leave, not a dare.",
+        "sample_lines": [
+          "You pay. Quill walks. The lamp stays lit. That is the whole bargain.",
+          "Lamp out in the nave means turn around. You are already behind.",
+          "Pay me. The rows are no place without a lamp."
+        ]
+      },
+      "source_ids": [
+        "Ti.hest.0",
+        "Ti.hest.1"
+      ]
+    },
+    {
+      "id": "ive",
+      "name": "Ive",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Ashgate name-keeper",
+      "kind": "name-keeper",
+      "origin": "Ive keeps the names cut into the Stair of Names and can unwrite a bad build. The steps are already named. Ive can give the points back, but cannot give back the step you fell from.",
+      "wants": "No new names on the stair. Points may come back. The lost step may not.",
+      "voice": {
+        "vocabulary": "Steps, names, mouth, points, fall. Grave and plain.",
+        "rhythm": "A rule, then the limit of the help. Almost kind, because it is honest.",
+        "tics": "Tells you to leave your name in your mouth. Will not pretend the stair gives anything back.",
+        "sample_lines": [
+          "The steps are already named. Leave yours in your mouth.",
+          "I can give the points back. I cannot give you the step you fell from.",
+          "Try not to add your name. The stair has enough."
+        ]
+      },
+      "source_ids": [
+        "Ti.ive.0",
+        "Ti.ive.1"
+      ]
+    },
+    {
+      "id": "nell",
+      "name": "Nell",
+      "epithet": null,
+      "tier": "side",
+      "pronouns": "unspecified",
+      "role": "Ashgate door-ward",
+      "kind": "door-ward",
+      "origin": "Nell hires Quill at Ashgate and stays with the door. Quill can climb. Nell does not. Someone has to keep the last warm door, and Nell has already taken that job.",
+      "wants": "The door kept warm. The lamp brought down again. Quill brought back, if the stair allows.",
+      "voice": {
+        "vocabulary": "Door, warm, lamp, climb, stair, Quill. Duty, not boast.",
+        "rhythm": "What Quill can do, then what Nell will do. Short and steady.",
+        "tics": "Stays with the door. 'It will be me.' Asks for the lamp, and for Quill, if the stair allows.",
+        "sample_lines": [
+          "Quill can climb. Bring the lamp down. Bring Quill, if the stair allows.",
+          "Someone has to keep this door warm. It will be me.",
+          "I don't climb. I keep the way back lit."
+        ]
+      },
+      "source_ids": [
+        "Ti.nell.0",
+        "Ti.nell.1"
+      ]
+    },
+    {
+      "id": "ode",
+      "name": "Ode",
+      "epithet": null,
+      "tier": "town",
+      "pronouns": "unspecified",
+      "role": "Act I roadside escort",
+      "kind": "escort",
+      "origin": "Ode is a traveler on the Ashmarch roads out of Hearthveil. They lose the road and ask to be walked as far as the next arch. They are not always on the map; one roadside event is picked at random when a wild Act I ground is built.",
+      "wants": "To reach the next arch and have the road back. That is far enough.",
+      "voice": {
+        "vocabulary": "Road, arch, lost, enough. Almost no extra words.",
+        "rhythm": "A problem, then the small ask. Stops as soon as the arch is named.",
+        "tics": "Speaks of the arch as the whole job. Does not ask you to go farther.",
+        "sample_lines": [
+          "Ode lost the road. The arch is enough.",
+          "Just as far as the arch. I can find it from there."
+        ]
+      },
+      "source_ids": [
+        "Ts.1.escort.ode",
+        "Ts.1.escort.ode.line"
+      ]
+    },
+    {
+      "id": "nimble",
+      "name": "Nimble",
+      "epithet": null,
+      "tier": "town",
+      "pronouns": "unspecified",
+      "role": "Act II roadside peddler",
+      "kind": "peddler",
+      "origin": "Nimble sells on the Glassmere roads, whatever the tide left behind. No bells. A random roadside event in Act II wild zones, not a shop in Brinehollow.",
+      "wants": "To sell the dry goods and keep every bell wrapped. No bronze comes off the cart.",
+      "voice": {
+        "vocabulary": "Tide, sell, bells, bronze, dry. Market talk, shorter than Brin's.",
+        "rhythm": "What is for sale, then the rule. A hard no on bells.",
+        "tics": "Names the tide as the supplier. Will not unwrap bronze.",
+        "sample_lines": [
+          "Nimble sells what the tide left. No bells.",
+          "Buy what's dry. I don't unwrap bronze."
+        ]
+      },
+      "source_ids": [
+        "Ts.2.peddler.nimble",
+        "Ts.2.peddler.nimble.line"
+      ]
+    },
+    {
+      "id": "bram",
+      "name": "Bram",
+      "epithet": null,
+      "tier": "town",
+      "pronouns": "unspecified",
+      "role": "Act III roadside escort",
+      "kind": "escort",
+      "origin": "Bram is found on the Night Orchard roads and will not cross the walking rows alone. They ask to be walked to the arch. A random roadside event in Act III wild zones.",
+      "wants": "Company as far as the arch. Not to walk the rows alone.",
+      "voice": {
+        "vocabulary": "Rows, arch, alone, walk. Plain and careful.",
+        "rhythm": "A refusal, then the ask. Short.",
+        "tics": "Will not cross the rows alone. The arch is the end of the favor.",
+        "sample_lines": [
+          "Bram will not cross the rows alone. Walk them to the arch.",
+          "Stay on the path. I don't walk the rows by myself."
+        ]
+      },
+      "source_ids": [
+        "Ts.3.escort.bram",
+        "Ts.3.escort.bram.line"
+      ]
+    },
+    {
+      "id": "tarn",
+      "name": "Tarn",
+      "epithet": null,
+      "tier": "town",
+      "pronouns": "he/him",
+      "role": "Act IV roadside peddler",
+      "kind": "peddler",
+      "origin": "Tarn sells on the Pale Stair roads. Like Rook, he will not carry a stall up the steps. He sells only what fits in a coat. A random roadside event in Act IV wild zones.",
+      "wants": "To sell what's in the coat and stay off the stair. He does not climb.",
+      "voice": {
+        "vocabulary": "Stall, steps, coat, sell, climb. Blunt, a little like Rook, smaller.",
+        "rhythm": "What he will not do, then what he will sell.",
+        "tics": "The coat is the whole stall. He does not go up.",
+        "sample_lines": [
+          "Tarn will not carry a stall up the steps. He will sell what fits in a coat.",
+          "If it fits in the coat, you can have it. I don't climb."
+        ]
+      },
+      "source_ids": [
+        "Ts.4.peddler.tarn",
+        "Ts.4.peddler.tarn.line"
+      ]
+    },
+    {
+      "id": "keel",
+      "name": "Keel",
+      "epithet": null,
+      "tier": "town",
+      "pronouns": "they/them",
+      "role": "Act IV roadside escort",
+      "kind": "escort",
+      "origin": "Keel is met on the Pale Stair roads with a name to deliver. They need the arch first, and then they can breathe. A random roadside event in Act IV wild zones. Not the same as any person in Ashgate.",
+      "wants": "To get the name to the arch, and then to rest. The name is the job. The arch is far enough.",
+      "voice": {
+        "vocabulary": "Name, deliver, arch, breathe. Quiet and urgent, but still short.",
+        "rhythm": "The errand, then the stopping place. No speech after that.",
+        "tics": "Talks about the name, not about themself. Breathes after the arch, not before.",
+        "sample_lines": [
+          "Keel has a name to deliver. The arch, then they can breathe.",
+          "This name has to reach the arch. Then I can stop."
+        ]
+      },
+      "source_ids": [
+        "Ts.4.escort.keel",
+        "Ts.4.escort.keel.line"
+      ]
+    }
+  ]
+}

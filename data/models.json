@@ -1,0 +1,1736 @@
+{
+  "version": 1,
+  "camera": {
+    "pitchDeg": 38,
+    "unitsPerTile": 4.6,
+    "frameUnits": [
+      9,
+      9.6
+    ],
+    "feetFromBottom": 1.6,
+    "budgetMs": 5,
+    "outline": [
+      14,
+      9,
+      6,
+      0.7
+    ],
+    "maxFrames": 360,
+    "maxBytesMB": 32
+  },
+  "light": {
+    "key": [
+      -0.55,
+      0.5,
+      0.68
+    ],
+    "keyColor": [
+      1.0,
+      0.92,
+      0.8
+    ],
+    "ambient": 0.34,
+    "sky": 0.16,
+    "rim": [
+      0.62,
+      0.78,
+      1.0
+    ],
+    "rimStrength": 0.5,
+    "aoStrength": 0.42,
+    "contactBase": 0.55,
+    "contactFoot": 0.25
+  },
+  "materials": {
+    "cloth": {
+      "spec": 0.04,
+      "power": 6,
+      "noise": 0.06,
+      "wrap": 0.15
+    },
+    "leather": {
+      "spec": 0.22,
+      "power": 14,
+      "noise": 0.07,
+      "wrap": 0.1
+    },
+    "metal": {
+      "spec": 1.1,
+      "power": 46,
+      "noise": 0.02,
+      "wrap": 0.0,
+      "darken": 0.62,
+      "env": 0.28
+    },
+    "skin": {
+      "spec": 0.12,
+      "power": 10,
+      "noise": 0.025,
+      "wrap": 0.35,
+      "warm": 0.08
+    },
+    "fur": {
+      "spec": 0.05,
+      "power": 4,
+      "noise": 0.16,
+      "wrap": 0.25,
+      "sheen": 0.22,
+      "strands": 1
+    },
+    "stone": {
+      "spec": 0.06,
+      "power": 8,
+      "noise": 0.14,
+      "wrap": 0.05,
+      "cracks": 1
+    },
+    "bone": {
+      "spec": 0.18,
+      "power": 12,
+      "noise": 0.05,
+      "wrap": 0.2
+    },
+    "wood": {
+      "spec": 0.05,
+      "power": 8,
+      "noise": 0.12,
+      "wrap": 0.1,
+      "grain": 1
+    },
+    "glow": {
+      "emissive": 1
+    },
+    "ghost": {
+      "spec": 0.08,
+      "power": 8,
+      "noise": 0.04,
+      "wrap": 0.4,
+      "alpha": 0.52,
+      "sheen": 0.18
+    },
+    "veil": {
+      "spec": 0.04,
+      "power": 6,
+      "noise": 0.03,
+      "wrap": 0.5,
+      "alpha": 0.32,
+      "sheen": 0.12
+    },
+    "spark": {
+      "emissive": 1,
+      "alpha": 0.7
+    }
+  },
+  "biped": {
+    "thigh": 1.7,
+    "shin": 1.65,
+    "torso": 2.25,
+    "hipW": 0.42,
+    "shoulderW": 0.78,
+    "upperArm": 1.3,
+    "foreArm": 1.2,
+    "headR": 0.5,
+    "thighR": 0.36,
+    "shinR": 0.29,
+    "footR": 0.22,
+    "upperArmR": 0.27,
+    "foreArmR": 0.23,
+    "handR": 0.2,
+    "chestR": 0.7,
+    "waistR": 0.46,
+    "pelvisR": 0.46
+  },
+  "quad": {
+    "bodyHalf": 1.15,
+    "bodyR": 0.62,
+    "thigh": 0.95,
+    "shin": 1.0,
+    "legR": 0.2,
+    "shinR": 0.14,
+    "legW": 0.42,
+    "neck": 0.9,
+    "headR": 0.42,
+    "snout": 0.62
+  },
+  "anim": {
+    "idle": {
+      "frames": 4,
+      "fps": 2,
+      "breathe": 1
+    },
+    "walk": {
+      "frames": 8,
+      "cycleTiles": 1.1,
+      "legSwing": 0.5,
+      "knee": 0.75,
+      "armSwing": 0.42,
+      "elbow": 0.35,
+      "lean": 0.06
+    },
+    "run": {
+      "frames": 8,
+      "cycleTiles": 1.65,
+      "legSwing": 0.8,
+      "knee": 1.25,
+      "armSwing": 0.8,
+      "elbow": 1.15,
+      "lean": 0.26
+    },
+    "strike": {
+      "frames": 4,
+      "arm": [
+        -2.5,
+        -1.7,
+        1.25,
+        0.55
+      ],
+      "elbow": [
+        0.7,
+        0.35,
+        0.05,
+        0.35
+      ],
+      "lean": [
+        -0.14,
+        -0.06,
+        0.3,
+        0.16
+      ],
+      "twist": [
+        -0.35,
+        -0.2,
+        0.3,
+        0.15
+      ],
+      "stance": [
+        0.34,
+        -0.3
+      ],
+      "lunge": [
+        0,
+        -0.15,
+        0.7,
+        0.35
+      ]
+    },
+    "hit": {
+      "frames": 1,
+      "lean": -0.32,
+      "arms": -0.55
+    },
+    "death": {
+      "frames": 4,
+      "fall": [
+        0.25,
+        0.7,
+        1.25,
+        1.52
+      ],
+      "kneel": [
+        0.35,
+        0.95,
+        1.15,
+        1.1
+      ]
+    }
+  },
+  "types": {
+    "warden": {
+      "kind": "biped",
+      "scale": 1,
+      "bulk": 1.08,
+      "head": "helm",
+      "weapon": "sword",
+      "offhand": "shield",
+      "parts": {
+        "skin": [
+          "f",
+          "skin"
+        ],
+        "chest": [
+          "w",
+          "metal"
+        ],
+        "waist": [
+          "m",
+          "leather"
+        ],
+        "pelvis": [
+          "m",
+          "leather"
+        ],
+        "arms": [
+          "m",
+          "cloth"
+        ],
+        "hands": [
+          "b",
+          "leather"
+        ],
+        "legs": [
+          "n",
+          "cloth"
+        ],
+        "boots": [
+          "b",
+          "leather"
+        ],
+        "helm": [
+          "w",
+          "metal"
+        ],
+        "trim": [
+          "a",
+          "metal"
+        ],
+        "shield": [
+          "a",
+          "metal"
+        ],
+        "blade": [
+          "v",
+          "metal"
+        ],
+        "grip": [
+          "b",
+          "leather"
+        ],
+        "belt": [
+          "b",
+          "leather"
+        ],
+        "pouch": [
+          "n",
+          "leather"
+        ],
+        "brow": [
+          "#6a4030",
+          "skin"
+        ],
+        "cape": [
+          "#7a2418",
+          "cloth"
+        ],
+        "pauldron": [
+          "w",
+          "metal"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "belt": true,
+        "cuffs": true,
+        "face": true,
+        "cape": true,
+        "armor": true,
+        "pauldron": true
+      }
+    },
+    "caller": {
+      "kind": "biped",
+      "scale": 0.98,
+      "bulk": 0.94,
+      "head": "hood",
+      "weapon": "bow",
+      "parts": {
+        "skin": [
+          "f",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "cloth"
+        ],
+        "waist": [
+          "a",
+          "cloth"
+        ],
+        "pelvis": [
+          "m",
+          "cloth"
+        ],
+        "arms": [
+          "m",
+          "cloth"
+        ],
+        "hands": [
+          "f",
+          "skin"
+        ],
+        "legs": [
+          "n",
+          "cloth"
+        ],
+        "boots": [
+          "b",
+          "leather"
+        ],
+        "hood": [
+          "m",
+          "cloth"
+        ],
+        "trim": [
+          "a",
+          "cloth"
+        ],
+        "bow": [
+          "b",
+          "wood"
+        ],
+        "string": [
+          "#e8e0d0",
+          "cloth"
+        ],
+        "belt": [
+          "b",
+          "leather"
+        ],
+        "pouch": [
+          "n",
+          "leather"
+        ],
+        "brow": [
+          "#6a4030",
+          "skin"
+        ],
+        "cape": [
+          "a",
+          "cloth"
+        ],
+        "pauldron": [
+          "b",
+          "leather"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "belt": true,
+        "cuffs": true,
+        "face": true,
+        "cape": true
+      }
+    },
+    "stalker": {
+      "kind": "biped",
+      "scale": 1,
+      "bulk": 0.96,
+      "head": "hood",
+      "weapon": "knife",
+      "parts": {
+        "skin": [
+          "f",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "leather"
+        ],
+        "waist": [
+          "b",
+          "leather"
+        ],
+        "pelvis": [
+          "m",
+          "leather"
+        ],
+        "arms": [
+          "n",
+          "leather"
+        ],
+        "hands": [
+          "b",
+          "leather"
+        ],
+        "legs": [
+          "n",
+          "cloth"
+        ],
+        "boots": [
+          "b",
+          "leather"
+        ],
+        "hood": [
+          "n",
+          "cloth"
+        ],
+        "trim": [
+          "a",
+          "cloth"
+        ],
+        "blade": [
+          "v",
+          "metal"
+        ],
+        "grip": [
+          "b",
+          "leather"
+        ],
+        "belt": [
+          "b",
+          "leather"
+        ],
+        "pouch": [
+          "n",
+          "leather"
+        ],
+        "brow": [
+          "#6a4030",
+          "skin"
+        ],
+        "cape": [
+          "a",
+          "cloth"
+        ],
+        "pauldron": [
+          "b",
+          "leather"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "belt": true,
+        "cuffs": true,
+        "face": true,
+        "cape": false
+      }
+    },
+    "reaver": {
+      "kind": "biped",
+      "scale": 1,
+      "bulk": 1.0,
+      "head": "band",
+      "weapon": "dirk",
+      "parts": {
+        "skin": [
+          "f",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "leather"
+        ],
+        "waist": [
+          "a",
+          "cloth"
+        ],
+        "pelvis": [
+          "m",
+          "leather"
+        ],
+        "arms": [
+          "f",
+          "skin"
+        ],
+        "hands": [
+          "b",
+          "leather"
+        ],
+        "legs": [
+          "n",
+          "cloth"
+        ],
+        "boots": [
+          "b",
+          "leather"
+        ],
+        "band": [
+          "a",
+          "cloth"
+        ],
+        "hair": [
+          "#3a2418",
+          "cloth"
+        ],
+        "trim": [
+          "w",
+          "metal"
+        ],
+        "blade": [
+          "v",
+          "metal"
+        ],
+        "grip": [
+          "b",
+          "leather"
+        ],
+        "belt": [
+          "b",
+          "leather"
+        ],
+        "pouch": [
+          "n",
+          "leather"
+        ],
+        "brow": [
+          "#6a4030",
+          "skin"
+        ],
+        "cape": [
+          "a",
+          "cloth"
+        ],
+        "pauldron": [
+          "b",
+          "leather"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "belt": true,
+        "cuffs": true,
+        "face": true,
+        "cape": true,
+        "pauldron": true
+      }
+    },
+    "chanter": {
+      "kind": "biped",
+      "scale": 0.98,
+      "bulk": 0.98,
+      "head": "hood",
+      "weapon": "staff",
+      "robe": true,
+      "parts": {
+        "skin": [
+          "f",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "cloth"
+        ],
+        "waist": [
+          "a",
+          "cloth"
+        ],
+        "pelvis": [
+          "m",
+          "cloth"
+        ],
+        "arms": [
+          "m",
+          "cloth"
+        ],
+        "hands": [
+          "f",
+          "skin"
+        ],
+        "legs": [
+          "m",
+          "cloth"
+        ],
+        "boots": [
+          "b",
+          "leather"
+        ],
+        "hood": [
+          "m",
+          "cloth"
+        ],
+        "robe": [
+          "m",
+          "cloth"
+        ],
+        "trim": [
+          "a",
+          "cloth"
+        ],
+        "staff": [
+          "b",
+          "wood"
+        ],
+        "orb": [
+          "a",
+          "glow"
+        ],
+        "belt": [
+          "b",
+          "leather"
+        ],
+        "pouch": [
+          "n",
+          "leather"
+        ],
+        "brow": [
+          "#6a4030",
+          "skin"
+        ],
+        "cape": [
+          "a",
+          "cloth"
+        ],
+        "pauldron": [
+          "b",
+          "leather"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "belt": true,
+        "cuffs": true,
+        "face": true,
+        "cape": true
+      }
+    },
+    "humanoid": {
+      "kind": "biped",
+      "scale": 1,
+      "bulk": 0.92,
+      "head": "bare",
+      "weapon": "none",
+      "lean": 0.28,
+      "armsForward": 0.85,
+      "eyes": "#ffb067",
+      "parts": {
+        "skin": [
+          "m",
+          "skin"
+        ],
+        "chest": [
+          "n",
+          "cloth"
+        ],
+        "waist": [
+          "m",
+          "skin"
+        ],
+        "pelvis": [
+          "n",
+          "cloth"
+        ],
+        "arms": [
+          "m",
+          "skin"
+        ],
+        "hands": [
+          "m",
+          "skin"
+        ],
+        "legs": [
+          "m",
+          "skin"
+        ],
+        "boots": [
+          "n",
+          "skin"
+        ],
+        "trim": [
+          "a",
+          "cloth"
+        ]
+      },
+      "detail": {
+        "muscles": false,
+        "face": true
+      }
+    },
+    "knight": {
+      "kind": "biped",
+      "scale": 1.05,
+      "bulk": 1.14,
+      "head": "helm",
+      "weapon": "sword",
+      "offhand": "shield",
+      "eyes": "#ffd27a",
+      "parts": {
+        "skin": [
+          "w",
+          "metal"
+        ],
+        "chest": [
+          "w",
+          "metal"
+        ],
+        "waist": [
+          "n",
+          "leather"
+        ],
+        "pelvis": [
+          "w",
+          "metal"
+        ],
+        "arms": [
+          "w",
+          "metal"
+        ],
+        "hands": [
+          "n",
+          "metal"
+        ],
+        "legs": [
+          "w",
+          "metal"
+        ],
+        "boots": [
+          "n",
+          "metal"
+        ],
+        "helm": [
+          "w",
+          "metal"
+        ],
+        "trim": [
+          "a",
+          "metal"
+        ],
+        "shield": [
+          "m",
+          "metal"
+        ],
+        "blade": [
+          "v",
+          "metal"
+        ],
+        "grip": [
+          "n",
+          "leather"
+        ],
+        "belt": [
+          "n",
+          "leather"
+        ],
+        "pouch": [
+          "n",
+          "leather"
+        ],
+        "pauldron": [
+          "w",
+          "metal"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "armor": true,
+        "belt": true,
+        "pauldron": true,
+        "cuffs": true,
+        "face": true
+      }
+    },
+    "brute": {
+      "kind": "biped",
+      "scale": 1.18,
+      "bulk": 1.55,
+      "head": "bare",
+      "weapon": "club",
+      "lean": 0.12,
+      "eyes": "#ff7a3c",
+      "gait": "heavy",
+      "parts": {
+        "skin": [
+          "m",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "skin"
+        ],
+        "waist": [
+          "b",
+          "leather"
+        ],
+        "pelvis": [
+          "b",
+          "leather"
+        ],
+        "arms": [
+          "m",
+          "skin"
+        ],
+        "hands": [
+          "m",
+          "skin"
+        ],
+        "legs": [
+          "n",
+          "cloth"
+        ],
+        "boots": [
+          "b",
+          "leather"
+        ],
+        "trim": [
+          "a",
+          "leather"
+        ],
+        "club": [
+          "b",
+          "wood"
+        ],
+        "loin": [
+          "b",
+          "leather"
+        ],
+        "belt": [
+          "#3a2418",
+          "leather"
+        ],
+        "pouch": [
+          "b",
+          "leather"
+        ]
+      },
+      "detail": {
+        "taper": true,
+        "muscles": true,
+        "brute": true,
+        "loincloth": true,
+        "belt": true
+      },
+      "gaitFx": {
+        "sway": 0.16,
+        "stomp": 0.12,
+        "roll": 0.05
+      }
+    },
+    "golem": {
+      "kind": "biped",
+      "scale": 1.24,
+      "bulk": 1.72,
+      "head": "bare",
+      "weapon": "none",
+      "eyes": "#ffb067",
+      "gait": "heavy",
+      "core": "#ff7a3c",
+      "parts": {
+        "skin": [
+          "m",
+          "stone"
+        ],
+        "chest": [
+          "m",
+          "stone"
+        ],
+        "waist": [
+          "n",
+          "stone"
+        ],
+        "pelvis": [
+          "m",
+          "stone"
+        ],
+        "arms": [
+          "m",
+          "stone"
+        ],
+        "hands": [
+          "n",
+          "stone"
+        ],
+        "legs": [
+          "m",
+          "stone"
+        ],
+        "boots": [
+          "n",
+          "stone"
+        ],
+        "trim": [
+          "a",
+          "stone"
+        ]
+      },
+      "detail": {
+        "chunky": true,
+        "taper": true
+      },
+      "gaitFx": {
+        "sway": 0.08,
+        "stomp": 0.22,
+        "pitch": 0.1
+      }
+    },
+    "imp": {
+      "kind": "biped",
+      "scale": 0.72,
+      "bulk": 1.0,
+      "headScale": 1.45,
+      "head": "horns",
+      "weapon": "none",
+      "eyes": "#ffe56a",
+      "tail": true,
+      "gait": "hop",
+      "parts": {
+        "skin": [
+          "m",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "skin"
+        ],
+        "waist": [
+          "m",
+          "skin"
+        ],
+        "pelvis": [
+          "n",
+          "skin"
+        ],
+        "arms": [
+          "m",
+          "skin"
+        ],
+        "hands": [
+          "n",
+          "skin"
+        ],
+        "legs": [
+          "m",
+          "skin"
+        ],
+        "boots": [
+          "n",
+          "skin"
+        ],
+        "horn": [
+          "e",
+          "bone"
+        ],
+        "tail": [
+          "m",
+          "skin"
+        ],
+        "trim": [
+          "a",
+          "skin"
+        ]
+      },
+      "gaitFx": {
+        "sway": 0.1,
+        "roll": -0.08
+      }
+    },
+    "hound": {
+      "kind": "quad",
+      "scale": 0.82,
+      "bulk": 0.95,
+      "head": "hound",
+      "eyes": "#ff7a3c",
+      "tail": true,
+      "parts": {
+        "body": [
+          "m",
+          "fur"
+        ],
+        "belly": [
+          "a",
+          "fur"
+        ],
+        "legs": [
+          "m",
+          "fur"
+        ],
+        "paws": [
+          "n",
+          "fur"
+        ],
+        "head": [
+          "m",
+          "fur"
+        ],
+        "snout": [
+          "n",
+          "fur"
+        ],
+        "ear": [
+          "n",
+          "fur"
+        ],
+        "tail": [
+          "m",
+          "fur"
+        ],
+        "mane": [
+          "n",
+          "fur"
+        ]
+      },
+      "detail": {
+        "fur": 14,
+        "mane": true,
+        "muscles": true
+      }
+    },
+    "beast": {
+      "kind": "quad",
+      "scale": 1.05,
+      "bulk": 1.32,
+      "head": "ram",
+      "eyes": "#ffb067",
+      "tail": true,
+      "parts": {
+        "body": [
+          "m",
+          "fur"
+        ],
+        "belly": [
+          "a",
+          "fur"
+        ],
+        "legs": [
+          "n",
+          "fur"
+        ],
+        "paws": [
+          "#2a1c14",
+          "bone"
+        ],
+        "head": [
+          "m",
+          "fur"
+        ],
+        "snout": [
+          "n",
+          "skin"
+        ],
+        "horn": [
+          "e",
+          "bone"
+        ],
+        "tail": [
+          "m",
+          "fur"
+        ],
+        "mane": [
+          "a",
+          "fur"
+        ]
+      },
+      "detail": {
+        "fur": 12,
+        "mane": true,
+        "muscles": true
+      }
+    },
+    "stag": {
+      "kind": "quad",
+      "scale": 1.05,
+      "bulk": 0.9,
+      "legScale": 1.28,
+      "head": "stag",
+      "eyes": "#ffd27a",
+      "tail": true,
+      "parts": {
+        "body": [
+          "m",
+          "fur"
+        ],
+        "belly": [
+          "a",
+          "fur"
+        ],
+        "legs": [
+          "m",
+          "fur"
+        ],
+        "paws": [
+          "#2a1c14",
+          "bone"
+        ],
+        "head": [
+          "m",
+          "fur"
+        ],
+        "snout": [
+          "n",
+          "fur"
+        ],
+        "antler": [
+          "e",
+          "bone"
+        ],
+        "ear": [
+          "m",
+          "fur"
+        ],
+        "tail": [
+          "a",
+          "fur"
+        ],
+        "mane": [
+          "a",
+          "fur"
+        ]
+      },
+      "detail": {
+        "fur": 8,
+        "muscles": true,
+        "hooves": true
+      }
+    },
+    "veyra": {
+      "extends": "brute",
+      "eyes": "#ffd040",
+      "parts": {
+        "trim": [
+          "a",
+          "metal"
+        ],
+        "loin": [
+          "a",
+          "cloth"
+        ]
+      },
+      "scale": 1.34,
+      "bulk": 1.62,
+      "headScale": 1.12,
+      "weapon": "club",
+      "gaitFx": {
+        "sway": 0.2,
+        "stomp": 0.16,
+        "roll": 0.08
+      },
+      "detail": {
+        "taper": true,
+        "muscles": true,
+        "brute": true,
+        "loincloth": true,
+        "belt": true,
+        "flameCrown": true,
+        "emberMantle": true
+      }
+    },
+    "tyrant": {
+      "extends": "brute"
+    },
+    "morra": {
+      "extends": "chanter",
+      "eyes": "#9fe0ff",
+      "detail": {
+        "cape": true,
+        "face": true,
+        "belt": true,
+        "bellCrown": true,
+        "bellSkirt": true
+      },
+      "scale": 1.28,
+      "headScale": 1.06
+    },
+    "sallow": {
+      "extends": "golem",
+      "eyes": "#c6ff7a",
+      "parts": {
+        "skin": [
+          "m",
+          "wood"
+        ],
+        "chest": [
+          "m",
+          "wood"
+        ],
+        "waist": [
+          "n",
+          "wood"
+        ],
+        "pelvis": [
+          "m",
+          "wood"
+        ],
+        "arms": [
+          "m",
+          "wood"
+        ],
+        "hands": [
+          "n",
+          "wood"
+        ],
+        "legs": [
+          "m",
+          "wood"
+        ],
+        "boots": [
+          "n",
+          "wood"
+        ],
+        "trim": [
+          "a",
+          "wood"
+        ]
+      },
+      "detail": {
+        "chunky": false,
+        "taper": true,
+        "muscles": true,
+        "branchCrown": true,
+        "rootFeet": true
+      },
+      "scale": 1.3,
+      "bulk": 1.55
+    },
+    "mael": {
+      "extends": "knight",
+      "eyes": "#ff5a5a",
+      "detail": {
+        "taper": true,
+        "armor": true,
+        "belt": true,
+        "pauldron": true,
+        "cuffs": true,
+        "face": true,
+        "cape": true,
+        "greatHelm": true,
+        "asymmetric": true
+      },
+      "parts": {
+        "cape": [
+          "a",
+          "cloth"
+        ]
+      },
+      "scale": 1.24,
+      "bulk": 1.18,
+      "weapon": "sword"
+    },
+    "smith": {
+      "extends": "warden",
+      "head": "bare",
+      "weapon": "club",
+      "offhand": "none",
+      "detail": {
+        "cape": false,
+        "armor": false,
+        "pauldron": false
+      },
+      "parts": {
+        "club": [
+          "#3a3a3a",
+          "metal"
+        ],
+        "chest": [
+          "m",
+          "leather"
+        ],
+        "arms": [
+          "#c08a68",
+          "skin"
+        ],
+        "skin": [
+          "#c08a68",
+          "skin"
+        ]
+      }
+    },
+    "dockhand": {
+      "extends": "warden",
+      "head": "bare",
+      "weapon": "none",
+      "offhand": "none",
+      "detail": {
+        "cape": false,
+        "armor": false,
+        "pauldron": false
+      },
+      "parts": {
+        "skin": [
+          "#b88462",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "cloth"
+        ],
+        "arms": [
+          "m",
+          "cloth"
+        ]
+      }
+    },
+    "innkeep": {
+      "extends": "warden",
+      "head": "bare",
+      "weapon": "none",
+      "offhand": "none",
+      "bulk": 1.2,
+      "detail": {
+        "cape": false,
+        "armor": false,
+        "pauldron": false
+      },
+      "parts": {
+        "skin": [
+          "#d09a78",
+          "skin"
+        ],
+        "chest": [
+          "m",
+          "cloth"
+        ],
+        "arms": [
+          "#d09a78",
+          "skin"
+        ],
+        "pelvis": [
+          "n",
+          "cloth"
+        ]
+      }
+    },
+    "merchant": {
+      "extends": "chanter",
+      "weapon": "none",
+      "parts": {
+        "skin": [
+          "#c89070",
+          "skin"
+        ]
+      }
+    },
+    "elder": {
+      "extends": "chanter",
+      "parts": {
+        "skin": [
+          "#d8b090",
+          "skin"
+        ]
+      }
+    },
+    "moth": {
+      "kind": "moth",
+      "scale": 0.98,
+      "eyes": "#ffe56a",
+      "parts": {
+        "body": [
+          "m",
+          "fur"
+        ],
+        "skin": [
+          "m",
+          "fur"
+        ],
+        "abdomen": [
+          "n",
+          "fur"
+        ],
+        "head": [
+          "m",
+          "fur"
+        ],
+        "wing": [
+          "a",
+          "cloth"
+        ],
+        "vein": [
+          "b",
+          "leather"
+        ],
+        "legs": [
+          "n",
+          "bone"
+        ],
+        "antenna": [
+          "n",
+          "bone"
+        ]
+      }
+    },
+    "wisp": {
+      "kind": "wisp",
+      "scale": 0.88,
+      "eyes": "#fff4c8",
+      "core": "#ffe0a0",
+      "parts": {
+        "body": [
+          "a",
+          "glow"
+        ],
+        "skin": [
+          "a",
+          "glow"
+        ],
+        "core": [
+          "e",
+          "glow"
+        ],
+        "shell": [
+          "a",
+          "spark"
+        ],
+        "trail": [
+          "a",
+          "spark"
+        ],
+        "eyes": [
+          "e",
+          "glow"
+        ]
+      }
+    },
+    "crawler": {
+      "kind": "crawler",
+      "scale": 1.02,
+      "eyes": "#d6ee6a",
+      "parts": {
+        "body": [
+          "m",
+          "leather"
+        ],
+        "skin": [
+          "m",
+          "leather"
+        ],
+        "belly": [
+          "n",
+          "leather"
+        ],
+        "head": [
+          "m",
+          "leather"
+        ],
+        "pincer": [
+          "b",
+          "bone"
+        ],
+        "legs": [
+          "n",
+          "bone"
+        ],
+        "paws": [
+          "n",
+          "bone"
+        ]
+      }
+    },
+    "serpent": {
+      "kind": "serpent",
+      "scale": 1.02,
+      "eyes": "#e7d7a4",
+      "parts": {
+        "body": [
+          "m",
+          "leather"
+        ],
+        "skin": [
+          "m",
+          "leather"
+        ],
+        "belly": [
+          "a",
+          "leather"
+        ],
+        "head": [
+          "m",
+          "leather"
+        ],
+        "jaw": [
+          "n",
+          "leather"
+        ],
+        "hood": [
+          "b",
+          "leather"
+        ],
+        "fangs": [
+          "e",
+          "bone"
+        ],
+        "tail": [
+          "n",
+          "leather"
+        ]
+      }
+    },
+    "drake": {
+      "kind": "drake",
+      "scale": 1.08,
+      "bulk": 1.12,
+      "eyes": "#ffb067",
+      "tail": true,
+      "parts": {
+        "body": [
+          "m",
+          "leather"
+        ],
+        "skin": [
+          "m",
+          "leather"
+        ],
+        "belly": [
+          "n",
+          "leather"
+        ],
+        "legs": [
+          "m",
+          "leather"
+        ],
+        "paws": [
+          "n",
+          "bone"
+        ],
+        "head": [
+          "m",
+          "leather"
+        ],
+        "snout": [
+          "n",
+          "leather"
+        ],
+        "horn": [
+          "b",
+          "bone"
+        ],
+        "wing": [
+          "a",
+          "leather"
+        ],
+        "membrane": [
+          "b",
+          "cloth"
+        ],
+        "tail": [
+          "m",
+          "leather"
+        ]
+      },
+      "frameUnits": [
+        10.2,
+        10.4
+      ]
+    },
+    "shade": {
+      "kind": "shade",
+      "scale": 1.42,
+      "eyes": "#c4a0ff",
+      "parts": {
+        "body": [
+          "m",
+          "ghost"
+        ],
+        "skin": [
+          "m",
+          "ghost"
+        ],
+        "hood": [
+          "n",
+          "veil"
+        ],
+        "arms": [
+          "m",
+          "ghost"
+        ],
+        "hands": [
+          "a",
+          "veil"
+        ],
+        "tendril": [
+          "n",
+          "veil"
+        ],
+        "core": [
+          "a",
+          "spark"
+        ]
+      },
+      "frameUnits": [
+        9.6,
+        11.2
+      ],
+      "feetFromBottom": 1.35
+    },
+    "maw": {
+      "kind": "maw",
+      "scale": 1.22,
+      "bulk": 1.35,
+      "eyes": "#ffc45a",
+      "parts": {
+        "body": [
+          "m",
+          "leather"
+        ],
+        "skin": [
+          "m",
+          "leather"
+        ],
+        "belly": [
+          "n",
+          "leather"
+        ],
+        "legs": [
+          "m",
+          "leather"
+        ],
+        "paws": [
+          "n",
+          "leather"
+        ],
+        "head": [
+          "m",
+          "leather"
+        ],
+        "jaw": [
+          "n",
+          "leather"
+        ],
+        "teeth": [
+          "a",
+          "bone"
+        ],
+        "horn": [
+          "b",
+          "bone"
+        ],
+        "gums": [
+          "#8a2010",
+          "skin"
+        ]
+      },
+      "frameUnits": [
+        10.6,
+        10.8
+      ]
+    },
+    "bellward": {
+      "kind": "bellward",
+      "scale": 1.2,
+      "bulk": 1.15,
+      "eyes": "#f2c440",
+      "core": "#f2c440",
+      "parts": {
+        "body": [
+          "m",
+          "metal"
+        ],
+        "skin": [
+          "m",
+          "metal"
+        ],
+        "trim": [
+          "a",
+          "metal"
+        ],
+        "bell": [
+          "a",
+          "metal"
+        ],
+        "clapper": [
+          "w",
+          "metal"
+        ],
+        "legs": [
+          "m",
+          "metal"
+        ],
+        "boots": [
+          "n",
+          "metal"
+        ],
+        "arms": [
+          "m",
+          "metal"
+        ],
+        "hands": [
+          "n",
+          "metal"
+        ],
+        "core": [
+          "a",
+          "glow"
+        ]
+      },
+      "frameUnits": [
+        9.8,
+        11.0
+      ]
+    }
+  }
+}

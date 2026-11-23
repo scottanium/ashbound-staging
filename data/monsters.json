@@ -1,0 +1,1544 @@
+{
+  "monsters": [
+    {
+      "id": "bramble_hound",
+      "name": "Bramble Hound",
+      "shape": "hound",
+      "hp": 22,
+      "hpLvl": 6,
+      "dmg": [
+        4,
+        7
+      ],
+      "defense": 10,
+      "attack": 36,
+      "aps": 1.15,
+      "move": 3.15,
+      "xp": 14,
+      "radius": 0.36,
+      "aggro": 6.4,
+      "range": 0.78,
+      "resist": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 10
+      },
+      "color": "#6a2414",
+      "accent": "#ffb067"
+    },
+    {
+      "id": "ash_moth",
+      "name": "Ash Moth",
+      "shape": "moth",
+      "hp": 14,
+      "hpLvl": 4,
+      "dmg": [
+        3,
+        5
+      ],
+      "defense": 5,
+      "attack": 30,
+      "aps": 1.25,
+      "move": 3.3,
+      "xp": 12,
+      "radius": 0.3,
+      "aggro": 6.8,
+      "range": 0.7,
+      "resist": {
+        "fire": 40,
+        "cold": -15,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#241c18",
+      "accent": "#ff6a1a",
+      "onDeath": "ember"
+    },
+    {
+      "id": "thorn_kin",
+      "name": "Thorn Kin",
+      "shape": "humanoid",
+      "hp": 28,
+      "hpLvl": 7,
+      "dmg": [
+        4,
+        8
+      ],
+      "defense": 14,
+      "attack": 40,
+      "aps": 0.9,
+      "move": 2.35,
+      "xp": 16,
+      "radius": 0.38,
+      "aggro": 8,
+      "range": 5.4,
+      "ranged": true,
+      "projectile": "thorn",
+      "resist": {
+        "fire": -10,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 25
+      },
+      "color": "#3e6b3a",
+      "accent": "#d2e08a"
+    },
+    {
+      "id": "salt_raider",
+      "name": "Salt Raider",
+      "shape": "humanoid",
+      "hp": 46,
+      "hpLvl": 8,
+      "dmg": [
+        7,
+        12
+      ],
+      "defense": 22,
+      "attack": 55,
+      "aps": 1.05,
+      "move": 2.7,
+      "xp": 24,
+      "radius": 0.4,
+      "aggro": 7,
+      "range": 0.86,
+      "resist": {
+        "fire": 0,
+        "cold": 10,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#c2b49a",
+      "accent": "#6d5a44"
+    },
+    {
+      "id": "glass_slinger",
+      "name": "Glass Slinger",
+      "shape": "humanoid",
+      "hp": 34,
+      "hpLvl": 6,
+      "dmg": [
+        6,
+        11
+      ],
+      "defense": 16,
+      "attack": 62,
+      "aps": 0.95,
+      "move": 2.45,
+      "xp": 24,
+      "radius": 0.38,
+      "aggro": 8.5,
+      "range": 6.1,
+      "ranged": true,
+      "projectile": "glass",
+      "resist": {
+        "fire": 0,
+        "cold": 18,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#7f9ea6",
+      "accent": "#e7f6ff"
+    },
+    {
+      "id": "dune_stalker",
+      "name": "Dune Stalker",
+      "shape": "beast",
+      "hp": 40,
+      "hpLvl": 7,
+      "dmg": [
+        8,
+        13
+      ],
+      "defense": 18,
+      "attack": 64,
+      "aps": 1.3,
+      "move": 3.7,
+      "xp": 26,
+      "radius": 0.36,
+      "aggro": 7.5,
+      "range": 0.8,
+      "leap": true,
+      "resist": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 8,
+        "poison": 0
+      },
+      "color": "#a8844a",
+      "accent": "#f0e2b6"
+    },
+    {
+      "id": "kilnbound",
+      "name": "Kilnbound",
+      "shape": "humanoid",
+      "hp": 64,
+      "hpLvl": 9,
+      "dmg": [
+        10,
+        16
+      ],
+      "defense": 30,
+      "attack": 74,
+      "aps": 0.95,
+      "move": 2.25,
+      "xp": 34,
+      "radius": 0.4,
+      "aggro": 7,
+      "range": 0.88,
+      "resist": {
+        "fire": 28,
+        "cold": -12,
+        "lightning": 0,
+        "poison": 15
+      },
+      "color": "#5a4038",
+      "accent": "#e07030"
+    },
+    {
+      "id": "cinder_wisp",
+      "name": "Cinder Wisp",
+      "shape": "wisp",
+      "hp": 40,
+      "hpLvl": 6,
+      "dmg": [
+        9,
+        15
+      ],
+      "defense": 12,
+      "attack": 84,
+      "aps": 0.8,
+      "move": 2.7,
+      "xp": 36,
+      "radius": 0.32,
+      "aggro": 8.5,
+      "range": 5.6,
+      "ranged": true,
+      "projectile": "cinder",
+      "resist": {
+        "fire": 55,
+        "cold": -20,
+        "lightning": 8,
+        "poison": 0
+      },
+      "color": "#e07030",
+      "accent": "#ffd2a6"
+    },
+    {
+      "id": "plate_husk",
+      "name": "Plate Husk",
+      "shape": "brute",
+      "hp": 100,
+      "hpLvl": 11,
+      "dmg": [
+        12,
+        18
+      ],
+      "defense": 52,
+      "attack": 70,
+      "aps": 0.7,
+      "move": 1.75,
+      "xp": 40,
+      "radius": 0.5,
+      "aggro": 6.2,
+      "range": 0.98,
+      "resist": {
+        "fire": 12,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 12
+      },
+      "color": "#6a6560",
+      "accent": "#d9d3c6"
+    },
+    {
+      "id": "ember_golem",
+      "name": "Ember Golem",
+      "shape": "golem",
+      "hp": 120,
+      "hpLvl": 12,
+      "dmg": [
+        14,
+        22
+      ],
+      "defense": 44,
+      "attack": 78,
+      "aps": 0.65,
+      "move": 1.65,
+      "xp": 48,
+      "radius": 0.56,
+      "aggro": 6.8,
+      "range": 1.05,
+      "resist": {
+        "fire": 45,
+        "cold": -10,
+        "lightning": 0,
+        "poison": 20
+      },
+      "color": "#4a3028",
+      "accent": "#ff6a2a"
+    },
+    {
+      "id": "kiln_imp",
+      "name": "Kiln Imp",
+      "shape": "imp",
+      "hp": 32,
+      "hpLvl": 5,
+      "dmg": [
+        8,
+        12
+      ],
+      "defense": 14,
+      "attack": 72,
+      "aps": 1.4,
+      "move": 3.5,
+      "xp": 22,
+      "radius": 0.28,
+      "aggro": 8,
+      "range": 0.66,
+      "resist": {
+        "fire": 30,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#c4512c",
+      "accent": "#ffd09a"
+    },
+    {
+      "id": "ash_priest",
+      "name": "Ash Priest",
+      "shape": "humanoid",
+      "hp": 72,
+      "hpLvl": 8,
+      "dmg": [
+        11,
+        17
+      ],
+      "defense": 24,
+      "attack": 88,
+      "aps": 0.85,
+      "move": 2.3,
+      "xp": 50,
+      "radius": 0.4,
+      "aggro": 8.6,
+      "range": 5.8,
+      "ranged": true,
+      "projectile": "cinder",
+      "aura": "mend",
+      "resist": {
+        "fire": 22,
+        "cold": 0,
+        "lightning": 8,
+        "poison": 8
+      },
+      "color": "#2e262b",
+      "accent": "#e8c07a"
+    },
+    {
+      "id": "glassling",
+      "name": "Glassling",
+      "shape": "imp",
+      "hp": 28,
+      "hpLvl": 10,
+      "dmg": [
+        3,
+        5
+      ],
+      "defense": 8,
+      "attack": 40,
+      "aps": 1.1,
+      "move": 3.3,
+      "xp": 0,
+      "radius": 0.28,
+      "aggro": 8,
+      "range": 0.7,
+      "resist": {
+        "fire": 0,
+        "cold": 20,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#9fd0d8",
+      "accent": "#e7f6ff",
+      "summon": true
+    },
+    {
+      "id": "salt_wisp",
+      "name": "Salt Wisp",
+      "shape": "wisp",
+      "hp": 18,
+      "hpLvl": 6,
+      "dmg": [
+        5,
+        9
+      ],
+      "defense": 4,
+      "attack": 50,
+      "aps": 1.05,
+      "move": 3.1,
+      "xp": 0,
+      "radius": 0.26,
+      "aggro": 9,
+      "range": 5.2,
+      "ranged": true,
+      "projectile": "glass",
+      "resist": {
+        "fire": 0,
+        "cold": 30,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#d5ecee",
+      "accent": "#8fd4e8",
+      "summon": true
+    },
+    {
+      "id": "reed_lurker",
+      "name": "Reed Lurker",
+      "shape": "beast",
+      "hp": 56,
+      "hpLvl": 7,
+      "dmg": [
+        11,
+        17
+      ],
+      "defense": 26,
+      "attack": 96,
+      "aps": 1.05,
+      "move": 3.1,
+      "xp": 42,
+      "radius": 0.4,
+      "aggro": 7,
+      "range": 0.85,
+      "resist": {
+        "fire": 0,
+        "cold": 15,
+        "lightning": 0,
+        "poison": 20
+      },
+      "color": "#3d6a4a",
+      "accent": "#c6e07a"
+    },
+    {
+      "id": "glass_minnow",
+      "name": "Glass Minnow",
+      "shape": "imp",
+      "hp": 32,
+      "hpLvl": 5,
+      "dmg": [
+        7,
+        12
+      ],
+      "defense": 14,
+      "attack": 88,
+      "aps": 1.45,
+      "move": 3.5,
+      "xp": 30,
+      "radius": 0.26,
+      "aggro": 7.5,
+      "range": 0.65,
+      "resist": {
+        "fire": 0,
+        "cold": 25,
+        "lightning": 10,
+        "poison": 0
+      },
+      "color": "#7eb8c4",
+      "accent": "#e7f6ff"
+    },
+    {
+      "id": "mire_heron",
+      "name": "Mire Heron",
+      "shape": "humanoid",
+      "hp": 54,
+      "hpLvl": 7,
+      "dmg": [
+        9,
+        15
+      ],
+      "defense": 18,
+      "attack": 104,
+      "aps": 0.9,
+      "move": 2.5,
+      "xp": 44,
+      "radius": 0.4,
+      "aggro": 9,
+      "range": 6.2,
+      "ranged": true,
+      "projectile": "glass",
+      "resist": {
+        "fire": 0,
+        "cold": 20,
+        "lightning": 0,
+        "poison": 10
+      },
+      "color": "#6a8f98",
+      "accent": "#d7f4ff"
+    },
+    {
+      "id": "lantern_crab",
+      "name": "Lantern Crab",
+      "shape": "brute",
+      "hp": 82,
+      "hpLvl": 7,
+      "dmg": [
+        13,
+        20
+      ],
+      "defense": 40,
+      "attack": 92,
+      "aps": 0.7,
+      "move": 1.8,
+      "xp": 52,
+      "radius": 0.52,
+      "aggro": 6.5,
+      "range": 1.05,
+      "resist": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 0,
+        "poison": 25
+      },
+      "color": "#8a5a3a",
+      "accent": "#ffb067"
+    },
+    {
+      "id": "archive_shade",
+      "name": "Archive Shade",
+      "shape": "wisp",
+      "hp": 62,
+      "hpLvl": 7,
+      "dmg": [
+        11,
+        18
+      ],
+      "defense": 14,
+      "attack": 112,
+      "aps": 0.85,
+      "move": 2.6,
+      "xp": 56,
+      "radius": 0.34,
+      "aggro": 8.5,
+      "range": 5.5,
+      "ranged": true,
+      "projectile": "cinder",
+      "resist": {
+        "fire": 15,
+        "cold": 30,
+        "lightning": 15,
+        "poison": 0
+      },
+      "color": "#3a4a62",
+      "accent": "#b9c7e6"
+    },
+    {
+      "id": "bell_acolyte",
+      "name": "Bell Acolyte",
+      "shape": "humanoid",
+      "hp": 68,
+      "hpLvl": 6,
+      "dmg": [
+        13,
+        20
+      ],
+      "defense": 24,
+      "attack": 108,
+      "aps": 0.95,
+      "move": 2.4,
+      "xp": 60,
+      "radius": 0.4,
+      "aggro": 8,
+      "range": 0.9,
+      "resist": {
+        "fire": 0,
+        "cold": 20,
+        "lightning": 10,
+        "poison": 10
+      },
+      "color": "#243043",
+      "accent": "#e0b15a"
+    },
+    {
+      "id": "silt_golem",
+      "name": "Silt Golem",
+      "shape": "golem",
+      "hp": 78,
+      "hpLvl": 6,
+      "dmg": [
+        15,
+        24
+      ],
+      "defense": 36,
+      "attack": 104,
+      "aps": 0.62,
+      "move": 1.6,
+      "xp": 70,
+      "radius": 0.58,
+      "aggro": 6.5,
+      "range": 1.1,
+      "resist": {
+        "fire": 5,
+        "cold": 25,
+        "lightning": 0,
+        "poison": 30
+      },
+      "color": "#4a5a48",
+      "accent": "#9fb59a"
+    },
+    {
+      "id": "thorn_stag",
+      "name": "Thorn Stag",
+      "shape": "stag",
+      "hp": 74,
+      "hpLvl": 6,
+      "dmg": [
+        14,
+        22
+      ],
+      "defense": 26,
+      "attack": 118,
+      "aps": 1.05,
+      "move": 3.4,
+      "xp": 78,
+      "radius": 0.48,
+      "aggro": 8,
+      "range": 1.05,
+      "resist": {
+        "fire": -8,
+        "cold": 10,
+        "lightning": 0,
+        "poison": 30
+      },
+      "color": "#3a2818",
+      "accent": "#d6ee6a"
+    },
+    {
+      "id": "sap_crawler",
+      "name": "Sap Crawler",
+      "shape": "crawler",
+      "hp": 70,
+      "hpLvl": 6,
+      "dmg": [
+        11,
+        17
+      ],
+      "defense": 20,
+      "attack": 110,
+      "aps": 1.25,
+      "move": 2.8,
+      "xp": 64,
+      "radius": 0.34,
+      "aggro": 7,
+      "range": 0.7,
+      "resist": {
+        "fire": 0,
+        "cold": 8,
+        "lightning": 0,
+        "poison": 35
+      },
+      "color": "#3a2414",
+      "accent": "#e7c56a"
+    },
+    {
+      "id": "press_beetle",
+      "name": "Press Beetle",
+      "shape": "brute",
+      "hp": 96,
+      "hpLvl": 7,
+      "dmg": [
+        16,
+        24
+      ],
+      "defense": 46,
+      "attack": 100,
+      "aps": 0.68,
+      "move": 1.7,
+      "xp": 82,
+      "radius": 0.5,
+      "aggro": 6.4,
+      "range": 1,
+      "resist": {
+        "fire": 8,
+        "cold": 8,
+        "lightning": 0,
+        "poison": 20
+      },
+      "color": "#241810",
+      "accent": "#e07030"
+    },
+    {
+      "id": "orchard_knight",
+      "name": "Orchard Knight",
+      "shape": "knight",
+      "hp": 86,
+      "hpLvl": 6,
+      "dmg": [
+        15,
+        23
+      ],
+      "defense": 40,
+      "attack": 124,
+      "aps": 0.9,
+      "move": 2.3,
+      "xp": 86,
+      "radius": 0.42,
+      "aggro": 8,
+      "range": 1.05,
+      "resist": {
+        "fire": 6,
+        "cold": 12,
+        "lightning": 6,
+        "poison": 12
+      },
+      "color": "#3a4034",
+      "accent": "#e7d7a4"
+    },
+    {
+      "id": "hush_serpent",
+      "name": "Hush Serpent",
+      "shape": "serpent",
+      "hp": 88,
+      "hpLvl": 7,
+      "dmg": [
+        13,
+        21
+      ],
+      "defense": 24,
+      "attack": 130,
+      "aps": 1.15,
+      "move": 3.1,
+      "xp": 80,
+      "radius": 0.36,
+      "aggro": 8.2,
+      "range": 0.9,
+      "resist": {
+        "fire": 0,
+        "cold": 15,
+        "lightning": 10,
+        "poison": 40
+      },
+      "color": "#2c4a38",
+      "accent": "#b7e0a0"
+    },
+    {
+      "id": "gallery_moth",
+      "name": "Gallery Moth",
+      "shape": "moth",
+      "hp": 64,
+      "hpLvl": 6,
+      "dmg": [
+        12,
+        19
+      ],
+      "defense": 16,
+      "attack": 126,
+      "aps": 0.95,
+      "move": 2.7,
+      "xp": 74,
+      "radius": 0.32,
+      "aggro": 9,
+      "range": 5.8,
+      "ranged": true,
+      "projectile": "thorn",
+      "resist": {
+        "fire": 10,
+        "cold": 18,
+        "lightning": 0,
+        "poison": 15
+      },
+      "color": "#5c5870",
+      "accent": "#e7d2ff"
+    },
+    {
+      "id": "root_colossus",
+      "name": "Root Colossus",
+      "shape": "golem",
+      "hp": 96,
+      "hpLvl": 6,
+      "dmg": [
+        18,
+        28
+      ],
+      "defense": 42,
+      "attack": 116,
+      "aps": 0.58,
+      "move": 1.5,
+      "xp": 96,
+      "radius": 0.62,
+      "aggro": 6.5,
+      "range": 1.15,
+      "resist": {
+        "fire": -5,
+        "cold": 15,
+        "lightning": 0,
+        "poison": 28
+      },
+      "color": "#3a3228",
+      "accent": "#8a6a40"
+    },
+    {
+      "id": "pale_wolf",
+      "name": "Pale Wolf",
+      "shape": "hound",
+      "hp": 120,
+      "hpLvl": 8,
+      "dmg": [
+        16,
+        24
+      ],
+      "defense": 36,
+      "attack": 130,
+      "aps": 1.15,
+      "move": 3.5,
+      "xp": 100,
+      "radius": 0.4,
+      "aggro": 8,
+      "range": 0.85,
+      "resist": {
+        "fire": 0,
+        "cold": 20,
+        "lightning": 10,
+        "poison": 0
+      },
+      "color": "#d9d3c4",
+      "accent": "#8a8074"
+    },
+    {
+      "id": "gale_kite",
+      "name": "Gale Kite",
+      "shape": "moth",
+      "hp": 80,
+      "hpLvl": 6,
+      "dmg": [
+        14,
+        22
+      ],
+      "defense": 18,
+      "attack": 140,
+      "aps": 1,
+      "move": 2.8,
+      "xp": 96,
+      "radius": 0.32,
+      "aggro": 9,
+      "range": 6,
+      "ranged": true,
+      "projectile": "glass",
+      "resist": {
+        "fire": 5,
+        "cold": 25,
+        "lightning": 20,
+        "poison": 0
+      },
+      "color": "#c8d0d8",
+      "accent": "#e6e38a"
+    },
+    {
+      "id": "tomb_warden",
+      "name": "Tomb Warden",
+      "shape": "knight",
+      "hp": 150,
+      "hpLvl": 9,
+      "dmg": [
+        18,
+        28
+      ],
+      "defense": 70,
+      "attack": 136,
+      "aps": 0.85,
+      "move": 2.2,
+      "xp": 110,
+      "radius": 0.44,
+      "aggro": 7.5,
+      "range": 1.05,
+      "resist": {
+        "fire": 15,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10
+      },
+      "color": "#4a4640",
+      "accent": "#e0b15a"
+    },
+    {
+      "id": "name_wraith",
+      "name": "Name Wraith",
+      "shape": "wisp",
+      "hp": 96,
+      "hpLvl": 7,
+      "dmg": [
+        16,
+        26
+      ],
+      "defense": 20,
+      "attack": 150,
+      "aps": 0.9,
+      "move": 2.6,
+      "xp": 108,
+      "radius": 0.34,
+      "aggro": 8.5,
+      "range": 5.6,
+      "ranged": true,
+      "projectile": "cinder",
+      "resist": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 15,
+        "poison": 5
+      },
+      "color": "#6a6468",
+      "accent": "#f0d2a4"
+    },
+    {
+      "id": "stair_golem",
+      "name": "Stair Golem",
+      "shape": "golem",
+      "hp": 210,
+      "hpLvl": 12,
+      "dmg": [
+        20,
+        32
+      ],
+      "defense": 80,
+      "attack": 128,
+      "aps": 0.55,
+      "move": 1.45,
+      "xp": 120,
+      "radius": 0.64,
+      "aggro": 6.4,
+      "range": 1.15,
+      "resist": {
+        "fire": 18,
+        "cold": 8,
+        "lightning": 8,
+        "poison": 8
+      },
+      "color": "#5c5348",
+      "accent": "#ffb067"
+    },
+    {
+      "id": "kiln_drake",
+      "name": "Kiln Drake",
+      "shape": "drake",
+      "hp": 140,
+      "hpLvl": 8,
+      "dmg": [
+        18,
+        30
+      ],
+      "defense": 40,
+      "attack": 146,
+      "aps": 1.05,
+      "move": 3,
+      "xp": 116,
+      "radius": 0.42,
+      "aggro": 8,
+      "range": 1,
+      "resist": {
+        "fire": 35,
+        "cold": -8,
+        "lightning": 10,
+        "poison": 10
+      },
+      "color": "#6a3020",
+      "accent": "#ff7a3c"
+    },
+    {
+      "id": "cinder_charger",
+      "name": "Cinder Charger",
+      "shape": "beast",
+      "hp": 26,
+      "hpLvl": 6,
+      "dmg": [
+        4,
+        7
+      ],
+      "defense": 12,
+      "attack": 40,
+      "aps": 1,
+      "move": 3.3,
+      "xp": 16,
+      "radius": 0.38,
+      "aggro": 7,
+      "range": 0.8,
+      "charge": true,
+      "resist": {
+        "fire": 12,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#c4512c",
+      "accent": "#ffd09a"
+    },
+    {
+      "id": "kiln_spark",
+      "name": "Kiln Spark",
+      "shape": "imp",
+      "hp": 8,
+      "hpLvl": 2,
+      "dmg": [
+        1,
+        3
+      ],
+      "defense": 2,
+      "attack": 24,
+      "aps": 1.1,
+      "move": 3,
+      "xp": 0,
+      "radius": 0.22,
+      "aggro": 8,
+      "range": 0.55,
+      "resist": {
+        "fire": 20,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#e07030",
+      "accent": "#ffd2a6",
+      "summon": true
+    },
+    {
+      "id": "kiln_caller",
+      "name": "Kiln Caller",
+      "shape": "humanoid",
+      "hp": 30,
+      "hpLvl": 6,
+      "dmg": [
+        3,
+        6
+      ],
+      "defense": 12,
+      "attack": 36,
+      "aps": 0.8,
+      "move": 2.1,
+      "xp": 18,
+      "radius": 0.38,
+      "aggro": 8,
+      "range": 5.2,
+      "ranged": true,
+      "projectile": "cinder",
+      "summonId": "kiln_spark",
+      "summonMax": 1,
+      "resist": {
+        "fire": 18,
+        "cold": -8,
+        "lightning": 0,
+        "poison": 0
+      },
+      "color": "#5a4038",
+      "accent": "#ffb067"
+    },
+    {
+      "id": "shield_crab",
+      "name": "Shield Crab",
+      "shape": "brute",
+      "hp": 72,
+      "hpLvl": 8,
+      "dmg": [
+        8,
+        12
+      ],
+      "defense": 36,
+      "attack": 86,
+      "aps": 0.68,
+      "move": 1.65,
+      "xp": 46,
+      "radius": 0.5,
+      "aggro": 6.4,
+      "range": 0.95,
+      "shield": 0.28,
+      "resist": {
+        "fire": 8,
+        "cold": 12,
+        "lightning": 0,
+        "poison": 16
+      },
+      "color": "#8a5a3a",
+      "accent": "#e7d7a4"
+    },
+    {
+      "id": "glass_kiter",
+      "name": "Glass Kiter",
+      "shape": "moth",
+      "hp": 40,
+      "hpLvl": 6,
+      "dmg": [
+        7,
+        12
+      ],
+      "defense": 14,
+      "attack": 96,
+      "aps": 0.9,
+      "move": 2.9,
+      "xp": 40,
+      "radius": 0.32,
+      "aggro": 9,
+      "range": 6.4,
+      "ranged": true,
+      "kite": true,
+      "projectile": "glass",
+      "resist": {
+        "fire": 0,
+        "cold": 22,
+        "lightning": 8,
+        "poison": 0
+      },
+      "color": "#9fd4ea",
+      "accent": "#e7f6ff"
+    },
+    {
+      "id": "briar_charger",
+      "name": "Briar Charger",
+      "shape": "stag",
+      "hp": 88,
+      "hpLvl": 8,
+      "dmg": [
+        12,
+        18
+      ],
+      "defense": 28,
+      "attack": 110,
+      "aps": 0.95,
+      "move": 3.3,
+      "xp": 76,
+      "radius": 0.46,
+      "aggro": 7.6,
+      "range": 0.95,
+      "charge": true,
+      "resist": {
+        "fire": -6,
+        "cold": 8,
+        "lightning": 0,
+        "poison": 24
+      },
+      "color": "#5a4630",
+      "accent": "#d7e08a"
+    },
+    {
+      "id": "sap_mite",
+      "name": "Sap Mite",
+      "shape": "crawler",
+      "hp": 14,
+      "hpLvl": 2,
+      "dmg": [
+        3,
+        5
+      ],
+      "defense": 6,
+      "attack": 60,
+      "aps": 1.1,
+      "move": 2.6,
+      "xp": 0,
+      "radius": 0.24,
+      "aggro": 7,
+      "range": 0.55,
+      "resist": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 20
+      },
+      "color": "#6a4a28",
+      "accent": "#e0b15a",
+      "summon": true
+    },
+    {
+      "id": "sap_caller",
+      "name": "Sap Caller",
+      "shape": "humanoid",
+      "hp": 78,
+      "hpLvl": 7,
+      "dmg": [
+        10,
+        15
+      ],
+      "defense": 20,
+      "attack": 108,
+      "aps": 0.82,
+      "move": 2.2,
+      "xp": 72,
+      "radius": 0.4,
+      "aggro": 8,
+      "range": 5.4,
+      "ranged": true,
+      "projectile": "thorn",
+      "summonId": "sap_mite",
+      "summonMax": 1,
+      "resist": {
+        "fire": 0,
+        "cold": 8,
+        "lightning": 0,
+        "poison": 28
+      },
+      "color": "#3e3428",
+      "accent": "#c46a32"
+    },
+    {
+      "id": "tomb_shield",
+      "name": "Tomb Shield",
+      "shape": "knight",
+      "hp": 140,
+      "hpLvl": 9,
+      "dmg": [
+        15,
+        22
+      ],
+      "defense": 58,
+      "attack": 128,
+      "aps": 0.75,
+      "move": 1.9,
+      "xp": 108,
+      "radius": 0.46,
+      "aggro": 7.2,
+      "range": 1,
+      "shield": 0.3,
+      "resist": {
+        "fire": 12,
+        "cold": 12,
+        "lightning": 8,
+        "poison": 8
+      },
+      "color": "#4a4640",
+      "accent": "#e0b15a"
+    },
+    {
+      "id": "pale_kiter",
+      "name": "Pale Kiter",
+      "shape": "moth",
+      "hp": 88,
+      "hpLvl": 6,
+      "dmg": [
+        14,
+        22
+      ],
+      "defense": 20,
+      "attack": 142,
+      "aps": 0.95,
+      "move": 2.9,
+      "xp": 104,
+      "radius": 0.34,
+      "aggro": 9.2,
+      "range": 6.5,
+      "ranged": true,
+      "kite": true,
+      "projectile": "glass",
+      "resist": {
+        "fire": 6,
+        "cold": 22,
+        "lightning": 16,
+        "poison": 0
+      },
+      "color": "#d9d3c4",
+      "accent": "#e6e38a"
+    }
+  ],
+  "monsterAffixes": [
+    {
+      "id": "swift",
+      "name": "Swift",
+      "about": "They close the gap fast.",
+      "move": 1.42,
+      "aps": 1.28
+    },
+    {
+      "id": "brutal",
+      "name": "Brutal",
+      "about": "The hits land heavier.",
+      "damage": 1.4,
+      "hp": 1.22
+    },
+    {
+      "id": "warded",
+      "name": "Warded",
+      "about": "They shrug off elements.",
+      "allResist": 28,
+      "defense": 1.3
+    },
+    {
+      "id": "leeching",
+      "name": "Leeching",
+      "about": "Your hits feed them.",
+      "leech": 0.22
+    },
+    {
+      "id": "volatile",
+      "name": "Volatile",
+      "about": "They burst when they fall.",
+      "onDeath": "volatile"
+    },
+    {
+      "id": "hexing",
+      "name": "Hexing",
+      "about": "A hit lowers your resists.",
+      "onHit": "hex"
+    },
+    {
+      "id": "emberhide",
+      "name": "Emberhide",
+      "about": "Standing close burns you.",
+      "aura": "fire"
+    },
+    {
+      "id": "thick",
+      "name": "Thick",
+      "about": "A lot of life to cut through.",
+      "hp": 1.28,
+      "defense": 1.15
+    },
+    {
+      "id": "frenzied",
+      "name": "Frenzied",
+      "about": "Fast, and the hits add up.",
+      "aps": 1.4,
+      "damage": 1.18
+    },
+    {
+      "id": "plague",
+      "name": "Plague",
+      "about": "A hit leaves poison.",
+      "onHit": "poison"
+    },
+    {
+      "id": "chilling",
+      "name": "Chilling",
+      "about": "A hit slows you.",
+      "onHit": "slow",
+      "move": 1.12
+    },
+    {
+      "id": "thorned",
+      "name": "Thorned",
+      "about": "Hitting them hurts you.",
+      "thorns": 8,
+      "defense": 1.1
+    },
+    {
+      "id": "starving",
+      "name": "Starving",
+      "about": "Harder hits, and they drink life.",
+      "leech": 0.18,
+      "damage": 1.16
+    },
+    {
+      "id": "mana_burn",
+      "name": "Mana Burn",
+      "about": "A hit drinks your mana.",
+      "onHit": "mana"
+    },
+    {
+      "id": "ashen",
+      "name": "Ashen",
+      "about": "Ash clings. Their resists are up.",
+      "aura": "ash",
+      "allResist": 8
+    },
+    {
+      "id": "ghostly",
+      "name": "Ghostly",
+      "about": "Hard to pin. They slip through.",
+      "allResist": 18,
+      "defense": 0.82,
+      "move": 1.16
+    }
+  ],
+  "bosses": {
+    "4": {
+      "id": "cinder_maw",
+      "name": "Cinder Maw",
+      "shape": "maw",
+      "hp": 420,
+      "hpLvl": 10,
+      "dmg": [
+        14,
+        22
+      ],
+      "defense": 40,
+      "attack": 120,
+      "aps": 0.7,
+      "move": 1.7,
+      "xp": 220,
+      "radius": 0.7,
+      "aggro": 14,
+      "range": 1.2,
+      "resist": {
+        "fire": 30,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 10
+      },
+      "color": "#8a3018",
+      "accent": "#ffb067",
+      "sig": "maw"
+    },
+    "8": {
+      "id": "bell_warden",
+      "name": "Bell Warden",
+      "shape": "bellward",
+      "hp": 560,
+      "hpLvl": 12,
+      "dmg": [
+        16,
+        26
+      ],
+      "defense": 55,
+      "attack": 140,
+      "aps": 0.72,
+      "move": 1.6,
+      "xp": 340,
+      "radius": 0.72,
+      "aggro": 14,
+      "range": 1.25,
+      "resist": {
+        "fire": 8,
+        "cold": 24,
+        "lightning": 8,
+        "poison": 8
+      },
+      "color": "#243043",
+      "accent": "#e0b15a",
+      "sig": "bell"
+    },
+    "12": {
+      "id": "unbanked_shade",
+      "name": "Unbanked Shade",
+      "shape": "shade",
+      "hp": 720,
+      "hpLvl": 14,
+      "dmg": [
+        18,
+        30
+      ],
+      "defense": 36,
+      "attack": 160,
+      "aps": 0.85,
+      "move": 2.1,
+      "xp": 480,
+      "radius": 0.62,
+      "aggro": 16,
+      "range": 1.15,
+      "resist": {
+        "fire": 12,
+        "cold": 18,
+        "lightning": 18,
+        "poison": 0
+      },
+      "color": "#3a3050",
+      "accent": "#d7c6ff",
+      "sig": "shade"
+    }
+  },
+  "bossVeyra": {
+    "id": "veyra",
+    "name": "Veyra the Kiln Tyrant",
+    "shape": "tyrant",
+    "boss": true,
+    "hp": 780,
+    "hpLvl": 28,
+    "dmg": [
+      16,
+      26
+    ],
+    "defense": 70,
+    "attack": 130,
+    "aps": 0.78,
+    "move": 2.15,
+    "xp": 520,
+    "radius": 0.9,
+    "aggro": 18,
+    "range": 1.25,
+    "resist": {
+      "fire": 35,
+      "cold": 8,
+      "lightning": 12,
+      "poison": 15
+    },
+    "color": "#3a221c",
+    "accent": "#ff5a1f"
+  },
+  "bossMorra": {
+    "id": "morra",
+    "name": "Morra the Silt Queen",
+    "shape": "tyrant",
+    "boss": true,
+    "hp": 800,
+    "hpLvl": 26,
+    "dmg": [
+      18,
+      28
+    ],
+    "defense": 90,
+    "attack": 160,
+    "aps": 0.74,
+    "move": 2,
+    "xp": 780,
+    "radius": 0.95,
+    "aggro": 18,
+    "range": 1.3,
+    "resist": {
+      "fire": 10,
+      "cold": 40,
+      "lightning": 15,
+      "poison": 25
+    },
+    "color": "#1d3a40",
+    "accent": "#7fd1c4"
+  },
+  "bossSallow": {
+    "id": "sallow",
+    "name": "Sallow the Root King",
+    "shape": "tyrant",
+    "boss": true,
+    "hp": 1080,
+    "hpLvl": 30,
+    "dmg": [
+      22,
+      34
+    ],
+    "defense": 100,
+    "attack": 170,
+    "aps": 0.7,
+    "move": 1.9,
+    "xp": 960,
+    "radius": 1,
+    "aggro": 18,
+    "range": 1.35,
+    "resist": {
+      "fire": 8,
+      "cold": 18,
+      "lightning": 10,
+      "poison": 40
+    },
+    "color": "#2a241c",
+    "accent": "#c6e07a"
+  },
+  "bossMael": {
+    "id": "mael",
+    "name": "Mael the Unbanked",
+    "shape": "tyrant",
+    "boss": true,
+    "hp": 1600,
+    "hpLvl": 34,
+    "dmg": [
+      26,
+      40
+    ],
+    "defense": 120,
+    "attack": 190,
+    "aps": 0.72,
+    "move": 2.05,
+    "xp": 1400,
+    "radius": 1.05,
+    "aggro": 18,
+    "range": 1.4,
+    "resist": {
+      "fire": 40,
+      "cold": 12,
+      "lightning": 12,
+      "poison": 12
+    },
+    "color": "#2a1814",
+    "accent": "#ffb067"
+  }
+}

@@ -1,0 +1,2575 @@
+{
+  "slotNames": {
+    "dagger": "Dagger",
+    "sword": "Sword",
+    "mace": "Mace",
+    "staff": "Staff",
+    "bow": "Bow",
+    "armor": "Body armor",
+    "helm": "Helm",
+    "gloves": "Gloves",
+    "boots": "Boots",
+    "belt": "Belt",
+    "shield": "Shield",
+    "ring": "Ring",
+    "amulet": "Amulet"
+  },
+  "itemBases": [
+    {
+      "id": "ashwood_knife",
+      "name": "Ashwood Knife",
+      "kind": "dagger",
+      "slot": "weapon",
+      "hands": 1,
+      "w": 1,
+      "h": 2,
+      "dmg": [
+        2,
+        5
+      ],
+      "aps": 1.55,
+      "range": 1.05,
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "reqDex": 10,
+      "dur": 22,
+      "maxSockets": 2
+    },
+    {
+      "id": "salt_saber",
+      "name": "Salt Saber",
+      "kind": "sword",
+      "slot": "weapon",
+      "hands": 1,
+      "w": 1,
+      "h": 3,
+      "dmg": [
+        4,
+        9
+      ],
+      "aps": 1.25,
+      "range": 1.28,
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 18,
+      "reqDex": 12,
+      "dur": 30,
+      "maxSockets": 3
+    },
+    {
+      "id": "kiln_maul",
+      "name": "Kiln Maul",
+      "kind": "mace",
+      "slot": "weapon",
+      "hands": 2,
+      "w": 2,
+      "h": 3,
+      "dmg": [
+        9,
+        17
+      ],
+      "aps": 0.92,
+      "range": 1.4,
+      "reqLevel": 5,
+      "ilvl": 5,
+      "reqStr": 32,
+      "reqDex": 0,
+      "dur": 34,
+      "maxSockets": 4
+    },
+    {
+      "id": "cinder_staff",
+      "name": "Cinder Staff",
+      "kind": "staff",
+      "slot": "weapon",
+      "hands": 2,
+      "w": 1,
+      "h": 4,
+      "dmg": [
+        4,
+        8
+      ],
+      "aps": 1.05,
+      "range": 1.45,
+      "reqLevel": 3,
+      "ilvl": 3,
+      "reqStr": 8,
+      "reqDex": 0,
+      "dur": 26,
+      "maxSockets": 3,
+      "implicit": {
+        "fireDamage": [
+          2,
+          5
+        ],
+        "energy": 3
+      }
+    },
+    {
+      "id": "thorn_bow",
+      "name": "Thorn Bow",
+      "kind": "bow",
+      "slot": "weapon",
+      "hands": 2,
+      "w": 2,
+      "h": 3,
+      "dmg": [
+        3,
+        8
+      ],
+      "aps": 1.15,
+      "range": 6.6,
+      "reqLevel": 2,
+      "ilvl": 2,
+      "reqStr": 8,
+      "reqDex": 22,
+      "dur": 24,
+      "maxSockets": 3,
+      "ranged": true
+    },
+    {
+      "id": "glass_dirk",
+      "name": "Glass Dirk",
+      "kind": "dagger",
+      "slot": "weapon",
+      "hands": 1,
+      "w": 1,
+      "h": 2,
+      "dmg": [
+        6,
+        12
+      ],
+      "aps": 1.6,
+      "range": 1.05,
+      "reqLevel": 8,
+      "ilvl": 8,
+      "reqStr": 12,
+      "reqDex": 30,
+      "dur": 22,
+      "maxSockets": 2
+    },
+    {
+      "id": "spire_blade",
+      "name": "Spire Blade",
+      "kind": "sword",
+      "slot": "weapon",
+      "hands": 1,
+      "w": 1,
+      "h": 3,
+      "dmg": [
+        8,
+        16
+      ],
+      "aps": 1.22,
+      "range": 1.32,
+      "reqLevel": 12,
+      "ilvl": 12,
+      "reqStr": 36,
+      "reqDex": 22,
+      "dur": 34,
+      "maxSockets": 3
+    },
+    {
+      "id": "heart_mallet",
+      "name": "Heart Mallet",
+      "kind": "mace",
+      "slot": "weapon",
+      "hands": 2,
+      "w": 2,
+      "h": 4,
+      "dmg": [
+        15,
+        28
+      ],
+      "aps": 0.86,
+      "range": 1.5,
+      "reqLevel": 16,
+      "ilvl": 16,
+      "reqStr": 52,
+      "reqDex": 0,
+      "dur": 40,
+      "maxSockets": 4
+    },
+    {
+      "id": "wander_wrap",
+      "name": "Wander Wrap",
+      "kind": "armor",
+      "slot": "armor",
+      "w": 2,
+      "h": 3,
+      "defense": [
+        8,
+        13
+      ],
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 8,
+      "dur": 22,
+      "maxSockets": 2
+    },
+    {
+      "id": "hide_coat",
+      "name": "Hide Coat",
+      "kind": "armor",
+      "slot": "armor",
+      "w": 2,
+      "h": 3,
+      "defense": [
+        18,
+        26
+      ],
+      "reqLevel": 4,
+      "ilvl": 4,
+      "reqStr": 16,
+      "dur": 28,
+      "maxSockets": 2
+    },
+    {
+      "id": "scale_hauberk",
+      "name": "Scale Hauberk",
+      "kind": "armor",
+      "slot": "armor",
+      "w": 2,
+      "h": 3,
+      "defense": [
+        32,
+        46
+      ],
+      "reqLevel": 8,
+      "ilvl": 8,
+      "reqStr": 30,
+      "dur": 34,
+      "maxSockets": 3
+    },
+    {
+      "id": "kiln_plate",
+      "name": "Kiln Plate",
+      "kind": "armor",
+      "slot": "armor",
+      "w": 2,
+      "h": 3,
+      "defense": [
+        52,
+        70
+      ],
+      "reqLevel": 14,
+      "ilvl": 14,
+      "reqStr": 46,
+      "dur": 42,
+      "maxSockets": 4
+    },
+    {
+      "id": "cloth_hood",
+      "name": "Cloth Hood",
+      "kind": "helm",
+      "slot": "helm",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        4,
+        7
+      ],
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "dur": 18,
+      "maxSockets": 2
+    },
+    {
+      "id": "salt_cap",
+      "name": "Salt Cap",
+      "kind": "helm",
+      "slot": "helm",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        12,
+        18
+      ],
+      "reqLevel": 6,
+      "ilvl": 6,
+      "reqStr": 16,
+      "dur": 24,
+      "maxSockets": 2
+    },
+    {
+      "id": "kiln_helm",
+      "name": "Kiln Helm",
+      "kind": "helm",
+      "slot": "helm",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        22,
+        32
+      ],
+      "reqLevel": 12,
+      "ilvl": 12,
+      "reqStr": 30,
+      "dur": 32,
+      "maxSockets": 3
+    },
+    {
+      "id": "wrap_gloves",
+      "name": "Wrap Gloves",
+      "kind": "gloves",
+      "slot": "gloves",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        2,
+        5
+      ],
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "dur": 16,
+      "maxSockets": 1
+    },
+    {
+      "id": "scale_gloves",
+      "name": "Scale Gloves",
+      "kind": "gloves",
+      "slot": "gloves",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        8,
+        13
+      ],
+      "reqLevel": 8,
+      "ilvl": 8,
+      "reqStr": 20,
+      "dur": 20,
+      "maxSockets": 1
+    },
+    {
+      "id": "trail_boots",
+      "name": "Trail Boots",
+      "kind": "boots",
+      "slot": "boots",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        3,
+        6
+      ],
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "dur": 16,
+      "maxSockets": 1
+    },
+    {
+      "id": "kiln_boots",
+      "name": "Kiln Boots",
+      "kind": "boots",
+      "slot": "boots",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        11,
+        17
+      ],
+      "reqLevel": 9,
+      "ilvl": 9,
+      "reqStr": 24,
+      "dur": 22,
+      "maxSockets": 1
+    },
+    {
+      "id": "rope_belt",
+      "name": "Rope Belt",
+      "kind": "belt",
+      "slot": "belt",
+      "w": 2,
+      "h": 1,
+      "defense": [
+        2,
+        4
+      ],
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "dur": 14,
+      "maxSockets": 1
+    },
+    {
+      "id": "plate_belt",
+      "name": "Plate Belt",
+      "kind": "belt",
+      "slot": "belt",
+      "w": 2,
+      "h": 1,
+      "defense": [
+        9,
+        14
+      ],
+      "reqLevel": 8,
+      "ilvl": 8,
+      "reqStr": 22,
+      "dur": 18,
+      "maxSockets": 1
+    },
+    {
+      "id": "wicker_shield",
+      "name": "Wicker Shield",
+      "kind": "shield",
+      "slot": "offhand",
+      "w": 2,
+      "h": 2,
+      "defense": [
+        7,
+        12
+      ],
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 10,
+      "dur": 20,
+      "maxSockets": 2,
+      "block": 14
+    },
+    {
+      "id": "kiln_shield",
+      "name": "Kiln Shield",
+      "kind": "shield",
+      "slot": "offhand",
+      "w": 2,
+      "h": 3,
+      "defense": [
+        20,
+        30
+      ],
+      "reqLevel": 8,
+      "ilvl": 8,
+      "reqStr": 28,
+      "dur": 30,
+      "maxSockets": 3,
+      "block": 22
+    },
+    {
+      "id": "copper_ring",
+      "name": "Copper Ring",
+      "kind": "ring",
+      "slot": "ring",
+      "w": 1,
+      "h": 1,
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "maxSockets": 0,
+      "jewelry": true
+    },
+    {
+      "id": "cord_amulet",
+      "name": "Cord Amulet",
+      "kind": "amulet",
+      "slot": "amulet",
+      "w": 1,
+      "h": 1,
+      "reqLevel": 1,
+      "ilvl": 1,
+      "reqStr": 0,
+      "maxSockets": 0,
+      "jewelry": true
+    }
+  ],
+  "affixNames": {
+    "prefix": [
+      "Grim",
+      "Hollow",
+      "Ashen",
+      "Silent",
+      "Gilded",
+      "Umbral",
+      "Thorned",
+      "Pale",
+      "Bitter",
+      "Salted",
+      "Howling",
+      "Veiled",
+      "Broken",
+      "Gloam",
+      "Cinder"
+    ],
+    "suffix": [
+      "Brand",
+      "Vigil",
+      "Oath",
+      "Spire",
+      "Glass",
+      "March",
+      "Howl",
+      "Ember",
+      "Warden",
+      "Kiln",
+      "Dirge",
+      "Fang",
+      "Pledge",
+      "Ash",
+      "Crown"
+    ]
+  },
+  "uniques": [
+    {
+      "id": "hearthbrand",
+      "name": "Hearthbrand",
+      "baseId": "salt_saber",
+      "qlvl": 6,
+      "mods": {
+        "enhancedDamage": 40,
+        "fireDamage": [
+          5,
+          12
+        ],
+        "attackSpeed": 10,
+        "skills": {
+          "ash_strike": 1
+        }
+      },
+      "flavor": "Warmed each dawn in the public kiln until the steel remembered fire."
+    },
+    {
+      "id": "last_vigil",
+      "name": "Last Vigil",
+      "baseId": "salt_cap",
+      "qlvl": 8,
+      "mods": {
+        "life": 30,
+        "allResist": 10,
+        "defense": 10,
+        "moveSpeed": 8
+      },
+      "flavor": "The watch-cap of the final shift on the Spire stair."
+    },
+    {
+      "id": "kilnwalker",
+      "name": "Kilnwalker",
+      "baseId": "kiln_boots",
+      "qlvl": 10,
+      "mods": {
+        "moveSpeed": 20,
+        "fireResist": 22,
+        "life": 16
+      },
+      "flavor": "Soot baked into the seams. The floor never quite burns."
+    },
+    {
+      "id": "spire_widow",
+      "name": "Spire Widow",
+      "baseId": "scale_hauberk",
+      "qlvl": 12,
+      "mods": {
+        "defense": 28,
+        "thorns": 12,
+        "life": 22,
+        "fireResist": 10
+      },
+      "flavor": "Hung for years on a broken beam, and still keeping watch."
+    },
+    {
+      "id": "senns_measure",
+      "name": "Senn's Measure",
+      "baseId": "rope_belt",
+      "qlvl": 4,
+      "mods": {
+        "vitality": 5,
+        "life": 18,
+        "lifeRegen": 1.3,
+        "magicFind": 10
+      },
+      "flavor": "Senn says it counts fair. Count it yourself."
+    },
+    {
+      "id": "glass_oath",
+      "name": "Glass Oath",
+      "baseId": "glass_dirk",
+      "qlvl": 11,
+      "mods": {
+        "critChance": 8,
+        "attackSpeed": 15,
+        "dexterity": 8,
+        "coldDamage": [
+          4,
+          9
+        ]
+      },
+      "flavor": "A promise cut thin enough to see through."
+    },
+    {
+      "id": "kiln_tyrants_collar",
+      "name": "Kiln Tyrant's Collar",
+      "baseId": "cord_amulet",
+      "qlvl": 18,
+      "bossOnly": true,
+      "mods": {
+        "allSkills": 1,
+        "strength": 8,
+        "fireResist": 25,
+        "fireDamage": [
+          4,
+          9
+        ],
+        "life": 22
+      },
+      "flavor": "The collar cracked when the tyrant did. The heat stayed."
+    },
+    {
+      "id": "briar_tooth",
+      "name": "Briar Tooth",
+      "baseId": "ashwood_knife",
+      "qlvl": 3,
+      "mods": {
+        "enhancedDamage": 28,
+        "poisonDamage": [
+          4,
+          9
+        ],
+        "attackSpeed": 12,
+        "dexterity": 4
+      },
+      "flavor": "Snapped from a snare that had already caught something. The sap never dried."
+    },
+    {
+      "id": "moth_lamp",
+      "name": "Moth Lamp",
+      "baseId": "cloth_hood",
+      "qlvl": 5,
+      "mods": {
+        "mana": 18,
+        "fireResist": 12,
+        "magicFind": 8,
+        "energy": 3
+      },
+      "flavor": "A hood scorched from the inside, as if a small fire had lived there and left."
+    },
+    {
+      "id": "salt_march",
+      "name": "Salt March",
+      "baseId": "trail_boots",
+      "qlvl": 4,
+      "mods": {
+        "moveSpeed": 16,
+        "coldResist": 14,
+        "dexterity": 4
+      },
+      "flavor": "The salt ate the stitching and then, politely, held the boot together anyway."
+    },
+    {
+      "id": "widow_grip",
+      "name": "Widow Grip",
+      "baseId": "wrap_gloves",
+      "qlvl": 6,
+      "mods": {
+        "attackSpeed": 14,
+        "attackRating": 24,
+        "lifeLeech": 3
+      },
+      "flavor": "Wrapped for a watch that ended at dawn. The grip stayed warm."
+    },
+    {
+      "id": "kiln_oath",
+      "name": "Kiln Oath",
+      "baseId": "kiln_maul",
+      "qlvl": 9,
+      "mods": {
+        "enhancedDamage": 36,
+        "fireDamage": [
+          6,
+          14
+        ],
+        "strength": 8,
+        "life": 16
+      },
+      "flavor": "Sworn on the public kiln. The oath cracked. The maul did not."
+    },
+    {
+      "id": "reed_string",
+      "name": "Reed String",
+      "baseId": "thorn_bow",
+      "qlvl": 8,
+      "mods": {
+        "enhancedDamage": 24,
+        "coldDamage": [
+          4,
+          10
+        ],
+        "attackRating": 36,
+        "dexterity": 6
+      },
+      "flavor": "Strung with a reed that still remembers the mere. It hums when the air is wet."
+    },
+    {
+      "id": "hush_staff",
+      "name": "Hush Staff",
+      "baseId": "cinder_staff",
+      "qlvl": 7,
+      "mods": {
+        "energy": 8,
+        "mana": 24,
+        "poisonDamage": [
+          3,
+          8
+        ],
+        "castSpeed": 8
+      },
+      "flavor": "The galleries asked for quiet. The staff agreed, and then it did not."
+    },
+    {
+      "id": "spire_vow",
+      "name": "Spire Vow",
+      "baseId": "spire_blade",
+      "qlvl": 14,
+      "mods": {
+        "enhancedDamage": 34,
+        "attackSpeed": 12,
+        "allResist": 8,
+        "critChance": 4
+      },
+      "flavor": "A watch-blade left point-down in a cracked step, still keeping the hour."
+    },
+    {
+      "id": "heart_nail",
+      "name": "Heart Nail",
+      "baseId": "heart_mallet",
+      "qlvl": 17,
+      "mods": {
+        "enhancedDamage": 42,
+        "fireDamage": [
+          8,
+          18
+        ],
+        "life": 28,
+        "thorns": 6
+      },
+      "flavor": "Used to pin a kiln door that would not stay shut. The door lost."
+    },
+    {
+      "id": "last_watch_plate",
+      "name": "Last Watch Plate",
+      "baseId": "kiln_plate",
+      "qlvl": 16,
+      "mods": {
+        "defense": 36,
+        "fireResist": 20,
+        "life": 30,
+        "thorns": 8
+      },
+      "flavor": "The last shift wore this until the stairs gave. The plate came back. They did not."
+    },
+    {
+      "id": "wicker_prayer",
+      "name": "Wicker Prayer",
+      "baseId": "wicker_shield",
+      "qlvl": 5,
+      "mods": {
+        "defense": 14,
+        "life": 16,
+        "fireResist": 10,
+        "thorns": 3
+      },
+      "flavor": "A prayer woven in, then smoked over the kiln until the words went black."
+    },
+    {
+      "id": "kiln_door",
+      "name": "Kiln Door",
+      "baseId": "kiln_shield",
+      "qlvl": 13,
+      "mods": {
+        "defense": 30,
+        "fireResist": 22,
+        "thorns": 10,
+        "life": 18
+      },
+      "flavor": "A slice of the kiln door, still convinced it is a door."
+    },
+    {
+      "id": "garnet_loop",
+      "name": "Garnet Loop",
+      "baseId": "copper_ring",
+      "qlvl": 8,
+      "mods": {
+        "life": 20,
+        "strength": 4,
+        "lifeLeech": 3,
+        "fireResist": 8
+      },
+      "flavor": "Cut from a garnet that sweated in the heat. It still feels a little alive."
+    },
+    {
+      "id": "mere_pearl",
+      "name": "Mere Pearl",
+      "baseId": "cord_amulet",
+      "qlvl": 12,
+      "mods": {
+        "mana": 26,
+        "coldResist": 16,
+        "energy": 5,
+        "magicFind": 10
+      },
+      "flavor": "Fished out of still water. It looks at you the way the mere does."
+    },
+    {
+      "id": "glass_cap",
+      "name": "Glass Cap",
+      "baseId": "salt_cap",
+      "qlvl": 10,
+      "mods": {
+        "defense": 12,
+        "coldResist": 16,
+        "attackRating": 20,
+        "dexterity": 5
+      },
+      "flavor": "A cap glazed with salt until it rang. The ring is the warning."
+    },
+    {
+      "id": "beetle_mail",
+      "name": "Beetle Mail",
+      "baseId": "scale_hauberk",
+      "qlvl": 15,
+      "mods": {
+        "defense": 32,
+        "poisonResist": 24,
+        "life": 24,
+        "thorns": 6
+      },
+      "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans."
+    },
+    {
+      "id": "silt_shroud",
+      "name": "Silt Shroud",
+      "baseId": "hide_coat",
+      "qlvl": 20,
+      "bossOnly": true,
+      "mods": {
+        "defense": 22,
+        "coldResist": 20,
+        "poisonResist": 16,
+        "life": 26,
+        "allSkills": 1
+      },
+      "flavor": "Morra wore the water. What dried on this coat is not quite mud."
+    },
+    {
+      "id": "sallow_crown",
+      "name": "Sallow's Crown",
+      "baseId": "kiln_helm",
+      "qlvl": 28,
+      "bossOnly": true,
+      "mods": {
+        "defense": 24,
+        "allResist": 12,
+        "life": 36,
+        "poisonDamage": [
+          6,
+          12
+        ],
+        "allSkills": 1
+      },
+      "flavor": "Grown, not forged. It fits whoever cut the first tree, and it is still angry."
+    },
+    {
+      "id": "root_belt",
+      "name": "Root Belt",
+      "baseId": "plate_belt",
+      "qlvl": 18,
+      "mods": {
+        "vitality": 8,
+        "life": 28,
+        "poisonResist": 14,
+        "lifeRegen": 1.6
+      },
+      "flavor": "A root that decided to be a belt. It tightens when you are afraid."
+    },
+    {
+      "id": "orchard_knife",
+      "name": "Orchard Knife",
+      "baseId": "glass_dirk",
+      "qlvl": 19,
+      "mods": {
+        "enhancedDamage": 26,
+        "poisonDamage": [
+          6,
+          14
+        ],
+        "critChance": 6,
+        "attackSpeed": 10
+      },
+      "flavor": "Used on fruit that should not have been red. The edge still smells sweet and wrong."
+    },
+    {
+      "id": "branded_saber",
+      "name": "Branded Saber",
+      "baseId": "salt_saber",
+      "qlvl": 14,
+      "mods": {
+        "enhancedDamage": 35,
+        "fireDamage": [
+          8,
+          16
+        ],
+        "skills": {
+          "ash_strike": 2,
+          "cinder_spark": 1
+        },
+        "fireDamagePercent": 12
+      },
+      "flavor": "The brand does not wash off. Ash Strike remembers it."
+    },
+    {
+      "id": "callers_cord",
+      "name": "Caller's Cord",
+      "baseId": "rope_belt",
+      "qlvl": 16,
+      "mods": {
+        "mana": 30,
+        "coldDamage": [
+          4,
+          8
+        ],
+        "skills": {
+          "reed_bolt": 2,
+          "glassling": 1
+        },
+        "manaRegen": 1.4
+      },
+      "flavor": "Tied while the glass was still wet. The bolt comes cheaper."
+    },
+    {
+      "id": "row_walkers",
+      "name": "Row Walkers",
+      "baseId": "kiln_boots",
+      "qlvl": 15,
+      "mods": {
+        "moveSpeed": 18,
+        "poisonDamage": [
+          5,
+          10
+        ],
+        "skills": {
+          "thorn_snare": 2
+        },
+        "life": 16
+      },
+      "flavor": "The rows do not catch these. The snares do the catching."
+    },
+    {
+      "id": "unbanked_loop",
+      "name": "Unbanked Loop",
+      "baseId": "cord_amulet",
+      "qlvl": 24,
+      "mods": {
+        "allSkills": 1,
+        "allResist": 12,
+        "life": 20,
+        "mana": 20
+      },
+      "flavor": "One rank in everything you kept. The kiln does not get a vote."
+    },
+    {
+      "id": "short_promise",
+      "name": "Short Promise",
+      "baseId": "glass_dirk",
+      "qlvl": 17,
+      "mods": {
+        "critChance": 8,
+        "lifeLeech": 4,
+        "attackSpeed": 15,
+        "skills": {
+          "salt_cut": 2,
+          "red_line": 1
+        }
+      },
+      "flavor": "A cut that pays you back. Do not stand still to collect."
+    },
+    {
+      "id": "kept_bell",
+      "name": "Kept Bell",
+      "baseId": "cinder_staff",
+      "qlvl": 20,
+      "mods": {
+        "lightningDamage": [
+          6,
+          18
+        ],
+        "skills": {
+          "bell_note": 2,
+          "peal": 1
+        },
+        "castSpeed": 12,
+        "mana": 24
+      },
+      "flavor": "Wrapped, then unwrapped. The note is yours now."
+    },
+    {
+      "id": "sear_cuff",
+      "name": "Sear Cuff",
+      "baseId": "scale_gloves",
+      "qlvl": 9,
+      "mods": {
+        "attackSpeed": 12,
+        "fireDamage": [
+          3,
+          8
+        ],
+        "skills": {
+          "sear_step": 2
+        }
+      },
+      "flavor": "The step lands hot. The cuff is why."
+    },
+    {
+      "id": "vigil_hood",
+      "name": "Vigil Hood",
+      "baseId": "cloth_hood",
+      "qlvl": 8,
+      "mods": {
+        "defense": 10,
+        "fireResist": 14,
+        "life": 14,
+        "skills": {
+          "vigil": 2
+        }
+      },
+      "flavor": "Worn for a watch that did not end. The ring of it still holds."
+    },
+    {
+      "id": "spark_band",
+      "name": "Spark Band",
+      "baseId": "copper_ring",
+      "qlvl": 7,
+      "mods": {
+        "mana": 16,
+        "fireDamagePercent": 10,
+        "skills": {
+          "cinder_spark": 1
+        }
+      },
+      "flavor": "A ring that throws the first spark so you do not have to."
+    },
+    {
+      "id": "brine_board",
+      "name": "Brine Board",
+      "baseId": "kiln_shield",
+      "qlvl": 18,
+      "mods": {
+        "defense": 22,
+        "coldResist": 18,
+        "life": 16,
+        "skills": {
+          "brine_ward": 2
+        }
+      },
+      "flavor": "A board from a stilt that learned to keep the cold off."
+    },
+    {
+      "id": "second_thread",
+      "name": "Second Thread",
+      "baseId": "hide_coat",
+      "qlvl": 20,
+      "mods": {
+        "mana": 28,
+        "coldDamage": [
+          3,
+          8
+        ],
+        "skills": {
+          "second_voice": 1
+        }
+      },
+      "flavor": "One more voice in the glass. The coat keeps the seam shut."
+    },
+    {
+      "id": "jaw_cord",
+      "name": "Jaw Cord",
+      "baseId": "plate_belt",
+      "qlvl": 24,
+      "mods": {
+        "life": 22,
+        "poisonDamage": [
+          4,
+          10
+        ],
+        "skills": {
+          "spring_jaw": 2
+        }
+      },
+      "flavor": "Tied so the snares close when you say so, not when they feel like it."
+    },
+    {
+      "id": "needle_wrap",
+      "name": "Needle Wrap",
+      "baseId": "scale_gloves",
+      "qlvl": 22,
+      "mods": {
+        "attackSpeed": 10,
+        "poisonDamage": [
+          5,
+          12
+        ],
+        "skills": {
+          "needle": 2
+        }
+      },
+      "flavor": "The point was already in the glove. You just give it a direction."
+    },
+    {
+      "id": "crouch_tread",
+      "name": "Crouch Tread",
+      "baseId": "kiln_boots",
+      "qlvl": 23,
+      "mods": {
+        "moveSpeed": 16,
+        "poisonResist": 14,
+        "skills": {
+          "crouch": 2
+        }
+      },
+      "flavor": "The rows hear the other boots. These they argue about."
+    },
+    {
+      "id": "banked_coal",
+      "name": "Banked Coal",
+      "baseId": "cord_amulet",
+      "qlvl": 32,
+      "mods": {
+        "life": 24,
+        "allResist": 10,
+        "skills": {
+          "last_coal": 1
+        }
+      },
+      "flavor": "One coal kept back from the kiln. It spends itself once, and means it."
+    },
+    {
+      "id": "pale_note",
+      "name": "Pale Note",
+      "baseId": "cinder_staff",
+      "qlvl": 34,
+      "mods": {
+        "lightningDamage": [
+          6,
+          16
+        ],
+        "castSpeed": 10,
+        "mana": 20,
+        "skills": {
+          "overtone": 2
+        }
+      },
+      "flavor": "A note cut into the stair and then pulled back out. It still rings."
+    },
+    {
+      "id": "mawglass",
+      "name": "Mawglass",
+      "baseId": "copper_ring",
+      "qlvl": 36,
+      "riftOnly": true,
+      "mods": {
+        "fireDamage": [
+          8,
+          18
+        ],
+        "life": 28,
+        "fireResist": 16
+      },
+      "flavor": "The ring sweats when the floor opens."
+    },
+    {
+      "id": "stillbell",
+      "name": "Stillbell",
+      "baseId": "cord_amulet",
+      "qlvl": 40,
+      "riftOnly": true,
+      "mods": {
+        "mana": 30,
+        "allResist": 12,
+        "life": 20
+      },
+      "flavor": "A bell that was wrapped before it could finish the note."
+    },
+    {
+      "id": "shadechord",
+      "name": "Shadechord",
+      "baseId": "cloth_hood",
+      "qlvl": 44,
+      "riftOnly": true,
+      "mods": {
+        "coldDamage": [
+          6,
+          14
+        ],
+        "energy": 12,
+        "mana": 18,
+        "moveSpeed": 8
+      },
+      "flavor": "Worn by something that stepped out of its own shadow."
+    },
+    {
+      "id": "kilntooth",
+      "name": "Kilntooth",
+      "baseId": "glass_dirk",
+      "qlvl": 48,
+      "riftOnly": true,
+      "mods": {
+        "enhancedDamage": 35,
+        "fireDamage": [
+          6,
+          14
+        ],
+        "attackSpeed": 12,
+        "critChance": 4
+      },
+      "flavor": "A tooth of the kiln. It stays sharp because the fire never left it."
+    }
+  ],
+  "setItems": [
+    {
+      "id": "sentinel_hood",
+      "name": "Sentinel Hood",
+      "baseId": "cloth_hood",
+      "setId": "ashmarch_sentinel",
+      "qlvl": 4,
+      "mods": {
+        "defense": 8,
+        "fireResist": 8,
+        "life": 10
+      },
+      "flavor": "The hood of the first watch. Soot in every seam, and a smell of wet ash."
+    },
+    {
+      "id": "sentinel_coat",
+      "name": "Sentinel Coat",
+      "baseId": "hide_coat",
+      "setId": "ashmarch_sentinel",
+      "qlvl": 6,
+      "mods": {
+        "defense": 14,
+        "life": 16,
+        "strength": 4
+      },
+      "flavor": "Issued when the march still thought it would come home."
+    },
+    {
+      "id": "sentinel_girdle",
+      "name": "Sentinel Girdle",
+      "baseId": "rope_belt",
+      "setId": "ashmarch_sentinel",
+      "qlvl": 5,
+      "mods": {
+        "vitality": 5,
+        "lifeRegen": 1.1,
+        "fireResist": 6
+      },
+      "flavor": "Senn knotted it. He counts nails twice. He counts people once."
+    },
+    {
+      "id": "saltglass_edge",
+      "name": "Saltglass Edge",
+      "baseId": "salt_saber",
+      "setId": "saltglass_pair",
+      "qlvl": 7,
+      "mods": {
+        "enhancedDamage": 22,
+        "coldDamage": [
+          3,
+          7
+        ],
+        "attackRating": 30
+      },
+      "flavor": "An edge that spent a winter in the salt. It cuts cleaner when the air is cold."
+    },
+    {
+      "id": "saltglass_band",
+      "name": "Saltglass Band",
+      "baseId": "copper_ring",
+      "setId": "saltglass_pair",
+      "qlvl": 7,
+      "mods": {
+        "dexterity": 5,
+        "attackSpeed": 8,
+        "critChance": 3
+      },
+      "flavor": "A ring of fused salt and glass. It clicks against the saber like a second promise."
+    },
+    {
+      "id": "briar_hood",
+      "name": "Briar Hood",
+      "baseId": "cloth_hood",
+      "setId": "briar_three",
+      "qlvl": 9,
+      "mods": {
+        "defense": 8,
+        "poisonResist": 10,
+        "dexterity": 4
+      },
+      "flavor": "A hood stitched with thorn-thread. It snags on everything, including luck."
+    },
+    {
+      "id": "briar_wrap",
+      "name": "Briar Wrap",
+      "baseId": "hide_coat",
+      "setId": "briar_three",
+      "qlvl": 11,
+      "mods": {
+        "defense": 16,
+        "poisonDamage": [
+          3,
+          6
+        ],
+        "life": 14
+      },
+      "flavor": "Worn by stalkers who preferred the ground to do their arguing."
+    },
+    {
+      "id": "briar_fang",
+      "name": "Briar Fang",
+      "baseId": "ashwood_knife",
+      "setId": "briar_three",
+      "qlvl": 10,
+      "mods": {
+        "enhancedDamage": 18,
+        "poisonDamage": [
+          3,
+          7
+        ],
+        "attackSpeed": 8
+      },
+      "flavor": "The short tooth of the set. It prefers to be left behind in something living."
+    },
+    {
+      "id": "bell_loop",
+      "name": "Bell Loop",
+      "baseId": "copper_ring",
+      "setId": "wrapped_bells",
+      "qlvl": 14,
+      "mods": {
+        "coldResist": 12,
+        "mana": 14,
+        "magicFind": 8
+      },
+      "flavor": "A ring that wants to ring. The wrapping is the only reason it does not."
+    },
+    {
+      "id": "bell_cord",
+      "name": "Bell Cord",
+      "baseId": "cord_amulet",
+      "setId": "wrapped_bells",
+      "qlvl": 14,
+      "mods": {
+        "energy": 5,
+        "coldDamage": [
+          2,
+          6
+        ],
+        "life": 12
+      },
+      "flavor": "Cut from a wrapped bell-rope. It stays quiet if you do."
+    },
+    {
+      "id": "march_boots",
+      "name": "March Boots",
+      "baseId": "trail_boots",
+      "setId": "march_pair",
+      "qlvl": 3,
+      "mods": {
+        "moveSpeed": 8,
+        "life": 8,
+        "fireResist": 6
+      },
+      "flavor": "Issued for the first walk out of Hearthveil. The soles are already thin."
+    },
+    {
+      "id": "march_wraps",
+      "name": "March Wraps",
+      "baseId": "wrap_gloves",
+      "setId": "march_pair",
+      "qlvl": 3,
+      "mods": {
+        "attackRating": 16,
+        "strength": 3
+      },
+      "flavor": "Cloth wraps for hands that were going to hold a hot hilt."
+    },
+    {
+      "id": "lamp_hood",
+      "name": "Lamp Hood",
+      "baseId": "cloth_hood",
+      "setId": "orchard_lamp",
+      "qlvl": 12,
+      "mods": {
+        "mana": 16,
+        "poisonResist": 8,
+        "energy": 3
+      },
+      "flavor": "A hood worn so the moths would not land on your face."
+    },
+    {
+      "id": "lamp_cord",
+      "name": "Lamp Cord",
+      "baseId": "rope_belt",
+      "setId": "orchard_lamp",
+      "qlvl": 12,
+      "mods": {
+        "life": 14,
+        "lifeRegen": 1.2,
+        "dexterity": 3
+      },
+      "flavor": "Tied like a wick. It smells faintly of fruit you should not eat."
+    },
+    {
+      "id": "pale_hood",
+      "name": "Pale Hood",
+      "baseId": "salt_cap",
+      "setId": "pale_watch",
+      "qlvl": 20,
+      "mods": {
+        "defense": 16,
+        "coldResist": 12,
+        "life": 18
+      },
+      "flavor": "The color of the stair. It does not show ash until you are home."
+    },
+    {
+      "id": "pale_mail",
+      "name": "Pale Mail",
+      "baseId": "scale_hauberk",
+      "setId": "pale_watch",
+      "qlvl": 22,
+      "mods": {
+        "defense": 30,
+        "allResist": 6,
+        "life": 20
+      },
+      "flavor": "Mail for a watch that was supposed to end at the tombs."
+    },
+    {
+      "id": "oath_ring",
+      "name": "Oath Ring",
+      "baseId": "copper_ring",
+      "setId": "name_oath",
+      "qlvl": 24,
+      "mods": {
+        "strength": 5,
+        "fireResist": 10,
+        "attackRating": 20
+      },
+      "flavor": "A name was cut inside it. You can feel the letters and not read them."
+    },
+    {
+      "id": "oath_cord",
+      "name": "Oath Cord",
+      "baseId": "cord_amulet",
+      "setId": "name_oath",
+      "qlvl": 24,
+      "mods": {
+        "life": 22,
+        "vitality": 5,
+        "fireDamage": [
+          3,
+          7
+        ]
+      },
+      "flavor": "Worn by someone who climbed and came back down without their name."
+    }
+  ],
+  "setBonuses": {
+    "ashmarch_sentinel": {
+      "name": "Ashmarch Sentinel",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+25 life, +12% fire resist",
+          "mods": {
+            "life": 25,
+            "fireResist": 12
+          }
+        },
+        {
+          "count": 3,
+          "text": "+12% fire damage, +1 to Ash Strike",
+          "mods": {
+            "fireDamagePercent": 12,
+            "skills": {
+              "ash_strike": 1
+            }
+          }
+        }
+      ]
+    },
+    "saltglass_pair": {
+      "name": "Saltglass Pair",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+15% attack speed, +40 attack rating, +4% crit",
+          "mods": {
+            "attackSpeed": 15,
+            "attackRating": 40,
+            "critChance": 4
+          }
+        }
+      ]
+    },
+    "briar_three": {
+      "name": "Briar Three",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+20 life, +8 poison damage",
+          "mods": {
+            "life": 20,
+            "poisonDamage": [
+              4,
+              8
+            ]
+          }
+        },
+        {
+          "count": 3,
+          "text": "+16% poison resist, +10% attack speed",
+          "mods": {
+            "poisonResist": 16,
+            "attackSpeed": 10
+          }
+        }
+      ]
+    },
+    "march_pair": {
+      "name": "First March",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+20 life, +12% move speed, +10 fire resist",
+          "mods": {
+            "life": 20,
+            "moveSpeed": 12,
+            "fireResist": 10
+          }
+        }
+      ]
+    },
+    "orchard_lamp": {
+      "name": "Orchard Lamp",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+18 mana, +12 poison resist, +1 mana regen",
+          "mods": {
+            "mana": 18,
+            "poisonResist": 12,
+            "manaRegen": 1
+          }
+        }
+      ]
+    },
+    "pale_watch": {
+      "name": "Pale Watch",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+30 life, +10% all resist",
+          "mods": {
+            "life": 30,
+            "allResist": 10
+          }
+        }
+      ]
+    },
+    "name_oath": {
+      "name": "Name Oath",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+24 life, +6 strength, +8 fire damage",
+          "mods": {
+            "life": 24,
+            "strength": 6,
+            "fireDamage": [
+              4,
+              8
+            ]
+          }
+        }
+      ]
+    },
+    "wrapped_bells": {
+      "name": "Wrapped Bells",
+      "bonuses": [
+        {
+          "count": 2,
+          "text": "+18 cold resist, +20 mana, +1 to all skills",
+          "mods": {
+            "coldResist": 18,
+            "mana": 20,
+            "allSkills": 1
+          }
+        }
+      ]
+    }
+  },
+  "rarity": {
+    "common": 1,
+    "magic": 3.2,
+    "rare": 8,
+    "set": 12,
+    "unique": 16
+  },
+  "materials": {
+    "ember_shard": {
+      "name": "Ember Mote",
+      "mods": {
+        "fireDamage": [
+          2,
+          5
+        ]
+      }
+    },
+    "frostglass": {
+      "name": "Frost Mote",
+      "mods": {
+        "coldDamage": [
+          2,
+          5
+        ]
+      }
+    },
+    "storm_quartz": {
+      "name": "Storm Mote",
+      "mods": {
+        "lightningDamage": [
+          1,
+          9
+        ]
+      }
+    },
+    "blood_garnet": {
+      "name": "Blood Mote",
+      "mods": {
+        "life": 14
+      }
+    },
+    "sky_pearl": {
+      "name": "Pearl Mote",
+      "mods": {
+        "mana": 14
+      }
+    }
+  },
+  "affixes": [
+    {
+      "id": "heat",
+      "group": "fire",
+      "name": "of Heat",
+      "mods": {
+        "fireDamage": [
+          1,
+          4
+        ]
+      }
+    },
+    {
+      "id": "frost",
+      "group": "cold",
+      "name": "of Frost",
+      "mods": {
+        "coldDamage": [
+          1,
+          4
+        ]
+      }
+    },
+    {
+      "id": "spark",
+      "group": "light",
+      "name": "of Sparks",
+      "mods": {
+        "lightningDamage": [
+          1,
+          7
+        ]
+      }
+    },
+    {
+      "id": "rot",
+      "group": "poison",
+      "name": "of Rot",
+      "mods": {
+        "poisonDamage": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "blood",
+      "group": "life",
+      "name": "of Blood",
+      "mods": {
+        "life": 10
+      }
+    },
+    {
+      "id": "breath",
+      "group": "mana",
+      "name": "of Breath",
+      "mods": {
+        "mana": 10
+      }
+    },
+    {
+      "id": "aim",
+      "group": "ar",
+      "name": "of Aim",
+      "mods": {
+        "attackRating": 14
+      }
+    },
+    {
+      "id": "grit",
+      "group": "str",
+      "name": "of Grit",
+      "mods": {
+        "strength": 3
+      }
+    },
+    {
+      "id": "silk",
+      "group": "dex",
+      "name": "of Silk",
+      "mods": {
+        "dexterity": 3
+      }
+    },
+    {
+      "id": "oak",
+      "group": "vit",
+      "name": "of Oak",
+      "mods": {
+        "vitality": 3
+      }
+    },
+    {
+      "id": "wick",
+      "group": "ene",
+      "name": "of the Wick",
+      "mods": {
+        "energy": 3
+      }
+    },
+    {
+      "id": "luck",
+      "group": "mf",
+      "name": "of Luck",
+      "mods": {
+        "magicFind": 6
+      }
+    },
+    {
+      "id": "hide",
+      "group": "def",
+      "name": "of Hide",
+      "mods": {
+        "defense": 8
+      }
+    },
+    {
+      "id": "warmth",
+      "group": "fres",
+      "name": "of Warmth",
+      "mods": {
+        "fireResist": 7
+      }
+    },
+    {
+      "id": "still",
+      "group": "cres",
+      "name": "of Still Water",
+      "mods": {
+        "coldResist": 7
+      }
+    },
+    {
+      "id": "ash",
+      "group": "pres",
+      "name": "of Ash",
+      "mods": {
+        "poisonResist": 7
+      }
+    }
+  ],
+  "modIds": {
+    "enhancedDamage": "edmg",
+    "lifeLeech": "leech",
+    "manaLeech": "manaLeech",
+    "fireDamagePercent": "fireMult",
+    "minionDamagePercent": "minionDmg"
+  },
+  "statIds": {
+    "strength": "str",
+    "dexterity": "dex",
+    "vitality": "vit",
+    "energy": "ene",
+    "life": "life",
+    "mana": "mana",
+    "defense": "defense",
+    "attackRating": "ar",
+    "attackSpeed": "ias",
+    "castSpeed": "fcr",
+    "moveSpeed": "frw",
+    "critChance": "crit",
+    "magicFind": "mf",
+    "fireResist": "fres",
+    "coldResist": "cres",
+    "lightningResist": "lres",
+    "poisonResist": "pres",
+    "allResist": "allres",
+    "thorns": "thorns",
+    "lifeRegen": "lifeRegen",
+    "manaRegen": "manaRegen",
+    "allSkills": "allSkills",
+    "minionLife": "minionLife",
+    "maxMinions": "maxMinions"
+  },
+  "rangeIds": {
+    "fireDamage": [
+      "fireMin",
+      "fireMax"
+    ],
+    "coldDamage": [
+      "coldMin",
+      "coldMax"
+    ],
+    "lightningDamage": [
+      "lightMin",
+      "lightMax"
+    ],
+    "poisonDamage": [
+      "poisonMin",
+      "poisonMax"
+    ]
+  },
+  "shards": [
+    {
+      "id": "ember_shard",
+      "name": "Ember Shard",
+      "color": "#e25822",
+      "modsBySlot": {
+        "weapon": {
+          "fireDamage": [
+            3,
+            6
+          ]
+        },
+        "armor": {
+          "fireResist": 10
+        },
+        "helm": {
+          "life": 12,
+          "fireResist": 5
+        },
+        "offhand": {
+          "fireResist": 12
+        },
+        "default": {
+          "fireResist": 6
+        }
+      }
+    },
+    {
+      "id": "frostglass",
+      "name": "Frostglass",
+      "color": "#8fd4e8",
+      "modsBySlot": {
+        "weapon": {
+          "coldDamage": [
+            3,
+            6
+          ]
+        },
+        "armor": {
+          "coldResist": 10
+        },
+        "helm": {
+          "mana": 12,
+          "coldResist": 5
+        },
+        "offhand": {
+          "coldResist": 12
+        },
+        "default": {
+          "coldResist": 6
+        }
+      }
+    },
+    {
+      "id": "storm_quartz",
+      "name": "Storm Quartz",
+      "color": "#d6de4a",
+      "modsBySlot": {
+        "weapon": {
+          "lightningDamage": [
+            1,
+            12
+          ]
+        },
+        "armor": {
+          "lightningResist": 10
+        },
+        "helm": {
+          "attackRating": 22,
+          "lightningResist": 5
+        },
+        "offhand": {
+          "lightningResist": 12
+        },
+        "default": {
+          "lightningResist": 6
+        }
+      }
+    },
+    {
+      "id": "blood_garnet",
+      "name": "Blood Garnet",
+      "color": "#c4303a",
+      "modsBySlot": {
+        "weapon": {
+          "lifeLeech": 3
+        },
+        "armor": {
+          "life": 18
+        },
+        "helm": {
+          "life": 16
+        },
+        "offhand": {
+          "life": 14
+        },
+        "default": {
+          "life": 10
+        }
+      }
+    },
+    {
+      "id": "sky_pearl",
+      "name": "Sky Pearl",
+      "color": "#d7e6ff",
+      "modsBySlot": {
+        "weapon": {
+          "manaLeech": 3
+        },
+        "armor": {
+          "mana": 20
+        },
+        "helm": {
+          "mana": 18
+        },
+        "offhand": {
+          "mana": 16
+        },
+        "default": {
+          "mana": 12
+        }
+      }
+    }
+  ],
+  "prefixes": [
+    {
+      "id": "vicious",
+      "name": "Vicious",
+      "group": "ed",
+      "level": 1,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 12
+      }
+    },
+    {
+      "id": "cruel",
+      "name": "Cruel",
+      "group": "ed",
+      "level": 8,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 32
+      }
+    },
+    {
+      "id": "burning",
+      "name": "Burning",
+      "group": "fire",
+      "level": 3,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "fireDamage": [
+          3,
+          7
+        ]
+      }
+    },
+    {
+      "id": "searing",
+      "name": "Searing",
+      "group": "fire",
+      "level": 12,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "fireDamage": [
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "id": "bitter",
+      "name": "Bitter",
+      "group": "cold",
+      "level": 5,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "coldDamage": [
+          3,
+          6
+        ]
+      }
+    },
+    {
+      "id": "charged",
+      "name": "Charged",
+      "group": "light",
+      "level": 5,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "lightningDamage": [
+          1,
+          11
+        ]
+      }
+    },
+    {
+      "id": "jagged",
+      "name": "Jagged",
+      "group": "ar",
+      "level": 1,
+      "slots": [
+        "weapon",
+        "gloves",
+        "ring",
+        "amulet"
+      ],
+      "mods": {
+        "attackRating": 28
+      }
+    },
+    {
+      "id": "hale",
+      "name": "Hale",
+      "group": "life",
+      "level": 1,
+      "slots": [
+        "helm",
+        "armor",
+        "belt",
+        "ring",
+        "amulet"
+      ],
+      "mods": {
+        "life": 14
+      }
+    },
+    {
+      "id": "stalwart",
+      "name": "Stalwart",
+      "group": "life",
+      "level": 10,
+      "slots": [
+        "helm",
+        "armor",
+        "belt",
+        "amulet"
+      ],
+      "mods": {
+        "life": 34
+      }
+    },
+    {
+      "id": "vivid",
+      "name": "Vivid",
+      "group": "mana",
+      "level": 2,
+      "slots": [
+        "helm",
+        "armor",
+        "ring",
+        "amulet"
+      ],
+      "mods": {
+        "mana": 16
+      }
+    },
+    {
+      "id": "amber",
+      "name": "Amber",
+      "group": "fres",
+      "level": 3,
+      "slots": [
+        "helm",
+        "armor",
+        "offhand",
+        "amulet"
+      ],
+      "mods": {
+        "fireResist": 14
+      }
+    },
+    {
+      "id": "pale",
+      "name": "Pale",
+      "group": "cres",
+      "level": 3,
+      "slots": [
+        "helm",
+        "armor",
+        "offhand",
+        "amulet"
+      ],
+      "mods": {
+        "coldResist": 14
+      }
+    },
+    {
+      "id": "arc",
+      "name": "Arc",
+      "group": "lres",
+      "level": 3,
+      "slots": [
+        "helm",
+        "armor",
+        "offhand",
+        "amulet"
+      ],
+      "mods": {
+        "lightningResist": 14
+      }
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "group": "ias",
+      "level": 5,
+      "slots": [
+        "weapon",
+        "gloves",
+        "ring"
+      ],
+      "mods": {
+        "attackSpeed": 16
+      }
+    },
+    {
+      "id": "fleet",
+      "name": "Fleet",
+      "group": "frw",
+      "level": 2,
+      "slots": [
+        "boots",
+        "ring"
+      ],
+      "mods": {
+        "moveSpeed": 12
+      }
+    },
+    {
+      "id": "greedy",
+      "name": "Greedy",
+      "group": "mf",
+      "level": 6,
+      "slots": [
+        "helm",
+        "gloves",
+        "boots",
+        "amulet",
+        "ring"
+      ],
+      "mods": {
+        "magicFind": 14
+      }
+    },
+    {
+      "id": "patient",
+      "name": "Patient",
+      "group": "regen",
+      "level": 4,
+      "slots": [
+        "helm",
+        "belt",
+        "amulet"
+      ],
+      "mods": {
+        "lifeRegen": 1.4
+      }
+    },
+    {
+      "id": "thorny",
+      "name": "Thorny",
+      "group": "thorns",
+      "level": 4,
+      "slots": [
+        "armor",
+        "offhand",
+        "helm"
+      ],
+      "mods": {
+        "thorns": 4
+      }
+    },
+    {
+      "id": "strong",
+      "name": "Strong",
+      "group": "str",
+      "level": 2,
+      "slots": [
+        "gloves",
+        "belt",
+        "ring",
+        "amulet",
+        "helm"
+      ],
+      "mods": {
+        "strength": 4
+      }
+    },
+    {
+      "id": "keen",
+      "name": "Keen",
+      "group": "dex",
+      "level": 2,
+      "slots": [
+        "gloves",
+        "boots",
+        "ring",
+        "amulet"
+      ],
+      "mods": {
+        "dexterity": 4
+      }
+    },
+    {
+      "id": "hardy",
+      "name": "Hardy",
+      "group": "vit",
+      "level": 2,
+      "slots": [
+        "helm",
+        "armor",
+        "belt",
+        "ring",
+        "amulet"
+      ],
+      "mods": {
+        "vitality": 4
+      }
+    },
+    {
+      "id": "wise",
+      "name": "Wise",
+      "group": "ene",
+      "level": 2,
+      "slots": [
+        "helm",
+        "amulet",
+        "ring",
+        "weapon"
+      ],
+      "mods": {
+        "energy": 4
+      }
+    }
+  ],
+  "charmSizes": [
+    {
+      "id": "small",
+      "word": "Mote",
+      "w": 1,
+      "h": 1,
+      "scale": 1
+    },
+    {
+      "id": "large",
+      "word": "Tablet",
+      "w": 1,
+      "h": 2,
+      "scale": 1.8
+    },
+    {
+      "id": "grand",
+      "word": "Slate",
+      "w": 2,
+      "h": 2,
+      "scale": 2.6
+    }
+  ],
+  "charmCounts": {
+    "small": 1,
+    "large": 2,
+    "grand": 3
+  },
+  "suffixes": [
+    {
+      "id": "of_embers",
+      "name": "of Embers",
+      "group": "fres",
+      "level": 4,
+      "slots": [
+        "armor",
+        "helm",
+        "offhand",
+        "boots",
+        "amulet"
+      ],
+      "mods": {
+        "fireResist": 18
+      }
+    },
+    {
+      "id": "of_the_warden",
+      "name": "of the Warden",
+      "group": "life",
+      "level": 6,
+      "slots": [
+        "armor",
+        "helm",
+        "belt",
+        "amulet"
+      ],
+      "mods": {
+        "life": 24
+      }
+    },
+    {
+      "id": "of_the_leech",
+      "name": "of the Leech",
+      "group": "leech",
+      "level": 8,
+      "slots": [
+        "weapon",
+        "ring",
+        "gloves"
+      ],
+      "mods": {
+        "lifeLeech": 4
+      }
+    },
+    {
+      "id": "of_precision",
+      "name": "of Precision",
+      "group": "crit",
+      "level": 6,
+      "slots": [
+        "weapon",
+        "gloves",
+        "amulet",
+        "ring"
+      ],
+      "mods": {
+        "critChance": 5
+      }
+    },
+    {
+      "id": "of_the_bear",
+      "name": "of the Bear",
+      "group": "str",
+      "level": 3,
+      "slots": [
+        "weapon",
+        "gloves",
+        "belt",
+        "amulet",
+        "ring"
+      ],
+      "mods": {
+        "strength": 6
+      }
+    },
+    {
+      "id": "of_the_cat",
+      "name": "of the Cat",
+      "group": "dex",
+      "level": 3,
+      "slots": [
+        "weapon",
+        "gloves",
+        "boots",
+        "ring"
+      ],
+      "mods": {
+        "dexterity": 6
+      }
+    },
+    {
+      "id": "of_the_ox",
+      "name": "of the Ox",
+      "group": "vit",
+      "level": 3,
+      "slots": [
+        "armor",
+        "helm",
+        "belt",
+        "amulet"
+      ],
+      "mods": {
+        "vitality": 6
+      }
+    },
+    {
+      "id": "of_the_sage",
+      "name": "of the Sage",
+      "group": "ene",
+      "level": 3,
+      "slots": [
+        "helm",
+        "amulet",
+        "ring",
+        "weapon"
+      ],
+      "mods": {
+        "energy": 6
+      }
+    },
+    {
+      "id": "of_haste",
+      "name": "of Haste",
+      "group": "ias",
+      "level": 7,
+      "slots": [
+        "weapon",
+        "gloves"
+      ],
+      "mods": {
+        "attackSpeed": 20
+      }
+    },
+    {
+      "id": "of_fortune",
+      "name": "of Fortune",
+      "group": "mf",
+      "level": 8,
+      "slots": [
+        "boots",
+        "gloves",
+        "amulet"
+      ],
+      "mods": {
+        "magicFind": 18
+      }
+    },
+    {
+      "id": "of_the_colossus",
+      "name": "of the Colossus",
+      "group": "ed",
+      "level": 14,
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 48
+      }
+    },
+    {
+      "id": "of_stone",
+      "name": "of Stone",
+      "group": "def",
+      "level": 2,
+      "slots": [
+        "armor",
+        "helm",
+        "offhand",
+        "boots"
+      ],
+      "mods": {
+        "defense": 12
+      }
+    },
+    {
+      "id": "of_the_owl",
+      "name": "of the Owl",
+      "group": "mana",
+      "level": 4,
+      "slots": [
+        "helm",
+        "amulet",
+        "ring"
+      ],
+      "mods": {
+        "mana": 22
+      }
+    },
+    {
+      "id": "of_thorns",
+      "name": "of Thorns",
+      "group": "thorns",
+      "level": 6,
+      "slots": [
+        "armor",
+        "offhand"
+      ],
+      "mods": {
+        "thorns": 8
+      }
+    },
+    {
+      "id": "of_the_sentinel",
+      "name": "of the Sentinel",
+      "group": "allres",
+      "level": 10,
+      "slots": [
+        "armor",
+        "helm",
+        "offhand",
+        "amulet"
+      ],
+      "mods": {
+        "allResist": 8
+      }
+    },
+    {
+      "id": "of_cinders",
+      "name": "of Cinders",
+      "group": "skills",
+      "level": 12,
+      "slots": [
+        "amulet",
+        "helm",
+        "weapon"
+      ],
+      "mods": {
+        "allSkills": 1
+      }
+    },
+    {
+      "id": "of_the_path",
+      "name": "of the Path",
+      "group": "frw",
+      "level": 4,
+      "slots": [
+        "boots"
+      ],
+      "mods": {
+        "moveSpeed": 18
+      }
+    }
+  ]
+}

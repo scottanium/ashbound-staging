@@ -1,0 +1,320 @@
+{
+  "classes": [
+    {
+      "id": "cinder_warden",
+      "name": "Cinder Warden",
+      "epithet": "Warden of the living ash",
+      "role": "Melee",
+      "stars": 2,
+      "pitch": "Stand in the pack and outlast it.",
+      "blurb": "A sentinel who brands steel with cinder. Slow to wake, hard to put down, and worse once the kiln-skills catch.",
+      "base": {
+        "strength": 25,
+        "dexterity": 20,
+        "vitality": 22,
+        "energy": 15
+      },
+      "baseLife": 46,
+      "lifePerVitality": 3,
+      "lifePerLevel": 3,
+      "baseMana": 20,
+      "manaPerEnergy": 2,
+      "manaPerLevel": 1,
+      "baseDefense": 14,
+      "strengthToDamage": 0.01,
+      "dexterityToAttack": 4,
+      "baseAttack": 30,
+      "baseMove": 4.5,
+      "vision": 6.8,
+      "skills": [
+        "ash_strike",
+        "cinder_brand",
+        "sear_step",
+        "pyre_arc",
+        "cinder_spark",
+        "kindle",
+        "ash_ward",
+        "cinder_bloom",
+        "tempered_hide",
+        "heat_draw",
+        "vigil",
+        "last_coal",
+        "kiln_hook",
+        "living_coal",
+        "ash_skin"
+      ]
+    },
+    {
+      "id": "reed_caller",
+      "name": "Reed Caller",
+      "epithet": "Voice of the Glassmere",
+      "role": "Summoner",
+      "stars": 3,
+      "pitch": "Call glasslings, then shoot from behind them.",
+      "blurb": "A ranged binder who calls glasslings out of still water. Frail in a straight fight, dangerous once the chorus is up.",
+      "base": {
+        "strength": 12,
+        "dexterity": 26,
+        "vitality": 16,
+        "energy": 30
+      },
+      "baseLife": 34,
+      "lifePerVitality": 2.4,
+      "lifePerLevel": 2,
+      "baseMana": 36,
+      "manaPerEnergy": 2.4,
+      "manaPerLevel": 2,
+      "baseDefense": 4,
+      "strengthToDamage": 0.008,
+      "dexterityToAttack": 5,
+      "baseAttack": 36,
+      "baseMove": 4.6,
+      "vision": 7.2,
+      "weapon": "thorn_bow",
+      "skills": [
+        "glassling",
+        "second_voice",
+        "salt_wisp",
+        "chorus",
+        "reed_bolt",
+        "undertow",
+        "brine_ward",
+        "tide_ring",
+        "keepers_knot",
+        "shared_breath",
+        "lantern_pact",
+        "last_reed",
+        "third_voice",
+        "rime",
+        "glass_heart"
+      ]
+    },
+    {
+      "id": "briar_stalker",
+      "name": "Briar Stalker",
+      "epithet": "Poison left in the path",
+      "role": "Trapper",
+      "stars": 3,
+      "pitch": "Lay the snares. Let the rot do the standing.",
+      "blurb": "A knife and a patient snare. You do not stand in the kiln, and you do not keep a chorus. You salt the ground and let the rot arrive.",
+      "base": {
+        "strength": 14,
+        "dexterity": 28,
+        "vitality": 18,
+        "energy": 22
+      },
+      "baseLife": 40,
+      "lifePerVitality": 2.6,
+      "lifePerLevel": 2.4,
+      "baseMana": 28,
+      "manaPerEnergy": 2.1,
+      "manaPerLevel": 1.5,
+      "baseDefense": 5,
+      "strengthToDamage": 0.009,
+      "dexterityToAttack": 5,
+      "baseAttack": 34,
+      "baseMove": 4.8,
+      "vision": 7,
+      "weapon": "ashwood_knife",
+      "skills": [
+        "thorn_snare",
+        "wider_net",
+        "bramble_bed",
+        "spring_jaw",
+        "needle",
+        "deep_rot",
+        "miasma",
+        "long_bite",
+        "soft_step",
+        "antidote",
+        "barbed_coat",
+        "last_briar",
+        "tripwire",
+        "spit",
+        "crouch"
+      ]
+    },
+    {
+      "id": "salt_reaver",
+      "name": "Salt Reaver",
+      "epithet": "The short edge",
+      "role": "Melee",
+      "stars": 4,
+      "pitch": "Step through the pack and take a little life back.",
+      "blurb": "A fast blade that lives in arm's reach. You step through a pack, you cut on the way, and you take a little life back with you.",
+      "base": {
+        "strength": 20,
+        "dexterity": 30,
+        "vitality": 18,
+        "energy": 14
+      },
+      "baseLife": 54,
+      "lifePerVitality": 3.4,
+      "lifePerLevel": 3.2,
+      "baseMana": 22,
+      "manaPerEnergy": 1.8,
+      "manaPerLevel": 1,
+      "baseDefense": 12,
+      "strengthToDamage": 0.01,
+      "dexterityToAttack": 5,
+      "baseAttack": 40,
+      "baseMove": 4.9,
+      "vision": 6.8,
+      "weapon": "glass_dirk",
+      "skills": [
+        "salt_cut",
+        "keen_edge",
+        "glass_step",
+        "parting_cut",
+        "quick_wrist",
+        "red_line",
+        "open_tempo",
+        "salt_guard",
+        "blood_price",
+        "second_wind",
+        "riposte",
+        "last_salt",
+        "salt_feint",
+        "measure",
+        "close_vein"
+      ]
+    },
+    {
+      "id": "bell_chanter",
+      "name": "Bell Chanter",
+      "epithet": "The note that stays",
+      "role": "Caster",
+      "stars": 3,
+      "pitch": "Ring the room, then sing the air thick.",
+      "blurb": "You ring shock into a room and sing the air thick. Not a chorus of glass. A bell, a hymn, and the people already beside you.",
+      "base": {
+        "strength": 12,
+        "dexterity": 16,
+        "vitality": 18,
+        "energy": 32
+      },
+      "baseLife": 36,
+      "lifePerVitality": 2.4,
+      "lifePerLevel": 2,
+      "baseMana": 40,
+      "manaPerEnergy": 2.5,
+      "manaPerLevel": 2,
+      "baseDefense": 4,
+      "strengthToDamage": 0.007,
+      "dexterityToAttack": 4,
+      "baseAttack": 28,
+      "baseMove": 4.4,
+      "vision": 7.2,
+      "weapon": "cinder_staff",
+      "skills": [
+        "bell_note",
+        "clear_tone",
+        "peal",
+        "counterpoint",
+        "slow_hymn",
+        "iron_hymn",
+        "quiet_room",
+        "low_chord",
+        "held_note",
+        "damp",
+        "choir",
+        "last_bell",
+        "overtone",
+        "rest_bar",
+        "wide_hymn"
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "id": "brand",
+      "name": "Brand",
+      "about": "Close cuts that keep the cinder in the wound.",
+      "classId": "cinder_warden"
+    },
+    {
+      "id": "ember",
+      "name": "Ember",
+      "about": "Sparks, wards, and the bloom that clears a pack.",
+      "classId": "cinder_warden"
+    },
+    {
+      "id": "warden",
+      "name": "Warden",
+      "about": "Hide, leech, and Last Coal, which refuses a grave.",
+      "classId": "cinder_warden"
+    },
+    {
+      "id": "call",
+      "name": "Call",
+      "about": "Servants pulled out of glass and salt.",
+      "classId": "reed_caller"
+    },
+    {
+      "id": "tide",
+      "name": "Tide",
+      "about": "Cold bolts and the ring that clears a bank.",
+      "classId": "reed_caller"
+    },
+    {
+      "id": "bond",
+      "name": "Bond",
+      "about": "The knot that keeps you and the chorus alive, and Last Reed, which refuses a grave.",
+      "classId": "reed_caller"
+    },
+    {
+      "id": "snare",
+      "name": "Snare",
+      "about": "Thorns left in the path, and the jaw that closes them.",
+      "classId": "briar_stalker"
+    },
+    {
+      "id": "venom",
+      "name": "Venom",
+      "about": "A needle, a cloud, and rot that refuses to finish.",
+      "classId": "briar_stalker"
+    },
+    {
+      "id": "hide",
+      "name": "Hide",
+      "about": "Soft feet, a bitter coat, and Last Briar, which will not let you die.",
+      "classId": "briar_stalker"
+    },
+    {
+      "id": "edge",
+      "name": "Edge",
+      "about": "Short cuts and the step that puts you through a pack.",
+      "classId": "salt_reaver"
+    },
+    {
+      "id": "tempo",
+      "name": "Tempo",
+      "about": "Speed, a spin, and the habit of being first.",
+      "classId": "salt_reaver"
+    },
+    {
+      "id": "vein",
+      "name": "Vein",
+      "about": "What the cut takes back, and Last Salt, which keeps you up.",
+      "classId": "salt_reaver"
+    },
+    {
+      "id": "bell",
+      "name": "Bell",
+      "about": "A note, a peal, and the shock that follows.",
+      "classId": "bell_chanter"
+    },
+    {
+      "id": "hymn",
+      "name": "Hymn",
+      "about": "Songs that slow a room and thicken your coat.",
+      "classId": "bell_chanter"
+    },
+    {
+      "id": "keep",
+      "name": "Keep",
+      "about": "Breath, a quiet room, and Last Bell, which refuses a grave.",
+      "classId": "bell_chanter"
+    }
+  ]
+}

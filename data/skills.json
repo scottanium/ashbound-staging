@@ -1,0 +1,2033 @@
+[
+  {
+    "id": "ash_strike",
+    "name": "Ash Strike",
+    "branch": "brand",
+    "type": "active",
+    "icon": "slash",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      3,
+      0.2
+    ],
+    "cooldown": 0.4,
+    "behavior": "melee",
+    "about": "A branded cut. Weapon damage plus a spit of fire.",
+    "notes": [
+      "Kindle raises all fire damage, including this skill."
+    ],
+    "params": {
+      "arc": 1.15,
+      "range": 1.4,
+      "physMult": [
+        1.12,
+        0.05
+      ],
+      "fire": [
+        2,
+        5,
+        1,
+        1.25
+      ]
+    }
+  },
+  {
+    "id": "cinder_brand",
+    "name": "Cinder Brand",
+    "branch": "brand",
+    "type": "passive",
+    "icon": "brand",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Living cinder sits in the edge of every weapon swing.",
+    "notes": [
+      "Flat fire damage applies to your basic attack and melee skills."
+    ],
+    "params": {
+      "perRank": {
+        "fireDamage": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "sear_step",
+    "name": "Sear Step",
+    "branch": "brand",
+    "type": "active",
+    "icon": "dash",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "ash_strike",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      8,
+      0.25
+    ],
+    "cooldown": 3.2,
+    "behavior": "dash",
+    "about": "Step through the heat and strike whatever you stop on.",
+    "notes": [
+      "You are briefly hard to hit while stepping."
+    ],
+    "params": {
+      "distance": [
+        2.6,
+        0.06
+      ],
+      "range": 1.25,
+      "physMult": [
+        0.8,
+        0.04
+      ],
+      "fire": [
+        4,
+        8,
+        1.4,
+        1.8
+      ]
+    }
+  },
+  {
+    "id": "pyre_arc",
+    "name": "Pyre Arc",
+    "branch": "brand",
+    "type": "active",
+    "icon": "arc",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "ash_strike",
+        "rank": 4
+      }
+    ],
+    "mana": [
+      8,
+      0.35
+    ],
+    "cooldown": 2.4,
+    "behavior": "melee",
+    "about": "A wide burning sweep. Weaker steel, more cinder, more targets.",
+    "notes": [
+      "Kindle raises all fire damage, including this skill."
+    ],
+    "params": {
+      "arc": 2.4,
+      "range": 1.7,
+      "physMult": [
+        0.72,
+        0.03
+      ],
+      "fire": [
+        5,
+        9,
+        1.5,
+        1.9
+      ]
+    }
+  },
+  {
+    "id": "cinder_spark",
+    "name": "Cinder Spark",
+    "branch": "ember",
+    "type": "active",
+    "icon": "spark",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      5,
+      0.25
+    ],
+    "cooldown": 0.7,
+    "behavior": "projectile",
+    "about": "Throw a coal that bursts on the first thing it meets.",
+    "notes": [
+      "Kindle raises all fire damage, including this skill."
+    ],
+    "params": {
+      "speed": 9,
+      "range": 7.2,
+      "radius": 0.22,
+      "fire": [
+        6,
+        10,
+        2.1,
+        2.6
+      ]
+    }
+  },
+  {
+    "id": "kindle",
+    "name": "Kindle",
+    "branch": "ember",
+    "type": "passive",
+    "icon": "flame",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The ash answers faster. All of your fire damage grows.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "fireDamagePercent": 3
+      }
+    }
+  },
+  {
+    "id": "ash_ward",
+    "name": "Ash Ward",
+    "branch": "ember",
+    "type": "active",
+    "icon": "ward",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "cinder_spark",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      12,
+      0.4
+    ],
+    "cooldown": 8,
+    "behavior": "ward",
+    "about": "A shell of hot ash drinks the next blows before your life does.",
+    "notes": [
+      "The shell also lends a little fire resist while it holds."
+    ],
+    "params": {
+      "absorb": [
+        14,
+        5
+      ],
+      "duration": 8,
+      "perRank": {
+        "fireResist": 1
+      }
+    }
+  },
+  {
+    "id": "cinder_bloom",
+    "name": "Cinder Bloom",
+    "branch": "ember",
+    "type": "active",
+    "icon": "bloom",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "cinder_spark",
+        "rank": 4
+      }
+    ],
+    "mana": [
+      14,
+      0.45
+    ],
+    "cooldown": 4.5,
+    "behavior": "nova",
+    "about": "Cinder opens outward and bites everything close.",
+    "notes": [
+      "Kindle raises all fire damage, including this skill."
+    ],
+    "params": {
+      "radius": [
+        2.3,
+        0.04
+      ],
+      "fire": [
+        7,
+        12,
+        2.2,
+        2.8
+      ]
+    }
+  },
+  {
+    "id": "tempered_hide",
+    "name": "Tempered Hide",
+    "branch": "warden",
+    "type": "passive",
+    "icon": "hide",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Ash baked into the coat. More armor, and a little fire resist.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "defense": 8,
+        "fireResist": 1
+      }
+    }
+  },
+  {
+    "id": "heat_draw",
+    "name": "Heat Draw",
+    "branch": "warden",
+    "type": "passive",
+    "icon": "leech",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "tempered_hide",
+        "rank": 1
+      }
+    ],
+    "behavior": "passive",
+    "about": "You drink a thread of life from every solid hit, and mana comes easier.",
+    "notes": [
+      "Life leech only drinks the physical part of a hit."
+    ],
+    "params": {
+      "perRank": {
+        "lifeLeech": 0.6,
+        "manaRegen": 0.16
+      }
+    }
+  },
+  {
+    "id": "vigil",
+    "name": "Vigil",
+    "branch": "warden",
+    "type": "active",
+    "icon": "eye",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "tempered_hide",
+        "rank": 3
+      }
+    ],
+    "mana": [
+      16,
+      0.3
+    ],
+    "cooldown": 12,
+    "behavior": "vigil",
+    "about": "A watch-circle. Foes inside it drag their feet, and your eye is surer.",
+    "notes": [],
+    "params": {
+      "duration": 10,
+      "radius": 4.2,
+      "slow": 0.3,
+      "perRank": {
+        "attackRating": 18
+      }
+    }
+  },
+  {
+    "id": "last_coal",
+    "name": "Last Coal",
+    "branch": "warden",
+    "type": "passive",
+    "icon": "coal",
+    "reqLevel": 12,
+    "maxRank": 1,
+    "requires": [
+      {
+        "id": "heat_draw",
+        "rank": 3
+      }
+    ],
+    "behavior": "last_coal",
+    "about": "Once each zone, a killing blow leaves you standing in the coals.",
+    "notes": [
+      "Restores a share of life and ignores pain for a heartbeat. Resets when you enter a zone."
+    ],
+    "params": {
+      "healPercent": 35
+    }
+  },
+  {
+    "id": "glassling",
+    "name": "Glassling",
+    "branch": "call",
+    "type": "active",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      12,
+      0.4
+    ],
+    "cooldown": 5,
+    "behavior": "summon",
+    "about": "Call a small glass servant. It walks ahead and bites what you point at.",
+    "notes": [
+      "Second Voice raises minion damage and how many can stand with you."
+    ],
+    "params": {
+      "minion": "glassling",
+      "max": [
+        1,
+        0.18
+      ]
+    }
+  },
+  {
+    "id": "second_voice",
+    "name": "Second Voice",
+    "branch": "call",
+    "type": "passive",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The call comes back louder. Minions hit harder, and another can answer.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "minionDamagePercent": 4,
+        "maxMinions": 0.2
+      }
+    }
+  },
+  {
+    "id": "salt_wisp",
+    "name": "Salt Wisp",
+    "branch": "call",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "glassling",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      14,
+      0.35
+    ],
+    "cooldown": 6,
+    "behavior": "summon",
+    "about": "A pale wisp that throws salt-sparks from behind your line.",
+    "notes": [
+      "Second Voice raises its damage too."
+    ],
+    "params": {
+      "minion": "salt_wisp",
+      "max": [
+        1,
+        0.12
+      ]
+    }
+  },
+  {
+    "id": "chorus",
+    "name": "Chorus",
+    "branch": "call",
+    "type": "active",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "glassling",
+        "rank": 4
+      }
+    ],
+    "mana": [
+      16,
+      0.4
+    ],
+    "cooldown": 7,
+    "behavior": "command",
+    "about": "Every servant you have sings. Anything standing near them is cut by cold.",
+    "notes": [
+      "Undertow deepens cold damage."
+    ],
+    "params": {
+      "radius": 2.1,
+      "cold": [
+        6,
+        10,
+        1.6,
+        2
+      ]
+    }
+  },
+  {
+    "id": "reed_bolt",
+    "name": "Reed Bolt",
+    "branch": "tide",
+    "type": "active",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      5,
+      0.25
+    ],
+    "cooldown": 0.65,
+    "behavior": "projectile",
+    "about": "A splinter of frozen reed, thrown from outside a sword's reach.",
+    "notes": [
+      "Undertow adds cold to the bolt and to Chorus."
+    ],
+    "params": {
+      "speed": 10,
+      "range": 7.4,
+      "radius": 0.18,
+      "cold": [
+        5,
+        8,
+        1.4,
+        1.7
+      ]
+    }
+  },
+  {
+    "id": "undertow",
+    "name": "Undertow",
+    "branch": "tide",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Cold sticks. Your cold spells hit harder, and a little cold resist comes with it.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "coldDamage": [
+          1,
+          2
+        ],
+        "coldResist": 1
+      }
+    }
+  },
+  {
+    "id": "brine_ward",
+    "name": "Brine Ward",
+    "branch": "tide",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "reed_bolt",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      12,
+      0.3
+    ],
+    "cooldown": 8,
+    "behavior": "ward",
+    "about": "A shell of salt water drinks the next blows.",
+    "notes": [],
+    "params": {
+      "absorb": [
+        12,
+        4
+      ],
+      "duration": 8,
+      "perRank": {
+        "coldResist": 1
+      }
+    }
+  },
+  {
+    "id": "tide_ring",
+    "name": "Tide Ring",
+    "branch": "tide",
+    "type": "active",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "reed_bolt",
+        "rank": 4
+      }
+    ],
+    "mana": [
+      18,
+      0.45
+    ],
+    "cooldown": 5,
+    "behavior": "nova",
+    "about": "A ring of brine opens around you and freezes whatever it touches.",
+    "notes": [
+      "Undertow deepens this cold."
+    ],
+    "params": {
+      "radius": [
+        2.4,
+        0.04
+      ],
+      "cold": [
+        8,
+        14,
+        2.2,
+        2.6
+      ]
+    }
+  },
+  {
+    "id": "keepers_knot",
+    "name": "Keeper's Knot",
+    "branch": "bond",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "A knot around the wrist. More life for you, sturdier servants.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "life": 6,
+        "minionLife": 8
+      }
+    }
+  },
+  {
+    "id": "shared_breath",
+    "name": "Shared Breath",
+    "branch": "bond",
+    "type": "passive",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "keepers_knot",
+        "rank": 1
+      }
+    ],
+    "behavior": "passive",
+    "about": "You and the chorus breathe together. Mana comes easier, and hits return a little life.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "manaRegen": 0.18,
+        "lifeLeech": 0.35
+      }
+    }
+  },
+  {
+    "id": "lantern_pact",
+    "name": "Lantern Pact",
+    "branch": "bond",
+    "type": "active",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "keepers_knot",
+        "rank": 3
+      }
+    ],
+    "mana": [
+      16,
+      0.3
+    ],
+    "cooldown": 12,
+    "behavior": "vigil",
+    "about": "A shared lamp. Foes inside it slow, and your aim steadies.",
+    "notes": [],
+    "params": {
+      "duration": 10,
+      "radius": 4.4,
+      "slow": 0.28,
+      "perRank": {
+        "attackRating": 16
+      }
+    }
+  },
+  {
+    "id": "last_reed",
+    "name": "Last Reed",
+    "branch": "bond",
+    "type": "passive",
+    "reqLevel": 12,
+    "maxRank": 1,
+    "requires": [
+      {
+        "id": "shared_breath",
+        "rank": 3
+      }
+    ],
+    "behavior": "last_coal",
+    "about": "Once each zone, a killing blow leaves you standing in the shallows.",
+    "notes": [
+      "Restores a share of life. Resets when you enter a zone."
+    ],
+    "params": {
+      "healPercent": 35
+    }
+  },
+  {
+    "id": "thorn_snare",
+    "name": "Thorn Snare",
+    "branch": "snare",
+    "type": "active",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      6,
+      0.2
+    ],
+    "cooldown": 0.9,
+    "behavior": "trap",
+    "about": "Leave a snare at your feet. It arms, then bursts poison on the first thing that steps in.",
+    "notes": [
+      "Wider Net lets more snares stand, and makes each one broader."
+    ],
+    "params": {
+      "max": [
+        4,
+        0.3
+      ],
+      "radius": [
+        1.35,
+        0.04
+      ],
+      "life": 22,
+      "arm": 0.35,
+      "poison": [
+        8,
+        13,
+        2,
+        2.5
+      ],
+      "phys": [
+        3,
+        5,
+        0.5,
+        0.7
+      ]
+    }
+  },
+  {
+    "id": "wider_net",
+    "name": "Wider Net",
+    "branch": "snare",
+    "type": "passive",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You learn how far a snare can reach, and how many the ground will hold.",
+    "notes": [
+      "Each rank widens traps. Every fourth rank lets one more snare stay armed."
+    ],
+    "params": {
+      "perRank": {
+        "poisonResist": 1
+      }
+    }
+  },
+  {
+    "id": "bramble_bed",
+    "name": "Bramble Bed",
+    "branch": "snare",
+    "type": "active",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "thorn_snare",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      14,
+      0.4
+    ],
+    "cooldown": 3.5,
+    "behavior": "trap",
+    "about": "A wide bed of briar. It waits longer and drinks a whole pack if they bunch.",
+    "notes": [
+      "Wider Net widens this bed too."
+    ],
+    "params": {
+      "max": [
+        2,
+        0.1
+      ],
+      "radius": [
+        1.8,
+        0.05
+      ],
+      "life": 16,
+      "arm": 0.55,
+      "poison": [
+        10,
+        16,
+        2.2,
+        2.8
+      ],
+      "phys": [
+        3,
+        6,
+        0.5,
+        0.8
+      ]
+    }
+  },
+  {
+    "id": "spring_jaw",
+    "name": "Spring Jaw",
+    "branch": "snare",
+    "type": "active",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "thorn_snare",
+        "rank": 3
+      }
+    ],
+    "mana": [
+      12,
+      0.35
+    ],
+    "cooldown": 6,
+    "behavior": "detonate",
+    "about": "Shut every snare you have left in the ground. They all go at once.",
+    "notes": [
+      "Deep Rot and Long Bite deepen the poison that comes out."
+    ],
+    "params": {
+      "poisonMul": [
+        1.15,
+        0.04
+      ]
+    }
+  },
+  {
+    "id": "needle",
+    "name": "Needle",
+    "branch": "venom",
+    "type": "active",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      5,
+      0.2
+    ],
+    "cooldown": 0.55,
+    "behavior": "projectile",
+    "about": "A poisoned splinter. You do not have to stand close.",
+    "notes": [
+      "Deep Rot adds poison. Long Bite makes the rot last."
+    ],
+    "params": {
+      "speed": 11,
+      "range": 6.4,
+      "radius": 0.14,
+      "poison": [
+        11,
+        18,
+        2.6,
+        3.2
+      ]
+    }
+  },
+  {
+    "id": "deep_rot",
+    "name": "Deep Rot",
+    "branch": "venom",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The poison in your kit bites harder, on the knife and in the snare.",
+    "notes": [
+      "Adds flat poison to Needle, Miasma, and every trap."
+    ],
+    "params": {
+      "perRank": {
+        "poisonDamage": [
+          2,
+          3
+        ]
+      }
+    }
+  },
+  {
+    "id": "miasma",
+    "name": "Miasma",
+    "branch": "venom",
+    "type": "active",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "needle",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      16,
+      0.4
+    ],
+    "cooldown": 5,
+    "behavior": "nova",
+    "about": "A green breath opens around you and settles into whatever it touches.",
+    "notes": [
+      "Deep Rot deepens the cloud."
+    ],
+    "params": {
+      "radius": [
+        2.3,
+        0.04
+      ],
+      "poison": [
+        8,
+        14,
+        2,
+        2.5
+      ]
+    }
+  },
+  {
+    "id": "long_bite",
+    "name": "Long Bite",
+    "branch": "venom",
+    "type": "passive",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Rot does not hurry. What you poison keeps bleeding after the hit.",
+    "notes": [
+      "Each rank lengthens poison you inflict."
+    ],
+    "params": {
+      "perRank": {
+        "poisonDamage": [
+          1,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "id": "soft_step",
+    "name": "Soft Step",
+    "branch": "hide",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You walk the briar without announcing it. A little quicker, a little harder to hit.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "moveSpeed": 1,
+        "defense": 3
+      }
+    }
+  },
+  {
+    "id": "antidote",
+    "name": "Antidote",
+    "branch": "hide",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      10,
+      0.25
+    ],
+    "cooldown": 8,
+    "behavior": "ward",
+    "about": "A bitter sip. It drinks the next blows and spits your own poison out.",
+    "notes": [],
+    "params": {
+      "absorb": [
+        14,
+        4
+      ],
+      "duration": 8,
+      "cleanse": true,
+      "perRank": {
+        "poisonResist": 1
+      }
+    }
+  },
+  {
+    "id": "barbed_coat",
+    "name": "Barbed Coat",
+    "branch": "hide",
+    "type": "passive",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The coat grows thorns. Things that cut you take a little rot home.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "thorns": 1,
+        "poisonDamage": [
+          1,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "id": "last_briar",
+    "name": "Last Briar",
+    "branch": "hide",
+    "type": "passive",
+    "reqLevel": 12,
+    "maxRank": 1,
+    "requires": [
+      {
+        "id": "barbed_coat",
+        "rank": 3
+      }
+    ],
+    "behavior": "last_coal",
+    "about": "Once each zone, a killing blow leaves you caught in your own snare, still breathing.",
+    "notes": [
+      "Restores a share of life. Resets when you enter a zone."
+    ],
+    "params": {
+      "healPercent": 32
+    }
+  },
+  {
+    "id": "salt_cut",
+    "name": "Salt Cut",
+    "branch": "edge",
+    "type": "active",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      4,
+      0.15
+    ],
+    "cooldown": 0.35,
+    "behavior": "melee",
+    "about": "A short cut. Quick, close, and meaner if your hands are already moving.",
+    "notes": [
+      "Quick Wrist speeds the swing. Keen Edge makes it land harder."
+    ],
+    "params": {
+      "range": 1.35,
+      "arc": 2.2,
+      "physMult": [
+        1.35,
+        0.05
+      ]
+    }
+  },
+  {
+    "id": "keen_edge",
+    "name": "Keen Edge",
+    "branch": "edge",
+    "type": "passive",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You keep the blade where it will bite. More aim, and more cuts that matter.",
+    "notes": [
+      "Crit and attack rating feed Salt Cut, Glass Step, and Red Line."
+    ],
+    "params": {
+      "perRank": {
+        "critChance": 0.6,
+        "attackRating": 8
+      }
+    }
+  },
+  {
+    "id": "glass_step",
+    "name": "Glass Step",
+    "branch": "edge",
+    "type": "active",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      8,
+      0.2
+    ],
+    "cooldown": 2.4,
+    "behavior": "dash",
+    "about": "Step through them. The ones you pass get the edge on the way.",
+    "notes": [
+      "Keen Edge crits this. Blood Price drinks what the step cuts."
+    ],
+    "params": {
+      "distance": [
+        3.2,
+        0.06
+      ],
+      "range": 1.25,
+      "physMult": [
+        0.85,
+        0.03
+      ]
+    }
+  },
+  {
+    "id": "parting_cut",
+    "name": "Parting Cut",
+    "branch": "edge",
+    "type": "active",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "salt_cut",
+        "rank": 2
+      }
+    ],
+    "mana": [
+      10,
+      0.25
+    ],
+    "cooldown": 3.2,
+    "behavior": "melee",
+    "about": "A heavier cut, meant for the one already in your face.",
+    "notes": [
+      "Uses the same crit and leech as the short cut, with more of the blade."
+    ],
+    "params": {
+      "range": 1.35,
+      "arc": 0.9,
+      "physMult": [
+        1.6,
+        0.06
+      ]
+    }
+  },
+  {
+    "id": "quick_wrist",
+    "name": "Quick Wrist",
+    "branch": "tempo",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The wrist learns the rhythm. You swing more often.",
+    "notes": [
+      "Attack speed helps every cut, including the plain Strike button."
+    ],
+    "params": {
+      "perRank": {
+        "attackSpeed": 2
+      }
+    }
+  },
+  {
+    "id": "red_line",
+    "name": "Red Line",
+    "branch": "tempo",
+    "type": "active",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "salt_cut",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      12,
+      0.3
+    ],
+    "cooldown": 4,
+    "behavior": "melee",
+    "about": "A spin with the saber. Anything in arm's reach gets the edge.",
+    "notes": [
+      "Keen Edge can crit the spin. Blood Price drinks it. It does not need a locked target."
+    ],
+    "params": {
+      "range": 2.15,
+      "arc": 6.2,
+      "physMult": [
+        0.95,
+        0.04
+      ]
+    }
+  },
+  {
+    "id": "open_tempo",
+    "name": "Open Tempo",
+    "branch": "tempo",
+    "type": "passive",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "quick_wrist",
+        "rank": 2
+      }
+    ],
+    "behavior": "passive",
+    "about": "You stop waiting for them to finish a swing.",
+    "notes": [
+      "More attack speed, and a little move speed so the step is not the only way in."
+    ],
+    "params": {
+      "perRank": {
+        "attackSpeed": 1,
+        "moveSpeed": 1
+      }
+    }
+  },
+  {
+    "id": "salt_guard",
+    "name": "Salt Guard",
+    "branch": "tempo",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      9,
+      0.2
+    ],
+    "cooldown": 8,
+    "behavior": "ward",
+    "about": "A tight guard. It eats the next few hits while you stay in their reach.",
+    "notes": [],
+    "params": {
+      "absorb": [
+        16,
+        5
+      ],
+      "duration": 6,
+      "perRank": {
+        "defense": 2
+      }
+    }
+  },
+  {
+    "id": "blood_price",
+    "name": "Blood Price",
+    "branch": "vein",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Cuts pay you back. The physical part of a hit returns a little life.",
+    "notes": [
+      "Works on Salt Cut, Glass Step, Parting Cut, Red Line, and Strike."
+    ],
+    "params": {
+      "perRank": {
+        "lifeLeech": 0.6
+      }
+    }
+  },
+  {
+    "id": "second_wind",
+    "name": "Second Wind",
+    "branch": "vein",
+    "type": "passive",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You get hit and you are still there. More life, a harder coat.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "life": 6,
+        "defense": 3
+      }
+    }
+  },
+  {
+    "id": "riposte",
+    "name": "Riposte",
+    "branch": "vein",
+    "type": "passive",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "blood_price",
+        "rank": 2
+      }
+    ],
+    "behavior": "passive",
+    "about": "They cut you, the salt answers. Thorns, and a little more speed after you have been in it.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "thorns": 2,
+        "attackSpeed": 1
+      }
+    }
+  },
+  {
+    "id": "last_salt",
+    "name": "Last Salt",
+    "branch": "vein",
+    "type": "passive",
+    "reqLevel": 12,
+    "maxRank": 1,
+    "requires": [
+      {
+        "id": "second_wind",
+        "rank": 3
+      }
+    ],
+    "behavior": "last_coal",
+    "about": "Once each zone, a killing blow leaves salt in the wound and you still standing.",
+    "notes": [
+      "Restores a share of life. Resets when you enter a zone."
+    ],
+    "params": {
+      "healPercent": 30
+    }
+  },
+  {
+    "id": "bell_note",
+    "name": "Bell Note",
+    "branch": "bell",
+    "type": "active",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      6,
+      0.2
+    ],
+    "cooldown": 0.6,
+    "behavior": "projectile",
+    "about": "One clean note. It shocks the first thing it meets.",
+    "notes": [
+      "Clear Tone adds shock. Held Note does not cut the mana cost. It helps the next note leave the hand sooner."
+    ],
+    "params": {
+      "speed": 10,
+      "range": 7.2,
+      "radius": 0.16,
+      "light": [
+        3,
+        6,
+        0.9,
+        1.2
+      ]
+    }
+  },
+  {
+    "id": "clear_tone",
+    "name": "Clear Tone",
+    "branch": "bell",
+    "type": "passive",
+    "reqLevel": 1,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The note stays pure. Shock hits harder.",
+    "notes": [
+      "Adds shock to Bell Note, Peal, and Counterpoint."
+    ],
+    "params": {
+      "perRank": {
+        "lightningDamage": [
+          1,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "id": "peal",
+    "name": "Peal",
+    "branch": "bell",
+    "type": "active",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "bell_note",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      16,
+      0.4
+    ],
+    "cooldown": 5,
+    "behavior": "nova",
+    "about": "The whole bell, not the note. A ring of shock around you.",
+    "notes": [
+      "Clear Tone deepens it. Slow Hymn keeps them in the ring longer."
+    ],
+    "params": {
+      "radius": [
+        2.15,
+        0.03
+      ],
+      "light": [
+        4,
+        7,
+        1,
+        1.3
+      ]
+    }
+  },
+  {
+    "id": "counterpoint",
+    "name": "Counterpoint",
+    "branch": "bell",
+    "type": "active",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "bell_note",
+        "rank": 3
+      }
+    ],
+    "mana": [
+      11,
+      0.3
+    ],
+    "cooldown": 2.2,
+    "behavior": "projectile",
+    "about": "A second note, lower, that cracks when it lands.",
+    "notes": [
+      "Clear Tone adds to this too."
+    ],
+    "params": {
+      "speed": 8,
+      "range": 6.5,
+      "radius": 0.2,
+      "light": [
+        6,
+        10,
+        1.5,
+        1.8
+      ]
+    }
+  },
+  {
+    "id": "slow_hymn",
+    "name": "Slow Hymn",
+    "branch": "hymn",
+    "type": "active",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      14,
+      0.3
+    ],
+    "cooldown": 12,
+    "behavior": "vigil",
+    "about": "A hymn under your breath. Things near you move like the air is thick.",
+    "notes": [
+      "Quiet Room widens the same idea. This one is the first verse."
+    ],
+    "params": {
+      "duration": 12,
+      "radius": 4.2,
+      "slow": 0.28,
+      "perRank": {
+        "defense": 2
+      }
+    }
+  },
+  {
+    "id": "iron_hymn",
+    "name": "Iron Hymn",
+    "branch": "hymn",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "mana": [
+      12,
+      0.25
+    ],
+    "cooldown": 10,
+    "behavior": "ward",
+    "about": "You sing the coat thicker. The next hits have to get through it.",
+    "notes": [],
+    "params": {
+      "absorb": [
+        18,
+        5
+      ],
+      "duration": 8,
+      "perRank": {
+        "lightningResist": 1
+      }
+    }
+  },
+  {
+    "id": "quiet_room",
+    "name": "Quiet Room",
+    "branch": "hymn",
+    "type": "active",
+    "reqLevel": 10,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "slow_hymn",
+        "rank": 2
+      }
+    ],
+    "mana": [
+      18,
+      0.4
+    ],
+    "cooldown": 14,
+    "behavior": "vigil",
+    "about": "The hymn fills the room. A wider slow, and you are harder to shove.",
+    "notes": [
+      "Stacks with the idea of Slow Hymn. Cast the one you need."
+    ],
+    "params": {
+      "duration": 10,
+      "radius": 5.4,
+      "slow": 0.36,
+      "perRank": {
+        "defense": 3,
+        "mana": 2
+      }
+    }
+  },
+  {
+    "id": "low_chord",
+    "name": "Low Chord",
+    "branch": "hymn",
+    "type": "passive",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "A note you keep under the others. More life, and the lamp-scout hits a little harder.",
+    "notes": [
+      "This also raises Quill, and any glass you did not call yourself, if they are with you."
+    ],
+    "params": {
+      "perRank": {
+        "life": 5,
+        "minionDamagePercent": 2
+      }
+    }
+  },
+  {
+    "id": "held_note",
+    "name": "Held Note",
+    "branch": "keep",
+    "type": "passive",
+    "reqLevel": 2,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You hold the breath between notes. Mana comes back, and spells leave the hand sooner.",
+    "notes": [
+      "Cast speed shortens cooldowns. Mana regen keeps Peal possible."
+    ],
+    "params": {
+      "perRank": {
+        "manaRegen": 0.15,
+        "castSpeed": 2
+      }
+    }
+  },
+  {
+    "id": "damp",
+    "name": "Damp",
+    "branch": "keep",
+    "type": "passive",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Shock you throw does not like to come home. A little lightning resist, a little mana.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "lightningResist": 2,
+        "mana": 4
+      }
+    }
+  },
+  {
+    "id": "choir",
+    "name": "Choir",
+    "branch": "keep",
+    "type": "passive",
+    "reqLevel": 8,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "held_note",
+        "rank": 2
+      }
+    ],
+    "behavior": "passive",
+    "about": "Other songs sit easier in the mouth. More breath, a thicker coat, a quicker hand.",
+    "notes": [
+      "Feeds Peal and the hymns. It does not raise their rank."
+    ],
+    "params": {
+      "perRank": {
+        "mana": 6,
+        "defense": 4,
+        "castSpeed": 1
+      }
+    }
+  },
+  {
+    "id": "last_bell",
+    "name": "Last Bell",
+    "branch": "keep",
+    "type": "passive",
+    "reqLevel": 12,
+    "maxRank": 1,
+    "requires": [
+      {
+        "id": "iron_hymn",
+        "rank": 1
+      }
+    ],
+    "behavior": "last_coal",
+    "about": "Once each zone, the bell rings for you instead of over you.",
+    "notes": [
+      "Restores a share of life. Resets when you enter a zone."
+    ],
+    "params": {
+      "healPercent": 34
+    }
+  },
+  {
+    "id": "kiln_hook",
+    "name": "Kiln Hook",
+    "branch": "brand",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "ash_strike",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      6,
+      0.2
+    ],
+    "cooldown": 1.4,
+    "behavior": "melee",
+    "about": "A longer cut. It reaches a step past Ash Strike.",
+    "notes": [
+      "Kindle and the fire on your weapon still apply."
+    ],
+    "params": {
+      "range": 1.7,
+      "arc": 1,
+      "physMult": [
+        1.1,
+        0.04
+      ],
+      "fire": [
+        2,
+        5,
+        0.6,
+        0.9
+      ]
+    }
+  },
+  {
+    "id": "living_coal",
+    "name": "Living Coal",
+    "branch": "ember",
+    "type": "passive",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The coal in the blade stays hot between casts.",
+    "notes": [
+      "Flat fire damage on every hit, including Ash Strike."
+    ],
+    "params": {
+      "perRank": {
+        "fireDamage": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "ash_skin",
+    "name": "Ash Skin",
+    "branch": "warden",
+    "type": "passive",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Ash packs into the coat. You are harder to burn and harder to cut.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "defense": 4,
+        "fireResist": 1
+      }
+    }
+  },
+  {
+    "id": "third_voice",
+    "name": "Third Voice",
+    "branch": "call",
+    "type": "passive",
+    "reqLevel": 6,
+    "maxRank": 10,
+    "requires": [
+      {
+        "id": "second_voice",
+        "rank": 1
+      }
+    ],
+    "behavior": "passive",
+    "about": "Another voice in the call. One more servant can stand with you.",
+    "notes": [
+      "Adds to the cap from Second Voice. It does not raise their damage by itself."
+    ],
+    "params": {
+      "perRank": {
+        "maxMinions": 0.15
+      }
+    }
+  },
+  {
+    "id": "rime",
+    "name": "Rime",
+    "branch": "tide",
+    "type": "passive",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Cold sits on the bolt before you throw it.",
+    "notes": [
+      "Flat cold on Reed Bolt, Tide Ring, and Chorus."
+    ],
+    "params": {
+      "perRank": {
+        "coldDamage": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "id": "glass_heart",
+    "name": "Glass Heart",
+    "branch": "bond",
+    "type": "passive",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "Your servants hold together when they are hit.",
+    "notes": [
+      "Minion life, and a little of yours."
+    ],
+    "params": {
+      "perRank": {
+        "minionLife": 4,
+        "life": 3
+      }
+    }
+  },
+  {
+    "id": "tripwire",
+    "name": "Tripwire",
+    "branch": "snare",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "thorn_snare",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      6,
+      0.2
+    ],
+    "cooldown": 0.9,
+    "behavior": "trap",
+    "about": "A thin wire. It arms fast and catches the first step.",
+    "notes": [
+      "Wider Net still widens it. Deep Rot still poisons it."
+    ],
+    "params": {
+      "max": [
+        4,
+        0.2
+      ],
+      "radius": [
+        0.9,
+        0.03
+      ],
+      "life": 14,
+      "arm": 0.25,
+      "poison": [
+        5,
+        9,
+        1.4,
+        1.8
+      ],
+      "phys": [
+        2,
+        4,
+        0.3,
+        0.5
+      ]
+    }
+  },
+  {
+    "id": "spit",
+    "name": "Spit",
+    "branch": "venom",
+    "type": "active",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "needle",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      7,
+      0.2
+    ],
+    "cooldown": 1.3,
+    "behavior": "projectile",
+    "about": "A mouthful of rot. Shorter than Needle, meaner up close.",
+    "notes": [
+      "Deep Rot and Long Bite apply."
+    ],
+    "params": {
+      "speed": 8,
+      "range": 4.5,
+      "radius": 0.16,
+      "poison": [
+        7,
+        12,
+        1.8,
+        2.2
+      ]
+    }
+  },
+  {
+    "id": "crouch",
+    "name": "Crouch",
+    "branch": "hide",
+    "type": "passive",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You make a smaller target. A little defense, a little poison resist.",
+    "notes": [],
+    "params": {
+      "perRank": {
+        "defense": 3,
+        "poisonResist": 1
+      }
+    }
+  },
+  {
+    "id": "salt_feint",
+    "name": "Salt Feint",
+    "branch": "edge",
+    "type": "active",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "salt_cut",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      5,
+      0.15
+    ],
+    "cooldown": 1.6,
+    "behavior": "dash",
+    "about": "A short step, not the long one. You are through them before they turn.",
+    "notes": [
+      "Keen Edge can crit it. Blood Price drinks it."
+    ],
+    "params": {
+      "distance": [
+        2.1,
+        0.04
+      ],
+      "range": 1.15,
+      "physMult": [
+        0.9,
+        0.03
+      ]
+    }
+  },
+  {
+    "id": "measure",
+    "name": "Measure",
+    "branch": "tempo",
+    "type": "passive",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "You learn the length of their swing. A little attack rating, a little crit.",
+    "notes": [
+      "Stacks with Keen Edge. It does not replace it."
+    ],
+    "params": {
+      "perRank": {
+        "attackRating": 6,
+        "critChance": 0.4
+      }
+    }
+  },
+  {
+    "id": "close_vein",
+    "name": "Close Vein",
+    "branch": "vein",
+    "type": "passive",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "blood_price",
+        "rank": 1
+      }
+    ],
+    "behavior": "passive",
+    "about": "The cut closes on them and opens for you. More leech.",
+    "notes": [
+      "Life leech only drinks the physical part of a hit."
+    ],
+    "params": {
+      "perRank": {
+        "lifeLeech": 0.4
+      }
+    }
+  },
+  {
+    "id": "overtone",
+    "name": "Overtone",
+    "branch": "bell",
+    "type": "active",
+    "reqLevel": 4,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "bell_note",
+        "rank": 1
+      }
+    ],
+    "mana": [
+      8,
+      0.25
+    ],
+    "cooldown": 1.4,
+    "behavior": "projectile",
+    "about": "A higher note. It flies farther than the first.",
+    "notes": [
+      "Clear Tone adds shock."
+    ],
+    "params": {
+      "speed": 11,
+      "range": 8.2,
+      "radius": 0.14,
+      "light": [
+        4,
+        8,
+        1.3,
+        1.7
+      ]
+    }
+  },
+  {
+    "id": "rest_bar",
+    "name": "Rest Bar",
+    "branch": "keep",
+    "type": "passive",
+    "reqLevel": 3,
+    "maxRank": 20,
+    "requires": [],
+    "behavior": "passive",
+    "about": "The breath between notes. Mana comes back a little faster.",
+    "notes": [
+      "Works with Held Note. You want both if you sing often."
+    ],
+    "params": {
+      "perRank": {
+        "manaRegen": 0.12,
+        "mana": 3
+      }
+    }
+  },
+  {
+    "id": "wide_hymn",
+    "name": "Wide Hymn",
+    "branch": "hymn",
+    "type": "passive",
+    "reqLevel": 6,
+    "maxRank": 20,
+    "requires": [
+      {
+        "id": "slow_hymn",
+        "rank": 1
+      }
+    ],
+    "behavior": "passive",
+    "about": "The hymn carries. A little more defense while you are the one singing.",
+    "notes": [
+      "It does not change the hymn radius. It keeps you standing in it."
+    ],
+    "params": {
+      "perRank": {
+        "defense": 3,
+        "lightningResist": 1
+      }
+    }
+  }
+]
