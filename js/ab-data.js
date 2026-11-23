@@ -16,12 +16,18 @@
     ["campaignDifficulty", "data/difficulty.json"],
     ["inventoryLayout", "data/inventory-layout.json"],
     ["camera", "data/camera.json"],
+    ["icons", "data/icons.json", true],
+    ["props3d", "data/props3d.json", true],
+    ["ui", "data/ui.json", true],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
-    files.map(([key, path]) =>
+    files.map(([key, path, optional]) =>
       fetch(path).then((res) => {
         if (!res.ok) throw new Error("Could not load " + path + " (" + res.status + ")");
         return res.json().then((data) => [key, data]);
+      }).catch((err) => {
+        if (optional) return [key, null]; // optional art data: the game falls back to its old drawing
+        throw err;
       })
     )
   ).then((pairs) => {
@@ -38,6 +44,9 @@
     D.npcLines = bag.npcLines;
     D.rarityTable = bag.rarity;
     D.camera = bag.camera || {};
+    D.icons = bag.icons || null;
+    D.props3d = bag.props3d || null;
+    D.ui = bag.ui || null;
     D.inventoryLayout = bag.inventoryLayout || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;
