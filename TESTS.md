@@ -1,0 +1,60 @@
+# Ashbound test checklist (rerunnable)
+
+Read `README.md` first.
+
+Setup (on the box): `cd /workspace/ashbound-overhaul/r7 && python3 -m http.server 8907`
+Python with Playwright: `/workspace/pwenv/bin/python`. Chrome: `/usr/bin/google-chrome` (headless).
+
+r7 baseline (run after every change, or the slice that change can break):
+
+| # | Check | Command | Pass when |
+|---|-------|---------|-----------|
+| 12 | r5: player does not push monsters; gap closes to melee; player can outrun; speed caps | `/workspace/pwenv/bin/python tests/r5_ai.py http://127.0.0.1:8907/index.html shots` | `shots/r5-ai-report.json`: `all_pass: true`. Frozen monster shift ≈ 0; a chasing melee gap shrinks to swing range and it attacks; a fleeing player opens the gap; `normalMax` is 55–65% of run 4.5 |
+| 14 | The telling (skip, finish, return to title; save version unchanged) | `/workspace/pwenv/bin/python tests/r7_telling.py http://127.0.0.1:8907/index.html` | `tests/r7-telling-report.json`: `all_pass: true`. Opens from the title button, Skip returns to title, walking Continue/Done also returns to title, `SAVE_VERSION` is 5, `characters.json` is loaded. |
+| 13 | r6 / v55: starting-area HP matches v52; APS/damage; melee cleave; no player shove from normal mobs; targeting modes persist | `/workspace/pwenv/bin/python tests/r6_v55.py http://127.0.0.1:8907/index.html` | `tests/r6-v55-report.json`: `all_pass: true`. HP table matches v52; each class APS is 1.25× the v54 weapon rate; front-cone cleave hits several, not behind; ranged stays single-target; surround of 30: player shift ≈ 0, can walk away; Closest / Lowest health / Highest max health / Facing direction all pick correctly and the setting survives reload |
+
+| 15 | Targeting: in-range hold latches `targetId`; out-of-range hold-to-walk uses the Settings mode via `abPickTarget` with LOS | `/workspace/pwenv/bin/python tests/r7_targeting.py http://127.0.0.1:8907/index.html` | `tests/r7-targeting-report.json`: `all_pass: true`. All four modes (closest, lowest, highest, facing) first-latch the mode pick both in range and on a walk-in. |
+| 16 | Crowd: spatial hash, unstack, rings, no heavy 1–6 tile shove | `/workspace/pwenv/bin/python tests/r7_crowd.py http://127.0.0.1:8907/index.html` | `tests/r7-crowd-report.json`: `all_pass: true`. 30 hounds shift ≈ 0; stack-40 overlap pairs well under the v55 780-pair pile; mixed-30 player shift < 1 tile; run-through is not stuck in the pack. |
+| 17 | 3D baker off the game frame, LRU-bounded cache | `/workspace/pwenv/bin/python tests/r7_baker.py http://127.0.0.1:8907/index.html` | `tests/r7-baker-report.json`: `all_pass: true`. `onFrameHits` is 0, frames are produced, and a tightened cap evicts so `frames` stays at or under the cap. |
+| 18 | Active-monster cap (40) with cheap LOD for the rest | `/workspace/pwenv/bin/python tests/r7_cap.py http://127.0.0.1:8907/index.html` | `tests/r7-cap-report.json`: `all_pass: true`. A 30-pack is all active; a 120-pack has 40 active; bosses stay active. |
+| 19 | NPC lines load from `data/npc-lines.json` (idle, greet, side quests); talk still works; save version unchanged | `/workspace/pwenv/bin/python tests/r7_npc_lines.py http://127.0.0.1:8907/index.html` | `tests/r7-npc-lines-report.json`: `all_pass: true`. Idle, greet, and quest text match the data file, `npcIdle`/`npcGreet` return those lines, Senn in Hearthveil still has the first idle bark, `SAVE_VERSION` is 5. |
+| 20 | Event bus (`ABBus`) loads and delivers events | `/workspace/pwenv/bin/python tests/r7_bus.py http://127.0.0.1:8907/index.html` | `tests/r7-bus-report.json`: `all_pass: true`. `ABBus` is present after boot, a subscriber receives `emit`, `off` stops further delivery, `SAVE_VERSION` is 5. |
+| 21 | Combat events on `ABBus` (miss, hit, player hurt, killed); FX and loot still fire | `/workspace/pwenv/bin/python tests/r7_combat_events.py http://127.0.0.1:8907/index.html` | `tests/r7-combat-events-report.json`: `all_pass: true`. A hit, a forced miss, a killing blow, and a player hurt each emit the matching event; floats / flash still appear; `SAVE_VERSION` is 5. |
+| 22 | Physics module (`ABPhysics`) is attached and crowd behavior is unchanged | `/workspace/pwenv/bin/python tests/r7_physics.py http://127.0.0.1:8907/index.html` and `tests/r7_crowd.py` | `tests/r7-physics-report.json` and `tests/r7-crowd-report.json`: `all_pass: true`. Module present, `dist`/`move` attached, golem may shove and a hound may not; crowd checks still pass. |
+| 23 | `hitStop` freezes combat only; time, floats, AI movement, and save keep running | `/workspace/pwenv/bin/python tests/r7_hitstop.py http://127.0.0.1:8907/index.html` | `tests/r7-hitstop-report.json`: `all_pass: true`. During a 0.45s hit-stop, game time and damage floats advance, a chasing monster still moves, `pendingSave` is flushed, and no new combat damage lands. `SAVE_VERSION` is 5. |
+| 24 | Narrow save DTO (`ABSave`); mid-fight load; `SAVE_VERSION` 5 | `/workspace/pwenv/bin/python tests/r7_save_dto.py http://127.0.0.1:8907/index.html` | `tests/r7-save-dto-report.json`: `all_pass: true`. The DTO is a clone (not the live player), monsters are the narrow snapshot (no `_active` / telegraph), FX flags are omitted, and loading the slot restores zone, position, HP, and the wounded monster. |
+| 25 | AI module (`ABAI`) is attached; active cap still holds | `/workspace/pwenv/bin/python tests/r7_ai.py http://127.0.0.1:8907/index.html` | `tests/r7-ai-report.json`: `all_pass: true`. Module present, a 120-pack has 40 active and 80 on LOD, `SAVE_VERSION` is 5. |
+| 26 | Render/baker facade (`ABRender`) is attached; baker stays off the draw frame | `/workspace/pwenv/bin/python tests/r7_render.py http://127.0.0.1:8907/index.html` | `tests/r7-render-report.json`: `all_pass: true`. Module present, `cap`/`stats` work, `onFrameHits` is 0, `SAVE_VERSION` is 5. |
+| 27 | Coach and act story lines load from `data/npc-lines.json` (`coach`, `story`); save version unchanged | `/workspace/pwenv/bin/python tests/r7_story_lines.py http://127.0.0.1:8907/index.html` | `tests/r7-story-lines-report.json`: `all_pass: true`. Coach and act-intro text match the data file, a new Cinder Warden game shows the act 1 coach line, `SAVE_VERSION` is 5. |
+
+| 28 | Phase A: v4 save migrates to `SAVE_VERSION` 5; unique floors and affix caps; staging prefix stays separate | `/workspace/pwenv/bin/python tests/r7_phaseA_migrate.py http://127.0.0.1:8907/index.html` | `tests/r7-phaseA-migrate-report.json`: `all_pass: true`. Hearthbrand → Epic, Kiln Tyrant's Collar → Legendary, Kilntooth → Fabled (not Mythical); a 4-affix rare keeps `legacyAffixes`; cube and shared bag migrate; r7 `STAGING` is false and does not write `ashbound-staging:` keys. |
+| 29 | Phase A: rank names, numbers, and colors | `/workspace/pwenv/bin/python tests/r7_phaseA_display.py http://127.0.0.1:8907/index.html` | `tests/r7-phaseA-display-report.json`: `all_pass: true`. Eight ranks Common(1)–Mythical(8); tooltip shows `Rank 5 Epic` / `Floor: Epic` on Hearthbrand; pack icon uses `rar-epic`; CSS variables match `data/rarity.json`. |
+| 30 | Phase A: headless play has no console errors | `/workspace/pwenv/bin/python tests/r7_phaseA_play.py http://127.0.0.1:8907/index.html` | `tests/r7-phaseA-play-report.json`: `all_pass: true`. Title is v63 / `SAVE_VERSION` 5 with `ASHBOUND.craft`; a new hero reaches town play; `errors: []`. |
+| 31 | Skills: learn auto-equips to the bar, empty slot/key opens Skills, point hint shows, v4 hotbar survives migration, touch cast works | `/workspace/pwenv/bin/python tests/r7_skills_play.py http://127.0.0.1:8907/index.html` | `tests/r7-skills-play-report.json`: `all_pass: true`. Fresh iPhone-landscape hero sees the skill-point hint; tapping Learn puts Ash Strike on slot 1; a touch cast spends mana and deals damage or starts a cooldown; a v4 save with equipped skills keeps the same bar after load. |
+| 32 | Campaign intro scale: first fight zone HP/XP is 0.25, last zone is 1.0, rifts stay 1.0; a first-zone monster dies in a few hits | `/workspace/pwenv/bin/python tests/r7_campaign_scale.py http://127.0.0.1:8907/index.html` | `tests/r7-campaign-scale-report.json`: `all_pass: true`. Multipliers match `data/difficulty.json`; Cinderwood pack life is a quarter of the unscaled value; the pack monster dies in at most 5 strikes. |
+
+Comparison stress vs STRESS-v55 (real Low dpr via `qo()`, fresh-tab 3-minute endurance): `tests/r7_stress_compare.py`. Report: `tests/r7-stress-v57.json`.
+
+Stress (when the change can affect packs, collision, baker, zone, or save):
+
+- Scripts: `tests/r6_stress.py`, `tests/r6_stress_carry.py`, `tests/r6_stress_targeting.py` (and the older `tests/r5_stress.py`).
+- Findings: [STRESS-v55.md](STRESS-v55.md), [STRESS-v54.md](STRESS-v54.md).
+- A Low vs High fps pass must call the `qo()` resize path (Low dpr 2, High dpr 3), not only flip `settings.gfx`.
+
+Older checks still apply. Point the URL at this r7 server (8907) instead of the old 8902/8906 ports.
+
+| # | Check | Command | Pass when |
+|---|-------|---------|-----------|
+| 1 | Screens at 844x390 and 390x844: no console errors, new game, combat, skill panel, old save | `WARM=2000 .../python tests/shots.py http://127.0.0.1:8907/index.html r7 shots` | report: `errors: []`, `mode: play`, `dealt_total > 0`, `skills_open: skills`, `old_save.mode: play` |
+| 2 | Controls (dead zone, tap guards, Gear guard) | `.../python tests/ctl_test.py` (URL at 8907) | deadzone input 0, near-Strike tap null, open-ground tap walks, gear blocked while attacking |
+| 3 | Graphics High/Low toggle + fps | `.../python tests/gfx_test.py` (URL at 8907) | Low gives dpr 2 and is saved; High gives dpr 3; no errors |
+| 4 | 3D close-ups (player + 4 monsters, several poses, 8 directions) | `.../python tests/closeup.py http://127.0.0.1:8907/index.html shots` | images written, `errors: []`, per-frame ms listed |
+| 5 | Walk/run strips | `.../python tests/strip.py http://127.0.0.1:8907/index.html r7 shots` | legs alternate, arms swing opposite |
+| 6 | Staging isolation (live + staging on one origin) | put a live-configured copy in `/tmp/site/ashbound/`, staging-upload in `/tmp/site/ashbound-staging/`, serve `/tmp/site`, run `tests/stg_test.py` | badge only on staging, staging can't see the live save, staging keys start with `ashbound-staging:`, two separate caches, live save still loads |
+| 7 | Bosses + NPCs in 3D | `.../python tests/npc_closeup.py http://127.0.0.1:8907/index.html shots` | `[]` printed; close-up sheets written |
+| 8 | Per-type gait (brute/golem/imp) | `.../python tests/gait.py http://127.0.0.1:8907/index.html shots` | `[]` printed; brute sways, golem dips on each step |
+| 9 | Eight new 3D creatures + unique bosses | `.../python tests/creatures.py http://127.0.0.1:8907/index.html shots` | `errors: []`, all 12 types `has: true` |
+| 10 | UI panels and 44px targets at 844x390 and 667x375 | `.../python tests/ui_shots.py http://127.0.0.1:8907/index.html shots` | all four panels open, `small: []` on buttons |
+| 11 | r4 playtest fixes (hint, AI, combat FX, popups, drops/inventory) | `.../python tests/r4_fixes.py http://127.0.0.1:8907/index.html shots` | `all_pass: true` |
+
+Old save fixture: `/workspace/ashbound-staging-text/old-save.json` (a v4 save made by the live build). Old v4 saves must keep loading and migrate to `SAVE_VERSION` 5 (eight-rank tiers). `tests/r7_phaseA_migrate.py` also injects a v4 slot.
