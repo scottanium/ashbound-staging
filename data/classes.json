@@ -7,7 +7,7 @@
       "role": "Melee",
       "stars": 2,
       "pitch": "Stand in the pack and outlast it.",
-      "blurb": "A sentinel who brands steel with cinder. Slow to wake, hard to put down, and worse once the kiln-skills catch.",
+      "blurb": "A sentinel who brands steel with fire. Slow to start, hard to put down, and stronger once the fire skills come in.",
       "base": {
         "strength": 25,
         "dexterity": 20,
@@ -95,8 +95,8 @@
       "epithet": "Poison left in the path",
       "role": "Trapper",
       "stars": 3,
-      "pitch": "Lay the snares. Let the rot do the standing.",
-      "blurb": "A knife and a patient snare. You do not stand in the kiln, and you do not keep a chorus. You salt the ground and let the rot arrive.",
+      "pitch": "Lay the snares. Let the poison do the work.",
+      "blurb": "A knife and a patient snare. You stay out of the thick of it, you don't keep a chorus, and you leave poison in the ground.",
       "base": {
         "strength": 14,
         "dexterity": 28,
@@ -185,8 +185,8 @@
       "epithet": "The note that stays",
       "role": "Caster",
       "stars": 3,
-      "pitch": "Ring the room, then sing the air thick.",
-      "blurb": "You ring shock into a room and sing the air thick. Not a chorus of glass. A bell, a hymn, and the people already beside you.",
+      "pitch": "Ring the room with lightning, then slow the enemies in it.",
+      "blurb": "You deal lightning in a ring and slow the room with hymns. You don't call a chorus of glass. You use a bell, a hymn, and whoever is already beside you.",
       "base": {
         "strength": 12,
         "dexterity": 16,
@@ -229,7 +229,7 @@
     {
       "id": "brand",
       "name": "Brand",
-      "about": "Close cuts that keep the cinder in the wound.",
+      "about": "Close cuts that also deal fire.",
       "classId": "cinder_warden"
     },
     {
@@ -241,7 +241,7 @@
     {
       "id": "warden",
       "name": "Warden",
-      "about": "Hide, leech, and Last Coal, which refuses a grave.",
+      "about": "Armor, life steal, and Last Coal, which can save you from a killing blow.",
       "classId": "cinder_warden"
     },
     {
@@ -253,31 +253,31 @@
     {
       "id": "tide",
       "name": "Tide",
-      "about": "Cold bolts and the ring that clears a bank.",
+      "about": "Cold bolts and a ring of ice that hits everything around you.",
       "classId": "reed_caller"
     },
     {
       "id": "bond",
       "name": "Bond",
-      "about": "The knot that keeps you and the chorus alive, and Last Reed, which refuses a grave.",
+      "about": "Skills that keep you and your servants alive, and Last Reed, which can save you from a killing blow.",
       "classId": "reed_caller"
     },
     {
       "id": "snare",
       "name": "Snare",
-      "about": "Thorns left in the path, and the jaw that closes them.",
+      "about": "Snares left in the path, and a skill that sets them all off.",
       "classId": "briar_stalker"
     },
     {
       "id": "venom",
       "name": "Venom",
-      "about": "A needle, a cloud, and rot that refuses to finish.",
+      "about": "A needle, a poison cloud, and poison that lasts.",
       "classId": "briar_stalker"
     },
     {
       "id": "hide",
       "name": "Hide",
-      "about": "Soft feet, a bitter coat, and Last Briar, which will not let you die.",
+      "about": "Faster movement, a coat that poisons attackers, and Last Briar, which can save you from a killing blow.",
       "classId": "briar_stalker"
     },
     {
@@ -289,13 +289,13 @@
     {
       "id": "tempo",
       "name": "Tempo",
-      "about": "Speed, a spin, and the habit of being first.",
+      "about": "Attack speed, a spinning cut, and moving first.",
       "classId": "salt_reaver"
     },
     {
       "id": "vein",
       "name": "Vein",
-      "about": "What the cut takes back, and Last Salt, which keeps you up.",
+      "about": "Life stolen from your cuts, and Last Salt, which can save you from a killing blow.",
       "classId": "salt_reaver"
     },
     {
@@ -307,13 +307,13 @@
     {
       "id": "hymn",
       "name": "Hymn",
-      "about": "Songs that slow a room and thicken your coat.",
+      "about": "Songs that slow a room and raise your armor.",
       "classId": "bell_chanter"
     },
     {
       "id": "keep",
       "name": "Keep",
-      "about": "Breath, a quiet room, and Last Bell, which refuses a grave.",
+      "about": "Mana and staying power, and Last Bell, which can save you from a killing blow.",
       "classId": "bell_chanter"
     }
   ]

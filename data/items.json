@@ -542,7 +542,7 @@
         "defense": 10,
         "moveSpeed": 8
       },
-      "flavor": "The watch-cap of the final shift on the Spire stair.",
+      "flavor": "The watch cap from the last shift on the Spire stair.",
       "baseRarity": "epic"
     },
     {
@@ -600,7 +600,7 @@
           9
         ]
       },
-      "flavor": "A promise cut thin enough to see through.",
+      "flavor": "A thin glass promise. You can see through it.",
       "baseRarity": "epic"
     },
     {
@@ -710,7 +710,7 @@
         "attackRating": 36,
         "dexterity": 6
       },
-      "flavor": "Strung with a reed that still remembers the mere. It hums when the air is wet.",
+      "flavor": "Strung with a reed from the mere. It hums when the air is wet.",
       "baseRarity": "epic"
     },
     {
@@ -741,7 +741,7 @@
         "allResist": 8,
         "critChance": 4
       },
-      "flavor": "A watch-blade left point-down in a cracked step, still keeping the hour.",
+      "flavor": "A watch blade left point-down in a cracked step. It is still on duty.",
       "baseRarity": "epic"
     },
     {
@@ -814,7 +814,7 @@
         "lifeLeech": 3,
         "fireResist": 8
       },
-      "flavor": "Cut from a garnet that sweated in the heat. It still feels a little alive.",
+      "flavor": "Cut from a garnet that sat too long in the heat. It is still warm.",
       "baseRarity": "epic"
     },
     {
@@ -828,7 +828,7 @@
         "energy": 5,
         "magicFind": 10
       },
-      "flavor": "Fished out of still water. It looks at you the way the mere does.",
+      "flavor": "Fished out of still water. It has the same look as the mere.",
       "baseRarity": "epic"
     },
     {
@@ -842,7 +842,7 @@
         "attackRating": 20,
         "dexterity": 5
       },
-      "flavor": "A cap glazed with salt until it rang. The ring is the warning.",
+      "flavor": "A cap glazed with salt until it rang. That ring is your warning.",
       "baseRarity": "epic"
     },
     {
@@ -856,7 +856,7 @@
         "life": 24,
         "thorns": 6
       },
-      "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans.",
+      "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans forward.",
       "baseRarity": "epic"
     },
     {
@@ -942,7 +942,7 @@
         },
         "fireDamagePercent": 12
       },
-      "flavor": "The brand does not wash off. Ash Strike remembers it.",
+      "flavor": "The brand does not wash off. It is meant for Ash Strike.",
       "baseRarity": "epic"
     },
     {
@@ -962,7 +962,7 @@
         },
         "manaRegen": 1.4
       },
-      "flavor": "Tied while the glass was still wet. The bolt comes cheaper.",
+      "flavor": "Tied while the glass was still wet. More mana, and stronger bolts.",
       "baseRarity": "epic"
     },
     {
@@ -995,7 +995,7 @@
         "life": 20,
         "mana": 20
       },
-      "flavor": "One rank in everything you kept. The kiln does not get a vote.",
+      "flavor": "One rank in every skill you have. The kiln does not get a vote.",
       "baseRarity": "fabled"
     },
     {
@@ -1012,7 +1012,7 @@
           "red_line": 1
         }
       },
-      "flavor": "A cut that pays you back. Do not stand still to collect.",
+      "flavor": "A cut that returns a little life. Do not stand still to collect.",
       "baseRarity": "epic"
     },
     {
@@ -1050,7 +1050,7 @@
           "sear_step": 2
         }
       },
-      "flavor": "The step lands hot. The cuff is why.",
+      "flavor": "Sear Step hits harder with this on.",
       "baseRarity": "epic"
     },
     {
@@ -1066,7 +1066,7 @@
           "vigil": 2
         }
       },
-      "flavor": "Worn for a watch that did not end. The ring of it still holds.",
+      "flavor": "Worn for a watch that did not end. Vigil still holds.",
       "baseRarity": "epic"
     },
     {
@@ -1081,7 +1081,7 @@
           "cinder_spark": 1
         }
       },
-      "flavor": "A ring that throws the first spark so you do not have to.",
+      "flavor": "A ring that helps you throw Cinder Spark.",
       "baseRarity": "epic"
     },
     {
@@ -1097,7 +1097,7 @@
           "brine_ward": 2
         }
       },
-      "flavor": "A board from a stilt that learned to keep the cold off.",
+      "flavor": "A board from a stilt house, made to keep the cold off.",
       "baseRarity": "epic"
     },
     {
@@ -1115,7 +1115,7 @@
           "second_voice": 1
         }
       },
-      "flavor": "One more voice in the glass. The coat keeps the seam shut.",
+      "flavor": "Lets you keep one more servant. The coat holds them together.",
       "baseRarity": "legendary"
     },
     {
@@ -1166,7 +1166,7 @@
           "crouch": 2
         }
       },
-      "flavor": "The rows hear the other boots. These they argue about.",
+      "flavor": "Other boots get heard in the rows. These stay quiet.",
       "baseRarity": "legendary"
     },
     {
@@ -1181,7 +1181,7 @@
           "last_coal": 1
         }
       },
-      "flavor": "One coal kept back from the kiln. It spends itself once, and means it.",
+      "flavor": "One coal kept back from the kiln. It is meant to be spent once, and to count.",
       "baseRarity": "fabled"
     },
     {
@@ -1810,7 +1810,7 @@
     {
       "id": "silk",
       "group": "dex",
-      "name": "of Silk",
+      "name": "of Gleam",
       "mods": {
         "dexterity": 3
       }

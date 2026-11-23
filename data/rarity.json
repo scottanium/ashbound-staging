@@ -105,7 +105,7 @@
     "uniqueKind": "Unique",
     "setKind": "Set",
     "legacyAffixes": "Legacy affixes kept",
-    "colorsHelp": "Elite is the best ordinary early item. Uniques and sets start at Epic. Legendary sits above Epic. Mythical is the top rank."
+    "colorsHelp": "Elite is the best ordinary gear early on. Uniques and sets start at Epic. Legendary ranks above Epic. Mythical is the top."
   },
   "legacyGold": {
     "common": 1,

@@ -3,8 +3,8 @@
     {
       "id": "wood",
       "name": "Out of Hearthveil",
-      "track": "North arch into Cinderwood.",
-      "text": "North arch, through the Cinderwood. The far side opens the Salt Causeway.",
+      "track": "Go through the north arch into the Cinderwood.",
+      "text": "Go through the north arch and through the Cinderwood. The far side leads to the Salt Causeway.",
       "need": {
         "waypoint": "salt_causeway"
       }
@@ -30,7 +30,7 @@
     {
       "id": "kiln",
       "name": "Under the kiln",
-      "track": "The Sunken Kiln ends at Veyra.",
+      "track": "Go through the Sunken Kiln to reach Veyra.",
       "text": "The Sunken Kiln goes down to the Heart. Veyra tends the fire there.",
       "need": {
         "waypoint": "heart_kiln"
@@ -39,7 +39,7 @@
     {
       "id": "boss",
       "name": "Stop Veyra",
-      "track": "Kill Veyra. Brinehollow opens after.",
+      "track": "Kill Veyra. Brinehollow opens when she falls.",
       "text": "Kill Veyra. When she falls, Brinehollow opens.",
       "need": {
         "boss": true
@@ -49,7 +49,7 @@
       "id": "mere",
       "name": "Reach Brinehollow",
       "track": "Go to Brinehollow. Ask Brin first.",
-      "text": "Use the gate and go to Brinehollow. Ask Brin before you touch a bell.",
+      "text": "Take the gate to Brinehollow. Ask Brin before you touch a bell.",
       "need": {
         "waypoint": "brinehollow"
       },
@@ -68,19 +68,19 @@
     {
       "id": "mirror",
       "name": "Over the glass",
-      "track": "Swing at the late copy on the Flats.",
-      "text": "Cross the Mirror Flats. Swing at the copy, not at yourself. The Archive is past it.",
+      "track": "Hit the copy of yourself that moves late.",
+      "text": "Cross the Mirror Flats. Hit the copy, not yourself. The Archive is on the far side.",
       "need": {
         "waypoint": "drowned_archive"
       },
-      "warn": "The late pair of boots is the one to hit.",
+      "warn": "Hit the copy that lags behind you, not yourself.",
       "warnZone": "mirror_flats"
     },
     {
       "id": "archive",
       "name": "Out of the archive",
       "track": "Leave the Archive for the caverns.",
-      "text": "The Drowned Archive still files the dead. The Bell Caverns are the way out.",
+      "text": "The Drowned Archive still keeps records of the dead. The Bell Caverns are the way out.",
       "need": {
         "waypoint": "bell_caverns"
       }
@@ -88,18 +88,18 @@
     {
       "id": "bells",
       "name": "The wrapped bells",
-      "track": "Through the caverns. Don't toll.",
-      "text": "The Bell Caverns lead to the Queen Pool. Leave the bronze wrapped.",
+      "track": "Go through the caverns. Don't ring the bells.",
+      "text": "The Bell Caverns lead to the Queen Pool. Don't unwrap the bells.",
       "need": {
         "waypoint": "queen_pool"
       },
-      "warn": "Wrapped bronze stays wrapped.",
+      "warn": "Don't unwrap the bells.",
       "warnZone": "bell_caverns"
     },
     {
       "id": "morra",
       "name": "Stop Morra",
-      "track": "Kill Morra. The orchard opens after.",
+      "track": "Kill Morra. Vesper Orchard opens when she falls.",
       "text": "Kill Morra the Silt Queen. Vesper Orchard opens after.",
       "need": {
         "boss": "morra"
@@ -108,7 +108,7 @@
     {
       "id": "vesper",
       "name": "The orchard market",
-      "track": "Vesper Orchard. Buy steel, not apples.",
+      "track": "Go to Vesper Orchard. Buy steel, not apples.",
       "text": "Go to Vesper Orchard. Vetch sells steel. Leave the red fruit.",
       "need": {
         "waypoint": "vesper_orchard"
@@ -128,7 +128,7 @@
     {
       "id": "press",
       "name": "Past the press",
-      "track": "Past the press, into the Galleries.",
+      "track": "Get past the press and into the Galleries.",
       "text": "The screw still turns. Get past it and into the Hush Galleries.",
       "need": {
         "waypoint": "hush_galleries"
@@ -155,7 +155,7 @@
     {
       "id": "sallow",
       "name": "Stop Sallow",
-      "track": "Kill Sallow. Ashgate opens after.",
+      "track": "Kill Sallow. Ashgate opens when he falls.",
       "text": "Kill Sallow the Root King. Ashgate and the Pale Stair open after.",
       "need": {
         "boss": "sallow"
@@ -164,7 +164,7 @@
     {
       "id": "ashgate",
       "name": "The last warm door",
-      "track": "Ashgate, then the Pale Steps.",
+      "track": "Go to Ashgate, then on to the Pale Steps.",
       "text": "Go to Ashgate. Rook keeps the stall. The stair starts at the Pale Steps.",
       "need": {
         "waypoint": "ashgate"
@@ -174,7 +174,7 @@
       "id": "steps",
       "name": "The pale steps",
       "track": "Climb the Pale Steps to the Tombs.",
-      "text": "Climb the Pale Steps. The wind has teeth. The Ember Tombs are at the top.",
+      "text": "Climb the Pale Steps. The wind is sharp. The Ember Tombs are at the top.",
       "need": {
         "waypoint": "ember_tombs"
       }
@@ -209,8 +209,8 @@
     {
       "id": "mael",
       "name": "Bank the fire",
-      "track": "Kill Mael. The rift stone is warm after.",
-      "text": "Kill Mael the Unbanked. If the kiln goes quiet, the march is over. The rift stone in Ashgate is warm after.",
+      "track": "Kill Mael. After that, the rift stone in Ashgate is warm.",
+      "text": "Kill Mael the Unbanked. If the kiln goes quiet, the march is over. After that, the rift stone in Ashgate is warm.",
       "need": {
         "boss": "mael"
       }
@@ -220,7 +220,7 @@
     {
       "id": "ash_bargain",
       "name": "Ash Bargain",
-      "text": "The kiln takes a little life and gives the fire back.",
+      "text": "You lose a little life, and your fire damage goes up.",
       "mods": {
         "life": -12,
         "fireDamagePercent": 25
@@ -230,7 +230,7 @@
     {
       "id": "glass_quiet",
       "name": "Quiet Glass",
-      "text": "The glass steadies your mana and your cold ward.",
+      "text": "Your mana and cold resist go up.",
       "mods": {
         "mana": 12,
         "coldResist": 20
@@ -240,7 +240,7 @@
     {
       "id": "sap_sweet",
       "name": "Sweet Sap",
-      "text": "The sap sticks. You bleed slower, and so do they.",
+      "text": "The sap sticks. You and your foes bleed more slowly.",
       "mods": {
         "lifeRegen": 2,
         "thorns": 6
@@ -250,7 +250,7 @@
     {
       "id": "pale_name",
       "name": "Uncut Name",
-      "text": "A name that was never cut. Finds come easier. Resists don't.",
+      "text": "A name that was never carved. You find better loot, but your resists are lower.",
       "mods": {
         "magicFind": 35,
         "allResist": -8
@@ -265,7 +265,7 @@
       "act": 1,
       "kind": "town",
       "rec": "Town",
-      "blurb": "A walled refuge where the public kiln still eats scrap wood."
+      "blurb": "A walled refuge where the public kiln is still fed with scrap wood."
     },
     {
       "id": "cinderwood",
@@ -517,7 +517,7 @@
       "elite": 0.12,
       "unlocks": "bell_caverns",
       "palette": "spire",
-      "blurb": "Shelves gone soft. The shades still file the dead."
+      "blurb": "Shelves gone soft. The shades still keep records of the dead."
     },
     {
       "id": "bell_caverns",
@@ -561,7 +561,7 @@
       ],
       "boss": "morra",
       "palette": "mere",
-      "blurb": "The pool under the wrapped dark."
+      "blurb": "The pool under the wrapped bells."
     },
     {
       "id": "vesper_orchard",
@@ -604,7 +604,7 @@
       "named": {
         "monster": "thorn_stag",
         "name": "Row Warden",
-        "line": "Same row, every dusk. Step off it."
+        "line": "It walks the same row every dusk. Step off the path."
       },
       "blurb": "Straight rows of briar tall enough to hide a stag."
     },
@@ -709,7 +709,7 @@
       ],
       "boss": "sallow",
       "palette": "orchard",
-      "blurb": "Where the first cut still argues."
+      "blurb": "Where the first tree was cut. People still argue about it."
     },
     {
       "id": "ashgate",
@@ -752,9 +752,9 @@
       "named": {
         "monster": "pale_wolf",
         "name": "Pale Mother",
-        "line": "The stair keeps her instead of a watch."
+        "line": "She waits on the stair in place of a watch."
       },
-      "blurb": "Switchbacks cut into pale stone. The wind has teeth."
+      "blurb": "Switchbacks cut into pale stone. The wind is sharp."
     },
     {
       "id": "ember_tombs",
@@ -1024,7 +1024,7 @@
         "coldResist": 14,
         "dexterity": 6
       },
-      "flavor": "A path written in reed-water. The boots remember the way across."
+      "flavor": "A path marked in reed water. These boots keep their footing on the way across."
     },
     {
       "id": "briarbind",
@@ -1047,7 +1047,7 @@
         "life": 18,
         "poisonResist": 12
       },
-      "flavor": "Bound with living thorn. It holds, and it resents being held."
+      "flavor": "Bound with living thorn. It holds tight, and it does not like being worn."
     },
     {
       "id": "siltward",
@@ -1105,7 +1105,7 @@
         ],
         "strength": 8
       },
-      "flavor": "A name the orchard would rather you did not speak into steel."
+      "flavor": "A name the orchard does not want spoken into steel."
     },
     {
       "id": "saltedge",
@@ -1159,7 +1159,7 @@
         "moveSpeed": 10,
         "coldResist": 12
       },
-      "flavor": "Armor that learned the stair. It is lighter on the way down."
+      "flavor": "Armor made for the stair. It is lighter on the way down."
     },
     {
       "id": "maelbank",
@@ -1203,7 +1203,7 @@
           "kindle": 2
         }
       },
-      "flavor": "Two runes and the fire sits up. Kindle comes easier after that."
+      "flavor": "Two runes, and the fire is ready. Kindle comes easier after that."
     },
     {
       "id": "stillchord",
@@ -1231,7 +1231,7 @@
       "id": "quill",
       "name": "Quill",
       "title": "Lantern scout",
-      "blurb": "A quiet archer with a coal lamp. The lamp steadies your eye and your breath.",
+      "blurb": "A quiet archer with a coal lamp. While Quill is with you, your aim is steadier, you recover a little faster, and you resist a bit more fire.",
       "costBase": 50,
       "costPerLevel": 12,
       "reviveCost": 25,
@@ -1274,7 +1274,7 @@
       "hpMul": 1,
       "dmgMul": 1,
       "unlock": null,
-      "about": "The first telling. Monster numbers are the ones on the road signs."
+      "about": "The first telling. Monsters have their usual strength."
     },
     {
       "id": "kindled",
@@ -1285,7 +1285,7 @@
       "hpMul": 1.32,
       "dmgMul": 1.45,
       "unlock": "veyra",
-      "about": "The second walk, after Veyra. Hits land harder than the level bump, and every resist gives up 18."
+      "about": "The second walk, after Veyra. Monsters hit harder and have more life, every resist drops by 18, and you find better loot."
     },
     {
       "id": "whiteash",
@@ -1296,7 +1296,7 @@
       "hpMul": 1.58,
       "dmgMul": 1.75,
       "unlock": "morra",
-      "about": "After Morra. The ash has gone pale. Hits land harder than Kindled, life is higher, and every resist gives up 32."
+      "about": "After Morra. The ash has gone pale. Monsters hit harder than on Kindled and have more life, every resist drops by 32, and you find better loot."
     }
   ],
   "mapAffixes": [
@@ -1323,7 +1323,7 @@
     {
       "id": "ash",
       "name": "Ash Wind",
-      "text": "Your resists give up a share.",
+      "text": "Your resists are lowered.",
       "hpMul": 1.08,
       "dmgMul": 1.08,
       "mf": 0,
@@ -1333,7 +1333,7 @@
     {
       "id": "bright",
       "name": "Bright Finds",
-      "text": "The drops are kinder. The packs are a little tougher.",
+      "text": "Better drops, and the packs are a little tougher.",
       "hpMul": 1.12,
       "dmgMul": 1.12,
       "mf": 45,
@@ -1343,7 +1343,7 @@
     {
       "id": "swarm",
       "name": "Swarm",
-      "text": "More of them. Each one is a bit thinner.",
+      "text": "More of them, and each one has a bit less life.",
       "hpMul": 0.9,
       "dmgMul": 1,
       "mf": 10,
@@ -1353,7 +1353,7 @@
     {
       "id": "champions",
       "name": "Named Ground",
-      "text": "More champions and elites. They pay for the trouble.",
+      "text": "More champions and elites, and better rewards.",
       "hpMul": 1.12,
       "dmgMul": 1.08,
       "mf": 30,
@@ -1365,7 +1365,7 @@
     {
       "id": "hexed",
       "name": "Hexed Air",
-      "text": "Your resists fall harder. The finds are richer.",
+      "text": "Your resists fall further. The loot is better.",
       "hpMul": 1.06,
       "dmgMul": 1.12,
       "mf": 40,
@@ -1375,7 +1375,7 @@
     {
       "id": "brutal",
       "name": "Brutal Packs",
-      "text": "Elites carry one more name. The ground pays for it.",
+      "text": "Elites have one more affix, and the rewards are better.",
       "hpMul": 1.16,
       "dmgMul": 1.14,
       "mf": 36,
@@ -1418,7 +1418,7 @@
     "drowned_archive": {
       "monster": "archive_shade",
       "name": "Head Archivist",
-      "line": "It files the living under the dead if you stand still."
+      "line": "It records the living with the dead if you stand still."
     },
     "bell_caverns": {
       "monster": "bell_acolyte",
@@ -1428,7 +1428,7 @@
     "briar_rows": {
       "monster": "thorn_stag",
       "name": "Row Warden",
-      "line": "Same row, every dusk. Step off it."
+      "line": "It walks the same row every dusk. Step off the path."
     },
     "sap_press": {
       "monster": "press_beetle",
@@ -1448,7 +1448,7 @@
     "pale_steps": {
       "monster": "pale_wolf",
       "name": "Pale Mother",
-      "line": "The stair keeps her instead of a watch."
+      "line": "She waits on the stair in place of a watch."
     },
     "ember_tombs": {
       "monster": "tomb_warden",
@@ -1469,35 +1469,35 @@
   "statHelp": {
     "strength": {
       "title": "Strength",
-      "text": "Strength: +1% damage per point with strength weapons, needed for heavy armor."
+      "text": "Each point of Strength raises damage by 1% with strength weapons, and is needed for heavy armor."
     },
     "dexterity": {
       "title": "Dexterity",
-      "text": "Dexterity: attack rating for each point, a little crit and defense, needed for bows and light blades."
+      "text": "Each point of Dexterity raises attack rating, plus a little crit and defense. You need it for bows and light blades."
     },
     "vitality": {
       "title": "Vitality",
-      "text": "Vitality: life for each point. How much depends on your class."
+      "text": "Each point of Vitality grants life. How much depends on your class."
     },
     "energy": {
       "title": "Energy",
-      "text": "Energy: mana for each point, plus a little mana each second."
+      "text": "Each point of Energy grants mana, plus a little mana each second."
     },
     "damage": {
       "title": "Damage",
-      "text": "Damage: the weapon swing, raised by strength and enhanced damage. The high number is the hard hit."
+      "text": "Damage is your weapon hit, raised by Strength and enhanced damage. The high number is a hard hit."
     },
     "defense": {
       "title": "Defense",
-      "text": "Defense: weighed against attack rating. A higher number means more swings miss. Armor, level, and a little dexterity raise it."
+      "text": "Defense is checked against attack rating. A higher number means enemies miss more often. Armor, your level, and a little Dexterity raise it."
     },
     "attack": {
       "title": "Attack rating",
-      "text": "Attack rating: weighed against defense to see if your swing lands."
+      "text": "Attack rating is checked against the target's defense to see if your hit lands."
     },
     "resists": {
       "title": "Resists",
-      "text": "Resists: fire, cold, lightning, then poison. Each point cuts that damage. They cap at 75% and can fall below zero."
+      "text": "Resists reduce fire, cold, lightning, and poison damage. Each point cuts that damage. They cap at 75% and can fall below zero."
     },
     "mf": {
       "title": "Magic find",
@@ -1508,7 +1508,7 @@
     {
       "id": "ember_shrine",
       "name": "Ember Shrine",
-      "text": "Fire damage surges.",
+      "text": "Your fire damage is increased.",
       "mods": {
         "fireDamagePercent": 20
       },
@@ -1517,7 +1517,7 @@
     {
       "id": "warden_shrine",
       "name": "Warden Shrine",
-      "text": "Your coat hardens.",
+      "text": "Your armor and fire resist are increased.",
       "mods": {
         "defense": 40,
         "fireResist": 15
@@ -1527,7 +1527,7 @@
     {
       "id": "fortune_shrine",
       "name": "Fortune Shrine",
-      "text": "The ash shows you brighter things.",
+      "text": "You find better loot for a while.",
       "mods": {
         "magicFind": 45
       },
@@ -1560,8 +1560,8 @@
   ],
   "bossAftermath": {
     "veyra": "The floor will cool. Brinehollow is open. Ask Brin before you trust the water.",
-    "morra": "The roots kept going. Vesper is next. Buy steel there.",
-    "sallow": "The market can try the apples. Ashgate is the door under the pale stair.",
+    "morra": "The roots kept going. Vesper Orchard is next. Buy steel there, not the fruit.",
+    "sallow": "The rows can go quiet. Ashgate is the door under the pale stair.",
     "mael": "Nobody has to feed the kiln tonight. The rift stone in Ashgate is warm, if you want a harder road."
   }
 }

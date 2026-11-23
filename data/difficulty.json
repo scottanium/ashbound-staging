@@ -28,6 +28,6 @@
       "stair_of_names",
       "first_kiln"
     ],
-    "about": "Monster life and XP start at a quarter of the base values in the first campaign fight zone and rise linearly by zone to the full base in the last campaign zone. Towns are omitted (no packs). Ember Rifts and any zone not on the list stay at 1. Loot and gold are not changed."
+    "about": "Monster life and experience start at a quarter of their base values in the first campaign fight zone, and rise evenly by zone to the full base in the last campaign zone. Towns are skipped (no packs). Ember Rifts, and any zone not on the list, stay at 1. Loot and gold are not changed."
   }
 }

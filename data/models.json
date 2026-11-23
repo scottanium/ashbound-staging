@@ -16,7 +16,8 @@
       0.7
     ],
     "maxFrames": 360,
-    "maxBytesMB": 32
+    "maxBytesMB": 48,
+    "urgentMs": 32
   },
   "light": {
     "key": [

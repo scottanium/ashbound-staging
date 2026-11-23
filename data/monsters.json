@@ -1259,7 +1259,7 @@
     {
       "id": "leeching",
       "name": "Leeching",
-      "about": "Your hits feed them.",
+      "about": "They steal life from your hits.",
       "leech": 0.22
     },
     {
@@ -1290,7 +1290,7 @@
     {
       "id": "frenzied",
       "name": "Frenzied",
-      "about": "Fast, and the hits add up.",
+      "about": "They attack faster, and the hits add up.",
       "aps": 1.4,
       "damage": 1.18
     },
@@ -1317,27 +1317,27 @@
     {
       "id": "starving",
       "name": "Starving",
-      "about": "Harder hits, and they drink life.",
+      "about": "They hit harder and steal life.",
       "leech": 0.18,
       "damage": 1.16
     },
     {
       "id": "mana_burn",
       "name": "Mana Burn",
-      "about": "A hit drinks your mana.",
+      "about": "A hit also takes your mana.",
       "onHit": "mana"
     },
     {
       "id": "ashen",
       "name": "Ashen",
-      "about": "Ash clings. Their resists are up.",
+      "about": "They have higher resists.",
       "aura": "ash",
       "allResist": 8
     },
     {
       "id": "ghostly",
       "name": "Ghostly",
-      "about": "Hard to pin. They slip through.",
+      "about": "Hard to hit. They pass through you.",
       "allResist": 18,
       "defense": 0.82,
       "move": 1.16

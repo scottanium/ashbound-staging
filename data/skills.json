@@ -14,9 +14,9 @@
     ],
     "cooldown": 0.4,
     "behavior": "melee",
-    "about": "A branded cut. Weapon damage plus a spit of fire.",
+    "about": "A melee cut that deals weapon damage plus a little fire.",
     "notes": [
-      "Kindle raises all fire damage, including this skill."
+      "Kindle increases all of your fire damage, including this skill."
     ],
     "params": {
       "arc": 1.15,
@@ -43,9 +43,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Living cinder sits in the edge of every weapon swing.",
+    "about": "Your weapon swings deal extra fire damage.",
     "notes": [
-      "Flat fire damage applies to your basic attack and melee skills."
+      "Extra flat fire damage applies to your basic attack and melee skills."
     ],
     "params": {
       "perRank": {
@@ -76,9 +76,9 @@
     ],
     "cooldown": 3.2,
     "behavior": "dash",
-    "about": "Step through the heat and strike whatever you stop on.",
+    "about": "Dash forward and strike whatever you stop on.",
     "notes": [
-      "You are briefly hard to hit while stepping."
+      "You are harder to hit for a moment while you dash."
     ],
     "params": {
       "distance": [
@@ -118,9 +118,9 @@
     ],
     "cooldown": 2.4,
     "behavior": "melee",
-    "about": "A wide burning sweep. Weaker steel, more cinder, more targets.",
+    "about": "A wide burning sweep. Less weapon damage, more fire, and it can hit more targets.",
     "notes": [
-      "Kindle raises all fire damage, including this skill."
+      "Kindle also increases the fire damage on this sweep."
     ],
     "params": {
       "arc": 2.4,
@@ -152,9 +152,9 @@
     ],
     "cooldown": 0.7,
     "behavior": "projectile",
-    "about": "Throw a coal that bursts on the first thing it meets.",
+    "about": "Throw a coal that bursts when it hits the first foe.",
     "notes": [
-      "Kindle raises all fire damage, including this skill."
+      "Kindle increases the fire damage of this coal too."
     ],
     "params": {
       "speed": 9,
@@ -178,7 +178,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The ash answers faster. All of your fire damage grows.",
+    "about": "All of your fire damage is increased.",
     "notes": [],
     "params": {
       "perRank": {
@@ -206,9 +206,9 @@
     ],
     "cooldown": 8,
     "behavior": "ward",
-    "about": "A shell of hot ash drinks the next blows before your life does.",
+    "about": "A short shield of ash absorbs the next hits.",
     "notes": [
-      "The shell also lends a little fire resist while it holds."
+      "The shield also gives a little fire resist while it lasts."
     ],
     "params": {
       "absorb": [
@@ -241,9 +241,9 @@
     ],
     "cooldown": 4.5,
     "behavior": "nova",
-    "about": "Cinder opens outward and bites everything close.",
+    "about": "A burst of fire hits everything close to you.",
     "notes": [
-      "Kindle raises all fire damage, including this skill."
+      "Kindle increases this burst the same way it increases your other fire damage."
     ],
     "params": {
       "radius": [
@@ -268,7 +268,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Ash baked into the coat. More armor, and a little fire resist.",
+    "about": "More armor, and a little fire resist.",
     "notes": [],
     "params": {
       "perRank": {
@@ -292,9 +292,9 @@
       }
     ],
     "behavior": "passive",
-    "about": "You drink a thread of life from every solid hit, and mana comes easier.",
+    "about": "Hits return a little life, and you gain mana faster.",
     "notes": [
-      "Life leech only drinks the physical part of a hit."
+      "Life leech only applies to the physical part of a hit."
     ],
     "params": {
       "perRank": {
@@ -323,7 +323,7 @@
     ],
     "cooldown": 12,
     "behavior": "vigil",
-    "about": "A watch-circle. Foes inside it drag their feet, and your eye is surer.",
+    "about": "A circle on the ground. Enemies inside it move slower, and your attacks are more accurate.",
     "notes": [],
     "params": {
       "duration": 10,
@@ -349,9 +349,9 @@
       }
     ],
     "behavior": "last_coal",
-    "about": "Once each zone, a killing blow leaves you standing in the coals.",
+    "about": "Once per zone, if a hit would kill you, you stay on your feet.",
     "notes": [
-      "Restores a share of life and ignores pain for a heartbeat. Resets when you enter a zone."
+      "Restores some of your life and makes you ignore pain for a moment. It resets when you enter a zone."
     ],
     "params": {
       "healPercent": 35
@@ -371,9 +371,9 @@
     ],
     "cooldown": 5,
     "behavior": "summon",
-    "about": "Call a small glass servant. It walks ahead and bites what you point at.",
+    "about": "Call a small glass servant. It walks ahead and attacks the target you choose.",
     "notes": [
-      "Second Voice raises minion damage and how many can stand with you."
+      "Second Voice increases minion damage and how many can be out at once."
     ],
     "params": {
       "minion": "glassling",
@@ -392,7 +392,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The call comes back louder. Minions hit harder, and another can answer.",
+    "about": "Your minions deal more damage, and you can have one more of them.",
     "notes": [],
     "params": {
       "perRank": {
@@ -420,9 +420,9 @@
     ],
     "cooldown": 6,
     "behavior": "summon",
-    "about": "A pale wisp that throws salt-sparks from behind your line.",
+    "about": "Call a pale wisp that stays behind you and throws salt sparks.",
     "notes": [
-      "Second Voice raises its damage too."
+      "Second Voice increases its damage too."
     ],
     "params": {
       "minion": "salt_wisp",
@@ -451,9 +451,9 @@
     ],
     "cooldown": 7,
     "behavior": "command",
-    "about": "Every servant you have sings. Anything standing near them is cut by cold.",
+    "about": "Every servant you have deals cold damage to enemies near them.",
     "notes": [
-      "Undertow deepens cold damage."
+      "Undertow increases the cold damage."
     ],
     "params": {
       "radius": 2.1,
@@ -479,9 +479,9 @@
     ],
     "cooldown": 0.65,
     "behavior": "projectile",
-    "about": "A splinter of frozen reed, thrown from outside a sword's reach.",
+    "about": "Throw a shard of frozen reed. It hits from outside melee range.",
     "notes": [
-      "Undertow adds cold to the bolt and to Chorus."
+      "Undertow adds cold damage to the bolt and to Chorus."
     ],
     "params": {
       "speed": 10,
@@ -504,7 +504,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Cold sticks. Your cold spells hit harder, and a little cold resist comes with it.",
+    "about": "Your cold skills deal more damage, and you gain a little cold resist.",
     "notes": [],
     "params": {
       "perRank": {
@@ -535,7 +535,7 @@
     ],
     "cooldown": 8,
     "behavior": "ward",
-    "about": "A shell of salt water drinks the next blows.",
+    "about": "A short shield of brine absorbs the next hits.",
     "notes": [],
     "params": {
       "absorb": [
@@ -567,9 +567,9 @@
     ],
     "cooldown": 5,
     "behavior": "nova",
-    "about": "A ring of brine opens around you and freezes whatever it touches.",
+    "about": "A ring of cold water spreads around you and hits anything it touches.",
     "notes": [
-      "Undertow deepens this cold."
+      "Undertow increases this cold damage."
     ],
     "params": {
       "radius": [
@@ -593,7 +593,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "A knot around the wrist. More life for you, sturdier servants.",
+    "about": "You gain more life, and your servants have more life too.",
     "notes": [],
     "params": {
       "perRank": {
@@ -616,7 +616,7 @@
       }
     ],
     "behavior": "passive",
-    "about": "You and the chorus breathe together. Mana comes easier, and hits return a little life.",
+    "about": "You gain mana faster, and hits return a little life.",
     "notes": [],
     "params": {
       "perRank": {
@@ -644,7 +644,7 @@
     ],
     "cooldown": 12,
     "behavior": "vigil",
-    "about": "A shared lamp. Foes inside it slow, and your aim steadies.",
+    "about": "A circle of light. Enemies inside it move slower, and your attacks are more accurate.",
     "notes": [],
     "params": {
       "duration": 10,
@@ -669,9 +669,9 @@
       }
     ],
     "behavior": "last_coal",
-    "about": "Once each zone, a killing blow leaves you standing in the shallows.",
+    "about": "Once per zone, a killing blow fails and you remain standing.",
     "notes": [
-      "Restores a share of life. Resets when you enter a zone."
+      "Restores some of your life. It resets when you enter a zone."
     ],
     "params": {
       "healPercent": 35
@@ -691,9 +691,9 @@
     ],
     "cooldown": 0.9,
     "behavior": "trap",
-    "about": "Leave a snare at your feet. It arms, then bursts poison on the first thing that steps in.",
+    "about": "Leave a snare at your feet. It arms, then bursts with poison when the first enemy steps in.",
     "notes": [
-      "Wider Net lets more snares stand, and makes each one broader."
+      "Wider Net lets you have more snares, and makes each one wider."
     ],
     "params": {
       "max": [
@@ -729,9 +729,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "You learn how far a snare can reach, and how many the ground will hold.",
+    "about": "Your snares reach farther, and you can have more of them armed at once.",
     "notes": [
-      "Each rank widens traps. Every fourth rank lets one more snare stay armed."
+      "Each rank makes your traps wider. Every fourth rank lets one more snare stay armed."
     ],
     "params": {
       "perRank": {
@@ -758,9 +758,9 @@
     ],
     "cooldown": 3.5,
     "behavior": "trap",
-    "about": "A wide bed of briar. It waits longer and drinks a whole pack if they bunch.",
+    "about": "A wide bed of briar. It waits longer and can catch a whole pack if they bunch up.",
     "notes": [
-      "Wider Net widens this bed too."
+      "Wider Net makes this bed wider too."
     ],
     "params": {
       "max": [
@@ -806,9 +806,9 @@
     ],
     "cooldown": 6,
     "behavior": "detonate",
-    "about": "Shut every snare you have left in the ground. They all go at once.",
+    "about": "Set off every snare you have in the ground at once.",
     "notes": [
-      "Deep Rot and Long Bite deepen the poison that comes out."
+      "Deep Rot and Long Bite increase the poison this sets off."
     ],
     "params": {
       "poisonMul": [
@@ -831,9 +831,9 @@
     ],
     "cooldown": 0.55,
     "behavior": "projectile",
-    "about": "A poisoned splinter. You do not have to stand close.",
+    "about": "Throw a poisoned splinter. You can hit from a distance.",
     "notes": [
-      "Deep Rot adds poison. Long Bite makes the rot last."
+      "Deep Rot adds poison damage. Long Bite makes the poison last longer."
     ],
     "params": {
       "speed": 11,
@@ -856,9 +856,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The poison in your kit bites harder, on the knife and in the snare.",
+    "about": "Your poison damage is increased, on skills and snares.",
     "notes": [
-      "Adds flat poison to Needle, Miasma, and every trap."
+      "Adds flat poison damage to Needle, Miasma, and every trap."
     ],
     "params": {
       "perRank": {
@@ -888,9 +888,9 @@
     ],
     "cooldown": 5,
     "behavior": "nova",
-    "about": "A green breath opens around you and settles into whatever it touches.",
+    "about": "A cloud of poison spreads around you and hits anything it touches.",
     "notes": [
-      "Deep Rot deepens the cloud."
+      "Deep Rot increases the poison in the cloud."
     ],
     "params": {
       "radius": [
@@ -914,9 +914,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Rot does not hurry. What you poison keeps bleeding after the hit.",
+    "about": "Poison you inflict lasts longer.",
     "notes": [
-      "Each rank lengthens poison you inflict."
+      "Each rank makes poison you inflict last longer."
     ],
     "params": {
       "perRank": {
@@ -936,7 +936,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "You walk the briar without announcing it. A little quicker, a little harder to hit.",
+    "about": "You move a little faster and are a little harder to hit.",
     "notes": [],
     "params": {
       "perRank": {
@@ -959,7 +959,7 @@
     ],
     "cooldown": 8,
     "behavior": "ward",
-    "about": "A bitter sip. It drinks the next blows and spits your own poison out.",
+    "about": "A bitter sip. It absorbs the next hits and clears poison from you.",
     "notes": [],
     "params": {
       "absorb": [
@@ -982,7 +982,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The coat grows thorns. Things that cut you take a little rot home.",
+    "about": "Enemies that hit you take a little poison damage.",
     "notes": [],
     "params": {
       "perRank": {
@@ -1008,9 +1008,9 @@
       }
     ],
     "behavior": "last_coal",
-    "about": "Once each zone, a killing blow leaves you caught in your own snare, still breathing.",
+    "about": "Once per zone, if a hit would kill you, you survive it.",
     "notes": [
-      "Restores a share of life. Resets when you enter a zone."
+      "Restores some of your life. The save resets when you enter a zone."
     ],
     "params": {
       "healPercent": 32
@@ -1030,9 +1030,9 @@
     ],
     "cooldown": 0.35,
     "behavior": "melee",
-    "about": "A short cut. Quick, close, and meaner if your hands are already moving.",
+    "about": "A short, close cut. It hits harder when you are already attacking quickly.",
     "notes": [
-      "Quick Wrist speeds the swing. Keen Edge makes it land harder."
+      "Quick Wrist makes the swing faster. Keen Edge makes it more likely to crit and hit."
     ],
     "params": {
       "range": 1.35,
@@ -1052,9 +1052,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "You keep the blade where it will bite. More aim, and more cuts that matter.",
+    "about": "You land more crits and have better aim.",
     "notes": [
-      "Crit and attack rating feed Salt Cut, Glass Step, and Red Line."
+      "The crit and attack rating also apply to Salt Cut, Glass Step, and Red Line."
     ],
     "params": {
       "perRank": {
@@ -1077,9 +1077,9 @@
     ],
     "cooldown": 2.4,
     "behavior": "dash",
-    "about": "Step through them. The ones you pass get the edge on the way.",
+    "about": "Dash through enemies and damage them as you pass.",
     "notes": [
-      "Keen Edge crits this. Blood Price drinks what the step cuts."
+      "Keen Edge can crit this skill. Blood Price steals life from the damage it deals."
     ],
     "params": {
       "distance": [
@@ -1112,9 +1112,9 @@
     ],
     "cooldown": 3.2,
     "behavior": "melee",
-    "about": "A heavier cut, meant for the one already in your face.",
+    "about": "A heavier cut against the foe in front of you.",
     "notes": [
-      "Uses the same crit and leech as the short cut, with more of the blade."
+      "Uses the same crit and life steal as the short cut, but with more of the blade."
     ],
     "params": {
       "range": 1.35,
@@ -1134,7 +1134,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The wrist learns the rhythm. You swing more often.",
+    "about": "You attack faster.",
     "notes": [
       "Attack speed helps every cut, including the plain Strike button."
     ],
@@ -1163,9 +1163,9 @@
     ],
     "cooldown": 4,
     "behavior": "melee",
-    "about": "A spin with the blade. Anything in arm's reach gets the edge.",
+    "about": "A spin with the blade that hits everything in reach.",
     "notes": [
-      "Keen Edge can crit the spin. Blood Price drinks it. It does not need a locked target."
+      "Keen Edge can crit the spin. Blood Price steals life from it. It does not need a locked target."
     ],
     "params": {
       "range": 2.15,
@@ -1190,9 +1190,9 @@
       }
     ],
     "behavior": "passive",
-    "about": "You stop waiting for them to finish a swing.",
+    "about": "You attack and move a little faster. Needs two ranks in Quick Wrist.",
     "notes": [
-      "More attack speed, and a little move speed so the step is not the only way in."
+      "Increases attack speed, and a little move speed, so you don't have to dash to close in."
     ],
     "params": {
       "perRank": {
@@ -1215,7 +1215,7 @@
     ],
     "cooldown": 8,
     "behavior": "ward",
-    "about": "A tight guard. It eats the next few hits while you stay in their reach.",
+    "about": "A tight guard that absorbs the next few hits, even up close.",
     "notes": [],
     "params": {
       "absorb": [
@@ -1237,7 +1237,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Cuts pay you back. The physical part of a hit returns a little life.",
+    "about": "The physical part of each hit returns a little life.",
     "notes": [
       "Works on Salt Cut, Glass Step, Parting Cut, Red Line, and Strike."
     ],
@@ -1256,7 +1256,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "You get hit and you are still there. More life, a harder coat.",
+    "about": "You have more life and more armor.",
     "notes": [],
     "params": {
       "perRank": {
@@ -1279,7 +1279,7 @@
       }
     ],
     "behavior": "passive",
-    "about": "They cut you, the salt answers. Thorns, and a little more speed after you have been in it.",
+    "about": "When enemies hit you, they take damage back, and you attack a little faster afterward.",
     "notes": [],
     "params": {
       "perRank": {
@@ -1302,9 +1302,9 @@
       }
     ],
     "behavior": "last_coal",
-    "about": "Once each zone, a killing blow leaves salt in the wound and you still standing.",
+    "about": "Once per zone, a killing blow cannot finish you.",
     "notes": [
-      "Restores a share of life. Resets when you enter a zone."
+      "Restores some of your life. It resets when you enter a new zone."
     ],
     "params": {
       "healPercent": 30
@@ -1324,9 +1324,9 @@
     ],
     "cooldown": 0.6,
     "behavior": "projectile",
-    "about": "One clean note. It shocks the first thing it meets.",
+    "about": "Play a short note that deals lightning damage to the first foe it hits.",
     "notes": [
-      "Clear Tone adds shock. Held Note does not cut the mana cost. It helps the next note leave the hand sooner."
+      "Clear Tone adds lightning damage. Held Note does not reduce the mana cost. It helps the next note start sooner."
     ],
     "params": {
       "speed": 10,
@@ -1349,9 +1349,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The note stays pure. Shock hits harder.",
+    "about": "Your lightning skills deal more damage.",
     "notes": [
-      "Adds shock to Bell Note, Peal, and Counterpoint."
+      "Adds lightning damage to Bell Note, Peal, and Counterpoint."
     ],
     "params": {
       "perRank": {
@@ -1381,9 +1381,9 @@
     ],
     "cooldown": 5,
     "behavior": "nova",
-    "about": "The whole bell, not the note. A ring of shock around you.",
+    "about": "A ring of lightning spreads around you.",
     "notes": [
-      "Clear Tone deepens it. Slow Hymn keeps them in the ring longer."
+      "Clear Tone increases its damage. Slow Hymn keeps enemies in the ring longer."
     ],
     "params": {
       "radius": [
@@ -1417,9 +1417,9 @@
     ],
     "cooldown": 2.2,
     "behavior": "projectile",
-    "about": "A second note, lower, that cracks when it lands.",
+    "about": "A slower, heavier note that deals lightning damage.",
     "notes": [
-      "Clear Tone adds to this too."
+      "Clear Tone adds lightning damage to this too."
     ],
     "params": {
       "speed": 8,
@@ -1447,9 +1447,9 @@
     ],
     "cooldown": 12,
     "behavior": "vigil",
-    "about": "A hymn under your breath. Things near you move like the air is thick.",
+    "about": "A hymn that slows enemies near you.",
     "notes": [
-      "Quiet Room widens the same idea. This one is the first verse."
+      "Quiet Room is a wider version of this slow. Use this one first."
     ],
     "params": {
       "duration": 12,
@@ -1474,7 +1474,7 @@
     ],
     "cooldown": 10,
     "behavior": "ward",
-    "about": "You sing the coat thicker. The next hits have to get through it.",
+    "about": "Your armor is increased against the next hits.",
     "notes": [],
     "params": {
       "absorb": [
@@ -1506,9 +1506,9 @@
     ],
     "cooldown": 14,
     "behavior": "vigil",
-    "about": "The hymn fills the room. A wider slow, and you are harder to shove.",
+    "about": "Enemies are slowed in a wider area, and you are harder to push back.",
     "notes": [
-      "Stacks with the idea of Slow Hymn. Cast the one you need."
+      "This can be used with Slow Hymn. Cast the one you need."
     ],
     "params": {
       "duration": 10,
@@ -1529,9 +1529,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "A note you keep under the others. More life, and the lamp-scout hits a little harder.",
+    "about": "You have more life, and your companions deal a little more damage.",
     "notes": [
-      "This also raises Quill, and any glass you did not call yourself, if they are with you."
+      "This also increases the damage of Quill, and of any glass servants you did not call yourself, if they are with you."
     ],
     "params": {
       "perRank": {
@@ -1549,9 +1549,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "You hold the breath between notes. Mana comes back, and spells leave the hand sooner.",
+    "about": "You recover mana faster, and you cast more quickly.",
     "notes": [
-      "Cast speed shortens cooldowns. Mana regen keeps Peal possible."
+      "Cast speed shortens cooldowns. Mana regeneration helps you afford Peal."
     ],
     "params": {
       "perRank": {
@@ -1569,7 +1569,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Shock you throw does not like to come home. A little lightning resist, a little mana.",
+    "about": "You gain a little lightning resist and a little mana.",
     "notes": [],
     "params": {
       "perRank": {
@@ -1592,9 +1592,9 @@
       }
     ],
     "behavior": "passive",
-    "about": "Other songs sit easier in the mouth. More breath, a thicker coat, a quicker hand.",
+    "about": "You gain more mana, more armor, and you act a little faster.",
     "notes": [
-      "Feeds Peal and the hymns. It does not raise their rank."
+      "This helps Peal and the hymns. It does not raise their rank."
     ],
     "params": {
       "perRank": {
@@ -1618,9 +1618,9 @@
       }
     ],
     "behavior": "last_coal",
-    "about": "Once each zone, the bell rings for you instead of over you.",
+    "about": "Once per zone, if a hit would kill you, you live through it.",
     "notes": [
-      "Restores a share of life. Resets when you enter a zone."
+      "Restores some of your life. The save resets when you enter a zone."
     ],
     "params": {
       "healPercent": 34
@@ -1645,7 +1645,7 @@
     ],
     "cooldown": 1.4,
     "behavior": "melee",
-    "about": "A longer cut. It reaches a step past Ash Strike.",
+    "about": "A longer cut. It reaches a step farther than Ash Strike.",
     "notes": [
       "Kindle and the fire on your weapon still apply."
     ],
@@ -1673,9 +1673,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The coal in the blade stays hot between casts.",
+    "about": "Your weapon hits deal extra fire damage, even between skill uses.",
     "notes": [
-      "Flat fire damage on every hit, including Ash Strike."
+      "Adds flat fire damage to every hit, including Ash Strike."
     ],
     "params": {
       "perRank": {
@@ -1695,7 +1695,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Ash packs into the coat. You are harder to burn and harder to cut.",
+    "about": "You gain fire resist and more armor.",
     "notes": [],
     "params": {
       "perRank": {
@@ -1718,7 +1718,7 @@
       }
     ],
     "behavior": "passive",
-    "about": "Another voice in the call. One more servant can stand with you.",
+    "about": "You can have one more servant at a time.",
     "notes": [
       "Adds to the cap from Second Voice. It does not raise their damage by itself."
     ],
@@ -1737,9 +1737,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Cold sits on the bolt before you throw it.",
+    "about": "Your cold skills deal extra cold damage.",
     "notes": [
-      "Flat cold on Reed Bolt, Tide Ring, and Chorus."
+      "Adds flat cold damage to Reed Bolt, Tide Ring, and Chorus."
     ],
     "params": {
       "perRank": {
@@ -1759,9 +1759,9 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Your servants hold together when they are hit.",
+    "about": "Your servants have more life, and you do too.",
     "notes": [
-      "Minion life, and a little of yours."
+      "Increases your minions' life, and a little of yours."
     ],
     "params": {
       "perRank": {
@@ -1789,9 +1789,9 @@
     ],
     "cooldown": 0.9,
     "behavior": "trap",
-    "about": "A thin wire. It arms fast and catches the first step.",
+    "about": "A snare that arms quickly and catches the first enemy that steps in.",
     "notes": [
-      "Wider Net still widens it. Deep Rot still poisons it."
+      "Wider Net still makes it wider. Deep Rot still adds poison to it."
     ],
     "params": {
       "max": [
@@ -1837,9 +1837,9 @@
     ],
     "cooldown": 1.3,
     "behavior": "projectile",
-    "about": "A mouthful of rot. Shorter than Needle, meaner up close.",
+    "about": "A short-range spit of poison. Less reach than Needle, more damage up close.",
     "notes": [
-      "Deep Rot and Long Bite apply."
+      "Deep Rot and Long Bite apply to this skill."
     ],
     "params": {
       "speed": 8,
@@ -1890,9 +1890,9 @@
     ],
     "cooldown": 1.6,
     "behavior": "dash",
-    "about": "A short step, not the long one. You are through them before they turn.",
+    "about": "A short dash through enemies that damages them as you pass.",
     "notes": [
-      "Keen Edge can crit it. Blood Price drinks it."
+      "Keen Edge can crit it. Blood Price steals life from it."
     ],
     "params": {
       "distance": [
@@ -1915,7 +1915,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "You learn the length of their swing. A little attack rating, a little crit.",
+    "about": "You gain a little attack rating and a little crit chance.",
     "notes": [
       "Stacks with Keen Edge. It does not replace it."
     ],
@@ -1940,9 +1940,9 @@
       }
     ],
     "behavior": "passive",
-    "about": "The cut closes on them and opens for you. More leech.",
+    "about": "You steal more life with each hit.",
     "notes": [
-      "Life leech only drinks the physical part of a hit."
+      "Only the physical part of a hit is leeched."
     ],
     "params": {
       "perRank": {
@@ -1969,9 +1969,9 @@
     ],
     "cooldown": 1.4,
     "behavior": "projectile",
-    "about": "A higher note. It flies farther than the first.",
+    "about": "A lightning note that travels farther than Bell Note.",
     "notes": [
-      "Clear Tone adds shock."
+      "Clear Tone adds lightning damage."
     ],
     "params": {
       "speed": 11,
@@ -1994,7 +1994,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "The breath between notes. Mana comes back a little faster.",
+    "about": "You recover mana a little faster.",
     "notes": [
       "Works with Held Note. You want both if you sing often."
     ],
@@ -2019,9 +2019,9 @@
       }
     ],
     "behavior": "passive",
-    "about": "The hymn carries. A little more defense while you are the one singing.",
+    "about": "You gain a little more defense while a hymn is active.",
     "notes": [
-      "It does not change the hymn radius. It keeps you standing in it."
+      "It does not change the hymn radius. It raises your defense while you stand in the hymn."
     ],
     "params": {
       "perRank": {
