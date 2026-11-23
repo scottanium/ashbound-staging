@@ -13,6 +13,7 @@
     ["telling", "data/telling.json"],
     ["characters", "data/characters.json"],
     ["npcLines", "data/npc-lines.json"],
+    ["campaignDifficulty", "data/difficulty.json"],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path]) =>
@@ -34,6 +35,7 @@
     D.characters = bag.characters;
     D.npcLines = bag.npcLines;
     D.rarityTable = bag.rarity;
+    D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;
     return D;
   });
