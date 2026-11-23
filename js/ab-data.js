@@ -19,6 +19,7 @@
     ["icons", "data/icons.json", true],
     ["props3d", "data/props3d.json", true],
     ["ui", "data/ui.json", true],
+    ["guide", "data/guide.json", true],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path, optional]) =>
@@ -47,6 +48,7 @@
     D.icons = bag.icons || null;
     D.props3d = bag.props3d || null;
     D.ui = bag.ui || null;
+    D.guide = bag.guide || null;
     D.inventoryLayout = bag.inventoryLayout || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;

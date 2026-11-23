@@ -11,6 +11,20 @@
     catch { return fallback; }
   }
 
+  // v71: render caches hang off props (e.g. building._isoC, a canvas with back-references). They made JSON.stringify throw,
+  // so every save since the iso camera (v68) stored props: [] and a town reloaded with no houses, people or gate.
+  // Drop render-only keys (leading _iso/_p3/_ab, canvases) when snapshotting props. The save format is unchanged.
+  function propReplacer(k, v) {
+    if (typeof k === "string" && /^_(iso|p3|ab)/.test(k)) return undefined;
+    if (typeof HTMLCanvasElement !== "undefined" && v instanceof HTMLCanvasElement) return undefined;
+    if (typeof OffscreenCanvas !== "undefined" && v instanceof OffscreenCanvas) return undefined;
+    return v;
+  }
+  function cloneProps(list) {
+    try { return JSON.parse(JSON.stringify(list || [], propReplacer)); }
+    catch { return (list || []).map((b) => { try { return JSON.parse(JSON.stringify(b, propReplacer)); } catch { return null; } }).filter(Boolean); }
+  }
+
   function snapshotMonster(e) {
     if (!e) return null;
     return {
@@ -52,7 +66,7 @@
       spawn: cloneJson(t.spawn, null), exit: cloneJson(t.exit, null),
       monsters: (t.monsters || []).filter((a) => !a.dead).map(snapshotMonster),
       loots: cloneJson(t.loots || [], []),
-      props: cloneJson(t.props || [], []),
+      props: cloneProps(t.props),
       explored: packExplored(t.explored)
     };
   }
@@ -97,7 +111,11 @@
       t.progress.waypoints.ashgate = true;
       t.progress.waypoints.pale_steps = true;
     }
-    let a = (n) => { n && n.identified == null && (n.identified = true); };
+    // v71: identify is gone. Every item an old save holds is named on load (inventory, stash, cube, gear, belt, hireling, ground).
+    let a = (n) => { n && (n.identified = true); };
+    for (let n of t.cube && t.cube.items || []) a(n);
+    for (let n of Object.values(t.hireling && t.hireling.equipment || {})) a(n);
+    for (let l of e.world && e.world.loots || []) a(l && l.item);
     for (let n of t.inventory && t.inventory.items || []) a(n);
     for (let n of t.stash && t.stash.items || []) a(n);
     for (let n of Object.values(t.equipment || {})) a(n);
