@@ -54,6 +54,9 @@
     "npc-lines.json",
     "difficulty.json",
     "inventory-layout.json",
-    "camera.json"
+    "camera.json",
+    "icons.json",
+    "props3d.json",
+    "ui.json"
   ]
 }
