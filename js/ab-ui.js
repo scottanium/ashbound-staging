@@ -3,7 +3,7 @@
 // Without the data file nothing is added and the game looks as it did before.
 (function (root) {
   "use strict";
-  var FRAMED = "#panel, #topbar, #quest-track, #bossbar, #minimap, .panel, .detail, .slot-card, .class-card, .shop-row, #tutor, .rotate-card, .toast, #point-hint";
+  var FRAMED = "#panel, #topbar, #quest-track, #bossbar, #minimap, .panel, .detail, .slot-card, .class-card, .shop-row, #tutor, .toast, #point-hint";
   function px(v) { return v + "px"; }
   function frame(f) {
     var L = f.cornerLen, W = f.cornerW, c = f.corner, g = [];
@@ -14,8 +14,7 @@
     });
     return FRAMED + " { border-color: " + f.line + "; box-shadow: 0 0 0 1px " + f.dark + ", inset 0 0 0 1px " + f.ring + ", inset 0 0 0 3px rgba(0,0,0,0.35), " + f.shadow + "; background-image: " + g.join(", ") + ", linear-gradient(" + f.paper + ", rgba(0,0,0,0.12)); }\n" +
       ".toast, #tutor, #point-hint { background-image: linear-gradient(" + f.paper + ", rgba(0,0,0,0.12)); }\n" +
-      "#minimap { background-image: none; }\n" +
-      "body[data-inv-profile=\"phonePortrait\"] #panel { border: 1px solid " + f.line + "; }\n";
+      "#minimap { background-image: none; }\n";
   }
   function buttons(b) {
     return ".btn, button.btn, #dock button, .portal-btn, .flask, .skill-btn { background-image: linear-gradient(" + b.top + ", " + b.bottom + "); border-color: #b08350; color: " + b.text + "; box-shadow: inset 0 1px 0 " + b.hi + ", inset 0 -2px 0 rgba(0,0,0,0.3), 0 2px 0 " + b.edge + ", 0 4px 8px rgba(0,0,0,0.4); text-shadow: 0 1px 1px rgba(0,0,0,0.6); }\n" +
