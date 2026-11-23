@@ -5,6 +5,11 @@
       "name": "Cinder Warden",
       "epithet": "Warden of the living ash",
       "role": "Melee",
+      "mainStat": "strength",
+      "mainBonuses": [
+        "crit",
+        "armorDefense"
+      ],
       "stars": 2,
       "pitch": "Stand in the pack and outlast it.",
       "blurb": "A sentinel who brands steel with fire. Slow to start, hard to put down, and stronger once the fire skills come in.",
@@ -42,13 +47,19 @@
         "kiln_hook",
         "living_coal",
         "ash_skin"
-      ]
+      ],
+      "skillDamageMul": 1
     },
     {
       "id": "reed_caller",
       "name": "Reed Caller",
       "epithet": "Voice of the Glassmere",
       "role": "Summoner",
+      "mainStat": "energy",
+      "mainBonuses": [
+        "crit",
+        "spellDamage"
+      ],
       "stars": 3,
       "pitch": "Call glasslings, then shoot from behind them.",
       "blurb": "A ranged binder who calls glasslings out of still water. Frail in a straight fight, dangerous once the chorus is up.",
@@ -87,13 +98,19 @@
         "third_voice",
         "rime",
         "glass_heart"
-      ]
+      ],
+      "skillDamageMul": 3.2
     },
     {
       "id": "briar_stalker",
       "name": "Briar Stalker",
       "epithet": "Poison left in the path",
       "role": "Trapper",
+      "mainStat": "dexterity",
+      "mainBonuses": [
+        "crit",
+        "armorDefense"
+      ],
       "stars": 3,
       "pitch": "Lay the snares. Let the poison do the work.",
       "blurb": "A knife and a patient snare. You stay out of the thick of it, you don't keep a chorus, and you leave poison in the ground.",
@@ -132,13 +149,19 @@
         "tripwire",
         "spit",
         "crouch"
-      ]
+      ],
+      "skillDamageMul": 1.62
     },
     {
       "id": "salt_reaver",
       "name": "Salt Reaver",
       "epithet": "The short edge",
       "role": "Melee",
+      "mainStat": "dexterity",
+      "mainBonuses": [
+        "crit",
+        "armorDefense"
+      ],
       "stars": 4,
       "pitch": "Step through the pack and take a little life back.",
       "blurb": "A fast blade that lives in arm's reach. You step through a pack, you cut on the way, and you take a little life back with you.",
@@ -177,13 +200,19 @@
         "salt_feint",
         "measure",
         "close_vein"
-      ]
+      ],
+      "skillDamageMul": 1.08
     },
     {
       "id": "bell_chanter",
       "name": "Bell Chanter",
       "epithet": "The note that stays",
       "role": "Caster",
+      "mainStat": "energy",
+      "mainBonuses": [
+        "crit",
+        "spellDamage"
+      ],
       "stars": 3,
       "pitch": "Ring the room with lightning, then slow the enemies in it.",
       "blurb": "You deal lightning in a ring and slow the room with hymns. You don't call a chorus of glass. You use a bell, a hymn, and whoever is already beside you.",
@@ -222,7 +251,8 @@
         "overtone",
         "rest_bar",
         "wide_hymn"
-      ]
+      ],
+      "skillDamageMul": 4.2
     }
   ],
   "branches": [
@@ -316,5 +346,45 @@
       "about": "Mana and staying power, and Last Bell, which can save you from a killing blow.",
       "classId": "bell_chanter"
     }
-  ]
+  ],
+  "mainStatRates": {
+    "critPerPoint": 0.08,
+    "armorDefensePerPoint": 0.15,
+    "spellDamagePerPoint": 0.4
+  },
+  "balanceSim": {
+    "levels": [
+      10,
+      30,
+      50
+    ],
+    "packSize": 4,
+    "packMonster": "bramble_hound",
+    "flagPct": 15,
+    "pointsPerLevel": {
+      "main": 2,
+      "vitality": 2,
+      "off": 1
+    },
+    "offStatIfMainDex": "strength",
+    "offStatOtherwise": "dexterity",
+    "primarySkill": {
+      "cinder_warden": "ash_strike",
+      "reed_caller": "reed_bolt",
+      "briar_stalker": "needle",
+      "salt_reaver": "salt_cut",
+      "bell_chanter": "bell_note"
+    },
+    "extraMinion": {
+      "reed_caller": {
+        "id": "glassling",
+        "rank": 1
+      }
+    },
+    "physTaken": {
+      "cinder_warden": 0.74,
+      "salt_reaver": 0.74
+    },
+    "notes": "DPS is auto-attack plus the primary skill on cooldown (and a rank-1 glassling for Reed Caller). eHP is time-to-die versus a standard pack of 4 bramble hounds at the hero's level. Product is DPS times TTD. Caster Energy adds to the existing edmg (enhancedDamage) sheet stat instead of armor defense."
+  }
 }

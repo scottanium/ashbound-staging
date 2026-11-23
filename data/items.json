@@ -2262,7 +2262,12 @@
         "ring"
       ],
       "mods": {
-        "moveSpeed": 12
+        "moveSpeed": 8
+      },
+      "slotMods": {
+        "ring": {
+          "moveSpeed": 5
+        }
       }
     },
     {
@@ -2641,7 +2646,7 @@
         "boots"
       ],
       "mods": {
-        "moveSpeed": 18
+        "moveSpeed": 15
       }
     }
   ]

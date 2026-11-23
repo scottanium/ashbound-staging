@@ -58,6 +58,7 @@
     "icons.json",
     "props3d.json",
     "ui.json",
-    "guide.json"
+    "guide.json",
+    "feel.json"
   ]
 }

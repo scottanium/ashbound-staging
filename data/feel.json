@@ -1,0 +1,90 @@
+{
+  "about": "v72 timing and feel. Combat, movement, stamina and built-in boot run numbers live here, not in the game code.",
+  "attack": {
+    "swingMin": 0.08,
+    "swingMax": 0.18,
+    "swingApsRef": 0.28,
+    "skillSwing": 0.11,
+    "autoSwing": 0.12,
+    "windup": 0,
+    "recoveryMul": 1,
+    "strikeAnimRef": 0.18,
+    "strikeAnimRate": 22
+  },
+  "hit": {
+    "stop": 0.07,
+    "stopCrit": 0.11,
+    "stopKill": 0.13,
+    "stopHurt": 0.055,
+    "hurtThreshold": 16,
+    "flashHit": 0.18,
+    "flashHurt": 0.18,
+    "flashFriendly": 0.14,
+    "shakeHit": 1.8,
+    "shakeCrit": 2.8,
+    "shakeHitCap": 3.6,
+    "shakeCritCap": 5.2,
+    "shakeHurtMul": 0.1,
+    "shakeHurtAddCap": 2.4,
+    "shakeCap": 4.5,
+    "impactRing": 0.16,
+    "impactRingCrit": 0.22,
+    "impactRadius": 0.55,
+    "impactRadiusCrit": 0.85
+  },
+  "movement": {
+    "runMul": 0.85,
+    "walkMul": 0.4,
+    "walkStick": 0.62,
+    "deadzone": 0.18,
+    "accel": 16,
+    "decel": 22,
+    "slowMul": 0.72,
+    "channelMul": 0.5,
+    "runAnimSpeed": 3.05,
+    "idleSpeed": 0.25
+  },
+  "stamina": {
+    "maxBase": 80,
+    "perVitality": 2.5,
+    "drainPerSec": 16,
+    "regenWalk": 22,
+    "regenIdle": 36,
+    "resumeFrac": 0.28,
+    "bar": {
+      "width": 72,
+      "height": 8,
+      "gapAboveOrb": 6
+    }
+  },
+  "bootMove": {
+    "common": 5,
+    "magic": 8,
+    "rare": 12,
+    "elite": 16,
+    "epic": 22,
+    "legendary": 28,
+    "fabled": 34,
+    "mythical": 40
+  },
+  "affix": {
+    "fleetBoots": 8,
+    "fleetRing": 5,
+    "ofThePath": 15,
+    "frwFloor": -20,
+    "frwCap": 80
+  },
+  "notes": {
+    "paragon": "Paragon +1% move speed per 10 levels is not built yet (no paragon)."
+  },
+  "audio": {
+    "about": "v72 load-in sound. The looping act drone no longer starts automatically on first tap, spawn, or zone load. loadCue is an optional very soft short tone; it is off (silence) by default.",
+    "autoMusic": false,
+    "loadCue": {
+      "enabled": false,
+      "freq": 220,
+      "dur": 0.08,
+      "gain": 0.01
+    }
+  }
+}
