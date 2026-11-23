@@ -1,0 +1,19 @@
+{
+  "about": "World camera. mode 'iso' is the tilted Diablo-style view: the ground is turned yawDeg and seen from pitchDeg above the horizon (ground squash = sin(pitch)), the hero stays at heroScreenY of the screen height, and walls, trees and houses get height. Add ?flat=1 to the address to get the old top-down view. Changing pitchDeg also re-bakes the 3D models at bakePitchDeg (defaults to pitchDeg). Heights are in tiles before the pitch is applied; heightScale multiplies all of them. groundTexel is the pixels per tile of the cached ground picture (higher is sharper and uses more memory).",
+  "mode": "iso",
+  "iso": {
+    "yawDeg": 45,
+    "pitchDeg": 35,
+    "bakePitchDeg": 35,
+    "zoom": 1.0,
+    "heightScale": 1.0,
+    "wallHeightTiles": 0.95,
+    "houseWallTiles": 1.35,
+    "roofTiles": 1.0,
+    "heroScreenY": 0.5,
+    "groundTexel": 32,
+    "groundSmoothing": false,
+    "occluderFadeAlpha": 0.38,
+    "projectileLift": 0.4
+  }
+}

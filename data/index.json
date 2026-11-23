@@ -53,6 +53,7 @@
     "items.json",
     "npc-lines.json",
     "difficulty.json",
-    "inventory-layout.json"
+    "inventory-layout.json",
+    "camera.json"
   ]
 }
