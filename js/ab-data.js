@@ -11,6 +11,7 @@
     ["items", "data/items.json"],
     ["telling", "data/telling.json"],
     ["characters", "data/characters.json"],
+    ["npcLines", "data/npc-lines.json"],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path]) =>
@@ -30,6 +31,7 @@
     );
     D.telling = bag.telling;
     D.characters = bag.characters;
+    D.npcLines = bag.npcLines;
     window.ASHBOUND_DATA = D;
     return D;
   });
