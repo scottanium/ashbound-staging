@@ -28,7 +28,8 @@ Local serve (this folder): `python3 -m http.server 8907`
 | `js/ab-data.js` | Fetches the data files below before the game starts. |
 | `js/ab-bus.js` | Shared event bus (`ABBus.on` / `ABBus.emit`). Combat, AI, rendering, and save should talk through this or other small wrappers, not by calling each other. |
 | `js/ab-physics.js` | Crowd physics (spatial hash, separation, rings, shove). Attaches with `{ dist, move, getTune }` so it does not close over game state. |
-| `js/ab-save.js` | Narrow save DTO (`ABSave.toDTO` / `migrate`). Writes `SAVE_VERSION` 4. Does not snapshot live combat objects by reference; mid-fight load still works. |
+| `js/ab-save.js` | Narrow save DTO (`ABSave.toDTO` / `migrate`). Writes `SAVE_VERSION` 5. v1–v4 saves still load and then map items to the eight ranks. Does not snapshot live combat objects by reference; mid-fight load still works. |
+| `js/ab-craft.js` | Phase A rarity and tier helpers (`ABCraft`). Combat, AI, and render do not import this module. New strings live in `data/rarity.json`. |
 | `js/ab-ai.js` | AI tick entry and helpers (`ABAI.tick`, active cap, LOD chase). Attaches with `{ dist, move, getTune, tick }` so it does not close over `o`. |
 | `js/ab-render.js` | Thin render/baker interface (`ABRender`). The baker still pumps off the game frame; this is the seam to lift rendering later. |
 | `data/tune.json` | Playtest tuning (`AB_TUNE`): speeds, HP/damage multipliers, melee cone, shove caps. |
@@ -37,7 +38,8 @@ Local serve (this folder): `python3 -m http.server 8907`
 | `data/skills.json` | Skill definitions and in-game skill text. |
 | `data/content.json` | Quests, zones, bargains, shrines, hirelings, difficulties, runes/runewords, named-spawn and boss lines, stat-help text. |
 | `data/monsters.json` | Monster catalog, monster affixes, and the four boss defs. |
-| `data/items.json` | Item bases, uniques, sets, prefixes/suffixes, materials, rarity, and related frozen item data. Do not change values unless a later step names it. |
+| `data/items.json` | Item bases, uniques, sets, prefixes/suffixes, materials, gold rarity map, and `baseRarity` floors on uniques and sets. Do not retune numeric mods unless a later step names it. |
+| `data/rarity.json` | Eight-rank table (Common through Mythical): names, colors, pips, rank numbers, affix counts, and placeholder strings for Koto. |
 | `data/telling.json` | Narrated pages for The telling (title button). Edit the stills and lines here, not in the game code. |
 | `data/characters.json` | Character bible for later use. Loaded at boot, no gameplay effect. |
 | `data/npc-lines.json` | NPC idle barks, first-greet lines by act and class, side-quest offer/waiting/thanks, act/class coach and town-entry lines (`coach`), and act intro/end story cards (`story`). Edit here, not in the game code. |
@@ -68,14 +70,14 @@ Edit the JSON under `data/`, then reload. Do not paste a second copy of the same
 
 ## Do NOT touch (frozen)
 
-- Crafting, the cube, transmute, and item rolls/tiers/stats.
-- The save format (`ashbound.save.N`, `SAVE_VERSION 4`) unless you add a migration. Old saves must keep loading.
+- Existing unique/set numeric mods and item-roll weights in `data/items.json`, except when a named step changes them. Later craft work belongs in `js/ab-craft.js` and `data/*.json`. Combat, AI, and render must not import craft internals.
+- The save format (`ashbound.save.N`, `SAVE_VERSION` 5) unless you add a migration. v1–v4 saves must keep loading and map items onto the eight ranks.
 - Storage key names, and the staging prefix logic in `abStore()`.
 - Inventory capacity.
 
 ## Architecture rule (Scott, Nov 22)
 
-Keep systems loosely coupled. Combat, AI, rendering and save must not call each other directly. They talk through small, simple interfaces (the `ABBus` event bus in `js/ab-bus.js`, or wrapper functions that hide internals), so any piece can later be lifted out into an engine without dragging the rest of the game along. Save goes through `ABSave.toDTO` in `js/ab-save.js` (version 4, no live-object snapshot). `hitStop` no longer returns out of the main `Cr()` tick: time, particles, floats, AI movement, and save keep running, while new attacks, projectiles, dots, and telegraphs wait. Combat applies hits and deaths, then emits `combat:miss`, `combat:hit`, `combat:playerHurt`, and `combat:killed`; FX, XP, loot, and save subscribe instead of being called from the damage function.
+Keep systems loosely coupled. Combat, AI, rendering and save must not call each other directly. They talk through small, simple interfaces (the `ABBus` event bus in `js/ab-bus.js`, or wrapper functions that hide internals), so any piece can later be lifted out into an engine without dragging the rest of the game along. Save goes through `ABSave.toDTO` in `js/ab-save.js` (version 5, no live-object snapshot). Item rank display and v4→v5 item mapping go through `ABCraft` in `js/ab-craft.js`, looked up at call time so other modules do not import craft internals. `hitStop` no longer returns out of the main `Cr()` tick: time, particles, floats, AI movement, and save keep running, while new attacks, projectiles, dots, and telegraphs wait. Combat applies hits and deaths, then emits `combat:miss`, `combat:hit`, `combat:playerHurt`, and `combat:killed`; FX, XP, loot, and save subscribe instead of being called from the damage function.
 
 v55 still closes over one live state object `o`. New targeting already goes through `abPickTarget`. The overhaul unwinds the rest in small steps. The current couplings are listed in `PLAN-3d.md` and [STRESS-v54.md](STRESS-v54.md).
 
