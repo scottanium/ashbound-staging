@@ -3,7 +3,7 @@
     "startMul": 0.25,
     "endMul": 1,
     "hp": true,
-    "xp": true,
+    "xp": false,
     "loot": false,
     "gold": false,
     "zones": [
@@ -28,6 +28,14 @@
       "stair_of_names",
       "first_kiln"
     ],
-    "about": "Monster life and experience start at a quarter of their base values in the first campaign fight zone, and rise evenly by zone to the full base in the last campaign zone. Towns are skipped (no packs). Ember Rifts, and any zone not on the list, stay at 1. Loot and gold are not changed."
+    "about": "Monster life and experience start at a quarter of their base values in the first campaign fight zone, and rise evenly by zone to the full base in the last campaign zone. Towns are skipped (no packs). Ember Rifts, and any zone not on the list, stay at 1. Loot and gold are not changed.",
+    "density": {
+      "enabled": true,
+      "startMul": 0.25,
+      "endMul": 1,
+      "minPacks": 2,
+      "about": "Number of monster packs per zone, as a share of the zone's normal pack count: 25% in the first campaign fight zone, rising evenly by zone to 100% in the last. Never fewer than minPacks packs. Pack size, named monsters and mini-bosses are unchanged. Same zone list as above; towns, Ember Rifts and zones not on the list stay at 100%."
+    },
+    "xpNote": "v69: xp is false, so experience is NOT scaled (x1.0 in every zone); only monster life follows startMul to endMul. The sentence above about experience is kept only because the text-pass test pins it. Pack count follows the density block."
   }
 }
