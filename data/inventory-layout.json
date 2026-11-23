@@ -1,8 +1,21 @@
 {
-  "about": "Sizes (CSS pixels) for the Gear > Sheet screen. The ten equipment slot ids are unchanged; only their size and place changed. slot = side of a square equipment slot; slotMin is the smallest size a test accepts; packCell = pack grid cell (it shrinks to fit the column, never below packCellMin); stat = height of a stat row and its + button; gap = space between slots. The profile is picked from the window: desktop when wide and landscape, phoneLandscape when wider than tall, else phonePortrait. Landscape phones are only about 390px tall, so their slots are smaller than portrait and desktop.",
+  "about": "Sizes (CSS pixels) for the Gear > Sheet screen. The ten equipment slot ids are unchanged; only their size and place changed. slot = side of a square equipment slot; slotMin is the smallest size a test accepts; packCell = pack grid cell (it shrinks to fit the column, never below packCellMin); stat = height of a stat row and its + button; gap = space between slots. The profile is picked from the window: desktop when wide and landscape, otherwise phoneLandscape (v73 is landscape-only on phones; portrait shows a rotate overlay). Landscape phones are only about 390px tall, so their slots are smaller than desktop.",
   "profiles": {
-    "phonePortrait": { "slot": 74, "slotMin": 72, "packCell": 36, "packCellMin": 30, "stat": 44, "gap": 6 },
-    "phoneLandscape": { "slot": 58, "slotMin": 56, "packCell": 34, "packCellMin": 28, "stat": 40, "gap": 4 },
-    "desktop": { "slot": 108, "slotMin": 96, "packCell": 74, "packCellMin": 48, "stat": 44, "gap": 8 }
+    "phoneLandscape": {
+      "slot": 58,
+      "slotMin": 56,
+      "packCell": 34,
+      "packCellMin": 28,
+      "stat": 40,
+      "gap": 4
+    },
+    "desktop": {
+      "slot": 108,
+      "slotMin": 96,
+      "packCell": 74,
+      "packCellMin": 48,
+      "stat": 44,
+      "gap": 8
+    }
   }
 }

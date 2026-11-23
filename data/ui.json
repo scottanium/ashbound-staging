@@ -1,5 +1,5 @@
 {
-  "about": "UI skin for the game screen and menus (v70). js/ab-ui.js turns this file into one stylesheet that sits on top of the base CSS. No game rules here. frame = the double border and corner marks on panels and cards; button = bevel and gradients; orb = the life/mana rings; tip = item tooltip text; profiles = sizes in CSS pixels per screen kind (desktop is wide and tall, phoneLandscape is a short wide window such as an iPhone on its side, phonePortrait is a narrow tall window). Delete this file and the game looks as it did in v69. Phone profiles only change text and button sizes, never positions, so the phone layouts stay as they were; desktop also resizes and moves the HUD.",
+  "about": "UI skin for the game screen and menus (v70). js/ab-ui.js turns this file into one stylesheet that sits on top of the base CSS. No game rules here. frame = the double border and corner marks on panels and cards; button = bevel and gradients; orb = the life/mana rings; tip = item tooltip text; profiles = sizes in CSS pixels per screen kind (desktop is wide and tall, phoneLandscape is a short wide window such as an iPhone on its side, including small-phone landscape). Portrait phones show a rotate overlay and do not use a portrait HUD profile. Delete this file and the game looks as it did in v69. Phone profiles only change text and button sizes, never positions, so the phone layouts stay as they were; desktop also resizes and moves the HUD.",
   "frame": {
     "line": "#9a7448",
     "lineHi": "#e6b878",
@@ -117,27 +117,6 @@
       "skillKey": 10,
       "attackFont": 16,
       "interact": 15,
-      "dockH": 44,
-      "dockPad": 8
-    },
-    "phonePortrait": {
-      "query": "(max-width: 520px) and (max-aspect-ratio: 1/1)",
-      "base": 15,
-      "btnH": 46,
-      "tapMin": 44,
-      "btnFont": 16,
-      "panelH2": 26,
-      "small": 14,
-      "detailFont": 14.5,
-      "slotName": 12.5,
-      "who": 17,
-      "zone": 13,
-      "goal": 14,
-      "orbFont": 14,
-      "dockFont": 14,
-      "skillKey": 10,
-      "attackFont": 15,
-      "interact": 14,
       "dockH": 44,
       "dockPad": 8
     }
