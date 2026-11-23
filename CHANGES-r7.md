@@ -196,3 +196,14 @@ The view is now tilted like Diablo/PoE: the world is turned 45° and seen from 3
 ## v67 — 3D heroes on character creation
 
 The five class previews on the create screen now draw baked 3D frames with a slow idle turn (one eighth turn every 3 s, light breathing). The pixel sprite shows only until the first frame is baked. The title screen has no hero images, so nothing changed there. Restore point: git tag `pre-create3d`. Test: `tests/r7_create_3d.py`.
+
+
+## v68 — iso performance + extruded props
+
+Goal: get the isometric view back to v66 speed on the iPhone profile (4x CPU throttle) without changing the look. Restore point: git tag `pre-isoperf` (= v67).
+- **Pre-tilted ground.** The floor (with fog baked in) is drawn once per zone into a picture that is already turned and squashed (`pretiltTexel` pixels per tile, default 32; opaque, filled with the zone's void colour). Each frame it is a straight copy at the screen's pixel grid instead of a rotated draw. Fog changes redraw only the tiles that changed. Lava/exit glows are still drawn in the ground plane. Switch off with `pretiltGround: false` in `data/camera.json`.
+- **Cheap far crowd.** During big pulls only the `crowd.inactiveFull` (10) inactive monsters nearest the hero are drawn as full 3D models; the rest (frozen, far, not bosses) are drawn as shaded blobs with a shadow. In the 120-monster stress test about 115 monsters were on screen per frame in v67 vs 81 in v66; now most of the extra are blobs. `-1` draws all.
+- **House cache** is cropped to the drawn pixels (about 40% fewer pixels than v67) and the smithy chimney flame is drawn live over it, so houses are not re-baked every couple of seconds.
+- **Pitch** stays 35 (40 was measured and gave no gain in town or fights, so the look is unchanged).
+- **Extruded props.** Town: Warm Well (fountain: basin, water ring, spout), Public Kiln (brick box, glowing mouth, chimney, light), Warden Chest (box, lid, clasp), Ash Bench (seat, back, legs) and Ashmarch Gate (two pillars, lintel, glowing portal) are no longer flat sprites (the bench used to draw the house sprite and the well and kiln shared one arch sprite). Wild zones: shrine (obelisk), crate, cursed chest, relic (pedestal + floating gem) and marker/post (post + sign) are also solid now. Still flat sprites for the graphics pass: exit doors (`exit`), rifts (`rift`), set pieces (`setpiece`), decor (trees and similar), fences use a skewed sprite, and wild-zone trees and clutter are baked sprites.
+- Debug: `ASHBOUND.iso()` now reports `drawMs`, `pretilt`, `crowdFull` and `stats.cheap`/`p3k`. Tests: `tests/r7_iso_camera.py` covers pretilt, extruded town props and the cheap crowd; `tests/r7_cap.py` passes again.
