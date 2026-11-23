@@ -207,3 +207,13 @@ Goal: get the isometric view back to v66 speed on the iPhone profile (4x CPU thr
 - **Pitch** stays 35 (40 was measured and gave no gain in town or fights, so the look is unchanged).
 - **Extruded props.** Town: Warm Well (fountain: basin, water ring, spout), Public Kiln (brick box, glowing mouth, chimney, light), Warden Chest (box, lid, clasp), Ash Bench (seat, back, legs) and Ashmarch Gate (two pillars, lintel, glowing portal) are no longer flat sprites (the bench used to draw the house sprite and the well and kiln shared one arch sprite). Wild zones: shrine (obelisk), crate, cursed chest, relic (pedestal + floating gem) and marker/post (post + sign) are also solid now. Still flat sprites for the graphics pass: exit doors (`exit`), rifts (`rift`), set pieces (`setpiece`), decor (trees and similar), fences use a skewed sprite, and wild-zone trees and clutter are baked sprites.
 - Debug: `ASHBOUND.iso()` now reports `drawMs`, `pretilt`, `crowdFull` and `stats.cheap`/`p3k`. Tests: `tests/r7_iso_camera.py` covers pretilt, extruded town props and the cheap crowd; `tests/r7_cap.py` passes again.
+
+
+## v69 — XP back to x1, mob density ramp
+
+Scott: enemy damage still too high, and lower XP stopped leveling. Restore point: git tag `pre-density` (= v68).
+- **XP is x1.0 everywhere.** `campaignIntro.xp` in `data/difficulty.json` is now `false`; monsters pay their normal XP in every zone. The monster life ramp (25% in Cinderwood rising evenly to 100% at First Kiln over the 20 campaign zones) is unchanged.
+- **Mob density ramp.** New `campaignIntro.density` block: the number of packs in a zone is 25% of its normal count in the first campaign fight zone and rises evenly to 100% at First Kiln (same 20-zone list). `minPacks` (2) keeps a zone from being empty. Pack size, the named monster and the mini-boss are unchanged. Towns, Ember Rifts, boss rooms and any zone not on the list stay at 100%.
+- Debug: `ASHBOUND.campaignDensity(zoneId, kind)`. Test: `tests/r7_campaign_scale.py` now also checks XP x1 and the density ramp (data, API and live packs with the ramp on vs off).
+- No change to saves, storage keys or characters.
+
