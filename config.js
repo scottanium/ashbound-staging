@@ -1,6 +1,5 @@
-// Ashbound build config - the only file that differs between live and staging.
-// Live site (scottanium.github.io/ashbound/):          STAGING: true
-// Staging site (scottanium.github.io/ashbound-staging/): STAGING: true
-// Staging stores saves/settings under the "ashbound-staging:" prefix and uses its own service-worker cache,
-// so staging can never overwrite or delete live saves or the live offline cache. No secrets belong here.
-self.ASHBOUND_CONFIG = { STAGING: true, VERSION: "v70", STORAGE_PREFIX: "ashbound-staging:" };
+// Ashbound staging build config. Not loaded by the live site.
+// Live config.js is untouched (STAGING: false, VERSION: "v71").
+// Staging uses its own prefix so existing ashbound-staging: keys are left in place and unused.
+// No secrets belong here.
+self.ASHBOUND_CONFIG = { STAGING: true, VERSION: "v71", STORAGE_PREFIX: "ashbound-staging-v71:" };

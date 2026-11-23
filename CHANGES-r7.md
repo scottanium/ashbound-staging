@@ -248,3 +248,57 @@ One restore tag per step: `pre-icons`, `pre-groundloot`, `pre-props3d`, `pre-uip
 - Desktop (wide and tall windows) gets a larger HUD: top bar, quest card, orbs, dock, flasks, skill slots, Strike, minimap, hints and joystick all bigger and re-spaced. Phones keep their layout; only text and button sizes grow (tap targets >= 44px, including the Details, Sort and Fill belt buttons).
 - Missing `data/ui.json` keeps the v69 look. Gameplay, saves and storage keys are untouched.
 - Test: `tests/r7_ui_polish.py`. Screenshots: `gfx-uipolish-{before,after}-{landscape,desktop,portrait}.png` plus `-town-`, `-menu-`, `-gear-`, `-skills-` views.
+
+
+## v71 — first-quest guidance, HUD, Stats, Test Tools, richer character art
+
+Restore point for the art step: git tag `pre-charart`. Saves stay `SAVE_VERSION` 5. Storage key names and `abStore()` logic are unchanged. Staging uses a new prefix so existing staging saves are left in place (see below). Gameplay combat numbers are untouched.
+
+### A — first-quest guidance
+- New heroes skip the "What's new" news card and get a stepped objective: learn a skill, walk to the North Gate, cross into Cinderwood. Gate glow, a tidy tip, and the objective arrow lead the way (`data/guide.json`, quest split `wood` / `wood_far`).
+- Test: `tests/r7_questguide.py`. Shots: `gfx-questflow-*.png`.
+
+### B — town gate on the north wall
+- In all four towns the gate sits on the north wall at (11, 1.3) with a 2-wide path from the square. Also fixes a v68–v70 save bug that stored `props: []` (render cache `_isoC`) so a saved town reloads with houses, people and the gate.
+- Test: `tests/r7_town_gate.py`.
+
+### C — no identify
+- Items are named on drop and on load. The ident lens no longer drops or appears in the stall; the bench has no identify recipe; tooltips have no Identify button. A leftover lens sells for 15 gold.
+- Test: `tests/r7_noid.py`.
+
+### D — skill arc
+- The four skill slots hug Strike in a bounding-box-safe arc (`js/ab-hudarc.js`, `data/ui.json` `arc`). Orbs sit higher; the belt and dock stay clear of the arc; the objective arrow avoids HUD boxes. Turning the arc off in the data file restores the old row.
+- Test: `tests/r7_skillarc.py`. Shots: `gfx2-skillarc-*.png`.
+
+### E — skill tree
+- The Skills tab shows each branch as a rail of nodes with locked/open/ready/learned/maxed states and reasons from `data/ui.json` `skillTree.labels`.
+- Test: `tests/r7_skilltree.py`. Shots: `gfx2-skilltree-*.png`.
+
+### F — rune tooltips
+- Every rune tooltip is "Rune · Tier N" (no "Rune Rune"), with its socket effect and the runewords that use it. The Journal runes tab lists each runeword's effects (`data/ui.json` `runeTips`).
+- Test: `tests/r7_runetips.py`. Shots: `gfx2-runetips-*.png`.
+
+### G — monster count
+- The top-bar zone line reads "<zone> · N left" (living hostiles only), "Cleared" at zero, hidden in towns (`data/ui.json` `mobCount`).
+- Test: `tests/r7_mobcount.py`. Shots: `gfx2-mobcount-*.png`.
+
+### Stats tab
+- Gear → Stats. Per-point gains are measured with the real sheet formula; base / gear / bonus breakdown; derived stats and chance to be hit. Labels and rows live in `data/ui.json` `statsTab`.
+- Test: `tests/r7_statstab.py`. Shots: `gfx2-statstab-*.png`.
+
+### Test Tools (staging only)
+- Staging Menu has a TEST tools panel: spawn items, set level / points / gold, ignore requirements, teleport. Live (`STAGING` false) never loads `js/ab-testtools.js` and has no TEST button.
+- Test: `tests/r7_testtools.py`. Shots: `gfx2-testtools-*.png`.
+
+### H — richer character art
+- Hero classes, town NPCs, common monsters and the paperdoll (the paperdoll is the hero type) get modest extra baked detail: hair, beards, hats, aprons, quivers, packs, emblems, tassets, kneepads, bandoliers, spikes, trophies, golem runes, imp wings, and a few quad extras (fangs, back spikes, moss, a collar). Built from the same capsule / sphere / disk primitives as before.
+- All of it is data-driven in `data/models.json`: a `rich.enabled` switch and per-type `detail` flags plus new `parts` colours. Camera, LOD (`Ppx`), the 360-frame / 48 MB cap, animation tables and the bake budget are unchanged from the `pre-charart` tag. `rich.enabled: false` bakes pixel-identical sheets to that tag. A full human-proportion model rework is later work and was not done here.
+- Bosses that extend a changed type do not inherit the new kit. Existing part colours (reaver hair, imp trim, inherited NPC trim) are left alone so the off switch stays honest. Merchant and elder still wear a hood when the switch is off; with it on, a hat or hair replaces the hood.
+- Test: `tests/r7_charart.py` (sheets differ when on, identical when off, bake cost +32% / under the 40% cap, every type × pose still bakes, caps hold after a Cinderwood fight, Gear panel opens). Before/after sheets: `/workspace/ashbound-overhaul/gfx-charart-{before,after}-{heroes,npcs,monsters}[-back].png`.
+
+### Staging saves
+- Staging `config.js` (`config.staging.js` in this tree; the upload copy) uses `STORAGE_PREFIX: "ashbound-staging-v71:"` so a fresh character list starts on staging. Existing `ashbound-staging:` keys are left in the browser and are not read or deleted. Live `config.js` is unchanged (`STAGING: false`, prefix field unused while the flag is false). `abStore()` still only prefixes keys when `STAGING` is true.
+
+### Perf (same probe as v70: iPhone landscape 844×390, DPR 3, 4× CPU throttle)
+- `r7_iso_perf`: town walk 6.39 fps (v70 7.3), Cinderwood fight 7.68 fps (v70 6.9).
+- `r7_cap` pack-120: 19.4 fps avg (v70 18.2, pass line 18). `all_pass: true`.
