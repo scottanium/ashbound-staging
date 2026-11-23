@@ -40,7 +40,7 @@ Local serve (this folder): `python3 -m http.server 8907`
 | `data/items.json` | Item bases, uniques, sets, prefixes/suffixes, materials, rarity, and related frozen item data. Do not change values unless a later step names it. |
 | `data/telling.json` | Narrated pages for The telling (title button). Edit the stills and lines here, not in the game code. |
 | `data/characters.json` | Character bible for later use. Loaded at boot, no gameplay effect. |
-| `data/npc-lines.json` | NPC idle barks, first-greet lines by act and class, and side-quest offer/waiting/thanks text. Edit here, not in the game code. |
+| `data/npc-lines.json` | NPC idle barks, first-greet lines by act and class, side-quest offer/waiting/thanks, act/class coach and town-entry lines (`coach`), and act intro/end story cards (`story`). Edit here, not in the game code. |
 | `config.js` | The only file that should differ between live and staging (`STAGING: false/true`, `VERSION`, storage prefix). No secrets. |
 | `sw.js` | Offline cache. The cache name comes from `config.js` (`ashbound-pages-vNN` live, `ashbound-staging-vNN` staging). |
 | `manifest.webmanifest`, `icon-*.png` | Home-screen install info and icons. Staging uses TEST icons and the name “Ashbound TEST”. |
