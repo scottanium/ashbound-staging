@@ -230,7 +230,7 @@
 
   function skipPacket(payload) {
     var kind = payload && (payload.kind || (payload.packet && payload.packet.kind));
-    return kind === "effect" || kind === "thorns" || kind === "dot" || kind === "lava";
+    return kind === "effect" || kind === "thorns" || kind === "dot" || kind === "lava" || kind === "explode";
   }
 
   function note(item, typ, nums, extra) {
@@ -284,7 +284,8 @@
     return p;
   }
 
-  function healHero(state, amount) {
+  function healHero(state, amount, kind) {
+    if (root.ABSustain && ABSustain.applyLife) return ABSustain.applyLife(state, amount, { kind: kind || "heal" });
     var p = state && state.player, sh = state && state.sheet;
     if (!p || !amount) return 0;
     var cap = sh && sh.life || p.hp;
@@ -359,10 +360,14 @@
 
     if (typId === "kill_explode") {
       if (!target) return;
+      var kindIn = payload.kind || (payload.packet && payload.packet.kind);
+      if (kindIn === "explode") return;
       var dmg2 = nums.damage || 0;
       var n2 = 0;
       near(state, target.x, target.y, nums.radius || 1.6, target).forEach(function (m) {
-        applyHit(state, m, elemPacket(nums.element || "fire", dmg2));
+        var pkt = elemPacket(nums.element || "fire", dmg2);
+        pkt.kind = "explode";
+        applyHit(state, m, pkt);
         n2++;
       });
       rec = note(item, typ, nums, { hits: n2, amount: dmg2, capstone: fx.capstone });
@@ -409,6 +414,8 @@
     }
 
     if (typId === "thorns_nova") {
+      if ((payload.kind || (payload.packet && payload.packet.kind)) === "dot") return;
+      if (onCooldown(item, "thorns_nova", state, 0.5)) return;
       var d4 = nums.damage || 0;
       var src2 = payload.source && typeof payload.source === "object" ? payload.source : null;
       var n4 = 0;
@@ -425,7 +432,7 @@
 
     if (typId === "life_on_hit") {
       if (payload.source && payload.source !== "player") return;
-      var healed = healHero(state, nums.heal || 0);
+      var healed = healHero(state, nums.heal || 0, "hit");
       rec = note(item, typ, nums, { healed: healed, capstone: fx.capstone });
       if (healed && hook.float && player) hook.float(state, player, "+" + Math.round(healed), "#9ddea0");
       return rec;
@@ -514,7 +521,7 @@
     }
 
     if (typId === "life_on_kill") {
-      var healed2 = healHero(state, nums.heal || 0);
+      var healed2 = healHero(state, nums.heal || 0, "kill");
       rec = note(item, typ, nums, { healed: healed2, capstone: fx.capstone });
       if (healed2 && hook.float && player) hook.float(state, player, "+" + Math.round(healed2), "#9ddea0");
       flash(state, typ, player ? player.x : 0, player ? player.y : 0);

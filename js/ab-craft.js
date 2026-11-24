@@ -168,6 +168,113 @@
     return cls;
   }
 
+
+  function nameColor(item) {
+    if (!item) return "#e6dece";
+    if (isSet(item)) {
+      const fam = families().set || {};
+      if (fam.color) return fam.color;
+    }
+    const col = color(item);
+    if (col) return col;
+    const tokens = (data().rarityTable || {}).cssTokens || {};
+    const rar = item.rarity;
+    if (rar && tokens[rar] && tokens[rar].color) return tokens[rar].color;
+    return "#e6dece";
+  }
+
+  function legacyColorMap() {
+    const out = { common: "#e6dece", magic: "#8fd3ff", rare: "#f0d56a", set: "#63c56d", unique: "#ff9a3c", rune: "#ff8a4a", gem: "#7dcea0", potion: "#f4ecdf", gold: "#f0d56a" };
+    const table = data().rarityTable || {};
+    const ranks = table.ranks || [];
+    for (let i = 0; i < ranks.length; i++) {
+      const r = ranks[i];
+      if (r && r.id && r.color) out[r.id] = r.color;
+    }
+    const tokens = table.cssTokens || {};
+    const keys = Object.keys(tokens);
+    for (let i = 0; i < keys.length; i++) {
+      const tok = tokens[keys[i]];
+      if (tok && tok.color) out[keys[i]] = tok.color;
+    }
+    const setFam = (table.families || {}).set;
+    if (setFam && setFam.color) out.set = setFam.color;
+    // Unique names use the item's rank, not a family gold. Keep a rank-neutral
+    // fallback only for code that still keys on rarity==="unique".
+    const epic = rarityDef("epic");
+    if (epic && epic.color) out.unique = epic.color;
+    return out;
+  }
+
+  function rarityCss() {
+    const table = data().rarityTable || {};
+    const ranks = table.ranks || [];
+    const vars = [];
+    const rules = [];
+    const fams = table.families || {};
+    for (let i = 0; i < ranks.length; i++) {
+      const r = ranks[i];
+      const id = r.id;
+      const col = r.color || "#e6dece";
+      const border = r.outline || r.border || col;
+      const bg = r.bg || "transparent";
+      const out = r.outline || "";
+      vars.push("--" + id + ":" + col);
+      if (out) vars.push("--" + id + "-outline:" + out);
+      rules.push(".rar-" + id + "{color:var(--" + id + ")}");
+      let extra = "";
+      if (out && out.toLowerCase() !== col.toLowerCase()) {
+        extra = "box-shadow:0 0 8px " + out + ";";
+        rules.push(".rar-" + id + "{text-shadow:0 0 6px " + out + "}");
+      }
+      if (id === "elite") rules.push(".rar-elite{text-shadow:0 1px 0 #000,0 0 3px #000,0 0 6px rgba(0,0,0,.85)}");
+      rules.push(".gitem.rar-" + id + ",.slot.has-item.rar-" + id + "{color:" + col + ";border-color:" + border + ";background:" + bg + ";" + extra + "}");
+      rules.push(".shop-row .rar-" + id + ",.detail-name.rar-" + id + " strong,.gitem.rar-" + id + " .iname{color:" + col + "}");
+    }
+    const famKeys = ["unique", "set", "normal"];
+    for (let f = 0; f < famKeys.length; f++) {
+      const key = famKeys[f];
+      const fam = fams[key] || {};
+      if (fam.color) vars.push("--family-" + key + ":" + fam.color);
+      const cls = fam.className || (key === "normal" ? "" : "family-" + key);
+      if (!cls) {
+        rules.push(".gitem,.slot.has-item,.shop-ico,.detail-ico{border-style:" + (fam.borderStyle || "solid") + ";border-width:" + (fam.borderWidth || "1px") + "}");
+        continue;
+      }
+      const col = fam.color || "#e6dece";
+      const style = fam.borderStyle || "double";
+      const width = fam.borderWidth || "3px";
+      const sel = ".gitem." + cls + ",.slot.has-item." + cls + ",.shop-ico." + cls + ",.detail-ico." + cls + ",.flask." + cls;
+      rules.push(sel + "{border-style:" + style + ";border-width:" + width + "}");
+      rules.push(".family-badge-" + key + "{color:" + col + "}");
+      if (key === "set") {
+        // Set item NAMES stay family green (specificity beats .gitem.rar-* .iname).
+        // Frames still use the rank border.
+        rules.push(".gitem." + cls + " .iname,.slot." + cls + " .iname,.shop-row ." + cls + ",.detail-name." + cls + " strong,.item-kind-" + key + "{color:" + col + "}");
+      } else {
+        // Unique family gold is for the U badge and the word "Unique" only.
+        // Item names, tooltip headers, shop names, and pips follow the rank color.
+        rules.push(".item-kind-" + key + "{color:" + col + "}");
+      }
+    }
+    rules.push(".family-badge{position:absolute;top:1px;right:1px;z-index:2;min-width:11px;height:12px;padding:0 2px;font:700 9px/12px var(--sans);text-align:center;border-radius:2px;background:rgba(12,8,6,.82);pointer-events:none}");
+    rules.push(".gitem.family-unique .iname,.gitem.family-set .iname{display:block}");
+    const tokens = table.cssTokens || {};
+    const tokKeys = Object.keys(tokens);
+    for (let i = 0; i < tokKeys.length; i++) {
+      const key = tokKeys[i];
+      const tok = tokens[key] || {};
+      const col = tok.color || "#e6dece";
+      const border = tok.border || col;
+      const bg = tok.bg || "transparent";
+      vars.push("--" + key + ":" + col);
+      rules.push(".rar-" + key + "{color:var(--" + key + ")}");
+      rules.push(".gitem.rar-" + key + ",.slot.has-item.rar-" + key + "{color:" + col + ";border-color:" + border + ";background:" + bg + "}");
+    }
+    rules.push(".family-set:not(.gitem):not(.slot):not(.shop-ico):not(.detail-ico),.rar-set{color:var(--set)}");
+    return ":root{" + vars.join(";") + "}\n" + rules.join("\n");
+  }
+
   function pip(item) {
     if (!item || isCurrency(item) || item.charm) return null;
     const def = rarityDef(displayId(item));
@@ -187,6 +294,62 @@
     const legacy = (table && table.legacyGold) || {};
     if (item && legacy[item.rarity] != null) return legacy[item.rarity];
     return 1;
+  }
+
+  function isAshen(item) {
+    if (!item) return false;
+    if (root.ABAshen && ABAshen.isAshen) return !!ABAshen.isAshen(item);
+    if (item.ashen) return true;
+    const id = item.uniqueId || item.id || "";
+    return typeof id === "string" && id.indexOf("ashen_") === 0;
+  }
+
+  function mythicRefusal() {
+    return "Only Ashen (level 50) uniques can become Mythical.";
+  }
+
+  function isStagingStore() {
+    const C = root.ASHBOUND_CONFIG || {};
+    return C.STAGING === true;
+  }
+
+  // Non-Ashen uniques and set pieces cap at Fabled. Normal (non-unique, non-set)
+  // items may still be Mythical. Only Ashen L50 uniques can reach Mythical.
+  function tierCap(item) {
+    if (isAshen(item)) return "mythical";
+    if (isUnique(item) || isSet(item)) return "fabled";
+    return "mythical";
+  }
+
+  function rankOf(id) {
+    const def = rarityDef(id);
+    return def && def.rank != null ? def.rank : 0;
+  }
+
+  function canSetTier(item, tier) {
+    if (!item) return { ok: false, reason: "Pick an item first." };
+    const cap = tierCap(item);
+    if (rankOf(tier) > rankOf(cap)) {
+      return { ok: false, reason: mythicRefusal(), cap: cap };
+    }
+    return { ok: true, cap: cap };
+  }
+
+  function setTier(item, tier, opts) {
+    opts = opts || {};
+    const check = canSetTier(item, tier);
+    if (!check.ok) return check;
+    item.tier = tier;
+    if (opts.scale !== false && isUnique(item)) scaleUnique(item);
+    return { ok: true, item: item, tier: item.tier };
+  }
+
+  function enforceTierCap(item) {
+    if (!item || isCurrency(item) || item.charm) return item;
+    const cap = tierCap(item);
+    const cur = item.tier && rarityDef(item.tier) ? item.tier : null;
+    if (cur && rankOf(cur) > rankOf(cap)) item.tier = cap;
+    return item;
   }
 
   function stampTier(item) {
@@ -240,6 +403,9 @@
     if (item.consumeXp == null) item.consumeXp = 0;
     if (item.dormant == null) item.dormant = false;
     stampTier(item);
+    if (isStagingStore() && (isUnique(item) || isSet(item)) && !isAshen(item) && item.tier === "mythical") {
+      item.tier = "fabled";
+    }
     if (isUnique(item)) scaleUnique(item);
     const cap = affixCount(item.tier || displayId(item));
     const n = (item.affixes && item.affixes.length) || 0;
@@ -869,7 +1035,17 @@
     const held = taken && taken.item ? taken.item : item;
     held.consumeLevel = held.consumeLevel || 0;
     held.consumeXp = held.consumeXp || 0;
-    held.dormant = false;
+    // Set consume pieces stay consumed-dormant until Wake-Oil; ordinary uniques stay awake.
+    if (opts.awakening) held.dormant = false;
+    else if (isConsumePiece(held)) held.dormant = true;
+    else held.dormant = false;
+    if (player.equipment) {
+      const slots = Object.keys(player.equipment);
+      for (let i = 0; i < slots.length; i++) {
+        const worn = player.equipment[slots[i]];
+        if (worn && worn.uid === held.uid) player.equipment[slots[i]] = null;
+      }
+    }
     player.consume = held;
     const rem = remnantOf(player, key);
     if (rem) rem.on = false;
@@ -1000,7 +1176,7 @@
   root.ABCraft = {
     rarityDef, affixCount, isUnique, isSet, isCurrency,
     baseRarityFor, displayId, rankLabel, floorLabel, kindLabel,
-    cssClass, family, familyDef, families, color, outline, pip, goldMul, stampTier, migrateItem, migrateSave,
+    cssClass, family, familyDef, families, color, nameColor, legacyColorMap, rarityCss, outline, pip, goldMul, stampTier, isAshen, isStagingStore, mythicRefusal, tierCap, canSetTier, setTier, enforceTierCap, migrateItem, migrateSave,
     migrateShared, migrateAllItems, ranks, strings, scaleUnique: scaleUniqueWithConsume, uniqueStatMul,
     milestoneMul, consumeCfg, milestones, setDef, setTable, majorSlots, isMajorSlot,
     matDef, isBoundMat, makeMat, canConsume, uniqueKey, isConsumePiece, consumePieceId,

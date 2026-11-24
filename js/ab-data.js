@@ -27,6 +27,8 @@
     ["milestones", "data/milestones.json"],
     ["consume", "data/consume.json"],
     ["sets", "data/sets.json"],
+    ["sustain", "data/sustain.json"],
+    ["uniquesAshen", "data/uniques-ashen.json"],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path, optional]) =>
@@ -98,7 +100,25 @@
       }
       D.setItems = items;
     }
+    D.sustain = bag.sustain || {};
+    if (bag.uniquesAshen) {
+      if (typeof ABAshen !== "undefined" && ABAshen.merge) ABAshen.merge(D, bag.uniquesAshen);
+      else {
+        D.ashen = bag.uniquesAshen;
+        const extra = (bag.uniquesAshen && bag.uniquesAshen.uniques) || [];
+        D.ashenUniques = extra;
+        const list = Array.isArray(D.uniques) ? D.uniques : [];
+        const have = {};
+        for (let i = 0; i < list.length; i++) if (list[i] && list[i].id) have[list[i].id] = true;
+        for (let i = 0; i < extra.length; i++) {
+          const u = extra[i];
+          if (u && u.id && !have[u.id]) { list.push(u); have[u.id] = true; }
+        }
+        D.uniques = list;
+      }
+    }
     D.inventoryLayout = bag.inventoryLayout || {};
+    D.difficulty = bag.campaignDifficulty || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;
     return D;

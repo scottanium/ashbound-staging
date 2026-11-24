@@ -45,14 +45,14 @@
     h.push(row("How many", num("count", 1, 20)));
     h.push('<div class="row"><button class="btn primary" data-act="tt-add">Add to pack</button><button class="btn" data-act="tt-equip">Add and equip</button></div></section>');
     h.push('<section class="tt-card"><h3>Spawn maxed</h3>');
-    h.push('<p class="small muted">Random unique or set piece with best base defense, full sockets, and Mythical rank (the top upgrade tier). There is no separate awakened flag.</p>');
+    h.push('<p class="small muted">Random Ashen unique (or a set piece, capped at Fabled) with best base defense, full sockets, and top legal rank. Only Ashen uniques can be Mythical. There is no separate awakened flag.</p>');
     h.push('<div class="row tt-counts">' + [1, 5, 10].map(function (n) {
       return '<button class="btn' + (S.mythCount === n ? " primary" : "") + '" data-act="tt-mc" data-n="' + n + '">' + n + "</button>";
     }).join("") + "</div>");
-    h.push('<button class="btn primary" data-act="tt-mythic">Spawn random maxed Mythical unique</button>');
+    h.push('<button class="btn primary" data-act="tt-mythic">Spawn random maxed Mythical Ashen unique</button>');
     h.push('<button class="btn primary" data-act="tt-setmax">Spawn random maxed set piece</button>');
     h.push('<button class="btn primary" data-act="tt-normyth">Spawn random maxed Mythical normal item</button>');
-    h.push('<button class="btn" data-act="tt-alluniques">Spawn every unique (Mythical)</button></section>');
+    h.push('<button class="btn" data-act="tt-alluniques">Spawn every Ashen unique (Mythical)</button></section>');
     h.push('<section class="tt-card"><h3>Hero</h3>');
     h.push(row("Level (now " + p.level + (p.paragonLevel ? ", P" + p.paragonLevel : "") + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
     h.push('<div class="row"><button class="btn" data-act="tt-level50">Set level 50</button><button class="btn" data-act="tt-paragon10">+10 Paragon</button></div>');
@@ -82,6 +82,12 @@
     return null;
   }
   function pick(list) { return list[Math.floor(Math.random() * list.length)]; }
+  function ashenUniques() {
+    if (self.ABAshen && ABAshen.ashenOnly) return ABAshen.ashenOnly();
+    var list = (B.uniques || []).filter(function (u) { return u && (u.ashen || (u.id && String(u.id).indexOf("ashen_") === 0)); });
+    return list;
+  }
+
   function maxOut(it) {
     var b = baseOf(it);
     if (b) {
@@ -91,6 +97,7 @@
     } else it.ilvl = Math.max(it.ilvl || 1, 80);
     it.tier = "mythical";
     it.identified = true;
+    if (self.ABCraft && ABCraft.enforceTierCap) ABCraft.enforceTierCap(it);
     if (self.ABCraft && ABCraft.scaleUnique) ABCraft.scaleUnique(it);
     return it;
   }
@@ -108,7 +115,7 @@
     n = Math.max(1, Math.min(10, n | 0));
     for (i = 0; i < n; i++) {
       it = null;
-      if (kind === "mythic") { def = pick(B.uniques); it = B.Lt(def.id); }
+      if (kind === "mythic") { def = pick(ashenUniques().length ? ashenUniques() : B.uniques); it = def ? B.Lt(def.id) : null; }
       else if (kind === "set") { def = pick(B.sets); it = makeSet(def); }
       else {
         def = pick(B.bases);
@@ -188,13 +195,14 @@
       var set = self.ASHBOUND && self.ASHBOUND.setConsumeLevel ? self.ASHBOUND.setConsumeLevel(lv) : (self.ABCraft && ABCraft.setConsumeLevel(p, lv));
       say(set && set.ok ? ("Consume level +" + lv + ".") : ((set && set.reason) || "Nothing is in the consume slot."));
     } else if (e === "tt-alluniques") {
-      var added = 0, i, it, def;
-      for (i = 0; i < B.uniques.length; i++) {
-        def = B.uniques[i];
+      var added = 0, skipped = 0, i, it, def, list = ashenUniques();
+      for (i = 0; i < list.length; i++) {
+        def = list[i];
         it = def ? B.Lt(def.id) : null;
         if (it && give(maxOut(it))) added++;
+        else skipped++;
       }
-      say(added ? ("Added " + added + " Mythical uniques.") : "Pack and stash are full.");
+      say(skipped ? ("Added " + added + " Mythical Ashen uniques. Pack and stash are full, " + skipped + " not placed.") : (added ? ("Added " + added + " Mythical Ashen uniques.") : "Pack and stash are full."));
     }
     B.se(); B.refresh();
   }
