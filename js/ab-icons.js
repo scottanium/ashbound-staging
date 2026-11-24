@@ -6,9 +6,20 @@
   function D() { return (root.ASHBOUND_DATA || {}).icons || null; }
   function ready() { var d = D(); return !!(d && d.recipes); }
   function mono(p) { var o = {}; for (var k in p) o[k] = "#3a3028"; o.M = "#6a5c4c"; o.d = "#241c16"; return o; }
+  function rankChrome(id) {
+    var table = (root.ASHBOUND_DATA || {}).rarityTable || {};
+    var list = table.ranks || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
   function palFor(palName, rankId, ghost) {
     var d = D(), base = Object.assign({}, (d.palettes || {})[palName] || d.palettes.bone);
     var t = (d.tint || {})[rankId]; if (t) Object.assign(base, t);
+    var def = rankChrome(rankId);
+    if (def && def.color) {
+      base.j = def.color;
+      if (def.outline) base.t = def.outline;
+    }
     return ghost ? mono(base) : base;
   }
   function col(p, c) { return p[c] || c; }
@@ -113,10 +124,26 @@
     var u = urlFor(item, "common", { ghost: true }); if (!u) return "";
     return '<img class="item-ico pic" alt="" draggable="false" src="' + u + '">';
   }
-  // CSS for the frames, written from data so colours stay in icons.json
+  // CSS for the frames. Gear ranks take color, border, glow, and outline from rarity.json.
+  function rarityFrames() {
+    var d = D() || {}, rar = Object.assign({}, d.rarity || {});
+    var table = (root.ASHBOUND_DATA || {}).rarityTable || {};
+    (table.ranks || []).forEach(function (r) {
+      var prev = rar[r.id] || {};
+      rar[r.id] = Object.assign({}, prev, {
+        border: r.outline || r.border || r.color || prev.border,
+        glow: r.glow || r.outline || prev.glow || "",
+        bg: r.bg || prev.bg,
+        blur: r.blur != null ? r.blur : (prev.blur || 0),
+        spread: r.spread != null ? r.spread : (prev.spread || 0),
+        img: r.img != null ? r.img : prev.img
+      });
+    });
+    return rar;
+  }
   function css() {
     var d = D(); if (!d) return "";
-    var o = [], rar = d.rarity || {};
+    var o = [], rar = rarityFrames();
     Object.keys(rar).forEach(function (k) {
       var r = rar[k], sel = ".gitem.rar-" + k + ",.slot.has-item.rar-" + k + ",.shop-ico.rar-" + k + ",.detail-ico.rar-" + k + ",.flask.rar-" + k;
       var glow = r.glow ? ",0 0 " + r.blur + "px " + (r.spread || 0) + "px " + r.glow + "88,inset 0 0 " + Math.max(4, Math.round(r.blur * .9)) + "px " + r.glow + "55" : "";

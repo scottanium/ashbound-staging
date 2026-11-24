@@ -113,6 +113,24 @@
     return "";
   }
 
+  function color(itemOrId) {
+    const id = typeof itemOrId === "string" ? itemOrId : displayId(itemOrId);
+    const def = rarityDef(id);
+    if (def && def.color) return def.color;
+    if (itemOrId && typeof itemOrId === "object" && itemOrId.rarity) {
+      const cur = rarityDef(itemOrId.rarity);
+      if (cur && cur.color) return cur.color;
+    }
+    return "#e6dece";
+  }
+
+  function outline(itemOrId) {
+    const id = typeof itemOrId === "string" ? itemOrId : displayId(itemOrId);
+    const def = rarityDef(id);
+    if (def) return def.outline || def.border || def.color || "#e6dece";
+    return color(itemOrId);
+  }
+
   function cssClass(item) {
     if (!item) return "rar-common";
     if (isCurrency(item)) return "rar-" + item.rarity;
@@ -146,8 +164,13 @@
 
   function stampTier(item) {
     if (!item || isCurrency(item) || item.charm) return item;
-    if (isUnique(item) || isSet(item)) item.tier = baseRarityFor(item) || "epic";
-    else if (GEAR_IDS.indexOf(item.rarity) >= 0) item.tier = item.rarity;
+    if (isUnique(item) || isSet(item)) {
+      const floor = baseRarityFor(item) || "epic";
+      const cur = item.tier && rarityDef(item.tier) ? item.tier : null;
+      const curRank = cur && rarityDef(cur) ? (rarityDef(cur).rank || 0) : 0;
+      const floorRank = rarityDef(floor) ? (rarityDef(floor).rank || 0) : 0;
+      if (!cur || curRank < floorRank) item.tier = floor;
+    } else if (GEAR_IDS.indexOf(item.rarity) >= 0) item.tier = item.rarity;
     return item;
   }
 
@@ -208,7 +231,7 @@
   root.ABCraft = {
     rarityDef, affixCount, isUnique, isSet, isCurrency,
     baseRarityFor, displayId, rankLabel, floorLabel, kindLabel,
-    cssClass, pip, goldMul, stampTier, migrateItem, migrateSave,
+    cssClass, color, outline, pip, goldMul, stampTier, migrateItem, migrateSave,
     migrateShared, migrateAllItems, ranks, strings
   };
 })(typeof window !== "undefined" ? window : self);

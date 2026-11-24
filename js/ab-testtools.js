@@ -49,8 +49,8 @@
     h.push('<div class="row tt-counts">' + [1, 5, 10].map(function (n) {
       return '<button class="btn' + (S.mythCount === n ? " primary" : "") + '" data-act="tt-mc" data-n="' + n + '">' + n + "</button>";
     }).join("") + "</div>");
-    h.push('<button class="btn primary" data-act="tt-mythic">Spawn random mythic (maxed, awakened)</button>');
-    h.push('<button class="btn primary" data-act="tt-setmax">Spawn random set piece (maxed, awakened)</button></section>');
+    h.push('<button class="btn primary" data-act="tt-mythic">Spawn random maxed Mythical unique</button>');
+    h.push('<button class="btn primary" data-act="tt-setmax">Spawn random maxed set piece</button></section>');
     h.push('<section class="tt-card"><h3>Hero</h3>');
     h.push(row("Level (now " + p.level + (p.paragonLevel ? ", P" + p.paragonLevel : "") + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
     h.push('<div class="row"><button class="btn" data-act="tt-level50">Set level 50</button><button class="btn" data-act="tt-paragon10">+10 Paragon</button></div>');
