@@ -75,7 +75,7 @@
     "frwCap": 80
   },
   "notes": {
-    "paragon": "Paragon +1% move speed per 10 levels is not built yet (no paragon)."
+    "paragon": "Paragon +1% move speed every 10 levels stacks on top of the 80% gear FRW cap. Tuning is in data/progress.json (hard cap 100)."
   },
   "audio": {
     "about": "v72 load-in sound. The looping act drone no longer starts automatically on first tap, spawn, or zone load. loadCue is an optional very soft short tone; it is off (silence) by default.",

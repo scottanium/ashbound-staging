@@ -99,7 +99,7 @@
         "rime",
         "glass_heart"
       ],
-      "skillDamageMul": 3.2
+      "skillDamageMul": 3.15
     },
     {
       "id": "briar_stalker",
@@ -109,7 +109,8 @@
       "mainStat": "dexterity",
       "mainBonuses": [
         "crit",
-        "armorDefense"
+        "armorDefense",
+        "skillDamage"
       ],
       "stars": 3,
       "pitch": "Lay the snares. Let the poison do the work.",
@@ -350,7 +351,8 @@
   "mainStatRates": {
     "critPerPoint": 0.08,
     "armorDefensePerPoint": 0.15,
-    "spellDamagePerPoint": 0.4
+    "spellDamagePerPoint": 0.4,
+    "skillDamagePerPoint": 0.15
   },
   "balanceSim": {
     "levels": [
@@ -385,6 +387,9 @@
       "cinder_warden": 0.74,
       "salt_reaver": 0.74
     },
-    "notes": "DPS is auto-attack plus the primary skill on cooldown (and a rank-1 glassling for Reed Caller). eHP is time-to-die versus a standard pack of 4 bramble hounds at the hero's level. Product is DPS times TTD. Caster Energy adds to the existing edmg (enhancedDamage) sheet stat instead of armor defense."
+    "notes": "DPS is auto-attack plus the primary skill on cooldown (and a rank-1 glassling for Reed Caller). eHP is time-to-die versus a standard pack of 4 bramble hounds at the hero's character level. Product is DPS times TTD. Caster Energy adds to the existing edmg (enhancedDamage) sheet stat instead of armor defense. The L50+P100 row also applies 100 Paragon levels: 5 spendable stat points each (same 2/2/1 spend as a hero level), +2 flat life per Paragon level, and 20 extra skill points that do not raise a already-maxed primary.",
+    "paragonLevels": [
+      100
+    ]
   }
 }

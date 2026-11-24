@@ -1,0 +1,25 @@
+{
+  "about": "Player XP, skill points, monster XP, and Paragon. Tuning lives here, not in code. The level curve is unchanged: XP from L to L+1 is floor(a L^2 + b L). A normal full campaign clear should end at about level 50 after monsterXpMul. No skill synergies.",
+  "maxLevel": 50,
+  "xpToNext": { "a": 16, "b": 20 },
+  "statPerLevel": 5,
+  "skillPerLevel": 2,
+  "skillPointsAtLevel1": 2,
+  "skillMaxRank": 20,
+  "monsterXpMul": 2.85,
+  "monsterXpPerLevel": 0.12,
+  "notes": "At level 50 you have 100 skill points (2 at level 1, then +2 each level-up). With skillMaxRank 20 that is five skills maxed. Old saves keep their level and receive the missing skill points once on load (one extra point per level, including the +1 at level 1).",
+  "paragon": {
+    "about": "After level 50, leftover XP becomes Paragon XP. Hard cap is 100. Each Paragon level grants 5 spendable stat points (500 at the cap) and, every 5th level, 1 skill point (20 by Paragon 100). Automatic +2 maximum life per Paragon level (a regular passive, not a spell). +1% move speed every 10th Paragon level, applied after gear FRW has already been capped at 80%. Paragon never unlocks spell books.",
+    "levelLimit": 100,
+    "xpToNext": { "base": 16000, "perLevel": 500 },
+    "statPerLevel": 5,
+    "skillPointsByCap": 20,
+    "skillEvery": 5,
+    "skillAmount": 1,
+    "lifePerLevel": 2,
+    "movePctPer": 1,
+    "moveEvery": 10,
+    "moveStacksOnTopOfFrwCap": true
+  }
+}

@@ -459,6 +459,13 @@
         "unit": "%",
         "dp": 2,
         "label": "spell damage"
+      },
+      "skillDamage": {
+        "mode": "rate",
+        "rateFrom": "skillDamagePerPoint",
+        "unit": "%",
+        "dp": 2,
+        "label": "skill damage"
       }
     }
   },
