@@ -37,5 +37,47 @@
       "about": "Number of monster packs per zone, as a share of the zone's normal pack count: 25% in the first campaign fight zone, rising evenly by zone to 100% in the last. Never fewer than minPacks packs. Pack size, named monsters and mini-bosses are unchanged. Same zone list as above; towns, Ember Rifts and zones not on the list stay at 100%."
     },
     "xpNote": "v69: xp is false, so experience is NOT scaled (x1.0 in every zone); only monster life follows startMul to endMul. The sentence above about experience is kept only because the text-pass test pins it. Pack count follows the density block."
+  },
+  "drops": {
+    "about": "Campaign drop grades for a linear playthrough. Elite is a real drop grade (rank 4) so a one-clear of each zone can fill at least half of the 10 gear slots with level-appropriate Elite-or-better by Mael. Unique and set chances stay close to the legacy table. Magic Find scales the listed grades.",
+    "order": [
+      "unique",
+      "set",
+      "elite",
+      "rare",
+      "magic",
+      "common"
+    ],
+    "base": {
+      "unique": 0.006,
+      "set": 0.014,
+      "elite": 0.12,
+      "rare": 0.07,
+      "magic": 0.3
+    },
+    "magicFind": {
+      "unique": 0.012,
+      "set": 0.012,
+      "elite": 0.06,
+      "rare": 0.08,
+      "magic": 0.08
+    },
+    "champion": {
+      "unique": 0.01,
+      "elite": 0.06,
+      "rare": 0.08
+    },
+    "elitePack": {
+      "unique": 0.025,
+      "set": 0.03,
+      "elite": 0.08,
+      "rare": 0.12
+    },
+    "boss": {
+      "unique": 0.28,
+      "set": 0.18,
+      "elite": 0.22,
+      "rare": 0.15
+    }
   }
 }

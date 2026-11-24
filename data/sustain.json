@@ -1,0 +1,6 @@
+{
+  "about": "Boss-fight sustain caps only to stop on-hit heals and life steal from fully cancelling incoming damage, so endgame content (rifts, Ashen uniques) can still threaten. On-hit heals (Warm Return and similar) and life steal share a light budget of 4% of max life per second, and life steal is also halved vs a living boss. Flasks and life regeneration are not included. There is no Mael-difficulty target: a full Mythical kit is allowed to be very strong.",
+  "bossHealPerSec": 0.04,
+  "bossLeechMul": 0.5,
+  "window": 1
+}

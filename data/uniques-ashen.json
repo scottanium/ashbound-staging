@@ -1,0 +1,2116 @@
+{
+  "rules": {
+    "about": "Level-50 Ashen versions of every unique, for harder endgame (rifts, later First Kiln, White Ash Mael). Originals are unchanged and cap at Fabled. Generated from data/items.json with the rules below. The light boss heal cap still applies, so a full Ashen Mythical kit is not immortal in rifts.",
+    "idPrefix": "ashen_",
+    "namePrefix": "Ashen ",
+    "qlvl": 50,
+    "reqLevel": 50,
+    "ilvl": 50,
+    "dropMinLevel": 45,
+    "lateZones": [
+      "quiet_fields",
+      "stair_of_names",
+      "first_kiln"
+    ],
+    "allowHighRift": true,
+    "craftable": false,
+    "cubable": false,
+    "tier": "mythical",
+    "scale": {
+      "about": "Linear interpolation between qlvl 3 = x2.00 and qlvl 48 (Kilntooth) = x1.15.",
+      "formula": "1.15 + 0.85 * (48 - origQlvl) / 45",
+      "lowQlvl": 3,
+      "highQlvl": 48,
+      "lowMul": 2.0,
+      "highMul": 1.15
+    },
+    "effectScaleKeys": [
+      "damage",
+      "absorb",
+      "heal",
+      "mana",
+      "amount",
+      "move",
+      "ias",
+      "absorbMax"
+    ],
+    "allSkillsCap": 2,
+    "skillRank": {
+      "plusAt": 1.3,
+      "plus2At": 1.7,
+      "hardCap": 3
+    },
+    "outliers": [
+      "sallow_crown",
+      "mawglass",
+      "kiln_tyrants_collar",
+      "last_watch_plate",
+      "kept_bell"
+    ],
+    "outlierNote": "Ashen Mythical signature, capstone, and Last Watch absorb are trimmed so each of the five outliers stays within ~15% of its slot's next-best Ashen Mythical. Ordinary mods still use the full ashen scale. Campaign (non-Ashen) uniques are not trimmed and cap at Fabled.",
+    "campaignTarget": "Original uniques cap at Fabled and are tuned for the campaign. The light 4% boss heal cap only stops on-hit heals and life steal from fully cancelling incoming damage. There is no Mael-difficulty floor for a unique kit: Mael is paced separately against level-appropriate Elite gear.",
+    "endgameTarget": "Ashen L50 uniques can be Mythical and are stronger (x1.15\u2013x2.00 by original qlvl) for rifts and later First Kiln / White Ash Mael. The same heal cap applies so they can still be threatened. Outlier signatures stay within ~15% of the slot's next-best Ashen."
+  },
+  "uniques": [
+    {
+      "id": "ashen_hearthbrand",
+      "name": "Ashen Hearthbrand",
+      "baseId": "salt_saber",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 78,
+        "fireDamage": [
+          10,
+          23
+        ],
+        "attackSpeed": 19,
+        "skills": {
+          "ash_strike": 3
+        }
+      },
+      "flavor": "Warmed each dawn in the public kiln until the steel remembered fire.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "hearthbrand",
+      "origQlvl": 6,
+      "ashenScale": 1.9433,
+      "effectScale": 1.9433,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 31,
+        "element": "fire",
+        "radius": 1.2
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 54,
+        "element": "fire",
+        "radius": 1.7
+      }
+    },
+    {
+      "id": "ashen_last_vigil",
+      "name": "Ashen Last Vigil",
+      "baseId": "salt_cap",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "life": 57,
+        "allResist": 19,
+        "defense": 19,
+        "moveSpeed": 15
+      },
+      "flavor": "The watch cap from the last shift on the Spire stair.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "last_vigil",
+      "origQlvl": 8,
+      "ashenScale": 1.9056,
+      "effectScale": 1.9056,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 76,
+        "cooldown": 12,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 15,
+        "absorbMax": 46,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_kilnwalker",
+      "name": "Ashen Kilnwalker",
+      "baseId": "kiln_boots",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "moveSpeed": 37,
+        "fireResist": 41,
+        "life": 30
+      },
+      "flavor": "Soot baked into the seams. The floor never quite burns.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "kilnwalker",
+      "origQlvl": 10,
+      "ashenScale": 1.8678,
+      "effectScale": 1.8678,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "haste_on_kill",
+        "move": 22,
+        "ias": 15,
+        "duration": 3
+      },
+      "capstone": {
+        "type": "life_on_kill",
+        "heal": 30
+      }
+    },
+    {
+      "id": "ashen_spire_widow",
+      "name": "Ashen Spire Widow",
+      "baseId": "scale_hauberk",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 51,
+        "thorns": 22,
+        "life": 40,
+        "fireResist": 18
+      },
+      "flavor": "Hung for years on a broken beam, and still keeping watch.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "spire_widow",
+      "origQlvl": 12,
+      "ashenScale": 1.83,
+      "effectScale": 1.83,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "thorns_nova",
+        "damage": 26,
+        "element": "phys",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "freeze_attackers",
+        "duration": 2
+      }
+    },
+    {
+      "id": "ashen_senns_measure",
+      "name": "Ashen Senn's Measure",
+      "baseId": "rope_belt",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "vitality": 10,
+        "life": 36,
+        "lifeRegen": 2.58,
+        "magicFind": 20
+      },
+      "flavor": "Senn says it counts fair. Count it yourself.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "senns_measure",
+      "origQlvl": 4,
+      "ashenScale": 1.9811,
+      "effectScale": 1.9811,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 8
+      },
+      "capstone": {
+        "type": "life_on_kill",
+        "heal": 36
+      }
+    },
+    {
+      "id": "ashen_glass_oath",
+      "name": "Ashen Glass Oath",
+      "baseId": "glass_dirk",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "critChance": 15,
+        "attackSpeed": 28,
+        "dexterity": 15,
+        "coldDamage": [
+          7,
+          17
+        ]
+      },
+      "flavor": "A thin glass promise. You can see through it.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "glass_oath",
+      "origQlvl": 11,
+      "ashenScale": 1.8489,
+      "effectScale": 1.8489,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 37
+      }
+    },
+    {
+      "id": "ashen_kiln_tyrants_collar",
+      "name": "Ashen Kiln Tyrant's Collar",
+      "baseId": "cord_amulet",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "allSkills": 1,
+        "strength": 14,
+        "fireResist": 43,
+        "fireDamage": [
+          7,
+          15
+        ],
+        "life": 38
+      },
+      "flavor": "The collar cracked when the tyrant did. The heat stayed.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "kiln_tyrants_collar",
+      "origQlvl": 18,
+      "ashenScale": 1.7167,
+      "effectScale": 1.246,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "bossOnly": true,
+      "effect": {
+        "type": "hit_burst",
+        "chance": 25,
+        "damage": 22,
+        "element": "fire",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 35,
+        "element": "fire"
+      },
+      "effectTrim": 0.7258
+    },
+    {
+      "id": "ashen_briar_tooth",
+      "name": "Ashen Briar Tooth",
+      "baseId": "ashwood_knife",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 56,
+        "poisonDamage": [
+          8,
+          18
+        ],
+        "attackSpeed": 24,
+        "dexterity": 8
+      },
+      "flavor": "Snapped from a snare that had already caught something. The sap never dried.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "briar_tooth",
+      "origQlvl": 3,
+      "ashenScale": 2.0,
+      "effectScale": 2.0,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 52,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 44,
+        "element": "poison",
+        "radius": 1.5
+      }
+    },
+    {
+      "id": "ashen_moth_lamp",
+      "name": "Ashen Moth Lamp",
+      "baseId": "cloth_hood",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "mana": 35,
+        "fireResist": 24,
+        "magicFind": 16,
+        "energy": 6
+      },
+      "flavor": "A hood scorched from the inside, as if a small fire had lived there and left.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "moth_lamp",
+      "origQlvl": 5,
+      "ashenScale": 1.9622,
+      "effectScale": 1.9622,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 16
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 20,
+        "absorbMax": 59,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_salt_march",
+      "name": "Ashen Salt March",
+      "baseId": "trail_boots",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "moveSpeed": 32,
+        "coldResist": 28,
+        "dexterity": 8
+      },
+      "flavor": "The salt ate the stitching and then, politely, held the boot together anyway.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "salt_march",
+      "origQlvl": 4,
+      "ashenScale": 1.9811,
+      "effectScale": 1.9811,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 1.5
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 20,
+        "ias": 12,
+        "duration": 3
+      }
+    },
+    {
+      "id": "ashen_widow_grip",
+      "name": "Ashen Widow Grip",
+      "baseId": "wrap_gloves",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "attackSpeed": 27,
+        "attackRating": 47,
+        "lifeLeech": 6
+      },
+      "flavor": "Wrapped for a watch that ended at dawn. The grip stayed warm.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "widow_grip",
+      "origQlvl": 6,
+      "ashenScale": 1.9433,
+      "effectScale": 1.9433,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 10
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 16,
+        "ias": 23,
+        "duration": 3
+      }
+    },
+    {
+      "id": "ashen_kiln_oath",
+      "name": "Ashen Kiln Oath",
+      "baseId": "kiln_maul",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 68,
+        "fireDamage": [
+          11,
+          26
+        ],
+        "strength": 15,
+        "life": 30
+      },
+      "flavor": "Sworn on the public kiln. The oath cracked. The maul did not.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "kiln_oath",
+      "origQlvl": 9,
+      "ashenScale": 1.8867,
+      "effectScale": 1.8867,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "hit_burst",
+        "chance": 28,
+        "damage": 42,
+        "element": "fire",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 68,
+        "element": "fire",
+        "radius": 1.8
+      }
+    },
+    {
+      "id": "ashen_reed_string",
+      "name": "Ashen Reed String",
+      "baseId": "thorn_bow",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 46,
+        "coldDamage": [
+          8,
+          19
+        ],
+        "attackRating": 69,
+        "dexterity": 11
+      },
+      "flavor": "Strung with a reed from the mere. It hums when the air is wet.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "reed_string",
+      "origQlvl": 8,
+      "ashenScale": 1.9056,
+      "effectScale": 1.9056,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 38,
+        "element": "cold",
+        "chains": 1,
+        "radius": 2.0
+      }
+    },
+    {
+      "id": "ashen_hush_staff",
+      "name": "Ashen Hush Staff",
+      "baseId": "cinder_staff",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "energy": 15,
+        "mana": 46,
+        "poisonDamage": [
+          6,
+          15
+        ],
+        "castSpeed": 15
+      },
+      "flavor": "The galleries asked for quiet. The staff agreed, and then it did not.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "hush_staff",
+      "origQlvl": 7,
+      "ashenScale": 1.9244,
+      "effectScale": 1.9244,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 42,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "mana_on_kill",
+        "mana": 27
+      }
+    },
+    {
+      "id": "ashen_spire_vow",
+      "name": "Ashen Spire Vow",
+      "baseId": "spire_blade",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 61,
+        "attackSpeed": 22,
+        "allResist": 14,
+        "critChance": 7
+      },
+      "flavor": "A watch blade left point-down in a cracked step. It is still on duty.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "spire_vow",
+      "origQlvl": 14,
+      "ashenScale": 1.7922,
+      "effectScale": 1.7922,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 43,
+        "element": "phys"
+      },
+      "capstone": {
+        "type": "nth_strike",
+        "every": 4,
+        "damage": 32,
+        "element": "phys",
+        "chains": 1,
+        "radius": 1.8
+      }
+    },
+    {
+      "id": "ashen_heart_nail",
+      "name": "Ashen Heart Nail",
+      "baseId": "heart_mallet",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 73,
+        "fireDamage": [
+          14,
+          31
+        ],
+        "life": 49,
+        "thorns": 10
+      },
+      "flavor": "Used to pin a kiln door that would not stay shut. The door lost.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "heart_nail",
+      "origQlvl": 17,
+      "ashenScale": 1.7356,
+      "effectScale": 1.7356,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "kill_explode",
+        "damage": 56,
+        "element": "fire",
+        "radius": 1.7
+      },
+      "capstone": {
+        "type": "hit_burst",
+        "chance": 35,
+        "damage": 35,
+        "element": "fire",
+        "radius": 1.2
+      }
+    },
+    {
+      "id": "ashen_last_watch_plate",
+      "name": "Ashen Last Watch Plate",
+      "baseId": "kiln_plate",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 63,
+        "fireResist": 35,
+        "life": 53,
+        "thorns": 14
+      },
+      "flavor": "The last shift wore this until the stairs gave. The plate came back. They did not.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "last_watch_plate",
+      "origQlvl": 16,
+      "ashenScale": 1.7544,
+      "effectScale": 1.7544,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 34,
+        "cooldown": 12,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "thorns_nova",
+        "damage": 28,
+        "element": "phys",
+        "radius": 1.4
+      },
+      "effectTrim": 1.0,
+      "absorbTrim": 0.4107
+    },
+    {
+      "id": "ashen_wicker_prayer",
+      "name": "Ashen Wicker Prayer",
+      "baseId": "wicker_shield",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 27,
+        "life": 31,
+        "fireResist": 20,
+        "thorns": 6
+      },
+      "flavor": "A prayer woven in, then smoked over the kiln until the words went black.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "wicker_prayer",
+      "origQlvl": 5,
+      "ashenScale": 1.9622,
+      "effectScale": 1.9622,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "ward_on_hit",
+        "absorb": 12,
+        "absorbMax": 39,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 63,
+        "cooldown": 12,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_kiln_door",
+      "name": "Ashen Kiln Door",
+      "baseId": "kiln_shield",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 54,
+        "fireResist": 40,
+        "thorns": 18,
+        "life": 33
+      },
+      "flavor": "A slice of the kiln door, still convinced it is a door.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "kiln_door",
+      "origQlvl": 13,
+      "ashenScale": 1.8111,
+      "effectScale": 1.8111,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "thorns_nova",
+        "damage": 29,
+        "element": "phys",
+        "radius": 1.4
+      },
+      "capstone": {
+        "type": "freeze_attackers",
+        "duration": 2.5
+      }
+    },
+    {
+      "id": "ashen_garnet_loop",
+      "name": "Ashen Garnet Loop",
+      "baseId": "copper_ring",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "life": 38,
+        "strength": 8,
+        "lifeLeech": 6,
+        "fireResist": 15
+      },
+      "flavor": "Cut from a garnet that sat too long in the heat. It is still warm.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "garnet_loop",
+      "origQlvl": 8,
+      "ashenScale": 1.9056,
+      "effectScale": 1.9056,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 10
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 30
+      }
+    },
+    {
+      "id": "ashen_mere_pearl",
+      "name": "Ashen Mere Pearl",
+      "baseId": "cord_amulet",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "mana": 48,
+        "coldResist": 29,
+        "energy": 9,
+        "magicFind": 18
+      },
+      "flavor": "Fished out of still water. It has the same look as the mere.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "mere_pearl",
+      "origQlvl": 12,
+      "ashenScale": 1.83,
+      "effectScale": 1.83,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 18
+      },
+      "capstone": {
+        "type": "frost_on_hit",
+        "duration": 2
+      }
+    },
+    {
+      "id": "ashen_glass_cap",
+      "name": "Ashen Glass Cap",
+      "baseId": "salt_cap",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 22,
+        "coldResist": 30,
+        "attackRating": 37,
+        "dexterity": 9
+      },
+      "flavor": "A cap glazed with salt until it rang. That ring is your warning.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "glass_cap",
+      "origQlvl": 10,
+      "ashenScale": 1.8678,
+      "effectScale": 1.8678,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 34,
+        "element": "cold"
+      }
+    },
+    {
+      "id": "ashen_beetle_mail",
+      "name": "Ashen Beetle Mail",
+      "baseId": "scale_hauberk",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 57,
+        "poisonResist": 43,
+        "life": 43,
+        "thorns": 11
+      },
+      "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans forward.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "beetle_mail",
+      "origQlvl": 15,
+      "ashenScale": 1.7733,
+      "effectScale": 1.7733,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 43,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "thorns_nova",
+        "damage": 25,
+        "element": "poison",
+        "radius": 1.3
+      }
+    },
+    {
+      "id": "ashen_silt_shroud",
+      "name": "Ashen Silt Shroud",
+      "baseId": "hide_coat",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 37,
+        "coldResist": 34,
+        "poisonResist": 27,
+        "life": 44,
+        "allSkills": 1
+      },
+      "flavor": "Morra wore the water. What dried on this coat is not quite mud.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "silt_shroud",
+      "origQlvl": 20,
+      "ashenScale": 1.6789,
+      "effectScale": 1.6789,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "bossOnly": true,
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 74,
+        "cooldown": 12,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_sallow_crown",
+      "name": "Ashen Sallow's Crown",
+      "baseId": "kiln_helm",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 37,
+        "allResist": 18,
+        "life": 55,
+        "poisonDamage": [
+          9,
+          18
+        ],
+        "allSkills": 1
+      },
+      "flavor": "Grown, not forged. It fits whoever cut the first tree, and it is still angry.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "sallow_crown",
+      "origQlvl": 28,
+      "ashenScale": 1.5278,
+      "effectScale": 0.4086,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "bossOnly": true,
+      "effect": {
+        "type": "brand",
+        "stacks": 4,
+        "damage": 12,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 11,
+        "element": "poison",
+        "radius": 1.7
+      },
+      "effectTrim": 0.2674
+    },
+    {
+      "id": "ashen_root_belt",
+      "name": "Ashen Root Belt",
+      "baseId": "plate_belt",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "vitality": 14,
+        "life": 48,
+        "poisonResist": 24,
+        "lifeRegen": 2.75
+      },
+      "flavor": "A root that decided to be a belt. It tightens when you are afraid.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "root_belt",
+      "origQlvl": 18,
+      "ashenScale": 1.7167,
+      "effectScale": 1.7167,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "life_on_kill",
+        "heal": 24
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 62,
+        "cooldown": 12,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_orchard_knife",
+      "name": "Ashen Orchard Knife",
+      "baseId": "glass_dirk",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 44,
+        "poisonDamage": [
+          10,
+          24
+        ],
+        "critChance": 10,
+        "attackSpeed": 17
+      },
+      "flavor": "Used on fruit that should not have been red. The edge still smells sweet and wrong.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "orchard_knife",
+      "origQlvl": 19,
+      "ashenScale": 1.6978,
+      "effectScale": 1.6978,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 48,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 37,
+        "element": "poison"
+      }
+    },
+    {
+      "id": "ashen_branded_saber",
+      "name": "Ashen Branded Saber",
+      "baseId": "salt_saber",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 63,
+        "fireDamage": [
+          14,
+          29
+        ],
+        "skills": {
+          "ash_strike": 3,
+          "cinder_spark": 3
+        },
+        "fireDamagePercent": 22
+      },
+      "flavor": "The brand does not wash off. It is meant for Ash Strike.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "branded_saber",
+      "origQlvl": 14,
+      "ashenScale": 1.7922,
+      "effectScale": 1.7922,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 32,
+        "element": "fire",
+        "radius": 1.2
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 43
+      }
+    },
+    {
+      "id": "ashen_callers_cord",
+      "name": "Ashen Caller's Cord",
+      "baseId": "rope_belt",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "mana": 53,
+        "coldDamage": [
+          7,
+          14
+        ],
+        "skills": {
+          "reed_bolt": 3,
+          "glassling": 3
+        },
+        "manaRegen": 2.46
+      },
+      "flavor": "Tied while the glass was still wet. More mana, and stronger bolts.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "callers_cord",
+      "origQlvl": 16,
+      "ashenScale": 1.7544,
+      "effectScale": 1.7544,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 21
+      },
+      "capstone": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 39,
+        "element": "cold",
+        "chains": 1,
+        "radius": 2.2
+      }
+    },
+    {
+      "id": "ashen_row_walkers",
+      "name": "Ashen Row Walkers",
+      "baseId": "kiln_boots",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "moveSpeed": 32,
+        "poisonDamage": [
+          9,
+          18
+        ],
+        "skills": {
+          "thorn_snare": 3
+        },
+        "life": 28
+      },
+      "flavor": "The rows do not catch these. The snares do the catching.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "row_walkers",
+      "origQlvl": 15,
+      "ashenScale": 1.7733,
+      "effectScale": 1.7733,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 39,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 21,
+        "ias": 14,
+        "duration": 3
+      }
+    },
+    {
+      "id": "ashen_unbanked_loop",
+      "name": "Ashen Unbanked Loop",
+      "baseId": "cord_amulet",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "allSkills": 1,
+        "allResist": 19,
+        "life": 32,
+        "mana": 32
+      },
+      "flavor": "One rank in every skill you have. The kiln does not get a vote.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "unbanked_loop",
+      "origQlvl": 24,
+      "ashenScale": 1.6033,
+      "effectScale": 1.6033,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "ward_on_hit",
+        "absorb": 13,
+        "absorbMax": 45,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "mana_on_kill",
+        "mana": 19
+      }
+    },
+    {
+      "id": "ashen_short_promise",
+      "name": "Ashen Short Promise",
+      "baseId": "glass_dirk",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "critChance": 14,
+        "lifeLeech": 7,
+        "attackSpeed": 26,
+        "skills": {
+          "salt_cut": 3,
+          "red_line": 3
+        }
+      },
+      "flavor": "A cut that returns a little life. Do not stand still to collect.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "short_promise",
+      "origQlvl": 17,
+      "ashenScale": 1.7356,
+      "effectScale": 1.7356,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 10
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 31
+      }
+    },
+    {
+      "id": "ashen_kept_bell",
+      "name": "Ashen Kept Bell",
+      "baseId": "cinder_staff",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "lightningDamage": [
+          10,
+          30
+        ],
+        "skills": {
+          "bell_note": 3,
+          "peal": 2
+        },
+        "castSpeed": 20,
+        "mana": 40
+      },
+      "flavor": "Wrapped, then unwrapped. The note is yours now.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "kept_bell",
+      "origQlvl": 20,
+      "ashenScale": 1.6789,
+      "effectScale": 0.8185,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 19,
+        "element": "light",
+        "chains": 1,
+        "radius": 2.2
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 21,
+        "element": "light",
+        "radius": 1.6
+      },
+      "effectTrim": 0.4875
+    },
+    {
+      "id": "ashen_sear_cuff",
+      "name": "Ashen Sear Cuff",
+      "baseId": "scale_gloves",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "attackSpeed": 23,
+        "fireDamage": [
+          6,
+          15
+        ],
+        "skills": {
+          "sear_step": 3
+        }
+      },
+      "flavor": "Sear Step hits harder with this on.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "sear_cuff",
+      "origQlvl": 9,
+      "ashenScale": 1.8867,
+      "effectScale": 1.8867,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "hit_burst",
+        "chance": 25,
+        "damage": 26,
+        "element": "fire",
+        "radius": 1.1
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 15,
+        "ias": 23,
+        "duration": 3
+      }
+    },
+    {
+      "id": "ashen_vigil_hood",
+      "name": "Ashen Vigil Hood",
+      "baseId": "cloth_hood",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 19,
+        "fireResist": 27,
+        "life": 27,
+        "skills": {
+          "vigil": 3
+        }
+      },
+      "flavor": "Worn for a watch that did not end. Vigil still holds.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "vigil_hood",
+      "origQlvl": 8,
+      "ashenScale": 1.9056,
+      "effectScale": 1.9056,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 69,
+        "cooldown": 12,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 15,
+        "absorbMax": 46,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_spark_band",
+      "name": "Ashen Spark Band",
+      "baseId": "copper_ring",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "mana": 31,
+        "fireDamagePercent": 19,
+        "skills": {
+          "cinder_spark": 3
+        }
+      },
+      "flavor": "A ring that helps you throw Cinder Spark.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "spark_band",
+      "origQlvl": 7,
+      "ashenScale": 1.9244,
+      "effectScale": 1.9244,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "crit_ignite",
+        "damage": 31
+      },
+      "capstone": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 27,
+        "element": "fire",
+        "radius": 1.1
+      }
+    },
+    {
+      "id": "ashen_brine_board",
+      "name": "Ashen Brine Board",
+      "baseId": "kiln_shield",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "defense": 38,
+        "coldResist": 31,
+        "life": 27,
+        "skills": {
+          "brine_ward": 3
+        }
+      },
+      "flavor": "A board from a stilt house, made to keep the cold off.",
+      "baseRarity": "epic",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "brine_board",
+      "origQlvl": 18,
+      "ashenScale": 1.7167,
+      "effectScale": 1.7167,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "freeze_attackers",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 14,
+        "absorbMax": 41,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_second_thread",
+      "name": "Ashen Second Thread",
+      "baseId": "hide_coat",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "mana": 47,
+        "coldDamage": [
+          5,
+          13
+        ],
+        "skills": {
+          "second_voice": 2
+        }
+      },
+      "flavor": "Lets you keep one more servant. The coat holds them together.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "second_thread",
+      "origQlvl": 20,
+      "ashenScale": 1.6789,
+      "effectScale": 1.6789,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 17
+      },
+      "capstone": {
+        "type": "life_on_kill",
+        "heal": 24
+      }
+    },
+    {
+      "id": "ashen_jaw_cord",
+      "name": "Ashen Jaw Cord",
+      "baseId": "plate_belt",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "life": 35,
+        "poisonDamage": [
+          6,
+          16
+        ],
+        "skills": {
+          "spring_jaw": 3
+        }
+      },
+      "flavor": "Tied so the snares close when you say so, not when they feel like it.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "jaw_cord",
+      "origQlvl": 24,
+      "ashenScale": 1.6033,
+      "effectScale": 1.6033,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 4,
+        "damage": 42,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 32,
+        "element": "poison"
+      }
+    },
+    {
+      "id": "ashen_needle_wrap",
+      "name": "Ashen Needle Wrap",
+      "baseId": "scale_gloves",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "attackSpeed": 16,
+        "poisonDamage": [
+          8,
+          20
+        ],
+        "skills": {
+          "needle": 3
+        }
+      },
+      "flavor": "The point was already in the glove. You just give it a direction.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "needle_wrap",
+      "origQlvl": 22,
+      "ashenScale": 1.6411,
+      "effectScale": 1.6411,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 39,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "life_on_hit",
+        "heal": 8
+      }
+    },
+    {
+      "id": "ashen_crouch_tread",
+      "name": "Ashen Crouch Tread",
+      "baseId": "kiln_boots",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "moveSpeed": 26,
+        "poisonResist": 23,
+        "skills": {
+          "crouch": 3
+        }
+      },
+      "flavor": "Other boots get heard in the rows. These stay quiet.",
+      "baseRarity": "legendary",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "crouch_tread",
+      "origQlvl": 23,
+      "ashenScale": 1.6222,
+      "effectScale": 1.6222,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "haste_on_kill",
+        "move": 23,
+        "ias": 10,
+        "duration": 3
+      },
+      "capstone": {
+        "type": "frost_on_hit",
+        "duration": 2
+      }
+    },
+    {
+      "id": "ashen_banked_coal",
+      "name": "Ashen Banked Coal",
+      "baseId": "cord_amulet",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "life": 35,
+        "allResist": 15,
+        "skills": {
+          "last_coal": 2
+        }
+      },
+      "flavor": "One coal kept back from the kiln. It is meant to be spent once, and to count.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "banked_coal",
+      "origQlvl": 32,
+      "ashenScale": 1.4522,
+      "effectScale": 1.4522,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "kill_explode",
+        "damage": 44,
+        "element": "fire",
+        "radius": 1.7
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 58,
+        "cooldown": 12,
+        "duration": 6
+      }
+    },
+    {
+      "id": "ashen_pale_note",
+      "name": "Ashen Pale Note",
+      "baseId": "cinder_staff",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "lightningDamage": [
+          8,
+          23
+        ],
+        "castSpeed": 14,
+        "mana": 28,
+        "skills": {
+          "overtone": 3
+        }
+      },
+      "flavor": "A note cut into the stair and then pulled back out. It still rings.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "pale_note",
+      "origQlvl": 34,
+      "ashenScale": 1.4144,
+      "effectScale": 1.4144,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "effect": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 31,
+        "element": "light",
+        "chains": 1,
+        "radius": 2.2
+      },
+      "capstone": {
+        "type": "mana_on_kill",
+        "mana": 17
+      }
+    },
+    {
+      "id": "ashen_mawglass",
+      "name": "Ashen Mawglass",
+      "baseId": "copper_ring",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "fireDamage": [
+          11,
+          25
+        ],
+        "life": 39,
+        "fireResist": 22
+      },
+      "flavor": "The ring sweats when the floor opens.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "mawglass",
+      "origQlvl": 36,
+      "ashenScale": 1.3767,
+      "effectScale": 0.9096,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "riftOnly": true,
+      "effect": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 18,
+        "element": "fire",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 29,
+        "element": "fire",
+        "radius": 1.7
+      },
+      "effectTrim": 0.6607
+    },
+    {
+      "id": "ashen_stillbell",
+      "name": "Ashen Stillbell",
+      "baseId": "cord_amulet",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "mana": 39,
+        "allResist": 16,
+        "life": 26
+      },
+      "flavor": "A bell that was wrapped before it could finish the note.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "stillbell",
+      "origQlvl": 40,
+      "ashenScale": 1.3011,
+      "effectScale": 1.3011,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "riftOnly": true,
+      "effect": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 26,
+        "element": "light",
+        "chains": 1,
+        "radius": 2.0
+      },
+      "capstone": {
+        "type": "freeze_attackers",
+        "duration": 2.5
+      }
+    },
+    {
+      "id": "ashen_shadechord",
+      "name": "Ashen Shadechord",
+      "baseId": "cloth_hood",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "coldDamage": [
+          7,
+          17
+        ],
+        "energy": 15,
+        "mana": 22,
+        "moveSpeed": 10
+      },
+      "flavor": "Worn by something that stepped out of its own shadow.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "shadechord",
+      "origQlvl": 44,
+      "ashenScale": 1.2256,
+      "effectScale": 1.2256,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "riftOnly": true,
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2.5
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 27,
+        "element": "cold"
+      }
+    },
+    {
+      "id": "ashen_kilntooth",
+      "name": "Ashen Kilntooth",
+      "baseId": "glass_dirk",
+      "qlvl": 50,
+      "reqLevel": 50,
+      "mods": {
+        "enhancedDamage": 40,
+        "fireDamage": [
+          7,
+          16
+        ],
+        "attackSpeed": 14,
+        "critChance": 5
+      },
+      "flavor": "A tooth of the kiln. It stays sharp because the fire never left it.",
+      "baseRarity": "fabled",
+      "tier": "mythical",
+      "ashen": true,
+      "ashenOf": "kilntooth",
+      "origQlvl": 48,
+      "ashenScale": 1.15,
+      "effectScale": 1.15,
+      "dropMinLevel": 45,
+      "lateZones": [
+        "quiet_fields",
+        "stair_of_names",
+        "first_kiln"
+      ],
+      "craftable": false,
+      "cubable": false,
+      "riftOnly": true,
+      "effect": {
+        "type": "crit_ignite",
+        "damage": 25
+      },
+      "capstone": {
+        "type": "hit_burst",
+        "chance": 35,
+        "damage": 21,
+        "element": "fire",
+        "radius": 1.2
+      }
+    }
+  ],
+  "trim": [
+    {
+      "id": "sallow_crown",
+      "trim": 0.2674,
+      "absorbTrim": null,
+      "off": 35.5,
+      "def": 151.0,
+      "offNext": "shadechord",
+      "offNextScore": 31.0,
+      "offPct": 14.5,
+      "defNext": "last_vigil",
+      "defNextScore": 218.3,
+      "defPct": -30.8
+    },
+    {
+      "id": "mawglass",
+      "trim": 0.6607,
+      "absorbTrim": null,
+      "off": 94.6,
+      "def": 53.0,
+      "offNext": "spark_band",
+      "offNextScore": 82.5,
+      "offPct": 14.6,
+      "defNext": "garnet_loop",
+      "defNextScore": 51.0,
+      "defPct": 3.9
+    },
+    {
+      "id": "kiln_tyrants_collar",
+      "trim": 0.7258,
+      "absorbTrim": null,
+      "off": 76.8,
+      "def": 51.0,
+      "offNext": "banked_coal",
+      "offNextScore": 67.9,
+      "offPct": 13.1,
+      "defNext": "banked_coal",
+      "defNextScore": 123.6,
+      "defPct": -58.7
+    },
+    {
+      "id": "last_watch_plate",
+      "trim": 1.0,
+      "absorbTrim": 0.4107,
+      "off": 55.4,
+      "def": 262.9,
+      "offNext": "beetle_mail",
+      "offNextScore": 87.3,
+      "offPct": -36.5,
+      "defNext": "silt_shroud",
+      "defNextScore": 228.7,
+      "defPct": 15.0
+    },
+    {
+      "id": "kept_bell",
+      "trim": 0.4875,
+      "absorbTrim": null,
+      "off": 114.3,
+      "def": 0.0,
+      "offNext": "pale_note",
+      "offNextScore": 99.7,
+      "offPct": 14.7,
+      "defNext": "pale_note",
+      "defNextScore": 0.0,
+      "defPct": null
+    }
+  ]
+}

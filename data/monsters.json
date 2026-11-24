@@ -1434,11 +1434,11 @@
     "name": "Veyra the Kiln Tyrant",
     "shape": "tyrant",
     "boss": true,
-    "hp": 780,
-    "hpLvl": 28,
+    "hp": 860,
+    "hpLvl": 30,
     "dmg": [
-      16,
-      26
+      18,
+      28
     ],
     "defense": 70,
     "attack": 130,
@@ -1462,11 +1462,11 @@
     "name": "Morra the Silt Queen",
     "shape": "tyrant",
     "boss": true,
-    "hp": 800,
-    "hpLvl": 26,
+    "hp": 960,
+    "hpLvl": 28,
     "dmg": [
-      18,
-      28
+      20,
+      32
     ],
     "defense": 90,
     "attack": 160,
@@ -1490,11 +1490,11 @@
     "name": "Sallow the Root King",
     "shape": "tyrant",
     "boss": true,
-    "hp": 1080,
-    "hpLvl": 30,
+    "hp": 1300,
+    "hpLvl": 33,
     "dmg": [
-      22,
-      34
+      24,
+      38
     ],
     "defense": 100,
     "attack": 170,
@@ -1518,14 +1518,14 @@
     "name": "Mael the Unbanked",
     "shape": "tyrant",
     "boss": true,
-    "hp": 1600,
-    "hpLvl": 34,
+    "hp": 5600,
+    "hpLvl": 40,
     "dmg": [
-      26,
-      40
+      32,
+      48
     ],
-    "defense": 120,
-    "attack": 190,
+    "defense": 140,
+    "attack": 210,
     "aps": 0.72,
     "move": 2.05,
     "xp": 1400,
