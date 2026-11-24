@@ -60,6 +60,13 @@
     h.push('<div class="row"><button class="btn" data-act="tt-stat">+ stat points</button><button class="btn" data-act="tt-skill">+ skill points</button></div>');
     h.push(row("Gold", num("gold", 1, 9999999))); h.push('<button class="btn" data-act="tt-gold">+ gold</button>');
     h.push('<div class="row"><button class="btn" data-act="tt-heal">Full heal</button><button class="btn" data-act="tt-kill">Kill all here</button></div></section>');
+    h.push('<section class="tt-card"><h3>Consume slot</h3>');
+    h.push('<p class="small muted">STAGING helpers for awakening playtests. Unlock is forced (no Heart-Cinder spent). Sleep still requires consume +20 unless you force it in a test.</p>');
+    h.push('<div class="row"><button class="btn" data-act="tt-wakeoil">Give Wake-Oil</button><button class="btn" data-act="tt-heartcinder">Give Heart-Cinder</button></div>');
+    h.push('<button class="btn primary" data-act="tt-unlockconsume">Unlock consume slot</button>');
+    h.push('<div class="row tt-counts">' + [0, 5, 10, 15, 20].map(function (n) {
+      return '<button class="btn" data-act="tt-clevel" data-n="' + n + '">+' + n + "</button>";
+    }).join("") + "</div></section>");
     h.push('<section class="tt-card"><h3>Rules</h3><button class="btn ' + (self.ABSTG_IGNORE ? "primary" : "") + '" data-act="tt-ign">Ignore level &amp; stat requirements: ' + (self.ABSTG_IGNORE ? "ON" : "off") + "</button>");
     h.push('<p class="small muted">Equip any item and learn any skill whatever your level, Strength or Dexterity. Skills still cost a point.</p></section>');
     h.push('<section class="tt-card"><h3>Go to zone</h3>');
@@ -168,6 +175,18 @@
       items.forEach(function (it) { if (give(it)) ok++; });
       var label = kind === "mythic" ? "mythic unique" : kind === "set" ? "set piece" : "mythic normal item";
       say(ok ? ("Added " + ok + " maxed " + label + (ok === 1 ? "" : "s")) : "Pack and stash are full.");
+    } else if (e === "tt-wakeoil" || e === "tt-heartcinder") {
+      var mid = e === "tt-wakeoil" ? "wake_oil" : "heart_cinder";
+      var mat = self.ASHBOUND && self.ASHBOUND.giveMat ? self.ASHBOUND.giveMat(mid, 1) : (self.ABCraft && ABCraft.makeMat && give(ABCraft.makeMat(mid, 1)));
+      say(mat ? ("Gave " + (mat.name || mid) + ".") : "Could not give that mat.");
+    } else if (e === "tt-unlockconsume") {
+      p.craftingLevel = Math.max(p.craftingLevel || 1, 6);
+      var un = self.ASHBOUND && self.ASHBOUND.unlockConsume ? self.ASHBOUND.unlockConsume({ force: true }) : (self.ABCraft && ABCraft.unlockConsume(p, { force: true }));
+      say(un && un.ok ? (un.already ? "Consume slot already open." : "Consume slot unlocked.") : ((un && un.reason) || "Could not unlock."));
+    } else if (e === "tt-clevel") {
+      var lv = Math.max(0, Math.min(20, Number(t && t.n) || 0));
+      var set = self.ASHBOUND && self.ASHBOUND.setConsumeLevel ? self.ASHBOUND.setConsumeLevel(lv) : (self.ABCraft && ABCraft.setConsumeLevel(p, lv));
+      say(set && set.ok ? ("Consume level +" + lv + ".") : ((set && set.reason) || "Nothing is in the consume slot."));
     } else if (e === "tt-alluniques") {
       var added = 0, i, it, def;
       for (i = 0; i < B.uniques.length; i++) {

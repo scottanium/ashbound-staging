@@ -54,7 +54,20 @@
   }
 
   function curve() {
-    return data().milestoneCurve || {};
+    return data().milestones || data().milestoneCurve || {};
+  }
+
+  function consumedNow(item) {
+    if (!item) return false;
+    var st = root.ASHBOUND && root.ASHBOUND.state && root.ASHBOUND.state.player;
+    if (st && st.consume && st.consume.uid === item.uid && !item.dormant) return true;
+    return !!(item._consumeArmed && !item.dormant);
+  }
+
+  function consumeMul(item) {
+    if (!consumedNow(item)) return 1;
+    if (item.consumeMul && item.consumeMul !== 1) return item.consumeMul;
+    return milestoneMul(item.consumeLevel || 0);
   }
 
   function milestoneMul(level) {
@@ -102,7 +115,7 @@
   function scaleNums(nums, item, typ) {
     var out = {};
     var keys = typ && typ.scale || ["damage", "absorb", "heal", "mana", "amount", "move", "ias", "duration", "absorbMax"];
-    var mul = rarityMul(item) * milestoneMul(item && item.enchantLevel);
+    var mul = rarityMul(item) * milestoneMul(item && item.enchantLevel) * consumeMul(item);
     var k, v;
     for (k in nums) {
       if (!Object.prototype.hasOwnProperty.call(nums, k)) continue;
@@ -573,6 +586,7 @@
     rarityMul: rarityMul,
     statMul: statMul,
     milestoneMul: milestoneMul,
+    consumeMul: consumeMul,
     typeDef: typeDef,
     types: types,
     formatText: formatText,
