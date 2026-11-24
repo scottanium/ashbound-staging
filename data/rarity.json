@@ -84,7 +84,9 @@
       "glow": "#ffb060",
       "blur": 11,
       "spread": 0,
-      "img": 3
+      "img": 3,
+      "effectMul": 1.0,
+      "uniqueStatMul": 1.0
     },
     {
       "id": "legendary",
@@ -101,7 +103,9 @@
       "glow": "#ff6a5c",
       "blur": 13,
       "spread": 1,
-      "img": 4
+      "img": 4,
+      "effectMul": 1.35,
+      "uniqueStatMul": 1.12
     },
     {
       "id": "fabled",
@@ -118,7 +122,9 @@
       "glow": "#c08cff",
       "blur": 13,
       "spread": 1,
-      "img": 4
+      "img": 4,
+      "effectMul": 1.8,
+      "uniqueStatMul": 1.25
     },
     {
       "id": "mythical",
@@ -130,13 +136,15 @@
       "pip": "star",
       "letter": "8",
       "affixCount": 5,
-      "affixCountNote": "plus a 6th unique capstone, Phase G",
+      "affixCountNote": "plus a 6th unique capstone",
       "goldMul": 80,
       "outline": "#ffd34d",
       "glow": "#ffd34d",
       "blur": 16,
       "spread": 2,
-      "img": 5
+      "img": 5,
+      "effectMul": 2.2,
+      "uniqueStatMul": 1.35
     }
   ],
   "strings": {
@@ -194,6 +202,28 @@
       "borderStyle": "solid",
       "borderWidth": "1px",
       "className": ""
+    }
+  },
+  "cssTokens": {
+    "unique": {
+      "color": "#e39a45",
+      "border": "#e39a45",
+      "bg": "rgba(200, 110, 40, 0.18)"
+    },
+    "set": {
+      "color": "#63c56d",
+      "border": "#63c56d",
+      "bg": "rgba(60, 150, 80, 0.16)"
+    },
+    "rune": {
+      "color": "#ff8a4a",
+      "border": "#ff8a4a",
+      "bg": "rgba(180, 70, 30, 0.18)"
+    },
+    "gem": {
+      "color": "#7dcea0",
+      "border": "#7dcea0",
+      "bg": "rgba(60, 140, 90, 0.18)"
     }
   }
 }

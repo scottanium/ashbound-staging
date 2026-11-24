@@ -529,7 +529,20 @@
         }
       },
       "flavor": "Warmed each dawn in the public kiln until the steel remembered fire.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 16,
+        "element": "fire",
+        "radius": 1.2
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 28,
+        "element": "fire",
+        "radius": 1.7
+      }
     },
     {
       "id": "last_vigil",
@@ -543,7 +556,20 @@
         "moveSpeed": 8
       },
       "flavor": "The watch cap from the last shift on the Spire stair.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 40,
+        "cooldown": 12,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 8,
+        "absorbMax": 24,
+        "duration": 6
+      }
     },
     {
       "id": "kilnwalker",
@@ -556,7 +582,17 @@
         "life": 16
       },
       "flavor": "Soot baked into the seams. The floor never quite burns.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "haste_on_kill",
+        "move": 12,
+        "ias": 8,
+        "duration": 3
+      },
+      "capstone": {
+        "type": "life_on_kill",
+        "heal": 16
+      }
     },
     {
       "id": "spire_widow",
@@ -570,7 +606,17 @@
         "fireResist": 10
       },
       "flavor": "Hung for years on a broken beam, and still keeping watch.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "thorns_nova",
+        "damage": 14,
+        "element": "phys",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "freeze_attackers",
+        "duration": 2
+      }
     },
     {
       "id": "senns_measure",
@@ -584,7 +630,15 @@
         "magicFind": 10
       },
       "flavor": "Senn says it counts fair. Count it yourself.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 4
+      },
+      "capstone": {
+        "type": "life_on_kill",
+        "heal": 18
+      }
     },
     {
       "id": "glass_oath",
@@ -601,7 +655,15 @@
         ]
       },
       "flavor": "A thin glass promise. You can see through it.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 20
+      }
     },
     {
       "id": "kiln_tyrants_collar",
@@ -620,7 +682,20 @@
         "life": 22
       },
       "flavor": "The collar cracked when the tyrant did. The heat stayed.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "hit_burst",
+        "chance": 25,
+        "damage": 18,
+        "element": "fire",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 28,
+        "element": "fire"
+      }
     },
     {
       "id": "briar_tooth",
@@ -637,7 +712,19 @@
         "dexterity": 4
       },
       "flavor": "Snapped from a snare that had already caught something. The sap never dried.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 26,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 22,
+        "element": "poison",
+        "radius": 1.5
+      }
     },
     {
       "id": "moth_lamp",
@@ -651,7 +738,17 @@
         "energy": 3
       },
       "flavor": "A hood scorched from the inside, as if a small fire had lived there and left.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 8
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 10,
+        "absorbMax": 30,
+        "duration": 6
+      }
     },
     {
       "id": "salt_march",
@@ -664,7 +761,17 @@
         "dexterity": 4
       },
       "flavor": "The salt ate the stitching and then, politely, held the boot together anyway.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 1.5
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 10,
+        "ias": 6,
+        "duration": 3
+      }
     },
     {
       "id": "widow_grip",
@@ -677,7 +784,17 @@
         "lifeLeech": 3
       },
       "flavor": "Wrapped for a watch that ended at dawn. The grip stayed warm.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 5
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 8,
+        "ias": 12,
+        "duration": 3
+      }
     },
     {
       "id": "kiln_oath",
@@ -694,7 +811,20 @@
         "life": 16
       },
       "flavor": "Sworn on the public kiln. The oath cracked. The maul did not.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "hit_burst",
+        "chance": 28,
+        "damage": 22,
+        "element": "fire",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 36,
+        "element": "fire",
+        "radius": 1.8
+      }
     },
     {
       "id": "reed_string",
@@ -711,7 +841,19 @@
         "dexterity": 6
       },
       "flavor": "Strung with a reed from the mere. It hums when the air is wet.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 20,
+        "element": "cold",
+        "chains": 1,
+        "radius": 2.0
+      }
     },
     {
       "id": "hush_staff",
@@ -728,7 +870,17 @@
         "castSpeed": 8
       },
       "flavor": "The galleries asked for quiet. The staff agreed, and then it did not.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 22,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "mana_on_kill",
+        "mana": 14
+      }
     },
     {
       "id": "spire_vow",
@@ -742,7 +894,21 @@
         "critChance": 4
       },
       "flavor": "A watch blade left point-down in a cracked step. It is still on duty.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 24,
+        "element": "phys"
+      },
+      "capstone": {
+        "type": "nth_strike",
+        "every": 4,
+        "damage": 18,
+        "element": "phys",
+        "chains": 1,
+        "radius": 1.8
+      }
     },
     {
       "id": "heart_nail",
@@ -759,7 +925,20 @@
         "thorns": 6
       },
       "flavor": "Used to pin a kiln door that would not stay shut. The door lost.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "kill_explode",
+        "damage": 32,
+        "element": "fire",
+        "radius": 1.7
+      },
+      "capstone": {
+        "type": "hit_burst",
+        "chance": 35,
+        "damage": 20,
+        "element": "fire",
+        "radius": 1.2
+      }
     },
     {
       "id": "last_watch_plate",
@@ -773,7 +952,20 @@
         "thorns": 8
       },
       "flavor": "The last shift wore this until the stairs gave. The plate came back. They did not.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 48,
+        "cooldown": 12,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "thorns_nova",
+        "damage": 16,
+        "element": "phys",
+        "radius": 1.4
+      }
     },
     {
       "id": "wicker_prayer",
@@ -787,7 +979,20 @@
         "thorns": 3
       },
       "flavor": "A prayer woven in, then smoked over the kiln until the words went black.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "ward_on_hit",
+        "absorb": 6,
+        "absorbMax": 20,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 32,
+        "cooldown": 12,
+        "duration": 6
+      }
     },
     {
       "id": "kiln_door",
@@ -801,7 +1006,17 @@
         "life": 18
       },
       "flavor": "A slice of the kiln door, still convinced it is a door.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "thorns_nova",
+        "damage": 16,
+        "element": "phys",
+        "radius": 1.4
+      },
+      "capstone": {
+        "type": "freeze_attackers",
+        "duration": 2.5
+      }
     },
     {
       "id": "garnet_loop",
@@ -815,7 +1030,15 @@
         "fireResist": 8
       },
       "flavor": "Cut from a garnet that sat too long in the heat. It is still warm.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 5
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 16
+      }
     },
     {
       "id": "mere_pearl",
@@ -829,7 +1052,15 @@
         "magicFind": 10
       },
       "flavor": "Fished out of still water. It has the same look as the mere.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 10
+      },
+      "capstone": {
+        "type": "frost_on_hit",
+        "duration": 2
+      }
     },
     {
       "id": "glass_cap",
@@ -843,7 +1074,17 @@
         "dexterity": 5
       },
       "flavor": "A cap glazed with salt until it rang. That ring is your warning.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 18,
+        "element": "cold"
+      }
     },
     {
       "id": "beetle_mail",
@@ -857,7 +1098,19 @@
         "thorns": 6
       },
       "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans forward.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 24,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "thorns_nova",
+        "damage": 14,
+        "element": "poison",
+        "radius": 1.3
+      }
     },
     {
       "id": "silt_shroud",
@@ -873,7 +1126,18 @@
         "allSkills": 1
       },
       "flavor": "Morra wore the water. What dried on this coat is not quite mud.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 44,
+        "cooldown": 12,
+        "duration": 6
+      }
     },
     {
       "id": "sallow_crown",
@@ -892,7 +1156,19 @@
         "allSkills": 1
       },
       "flavor": "Grown, not forged. It fits whoever cut the first tree, and it is still angry.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "brand",
+        "stacks": 4,
+        "damage": 30,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 28,
+        "element": "poison",
+        "radius": 1.7
+      }
     },
     {
       "id": "root_belt",
@@ -906,7 +1182,18 @@
         "lifeRegen": 1.6
       },
       "flavor": "A root that decided to be a belt. It tightens when you are afraid.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "life_on_kill",
+        "heal": 14
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 36,
+        "cooldown": 12,
+        "duration": 6
+      }
     },
     {
       "id": "orchard_knife",
@@ -923,7 +1210,19 @@
         "attackSpeed": 10
       },
       "flavor": "Used on fruit that should not have been red. The edge still smells sweet and wrong.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 28,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 22,
+        "element": "poison"
+      }
     },
     {
       "id": "branded_saber",
@@ -943,7 +1242,18 @@
         "fireDamagePercent": 12
       },
       "flavor": "The brand does not wash off. It is meant for Ash Strike.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 18,
+        "element": "fire",
+        "radius": 1.2
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 24
+      }
     },
     {
       "id": "callers_cord",
@@ -963,7 +1273,19 @@
         "manaRegen": 1.4
       },
       "flavor": "Tied while the glass was still wet. More mana, and stronger bolts.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 12
+      },
+      "capstone": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 22,
+        "element": "cold",
+        "chains": 1,
+        "radius": 2.2
+      }
     },
     {
       "id": "row_walkers",
@@ -982,7 +1304,19 @@
         "life": 16
       },
       "flavor": "The rows do not catch these. The snares do the catching.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 22,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 12,
+        "ias": 8,
+        "duration": 3
+      }
     },
     {
       "id": "unbanked_loop",
@@ -996,7 +1330,17 @@
         "mana": 20
       },
       "flavor": "One rank in every skill you have. The kiln does not get a vote.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "ward_on_hit",
+        "absorb": 8,
+        "absorbMax": 28,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "mana_on_kill",
+        "mana": 12
+      }
     },
     {
       "id": "short_promise",
@@ -1013,7 +1357,15 @@
         }
       },
       "flavor": "A cut that returns a little life. Do not stand still to collect.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "life_on_hit",
+        "heal": 6
+      },
+      "capstone": {
+        "type": "crit_ignite",
+        "damage": 18
+      }
     },
     {
       "id": "kept_bell",
@@ -1033,7 +1385,21 @@
         "mana": 24
       },
       "flavor": "Wrapped, then unwrapped. The note is yours now.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 24,
+        "element": "light",
+        "chains": 1,
+        "radius": 2.2
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 26,
+        "element": "light",
+        "radius": 1.6
+      }
     },
     {
       "id": "sear_cuff",
@@ -1051,7 +1417,20 @@
         }
       },
       "flavor": "Sear Step hits harder with this on.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "hit_burst",
+        "chance": 25,
+        "damage": 14,
+        "element": "fire",
+        "radius": 1.1
+      },
+      "capstone": {
+        "type": "haste_on_kill",
+        "move": 8,
+        "ias": 12,
+        "duration": 3
+      }
     },
     {
       "id": "vigil_hood",
@@ -1067,7 +1446,20 @@
         }
       },
       "flavor": "Worn for a watch that did not end. Vigil still holds.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 36,
+        "cooldown": 12,
+        "duration": 6
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 8,
+        "absorbMax": 24,
+        "duration": 6
+      }
     },
     {
       "id": "spark_band",
@@ -1082,7 +1474,18 @@
         }
       },
       "flavor": "A ring that helps you throw Cinder Spark.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "crit_ignite",
+        "damage": 16
+      },
+      "capstone": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 14,
+        "element": "fire",
+        "radius": 1.1
+      }
     },
     {
       "id": "brine_board",
@@ -1098,7 +1501,17 @@
         }
       },
       "flavor": "A board from a stilt house, made to keep the cold off.",
-      "baseRarity": "epic"
+      "baseRarity": "epic",
+      "effect": {
+        "type": "freeze_attackers",
+        "duration": 2
+      },
+      "capstone": {
+        "type": "ward_on_hit",
+        "absorb": 8,
+        "absorbMax": 24,
+        "duration": 6
+      }
     },
     {
       "id": "second_thread",
@@ -1116,7 +1529,15 @@
         }
       },
       "flavor": "Lets you keep one more servant. The coat holds them together.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "mana_on_kill",
+        "mana": 10
+      },
+      "capstone": {
+        "type": "life_on_kill",
+        "heal": 14
+      }
     },
     {
       "id": "jaw_cord",
@@ -1134,7 +1555,19 @@
         }
       },
       "flavor": "Tied so the snares close when you say so, not when they feel like it.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "brand",
+        "stacks": 4,
+        "damage": 26,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 20,
+        "element": "poison"
+      }
     },
     {
       "id": "needle_wrap",
@@ -1152,7 +1585,17 @@
         }
       },
       "flavor": "The point was already in the glove. You just give it a direction.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "brand",
+        "stacks": 5,
+        "damage": 24,
+        "element": "poison"
+      },
+      "capstone": {
+        "type": "life_on_hit",
+        "heal": 5
+      }
     },
     {
       "id": "crouch_tread",
@@ -1167,7 +1610,17 @@
         }
       },
       "flavor": "Other boots get heard in the rows. These stay quiet.",
-      "baseRarity": "legendary"
+      "baseRarity": "legendary",
+      "effect": {
+        "type": "haste_on_kill",
+        "move": 14,
+        "ias": 6,
+        "duration": 3
+      },
+      "capstone": {
+        "type": "frost_on_hit",
+        "duration": 2
+      }
     },
     {
       "id": "banked_coal",
@@ -1182,7 +1635,20 @@
         }
       },
       "flavor": "One coal kept back from the kiln. It is meant to be spent once, and to count.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "kill_explode",
+        "damage": 30,
+        "element": "fire",
+        "radius": 1.7
+      },
+      "capstone": {
+        "type": "low_life_shield",
+        "hpPct": 35,
+        "absorb": 40,
+        "cooldown": 12,
+        "duration": 6
+      }
     },
     {
       "id": "pale_note",
@@ -1201,7 +1667,19 @@
         }
       },
       "flavor": "A note cut into the stair and then pulled back out. It still rings.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 22,
+        "element": "light",
+        "chains": 1,
+        "radius": 2.2
+      },
+      "capstone": {
+        "type": "mana_on_kill",
+        "mana": 12
+      }
     },
     {
       "id": "mawglass",
@@ -1218,7 +1696,20 @@
         "fireResist": 16
       },
       "flavor": "The ring sweats when the floor opens.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "hit_burst",
+        "chance": 30,
+        "damage": 20,
+        "element": "fire",
+        "radius": 1.3
+      },
+      "capstone": {
+        "type": "kill_explode",
+        "damage": 32,
+        "element": "fire",
+        "radius": 1.7
+      }
     },
     {
       "id": "stillbell",
@@ -1232,7 +1723,19 @@
         "life": 20
       },
       "flavor": "A bell that was wrapped before it could finish the note.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "nth_strike",
+        "every": 5,
+        "damage": 20,
+        "element": "light",
+        "chains": 1,
+        "radius": 2.0
+      },
+      "capstone": {
+        "type": "freeze_attackers",
+        "duration": 2.5
+      }
     },
     {
       "id": "shadechord",
@@ -1250,7 +1753,17 @@
         "moveSpeed": 8
       },
       "flavor": "Worn by something that stepped out of its own shadow.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "frost_on_hit",
+        "duration": 2.5
+      },
+      "capstone": {
+        "type": "execute",
+        "hpPct": 30,
+        "damage": 22,
+        "element": "cold"
+      }
     },
     {
       "id": "kilntooth",
@@ -1268,7 +1781,18 @@
         "critChance": 4
       },
       "flavor": "A tooth of the kiln. It stays sharp because the fire never left it.",
-      "baseRarity": "fabled"
+      "baseRarity": "fabled",
+      "effect": {
+        "type": "crit_ignite",
+        "damage": 22
+      },
+      "capstone": {
+        "type": "hit_burst",
+        "chance": 35,
+        "damage": 18,
+        "element": "fire",
+        "radius": 1.2
+      }
     }
   ],
   "setItems": [
@@ -1681,13 +2205,6 @@
       ],
       "baseRarity": "epic"
     }
-  },
-  "rarity": {
-    "common": 1,
-    "magic": 3.2,
-    "rare": 8,
-    "set": 12,
-    "unique": 16
   },
   "materials": {
     "ember_shard": {

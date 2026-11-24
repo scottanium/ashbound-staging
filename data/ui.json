@@ -442,7 +442,7 @@
       "crit": {
         "metric": "crit",
         "unit": "%",
-        "dp": 2,
+        "dp": 3,
         "label": "crit chance"
       },
       "armorDefense": {

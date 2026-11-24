@@ -1,0 +1,13 @@
+{
+  "notes": "Shared milestone curve for unique signature-effect strength at enchant +5/+10/+15/+20, and later consume/set growth. betweenShare of the next spike drips across the four in-between levels; spikeShare lands on the milestone. package is the total added multiplier at +20 (on top of 1.0).",
+  "weights": {
+    "5": 1.0,
+    "10": 1.6,
+    "15": 2.5,
+    "20": 4.0
+  },
+  "betweenShare": 0.4,
+  "spikeShare": 0.6,
+  "consumeCap": 20,
+  "package": 0.5
+}

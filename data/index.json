@@ -15,7 +15,6 @@
     "an": "uniques",
     "na": "setItems",
     "_t": "setBonuses",
-    "Zn": "rarity",
     "Wo": "materials",
     "jo": "affixes",
     "ln": "modIds",
@@ -59,6 +58,12 @@
     "props3d.json",
     "ui.json",
     "guide.json",
-    "feel.json"
+    "feel.json",
+    "rarity.json",
+    "telling.json",
+    "characters.json",
+    "progress.json",
+    "unique-effects.json",
+    "milestone-curve.json"
   ]
 }

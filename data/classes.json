@@ -349,10 +349,11 @@
     }
   ],
   "mainStatRates": {
-    "critPerPoint": 0.08,
-    "armorDefensePerPoint": 0.15,
-    "spellDamagePerPoint": 0.4,
-    "skillDamagePerPoint": 0.15
+    "critPerPoint": 0.045,
+    "armorDefensePerPoint": 0.08,
+    "spellDamagePerPoint": 0.14,
+    "skillDamagePerPoint": 0.08,
+    "paragonRateMul": 0.55
   },
   "balanceSim": {
     "levels": [
