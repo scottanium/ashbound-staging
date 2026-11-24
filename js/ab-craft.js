@@ -131,6 +131,23 @@
     return color(itemOrId);
   }
 
+  function families() {
+    const table = data().rarityTable || {};
+    return table.families || {};
+  }
+
+  function family(item) {
+    if (isUnique(item)) return "unique";
+    if (isSet(item)) return "set";
+    return "normal";
+  }
+
+  function familyDef(itemOrId) {
+    const id = typeof itemOrId === "string" ? itemOrId : family(itemOrId);
+    const bag = families();
+    return bag[id] || bag.normal || null;
+  }
+
   function cssClass(item) {
     if (!item) return "rar-common";
     if (isCurrency(item)) return "rar-" + item.rarity;
@@ -177,6 +194,17 @@
   function migrateItem(item) {
     if (!item) return item;
     if (isCurrency(item) || item.charm) return item;
+    if (isUnique(item) && isSet(item)) {
+      delete item.setId;
+      delete item.setItemId;
+      if (item.rarity === "set") item.rarity = "unique";
+      const def = item.uniqueId ? uniqueDef(item.uniqueId) : null;
+      if (def) {
+        if (def.name) item.name = def.name;
+        if (def.mods) item.fixedMods = def.mods;
+        if (def.flavor != null) item.flavor = def.flavor;
+      }
+    }
     if (item.enchantLevel == null) item.enchantLevel = 0;
     if (item.itemLevel == null) item.itemLevel = 0;
     stampTier(item);
@@ -231,7 +259,7 @@
   root.ABCraft = {
     rarityDef, affixCount, isUnique, isSet, isCurrency,
     baseRarityFor, displayId, rankLabel, floorLabel, kindLabel,
-    cssClass, color, outline, pip, goldMul, stampTier, migrateItem, migrateSave,
+    cssClass, family, familyDef, families, color, outline, pip, goldMul, stampTier, migrateItem, migrateSave,
     migrateShared, migrateAllItems, ranks, strings
   };
 })(typeof window !== "undefined" ? window : self);

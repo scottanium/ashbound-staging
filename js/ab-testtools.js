@@ -2,7 +2,7 @@
    unless that is true AND the game handed over its bridge. The live build never loads it and has no menu button or panel for it.
    Panel: Menu > TEST tools. Spawn items (base / rarity / unique / set / runeword / rune / gem / flask / charm, item level, sockets),
    set the hero's level, add points and gold, ignore level and stat requirements, jump to any zone.
-   Also spawn 1/5/10 random maxed uniques raised to Mythical (top upgrade tier; no separate awakened flag) or random maxed set pieces. */
+   Also spawn 1/5/10 random maxed uniques raised to Mythical (top upgrade tier; no separate awakened flag) or random maxed set pieces. Also spawn a random maxed Mythical normal item (no unique or set). */
 (function () {
   "use strict";
   var C = self.ASHBOUND_CONFIG, B = self.ABSTG_BRIDGE;
@@ -50,7 +50,8 @@
       return '<button class="btn' + (S.mythCount === n ? " primary" : "") + '" data-act="tt-mc" data-n="' + n + '">' + n + "</button>";
     }).join("") + "</div>");
     h.push('<button class="btn primary" data-act="tt-mythic">Spawn random maxed Mythical unique</button>');
-    h.push('<button class="btn primary" data-act="tt-setmax">Spawn random maxed set piece</button></section>');
+    h.push('<button class="btn primary" data-act="tt-setmax">Spawn random maxed set piece</button>');
+    h.push('<button class="btn primary" data-act="tt-normyth">Spawn random maxed Mythical normal item</button></section>');
     h.push('<section class="tt-card"><h3>Hero</h3>');
     h.push(row("Level (now " + p.level + (p.paragonLevel ? ", P" + p.paragonLevel : "") + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
     h.push('<div class="row"><button class="btn" data-act="tt-level50">Set level 50</button><button class="btn" data-act="tt-paragon10">+10 Paragon</button></div>');
@@ -84,13 +85,28 @@
     it.identified = true;
     return it;
   }
+  function makeSet(def) {
+    if (!def) return null;
+    var it = B._e(def.baseId);
+    if (!it) return null;
+    if (it.uniqueId || it.rarity === "unique") return null;
+    if (!B.Ho(it, def)) return null;
+    it.identified = true;
+    return it;
+  }
   function spawnMaxed(kind, n) {
     var out = [], i, it, def;
     n = Math.max(1, Math.min(10, n | 0));
     for (i = 0; i < n; i++) {
       it = null;
       if (kind === "mythic") { def = pick(B.uniques); it = B.Lt(def.id); }
-      else { def = pick(B.sets); it = B._e(def.baseId); B.Ho(it, def); }
+      else if (kind === "set") { def = pick(B.sets); it = makeSet(def); }
+      else {
+        def = pick(B.bases);
+        it = def ? B._e(def.id) : null;
+        if (it && (it.uniqueId || it.setId || it.setItemId || it.rarity === "unique" || it.rarity === "set")) it = null;
+        if (it) { it.rarity = "mythical"; it.uniqueId = null; it.setId = null; it.setItemId = null; }
+      }
       if (it) out.push(maxOut(it));
     }
     return out;
@@ -101,7 +117,7 @@
       var it = null;
       if (k === "gear") { it = B.le(il, 0, Math.random, { baseId: S.base, rarity: S.rarity }); if (so) B.rn(it, so); }
       else if (k === "unique") { it = B.Lt(S.unique); if (so) B.rn(it, so); }
-      else if (k === "set") { var si = B.sets.find(function (x) { return x.id === S.set; }); it = B._e(si.baseId); B.Ho(it, si); it.identified = true; }
+      else if (k === "set") { var si = B.sets.find(function (x) { return x.id === S.set; }); it = makeSet(si); }
       else if (k === "runeword") {
         var w = B.words.find(function (x) { return x.id === S.word; }), bs = B.bases.filter(function (b) { return w.slots.indexOf(b.slot) >= 0 && (b.maxSockets || 0) >= w.runes.length; }).sort(function (a, b) { return a.ilvl - b.ilvl; });
         var pick = bs.find(function (b) { return b.id === S.base; }) || bs[0]; if (!pick) return n;
@@ -144,11 +160,12 @@
     else if (e === "tt-ign") { self.ABSTG_IGNORE = !self.ABSTG_IGNORE; B.se(); say("Requirements " + (self.ABSTG_IGNORE ? "ignored." : "back on.")); }
     else if (e === "tt-tp") { o.ui.panel = null; self.ASHBOUND.travel(S.zone); }
     else if (e === "tt-mc") { S.mythCount = Math.max(1, Math.min(10, Number(t && t.n) || 1)); }
-    else if (e === "tt-mythic" || e === "tt-setmax") {
-      var kind = e === "tt-mythic" ? "mythic" : "set";
+    else if (e === "tt-mythic" || e === "tt-setmax" || e === "tt-normyth") {
+      var kind = e === "tt-mythic" ? "mythic" : e === "tt-setmax" ? "set" : "normal";
       var items = spawnMaxed(kind, S.mythCount), ok = 0;
       items.forEach(function (it) { if (give(it)) ok++; });
-      say(ok ? ("Added " + ok + " maxed " + (kind === "mythic" ? "mythic unique" : "set piece") + (ok === 1 ? "" : "s")) : "Pack and stash are full.");
+      var label = kind === "mythic" ? "mythic unique" : kind === "set" ? "set piece" : "mythic normal item";
+      say(ok ? ("Added " + ok + " maxed " + label + (ok === 1 ? "" : "s")) : "Pack and stash are full.");
     }
     B.se(); B.refresh();
   }
