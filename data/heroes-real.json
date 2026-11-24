@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "class": "warden",
+  "heightTiles": 1.33,
+  "charHeight": 148,
+  "dirShift": 0,
+  "footComment": "cell-local foot is in each look's manifest.json; charHeight is foot-to-crown in bake px",
+  "armorToTier": {
+    "wander_wrap": "cloth",
+    "hide_coat": "leather",
+    "scale_hauberk": "scale",
+    "kiln_plate": "plate"
+  },
+  "defaultLook": "cloth",
+  "looks": {
+    "cloth": {
+      "path": "assets/heroes/warden/cloth/",
+      "tier": "cloth",
+      "shield": false
+    },
+    "cloth_shield": {
+      "path": "assets/heroes/warden/cloth_shield/",
+      "tier": "cloth",
+      "shield": true
+    },
+    "leather": {
+      "path": "assets/heroes/warden/leather/",
+      "tier": "leather",
+      "shield": false
+    },
+    "leather_shield": {
+      "path": "assets/heroes/warden/leather_shield/",
+      "tier": "leather",
+      "shield": true
+    },
+    "scale": {
+      "path": "assets/heroes/warden/scale/",
+      "tier": "scale",
+      "shield": false
+    },
+    "scale_shield": {
+      "path": "assets/heroes/warden/scale_shield/",
+      "tier": "scale",
+      "shield": true
+    },
+    "plate": {
+      "path": "assets/heroes/warden/plate/",
+      "tier": "plate",
+      "shield": false
+    },
+    "plate_shield": {
+      "path": "assets/heroes/warden/plate_shield/",
+      "tier": "plate",
+      "shield": true
+    }
+  },
+  "cell": [
+    198,
+    164
+  ],
+  "foot": [
+    116,
+    156
+  ],
+  "helmToKind": {
+    "cloth_hood": "hood",
+    "salt_cap": "cap",
+    "kiln_helm": "bascinet"
+  },
+  "dyes": {
+    "ashguard": {
+      "primary": "#7c2016",
+      "leather": "#6a4a34",
+      "metal": "#9aa1a8"
+    },
+    "reed": {
+      "primary": "#2e5a58",
+      "leather": "#7a5838",
+      "metal": "#8a9096"
+    },
+    "briar": {
+      "primary": "#3e4a24",
+      "leather": "#5a4430",
+      "metal": "#7a7e84"
+    },
+    "salt": {
+      "primary": "#2a4a6e",
+      "leather": "#7a5a40",
+      "metal": "#a8b0b8"
+    },
+    "bell": {
+      "primary": "#8a6a20",
+      "leather": "#6a4c36",
+      "metal": "#b8a070"
+    },
+    "gilded": {
+      "primary": "#1d2f5e",
+      "leather": "#3a291d",
+      "metal": "#caa45c"
+    },
+    "blackwatch": {
+      "primary": "#2c4a2b",
+      "leather": "#261c16",
+      "metal": "#5a5f66"
+    }
+  }
+}
