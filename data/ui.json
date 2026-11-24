@@ -467,6 +467,11 @@
         "dp": 2,
         "label": "skill damage"
       }
+    },
+    "sets": {
+      "title": "Sets",
+      "empty": "No set pieces worn.",
+      "pieces": "{n} of {m} pieces worn"
     }
   },
   "overheadBars": {
