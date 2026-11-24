@@ -64,6 +64,9 @@
     "characters.json",
     "progress.json",
     "unique-effects.json",
-    "milestone-curve.json"
+    "milestone-curve.json",
+    "milestones.json",
+    "consume.json",
+    "sets.json"
   ]
 }

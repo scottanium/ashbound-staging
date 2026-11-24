@@ -170,7 +170,8 @@
     "gem",
     "potion",
     "gold",
-    "lens"
+    "lens",
+    "material"
   ],
   "recipesScope": "account",
   "setSixWornDormant": true,

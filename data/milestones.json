@@ -1,0 +1,20 @@
+{
+  "notes": "Shared escalating milestone curve. Weights 1 : 1.6 : 2.5 : 4 at +5 / +10 / +15 / +20. betweenShare of the next spike drips across the in-between levels; spikeShare lands on the milestone itself. package is the total added multiplier at the cap (1 + package). applyTo names the v78 consumers; unique signature effects also use this curve via enchant and consume levels. setPieceWeights follow the same ratio at 2 / 3 / 5 / 6.",
+  "weights": {
+    "5": 1.0,
+    "10": 1.6,
+    "15": 2.5,
+    "20": 4.0
+  },
+  "betweenShare": 0.4,
+  "spikeShare": 0.6,
+  "consumeCap": 20,
+  "package": 0.5,
+  "setPieceWeights": {
+    "2": 1.0,
+    "3": 1.6,
+    "5": 2.5,
+    "6": 4.0
+  },
+  "applyTo": ["uniqueEffects", "consume", "setTiers"]
+}

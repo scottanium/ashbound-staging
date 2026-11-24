@@ -1,0 +1,837 @@
+{
+  "version": 1,
+  "notes": "Six-piece sets. Bonuses at 2/3/5/6. Stored mods are dormant strength (what existing 2- and 3-piece saves already gave). Awakened is 4x those numbers (dormant is 25% of awakened). 6/6 awakens only when the designated consume piece is in the consume slot and not dormant. Mixed-rarity uses the average of ranks 5-8. New piece names are placeholders for Koto.",
+  "dormantMul": 0.25,
+  "setAverageMuls": {
+    "5": 1.0,
+    "6": 1.15,
+    "7": 1.3,
+    "8": 1.5
+  },
+  "sets": {
+    "ashmarch_sentinel": {
+      "name": "Ashmarch Sentinel",
+      "baseRarity": "epic",
+      "consumePiece": "sentinel_coat",
+      "consumeSlot": "armor",
+      "pieces": [
+        "sentinel_hood",
+        "sentinel_coat",
+        "sentinel_girdle",
+        "sentinel_gloves",
+        "sentinel_boots",
+        "sentinel_shield"
+      ],
+      "newPieces": [
+        {
+          "id": "sentinel_gloves",
+          "name": "Sentinel Gloves",
+          "baseId": "wrap_gloves",
+          "qlvl": 4,
+          "mods": {
+            "defense": 4,
+            "fireResist": 6
+          },
+          "flavor": "Ash-stiff leather, still warm.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "sentinel_boots",
+          "name": "Sentinel Boots",
+          "baseId": "trail_boots",
+          "qlvl": 4,
+          "mods": {
+            "defense": 5,
+            "moveSpeed": 4
+          },
+          "flavor": "They remember the first watch.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "sentinel_shield",
+          "name": "Sentinel Shield",
+          "baseId": "wicker_shield",
+          "qlvl": 6,
+          "mods": {
+            "defense": 10,
+            "fireResist": 8
+          },
+          "flavor": "Wicker bound with kiln wire.",
+          "baseRarity": "epic"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+25 life, +12% fire resist",
+          "mods": {
+            "life": 25,
+            "fireResist": 12
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+12% fire damage, +1 to Ash Strike",
+          "mods": {
+            "fireDamagePercent": 12,
+            "skills": {
+              "ash_strike": 1
+            }
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+10 defense, +8% fire resist",
+          "mods": {
+            "defense": 10,
+            "fireResist": 8
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+6% fire damage, +12 life",
+          "mods": {
+            "fireDamagePercent": 6,
+            "life": 12
+          }
+        }
+      ]
+    },
+    "saltglass_pair": {
+      "name": "Saltglass Pair",
+      "baseRarity": "epic",
+      "consumePiece": "saltglass_edge",
+      "consumeSlot": "weapon",
+      "pieces": [
+        "saltglass_edge",
+        "saltglass_band",
+        "saltglass_cap",
+        "saltglass_coat",
+        "saltglass_boots",
+        "saltglass_amulet"
+      ],
+      "newPieces": [
+        {
+          "id": "saltglass_cap",
+          "name": "Saltglass Cap",
+          "baseId": "salt_cap",
+          "qlvl": 8,
+          "mods": {
+            "defense": 6,
+            "attackRating": 12
+          },
+          "flavor": "A pale brim that sheds spray.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "saltglass_coat",
+          "name": "Saltglass Coat",
+          "baseId": "hide_coat",
+          "qlvl": 8,
+          "mods": {
+            "defense": 10,
+            "coldResist": 8
+          },
+          "flavor": "White salt still in the seams.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "saltglass_boots",
+          "name": "Saltglass Boots",
+          "baseId": "trail_boots",
+          "qlvl": 8,
+          "mods": {
+            "defense": 5,
+            "attackSpeed": 4
+          },
+          "flavor": "They keep a marcher's cadence.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "saltglass_amulet",
+          "name": "Saltglass Amulet",
+          "baseId": "cord_amulet",
+          "qlvl": 8,
+          "mods": {
+            "attackRating": 16,
+            "critChance": 2
+          },
+          "flavor": "A glass bead the color of foam.",
+          "baseRarity": "epic"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+15% attack speed, +40 attack rating, +4% crit",
+          "mods": {
+            "attackSpeed": 15,
+            "attackRating": 40,
+            "critChance": 4
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+8% enhanced damage, +6% attack speed",
+          "mods": {
+            "enhancedDamage": 8,
+            "attackSpeed": 6
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+20 attack rating, +3% crit",
+          "mods": {
+            "attackRating": 20,
+            "critChance": 3
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+6% enhanced damage, +4% attack speed",
+          "mods": {
+            "enhancedDamage": 6,
+            "attackSpeed": 4
+          }
+        }
+      ]
+    },
+    "briar_three": {
+      "name": "Briar Three",
+      "baseRarity": "epic",
+      "consumePiece": "briar_fang",
+      "consumeSlot": "weapon",
+      "pieces": [
+        "briar_hood",
+        "briar_wrap",
+        "briar_fang",
+        "briar_gloves",
+        "briar_boots",
+        "briar_belt"
+      ],
+      "newPieces": [
+        {
+          "id": "briar_gloves",
+          "name": "Briar Gloves",
+          "baseId": "wrap_gloves",
+          "qlvl": 10,
+          "mods": {
+            "defense": 4,
+            "poisonDamage": [
+              1,
+              3
+            ]
+          },
+          "flavor": "Thorns caught in the wrap.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "briar_boots",
+          "name": "Briar Boots",
+          "baseId": "trail_boots",
+          "qlvl": 10,
+          "mods": {
+            "defense": 5,
+            "poisonResist": 6
+          },
+          "flavor": "They leave a faint green print.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "briar_belt",
+          "name": "Briar Belt",
+          "baseId": "rope_belt",
+          "qlvl": 10,
+          "mods": {
+            "life": 8,
+            "poisonResist": 6
+          },
+          "flavor": "A cord of dried briar.",
+          "baseRarity": "epic"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+20 life, +8 poison damage",
+          "mods": {
+            "life": 20,
+            "poisonDamage": [
+              4,
+              8
+            ]
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+16% poison resist, +10% attack speed",
+          "mods": {
+            "poisonResist": 16,
+            "attackSpeed": 10
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+4\u20138 poison damage, +10 life",
+          "mods": {
+            "poisonDamage": [
+              4,
+              8
+            ],
+            "life": 10
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+6% enhanced damage, +8% attack speed",
+          "mods": {
+            "enhancedDamage": 6,
+            "attackSpeed": 8
+          }
+        }
+      ]
+    },
+    "march_pair": {
+      "name": "First March",
+      "baseRarity": "epic",
+      "consumePiece": "march_coat",
+      "consumeSlot": "armor",
+      "pieces": [
+        "march_boots",
+        "march_wraps",
+        "march_hood",
+        "march_coat",
+        "march_belt",
+        "march_amulet"
+      ],
+      "newPieces": [
+        {
+          "id": "march_hood",
+          "name": "March Hood",
+          "baseId": "cloth_hood",
+          "qlvl": 3,
+          "mods": {
+            "defense": 3,
+            "fireResist": 6
+          },
+          "flavor": "Dust of the first road.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "march_coat",
+          "name": "March Coat",
+          "baseId": "hide_coat",
+          "qlvl": 4,
+          "mods": {
+            "defense": 8,
+            "life": 8
+          },
+          "flavor": "The coat that led the file.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "march_belt",
+          "name": "March Belt",
+          "baseId": "rope_belt",
+          "qlvl": 3,
+          "mods": {
+            "life": 6,
+            "moveSpeed": 4
+          },
+          "flavor": "Cinched for a long walk.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "march_amulet",
+          "name": "March Amulet",
+          "baseId": "cord_amulet",
+          "qlvl": 4,
+          "mods": {
+            "fireResist": 6,
+            "life": 6
+          },
+          "flavor": "A coal-bead on a cord.",
+          "baseRarity": "epic"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+20 life, +12% move speed, +10 fire resist",
+          "mods": {
+            "life": 20,
+            "moveSpeed": 12,
+            "fireResist": 10
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+8% fire resist, +8 life",
+          "mods": {
+            "fireResist": 8,
+            "life": 8
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+6% move speed, +10 life",
+          "mods": {
+            "moveSpeed": 6,
+            "life": 10
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+8% fire resist, +8% move speed",
+          "mods": {
+            "fireResist": 8,
+            "moveSpeed": 8
+          }
+        }
+      ]
+    },
+    "orchard_lamp": {
+      "name": "Orchard Lamp",
+      "baseRarity": "epic",
+      "consumePiece": "lamp_coat",
+      "consumeSlot": "armor",
+      "pieces": [
+        "lamp_hood",
+        "lamp_cord",
+        "lamp_coat",
+        "lamp_gloves",
+        "lamp_boots",
+        "lamp_amulet"
+      ],
+      "newPieces": [
+        {
+          "id": "lamp_coat",
+          "name": "Lamp Coat",
+          "baseId": "hide_coat",
+          "qlvl": 16,
+          "mods": {
+            "defense": 10,
+            "mana": 10
+          },
+          "flavor": "Sap-sweet smoke in the lining.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "lamp_gloves",
+          "name": "Lamp Gloves",
+          "baseId": "wrap_gloves",
+          "qlvl": 14,
+          "mods": {
+            "mana": 6,
+            "poisonResist": 6
+          },
+          "flavor": "Sticky with lamp oil.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "lamp_boots",
+          "name": "Lamp Boots",
+          "baseId": "trail_boots",
+          "qlvl": 14,
+          "mods": {
+            "defense": 5,
+            "manaRegen": 1
+          },
+          "flavor": "Soft steps between the rows.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "lamp_amulet",
+          "name": "Lamp Amulet",
+          "baseId": "cord_amulet",
+          "qlvl": 16,
+          "mods": {
+            "mana": 8,
+            "poisonResist": 6
+          },
+          "flavor": "A glass well of pale oil.",
+          "baseRarity": "epic"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+18 mana, +12 poison resist, +1 mana regen",
+          "mods": {
+            "mana": 18,
+            "poisonResist": 12,
+            "manaRegen": 1
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+10 mana, +8 poison resist",
+          "mods": {
+            "mana": 10,
+            "poisonResist": 8
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+1 mana regen, +8 mana",
+          "mods": {
+            "manaRegen": 1,
+            "mana": 8
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+12 poison resist, +10 mana",
+          "mods": {
+            "poisonResist": 12,
+            "mana": 10
+          }
+        }
+      ]
+    },
+    "wrapped_bells": {
+      "name": "Wrapped Bells",
+      "baseRarity": "epic",
+      "consumePiece": "bell_hood",
+      "consumeSlot": "helm",
+      "pieces": [
+        "bell_loop",
+        "bell_cord",
+        "bell_hood",
+        "bell_coat",
+        "bell_boots",
+        "bell_shield"
+      ],
+      "newPieces": [
+        {
+          "id": "bell_hood",
+          "name": "Bell Hood",
+          "baseId": "cloth_hood",
+          "qlvl": 18,
+          "mods": {
+            "defense": 6,
+            "mana": 8
+          },
+          "flavor": "A muffled chime in the lining.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "bell_coat",
+          "name": "Bell Coat",
+          "baseId": "hide_coat",
+          "qlvl": 18,
+          "mods": {
+            "defense": 10,
+            "coldResist": 8
+          },
+          "flavor": "Wrapped so the bronze does not ring early.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "bell_boots",
+          "name": "Bell Boots",
+          "baseId": "trail_boots",
+          "qlvl": 16,
+          "mods": {
+            "defense": 5,
+            "mana": 6
+          },
+          "flavor": "Soft soles under a loud hymn.",
+          "baseRarity": "epic"
+        },
+        {
+          "id": "bell_shield",
+          "name": "Bell Shield",
+          "baseId": "wicker_shield",
+          "qlvl": 18,
+          "mods": {
+            "defense": 12,
+            "coldResist": 8
+          },
+          "flavor": "A quiet face, a loud back.",
+          "baseRarity": "epic"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+18 cold resist, +20 mana, +1 to all skills",
+          "mods": {
+            "coldResist": 18,
+            "mana": 20,
+            "allSkills": 1
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+10 mana, +8 cold resist",
+          "mods": {
+            "mana": 10,
+            "coldResist": 8
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+8 mana, +6 cold resist",
+          "mods": {
+            "mana": 8,
+            "coldResist": 6
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+1 to all skills, +10 mana",
+          "mods": {
+            "allSkills": 1,
+            "mana": 10
+          }
+        }
+      ]
+    },
+    "pale_watch": {
+      "name": "Pale Watch",
+      "baseRarity": "fabled",
+      "consumePiece": "pale_hood",
+      "consumeSlot": "helm",
+      "pieces": [
+        "pale_hood",
+        "pale_mail",
+        "pale_gloves",
+        "pale_boots",
+        "pale_belt",
+        "pale_shield"
+      ],
+      "newPieces": [
+        {
+          "id": "pale_gloves",
+          "name": "Pale Gloves",
+          "baseId": "scale_gloves",
+          "qlvl": 28,
+          "mods": {
+            "defense": 8,
+            "allResist": 3
+          },
+          "flavor": "Ash-white scales.",
+          "baseRarity": "fabled"
+        },
+        {
+          "id": "pale_boots",
+          "name": "Pale Boots",
+          "baseId": "kiln_boots",
+          "qlvl": 28,
+          "mods": {
+            "defense": 8,
+            "life": 10
+          },
+          "flavor": "They do not take a stain.",
+          "baseRarity": "fabled"
+        },
+        {
+          "id": "pale_belt",
+          "name": "Pale Belt",
+          "baseId": "plate_belt",
+          "qlvl": 28,
+          "mods": {
+            "defense": 6,
+            "allResist": 3
+          },
+          "flavor": "A pale clasp, still warm.",
+          "baseRarity": "fabled"
+        },
+        {
+          "id": "pale_shield",
+          "name": "Pale Shield",
+          "baseId": "kiln_shield",
+          "qlvl": 30,
+          "mods": {
+            "defense": 16,
+            "allResist": 4
+          },
+          "flavor": "The last door of the watch.",
+          "baseRarity": "fabled"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+30 life, +10% all resist",
+          "mods": {
+            "life": 30,
+            "allResist": 10
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+16 life, +6% all resist",
+          "mods": {
+            "life": 16,
+            "allResist": 6
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+20 life, +4% all resist",
+          "mods": {
+            "life": 20,
+            "allResist": 4
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+12% all resist, +24 life",
+          "mods": {
+            "allResist": 12,
+            "life": 24
+          }
+        }
+      ]
+    },
+    "name_oath": {
+      "name": "Name Oath",
+      "baseRarity": "fabled",
+      "consumePiece": "oath_blade",
+      "consumeSlot": "weapon",
+      "pieces": [
+        "oath_ring",
+        "oath_cord",
+        "oath_blade",
+        "oath_helm",
+        "oath_coat",
+        "oath_boots"
+      ],
+      "newPieces": [
+        {
+          "id": "oath_blade",
+          "name": "Oath Blade",
+          "baseId": "spire_blade",
+          "qlvl": 36,
+          "mods": {
+            "enhancedDamage": 12,
+            "fireDamage": [
+              3,
+              6
+            ],
+            "strength": 4
+          },
+          "flavor": "The name is filed into the fuller.",
+          "baseRarity": "fabled"
+        },
+        {
+          "id": "oath_helm",
+          "name": "Oath Helm",
+          "baseId": "kiln_helm",
+          "qlvl": 34,
+          "mods": {
+            "defense": 12,
+            "strength": 3
+          },
+          "flavor": "A vow cut above the brow.",
+          "baseRarity": "fabled"
+        },
+        {
+          "id": "oath_coat",
+          "name": "Oath Coat",
+          "baseId": "kiln_plate",
+          "qlvl": 36,
+          "mods": {
+            "defense": 16,
+            "life": 12
+          },
+          "flavor": "Plate that kept a sworn watch.",
+          "baseRarity": "fabled"
+        },
+        {
+          "id": "oath_boots",
+          "name": "Oath Boots",
+          "baseId": "kiln_boots",
+          "qlvl": 34,
+          "mods": {
+            "defense": 8,
+            "fireDamage": [
+              2,
+              4
+            ]
+          },
+          "flavor": "They do not turn from a name.",
+          "baseRarity": "fabled"
+        }
+      ],
+      "bonuses": [
+        {
+          "count": 2,
+          "weight": 1.0,
+          "text": "+24 life, +6 strength, +8 fire damage",
+          "mods": {
+            "life": 24,
+            "strength": 6,
+            "fireDamage": [
+              4,
+              8
+            ]
+          }
+        },
+        {
+          "count": 3,
+          "weight": 1.6,
+          "text": "+10 life, +3 strength",
+          "mods": {
+            "life": 10,
+            "strength": 3
+          }
+        },
+        {
+          "count": 5,
+          "weight": 2.5,
+          "text": "+4 strength, +6 fire damage",
+          "mods": {
+            "strength": 4,
+            "fireDamage": [
+              3,
+              6
+            ]
+          }
+        },
+        {
+          "count": 6,
+          "weight": 4.0,
+          "text": "+16 life, +8 fire damage",
+          "mods": {
+            "life": 16,
+            "fireDamage": [
+              4,
+              8
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
