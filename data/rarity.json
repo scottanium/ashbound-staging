@@ -145,7 +145,10 @@
     "uniqueKind": "Unique",
     "setKind": "Set",
     "legacyAffixes": "Legacy affixes kept",
-    "colorsHelp": "Elite is a darker blue. Epic is orange. Legendary is red. Fabled and Mythical are purple; Mythical also has a gold outline."
+    "colorsHelp": "Elite is a darker blue. Epic is orange. Legendary is red. Fabled and Mythical are purple; Mythical also has a gold outline.",
+    "setFromUnique": "Sets can only be made from normal items, not uniques.",
+    "familyUnique": "Unique",
+    "familySet": "Set"
   },
   "legacyGold": {
     "common": 1,
@@ -163,5 +166,34 @@
   ],
   "recipesScope": "account",
   "setSixWornDormant": true,
-  "notes": "Phase A display and migration. Drop tables still use the old five-grade roll; uniques and sets stamp their floor as tier."
+  "notes": "Phase A display and migration. Drop tables still use the old five-grade roll; uniques and sets stamp their floor as tier.",
+  "families": {
+    "unique": {
+      "id": "unique",
+      "badge": "U",
+      "title": "Unique",
+      "color": "#ffd34d",
+      "borderStyle": "double",
+      "borderWidth": "3px",
+      "className": "family-unique"
+    },
+    "set": {
+      "id": "set",
+      "badge": "S",
+      "title": "Set",
+      "color": "#63c56d",
+      "borderStyle": "double",
+      "borderWidth": "3px",
+      "className": "family-set"
+    },
+    "normal": {
+      "id": "normal",
+      "badge": "",
+      "title": "",
+      "color": "",
+      "borderStyle": "solid",
+      "borderWidth": "1px",
+      "className": ""
+    }
+  }
 }
