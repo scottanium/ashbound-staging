@@ -22,6 +22,8 @@
     ["guide", "data/guide.json", true],
     ["feel", "data/feel.json"],
     ["progress", "data/progress.json"],
+    ["uniqueEffects", "data/unique-effects.json"],
+    ["milestoneCurve", "data/milestone-curve.json"],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path, optional]) =>
@@ -53,6 +55,8 @@
     D.guide = bag.guide || null;
     D.feel = bag.feel || null;
     D.progress = bag.progress || {};
+    D.uniqueEffects = bag.uniqueEffects || {};
+    D.milestoneCurve = bag.milestoneCurve || {};
     D.inventoryLayout = bag.inventoryLayout || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;

@@ -51,7 +51,8 @@
     }).join("") + "</div>");
     h.push('<button class="btn primary" data-act="tt-mythic">Spawn random maxed Mythical unique</button>');
     h.push('<button class="btn primary" data-act="tt-setmax">Spawn random maxed set piece</button>');
-    h.push('<button class="btn primary" data-act="tt-normyth">Spawn random maxed Mythical normal item</button></section>');
+    h.push('<button class="btn primary" data-act="tt-normyth">Spawn random maxed Mythical normal item</button>');
+    h.push('<button class="btn" data-act="tt-alluniques">Spawn every unique (Mythical)</button></section>');
     h.push('<section class="tt-card"><h3>Hero</h3>');
     h.push(row("Level (now " + p.level + (p.paragonLevel ? ", P" + p.paragonLevel : "") + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
     h.push('<div class="row"><button class="btn" data-act="tt-level50">Set level 50</button><button class="btn" data-act="tt-paragon10">+10 Paragon</button></div>');
@@ -83,6 +84,7 @@
     } else it.ilvl = Math.max(it.ilvl || 1, 80);
     it.tier = "mythical";
     it.identified = true;
+    if (self.ABCraft && ABCraft.scaleUnique) ABCraft.scaleUnique(it);
     return it;
   }
   function makeSet(def) {
@@ -166,6 +168,14 @@
       items.forEach(function (it) { if (give(it)) ok++; });
       var label = kind === "mythic" ? "mythic unique" : kind === "set" ? "set piece" : "mythic normal item";
       say(ok ? ("Added " + ok + " maxed " + label + (ok === 1 ? "" : "s")) : "Pack and stash are full.");
+    } else if (e === "tt-alluniques") {
+      var added = 0, i, it, def;
+      for (i = 0; i < B.uniques.length; i++) {
+        def = B.uniques[i];
+        it = def ? B.Lt(def.id) : null;
+        if (it && give(maxOut(it))) added++;
+      }
+      say(added ? ("Added " + added + " Mythical uniques.") : "Pack and stash are full.");
     }
     B.se(); B.refresh();
   }

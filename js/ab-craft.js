@@ -1,8 +1,17 @@
 // Phase A craft/rarity helpers. Combat, AI, and render do not import this.
 // Looks up ASHBOUND_DATA at call time (data may still be loading when this file parses).
 (function (root) {
-  const GEAR_IDS = ["common", "magic", "rare", "elite", "epic", "legendary", "fabled", "mythical"];
-  const CURRENCY = { rune: 1, gem: 1, potion: 1, gold: 1, lens: 1 };
+  function gearIds() {
+    const list = ranks();
+    return list.length ? list.map((r) => r.id) : ["common", "magic", "rare", "elite", "epic", "legendary", "fabled", "mythical"];
+  }
+
+  function currencyIds() {
+    const table = data().rarityTable || {};
+    const list = table.currency;
+    if (Array.isArray(list) && list.length) return list;
+    return ["rune", "gem", "potion", "gold", "lens"];
+  }
 
   function data() {
     return root.ASHBOUND_DATA || root.ABDATA || {};
@@ -41,7 +50,8 @@
   }
 
   function isCurrency(item) {
-    return !!(item && CURRENCY[item.rarity]);
+    const ids = currencyIds();
+    return !!(item && item.rarity && ids.indexOf(item.rarity) >= 0);
   }
 
   function uniqueDef(id) {
@@ -71,7 +81,7 @@
     }
     if (item.rarity === "unique") return "epic";
     if (item.rarity === "set") return "epic";
-    if (GEAR_IDS.indexOf(item.rarity) >= 0) return item.rarity;
+    if (gearIds().indexOf(item.rarity) >= 0) return item.rarity;
     return null;
   }
 
@@ -81,7 +91,7 @@
     if (item.tier && rarityDef(item.tier)) return item.tier;
     const floor = baseRarityFor(item);
     if (floor && (isUnique(item) || isSet(item))) return floor;
-    if (GEAR_IDS.indexOf(item.rarity) >= 0) return item.rarity;
+    if (gearIds().indexOf(item.rarity) >= 0) return item.rarity;
     return "common";
   }
 
@@ -174,7 +184,7 @@
     const table = data().rarityTable;
     const def = rarityDef(displayId(item));
     if (def && def.goldMul != null) return def.goldMul;
-    const legacy = (table && table.legacyGold) || data().rarity || {};
+    const legacy = (table && table.legacyGold) || {};
     if (item && legacy[item.rarity] != null) return legacy[item.rarity];
     return 1;
   }
@@ -187,7 +197,26 @@
       const curRank = cur && rarityDef(cur) ? (rarityDef(cur).rank || 0) : 0;
       const floorRank = rarityDef(floor) ? (rarityDef(floor).rank || 0) : 0;
       if (!cur || curRank < floorRank) item.tier = floor;
-    } else if (GEAR_IDS.indexOf(item.rarity) >= 0) item.tier = item.rarity;
+    } else if (gearIds().indexOf(item.rarity) >= 0) item.tier = item.rarity;
+    return item;
+  }
+
+
+  function uniqueStatMul(item) {
+    if (root.ABEffects && ABEffects.statMul) return ABEffects.statMul(item);
+    return 1;
+  }
+
+  function scaleUnique(item) {
+    if (!item || !isUnique(item)) return item;
+    const def = item.uniqueId ? uniqueDef(item.uniqueId) : null;
+    if (!def || !def.mods) return item;
+    const mul = uniqueStatMul(item);
+    if (root.ABEffects && ABEffects.scaleMods) item.fixedMods = ABEffects.scaleMods(def.mods, mul);
+    else item.fixedMods = def.mods;
+    item.uniqueStatMul = mul;
+    if (def.effect && !item.effect) item.effect = def.effect;
+    if (def.capstone && !item.capstone) item.capstone = def.capstone;
     return item;
   }
 
@@ -208,6 +237,7 @@
     if (item.enchantLevel == null) item.enchantLevel = 0;
     if (item.itemLevel == null) item.itemLevel = 0;
     stampTier(item);
+    if (isUnique(item)) scaleUnique(item);
     const cap = affixCount(item.tier || displayId(item));
     const n = (item.affixes && item.affixes.length) || 0;
     if (!isUnique(item) && !isSet(item) && n > cap) item.legacyAffixes = true;
@@ -260,6 +290,6 @@
     rarityDef, affixCount, isUnique, isSet, isCurrency,
     baseRarityFor, displayId, rankLabel, floorLabel, kindLabel,
     cssClass, family, familyDef, families, color, outline, pip, goldMul, stampTier, migrateItem, migrateSave,
-    migrateShared, migrateAllItems, ranks, strings
+    migrateShared, migrateAllItems, ranks, strings, scaleUnique, uniqueStatMul
   };
 })(typeof window !== "undefined" ? window : self);
