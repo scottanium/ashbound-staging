@@ -4,6 +4,7 @@
   const files = [
     ["tune", "data/tune.json"],
     ["models", "data/models.json"],
+    ["modelsHD", "data/models-hd.json", true],
     ["classes", "data/classes.json"],
     ["skills", "data/skills.json"],
     ["content", "data/content.json"],
@@ -42,6 +43,7 @@
     )
   ).then((pairs) => {
     const bag = Object.fromEntries(pairs);
+    if (bag.modelsHD && bag.models) { Object.assign(bag.models.types, bag.modelsHD.types || {}); bag.models.hd = bag.modelsHD; Object.assign(bag.models.materials, bag.modelsHD.materials || {}); }
     const D = Object.assign(
       { tune: bag.tune, models: bag.models, skills: bag.skills },
       bag.classes,
