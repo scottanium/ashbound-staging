@@ -125,6 +125,9 @@
     } else {
       e.v = 5;
     }
+    if (typeof root.ABProgress !== "undefined" && root.ABProgress.migrateSave) {
+      root.ABProgress.migrateSave(e);
+    }
     return e;
   }
 

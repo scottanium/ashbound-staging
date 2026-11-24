@@ -52,7 +52,8 @@
     h.push('<button class="btn primary" data-act="tt-mythic">Spawn random mythic (maxed, awakened)</button>');
     h.push('<button class="btn primary" data-act="tt-setmax">Spawn random set piece (maxed, awakened)</button></section>');
     h.push('<section class="tt-card"><h3>Hero</h3>');
-    h.push(row("Level (now " + p.level + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
+    h.push(row("Level (now " + p.level + (p.paragonLevel ? ", P" + p.paragonLevel : "") + ")", num("lvl", 1, B.maxLevel))); h.push('<button class="btn" data-act="tt-level">Set level now</button>');
+    h.push('<div class="row"><button class="btn" data-act="tt-level50">Set level 50</button><button class="btn" data-act="tt-paragon10">+10 Paragon</button></div>');
     h.push(row("Points", num("pts", 1, 500)));
     h.push('<div class="row"><button class="btn" data-act="tt-stat">+ stat points</button><button class="btn" data-act="tt-skill">+ skill points</button></div>');
     h.push(row("Gold", num("gold", 1, 9999999))); h.push('<button class="btn" data-act="tt-gold">+ gold</button>');
@@ -122,10 +123,19 @@
       items.forEach(function (it) { if (give(it)) { ok++; last = it; } });
       if (e === "tt-equip" && last && last.slot) { var slot = last.slot === "ring" ? (p.equipment.ring1 ? "ring2" : "ring1") : last.slot; B.equip(last, slot); }
       say(ok ? "Added " + ok + (ok === 1 ? " item" : " items") + (e === "tt-equip" ? " (equipped)" : "") : "Pack and stash are full.");
-    } else if (e === "tt-level") {
-      var N = Math.max(1, Math.min(B.maxLevel, S.lvl | 0)), d = N - p.level;
+    } else if (e === "tt-level" || e === "tt-level50") {
+      var N = e === "tt-level50" ? B.maxLevel : Math.max(1, Math.min(B.maxLevel, S.lvl | 0)), d = N - p.level;
       if (d > 0) { p.statPoints += B.perLevel.stat * d; p.skillPoints += B.perLevel.skill * d; }
-      p.level = N; p.xp = 0; B.se(); p.hp = o.sheet.life; p.mana = o.sheet.mana; say("Level " + N + ".");
+      p.level = N; p.xp = 0;
+      if (N < B.maxLevel) { p.paragonLevel = 0; p.paragonXp = 0; }
+      B.se(); p.hp = o.sheet.life; p.mana = o.sheet.mana; say("Level " + N + ".");
+    } else if (e === "tt-paragon10") {
+      if (self.ASHBOUND && self.ASHBOUND.addParagon) self.ASHBOUND.addParagon(10);
+      else {
+        if (typeof ABProgress !== "undefined") ABProgress.addParagonLevels(p, 10);
+        B.se(); p.hp = o.sheet.life; p.mana = o.sheet.mana;
+      }
+      say("Paragon " + (p.paragonLevel || 0) + ".");
     } else if (e === "tt-stat") { p.statPoints += Math.max(1, S.pts | 0); say("+" + (S.pts | 0) + " stat points."); }
     else if (e === "tt-skill") { p.skillPoints += Math.max(1, S.pts | 0); say("+" + (S.pts | 0) + " skill points."); }
     else if (e === "tt-gold") { p.gold += Math.max(1, S.gold | 0); say("+" + (S.gold | 0) + " gold."); }
