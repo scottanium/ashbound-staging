@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "cinder_warden",
-  "about": "Cinder Warden tree rework (v81s, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Tuning lives here; js/ab-skilltree.js reads it. Names with kotoPlaceholder: true are placeholders for Koto (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again.",
+  "about": "Cinder Warden tree rework (v81t, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Tuning lives here; js/ab-skilltree.js reads it. Skill names and about text are Koto's (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again.",
   "points": {
     "about": "Tree points: 1 at level 1, +1 per level to 50 (50), plus 1 every 5 Paragon levels (20 by Paragon 100). 70 total. Points are derived from level and Paragon, so they can never exceed 70.",
     "atLevel1": 1,
@@ -190,8 +190,7 @@
   "skills": [
     {
       "id": "forgebreaker",
-      "name": "Forgebreaker",
-      "kotoPlaceholder": true,
+      "name": "Quenchcrack",
       "branch": "brand",
       "type": "passive",
       "icon": "brand",
@@ -199,7 +198,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your melee hits crack enemy armor, and every 4th melee hit is a sure critical strike.",
+      "about": "Your blows make armor brittle, and every fourth swing finds the flaw.",
       "notes": [
         "Cracked armor makes the target easier to hit for a few seconds."
       ],
@@ -211,8 +210,7 @@
     },
     {
       "id": "furnace_flurry",
-      "name": "Furnace Flurry",
-      "kotoPlaceholder": true,
+      "name": "Bellows Rush",
       "branch": "brand",
       "type": "active",
       "icon": "slash",
@@ -225,9 +223,9 @@
       ],
       "cooldown": 3.5,
       "behavior": "tree_flurry",
-      "about": "Three fast cuts, then the heat in them bursts around you.",
+      "about": "Three quick cuts stoke the fire, and the fourth breath lets it out.",
       "notes": [
-        "Each cut is a melee hit, so Forgebreaker counts all three."
+        "Each cut is a melee hit, so Quenchcrack counts all three."
       ],
       "params": {
         "hits": 3,
@@ -254,8 +252,7 @@
     },
     {
       "id": "avatar_of_the_kiln",
-      "name": "Avatar of the Kiln",
-      "kotoPlaceholder": true,
+      "name": "Kilnborn",
       "ultimate": true,
       "branch": "brand",
       "type": "active",
@@ -269,7 +266,7 @@
       ],
       "cooldown": 25,
       "behavior": "tree_avatar",
-      "about": "Ultimate. Become the kiln for 12 seconds: faster attacks, Brand cuts swing all the way around you, and every hit splashes fire.",
+      "about": "For a while you are the furnace. Every swing goes all the way around and throws fire.",
       "notes": [
         "Splash fire hits foes near the one you struck."
       ],
@@ -282,8 +279,7 @@
     },
     {
       "id": "slag_rain",
-      "name": "Slag Rain",
-      "kotoPlaceholder": true,
+      "name": "Clinker Fall",
       "branch": "ember",
       "type": "active",
       "icon": "spark",
@@ -296,7 +292,7 @@
       ],
       "cooldown": 5,
       "behavior": "tree_slag",
-      "about": "Lob burning coals at range. They burst, then leave scorched ground for 4 seconds.",
+      "about": "You hurl hot clinker that bursts, and the ground stays burning.",
       "notes": [
         "Kindle increases this fire too."
       ],
@@ -316,8 +312,7 @@
     },
     {
       "id": "ash_detonation",
-      "name": "Ash Detonation",
-      "kotoPlaceholder": true,
+      "name": "Last Ember",
       "branch": "ember",
       "type": "passive",
       "icon": "bloom",
@@ -325,7 +320,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "When Ash Ward breaks or ends, it bursts like Cinder Bloom. Foes you burned explode when they die.",
+      "about": "Your Ash Ward goes out in a blast, and the burned blow apart when they fall.",
       "notes": [
         "Death bursts are capped so a pack cannot chain forever."
       ],
@@ -338,8 +333,7 @@
     },
     {
       "id": "heart_of_the_sunken_kiln",
-      "name": "Heart of the Sunken Kiln",
-      "kotoPlaceholder": true,
+      "name": "Drowned Furnace",
       "ultimate": true,
       "branch": "ember",
       "type": "passive",
@@ -348,7 +342,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Ultimate. Fire crits hit for 1.75x, your fire ignores 25 of a foe's fire resist, and every 3rd Ember skill you cast fires a free, wider Cinder Bloom.",
+      "about": "An old kiln still burns under the water inside you. Its fire cuts deeper and cares nothing for resistance.",
       "notes": [],
       "params": {
         "fireCritMult": 1.75,
@@ -359,8 +353,7 @@
     },
     {
       "id": "iron_reply",
-      "name": "Iron Reply",
-      "kotoPlaceholder": true,
+      "name": "Spiteplate",
       "branch": "warden",
       "type": "passive",
       "icon": "hide",
@@ -368,7 +361,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "When a foe hits you in melee, you strike back for damage based on your total armor.",
+      "about": "Whoever hits your armor gets hit back by it.",
       "notes": [
         "Warden tree damage bonuses raise this too."
       ],
@@ -380,8 +373,7 @@
     },
     {
       "id": "life_spite_bulwark",
-      "name": "Life-Spite Bulwark",
-      "kotoPlaceholder": true,
+      "name": "Blood for Iron",
       "branch": "warden",
       "type": "active",
       "icon": "ward",
@@ -394,9 +386,9 @@
       ],
       "cooldown": 10,
       "behavior": "tree_bulwark",
-      "about": "Pay 20% of your current life for a shield worth 2.5x what you paid, plus armor while it holds.",
+      "about": "You pay in blood and your armor comes back thicker.",
       "notes": [
-        "A safe way to drop under 40% life for Unbroken Bastion."
+        "A safe way to drop under 40% life for The Wall That Burns."
       ],
       "params": {
         "lifePct": 20,
@@ -410,8 +402,7 @@
     },
     {
       "id": "unbroken_bastion",
-      "name": "Unbroken Bastion",
-      "kotoPlaceholder": true,
+      "name": "The Wall That Burns",
       "ultimate": true,
       "branch": "warden",
       "type": "passive",
@@ -420,7 +411,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Ultimate. 35% of your armor becomes weapon damage. Below 40% life, Iron Reply hits twice as hard and you attack twice as fast.",
+      "about": "Your armor becomes a weapon. When you're nearly beaten, Spiteplate hits twice as hard and you swing twice as fast.",
       "notes": [
         "Armor turns into damage at 1 damage per 10 armor converted."
       ],
@@ -448,10 +439,10 @@
     "locked": "at {at}",
     "unlocked": "rank {rank}",
     "oneUltimate": "Only one tree can reach its ultimate.",
-    "notice": "Skill trees updated. All your points are ready to spend.",
-    "noticeShort": "Skill trees updated: points refunded free.",
+    "notice": "The trees have shifted. Your points wait in the ash.",
+    "noticeShort": "The trees have shifted. Your points wait in the ash.",
     "spent": "{tree} {n}.",
-    "unlockedToast": "Unlocked {skill}.",
+    "unlockedToast": "A new skill stirs: {name}",
     "detailLocked": "Unlocks at {at} points in {tree}.",
     "detailUnlocked": "Rank {rank} from {pts} points in {tree}."
   },
