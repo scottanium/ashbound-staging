@@ -1,0 +1,164 @@
+{
+  "look": "cloth",
+  "anims": {
+    "death": {
+      "file": "death.webp",
+      "bytes": 64182,
+      "mask": "death_mask.webp",
+      "mask_bytes": 78398,
+      "cols": 4,
+      "rows": 8,
+      "frames": 4,
+      "dirs": 8,
+      "cell": [
+        256,
+        232
+      ],
+      "foot": [
+        146,
+        155
+      ],
+      "charHeight": 140,
+      "src_bbox": [
+        0,
+        118,
+        256,
+        350
+      ]
+    },
+    "hit": {
+      "file": "hit.webp",
+      "bytes": 15006,
+      "mask": "hit_mask.webp",
+      "mask_bytes": 17624,
+      "cols": 1,
+      "rows": 8,
+      "frames": 1,
+      "dirs": 8,
+      "cell": [
+        96,
+        170
+      ],
+      "foot": [
+        66,
+        162
+      ],
+      "charHeight": 159,
+      "src_bbox": [
+        80,
+        113,
+        176,
+        283
+      ]
+    },
+    "idle": {
+      "file": "idle.webp",
+      "bytes": 52320,
+      "mask": "idle_mask.webp",
+      "mask_bytes": 59838,
+      "cols": 4,
+      "rows": 8,
+      "frames": 4,
+      "dirs": 8,
+      "cell": [
+        98,
+        166
+      ],
+      "foot": [
+        66,
+        158
+      ],
+      "charHeight": 154,
+      "src_bbox": [
+        79,
+        117,
+        177,
+        283
+      ]
+    },
+    "run": {
+      "file": "run.webp",
+      "bytes": 114582,
+      "mask": "run_mask.webp",
+      "mask_bytes": 139306,
+      "cols": 8,
+      "rows": 8,
+      "frames": 8,
+      "dirs": 8,
+      "cell": [
+        170,
+        184
+      ],
+      "foot": [
+        92,
+        175
+      ],
+      "charHeight": 139,
+      "src_bbox": [
+        43,
+        105,
+        213,
+        289
+      ]
+    },
+    "strike": {
+      "file": "strike.webp",
+      "bytes": 58672,
+      "mask": "strike_mask.webp",
+      "mask_bytes": 69864,
+      "cols": 4,
+      "rows": 8,
+      "frames": 4,
+      "dirs": 8,
+      "cell": [
+        169,
+        193
+      ],
+      "foot": [
+        103,
+        183
+      ],
+      "charHeight": 147,
+      "src_bbox": [
+        43,
+        92,
+        212,
+        285
+      ]
+    },
+    "walk": {
+      "file": "walk.webp",
+      "bytes": 109696,
+      "mask": "walk_mask.webp",
+      "mask_bytes": 128794,
+      "cols": 8,
+      "rows": 8,
+      "frames": 8,
+      "dirs": 8,
+      "cell": [
+        128,
+        172
+      ],
+      "foot": [
+        73,
+        164
+      ],
+      "charHeight": 150,
+      "src_bbox": [
+        64,
+        111,
+        192,
+        283
+      ]
+    }
+  },
+  "cell": [
+    98,
+    166
+  ],
+  "foot": [
+    66,
+    158
+  ],
+  "charHeight": 154
+}
