@@ -1,0 +1,184 @@
+{
+ "look": "plate_2h",
+ "anchor": "root",
+ "anims": {
+  "death": {
+   "file": "death.webp",
+   "bytes": 87826,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    426,
+    273
+   ],
+   "foot": [
+    213.0,
+    155.84
+   ],
+   "src_bbox": [
+    11,
+    101,
+    437,
+    374
+   ],
+   "render": [
+    448,
+    384
+   ],
+   "mask": "death_mask.webp",
+   "mask_bytes": 22840
+  },
+  "hit": {
+   "file": "hit.webp",
+   "bytes": 18576,
+   "cols": 1,
+   "rows": 8,
+   "frames": 1,
+   "dirs": 8,
+   "cell": [
+    174,
+    168
+   ],
+   "foot": [
+    87.0,
+    139.84
+   ],
+   "src_bbox": [
+    41,
+    117,
+    215,
+    285
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "hit_mask.webp",
+   "mask_bytes": 4510
+  },
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 64630,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    177,
+    166
+   ],
+   "foot": [
+    88.0,
+    137.84
+   ],
+   "src_bbox": [
+    40,
+    119,
+    217,
+    285
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "idle_mask.webp",
+   "mask_bytes": 13966
+  },
+  "run": {
+   "file": "run.webp",
+   "bytes": 151002,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    228,
+    209
+   ],
+   "foot": [
+    114.0,
+    175.84
+   ],
+   "src_bbox": [
+    14,
+    81,
+    242,
+    290
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "run_mask.webp",
+   "mask_bytes": 40820
+  },
+  "strike": {
+   "file": "strike.webp",
+   "bytes": 75284,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    187,
+    234
+   ],
+   "foot": [
+    94.0,
+    188.84
+   ],
+   "src_bbox": [
+    34,
+    68,
+    221,
+    302
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "strike_mask.webp",
+   "mask_bytes": 19992
+  },
+  "walk": {
+   "file": "walk.webp",
+   "bytes": 140734,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    214,
+    174
+   ],
+   "foot": [
+    107.0,
+    144.84
+   ],
+   "src_bbox": [
+    21,
+    112,
+    235,
+    286
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "walk_mask.webp",
+   "mask_bytes": 36680
+  }
+ },
+ "cell": [
+  177,
+  166
+ ],
+ "foot": [
+  88.0,
+  137.84
+ ],
+ "charHeight": 148,
+ "bytes": 538052
+}
