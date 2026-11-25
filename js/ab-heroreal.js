@@ -1,18 +1,28 @@
 /* Ashbound realism heroes: pre-baked directional sprites for the Warden.
-   Falls through (returns null) for any other class, on load misses, and when ?real=0.
+   Falls through (returns null) for any other class, on hard load error, and when ?real=0.
    Callers of ab3Get expect {F:{c,cx,cy}, mir}. We bake all 8 facings, so mir is always 0. */
 (function (w) {
   "use strict";
-  var BUDGET = 32 * 1048576;
+  var BUDGET = 40 * 1048576;
   var MAX_COMPOSITES = 80;
-  var atlasses = new Map(); /* url -> {img, bytes, at} */
+  var atlasses = new Map(); /* url -> {img, bytes, at, url} */
   var atlasBytes = 0;
+  var evictCount = 0;
   var composites = new Map();
   var manifests = new Map(); /* lookId -> look manifest */
   var root = null; /* heroes-real.json */
+  var rootFailed = false;
   var loading = new Map();
   var lastLook = null;
+  var lastLoadedLook = null;
   var lastPending = false;
+  var lastRaw = null;
+  var activePath = null;
+  var activeNeedsMask = false;
+  var lastAnimDrawn = null;
+  var lastFallbackAnim = null;
+  var lastDirDrawn = null;
+  var dyeScratch = null;
 
   var FALLBACK_DYES = {
     ashguard: { primary: "#7c2016", leather: "#6a4a34", metal: "#9aa1a8" },
@@ -42,7 +52,7 @@
   w.abRealOn = enabled;
   w.abRealSet = function (on) { try { localStorage.setItem("ashbound.real", on ? "1" : "0"); } catch (e) {} };
   w.abRealLast = null;
-  /* True while realism is on for the current type (Warden) so ab3Get does not fall through to HD/old mid-load. */
+  /* True while realism is on for the current type (Warden) so ab3Get/Dn do not fall through to HD/old mid-load. */
   w.abRealPending = function () { return lastPending; };
 
   function fetchJSON(url) {
@@ -50,8 +60,17 @@
   }
   function ensureRoot() {
     if (root) return Promise.resolve(root);
+    if (rootFailed) return Promise.resolve(null);
     if (loading.has("root")) return loading.get("root");
-    var p = fetchJSON("data/heroes-real.json").then(function (j) { root = j; return j; });
+    var p = fetchJSON("data/heroes-real.json").then(function (j) {
+      loading.delete("root");
+      root = j;
+      return j;
+    }, function (err) {
+      loading.delete("root");
+      rootFailed = true;
+      throw err;
+    });
     loading.set("root", p);
     return p;
   }
@@ -97,28 +116,68 @@
     return { tier: tier, shield: shield, helm: helm, dye: String(dye || "ashguard"), id: tier + (shield ? "_shield" : "") };
   }
 
-  function evict(need) {
+  function evictPriority(url) {
+    if (activePath && url.indexOf(activePath) !== 0) return 0;
+    if (/_mask\.webp$/.test(url) && !activeNeedsMask) return 1;
+    if (/\/idle\.webp$/.test(url)) return 5;
+    if (/\/walk\.webp$/.test(url)) return 4;
+    if (/\/(strike|run)\.webp$/.test(url)) return 3;
+    return 2;
+  }
+  function evict(need, keepUrl) {
     while (atlasBytes + need > BUDGET && atlasses.size) {
-      var oldest = null, oldAt = Infinity;
-      atlasses.forEach(function (v, k) { if (v.at < oldAt) { oldAt = v.at; oldest = k; } });
-      if (!oldest) break;
-      atlasBytes -= atlasses.get(oldest).bytes;
-      atlasses.delete(oldest);
+      var best = null, bestPri = 99, bestAt = Infinity;
+      atlasses.forEach(function (v, k) {
+        if (k === keepUrl) return;
+        var pri = evictPriority(k);
+        if (pri < bestPri || (pri === bestPri && v.at < bestAt)) {
+          bestPri = pri;
+          bestAt = v.at;
+          best = k;
+        }
+      });
+      if (!best) break;
+      atlasBytes = Math.max(0, atlasBytes - atlasses.get(best).bytes);
+      atlasses.delete(best);
+      evictCount++;
     }
   }
   function loadImage(url) {
-    if (atlasses.has(url)) { atlasses.get(url).at = performance.now(); return Promise.resolve(atlasses.get(url).img); }
+    if (atlasses.has(url)) {
+      atlasses.get(url).at = performance.now();
+      return Promise.resolve(atlasses.get(url).img);
+    }
     if (loading.has(url)) return loading.get(url);
     var p = new Promise(function (res, rej) {
       var im = new Image();
-      im.onload = function () {
-        var bytes = (im.naturalWidth * im.naturalHeight * 4) || 1;
-        evict(bytes);
-        atlasses.set(url, { img: im, bytes: bytes, at: performance.now() });
+      var done = false;
+      function commit() {
+        if (done) return;
+        done = true;
+        loading.delete(url);
+        var w0 = im.naturalWidth || im.width || 0;
+        var h0 = im.naturalHeight || im.height || 0;
+        if (!w0 || !h0) { rej(new Error("empty:" + url)); return; }
+        var bytes = w0 * h0 * 4;
+        if (atlasses.has(url)) {
+          atlasBytes = Math.max(0, atlasBytes - atlasses.get(url).bytes);
+          atlasses.delete(url);
+        }
+        evict(bytes, url);
+        atlasses.set(url, { img: im, bytes: bytes, at: performance.now(), url: url });
         atlasBytes += bytes;
         res(im);
+      }
+      im.onload = function () {
+        if (typeof im.decode === "function") im.decode().then(commit, commit);
+        else commit();
       };
-      im.onerror = function () { loading.delete(url); rej(new Error(url)); };
+      im.onerror = function () {
+        if (done) return;
+        done = true;
+        loading.delete(url);
+        rej(new Error(url));
+      };
       im.src = url;
     });
     loading.set(url, p);
@@ -126,35 +185,48 @@
   }
   function lookMan(id) {
     if (manifests.has(id)) return Promise.resolve(manifests.get(id));
-    return ensureRoot().then(function (r) {
-      var L = r.looks[id];
-      if (!L) return null;
+    var mk = "man:" + id;
+    if (loading.has(mk)) return loading.get(mk);
+    var p = ensureRoot().then(function (r) {
+      var L = r && r.looks && r.looks[id];
+      if (!L) { loading.delete(mk); return null; }
       return fetchJSON(L.path + "manifest.json").then(function (m) {
+        loading.delete(mk);
         m.path = L.path;
         manifests.set(id, m);
         return m;
+      }, function (err) {
+        loading.delete(mk);
+        throw err;
       });
+    }, function (err) {
+      loading.delete(mk);
+      throw err;
     });
+    loading.set(mk, p);
+    return p;
   }
-  function prefetch(id, anims) {
+  function prefetch(id, anims, withMask) {
     lookMan(id).then(function (m) {
       if (!m) return;
       (anims || ["idle", "walk"]).forEach(function (a) {
         var rec = m.anims[a];
         if (!rec) return;
         loadImage(m.path + rec.file).catch(function () {});
-        if (rec.mask) loadImage(m.path + rec.mask).catch(function () {});
+        if (withMask && rec.mask) loadImage(m.path + rec.mask).catch(function () {});
       });
-    });
+    }).catch(function () {});
   }
 
   function applyDye(c, maskImg, rec, fr, dir, fac) {
     if (!maskImg || !fac) return;
     var cw = (rec.cell)[0], ch = (rec.cell)[1];
     var g = c.getContext("2d");
-    var tmp = document.createElement("canvas");
-    tmp.width = cw; tmp.height = ch;
+    var tmp = dyeScratch || (dyeScratch = document.createElement("canvas"));
+    if (tmp.width !== cw) tmp.width = cw;
+    if (tmp.height !== ch) tmp.height = ch;
     var tg = tmp.getContext("2d");
+    tg.clearRect(0, 0, cw, ch);
     tg.drawImage(maskImg, fr * cw, dir * ch, cw, ch, 0, 0, cw, ch);
     var b = g.getImageData(0, 0, cw, ch);
     var m = tg.getImageData(0, 0, cw, ch);
@@ -181,21 +253,24 @@
     var url = m.path + rec.file;
     var ent = atlasses.get(url);
     if (!ent) { loadImage(url).catch(function () {}); return null; }
+    ent.at = performance.now();
     var fac = dyeFactors(dye);
     var maskUrl = rec.mask ? m.path + rec.mask : null;
-    if (fac && maskUrl && !atlasses.has(maskUrl)) { loadImage(maskUrl).catch(function () {}); }
+    var maskEnt = (fac && maskUrl) ? atlasses.get(maskUrl) : null;
+    if (fac && maskUrl && !maskEnt) { loadImage(maskUrl).catch(function () {}); }
+    if (maskEnt) maskEnt.at = ent.at;
     var cw = (rec.cell || m.cell)[0], ch = (rec.cell || m.cell)[1];
     var foot = rec.foot || m.foot;
     fr = ((fr % rec.frames) + rec.frames) % rec.frames;
     dir = ((dir % rec.dirs) + rec.dirs) % rec.dirs;
-    var dkey = fac ? (dye || "custom") : "ashguard";
+    var dkey = fac ? (maskEnt ? (dye || "custom") : "ashguard") : "ashguard";
     var key = m.path + "|" + anim + "|" + dir + "|" + fr + "|" + dkey;
     if (composites.has(key)) { var hit = composites.get(key); composites.delete(key); composites.set(key, hit); return hit; }
     var c = document.createElement("canvas");
     c.width = cw; c.height = ch;
     var g = c.getContext("2d");
     g.drawImage(ent.img, fr * cw, dir * ch, cw, ch, 0, 0, cw, ch);
-    if (fac && maskUrl && atlasses.has(maskUrl)) applyDye(c, atlasses.get(maskUrl).img, rec, fr, dir, fac);
+    if (fac && maskEnt) applyDye(c, maskEnt.img, rec, fr, dir, fac);
     var F = { c: c, cx: foot[0], cy: foot[1] };
     composites.set(key, F);
     if (composites.size > MAX_COMPOSITES) composites.delete(composites.keys().next().value);
@@ -213,42 +288,122 @@
     var target = tiles * s * D;
     var sc = target / charH;
     if (Math.abs(sc - 1) < 0.04) return F;
+    var scKey = Math.round(sc * 1000);
+    if (F._scKey === scKey && F._scaled) return F._scaled;
     var c = document.createElement("canvas");
     c.width = Math.max(1, Math.round(F.c.width * sc));
     c.height = Math.max(1, Math.round(F.c.height * sc));
     var g = c.getContext("2d");
     g.imageSmoothingEnabled = true;
     g.drawImage(F.c, 0, 0, c.width, c.height);
-    return { c: c, cx: F.cx * sc, cy: F.cy * sc };
+    var out = { c: c, cx: F.cx * sc, cy: F.cy * sc };
+    F._scKey = scKey;
+    F._scaled = out;
+    return out;
+  }
+
+  function findLoadedAnim(m, anim) {
+    var order = anim === "run"
+      ? ["walk", "idle", "strike", "hit", "death"]
+      : anim === "walk"
+        ? ["idle", "run", "strike", "hit", "death"]
+        : ["idle", "walk", "run", "strike", "hit", "death"];
+    for (var i = 0; i < order.length; i++) {
+      var cand = order[i];
+      var rec = m.anims[cand];
+      if (rec && atlasses.has(m.path + rec.file)) return cand;
+    }
+    return null;
   }
 
   function abRealFrame(t, col, acc, pose, face, r, quiet) {
     lastPending = false;
-    if (!enabled()) return null;
+    var st = w.ASHBOUND && ASHBOUND.state;
+    var inPlay = !!(st && st.mode === "play");
+    if (!enabled() || rootFailed) {
+      if (inPlay) { lastLook = null; w.abRealLast = null; }
+      return null;
+    }
     var look = lookFrom(t);
-    if (!look) return null;
+    if (!look) {
+      if (inPlay) { lastLook = null; w.abRealLast = null; }
+      return null;
+    }
     lastPending = true;
     lastLook = look.id;
     w.abRealLast = look.id;
-    if (!root) { ensureRoot().then(function () { prefetch(look.id); }); return null; }
+    var needMask = !!dyeFactors(look.dye);
+    activeNeedsMask = needMask;
+    if (!root) {
+      ensureRoot().then(function () { prefetch(look.id, ["idle", "walk"], needMask); }).catch(function () {});
+      return lastRaw ? { F: scaleToGame(lastRaw, r), mir: 0 } : null;
+    }
+    if (root.looks && root.looks[look.id]) activePath = root.looks[look.id].path;
     var shift = root.dirShift || 0;
-    var dir = (((Math.round((face || 0) / (Math.PI / 4)) % 8) + 8) % 8 + shift) % 8;
+    /* Baked Warden rows start at row 0 = screen DOWN (+PI/2) and step counter-clockwise.
+       Screen angle `face` has 0 = RIGHT, +PI/2 = DOWN, +-PI = LEFT, -PI/2 = UP. */
+    var dir = (((Math.round((Math.PI / 2 - (face || 0)) / (Math.PI / 4)) % 8) + 8) % 8 + shift) % 8;
     var anim = (pose && pose.mode) || "idle";
     var fr = (pose && pose.frame) || 0;
     var m = manifests.get(look.id);
-    if (!m) { lookMan(look.id).then(function () { prefetch(look.id); }); return null; }
-    if (!atlasses.has(m.path + (m.anims[anim] || m.anims.idle).file)) {
-      if (!quiet) prefetch(look.id, [anim, "idle", "walk"]);
-      return null;
+    if (!m) {
+      if (!quiet) prefetch(look.id, anim === "idle" || anim === "walk" ? ["idle", "walk"] : [anim, "idle", "walk"], needMask);
+      if (lastLoadedLook && manifests.has(lastLoadedLook)) {
+        var pm = manifests.get(lastLoadedLook);
+        var pa = (pm.anims[anim] && atlasses.has(pm.path + pm.anims[anim].file)) ? anim : findLoadedAnim(pm, anim);
+        if (pa) {
+          var pF = blit(pm, pa, dir, fr, look.dye);
+          if (pF) {
+            lastRaw = pF;
+            lastAnimDrawn = pa;
+            lastFallbackAnim = pa;
+            lastDirDrawn = dir;
+            return { F: scaleToGame(pF, r), mir: 0 };
+          }
+        }
+      }
+      return lastRaw ? { F: scaleToGame(lastRaw, r), mir: 0 } : null;
     }
-    var F = blit(m, anim, dir, fr, look.dye);
-    if (!F) return null;
-    F = scaleToGame(F, r);
-    return F ? { F: F, mir: 0 } : null;
+    lastLoadedLook = look.id;
+    var targetRec = m.anims[anim] || m.anims.idle;
+    var useAnim = anim;
+    var F = null;
+    if (targetRec && atlasses.has(m.path + targetRec.file)) {
+      F = blit(m, anim, dir, fr, look.dye);
+      lastFallbackAnim = null;
+    } else {
+      if (!quiet) prefetch(look.id, [anim, "idle", "walk"], needMask);
+      var alt = findLoadedAnim(m, anim);
+      if (alt) {
+        useAnim = alt;
+        lastFallbackAnim = alt;
+        F = blit(m, alt, dir, fr, look.dye);
+      }
+    }
+    if (!F) {
+      return lastRaw ? { F: scaleToGame(lastRaw, r), mir: 0 } : null;
+    }
+    lastRaw = F;
+    lastAnimDrawn = useAnim;
+    lastDirDrawn = dir;
+    var scaled = scaleToGame(F, r);
+    return scaled ? { F: scaled, mir: 0 } : null;
   }
   w.abRealFrame = abRealFrame;
   w.abRealStats = function () {
-    return { on: enabled(), look: lastLook, atlasMB: +(atlasBytes / 1048576).toFixed(2),
-      atlasses: atlasses.size, composites: composites.size, root: !!root, looks: [...manifests.keys()] };
+    return {
+      on: enabled(), look: lastLook, atlasMB: +(atlasBytes / 1048576).toFixed(2),
+      atlasses: atlasses.size, composites: composites.size, root: !!root, looks: [...manifests.keys()],
+      evicts: evictCount, anim: lastAnimDrawn, fallbackAnim: lastFallbackAnim, dir: lastDirDrawn, pending: lastPending
+    };
   };
+
+  if (enabled()) {
+    ensureRoot().then(function (r) {
+      if (!r) return;
+      var id = r.defaultLook || "cloth";
+      if (r.looks && r.looks[id]) activePath = r.looks[id].path;
+      prefetch(id, ["idle", "walk"], false);
+    }).catch(function () {});
+  }
 })(window);
