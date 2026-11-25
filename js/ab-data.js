@@ -30,6 +30,7 @@
     ["sets", "data/sets.json"],
     ["sustain", "data/sustain.json"],
     ["uniquesAshen", "data/uniques-ashen.json"],
+    ["skillTrees", "data/skilltrees-warden.json", true],
   ];
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path, optional]) =>
@@ -118,6 +119,25 @@
         }
         D.uniques = list;
       }
+    }
+    // v81s: Warden skill trees (optional). The tree's new skills join D.skills and the class skill list;
+    // if the file is missing or disabled, the Warden keeps the old per-skill system.
+    D.skillTrees = null;
+    const st = bag.skillTrees;
+    if (st && st.enabled !== false && Array.isArray(st.trees)) {
+      const list = Array.isArray(D.skills) ? D.skills : [];
+      const have = {};
+      for (let i = 0; i < list.length; i++) if (list[i] && list[i].id) have[list[i].id] = true;
+      const extra = st.skills || [];
+      for (let i = 0; i < extra.length; i++) if (extra[i] && extra[i].id && !have[extra[i].id]) { list.push(Object.assign({ tree: true }, extra[i])); have[extra[i].id] = true; }
+      D.skills = list;
+      const cls = (D.classes || []).find((c) => c && c.id === st.classId);
+      if (cls) {
+        const ids = (cls.skills || []).slice();
+        for (let i = 0; i < extra.length; i++) if (extra[i] && ids.indexOf(extra[i].id) < 0) ids.push(extra[i].id);
+        cls.skills = ids;
+      }
+      D.skillTrees = st;
     }
     D.inventoryLayout = bag.inventoryLayout || {};
     D.difficulty = bag.campaignDifficulty || {};

@@ -1,8 +1,9 @@
 // Narrow save DTO. Combat/AI live objects are not snapshotted by reference.
-// On-disk shape is SAVE_VERSION 5. v1–v4 still load, then items are mapped to the eight ranks.
+// On-disk shape is SAVE_VERSION 6 (v81s: player.tree for the Warden skill trees). v1–v5 still load; items are mapped to the
+// eight ranks, and an old Warden gets every skill point back for free on a fresh tree (level, paragon, gear, stash, story kept).
 (function (root) {
-  const VERSION = 5;
-  const SUPPORTED = [1, 2, 3, 4, 5];
+  const VERSION = 6;
+  const SUPPORTED = [1, 2, 3, 4, 5, 6];
   const OMIT_PLAYER = { flash: 1, moving: 1, swingT: 1 };
 
   function cloneJson(value, fallback) {
@@ -128,6 +129,11 @@
     if (typeof root.ABProgress !== "undefined" && root.ABProgress.migrateSave) {
       root.ABProgress.migrateSave(e);
     }
+    // v6 (v81s): Warden skill trees. Old Warden saves: free refund, empty bar, one-time "Skill trees updated" notice.
+    if (typeof root.ABTree !== "undefined" && root.ABTree.migrateSave) {
+      root.ABTree.migrateSave(e);
+    }
+    e.v = VERSION;
     return e;
   }
 

@@ -169,7 +169,10 @@
       }
       say("Paragon " + (p.paragonLevel || 0) + ".");
     } else if (e === "tt-stat") { p.statPoints += Math.max(1, S.pts | 0); say("+" + (S.pts | 0) + " stat points."); }
-    else if (e === "tt-skill") { p.skillPoints += Math.max(1, S.pts | 0); say("+" + (S.pts | 0) + " skill points."); }
+    else if (e === "tt-skill") {
+      if (typeof ABTree !== "undefined" && ABTree.active(p)) { p.tree.testBonus = (p.tree.testBonus || 0) + Math.max(1, S.pts | 0); B.se(); say("+" + (S.pts | 0) + " tree points (test)."); }
+      else { p.skillPoints += Math.max(1, S.pts | 0); say("+" + (S.pts | 0) + " skill points."); }
+    }
     else if (e === "tt-gold") { p.gold += Math.max(1, S.gold | 0); say("+" + (S.gold | 0) + " gold."); }
     else if (e === "tt-heal") { B.se(); p.hp = o.sheet.life; p.mana = o.sheet.mana; say("Healed."); }
     else if (e === "tt-kill") { if (self.ASHBOUND && self.ASHBOUND.killAll) self.ASHBOUND.killAll(); say("Cleared the zone."); }
