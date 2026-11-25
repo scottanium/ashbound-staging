@@ -1,0 +1,461 @@
+{
+  "version": 1,
+  "enabled": true,
+  "classId": "cinder_warden",
+  "about": "Cinder Warden tree rework (v81s, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Tuning lives here; js/ab-skilltree.js reads it. Names with kotoPlaceholder: true are placeholders for Koto (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again.",
+  "points": {
+    "about": "Tree points: 1 at level 1, +1 per level to 50 (50), plus 1 every 5 Paragon levels (20 by Paragon 100). 70 total. Points are derived from level and Paragon, so they can never exceed 70.",
+    "atLevel1": 1,
+    "perLevel": 1,
+    "maxLevel": 50,
+    "paragonEvery": 5,
+    "paragonAmount": 1,
+    "paragonCap": 20,
+    "total": 70
+  },
+  "unlockEvery": 5,
+  "ultimateAt": 40,
+  "treeMax": 50,
+  "rank": {
+    "about": "Rank of every unlocked skill in a tree = round(min(points,40) / perRank), at least 1, at most max. 40 points maxes a tree's skills (rank 20). Points past 40 do not raise rank. Gear +skills only adds to skills that are already unlocked.",
+    "perRank": 2,
+    "max": 20
+  },
+  "damageBand": {
+    "about": "Points 41-50: damage only (+pct per point to that tree's skills). No rank, area, stat or utility gain.",
+    "from": 41,
+    "to": 50,
+    "pctPerPoint": 6
+  },
+  "trees": [
+    {
+      "id": "brand",
+      "name": "Brand",
+      "about": "Heavy steel and fire strikes: cleaves, a dash, a hook, and burning combos.",
+      "between": {
+        "damagePct": 4,
+        "stats": {
+          "str": 2,
+          "ar": 6
+        },
+        "areaPctPer2": 2,
+        "label": "Brand"
+      },
+      "nodes": [
+        {
+          "at": 5,
+          "skill": "ash_strike"
+        },
+        {
+          "at": 10,
+          "skill": "cinder_brand"
+        },
+        {
+          "at": 15,
+          "skill": "kiln_hook"
+        },
+        {
+          "at": 20,
+          "skill": "sear_step"
+        },
+        {
+          "at": 25,
+          "skill": "pyre_arc"
+        },
+        {
+          "at": 30,
+          "skill": "forgebreaker"
+        },
+        {
+          "at": 35,
+          "skill": "furnace_flurry"
+        },
+        {
+          "at": 40,
+          "skill": "avatar_of_the_kiln",
+          "ultimate": true
+        }
+      ]
+    },
+    {
+      "id": "ember",
+      "name": "Ember",
+      "about": "Kiln fire, wards and explosions: coals at range, a ward, and room-clearing blasts.",
+      "between": {
+        "damagePct": 4,
+        "stats": {
+          "ene": 2,
+          "mana": 2
+        },
+        "areaPctPer2": 2.5,
+        "label": "Ember"
+      },
+      "nodes": [
+        {
+          "at": 5,
+          "skill": "cinder_spark"
+        },
+        {
+          "at": 10,
+          "skill": "kindle"
+        },
+        {
+          "at": 15,
+          "skill": "ash_ward"
+        },
+        {
+          "at": 20,
+          "skill": "living_coal"
+        },
+        {
+          "at": 25,
+          "skill": "cinder_bloom"
+        },
+        {
+          "at": 30,
+          "skill": "slag_rain"
+        },
+        {
+          "at": 35,
+          "skill": "ash_detonation"
+        },
+        {
+          "at": 40,
+          "skill": "heart_of_the_sunken_kiln",
+          "ultimate": true
+        }
+      ]
+    },
+    {
+      "id": "warden",
+      "name": "Warden",
+      "about": "Armor, retaliation and a last stand: turn defense into counter-damage.",
+      "between": {
+        "damagePct": 4,
+        "stats": {
+          "defense": 6,
+          "life": 3
+        },
+        "areaPctPer2": 2.5,
+        "label": "Warden"
+      },
+      "nodes": [
+        {
+          "at": 5,
+          "skill": "tempered_hide"
+        },
+        {
+          "at": 10,
+          "skill": "iron_reply"
+        },
+        {
+          "at": 15,
+          "skill": "heat_draw"
+        },
+        {
+          "at": 20,
+          "skill": "vigil"
+        },
+        {
+          "at": 25,
+          "skill": "ash_skin"
+        },
+        {
+          "at": 30,
+          "skill": "life_spite_bulwark"
+        },
+        {
+          "at": 35,
+          "skill": "last_coal"
+        },
+        {
+          "at": 40,
+          "skill": "unbroken_bastion",
+          "ultimate": true
+        }
+      ]
+    }
+  ],
+  "upgrades": {
+    "about": "Tree-mode upgrades to existing Warden skills (only while the tree system is on).",
+    "kiln_hook": {
+      "pull": 0.9,
+      "about": "Also pulls what it hits toward you."
+    },
+    "ash_skin": {
+      "allResPerRank": 0.5,
+      "about": "Also raises all resists a little per rank."
+    }
+  },
+  "skills": [
+    {
+      "id": "forgebreaker",
+      "name": "Forgebreaker",
+      "kotoPlaceholder": true,
+      "branch": "brand",
+      "type": "passive",
+      "icon": "brand",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Your melee hits crack enemy armor, and every 4th melee hit is a sure critical strike.",
+      "notes": [
+        "Cracked armor makes the target easier to hit for a few seconds."
+      ],
+      "params": {
+        "everyNth": 4,
+        "armorBreakPct": 15,
+        "armorBreakSec": 4
+      }
+    },
+    {
+      "id": "furnace_flurry",
+      "name": "Furnace Flurry",
+      "kotoPlaceholder": true,
+      "branch": "brand",
+      "type": "active",
+      "icon": "slash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        14,
+        0.4
+      ],
+      "cooldown": 3.5,
+      "behavior": "tree_flurry",
+      "about": "Three fast cuts, then the heat in them bursts around you.",
+      "notes": [
+        "Each cut is a melee hit, so Forgebreaker counts all three."
+      ],
+      "params": {
+        "hits": 3,
+        "arc": 1.6,
+        "range": 1.5,
+        "physMult": [
+          0.7,
+          0.03
+        ],
+        "fire": [
+          4,
+          8,
+          1.2,
+          1.6
+        ],
+        "burstRadius": 1.6,
+        "burstFire": [
+          6,
+          10,
+          1.5,
+          2
+        ]
+      }
+    },
+    {
+      "id": "avatar_of_the_kiln",
+      "name": "Avatar of the Kiln",
+      "kotoPlaceholder": true,
+      "ultimate": true,
+      "branch": "brand",
+      "type": "active",
+      "icon": "flame",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        20,
+        0
+      ],
+      "cooldown": 25,
+      "behavior": "tree_avatar",
+      "about": "Ultimate. Become the kiln for 12 seconds: faster attacks, Brand cuts swing all the way around you, and every hit splashes fire.",
+      "notes": [
+        "Splash fire hits foes near the one you struck."
+      ],
+      "params": {
+        "duration": 12,
+        "ias": 40,
+        "splashRadius": 1.6,
+        "splashPct": 35
+      }
+    },
+    {
+      "id": "slag_rain",
+      "name": "Slag Rain",
+      "kotoPlaceholder": true,
+      "branch": "ember",
+      "type": "active",
+      "icon": "spark",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        16,
+        0.4
+      ],
+      "cooldown": 5,
+      "behavior": "tree_slag",
+      "about": "Lob burning coals at range. They burst, then leave scorched ground for 4 seconds.",
+      "notes": [
+        "Kindle increases this fire too."
+      ],
+      "params": {
+        "range": 7.5,
+        "radius": 1.7,
+        "fire": [
+          8,
+          14,
+          2,
+          2.6
+        ],
+        "poolSeconds": 4,
+        "poolTick": 0.5,
+        "poolPct": 25
+      }
+    },
+    {
+      "id": "ash_detonation",
+      "name": "Ash Detonation",
+      "kotoPlaceholder": true,
+      "branch": "ember",
+      "type": "passive",
+      "icon": "bloom",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "When Ash Ward breaks or ends, it bursts like Cinder Bloom. Foes you burned explode when they die.",
+      "notes": [
+        "Death bursts are capped so a pack cannot chain forever."
+      ],
+      "params": {
+        "burnWindow": 2.5,
+        "deathRadius": 1.5,
+        "deathPctMaxHp": 12,
+        "deathCapPerSec": 6
+      }
+    },
+    {
+      "id": "heart_of_the_sunken_kiln",
+      "name": "Heart of the Sunken Kiln",
+      "kotoPlaceholder": true,
+      "ultimate": true,
+      "branch": "ember",
+      "type": "passive",
+      "icon": "flame",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Ultimate. Fire crits hit for 1.75x, your fire ignores 25 of a foe's fire resist, and every 3rd Ember skill you cast fires a free, wider Cinder Bloom.",
+      "notes": [],
+      "params": {
+        "fireCritMult": 1.75,
+        "fireResistIgnore": 25,
+        "everyNthCast": 3,
+        "freeBloomRadiusMul": 1.5
+      }
+    },
+    {
+      "id": "iron_reply",
+      "name": "Iron Reply",
+      "kotoPlaceholder": true,
+      "branch": "warden",
+      "type": "passive",
+      "icon": "hide",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "When a foe hits you in melee, you strike back for damage based on your total armor.",
+      "notes": [
+        "Warden tree damage bonuses raise this too."
+      ],
+      "params": {
+        "armorPct": 12,
+        "icd": 0.35,
+        "armorPctPerRank": 0.3
+      }
+    },
+    {
+      "id": "life_spite_bulwark",
+      "name": "Life-Spite Bulwark",
+      "kotoPlaceholder": true,
+      "branch": "warden",
+      "type": "active",
+      "icon": "ward",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        10,
+        0
+      ],
+      "cooldown": 10,
+      "behavior": "tree_bulwark",
+      "about": "Pay 20% of your current life for a shield worth 2.5x what you paid, plus armor while it holds.",
+      "notes": [
+        "A safe way to drop under 40% life for Unbroken Bastion."
+      ],
+      "params": {
+        "lifePct": 20,
+        "shieldMul": 2.5,
+        "duration": 8,
+        "defense": [
+          30,
+          4
+        ]
+      }
+    },
+    {
+      "id": "unbroken_bastion",
+      "name": "Unbroken Bastion",
+      "kotoPlaceholder": true,
+      "ultimate": true,
+      "branch": "warden",
+      "type": "passive",
+      "icon": "hide",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Ultimate. 35% of your armor becomes weapon damage. Below 40% life, Iron Reply hits twice as hard and you attack twice as fast.",
+      "notes": [
+        "Armor turns into damage at 1 damage per 10 armor converted."
+      ],
+      "params": {
+        "armorPct": 35,
+        "armorPerDamage": 10,
+        "lowLifePct": 40,
+        "lowLifeReplyMul": 2,
+        "lowLifeIas": 100
+      }
+    }
+  ],
+  "strings": {
+    "pointsLine": "{free} to spend · {used} / {total} used",
+    "spend": "+1 {tree}",
+    "undo": "Undo",
+    "next": "Next: {skill} at {at} ({n} more)",
+    "allUnlocked": "All 8 unlocked. Points 41–50 add damage only.",
+    "maxed": "Tree full (50).",
+    "noPoints": "No points to spend. One comes with each level.",
+    "bandTitle": "41–50 damage band",
+    "bandLine": "+{pct}% {tree} damage (damage only)",
+    "bonusTitle": "Tree bonus now",
+    "ultimate": "Ultimate",
+    "locked": "at {at}",
+    "unlocked": "rank {rank}",
+    "oneUltimate": "Only one tree can reach its ultimate.",
+    "notice": "Skill trees updated. All your points are ready to spend.",
+    "noticeShort": "Skill trees updated: points refunded free.",
+    "spent": "{tree} {n}.",
+    "unlockedToast": "Unlocked {skill}.",
+    "detailLocked": "Unlocks at {at} points in {tree}.",
+    "detailUnlocked": "Rank {rank} from {pts} points in {tree}."
+  },
+  "spellBookHook": {
+    "about": "Next phase. ABTree.replaceTree(player, slotIndex, treeId) swaps one of the 3 tree slots for another tree def (registered with ABTree.registerTree) and resets every tree point for free. Not reachable from the game yet."
+  }
+}
