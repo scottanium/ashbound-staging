@@ -43,6 +43,8 @@ self.addEventListener('install', (event) => {
     './js/ab-hudarc.js',
     './data/progress.json',
     './js/ab-progress.js',
+    './js/ab-skilltree.js',
+    './data/skilltrees-warden.json',
     './js/ab-hero2.js',
     './data/models-hd.json',
     './js/ab-heroreal.js',
