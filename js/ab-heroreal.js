@@ -1,5 +1,6 @@
-/* Ashbound realism heroes: pre-baked directional sprites for the Warden.
-   Falls through (returns null) for any other class, on hard load error, and when ?real=0.
+/* Ashbound realism heroes: pre-baked directional sprites. The Warden lives at the top level of
+   data/heroes-real.json; other classes are listed in root.classes (type -> json path) and load lazily.
+   Falls through (returns null) for a class with no real looks, on hard load error, and when ?real=0.
    Callers of ab3Get expect {F:{c,cx,cy}, mir}. We bake all 8 facings, so mir is always 0. */
 (function (w) {
   "use strict";
@@ -14,15 +15,22 @@
   var rootFailed = false;
   var loading = new Map();
   var lastLook = null;
-  var lastLoadedLook = null;
+  var lastLoadedBy = {}; /* type -> manifest key (path) of the last look that drew */
   var lastPending = false;
-  var lastRaw = null;
+  var lastRawBy = {}; /* type -> last drawn frame, so a loading look never shows another class */
+  var classCfgs = new Map(); /* type -> class json (non-Warden) */
+  var classFailed = {};
+  var HERO_TYPES = { warden: 1, caller: 1, stalker: 1, reaver: 1, chanter: 1 };
   var activePath = null;
+  var activeHelmPath = null;
   var activeNeedsMask = false;
   var lastAnimDrawn = null;
   var lastFallbackAnim = null;
   var lastDirDrawn = null;
+  var lastHelmKind = null;
   var dyeScratch = null;
+  var CLASS_OF = { cinder_warden: "warden", salt_reaver: "reaver", bell_chanter: "chanter", reed_caller: "caller", briar_stalker: "stalker" };
+  function outlineAlpha() { return root && root.outline != null ? +root.outline : 0.55; }
 
   var FALLBACK_DYES = {
     ashguard: { primary: "#7c2016", leather: "#6a4a34", metal: "#9aa1a8" },
@@ -75,6 +83,33 @@
     return p;
   }
 
+  /* Class config: the root for the Warden, a lazily loaded file for classes in root.classes.
+     Returns cfg, null (no realism for this class), or undefined (still loading). */
+  function classCfg(t) {
+    if (!root) return HERO_TYPES[t] ? undefined : null;
+    if (t === (root.class || "warden")) return root;
+    var path = root.classes && root.classes[t];
+    if (!path || classFailed[t]) return null;
+    if (classCfgs.has(t)) return classCfgs.get(t);
+    var mk = "cls:" + t;
+    if (!loading.has(mk)) {
+      var p = fetchJSON(path).then(function (j) {
+        loading.delete(mk);
+        classCfgs.set(t, j);
+        var id = j.defaultLook || "cloth";
+        prefetch(j, id, ["idle", "walk"], false);
+        return j;
+      }, function () { loading.delete(mk); classFailed[t] = true; return null; });
+      loading.set(mk, p);
+    }
+    return undefined;
+  }
+  function cfgVal(cfg, k, dflt) {
+    if (cfg && cfg[k] != null) return cfg[k];
+    if (root && root[k] != null) return root[k];
+    return dflt;
+  }
+
   function hex(h) {
     if (!h) return [0.5, 0.5, 0.5];
     h = String(h).replace("#", "");
@@ -84,15 +119,19 @@
   function dyeTable() {
     return (root && root.dyes) || FALLBACK_DYES;
   }
-  function dyeFactors(name) {
-    if (!name || name === "ashguard") return null;
+  /* Tint ratios from the class's baked dye (cfg.baseDye, Warden = ashguard) to `name`.
+     null when name is the baked dye: no mask fetch, no per-pixel pass. */
+  function dyeFactors(name, cfg) {
+    var baseName = (cfg && cfg.baseDye) || "ashguard";
+    if (!name || name === baseName) return null;
     var tab = dyeTable();
     var src = tab[name] || (tab.presets && tab.presets[name]);
     if (!src) return null;
-    var p = hex(src.primary || ASHGUARD.primary);
-    var l = hex(src.leather || ASHGUARD.leather);
-    var m = hex(src.metal || ASHGUARD.metal);
-    var bp = hex(ASHGUARD.primary), bl = hex(ASHGUARD.leather), bm = hex(ASHGUARD.metal);
+    var B = tab[baseName] || FALLBACK_DYES[baseName] || ASHGUARD;
+    var p = hex(src.primary || B.primary);
+    var l = hex(src.leather || B.leather);
+    var m = hex(src.metal || B.metal);
+    var bp = hex(B.primary), bl = hex(B.leather), bm = hex(B.metal);
     return {
       p: [p[0]/(bp[0]||1), p[1]/(bp[1]||1), p[2]/(bp[2]||1)],
       l: [l[0]/(bl[0]||1), l[1]/(bl[1]||1), l[2]/(bl[2]||1)],
@@ -100,24 +139,32 @@
     };
   }
 
-  function lookFrom(t) {
-    if (t !== "warden") return null;
-    var st = w.ASHBOUND && ASHBOUND.state, P = st && st.player, eq = (P && st.mode === "play" && P.equipment) || null;
-    var armorMap = (root && root.armorToTier) || { wander_wrap: "cloth", hide_coat: "leather", scale_hauberk: "scale", kiln_plate: "plate" };
-    var helmMap = (root && root.helmToKind) || { cloth_hood: "hood", salt_cap: "cap", kiln_helm: "bascinet" };
+  function lookFrom(t, cfg) {
+    if (t !== "warden" && !cfg) return null;
+    var st = w.ASHBOUND && ASHBOUND.state, P = st && st.player;
+    var mine = !!(P && (!P.classId || CLASS_OF[P.classId] === t || (!CLASS_OF[P.classId] && t === "warden")));
+    var eq = (mine && P && st.mode === "play" && P.equipment) || null;
+    var armorMap = cfgVal(cfg, "armorToTier", null) || { wander_wrap: "cloth", hide_coat: "leather", scale_hauberk: "scale", kiln_plate: "plate" };
+    var helmMap = cfgVal(cfg, "helmToKind", null) || { cloth_hood: "hood", salt_cap: "cap", kiln_helm: "bascinet" };
     var armorId = eq && eq.armor && eq.armor.baseId;
     var tier = armorMap[armorId] || "cloth";
     var shield = !!(eq && eq.offhand && (eq.offhand.kind === "shield" || eq.offhand.slot === "offhand" && /shield/.test(eq.offhand.baseId || "")));
     var wpn = eq && eq.weapon, twoH = wpn && (wpn.hands === 2 || /maul|mallet|staff|bow/.test(wpn.baseId || "") || wpn.kind === "mace" || wpn.kind === "staff" || wpn.kind === "bow");
     if (twoH) shield = false;
+    if (cfg && cfg.looks && !cfg.looks[tier + "_shield"]) shield = false; /* class bakes no shield look */
     var helm = (eq && eq.helm && helmMap[eq.helm.baseId]) || "none";
-    var dye = (qs().get("dye") || (P && P.dye) || "ashguard");
-    if (dye && typeof dye === "object") dye = dye.id || dye.name || "ashguard";
-    return { tier: tier, shield: shield, helm: helm, dye: String(dye || "ashguard"), id: tier + (shield ? "_shield" : "") };
+    var base = (cfg && cfg.baseDye) || "ashguard";
+    var dye = (qs().get("dye") || (mine && P && P.dye) || base);
+    if (dye && typeof dye === "object") dye = dye.id || dye.name || base;
+    var id = tier;
+    if (shield && (!cfg || !cfg.looks || cfg.looks[tier + "_shield"])) id = tier + "_shield";
+    else if (twoH && cfg && cfg.looks && cfg.looks[tier + "_2h"]) id = tier + "_2h";
+    if (cfg && cfg.looks && !cfg.looks[id]) id = cfg.looks[tier] ? tier : (cfg.defaultLook || "cloth");
+    return { tier: tier, shield: id.indexOf("_shield") > 0, helm: helm, dye: String(dye || base), id: id, label: t === "warden" ? id : t + ":" + id };
   }
 
   function evictPriority(url) {
-    if (activePath && url.indexOf(activePath) !== 0) return 0;
+    if (activePath && url.indexOf(activePath) !== 0 && (!activeHelmPath || url.indexOf(activeHelmPath) !== 0)) return 0;
     if (/_mask\.webp$/.test(url) && !activeNeedsMask) return 1;
     if (/\/idle\.webp$/.test(url)) return 5;
     if (/\/walk\.webp$/.test(url)) return 4;
@@ -183,17 +230,24 @@
     loading.set(url, p);
     return p;
   }
-  function lookMan(id) {
-    if (manifests.has(id)) return Promise.resolve(manifests.get(id));
-    var mk = "man:" + id;
+  /* Manifests are keyed by look path, so looks of different classes never collide. */
+  function lookPath(cfg, id) {
+    var L = cfg && cfg.looks && cfg.looks[id];
+    return L ? L.path : null;
+  }
+  function lookMan(cfg, id) {
+    var key = lookPath(cfg, id);
+    if (key && manifests.has(key)) return Promise.resolve(manifests.get(key));
+    var mk = "man:" + (key || id);
     if (loading.has(mk)) return loading.get(mk);
     var p = ensureRoot().then(function (r) {
-      var L = r && r.looks && r.looks[id];
-      if (!L) { loading.delete(mk); return null; }
-      return fetchJSON(L.path + "manifest.json").then(function (m) {
+      var c = cfg || r;
+      var path = lookPath(c, id);
+      if (!path) { loading.delete(mk); return null; }
+      return fetchJSON(path + "manifest.json").then(function (m) {
         loading.delete(mk);
-        m.path = L.path;
-        manifests.set(id, m);
+        m.path = path;
+        manifests.set(path, m);
         return m;
       }, function (err) {
         loading.delete(mk);
@@ -206,8 +260,8 @@
     loading.set(mk, p);
     return p;
   }
-  function prefetch(id, anims, withMask) {
-    lookMan(id).then(function (m) {
+  function prefetch(cfg, id, anims, withMask) {
+    lookMan(cfg, id).then(function (m) {
       if (!m) return;
       (anims || ["idle", "walk"]).forEach(function (a) {
         var rec = m.anims[a];
@@ -246,7 +300,50 @@
     g.putImageData(b, 0, 0);
   }
 
-  function blit(m, anim, dir, fr, dye) {
+  function helmFor(look, anim, cfg) {
+    if (!look || !look.helm || look.helm === "none" || !cfg || !cfg.helms) return null;
+    var kind = (look.shield && anim === "idle" && cfg.helms[look.helm + "_shield"]) ? look.helm + "_shield" : look.helm;
+    var Hc = cfg.helms[kind];
+    if (!Hc || !Hc.path) return null;
+    activeHelmPath = Hc.path;
+    var hm = manifests.get(Hc.path);
+    if (!hm) {
+      var mk = "man:" + Hc.path;
+      if (!loading.has(mk)) {
+        var hp = fetchJSON(Hc.path + "manifest.json").then(function (m) {
+          loading.delete(mk); m.path = Hc.path; manifests.set(Hc.path, m);
+          if (m.anims && m.anims[anim]) loadImage(m.path + m.anims[anim].file).catch(function () {});
+          return m;
+        }, function () { loading.delete(mk); return null; });
+        loading.set(mk, hp);
+      }
+      return null;
+    }
+    var rec = hm.anims[anim];
+    if (!rec) return null;
+    var url = hm.path + rec.file, ent = atlasses.get(url);
+    if (!ent) { loadImage(url).catch(function () {}); return null; }
+    ent.at = performance.now();
+    return { img: ent.img, rec: rec, kind: kind };
+  }
+
+  function outlined(src, alpha) {
+    var c = document.createElement("canvas");
+    c.width = src.width + 2; c.height = src.height + 2;
+    var g = c.getContext("2d");
+    if (alpha > 0) {
+      for (var dy = -1; dy <= 1; dy++) for (var dx = -1; dx <= 1; dx++) if (dx || dy) g.drawImage(src, 1 + dx, 1 + dy);
+      g.globalCompositeOperation = "source-in";
+      g.fillStyle = "rgba(10,8,6," + alpha + ")";
+      g.fillRect(0, 0, c.width, c.height);
+      g.globalCompositeOperation = "source-over";
+    }
+    g.drawImage(src, 1, 1);
+    return c;
+  }
+
+  function blit(m, anim, dir, fr, look, cfg) {
+    var dye = typeof look === "string" ? look : (look && look.dye);
     var rec = m.anims[anim];
     if (!rec) rec = m.anims.idle;
     if (!rec) return null;
@@ -254,7 +351,7 @@
     var ent = atlasses.get(url);
     if (!ent) { loadImage(url).catch(function () {}); return null; }
     ent.at = performance.now();
-    var fac = dyeFactors(dye);
+    var fac = dyeFactors(dye, cfg);
     var maskUrl = rec.mask ? m.path + rec.mask : null;
     var maskEnt = (fac && maskUrl) ? atlasses.get(maskUrl) : null;
     if (fac && maskUrl && !maskEnt) { loadImage(maskUrl).catch(function () {}); }
@@ -263,27 +360,51 @@
     var foot = rec.foot || m.foot;
     fr = ((fr % rec.frames) + rec.frames) % rec.frames;
     dir = ((dir % rec.dirs) + rec.dirs) % rec.dirs;
-    var dkey = fac ? (maskEnt ? (dye || "custom") : "ashguard") : "ashguard";
-    var key = m.path + "|" + anim + "|" + dir + "|" + fr + "|" + dkey;
+    if (!look || !look.helm || look.helm === "none") activeHelmPath = null;
+    var H = (typeof look === "object") ? helmFor(look, anim, cfg) : null;
+    lastHelmKind = H ? H.kind : null;
+    var ol = outlineAlpha();
+    var base = (cfg && cfg.baseDye) || "ashguard";
+    var dkey = fac ? (maskEnt ? (dye || "custom") : base) : base;
+    var key = m.path + "|" + anim + "|" + dir + "|" + fr + "|" + dkey + "|" + (H ? H.kind : "-") + "|" + ol;
     if (composites.has(key)) { var hit = composites.get(key); composites.delete(key); composites.set(key, hit); return hit; }
+    var ox = 0, oy = 0, W = cw, Hh = ch, hx = 0, hy = 0, hw = 0, hh = 0;
+    if (H) {
+      var hr = H.rec, hfr = ((fr % hr.frames) + hr.frames) % hr.frames, hdir = ((dir % hr.dirs) + hr.dirs) % hr.dirs;
+      hw = hr.cell[0]; hh = hr.cell[1];
+      hx = foot[0] - hr.foot[0]; hy = foot[1] - hr.foot[1];
+      var x0 = Math.min(0, hx), y0 = Math.min(0, hy), x1 = Math.max(cw, hx + hw), y1 = Math.max(ch, hy + hh);
+      ox = -x0; oy = -y0; W = Math.ceil(x1 - x0); Hh = Math.ceil(y1 - y0);
+      H.sx = hfr * hw; H.sy = hdir * hh;
+    }
     var c = document.createElement("canvas");
-    c.width = cw; c.height = ch;
+    c.width = W; c.height = Hh;
     var g = c.getContext("2d");
-    g.drawImage(ent.img, fr * cw, dir * ch, cw, ch, 0, 0, cw, ch);
-    if (fac && maskEnt) applyDye(c, maskEnt.img, rec, fr, dir, fac);
-    var F = { c: c, cx: foot[0], cy: foot[1] };
+    g.drawImage(ent.img, fr * cw, dir * ch, cw, ch, ox, oy, cw, ch);
+    if (fac && maskEnt) {
+      if (ox || oy || W !== cw || Hh !== ch) {
+        var bc = document.createElement("canvas"); bc.width = cw; bc.height = ch;
+        bc.getContext("2d").drawImage(ent.img, fr * cw, dir * ch, cw, ch, 0, 0, cw, ch);
+        applyDye(bc, maskEnt.img, rec, fr, dir, fac);
+        g.clearRect(0, 0, W, Hh); g.drawImage(bc, ox, oy);
+      } else applyDye(c, maskEnt.img, rec, fr, dir, fac);
+    }
+    if (H) g.drawImage(H.img, H.sx, H.sy, hw, hh, ox + hx, oy + hy, hw, hh);
+    var out = ol > 0 ? outlined(c, ol) : c;
+    var pad = ol > 0 ? 1 : 0;
+    var F = { c: out, cx: foot[0] + ox + pad, cy: foot[1] + oy + pad };
     composites.set(key, F);
     if (composites.size > MAX_COMPOSITES) composites.delete(composites.keys().next().value);
     return F;
   }
 
-  function scaleToGame(F, r) {
+  function scaleToGame(F, r, cfg) {
     /* r is the tile size in CSS px (Na()). Bake dpr caps at 2. Size the canvas so the
        character's foot-to-head span is heightTiles tiles after Dn divides by D. */
     if (!root || !F) return F;
     var D = (typeof ab3BakeDpr === "function") ? ab3BakeDpr() : 2;
-    var charH = root.charHeight || 148;
-    var tiles = root.heightTiles || 1.33;
+    var charH = cfgVal(cfg, "charHeight", 148);
+    var tiles = cfgVal(cfg, "heightTiles", 1.33);
     var s = r || 53;
     var target = tiles * s * D;
     var sc = target / charH;
@@ -300,6 +421,17 @@
     F._scKey = scKey;
     F._scaled = out;
     return out;
+  }
+
+  var warmDone = new Set();
+  function warmCombat(cfg, look, m, needMask) {
+    var wk = m.path + "|" + (needMask ? 1 : 0);
+    if (warmDone.has(wk)) return;
+    var a = m.anims;
+    if (!(a.idle && atlasses.has(m.path + a.idle.file) && a.walk && atlasses.has(m.path + a.walk.file))) return;
+    warmDone.add(wk);
+    var go = function () { prefetch(cfg, look.id, ["run", "strike", "hit"], needMask); };
+    if (w.requestIdleCallback) w.requestIdleCallback(go, { timeout: 2500 }); else setTimeout(go, 600);
   }
 
   function findLoadedAnim(m, anim) {
@@ -324,77 +456,92 @@
       if (inPlay) { lastLook = null; w.abRealLast = null; }
       return null;
     }
-    var look = lookFrom(t);
+    var cfg = classCfg(t);
+    if (cfg === null) {
+      if (inPlay) { lastLook = null; w.abRealLast = null; }
+      return null;
+    }
+    var lastRaw = lastRawBy[t] || null;
+    if (cfg === undefined && t !== "warden") {
+      /* root or class json still loading: hold (no HD/old flash) */
+      lastPending = true;
+      if (!root) ensureRoot().catch(function () {});
+      return lastRaw ? { F: scaleToGame(lastRaw, r, null), mir: 0 } : null;
+    }
+    var look = lookFrom(t, cfg);
     if (!look) {
       if (inPlay) { lastLook = null; w.abRealLast = null; }
       return null;
     }
     lastPending = true;
-    lastLook = look.id;
-    w.abRealLast = look.id;
-    var needMask = !!dyeFactors(look.dye);
+    lastLook = look.label;
+    w.abRealLast = look.label;
+    var needMask = !!dyeFactors(look.dye, cfg);
     activeNeedsMask = needMask;
     if (!root) {
-      ensureRoot().then(function () { prefetch(look.id, ["idle", "walk"], needMask); }).catch(function () {});
-      return lastRaw ? { F: scaleToGame(lastRaw, r), mir: 0 } : null;
+      ensureRoot().then(function () { prefetch(root, look.id, ["idle", "walk"], needMask); }).catch(function () {});
+      return lastRaw ? { F: scaleToGame(lastRaw, r, cfg), mir: 0 } : null;
     }
-    if (root.looks && root.looks[look.id]) activePath = root.looks[look.id].path;
-    var shift = root.dirShift || 0;
-    /* Baked Warden rows start at row 0 = screen DOWN (+PI/2) and step counter-clockwise.
-       Screen angle `face` has 0 = RIGHT, +PI/2 = DOWN, +-PI = LEFT, -PI/2 = UP. */
+    var path = lookPath(cfg, look.id);
+    if (path) activePath = path;
+    var shift = cfgVal(cfg, "dirShift", 0) || 0;
+    /* Baked rows (all classes, same camera/yaw set) start at row 0 = screen DOWN (+PI/2) and step
+       counter-clockwise. Screen angle `face` has 0 = RIGHT, +PI/2 = DOWN, +-PI = LEFT, -PI/2 = UP. */
     var dir = (((Math.round((Math.PI / 2 - (face || 0)) / (Math.PI / 4)) % 8) + 8) % 8 + shift) % 8;
     var anim = (pose && pose.mode) || "idle";
     var fr = (pose && pose.frame) || 0;
-    var m = manifests.get(look.id);
+    var m = path ? manifests.get(path) : null;
     if (!m) {
-      if (!quiet) prefetch(look.id, anim === "idle" || anim === "walk" ? ["idle", "walk"] : [anim, "idle", "walk"], needMask);
-      if (lastLoadedLook && manifests.has(lastLoadedLook)) {
-        var pm = manifests.get(lastLoadedLook);
+      if (!quiet) prefetch(cfg, look.id, !inPlay ? ["idle"] : anim === "idle" || anim === "walk" ? ["idle", "walk"] : [anim, "idle", "walk"], needMask);
+      var lk = lastLoadedBy[t];
+      if (lk && manifests.has(lk)) {
+        var pm = manifests.get(lk);
         var pa = (pm.anims[anim] && atlasses.has(pm.path + pm.anims[anim].file)) ? anim : findLoadedAnim(pm, anim);
         if (pa) {
-          var pF = blit(pm, pa, dir, fr, look.dye);
+          var pF = blit(pm, pa, dir, fr, look, cfg);
           if (pF) {
-            lastRaw = pF;
+            lastRawBy[t] = pF;
             lastAnimDrawn = pa;
             lastFallbackAnim = pa;
             lastDirDrawn = dir;
-            return { F: scaleToGame(pF, r), mir: 0 };
+            return { F: scaleToGame(pF, r, cfg), mir: 0 };
           }
         }
       }
-      return lastRaw ? { F: scaleToGame(lastRaw, r), mir: 0 } : null;
+      return lastRaw ? { F: scaleToGame(lastRaw, r, cfg), mir: 0 } : null;
     }
-    lastLoadedLook = look.id;
+    lastLoadedBy[t] = path;
     var targetRec = m.anims[anim] || m.anims.idle;
     var useAnim = anim;
     var F = null;
     if (targetRec && atlasses.has(m.path + targetRec.file)) {
-      F = blit(m, anim, dir, fr, look.dye);
+      F = blit(m, anim, dir, fr, look, cfg);
       lastFallbackAnim = null;
     } else {
-      if (!quiet) prefetch(look.id, [anim, "idle", "walk"], needMask);
+      if (!quiet) prefetch(cfg, look.id, inPlay ? [anim, "idle", "walk"] : [anim], needMask);
       var alt = findLoadedAnim(m, anim);
       if (alt) {
         useAnim = alt;
         lastFallbackAnim = alt;
-        F = blit(m, alt, dir, fr, look.dye);
+        F = blit(m, alt, dir, fr, look, cfg);
       }
     }
     if (!F) {
-      return lastRaw ? { F: scaleToGame(lastRaw, r), mir: 0 } : null;
+      return lastRaw ? { F: scaleToGame(lastRaw, r, cfg), mir: 0 } : null;
     }
-    lastRaw = F;
+    if (!quiet && inPlay) warmCombat(cfg, look, m, needMask);
+    lastRawBy[t] = F;
     lastAnimDrawn = useAnim;
     lastDirDrawn = dir;
-    var scaled = scaleToGame(F, r);
+    var scaled = scaleToGame(F, r, cfg);
     return scaled ? { F: scaled, mir: 0 } : null;
   }
   w.abRealFrame = abRealFrame;
   w.abRealStats = function () {
     return {
       on: enabled(), look: lastLook, atlasMB: +(atlasBytes / 1048576).toFixed(2),
-      atlasses: atlasses.size, composites: composites.size, root: !!root, looks: [...manifests.keys()],
-      evicts: evictCount, anim: lastAnimDrawn, fallbackAnim: lastFallbackAnim, dir: lastDirDrawn, pending: lastPending
+      atlasses: atlasses.size, composites: composites.size, root: !!root, looks: [...manifests.keys()], classes: [...classCfgs.keys()],
+      evicts: evictCount, helm: lastHelmKind, outline: outlineAlpha(), anim: lastAnimDrawn, fallbackAnim: lastFallbackAnim, dir: lastDirDrawn, pending: lastPending
     };
   };
 
@@ -403,7 +550,7 @@
       if (!r) return;
       var id = r.defaultLook || "cloth";
       if (r.looks && r.looks[id]) activePath = r.looks[id].path;
-      prefetch(id, ["idle", "walk"], false);
+      prefetch(r, id, ["idle", "walk"], false);
     }).catch(function () {});
   }
 })(window);

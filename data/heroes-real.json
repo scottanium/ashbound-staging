@@ -52,6 +52,30 @@
       "path": "assets/heroes/warden/plate_shield/",
       "tier": "plate",
       "shield": true
+    },
+    "cloth_2h": {
+      "path": "assets/heroes/warden/cloth_2h/",
+      "tier": "cloth",
+      "shield": false,
+      "twoHanded": true
+    },
+    "leather_2h": {
+      "path": "assets/heroes/warden/leather_2h/",
+      "tier": "leather",
+      "shield": false,
+      "twoHanded": true
+    },
+    "scale_2h": {
+      "path": "assets/heroes/warden/scale_2h/",
+      "tier": "scale",
+      "shield": false,
+      "twoHanded": true
+    },
+    "plate_2h": {
+      "path": "assets/heroes/warden/plate_2h/",
+      "tier": "plate",
+      "shield": false,
+      "twoHanded": true
     }
   },
   "cell": [
@@ -102,6 +126,34 @@
       "primary": "#2c4a2b",
       "leather": "#261c16",
       "metal": "#5a5f66"
+    }
+  },
+  "classes": {
+    "caller": "data/heroes-real-caller.json",
+    "stalker": "data/heroes-real-stalker.json",
+    "reaver": "data/heroes-real-reaver.json",
+    "chanter": "data/heroes-real-chanter.json"
+  },
+  "outline": 0.55,
+  "anchor": "root",
+  "helms": {
+    "hood": {
+      "path": "assets/heroes/warden/helm_hood/"
+    },
+    "cap": {
+      "path": "assets/heroes/warden/helm_cap/"
+    },
+    "bascinet": {
+      "path": "assets/heroes/warden/helm_bascinet/"
+    },
+    "hood_shield": {
+      "path": "assets/heroes/warden/helm_hood_shield/"
+    },
+    "cap_shield": {
+      "path": "assets/heroes/warden/helm_cap_shield/"
+    },
+    "bascinet_shield": {
+      "path": "assets/heroes/warden/helm_bascinet_shield/"
     }
   }
 }

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "class": "caller",
+  "classId": "reed_caller",
+  "heightTiles": 1.33,
+  "charHeight": 148,
+  "dirShift": 0,
+  "baseDye": "reed",
+  "bakedWeapon": "thorn_bow",
+  "strikeClip": "Bow_Shoot (adapted: Idle_Loop legs + spine twist + 2-bone IK draw)",
+  "footComment": "cell-local foot is in each look's manifest.json; charHeight is foot-to-crown in bake px. No shield looks: a shield falls back to the same tier.",
+  "defaultLook": "cloth",
+  "looks": {
+    "cloth": {
+      "path": "assets/heroes/reed_caller/cloth/",
+      "tier": "cloth",
+      "shield": false
+    },
+    "leather": {
+      "path": "assets/heroes/reed_caller/leather/",
+      "tier": "leather",
+      "shield": false
+    },
+    "scale": {
+      "path": "assets/heroes/reed_caller/scale/",
+      "tier": "scale",
+      "shield": false
+    },
+    "plate": {
+      "path": "assets/heroes/reed_caller/plate/",
+      "tier": "plate",
+      "shield": false
+    }
+  }
+}

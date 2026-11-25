@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "class": "reaver",
+  "classId": "salt_reaver",
+  "heightTiles": 1.33,
+  "charHeight": 148,
+  "dirShift": 0,
+  "baseDye": "salt",
+  "bakedWeapon": "glass_dirk",
+  "strikeClip": "Sword_Regular_B (dirk stab/slash)",
+  "footComment": "cell-local foot is in each look's manifest.json; charHeight is foot-to-crown in bake px. No shield looks: offhand keeps the same tier.",
+  "defaultLook": "cloth",
+  "looks": {
+    "cloth": {
+      "path": "assets/heroes/reaver/cloth/",
+      "tier": "cloth",
+      "shield": false
+    },
+    "leather": {
+      "path": "assets/heroes/reaver/leather/",
+      "tier": "leather",
+      "shield": false
+    },
+    "scale": {
+      "path": "assets/heroes/reaver/scale/",
+      "tier": "scale",
+      "shield": false
+    },
+    "plate": {
+      "path": "assets/heroes/reaver/plate/",
+      "tier": "plate",
+      "shield": false
+    }
+  }
+}

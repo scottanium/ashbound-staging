@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "class": "stalker",
+  "classId": "briar_stalker",
+  "heightTiles": 1.33,
+  "charHeight": 148,
+  "dirShift": 0,
+  "baseDye": "briar",
+  "bakedWeapon": "ashwood_knife",
+  "strikeClip": "Punch_Cross (UAL1) with a dagger grip",
+  "footComment": "cell-local foot is in each look's manifest.json; charHeight is foot-to-crown in bake px. No shield looks: a shield falls back to the same tier.",
+  "defaultLook": "cloth",
+  "looks": {
+    "cloth": {
+      "path": "assets/heroes/briar_stalker/cloth/",
+      "tier": "cloth",
+      "shield": false
+    },
+    "leather": {
+      "path": "assets/heroes/briar_stalker/leather/",
+      "tier": "leather",
+      "shield": false
+    },
+    "scale": {
+      "path": "assets/heroes/briar_stalker/scale/",
+      "tier": "scale",
+      "shield": false
+    },
+    "plate": {
+      "path": "assets/heroes/briar_stalker/plate/",
+      "tier": "plate",
+      "shield": false
+    }
+  }
+}

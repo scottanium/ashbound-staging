@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "class": "chanter",
+  "classId": "bell_chanter",
+  "heightTiles": 1.33,
+  "charHeight": 148,
+  "dirShift": 0,
+  "baseDye": "bell",
+  "bakedWeapon": "cinder_staff",
+  "strikeClip": "Spell_Simple_Shoot (staff cast)",
+  "footComment": "cell-local foot is in each look's manifest.json; charHeight is foot-to-crown in bake px. No shield looks: offhand keeps the same tier.",
+  "defaultLook": "cloth",
+  "looks": {
+    "cloth": {
+      "path": "assets/heroes/chanter/cloth/",
+      "tier": "cloth",
+      "shield": false
+    },
+    "leather": {
+      "path": "assets/heroes/chanter/leather/",
+      "tier": "leather",
+      "shield": false
+    },
+    "scale": {
+      "path": "assets/heroes/chanter/scale/",
+      "tier": "scale",
+      "shield": false
+    },
+    "plate": {
+      "path": "assets/heroes/chanter/plate/",
+      "tier": "plate",
+      "shield": false
+    }
+  }
+}
