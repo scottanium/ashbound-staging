@@ -341,17 +341,17 @@
     clock += dt;
     deathTokens = Math.min((skillDef("ash_detonation") || { params: {} }).params.deathCapPerSec || 6, deathTokens + dt * ((skillDef("ash_detonation") || { params: {} }).params.deathCapPerSec || 6));
     for (const m of (e.world && e.world.monsters) || []) if (m._fbT > 0) m._fbT -= dt;
-    // Ash Detonation: Ash Ward bursts when it breaks or runs out (checked before buffs expire).
+    // Last Ember: Ash Ward bursts when it breaks or runs out (checked before buffs expire).
     if (rankOf(e, "ash_detonation") > 0) for (const b of p.buffs || []) {
       if (b.id !== "ash_ward" || b._abBurst) continue;
       if ((b.absorb != null && b.absorb <= 0) || b.remaining - dt <= 0) { b._abBurst = true; freeBloom(e, 1, "ward"); api.wardBursts = (api.wardBursts || 0) + 1; }
     }
-    // Unbroken Bastion: low-life rage.
+    // The Wall That Burns: low-life rage.
     const low = bastionLow(e);
     if (low !== lastBastion) {
       lastBastion = low;
       p.buffs = (p.buffs || []).filter((b) => b.id !== "bastion_rage");
-      if (low) p.buffs.push({ id: "bastion_rage", name: "Unbroken", remaining: 1e9, mods: { ias: skillDef("unbroken_bastion").params.lowLifeIas || 100 } });
+      if (low) { const bd = skillDef("unbroken_bastion"); p.buffs.push({ id: "bastion_rage", name: (bd && bd.name) || "The Wall That Burns", remaining: 1e9, mods: { ias: (bd && bd.params && bd.params.lowLifeIas) || 100 } }); }
       H.recalc();
     }
     // Recalc when one of our buffs ends on its own.
@@ -413,7 +413,7 @@
       if (r.unlocked) e.ui.skillId = r.unlocked;
       H && H.recalc();
       e.sfx && e.sfx.push("ui");
-      if (r.unlocked) { const d = skillDef(r.unlocked); return { toast: str("unlockedToast", { skill: d ? d.name : r.unlocked }), kind: "good" }; }
+      if (r.unlocked) { const d = skillDef(r.unlocked); const nm = d ? d.name : r.unlocked; return { toast: str("unlockedToast", { name: nm, skill: nm }), kind: "good" }; }
       return {};
     }
     if (name === "tree-undo") {

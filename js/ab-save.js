@@ -129,7 +129,7 @@
     if (typeof root.ABProgress !== "undefined" && root.ABProgress.migrateSave) {
       root.ABProgress.migrateSave(e);
     }
-    // v6 (v81s): Warden skill trees. Old Warden saves: free refund, empty bar, one-time "Skill trees updated" notice.
+    // v6 (v81s): Warden skill trees. Old Warden saves: free refund, empty bar, one-time "The trees have shifted. Your points wait in the ash." notice.
     if (typeof root.ABTree !== "undefined" && root.ABTree.migrateSave) {
       root.ABTree.migrateSave(e);
     }
