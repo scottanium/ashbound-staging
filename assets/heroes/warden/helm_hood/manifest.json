@@ -1,0 +1,172 @@
+{
+ "look": "helm_hood",
+ "anchor": "root",
+ "anims": {
+  "death": {
+   "file": "death.webp",
+   "bytes": 13868,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    277,
+    220
+   ],
+   "foot": [
+    138.0,
+    138.84
+   ],
+   "src_bbox": [
+    86,
+    118,
+    363,
+    338
+   ],
+   "render": [
+    448,
+    384
+   ]
+  },
+  "hit": {
+   "file": "hit.webp",
+   "bytes": 2284,
+   "cols": 1,
+   "rows": 8,
+   "frames": 1,
+   "dirs": 8,
+   "cell": [
+    58,
+    50
+   ],
+   "foot": [
+    29.0,
+    143.84
+   ],
+   "src_bbox": [
+    99,
+    113,
+    157,
+    163
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 6902,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    44,
+    44
+   ],
+   "foot": [
+    22.0,
+    139.84
+   ],
+   "src_bbox": [
+    106,
+    117,
+    150,
+    161
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "run": {
+   "file": "run.webp",
+   "bytes": 15544,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    94,
+    79
+   ],
+   "foot": [
+    47.0,
+    151.84
+   ],
+   "src_bbox": [
+    81,
+    105,
+    175,
+    184
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "strike": {
+   "file": "strike.webp",
+   "bytes": 9484,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    158,
+    126
+   ],
+   "foot": [
+    79.0,
+    149.84
+   ],
+   "src_bbox": [
+    49,
+    107,
+    207,
+    233
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "walk": {
+   "file": "walk.webp",
+   "bytes": 14746,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    61,
+    53
+   ],
+   "foot": [
+    30.0,
+    145.84
+   ],
+   "src_bbox": [
+    98,
+    111,
+    159,
+    164
+   ],
+   "render": [
+    256,
+    384
+   ]
+  }
+ },
+ "cell": [
+  44,
+  44
+ ],
+ "foot": [
+  22.0,
+  139.84
+ ],
+ "charHeight": 148,
+ "bytes": 62828
+}

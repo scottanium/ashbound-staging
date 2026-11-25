@@ -1,0 +1,42 @@
+{
+ "look": "helm_hood_shield",
+ "anchor": "root",
+ "anims": {
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 7006,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    43,
+    47
+   ],
+   "foot": [
+    21.0,
+    140.84
+   ],
+   "src_bbox": [
+    107,
+    116,
+    150,
+    163
+   ],
+   "render": [
+    256,
+    384
+   ]
+  }
+ },
+ "cell": [
+  43,
+  47
+ ],
+ "foot": [
+  21.0,
+  140.84
+ ],
+ "charHeight": 148,
+ "bytes": 7006
+}

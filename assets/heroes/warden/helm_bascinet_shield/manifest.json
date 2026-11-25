@@ -1,0 +1,42 @@
+{
+ "look": "helm_bascinet_shield",
+ "anchor": "root",
+ "anims": {
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 6326,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    38,
+    33
+   ],
+   "foot": [
+    19.0,
+    137.84
+   ],
+   "src_bbox": [
+    109,
+    119,
+    147,
+    152
+   ],
+   "render": [
+    256,
+    384
+   ]
+  }
+ },
+ "cell": [
+  38,
+  33
+ ],
+ "foot": [
+  19.0,
+  137.84
+ ],
+ "charHeight": 148,
+ "bytes": 6326
+}

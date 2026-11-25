@@ -1,0 +1,42 @@
+{
+ "look": "helm_cap_shield",
+ "anchor": "root",
+ "anims": {
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 5060,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    36,
+    30
+   ],
+   "foot": [
+    18.0,
+    135.84
+   ],
+   "src_bbox": [
+    110,
+    121,
+    146,
+    151
+   ],
+   "render": [
+    256,
+    384
+   ]
+  }
+ },
+ "cell": [
+  36,
+  30
+ ],
+ "foot": [
+  18.0,
+  135.84
+ ],
+ "charHeight": 148,
+ "bytes": 5060
+}

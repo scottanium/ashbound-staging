@@ -1,0 +1,172 @@
+{
+ "look": "helm_bascinet",
+ "anchor": "root",
+ "anims": {
+  "death": {
+   "file": "death.webp",
+   "bytes": 10838,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    270,
+    212
+   ],
+   "foot": [
+    135.0,
+    134.84
+   ],
+   "src_bbox": [
+    121,
+    122,
+    391,
+    334
+   ],
+   "render": [
+    512,
+    384
+   ]
+  },
+  "hit": {
+   "file": "hit.webp",
+   "bytes": 1794,
+   "cols": 1,
+   "rows": 8,
+   "frames": 1,
+   "dirs": 8,
+   "cell": [
+    50,
+    41
+   ],
+   "foot": [
+    25.0,
+    139.84
+   ],
+   "src_bbox": [
+    103,
+    117,
+    153,
+    158
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 6154,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    34,
+    30
+   ],
+   "foot": [
+    17.0,
+    135.84
+   ],
+   "src_bbox": [
+    111,
+    121,
+    145,
+    151
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "run": {
+   "file": "run.webp",
+   "bytes": 13662,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    84,
+    71
+   ],
+   "foot": [
+    42.0,
+    148.84
+   ],
+   "src_bbox": [
+    86,
+    108,
+    170,
+    179
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "strike": {
+   "file": "strike.webp",
+   "bytes": 8048,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    150,
+    120
+   ],
+   "foot": [
+    75.0,
+    145.84
+   ],
+   "src_bbox": [
+    53,
+    111,
+    203,
+    231
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "walk": {
+   "file": "walk.webp",
+   "bytes": 12936,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    50,
+    42
+   ],
+   "foot": [
+    25.0,
+    142.84
+   ],
+   "src_bbox": [
+    103,
+    114,
+    153,
+    156
+   ],
+   "render": [
+    256,
+    384
+   ]
+  }
+ },
+ "cell": [
+  34,
+  30
+ ],
+ "foot": [
+  17.0,
+  135.84
+ ],
+ "charHeight": 148,
+ "bytes": 53432
+}

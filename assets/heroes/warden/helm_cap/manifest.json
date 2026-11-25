@@ -1,0 +1,172 @@
+{
+ "look": "helm_cap",
+ "anchor": "root",
+ "anims": {
+  "death": {
+   "file": "death.webp",
+   "bytes": 9186,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    261,
+    204
+   ],
+   "foot": [
+    131.0,
+    129.84
+   ],
+   "src_bbox": [
+    125,
+    127,
+    386,
+    331
+   ],
+   "render": [
+    512,
+    384
+   ]
+  },
+  "hit": {
+   "file": "hit.webp",
+   "bytes": 1356,
+   "cols": 1,
+   "rows": 8,
+   "frames": 1,
+   "dirs": 8,
+   "cell": [
+    46,
+    33
+   ],
+   "foot": [
+    23.0,
+    133.84
+   ],
+   "src_bbox": [
+    105,
+    123,
+    151,
+    156
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "idle": {
+   "file": "idle.webp",
+   "bytes": 4818,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    32,
+    26
+   ],
+   "foot": [
+    16.0,
+    132.84
+   ],
+   "src_bbox": [
+    112,
+    124,
+    144,
+    150
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "run": {
+   "file": "run.webp",
+   "bytes": 10850,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    76,
+    62
+   ],
+   "foot": [
+    38.0,
+    143.84
+   ],
+   "src_bbox": [
+    90,
+    113,
+    166,
+    175
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "strike": {
+   "file": "strike.webp",
+   "bytes": 6556,
+   "cols": 4,
+   "rows": 8,
+   "frames": 4,
+   "dirs": 8,
+   "cell": [
+    141,
+    115
+   ],
+   "foot": [
+    68.0,
+    141.84
+   ],
+   "src_bbox": [
+    60,
+    115,
+    201,
+    230
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "walk": {
+   "file": "walk.webp",
+   "bytes": 10364,
+   "cols": 8,
+   "rows": 8,
+   "frames": 8,
+   "dirs": 8,
+   "cell": [
+    44,
+    37
+   ],
+   "foot": [
+    22.0,
+    139.84
+   ],
+   "src_bbox": [
+    106,
+    117,
+    150,
+    154
+   ],
+   "render": [
+    256,
+    384
+   ]
+  }
+ },
+ "cell": [
+  32,
+  26
+ ],
+ "foot": [
+  16.0,
+  132.84
+ ],
+ "charHeight": 148,
+ "bytes": 43130
+}
