@@ -178,10 +178,10 @@
   },
   "runeTips": {
     "labels": {
-      "head": "Rune \u00b7 Tier {tier}",
+      "head": "Rune · Tier {tier}",
       "effect": "When socketed:",
       "usedIn": "Used in runewords:",
-      "order": "{runes} \u00b7 {slots}",
+      "order": "{runes} · {slots}",
       "none": "Not part of a runeword yet.",
       "codex": "Effects:"
     }
@@ -190,8 +190,8 @@
     "enabled": true,
     "hideInTowns": true,
     "refreshMs": 250,
-    "label": "{name} \u00b7 {n} left",
-    "clear": "{name} \u00b7 Cleared"
+    "label": "{name} · {n} left",
+    "clear": "{name} · Cleared"
   },
   "statsTab": {
     "enabled": true,
@@ -595,5 +595,19 @@
   "skillTreePanel": {
     "about": "v84g skill-tree panel. Sizes and copy live in data/skilltree-ui.json; js/ab-skilltree.js lays out #tt-band, .tt-node and connecting lines.",
     "enabled": true
+  },
+  "leui": {
+    "about": "le-ui (v85) inventory/stash look. packCell/stashCell = pack and stash grid cell in CSS px on phone landscape (the Last Epoch-style sheet); toolbarW = width of the pack's side button column; dollW = paper-doll column width. iconHD false forces the half-size item atlas. dragHoldMs = long-press before an item lifts; dragLift = how far above the finger the carried item floats (CSS px) so the finger never hides the drop spot; dragSlop = finger travel that cancels the hold (scroll/tap). railW = stash category rail width.",
+    "packCell": 42,
+    "stashCell": 33,
+    "stashPackCell": 26,
+    "toolbarW": 104,
+    "dollW": 262,
+    "iconHD": true,
+    "dragHoldMs": 220,
+    "dragLift": 40,
+    "dragSlop": 9,
+    "temperSpend": false,
+    "railW": 54
   }
 }

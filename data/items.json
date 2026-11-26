@@ -1,4 +1,6 @@
 {
+  "temper": {"about": "le-ui step 17 (UI-SPEC 5.2). Display first: nothing spends Temper yet (data/ui.json leui.temperSpend:false); costs and these numbers are Scott's balance pass. temperMax = base[rank] + round(ilvl * perIlvl) + a stable jitter of -jitter..+jitter from the item's id; temper starts full. Uniques and set pieces have none. Names and abouts are Koto's (koto-names-items.json).", "name": "Temper", "setLabel": "Set", "help": "How much more working this piece can take. Each craft spends some. At 0 it is Set and can't be changed again.", "base": {"common": 20, "magic": 24, "rare": 30, "elite": 34, "epic": 40, "legendary": 44, "fabled": 48, "mythical": 52}, "perIlvl": 0.5, "jitter": 2, "cost": [2, 8]},
+  "ashmarks": {"about": "le-ui step 17 (UI-SPEC 5.3): uniques and set pieces roll 0-4 empty Ashmarks at drop with these weights; display only in Phase 2.", "name": "Ashmarks", "help": "Empty marks on this unique. Each one can hold an affix taken from gear you consume.", "weights": [50, 30, 14, 5, 1]},
   "slotNames": {
     "dagger": "Dagger",
     "sword": "Sword",
@@ -2564,12 +2566,17 @@
       }
     }
   ],
+  "affixTiers": {
+    "about": "le-ui (v85) affix tiers T1-T7 shown as chips on every affix band. A pool affix's tier comes from its level: the highest row whose level is <= the affix level. T6-T7 are the drop-only top rolls (level 12+: searing, of_cinders, of_the_colossus). Rolled affixes store the tier; saves before v7 get it on load (js/ab-ledata.js).",
+    "byLevel": [[1, 1], [3, 2], [5, 3], [7, 4], [9, 5], [12, 6], [14, 7]]
+  },
   "prefixes": [
     {
       "id": "vicious",
       "name": "Vicious",
       "group": "ed",
       "level": 1,
+      "tier": 1,
       "slots": [
         "weapon"
       ],
@@ -2582,6 +2589,7 @@
       "name": "Cruel",
       "group": "ed",
       "level": 8,
+      "tier": 4,
       "slots": [
         "weapon"
       ],
@@ -2594,6 +2602,7 @@
       "name": "Burning",
       "group": "fire",
       "level": 3,
+      "tier": 2,
       "slots": [
         "weapon"
       ],
@@ -2609,6 +2618,7 @@
       "name": "Searing",
       "group": "fire",
       "level": 12,
+      "tier": 6,
       "slots": [
         "weapon"
       ],
@@ -2624,6 +2634,7 @@
       "name": "Bitter",
       "group": "cold",
       "level": 5,
+      "tier": 3,
       "slots": [
         "weapon"
       ],
@@ -2639,6 +2650,7 @@
       "name": "Charged",
       "group": "light",
       "level": 5,
+      "tier": 3,
       "slots": [
         "weapon"
       ],
@@ -2654,6 +2666,7 @@
       "name": "Jagged",
       "group": "ar",
       "level": 1,
+      "tier": 1,
       "slots": [
         "weapon",
         "gloves",
@@ -2669,6 +2682,7 @@
       "name": "Hale",
       "group": "life",
       "level": 1,
+      "tier": 1,
       "slots": [
         "helm",
         "armor",
@@ -2685,6 +2699,7 @@
       "name": "Stalwart",
       "group": "life",
       "level": 10,
+      "tier": 5,
       "slots": [
         "helm",
         "armor",
@@ -2700,6 +2715,7 @@
       "name": "Vivid",
       "group": "mana",
       "level": 2,
+      "tier": 1,
       "slots": [
         "helm",
         "armor",
@@ -2715,6 +2731,7 @@
       "name": "Amber",
       "group": "fres",
       "level": 3,
+      "tier": 2,
       "slots": [
         "helm",
         "armor",
@@ -2730,6 +2747,7 @@
       "name": "Pale",
       "group": "cres",
       "level": 3,
+      "tier": 2,
       "slots": [
         "helm",
         "armor",
@@ -2745,6 +2763,7 @@
       "name": "Arc",
       "group": "lres",
       "level": 3,
+      "tier": 2,
       "slots": [
         "helm",
         "armor",
@@ -2760,6 +2779,7 @@
       "name": "Swift",
       "group": "ias",
       "level": 5,
+      "tier": 3,
       "slots": [
         "weapon",
         "gloves",
@@ -2774,6 +2794,7 @@
       "name": "Fleet",
       "group": "frw",
       "level": 2,
+      "tier": 1,
       "slots": [
         "boots",
         "ring"
@@ -2792,6 +2813,7 @@
       "name": "Greedy",
       "group": "mf",
       "level": 6,
+      "tier": 3,
       "slots": [
         "helm",
         "gloves",
@@ -2808,6 +2830,7 @@
       "name": "Patient",
       "group": "regen",
       "level": 4,
+      "tier": 2,
       "slots": [
         "helm",
         "belt",
@@ -2822,6 +2845,7 @@
       "name": "Thorny",
       "group": "thorns",
       "level": 4,
+      "tier": 2,
       "slots": [
         "armor",
         "offhand",
@@ -2836,6 +2860,7 @@
       "name": "Strong",
       "group": "str",
       "level": 2,
+      "tier": 1,
       "slots": [
         "gloves",
         "belt",
@@ -2852,6 +2877,7 @@
       "name": "Keen",
       "group": "dex",
       "level": 2,
+      "tier": 1,
       "slots": [
         "gloves",
         "boots",
@@ -2867,6 +2893,7 @@
       "name": "Hardy",
       "group": "vit",
       "level": 2,
+      "tier": 1,
       "slots": [
         "helm",
         "armor",
@@ -2883,6 +2910,7 @@
       "name": "Wise",
       "group": "ene",
       "level": 2,
+      "tier": 1,
       "slots": [
         "helm",
         "amulet",
@@ -2928,6 +2956,7 @@
       "name": "of Embers",
       "group": "fres",
       "level": 4,
+      "tier": 2,
       "slots": [
         "armor",
         "helm",
@@ -2944,6 +2973,7 @@
       "name": "of the Warden",
       "group": "life",
       "level": 6,
+      "tier": 3,
       "slots": [
         "armor",
         "helm",
@@ -2959,6 +2989,7 @@
       "name": "of the Leech",
       "group": "leech",
       "level": 8,
+      "tier": 4,
       "slots": [
         "weapon",
         "ring",
@@ -2973,6 +3004,7 @@
       "name": "of Precision",
       "group": "crit",
       "level": 6,
+      "tier": 3,
       "slots": [
         "weapon",
         "gloves",
@@ -2988,6 +3020,7 @@
       "name": "of the Bear",
       "group": "str",
       "level": 3,
+      "tier": 2,
       "slots": [
         "weapon",
         "gloves",
@@ -3004,6 +3037,7 @@
       "name": "of the Cat",
       "group": "dex",
       "level": 3,
+      "tier": 2,
       "slots": [
         "weapon",
         "gloves",
@@ -3019,6 +3053,7 @@
       "name": "of the Ox",
       "group": "vit",
       "level": 3,
+      "tier": 2,
       "slots": [
         "armor",
         "helm",
@@ -3034,6 +3069,7 @@
       "name": "of the Sage",
       "group": "ene",
       "level": 3,
+      "tier": 2,
       "slots": [
         "helm",
         "amulet",
@@ -3049,6 +3085,7 @@
       "name": "of Haste",
       "group": "ias",
       "level": 7,
+      "tier": 4,
       "slots": [
         "weapon",
         "gloves"
@@ -3062,6 +3099,7 @@
       "name": "of Fortune",
       "group": "mf",
       "level": 8,
+      "tier": 4,
       "slots": [
         "boots",
         "gloves",
@@ -3076,6 +3114,7 @@
       "name": "of the Colossus",
       "group": "ed",
       "level": 14,
+      "tier": 7,
       "slots": [
         "weapon"
       ],
@@ -3088,6 +3127,7 @@
       "name": "of Stone",
       "group": "def",
       "level": 2,
+      "tier": 1,
       "slots": [
         "armor",
         "helm",
@@ -3103,6 +3143,7 @@
       "name": "of the Owl",
       "group": "mana",
       "level": 4,
+      "tier": 2,
       "slots": [
         "helm",
         "amulet",
@@ -3117,6 +3158,7 @@
       "name": "of Thorns",
       "group": "thorns",
       "level": 6,
+      "tier": 3,
       "slots": [
         "armor",
         "offhand"
@@ -3130,6 +3172,7 @@
       "name": "of the Sentinel",
       "group": "allres",
       "level": 10,
+      "tier": 5,
       "slots": [
         "armor",
         "helm",
@@ -3145,6 +3188,7 @@
       "name": "of Cinders",
       "group": "skills",
       "level": 12,
+      "tier": 6,
       "slots": [
         "amulet",
         "helm",
@@ -3159,6 +3203,7 @@
       "name": "of the Path",
       "group": "frw",
       "level": 4,
+      "tier": 2,
       "slots": [
         "boots"
       ],

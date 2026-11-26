@@ -1,0 +1,1250 @@
+{
+ "about": "le-ui painted art (original, made for Ashbound). items: rect [x,y,w,h] in items@2x px, 128 px per grid cell; @1x is half. chrome: rect in chrome@2x px; nine = 9-slice inset px, three = 3-slice x inset px. Built by tools/pack_ui_art.py.",
+ "version": 1,
+ "items": {
+  "src2x": "assets/ui/items@2x.webp",
+  "src1x": "assets/ui/items@1x.webp",
+  "size2x": [
+   2048,
+   1280
+  ],
+  "cell2x": 128,
+  "rects": {
+   "heart_mallet": [
+    0,
+    0,
+    256,
+    512
+   ],
+   "cinder_staff": [
+    256,
+    0,
+    128,
+    512
+   ],
+   "kiln_maul": [
+    384,
+    0,
+    256,
+    384
+   ],
+   "thorn_bow": [
+    640,
+    0,
+    256,
+    384
+   ],
+   "wander_wrap": [
+    896,
+    0,
+    256,
+    384
+   ],
+   "hide_coat": [
+    1152,
+    0,
+    256,
+    384
+   ],
+   "scale_hauberk": [
+    1408,
+    0,
+    256,
+    384
+   ],
+   "kiln_plate": [
+    1664,
+    0,
+    256,
+    384
+   ],
+   "kiln_shield": [
+    0,
+    512,
+    256,
+    384
+   ],
+   "salt_saber": [
+    256,
+    512,
+    128,
+    384
+   ],
+   "spire_blade": [
+    384,
+    512,
+    128,
+    384
+   ],
+   "cloth_hood": [
+    512,
+    512,
+    256,
+    256
+   ],
+   "salt_cap": [
+    768,
+    512,
+    256,
+    256
+   ],
+   "kiln_helm": [
+    1024,
+    512,
+    256,
+    256
+   ],
+   "wrap_gloves": [
+    1280,
+    512,
+    256,
+    256
+   ],
+   "scale_gloves": [
+    1536,
+    512,
+    256,
+    256
+   ],
+   "trail_boots": [
+    1792,
+    512,
+    256,
+    256
+   ],
+   "kiln_boots": [
+    0,
+    896,
+    256,
+    256
+   ],
+   "wicker_shield": [
+    256,
+    896,
+    256,
+    256
+   ],
+   "charm_grand": [
+    512,
+    896,
+    256,
+    256
+   ],
+   "ashwood_knife": [
+    768,
+    896,
+    128,
+    256
+   ],
+   "glass_dirk": [
+    896,
+    896,
+    128,
+    256
+   ],
+   "charm_large": [
+    1024,
+    896,
+    128,
+    256
+   ],
+   "rope_belt": [
+    1152,
+    896,
+    256,
+    128
+   ],
+   "plate_belt": [
+    1408,
+    896,
+    256,
+    128
+   ],
+   "copper_ring": [
+    1664,
+    896,
+    128,
+    128
+   ],
+   "cord_amulet": [
+    1792,
+    896,
+    128,
+    128
+   ],
+   "flask_life": [
+    1920,
+    896,
+    128,
+    128
+   ],
+   "flask_mana": [
+    0,
+    1152,
+    128,
+    128
+   ],
+   "gem": [
+    128,
+    1152,
+    128,
+    128
+   ],
+   "rune": [
+    256,
+    1152,
+    128,
+    128
+   ],
+   "lens": [
+    384,
+    1152,
+    128,
+    128
+   ],
+   "coins": [
+    512,
+    1152,
+    128,
+    128
+   ],
+   "charm_small": [
+    640,
+    1152,
+    128,
+    128
+   ],
+   "ember_shard": [
+    768,
+    1152,
+    128,
+    128
+   ],
+   "frostglass": [
+    896,
+    1152,
+    128,
+    128
+   ],
+   "storm_quartz": [
+    1024,
+    1152,
+    128,
+    128
+   ],
+   "blood_garnet": [
+    1152,
+    1152,
+    128,
+    128
+   ],
+   "sky_pearl": [
+    1280,
+    1152,
+    128,
+    128
+   ]
+  },
+  "cells": {
+   "heart_mallet": [
+    2,
+    4
+   ],
+   "cinder_staff": [
+    1,
+    4
+   ],
+   "kiln_maul": [
+    2,
+    3
+   ],
+   "thorn_bow": [
+    2,
+    3
+   ],
+   "wander_wrap": [
+    2,
+    3
+   ],
+   "hide_coat": [
+    2,
+    3
+   ],
+   "scale_hauberk": [
+    2,
+    3
+   ],
+   "kiln_plate": [
+    2,
+    3
+   ],
+   "kiln_shield": [
+    2,
+    3
+   ],
+   "salt_saber": [
+    1,
+    3
+   ],
+   "spire_blade": [
+    1,
+    3
+   ],
+   "cloth_hood": [
+    2,
+    2
+   ],
+   "salt_cap": [
+    2,
+    2
+   ],
+   "kiln_helm": [
+    2,
+    2
+   ],
+   "wrap_gloves": [
+    2,
+    2
+   ],
+   "scale_gloves": [
+    2,
+    2
+   ],
+   "trail_boots": [
+    2,
+    2
+   ],
+   "kiln_boots": [
+    2,
+    2
+   ],
+   "wicker_shield": [
+    2,
+    2
+   ],
+   "charm_grand": [
+    2,
+    2
+   ],
+   "ashwood_knife": [
+    1,
+    2
+   ],
+   "glass_dirk": [
+    1,
+    2
+   ],
+   "charm_large": [
+    1,
+    2
+   ],
+   "rope_belt": [
+    2,
+    1
+   ],
+   "plate_belt": [
+    2,
+    1
+   ],
+   "copper_ring": [
+    1,
+    1
+   ],
+   "cord_amulet": [
+    1,
+    1
+   ],
+   "flask_life": [
+    1,
+    1
+   ],
+   "flask_mana": [
+    1,
+    1
+   ],
+   "gem": [
+    1,
+    1
+   ],
+   "rune": [
+    1,
+    1
+   ],
+   "lens": [
+    1,
+    1
+   ],
+   "coins": [
+    1,
+    1
+   ],
+   "charm_small": [
+    1,
+    1
+   ],
+   "ember_shard": [
+    1,
+    1
+   ],
+   "frostglass": [
+    1,
+    1
+   ],
+   "storm_quartz": [
+    1,
+    1
+   ],
+   "blood_garnet": [
+    1,
+    1
+   ],
+   "sky_pearl": [
+    1,
+    1
+   ]
+  }
+ },
+ "chrome": {
+  "src": "assets/ui/chrome@2x.webp",
+  "size": [
+   2048,
+   844
+  ],
+  "rects": {
+   "panel_frame": [
+    0,
+    0,
+    512,
+    512
+   ],
+   "title_plaque": [
+    514,
+    0,
+    512,
+    121
+   ],
+   "btn_ember": [
+    1028,
+    0,
+    384,
+    112
+   ],
+   "btn_iron": [
+    1414,
+    0,
+    384,
+    112
+   ],
+   "slot_well": [
+    1800,
+    0,
+    128,
+    128
+   ],
+   "frame_common": [
+    1028,
+    114,
+    128,
+    128
+   ],
+   "plate_common": [
+    1158,
+    114,
+    128,
+    128
+   ],
+   "frame_magic": [
+    1288,
+    114,
+    128,
+    128
+   ],
+   "plate_magic": [
+    1418,
+    114,
+    128,
+    128
+   ],
+   "glow_magic": [
+    1548,
+    114,
+    128,
+    128
+   ],
+   "frame_rare": [
+    514,
+    123,
+    128,
+    128
+   ],
+   "plate_rare": [
+    644,
+    123,
+    128,
+    128
+   ],
+   "glow_rare": [
+    774,
+    123,
+    128,
+    128
+   ],
+   "frame_elite": [
+    1678,
+    130,
+    128,
+    128
+   ],
+   "plate_elite": [
+    1808,
+    130,
+    128,
+    128
+   ],
+   "glow_elite": [
+    904,
+    244,
+    128,
+    128
+   ],
+   "frame_epic": [
+    1034,
+    244,
+    128,
+    128
+   ],
+   "plate_epic": [
+    1164,
+    244,
+    128,
+    128
+   ],
+   "glow_epic": [
+    1294,
+    244,
+    128,
+    128
+   ],
+   "frame_legendary": [
+    1424,
+    244,
+    128,
+    128
+   ],
+   "plate_legendary": [
+    514,
+    253,
+    128,
+    128
+   ],
+   "glow_legendary": [
+    644,
+    253,
+    128,
+    128
+   ],
+   "frame_fabled": [
+    774,
+    253,
+    128,
+    128
+   ],
+   "plate_fabled": [
+    1554,
+    260,
+    128,
+    128
+   ],
+   "glow_fabled": [
+    1684,
+    260,
+    128,
+    128
+   ],
+   "frame_mythical": [
+    1814,
+    260,
+    128,
+    128
+   ],
+   "plate_mythical": [
+    904,
+    374,
+    128,
+    128
+   ],
+   "glow_mythical": [
+    1034,
+    374,
+    128,
+    128
+   ],
+   "frame_unique": [
+    1164,
+    374,
+    128,
+    128
+   ],
+   "plate_unique": [
+    1294,
+    374,
+    128,
+    128
+   ],
+   "glow_unique": [
+    1424,
+    374,
+    128,
+    128
+   ],
+   "frame_set": [
+    514,
+    383,
+    128,
+    128
+   ],
+   "plate_set": [
+    644,
+    383,
+    128,
+    128
+   ],
+   "glow_set": [
+    774,
+    383,
+    128,
+    128
+   ],
+   "frame_currency": [
+    1554,
+    390,
+    128,
+    128
+   ],
+   "plate_currency": [
+    1684,
+    390,
+    128,
+    128
+   ],
+   "chip_ember": [
+    1814,
+    390,
+    192,
+    64
+   ],
+   "chip_blood": [
+    1814,
+    456,
+    192,
+    64
+   ],
+   "chip_rust": [
+    904,
+    504,
+    192,
+    64
+   ],
+   "chip_gold": [
+    1098,
+    504,
+    192,
+    64
+   ],
+   "chip_moss": [
+    1292,
+    504,
+    192,
+    64
+   ],
+   "chip_verdigris": [
+    514,
+    513,
+    192,
+    64
+   ],
+   "chip_teal": [
+    708,
+    513,
+    192,
+    64
+   ],
+   "chip_frost": [
+    0,
+    514,
+    192,
+    64
+   ],
+   "chip_indigo": [
+    194,
+    514,
+    192,
+    64
+   ],
+   "chip_violet": [
+    1486,
+    520,
+    192,
+    64
+   ],
+   "chip_bone": [
+    1680,
+    522,
+    192,
+    64
+   ],
+   "chip_ash": [
+    902,
+    570,
+    192,
+    64
+   ],
+   "grid_cell": [
+    388,
+    514,
+    96,
+    96
+   ],
+   "tab_sword": [
+    1874,
+    522,
+    96,
+    96
+   ],
+   "tab_axe": [
+    1096,
+    570,
+    96,
+    96
+   ],
+   "tab_mace": [
+    1194,
+    570,
+    96,
+    96
+   ],
+   "tab_bow": [
+    1292,
+    570,
+    96,
+    96
+   ],
+   "tab_staff": [
+    486,
+    579,
+    96,
+    96
+   ],
+   "tab_dagger": [
+    584,
+    579,
+    96,
+    96
+   ],
+   "tab_shield": [
+    682,
+    579,
+    96,
+    96
+   ],
+   "tab_helm": [
+    780,
+    579,
+    96,
+    96
+   ],
+   "tab_armor": [
+    0,
+    580,
+    96,
+    96
+   ],
+   "tab_gloves": [
+    98,
+    580,
+    96,
+    96
+   ],
+   "tab_boots": [
+    196,
+    580,
+    96,
+    96
+   ],
+   "tab_belt": [
+    1390,
+    586,
+    96,
+    96
+   ],
+   "tab_ring": [
+    1488,
+    586,
+    96,
+    96
+   ],
+   "tab_amulet": [
+    1586,
+    588,
+    96,
+    96
+   ],
+   "tab_gem": [
+    1684,
+    588,
+    96,
+    96
+   ],
+   "tab_rune": [
+    294,
+    612,
+    96,
+    96
+   ],
+   "tab_potion": [
+    1782,
+    620,
+    96,
+    96
+   ],
+   "tab_skull": [
+    1880,
+    620,
+    96,
+    96
+   ],
+   "tab_flame": [
+    878,
+    636,
+    96,
+    96
+   ],
+   "tab_crown": [
+    976,
+    636,
+    96,
+    96
+   ],
+   "tab_key": [
+    1074,
+    668,
+    96,
+    96
+   ],
+   "tab_coins": [
+    1172,
+    668,
+    96,
+    96
+   ],
+   "tab_chest": [
+    1270,
+    668,
+    96,
+    96
+   ],
+   "tab_star": [
+    392,
+    677,
+    96,
+    96
+   ],
+   "ghost_sword": [
+    490,
+    677,
+    72,
+    72
+   ],
+   "ghost_axe": [
+    564,
+    677,
+    72,
+    72
+   ],
+   "ghost_mace": [
+    638,
+    677,
+    72,
+    72
+   ],
+   "ghost_bow": [
+    712,
+    677,
+    72,
+    72
+   ],
+   "ghost_staff": [
+    786,
+    677,
+    72,
+    72
+   ],
+   "ghost_dagger": [
+    0,
+    678,
+    72,
+    72
+   ],
+   "ghost_shield": [
+    74,
+    678,
+    72,
+    72
+   ],
+   "ghost_helm": [
+    148,
+    678,
+    72,
+    72
+   ],
+   "ghost_armor": [
+    1368,
+    684,
+    72,
+    72
+   ],
+   "ghost_gloves": [
+    1442,
+    684,
+    72,
+    72
+   ],
+   "ghost_boots": [
+    1516,
+    686,
+    72,
+    72
+   ],
+   "ghost_belt": [
+    1590,
+    686,
+    72,
+    72
+   ],
+   "ghost_ring": [
+    1664,
+    686,
+    72,
+    72
+   ],
+   "ghost_amulet": [
+    222,
+    710,
+    72,
+    72
+   ],
+   "ghost_gem": [
+    296,
+    710,
+    72,
+    72
+   ],
+   "ghost_rune": [
+    1738,
+    718,
+    72,
+    72
+   ],
+   "ghost_potion": [
+    1812,
+    718,
+    72,
+    72
+   ],
+   "ghost_skull": [
+    1886,
+    718,
+    72,
+    72
+   ],
+   "ghost_flame": [
+    1960,
+    718,
+    72,
+    72
+   ],
+   "ghost_crown": [
+    860,
+    734,
+    72,
+    72
+   ],
+   "ghost_key": [
+    934,
+    734,
+    72,
+    72
+   ],
+   "ghost_coins": [
+    490,
+    751,
+    72,
+    72
+   ],
+   "ghost_chest": [
+    564,
+    751,
+    72,
+    72
+   ],
+   "ghost_star": [
+    638,
+    751,
+    72,
+    72
+   ],
+   "g_anvil": [
+    1008,
+    734,
+    64,
+    64
+   ],
+   "g_ashpip_off": [
+    712,
+    751,
+    64,
+    64
+   ],
+   "g_ashpip_on": [
+    778,
+    751,
+    64,
+    64
+   ],
+   "g_close": [
+    0,
+    752,
+    64,
+    64
+   ],
+   "g_down": [
+    66,
+    752,
+    64,
+    64
+   ],
+   "g_filter": [
+    132,
+    752,
+    64,
+    64
+   ],
+   "g_plus": [
+    1368,
+    758,
+    64,
+    64
+   ],
+   "g_prefix": [
+    1434,
+    758,
+    64,
+    64
+   ],
+   "g_search": [
+    1500,
+    760,
+    64,
+    64
+   ],
+   "g_sort": [
+    1566,
+    760,
+    64,
+    64
+   ],
+   "g_suffix": [
+    1632,
+    760,
+    64,
+    64
+   ],
+   "g_up": [
+    1074,
+    766,
+    64,
+    64
+   ],
+   "tier_1": [
+    1140,
+    766,
+    72,
+    48
+   ],
+   "tier_2": [
+    1214,
+    766,
+    72,
+    48
+   ],
+   "tier_3": [
+    1288,
+    766,
+    72,
+    48
+   ],
+   "tier_4": [
+    370,
+    775,
+    72,
+    48
+   ],
+   "tier_5": [
+    198,
+    784,
+    72,
+    48
+   ],
+   "tier_6": [
+    272,
+    784,
+    72,
+    48
+   ],
+   "tier_7": [
+    1698,
+    792,
+    72,
+    48
+   ],
+   "pip_elite": [
+    444,
+    775,
+    32,
+    32
+   ],
+   "pip_epic": [
+    1772,
+    792,
+    32,
+    32
+   ],
+   "pip_legendary": [
+    1806,
+    792,
+    32,
+    32
+   ],
+   "pip_fabled": [
+    1840,
+    792,
+    32,
+    32
+   ],
+   "pip_mythical": [
+    1874,
+    792,
+    32,
+    32
+   ]
+  },
+  "nine": {
+   "panel_frame": 86,
+   "slot_well": 17,
+   "frame_common": 17,
+   "plate_common": 17,
+   "frame_magic": 17,
+   "plate_magic": 17,
+   "glow_magic": 30,
+   "frame_rare": 17,
+   "plate_rare": 17,
+   "glow_rare": 30,
+   "frame_elite": 17,
+   "plate_elite": 17,
+   "glow_elite": 30,
+   "frame_epic": 17,
+   "plate_epic": 17,
+   "glow_epic": 30,
+   "frame_legendary": 17,
+   "plate_legendary": 17,
+   "glow_legendary": 30,
+   "frame_fabled": 17,
+   "plate_fabled": 17,
+   "glow_fabled": 30,
+   "frame_mythical": 17,
+   "plate_mythical": 17,
+   "glow_mythical": 30,
+   "frame_unique": 17,
+   "plate_unique": 17,
+   "glow_unique": 30,
+   "frame_set": 17,
+   "plate_set": 17,
+   "glow_set": 30,
+   "frame_currency": 17,
+   "plate_currency": 17
+  },
+  "three": {
+   "title_plaque": 100,
+   "btn_ember": 65,
+   "btn_iron": 65
+  }
+ },
+ "photos": {
+  "doll": "assets/ui/doll.webp",
+  "panelBg": "assets/ui/panel_bg.webp"
+ },
+ "tabIcons": [
+  "sword",
+  "axe",
+  "mace",
+  "bow",
+  "staff",
+  "dagger",
+  "shield",
+  "helm",
+  "armor",
+  "gloves",
+  "boots",
+  "belt",
+  "ring",
+  "amulet",
+  "gem",
+  "rune",
+  "potion",
+  "skull",
+  "flame",
+  "crown",
+  "key",
+  "coins",
+  "chest",
+  "star"
+ ],
+ "tabColors": {
+  "ember": "#c8561e",
+  "blood": "#8e1f22",
+  "rust": "#8a4a26",
+  "gold": "#b08a2a",
+  "moss": "#5a6e2a",
+  "verdigris": "#2f7a63",
+  "teal": "#1f6c78",
+  "frost": "#5a86a8",
+  "indigo": "#34418e",
+  "violet": "#6a3a96",
+  "bone": "#a89c84",
+  "ash": "#5a5450"
+ },
+ "tierColors": {
+  "1": "#8a827a",
+  "2": "#cfc6b0",
+  "3": "#6fb0e8",
+  "4": "#e8c34a",
+  "5": "#ff8c2e",
+  "6": "#b070ff",
+  "7": "#d090ff"
+ },
+ "misc": {
+  "potion:life": "flask_life",
+  "potion:mana": "flask_mana",
+  "rune": "rune",
+  "lens": "lens",
+  "gold": "coins",
+  "charm:small": "charm_small",
+  "charm:large": "charm_large",
+  "charm:grand": "charm_grand",
+  "gem": "gem"
+ },
+ "budgetMB": {
+  "items2x": 10.0,
+  "chrome": 6.6
+ }
+}

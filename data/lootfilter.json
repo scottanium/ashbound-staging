@@ -1,0 +1,22 @@
+{
+  "about": "le-ui step 18 (UI-SPEC F18/F20): loot filter for ground names, kept in settings.leFilter = {on, rules:[{on, act, color, cond:{rankMin, family, slot, lvl:[a,b], t6}}]}; the top rule that matches wins. act: show = always name it, hide = no name, recolor = name in a colour, big = larger name. Separate from settings.lootFilter (the game's own pick-up setting). All labels here are working names for Koto's pass.",
+  "title": "Loot filter",
+  "help": "Rules for names on the ground. The top rule that fits an item wins.",
+  "empty": "No rules yet. Names follow the Names setting.",
+  "addLabel": "New rule",
+  "editLabel": "Edit rule",
+  "anyLabel": "Any item",
+  "actLabel": "Do",
+  "colorLabel": "Colour",
+  "rankLabel": "Rank at least",
+  "familyLabel": "Family",
+  "levelLabel": "Level",
+  "slotLabel": "Slot",
+  "max": 20,
+  "bigSize": 15,
+  "acts": [["show", "Show"], ["hide", "Hide"], ["recolor", "Recolor"], ["big", "Big name"]],
+  "ranks": [["magic", "Magic"], ["rare", "Rare"], ["elite", "Elite"], ["epic", "Epic"], ["legendary", "Legendary"], ["fabled", "Fabled"], ["mythical", "Mythical"]],
+  "families": [["unique", "Unique"], ["set", "Set"]],
+  "slots": [["weapon", "Weapon"], ["offhand", "Off-hand"], ["helm", "Helm"], ["armor", "Body armor"], ["gloves", "Gloves"], ["belt", "Belt"], ["boots", "Boots"], ["ring", "Ring"], ["amulet", "Amulet"]],
+  "colors": {"white": "#ffffff", "gold": "#ffd34a", "orange": "#ff9a3c", "red": "#ff5a4a", "pink": "#ff7ad9", "violet": "#b98cff", "blue": "#6fb8ff", "cyan": "#5fe8e8", "green": "#7fe08a", "lime": "#c8f060", "grey": "#9a9a9a", "tan": "#c8a070"}
+}

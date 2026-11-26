@@ -1,0 +1,293 @@
+{
+  "about": "le-ui (v85) stash tabs. player.stashTabs = {v:2, active, next, tabs:[{id,cat,name,icon,color,w,h,items,rule}]}; player.stash is always the active tab object, so every old {w,h,items} helper keeps working. A v1-v6 save's stash becomes the first tab 'Stash' with the same items (js/ab-ledata.js). The shared stash (ashbound.shared) keeps its old single-grid shape so other builds can still read it. Category names are Koto's (koto-names-items.json); 'stash' is the general group the starter tab lives in. New tabs cost gold: prices[n] is the price of the (n+1)th bought tab, the last price repeats. icons/colors are the painted tab icons and chip colours in assets/ui (data/ui-art.json).",
+  "maxTabs": 12,
+  "tabW": 10,
+  "tabH": 8,
+  "starter": {
+    "id": "t1",
+    "cat": "stash",
+    "name": "Stash",
+    "icon": "chest",
+    "color": "ember"
+  },
+  "cats": [
+    {
+      "id": "stash",
+      "name": "Stash",
+      "icon": "chest",
+      "color": "ember",
+      "about": "Everything else."
+    },
+    {
+      "id": "arms",
+      "name": "Arms",
+      "icon": "sword",
+      "color": "rust",
+      "about": "Weapons and off-hands.",
+      "rule": {
+        "slots": [
+          "weapon",
+          "offhand"
+        ]
+      }
+    },
+    {
+      "id": "armor",
+      "name": "Armor",
+      "icon": "armor",
+      "color": "frost",
+      "about": "Helms, chest, gloves, belts, boots.",
+      "rule": {
+        "slots": [
+          "helm",
+          "armor",
+          "gloves",
+          "belt",
+          "boots"
+        ]
+      }
+    },
+    {
+      "id": "jewels",
+      "name": "Jewels",
+      "icon": "ring",
+      "color": "violet",
+      "about": "Rings and amulets.",
+      "rule": {
+        "slots": [
+          "ring",
+          "amulet"
+        ]
+      }
+    },
+    {
+      "id": "mats",
+      "name": "Makings",
+      "icon": "gem",
+      "color": "teal",
+      "about": "Shards, runes, gems and lenses.",
+      "rule": {
+        "kinds": [
+          "gem",
+          "rune",
+          "lens",
+          "material"
+        ]
+      }
+    },
+    {
+      "id": "uniques",
+      "name": "Relics",
+      "icon": "crown",
+      "color": "gold",
+      "about": "Uniques and set pieces.",
+      "rule": {
+        "families": [
+          "unique",
+          "set"
+        ]
+      }
+    }
+  ],
+  "prices": [
+    500,
+    1500,
+    3500,
+    7000,
+    12000,
+    20000
+  ],
+  "icons": [
+    "chest",
+    "sword",
+    "axe",
+    "mace",
+    "bow",
+    "staff",
+    "dagger",
+    "shield",
+    "helm",
+    "armor",
+    "gloves",
+    "boots",
+    "belt",
+    "ring",
+    "amulet",
+    "gem",
+    "rune",
+    "potion",
+    "skull",
+    "flame",
+    "crown",
+    "key",
+    "coins",
+    "star"
+  ],
+  "colors": [
+    "ember",
+    "blood",
+    "rust",
+    "gold",
+    "moss",
+    "verdigris",
+    "teal",
+    "frost",
+    "indigo",
+    "violet",
+    "bone",
+    "ash"
+  ],
+  "nameMax": 14,
+  "search": {
+    "placeholder": "Search all tabs",
+    "chips": [
+      [
+        "Unique",
+        "unique"
+      ],
+      [
+        "Set",
+        "set"
+      ],
+      [
+        "Rings",
+        "ring"
+      ],
+      [
+        "T6+",
+        "t6"
+      ],
+      [
+        "Lv20+",
+        "lv20+"
+      ]
+    ],
+    "max": 40
+  },
+  "rules": {
+    "about": "Send here: Koto's label and about text (koto-names-items.json buttons.keepHere). Routing order for a quick store (double-tap or the card's To stash): the first tab, in tab order, whose rule matches and has room; else the tab you have open; else No room.",
+    "label": "Send here",
+    "help": "Pick what belongs in this tab. Quick-stored items that match come here first.",
+    "groups": [
+      {
+        "key": "slots",
+        "label": "Slot",
+        "opts": [
+          [
+            "weapon",
+            "Weapon"
+          ],
+          [
+            "offhand",
+            "Off-hand"
+          ],
+          [
+            "helm",
+            "Helm"
+          ],
+          [
+            "armor",
+            "Body armor"
+          ],
+          [
+            "gloves",
+            "Gloves"
+          ],
+          [
+            "belt",
+            "Belt"
+          ],
+          [
+            "boots",
+            "Boots"
+          ],
+          [
+            "ring",
+            "Ring"
+          ],
+          [
+            "amulet",
+            "Amulet"
+          ]
+        ]
+      },
+      {
+        "key": "kinds",
+        "label": "Makings",
+        "opts": [
+          [
+            "gem",
+            "Gems"
+          ],
+          [
+            "rune",
+            "Runes"
+          ],
+          [
+            "lens",
+            "Lenses"
+          ],
+          [
+            "material",
+            "Shards"
+          ]
+        ]
+      },
+      {
+        "key": "families",
+        "label": "Family",
+        "opts": [
+          [
+            "unique",
+            "Unique"
+          ],
+          [
+            "set",
+            "Set"
+          ]
+        ]
+      }
+    ],
+    "rankLabel": "Rank at least",
+    "doubleTapMs": 320
+  },
+  "sort": {
+    "about": "Sort by (step 15): long-press (or right-click) any Sort button. 'size' is the game's own sort (biggest first, then item level). The choice is kept on the hero (player.leSort) and used by every Sort tap after.",
+    "holdMs": 450,
+    "modes": [
+      [
+        "size",
+        "Size"
+      ],
+      [
+        "rank",
+        "Rank"
+      ],
+      [
+        "slot",
+        "Slot"
+      ],
+      [
+        "level",
+        "Level"
+      ]
+    ],
+    "slotOrder": [
+      "weapon",
+      "offhand",
+      "helm",
+      "armor",
+      "gloves",
+      "belt",
+      "boots",
+      "ring",
+      "amulet"
+    ]
+  },
+  "mats": {
+    "label": "Stow makings",
+    "about": "Moves shards, runes, gems and lenses out of your pack and into your makings.",
+    "title": "Makings",
+    "note": "Koto's label and about (koto-names-items.json buttons.storeMats). Tap a count to put one back in the pack; the cube only sees what is in a grid."
+  }
+}
