@@ -1,0 +1,161 @@
+{
+ "version": 1,
+ "comment": "Realistic enemy sprites. Keyed by monster id (data/monsters.json). Missing id = old sprite. See /workspace/ashbound-overhaul/enemies-real/FORMAT.md",
+ "tilesPerMeter": 0.82,
+ "budgetMB": 24,
+ "minBudgetMB": 12,
+ "combinedBudgetMB": 64,
+ "compositeMB": 8,
+ "holdMs": 4000,
+ "outline": 0.55,
+ "rankOutline": {
+  "elite": "#f0d56a",
+  "champion": "#79b0ff"
+ },
+ "enemies": {
+  "bramble_hound": {
+   "path": "assets/enemies/bramble_hound/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": true
+  },
+  "reed_lurker": {
+   "path": "assets/enemies/reed_lurker/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": true
+  },
+  "dune_stalker": {
+   "path": "assets/enemies/dune_stalker/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": true
+  },
+  "cinder_charger": {
+   "path": "assets/enemies/cinder_charger/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": true
+  },
+  "salt_raider": {
+   "path": "assets/enemies/salt_raider/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "glass_slinger": {
+   "path": "assets/enemies/glass_slinger/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "kiln_caller": {
+   "path": "assets/enemies/kiln_caller/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "ash_priest": {
+   "path": "assets/enemies/ash_priest/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "mire_heron": {
+   "path": "assets/enemies/mire_heron/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "bell_acolyte": {
+   "path": "assets/enemies/bell_acolyte/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "thorn_kin": {
+   "path": "assets/enemies/thorn_kin/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "kilnbound": {
+   "path": "assets/enemies/kilnbound/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "plate_husk": {
+   "path": "assets/enemies/plate_husk/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "kiln_imp": {
+   "path": "assets/enemies/kiln_imp/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "glass_minnow": {
+   "path": "assets/enemies/glass_minnow/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "ember_golem": {
+   "path": "assets/enemies/ember_golem/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "silt_golem": {
+   "path": "assets/enemies/silt_golem/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "cinder_wisp": {
+   "path": "assets/enemies/cinder_wisp/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "kiln_spark": {
+   "path": "assets/enemies/kiln_spark/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "archive_shade": {
+   "path": "assets/enemies/archive_shade/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "ash_moth": {
+   "path": "assets/enemies/ash_moth/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "glass_kiter": {
+   "path": "assets/enemies/glass_kiter/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "lantern_crab": {
+   "path": "assets/enemies/lantern_crab/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  },
+  "shield_crab": {
+   "path": "assets/enemies/shield_crab/",
+   "scale": 1.0,
+   "group": "A",
+   "headCheck": false
+  }
+ }
+}
