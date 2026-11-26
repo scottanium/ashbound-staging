@@ -1,0 +1,394 @@
+{
+  "version": 1,
+  "enabled": true,
+  "classId": "salt_reaver",
+  "about": "Salt Reaver trees (v82s, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-reaver.js runs the new mechanics. New names are placeholders for Koto (kotoPlaceholder, KOTO-NAMES-reaver.md). Delete this file (or set enabled false) and the Reaver uses the old per-skill system again.",
+  "trees": [
+    {
+      "id": "edge",
+      "name": "Edge",
+      "about": "Short cuts and the dashes that put you through a pack.",
+      "between": {
+        "damagePct": 4,
+        "stats": {
+          "dex": 2,
+          "ar": 6
+        },
+        "areaPctPer2": 2,
+        "label": "Edge"
+      },
+      "nodes": [
+        {
+          "at": 5,
+          "skill": "salt_cut"
+        },
+        {
+          "at": 10,
+          "skill": "keen_edge"
+        },
+        {
+          "at": 15,
+          "skill": "glass_step"
+        },
+        {
+          "at": 20,
+          "skill": "salt_feint"
+        },
+        {
+          "at": 25,
+          "skill": "parting_cut"
+        },
+        {
+          "at": 30,
+          "skill": "wake_edge"
+        },
+        {
+          "at": 35,
+          "skill": "brine_flurry"
+        },
+        {
+          "at": 40,
+          "skill": "salt_storm",
+          "ultimate": true
+        }
+      ]
+    },
+    {
+      "id": "tempo",
+      "name": "Tempo",
+      "about": "Attack speed, a spinning cut, and a rhythm that keeps building.",
+      "between": {
+        "damagePct": 4,
+        "stats": {
+          "dex": 1,
+          "ias": 1
+        },
+        "areaPctPer2": 2,
+        "label": "Tempo"
+      },
+      "nodes": [
+        {
+          "at": 5,
+          "skill": "quick_wrist"
+        },
+        {
+          "at": 10,
+          "skill": "salt_guard"
+        },
+        {
+          "at": 15,
+          "skill": "red_line"
+        },
+        {
+          "at": 20,
+          "skill": "measure"
+        },
+        {
+          "at": 25,
+          "skill": "open_tempo"
+        },
+        {
+          "at": 30,
+          "skill": "rhythm"
+        },
+        {
+          "at": 35,
+          "skill": "full_measure"
+        },
+        {
+          "at": 40,
+          "skill": "perfect_tempo",
+          "ultimate": true
+        }
+      ]
+    },
+    {
+      "id": "vein",
+      "name": "Vein",
+      "about": "Life steal, a last stand, and healing that spills over into a shield.",
+      "between": {
+        "damagePct": 4,
+        "stats": {
+          "life": 3,
+          "vit": 1
+        },
+        "areaPctPer2": 2,
+        "label": "Vein"
+      },
+      "nodes": [
+        {
+          "at": 5,
+          "skill": "blood_price"
+        },
+        {
+          "at": 10,
+          "skill": "second_wind"
+        },
+        {
+          "at": 15,
+          "skill": "close_vein"
+        },
+        {
+          "at": 20,
+          "skill": "riposte"
+        },
+        {
+          "at": 25,
+          "skill": "bloodletting"
+        },
+        {
+          "at": 30,
+          "skill": "brine_surplus"
+        },
+        {
+          "at": 35,
+          "skill": "last_salt"
+        },
+        {
+          "at": 40,
+          "skill": "red_tide",
+          "ultimate": true
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "wake_edge",
+      "name": "Wake Edge",
+      "kotoPlaceholder": true,
+      "branch": "edge",
+      "type": "passive",
+      "icon": "eye",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "After any dash, your next two hits are certain crits.",
+      "notes": [
+        "Works with Glass Step, Salt Feint and the dashes in Salt Storm."
+      ],
+      "params": {
+        "hits": 2,
+        "window": 3
+      }
+    },
+    {
+      "id": "brine_flurry",
+      "name": "Brine Flurry",
+      "kotoPlaceholder": true,
+      "branch": "edge",
+      "type": "active",
+      "icon": "slash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        12,
+        0.3
+      ],
+      "cooldown": 4,
+      "behavior": "tree_flurry",
+      "about": "Five fast cuts in front of you.",
+      "notes": [
+        "Each cut is a melee hit, so Wake Edge and Rhythm count all five."
+      ],
+      "params": {
+        "hits": 5,
+        "gap": 0.09,
+        "arc": 1.4,
+        "range": 1.5,
+        "physMult": [
+          0.5,
+          0.025
+        ]
+      }
+    },
+    {
+      "id": "salt_storm",
+      "name": "Salt Storm",
+      "kotoPlaceholder": true,
+      "ultimate": true,
+      "branch": "edge",
+      "type": "active",
+      "icon": "dash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        20,
+        0
+      ],
+      "cooldown": 28,
+      "behavior": "tree_salt_storm",
+      "about": "For a while you never stop moving. Dashes cost nothing and come back at once, and each one lands with a full-circle cut.",
+      "notes": [
+        "The landing cut uses Salt Cut's damage."
+      ],
+      "params": {
+        "duration": 10,
+        "frw": 35
+      }
+    },
+    {
+      "id": "rhythm",
+      "name": "Rhythm",
+      "kotoPlaceholder": true,
+      "branch": "tempo",
+      "type": "passive",
+      "icon": "slash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Each hit soon after the last adds a Rhythm stack: more attack speed per stack. Stop hitting and it drops.",
+      "notes": [
+        "Up to 10 stacks (20 with Perfect Tempo)."
+      ],
+      "params": {
+        "window": 2,
+        "max": 10,
+        "iasPer": 4
+      }
+    },
+    {
+      "id": "full_measure",
+      "name": "Full Measure",
+      "kotoPlaceholder": true,
+      "branch": "tempo",
+      "type": "active",
+      "icon": "arc",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        10,
+        0.3
+      ],
+      "cooldown": 4,
+      "behavior": "tree_measure",
+      "about": "Spend every Rhythm stack on one full-circle cut. More stacks, harder cut.",
+      "notes": [
+        "With no stacks it is a plain spin."
+      ],
+      "params": {
+        "range": 2.1,
+        "arc": 6.28,
+        "physMult": [
+          1.0,
+          0.04
+        ],
+        "perStackPct": 15
+      }
+    },
+    {
+      "id": "perfect_tempo",
+      "name": "Perfect Tempo",
+      "kotoPlaceholder": true,
+      "ultimate": true,
+      "branch": "tempo",
+      "type": "passive",
+      "icon": "slash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Your rhythm never breaks. Attack speed past the limit stops being wasted and turns into damage.",
+      "notes": [
+        "Attack speed is capped at +140%. Each 1% over the cap adds 1.5% damage to your attacks."
+      ],
+      "params": {
+        "ias": 20,
+        "max": 20,
+        "window": 4,
+        "cap": 140,
+        "dmgPerOver": 1.5
+      }
+    },
+    {
+      "id": "bloodletting",
+      "name": "Bloodletting",
+      "kotoPlaceholder": true,
+      "branch": "vein",
+      "type": "active",
+      "icon": "leech",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        10,
+        0.3
+      ],
+      "cooldown": 5,
+      "behavior": "tree_bloodletting",
+      "about": "A lunging cut that heals you for every enemy it opens.",
+      "notes": [
+        "Heals 3% of your max life per enemy hit (up to 5)."
+      ],
+      "params": {
+        "range": 2.0,
+        "arc": 0.9,
+        "physMult": [
+          1.5,
+          0.05
+        ],
+        "healPctPerHit": 3,
+        "maxHeals": 5
+      }
+    },
+    {
+      "id": "brine_surplus",
+      "name": "Brine Surplus",
+      "kotoPlaceholder": true,
+      "branch": "vein",
+      "type": "passive",
+      "icon": "ward",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Life you steal or heal past full is not lost. It hardens into a Brine shield.",
+      "notes": [
+        "Shield up to 30% of max life. It fades if you stop fighting for 3 seconds."
+      ],
+      "params": {
+        "capPctLife": 30,
+        "fadeAfter": 3,
+        "fadePctPerSec": 4
+      }
+    },
+    {
+      "id": "red_tide",
+      "name": "Red Tide",
+      "kotoPlaceholder": true,
+      "ultimate": true,
+      "branch": "vein",
+      "type": "active",
+      "icon": "leech",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "mana": [
+        20,
+        0
+      ],
+      "cooldown": 30,
+      "behavior": "tree_red_tide",
+      "about": "For a few seconds nothing can finish you. You steal more life, and when it ends a share of the damage you dealt comes back as healing.",
+      "notes": [
+        "You cannot drop below 1 life while it lasts. Healing past full goes into Brine Surplus's shield."
+      ],
+      "params": {
+        "duration": 8,
+        "leechPct": 8,
+        "healBackPct": 25
+      }
+    }
+  ],
+  "strings": {
+    "notice": "Your blade's skills now grow in trees. Every point is back to spend."
+  },
+  "kotoPlaceholderStrings": [
+    "notice"
+  ]
+}

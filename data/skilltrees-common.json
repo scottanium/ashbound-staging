@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "about": "v82s shared skill-tree math for every class (see docs/SKILLTREE-TUNING.md). Each data/skilltrees-<cls>.json is merged over this file: class keys win, strings merge key by key. Tune the point rhythm, rank curve and 41-50 damage band here once for all five classes.",
+  "points": {
+    "about": "Tree points: 1 at level 1, +1 per level to 50 (50), plus 1 every 5 Paragon levels (20 by Paragon 100). 70 total. Points are derived from level and Paragon, so they can never exceed 70.",
+    "atLevel1": 1,
+    "perLevel": 1,
+    "maxLevel": 50,
+    "paragonEvery": 5,
+    "paragonAmount": 1,
+    "paragonCap": 20,
+    "total": 70
+  },
+  "unlockEvery": 5,
+  "ultimateAt": 40,
+  "treeMax": 50,
+  "rank": {
+    "about": "Rank of every unlocked skill in a tree = round(min(points,40) / perRank), at least 1, at most max. 40 points maxes a tree's skills (rank 20). Points past 40 do not raise rank. Gear +skills only adds to skills that are already unlocked.",
+    "perRank": 2,
+    "max": 20
+  },
+  "damageBand": {
+    "about": "Points 41-50: damage only (+pct per point to that tree's skills). No rank, area, stat or utility gain.",
+    "from": 41,
+    "to": 50,
+    "pctPerPoint": 6
+  },
+  "strings": {
+    "pointsLine": "{free} to spend · {used} / {total} used",
+    "spend": "+1 {tree}",
+    "undo": "Undo",
+    "next": "Next: {skill} at {at} ({n} more)",
+    "allUnlocked": "All 8 unlocked. Points 41–50 add damage only.",
+    "maxed": "Tree full (50).",
+    "noPoints": "No points to spend. One comes with each level.",
+    "bandTitle": "41–50 damage band",
+    "bandLine": "+{pct}% {tree} damage (damage only)",
+    "bonusTitle": "Tree bonus now",
+    "ultimate": "Ultimate",
+    "locked": "at {at}",
+    "unlocked": "rank {rank}",
+    "oneUltimate": "Only one tree can reach its ultimate.",
+    "notice": "Your skills now grow in trees. Every point is back to spend.",
+    "noticeShort": "Your skills now grow in trees. Every point is back to spend.",
+    "spent": "{tree} {n}.",
+    "unlockedToast": "A new skill stirs: {name}",
+    "detailLocked": "Unlocks at {at} points in {tree}.",
+    "detailUnlocked": "Rank {rank} from {pts} points in {tree}."
+  }
+}
