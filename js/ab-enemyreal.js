@@ -16,7 +16,28 @@
   var pendSince = {};
   var pend = false;
   var worldIds = {}, lastScan = 0, warmed = {};
-  var S = { real: 0, fallback: 0, held: 0, hidden: 0, byType: {}, fbType: {}, lastDir: {}, lastAnim: {}, lastFrame: {}, lastFace: {}, errors: 0 };
+  var S = { real: 0, fallback: 0, held: 0, hidden: 0, byType: {}, fbType: {}, lastDir: {}, lastAnim: {}, lastFrame: {}, lastFace: {}, lastMir: {}, errors: 0 };
+  /* Bosses ("fine": true) bake more frames than the game's pose indices: pick them from time instead.
+     idle: looping clock; strike: time since this swing began (strikeSec); death: deathT (the game's own 0.57 s fall). */
+  var strikeAt = new WeakMap(), deathAt = new WeakMap();
+  function fineFrame(ent, sp, mode, n, fr) {
+    var t = now() / 1000;
+    if (mode === "idle") { strikeAt.delete(ent); var u = +String(ent.uid || 0).replace(/\D/g, "").slice(-4) || 0;  /* uid may be a string ("m12") */
+      return Math.max(0, Math.floor(t * (sp.idleFps || 3) + u * 0.37)) % n; }
+    if (mode === "strike") {
+      var s0 = strikeAt.get(ent); if (s0 == null || t - s0 > (sp.strikeSec || 0.45) * 2.5) { s0 = t; strikeAt.set(ent, t); }
+      return Math.min(n - 1, Math.floor((t - s0) / (sp.strikeSec || 0.45) * n));
+    }
+    strikeAt.delete(ent);
+    if (mode === "death") {
+      /* deathT when the game advances it; a boss defeat can hold deathT still, so also run on our own clock (0.6 s fall) */
+      var d0 = deathAt.get(ent); if (d0 == null) { d0 = t; deathAt.set(ent, t); }
+      var f = Math.max((ent.deathT || 0) * 7 / 4, (t - d0) / 0.6);
+      return Math.min(n - 1, Math.floor(Math.min(1, f) * n));
+    }
+    deathAt.delete(ent);
+    return fr;
+  }
 
   function qs() { try { return new URLSearchParams(location.search); } catch (e) { return new URLSearchParams(); } }
   function enabled() {
@@ -68,6 +89,7 @@
   function pri(url) {
     var id = url.split("/").slice(-2, -1)[0];
     if (!worldIds[id]) return 0;
+    var sp = spec(id); if (sp && sp.boss) return 5;
     if (/\/(death|hit)\.webp$/.test(url)) return 1;
     if (/\/strike\.webp$/.test(url)) return 2;
     if (/\/walk\.webp$/.test(url)) return 3;
@@ -127,7 +149,11 @@
     var ids = {};
     if (W && W.monsters) for (var i = 0; i < W.monsters.length; i++) { var e = W.monsters[i]; if (e && e.defId && spec(e.defId)) ids[e.defId] = 1; }
     worldIds = ids;
-    for (var id in ids) { prefetch(id, ["idle", "walk"]); warm(id); }
+    for (var id in ids) {
+      var sp_ = spec(id);
+      if (sp_ && sp_.boss) prefetch(id, ["idle", "walk", "strike", "hit", "death"]);  /* one boss per zone: load its whole set as soon as it exists */
+      else { prefetch(id, ["idle", "walk"]); warm(id); }
+    }
   }
 
   function outlineCol(rank) {
@@ -137,6 +163,13 @@
     return null;
   }
   function composite(id, m, anim, rec, dir, fr, rank, sc) {
+    /* Bosses are drawn 1.75-2.35x bigger than they are baked: composite them at atlas resolution and let the draw scale
+       them up (F.k), instead of building ~1 MB upscaled canvases per frame that thrash the 8 MB composite cache. */
+    var sp0 = spec(id), up = sp0 && sp0.boss && sc > 1 ? sc : 0;
+    if (up) {
+      var F0 = composite(id + "#1x", m, anim, rec, dir, fr, rank, 1);
+      return F0 && { c: F0.c, cx: F0.cx, cy: F0.cy, k: up };
+    }
     var key = id + "|" + anim + "|" + dir + "|" + fr + "|" + (rank || "") + "|" + Math.round(sc * 200);
     var hit = comps.get(key);
     if (hit) { comps.delete(key); comps.set(key, hit); return hit.F; }
@@ -171,7 +204,7 @@
     var t = now();
     if (!pendSince[id]) pendSince[id] = t;
     var L = lastBy.get(ent);
-    if (L) { S.held++; return { F: L, mir: 0 }; }
+    if (L) { S.held++; return { F: L.F, mir: L.mir }; }
     if (t - pendSince[id] > cfg("holdMs", 4000)) { S.fallback++; S.fbType[id] = (S.fbType[id] || 0) + 1; return null; }
     pend = true; S.hidden++;
     return null;
@@ -204,21 +237,36 @@
     }
     var rec = m.anims[anim];
     var n = rec.frames, gf = GAME_FRAMES[mode] || n, f0 = (pose && pose.frame) || 0;
-    var fr = anim === mode || ANIM_ALIAS[mode] === anim ? Math.min(n - 1, Math.max(0, Math.floor(f0 * n / gf))) : 0;
+    var same = anim === mode || ANIM_ALIAS[mode] === anim;
+    var fr = same ? Math.min(n - 1, Math.max(0, Math.floor(f0 * n / gf))) : 0;
+    if (same && sp.fine) fr = fineFrame(ent, sp, mode, n, fr);
     var shift = sp.dirShift || 0;
     var dir = (((Math.round((Math.PI / 2 - (face || 0)) / (Math.PI / 4)) % 8) + 8) % 8 + shift) % 8;
+    /* 5-direction bakes (bosses: rows 0..4 = front .. back through the right side): rows 5..7 are mirrors of 3..1 */
+    var mir = 0;
+    if (rec.dirs === 5 && dir > 4) { dir = 8 - dir; mir = 1; }
     var D = (typeof ab3BakeDpr === "function") ? ab3BakeDpr() : 2;
     var sc = cfg("tilesPerMeter", 0.82) * (r || 53) * D * (sp.scale || 1) / (m.ppm || 60);
     var rank = ent.rank === "elite" || ent.rank === "champion" ? ent.rank : "";
     var F = composite(id, m, anim, rec, dir, fr, rank, sc);
     if (!F) return hold(ent, id);
     delete pendSince[id];
-    lastBy.set(ent, F);
+    lastBy.set(ent, { F: F, mir: mir });
     S.real++; S.byType[id] = (S.byType[id] || 0) + 1;
-    S.lastDir[id] = dir; S.lastAnim[id] = anim; S.lastFrame[id] = fr; S.lastFace[id] = face;
-    return { F: F, mir: 0 };
+    S.lastDir[id] = mir ? 8 - dir : dir; S.lastAnim[id] = anim; S.lastFrame[id] = fr; S.lastFace[id] = face; S.lastMir[id] = mir;
+    return { F: F, mir: mir };
   }
 
+  w.abEnemyRiftFx = function (g, t, a) {
+    var T = (w.ASHBOUND && ASHBOUND.state && ASHBOUND.state.time) || now() / 1000;
+    var n = t.riftSig === "bell" ? "#f0c14a" : t.riftSig === "shade" ? "#b794f6" : "#ff6a1a";
+    g.save(); g.globalAlpha = 0.22 + Math.sin(T * 4) * 0.06; g.fillStyle = n;
+    g.beginPath(); g.ellipse(0, 2, a * 1.25, a * 0.42, 0, 0, Math.PI * 2); g.fill();
+    g.globalAlpha = 0.55;
+    for (var m = 0; m < 6; m++) { var d = T * 2 + m * 1.05; g.fillRect(Math.cos(d) * a * 0.9, -a * 0.6 + Math.sin(d * 1.7) * a * 0.45, 3, 3); }
+    g.restore();
+  };
+  setInterval(function () { try { if (enabled() && root) scan(); } catch (e) {} }, 600);
   w.abEnemyOn = enabled;
   w.abEnemyFrame = frame;
   w.abEnemyPending = function () { return pend; };
@@ -226,10 +274,10 @@
   w.abEnemyStats = function () {
     return {
       on: enabled(), root: !!root, rootFailed: rootFailed, types: Object.keys((root && root.enemies) || {}),
-      manifests: [...mans.keys()], atlases: atl.size, atlasMB: +(atlBytes / 1048576).toFixed(2), budgetMB: +(budget() / 1048576).toFixed(2),
+      manifests: [...mans.keys()], atlases: atl.size, typeMB: (function () { var o = {}; atl.forEach(function (v, k) { var t = k.split("/").slice(-2, -1)[0]; o[t] = +(((o[t] || 0) + v.bytes / 1048576)).toFixed(2); }); return o; })(), atlasMB: +(atlBytes / 1048576).toFixed(2), budgetMB: +(budget() / 1048576).toFixed(2),
       composites: comps.size, compositeMB: +(compBytes / 1048576).toFixed(2), evicts: evicts, worldIds: Object.keys(worldIds),
       real: S.real, fallback: S.fallback, held: S.held, hidden: S.hidden, byType: S.byType, fbType: S.fbType,
-      lastDir: S.lastDir, lastAnim: S.lastAnim, lastFrame: S.lastFrame, errors: S.errors,
+      lastDir: S.lastDir, lastAnim: S.lastAnim, lastFrame: S.lastFrame, lastMir: S.lastMir, errors: S.errors,
       loaded: [...atl.keys()]
     };
   };

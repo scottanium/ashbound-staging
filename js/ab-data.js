@@ -21,6 +21,7 @@
     ["props3d", "data/props3d.json", true],
     ["ui", "data/ui.json", true],
     ["guide", "data/guide.json", true],
+    ["questUi", "data/questui.json", true],
     ["feel", "data/feel.json"],
     ["progress", "data/progress.json"],
     ["uniqueEffects", "data/unique-effects.json"],
@@ -69,6 +70,7 @@
     D.props3d = bag.props3d || null;
     D.ui = bag.ui || null;
     D.guide = bag.guide || null;
+    D.questUi = bag.questUi || null;
     D.feel = bag.feel || null;
     D.progress = bag.progress || {};
     D.uniqueEffects = bag.uniqueEffects || {};

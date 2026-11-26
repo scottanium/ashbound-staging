@@ -1,12 +1,12 @@
-/* Ashbound v72: skill slots in an even-angle arc around a larger Strike, orbs sit near the bottom centre (health left, mana right).
-   Settings: data/ui.json "arc" (including strikeScale). Runs on load, resize, orientation, body class changes (hand/text size) and when the skillbar is rebuilt.
-   Geometry: Strike is scaled from its CSS size. Each slot is a circle (radius r) at an even angular step around Strike
-   (90 deg = straight up, 180 = straight left, right-handed). Each slot sits as close as possible without its bounding box
-   overlapping Strike (ringGap) or another slot (slotGap), and fully on screen. Belt flasks, dock, orbs and the stamina bar
-   are then moved clear of the arc. */
+/* Ashbound: skill slots on an even same-radius arc around a larger Strike, orbs sit near the bottom centre (health left, mana right).
+   Settings: data/ui.json "arc" (including strikeScale and spanDeg). Runs on load, resize, orientation, body class changes (hand/text size) and when the skillbar is rebuilt.
+   Geometry: Strike is scaled from its CSS size. All four slots are the same size and share one radius with even angular spacing
+   (90 deg = straight up, 180 = straight left, right-handed), spanning from above Strike to its left (spanDeg, default 90).
+   Radius is the smallest that keeps a ringGap from Strike and a slotGap from neighbouring slots (circle clearance). Every slot
+   stays fully on screen. Belt flasks, dock, orbs and the stamina bar are then moved clear of the arc. */
 (function () {
   "use strict";
-  var DEF = { enabled: true, ringGap: 6, slotGap: 6, centerDeg: 135, minDeg: 80, maxDeg: 200, edge: 4, beltGap: 8, orbGap: 10, dockGap: 8, strikeScale: 1.22 };
+  var DEF = { enabled: true, ringGap: 6, slotGap: 6, centerDeg: 135, minDeg: 80, maxDeg: 200, spanDeg: 90, edge: 4, beltGap: 8, orbGap: 10, dockGap: 8, strikeScale: 1.22 };
   var st = { runs: 0, last: null };
   function cfg() { var u = (window.ASHBOUND_DATA && window.ASHBOUND_DATA.ui) || {}; var a = u.arc || {}; var o = {}; for (var k in DEF) o[k] = a[k] != null ? a[k] : DEF[k]; return o; }
   function q(s) { return document.querySelector(s); }
@@ -44,11 +44,10 @@
     return atk.getBoundingClientRect();
   }
   function evenPack(c, vw, vh, cx, cy, Rs, r, left) {
-    var ring = c.ringGap, slot = c.slotGap, edge = c.edge, mid0 = left ? 180 - c.centerDeg : c.centerDeg;
-    function rMin(ang) {
-      var rad = ang * Math.PI / 180, m = Math.max(Math.abs(Math.cos(rad)), Math.abs(Math.sin(rad)));
-      return (Rs + r + ring) / Math.max(m, 1e-6);
-    }
+    var ring = c.ringGap, slot = c.slotGap, edge = c.edge;
+    var span = c.spanDeg != null ? c.spanDeg : 90;
+    var mid0 = left ? 180 - c.centerDeg : c.centerDeg;
+    var step0 = span / 3;
     function xy(ang, R) {
       var rad = ang * Math.PI / 180;
       return [cx + R * Math.cos(rad), cy - R * Math.sin(rad)];
@@ -56,67 +55,47 @@
     function onScreen(x, y) {
       return x - r >= edge && x + r <= vw - edge && y - r >= edge && y + r <= vh - edge;
     }
-    function tryPack(mid, step) {
+    // One radius for every slot: clear Strike and neighbours as circles, not as boxes.
+    function rNeed(step) {
+      var rs = Rs + r + ring;
+      var half = (step * Math.PI / 180) / 2;
+      var rn = (2 * r + slot) / (2 * Math.sin(Math.max(half, 1e-6)));
+      return Math.max(rs, rn);
+    }
+    function tryPack(mid, step, R) {
       var angs = [mid - 1.5 * step, mid - 0.5 * step, mid + 0.5 * step, mid + 1.5 * step];
-      var R = angs.map(rMin);
-      var strike = { left: cx - Rs, right: cx + Rs, top: cy - Rs, bottom: cy + Rs };
-      function at(i, rad) {
-        var p = xy(angs[i], rad);
-        var box = { left: p[0] - r, right: p[0] + r, top: p[1] - r, bottom: p[1] + r };
-        return { p: p, box: box, on: onScreen(p[0], p[1]), g: boxGap(box, strike) };
+      var pts = [], i, p;
+      for (i = 0; i < 4; i++) {
+        p = xy(angs[i], R);
+        if (!onScreen(p[0], p[1])) return null;
+        pts.push(p);
       }
-      for (var n = 0; n < 220; n++) {
-        var pts = [], i, j, boxes = [], gs = [], moved = false, cur;
-        for (i = 0; i < 4; i++) {
-          cur = at(i, R[i]);
-          if (!cur.on) return null;
-          pts.push(cur.p); boxes.push(cur.box); gs[i] = cur.g;
-          if (gs[i] < ring - 0.05) { R[i] += 1; moved = true; }
-        }
-        if (moved) continue;
-        var pushed = false;
-        for (i = 0; i < 4 && !pushed; i++) for (j = i + 1; j < 4; j++) {
-          if (boxGap(boxes[i], boxes[j]) >= slot - 0.05) continue;
-          var cand = [];
-          [i, j].forEach(function (k) {
-            var nxt = at(k, R[k] + 1);
-            if (nxt.on && nxt.g <= 40.0001) cand.push({ k: k, extra: R[k] - rMin(angs[k]) });
-          });
-          if (!cand.length) return null;
-          cand.sort(function (a, b) { return b.extra - a.extra || b.k - a.k; });
-          R[cand[0].k] += 1;
-          pushed = true;
-          break;
-        }
-        if (pushed) continue;
-        var ns = [boxGap(boxes[0], boxes[1]), boxGap(boxes[1], boxes[2]), boxGap(boxes[2], boxes[3])];
-        var tightS = gs.filter(function (g) { return g >= -0.5 && g <= 14; }).length >= 3 && gs.every(function (g) { return g >= -0.5 && g <= 40; });
-        var tightN = ns.every(function (g) { return g >= -0.5 && g <= 14; });
-        if (!tightS || !tightN) return null;
-        return { pos: pts, angs: angs, R: R, gs: gs, ns: ns, tight: true, mid: mid, step: step };
-      }
-      return null;
+      return { pos: pts, angs: angs, R: [R, R, R, R], mid: mid, step: step, tight: true };
     }
-    var key = [vw, vh, Math.round(cx), Math.round(cy), Math.round(Rs * 10), Math.round(r * 10), left ? 1 : 0, ring, slot].join(",");
+    var key = [vw, vh, Math.round(cx), Math.round(cy), Math.round(Rs * 10), Math.round(r * 10), left ? 1 : 0, ring, slot, span].join(",");
     if (st.packKey === key && st.pack) return st.pack;
-    var best = null, step, k, mid, rec, firstStep = null;
-    for (step = 24; step <= 50; step += 0.5) {
-      if (firstStep != null && step > firstStep + 16) break;
+    var rec = tryPack(mid0, step0, rNeed(step0));
+    if (rec) { st.packKey = key; st.pack = rec; return rec; }
+    var step, k, m, mids, R;
+    // If the default quarter-arc goes off-screen, shift mid, then widen or tighten the span, still at one radius.
+    for (step = step0; step <= step0 + 20; step += 0.5) {
+      R = rNeed(step);
       for (k = 0; k <= 90; k++) {
-        var mids = k === 0 ? [mid0] : [mid0 + k * 0.5, mid0 - k * 0.5];
-        for (var m = 0; m < mids.length; m++) {
-          mid = mids[m];
-          rec = tryPack(mid, step);
-          if (!rec) continue;
-          if (firstStep == null) firstStep = step;
-          if (rec.tight) { st.packKey = key; st.pack = rec; return rec; }
-          if (!best) best = rec;
+        mids = k === 0 ? [mid0] : [mid0 + k * 0.5, mid0 - k * 0.5];
+        for (m = 0; m < mids.length; m++) {
+          rec = tryPack(mids[m], step, R);
+          if (rec) { st.packKey = key; st.pack = rec; return rec; }
         }
       }
     }
-    st.packKey = key; st.pack = best;
-    return best;
+    for (step = step0 - 0.5; step >= 20; step -= 0.5) {
+      rec = tryPack(mid0, step, rNeed(step));
+      if (rec) { st.packKey = key; st.pack = rec; return rec; }
+    }
+    st.packKey = key; st.pack = null;
+    return null;
   }
+
   function layout() {
     st.dirtyA = st.dirtyO = true;
     var c = cfg(), cast = q("#cast"), bar = q("#skillbar"), atk = q("#btn-attack");
@@ -152,7 +131,7 @@
     placeCenterOrbs(c, vw, vh, arcBox, joy);
     placeStam();
     placeMute();
-    st.last = { H: Math.round(Rs + r + c.ringGap), r: r, Rs: Rs, cx: Math.round(cx), cy: Math.round(cy), vw: vw, vh: vh, left: left, strikeScale: c.strikeScale, step: packed && packed.step, mid: packed && packed.mid };
+    st.last = { H: Math.round(packed && packed.R ? packed.R[0] : (Rs + r + c.ringGap)), r: r, Rs: Rs, cx: Math.round(cx), cy: Math.round(cy), vw: vw, vh: vh, left: left, strikeScale: c.strikeScale, step: packed && packed.step, mid: packed && packed.mid, R: packed && packed.R && packed.R[0] };
     keepOut();
   }
 
