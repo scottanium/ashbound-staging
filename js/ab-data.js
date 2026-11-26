@@ -21,6 +21,9 @@
     ["icons", "data/icons.json", true],
     ["props3d", "data/props3d.json", true],
     ["ui", "data/ui.json", true],
+    ["uiArt", "data/ui-art.json", true],
+    ["stashCfg", "data/stash.json", true],
+    ["lootFilter", "data/lootfilter.json", true],
     ["stats", "data/stats.json", true],
     ["skillTreeUi", "data/skilltree-ui.json", true],
     ["guide", "data/guide.json", true],
@@ -70,6 +73,9 @@
     D.rarityTable = bag.rarity;
     D.camera = bag.camera || {};
     D.icons = bag.icons || null;
+    D.uiArt = bag.uiArt || null;
+    D.stashCfg = bag.stashCfg || null;
+    D.lootFilter = bag.lootFilter || null;
     D.props3d = bag.props3d || null;
     D.ui = bag.ui || null;
     D.guide = bag.guide || null;

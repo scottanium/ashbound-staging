@@ -324,6 +324,15 @@
       mainW = Math.max(c.minW, each);
       cmpW = Math.max(c.minW, each);
     }
+    /* le-ui fit level 3+: a crowded main card gets wider (fewer wrapped lines) while the compare card still fits beside it */
+    var wide = +(box.getAttribute("data-le-wide") || 0);
+    if (wide > mainW) {
+      var wMain = Math.min(wide, vw - 2 * c.pad - swMain);
+      if (cmp) {
+        var wCmp = Math.min(cmpW, vw - 3 * c.pad - swMain - swCmp - wMain);
+        if (wCmp >= c.minW) { mainW = wMain; cmpW = wCmp; }
+      } else mainW = wMain;
+    }
     if (cmp && 2 * 180 + c.pad > vh - 2 * c.pad) {
       maxH = Math.max(c.stackMin, Math.floor((vh - 3 * c.pad) / 2));
     }
@@ -349,10 +358,11 @@
         setStripSide(cmp, "right");
         if (left + br.width + swMain + c.pad + cr.width + swCmp <= vw - c.pad) {
           cmpLeft = left + br.width + swMain + c.pad; cmpTop = top;
-        } else if (left - c.pad - cr.width - swCmp >= c.pad) {
+        } else if (left - swMain - c.pad - cr.width - swCmp >= c.pad) {
           setStripSide(box, "left");
           setStripSide(cmp, "left");
-          cmpLeft = left - c.pad - cr.width; cmpTop = top;
+          /* v85: leave room for main's own strip, which now sits on its left */
+          cmpLeft = left - swMain - c.pad - cr.width; cmpTop = top;
           /* main has strip on its left, so shift main right by swMain if needed */
         } else {
           left = clamp(c.pad, c.pad, vw - c.pad - groupW);
@@ -379,6 +389,14 @@
           top = c.pad;
           cmpLeft = left; cmpTop = Math.min(top + br.height + c.pad, vh - cr.height - c.pad);
         }
+      }
+      if (sideBySide) {
+        /* v85: slide the pair as one so neither card nor strip lands under a safe-area inset (Dynamic Island) */
+        var mL = box.querySelector(".item-side-strip.strip-left") ? swMain : 0, mR = box.querySelector(".item-side-strip.strip-right") ? swMain : 0;
+        var kL = cmp.querySelector(".item-side-strip.strip-left") ? swCmp : 0, kR = cmp.querySelector(".item-side-strip.strip-right") ? swCmp : 0;
+        var gL = Math.min(left - mL, cmpLeft - kL), gR = Math.max(left + br.width + mR, cmpLeft + cr.width + kR);
+        var minL = safe.left + c.pad, maxR = vw - safe.right - c.pad, sh = gL < minL ? minL - gL : (gR > maxR ? maxR - gR : 0);
+        if (sh && gL + sh >= minL - 0.5 && gR + sh <= maxR + 0.5) { left += sh; cmpLeft += sh; }
       }
       top = clamp(top, c.pad, Math.max(c.pad, vh - br.height - c.pad));
       left = clamp(left, c.pad + (box.querySelector(".item-side-strip.strip-left") ? swMain : 0), vw - br.width - c.pad - (box.querySelector(".item-side-strip.strip-right") ? swMain : 0));
@@ -414,6 +432,8 @@
     if (cmp) stayInSafe(cmp,
       cmp.querySelector(".item-side-strip.strip-left") ? swCmp : 0,
       cmp.querySelector(".item-side-strip.strip-right") ? swCmp : 0);
+    /* le-ui (v85): a skin may tighten the card so nothing scrolls (js/ab-leui.js fitCard) */
+    if (root.ABItemBox && typeof root.ABItemBox.afterPlace === "function") root.ABItemBox.afterPlace(box, cmp);
   }
 
   function schedule() {

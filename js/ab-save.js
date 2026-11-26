@@ -1,9 +1,9 @@
 // Narrow save DTO. Combat/AI live objects are not snapshotted by reference.
-// On-disk shape is SAVE_VERSION 6 (v81s: player.tree for the Warden skill trees). v1–v5 still load; items are mapped to the
+// On-disk shape is SAVE_VERSION 7 (v85 le-ui: affix tiers, stash tabs, Temper/Ashmarks, makings, loot filter; v6 v81s: player.tree for the Warden skill trees). v1–v6 still load; items are mapped to the
 // eight ranks, and an old Warden gets every skill point back for free on a fresh tree (level, paragon, gear, stash, story kept).
 (function (root) {
-  const VERSION = 6;
-  const SUPPORTED = [1, 2, 3, 4, 5, 6];
+  const VERSION = 7;
+  const SUPPORTED = [1, 2, 3, 4, 5, 6, 7];
   const OMIT_PLAYER = { flash: 1, moving: 1, swingT: 1 };
 
   function cloneJson(value, fallback) {
@@ -57,6 +57,7 @@
       if (typeof v === "function") continue;
       out[k] = v;
     }
+    if (root.ABLeData && root.ABLeData.snapshotStash) root.ABLeData.snapshotStash(p, out);
     return cloneJson(out, null);
   }
 
@@ -84,6 +85,8 @@
   function migrate(e) {
     if (!e || !e.player) return e;
     let t = e.player;
+    // v7: relink player.stash to the active stash tab first, so the older steps below see the real items
+    if (typeof root.ABLeData !== "undefined" && root.ABLeData.ensureTabs) root.ABLeData.ensureTabs(t);
     t.progress = t.progress || { waypoints: { hearthveil: true, cinderwood: true }, bossDefeated: false };
     t.progress.waypoints = t.progress.waypoints || { hearthveil: true, cinderwood: true };
     t.progress.bosses = t.progress.bosses || { veyra: !!t.progress.bossDefeated, morra: false, sallow: false };
@@ -132,6 +135,10 @@
     // v6 (v81s): Warden skill trees. Old Warden saves: free refund, empty bar, one-time "The trees have shifted. Your points wait in the ash." notice.
     if (typeof root.ABTree !== "undefined" && root.ABTree.migrateSave) {
       root.ABTree.migrateSave(e);
+    }
+    // v7 (v85 le-ui): affix tiers, stash tabs, Temper, Ashmarks, makings, loot filter — fill-missing only (js/ab-ledata.js)
+    if (typeof root.ABLeData !== "undefined" && root.ABLeData.migrateSave) {
+      root.ABLeData.migrateSave(e);
     }
     e.v = VERSION;
     return e;

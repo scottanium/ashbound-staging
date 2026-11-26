@@ -113,11 +113,21 @@
     var u = urlCache[key]; if (u) return u;
     var c = canvasFor(item, rankId, opts); if (!c) return ""; return (urlCache[key] = c.toDataURL("image/png"));
   }
+  // le-ui step 2: the painted icon from data/ui-art.json wins when its atlas is loaded; the vector recipe is the fallback.
+  function art(item) { return root.ABUiArt && root.ABUiArt.ready() ? root.ABUiArt.itemHtml(item) : ""; }
+  var GHOST = { helm: "helm", amulet: "amulet", weapon: "sword", offhand: "shield", armor: "armor", gloves: "gloves", belt: "belt", boots: "boots", ring1: "ring", ring2: "ring", ring: "ring" };
+  function ghostArt(slot) {
+    if (!(root.ABUiArt && root.ABUiArt.ready())) return "";
+    var u = root.ABUiArt.piece("ghost_" + (GHOST[slot] || "sword")); if (!u) return "";
+    return '<img class="item-ico pic ghost-art" alt="" draggable="false" src="' + u + '">';
+  }
   function html(item, rankId) {
+    var a = art(item); if (a) return a;
     var u = urlFor(item, rankId); if (!u) return "";
     return '<img class="item-ico pic" alt="" draggable="false" src="' + u + '">';
   }
   function ghostHtml(slot) {
+    var ga = ghostArt(slot); if (ga) return ga;
     if (!ready()) return "";
     var fb = D().fallback || {}, id = fb[slot] || "salt_saber", b = D().bases[id] || {};
     var item = { baseId: id, kind: slot, slot: slot, rarity: "common" };
@@ -151,6 +161,7 @@
       if (r.img) o.push(sel.split(",").map(function (s) { return s + " .item-ico.pic"; }).join(",") + "{filter:drop-shadow(0 0 " + r.img + "px " + (r.glow || r.border) + ")}");
     });
     o.push(".item-ico.pic{object-fit:contain;image-rendering:auto;width:100%;height:100%;display:block}");
+    o.push("svg.item-ico.art{width:100%;height:100%;display:block;overflow:hidden;filter:drop-shadow(0 1px 1px rgba(0,0,0,.7))}");
     o.push(".shop-ico,.detail-ico{border:1px solid #8d7b68;border-radius:5px}");
     return o.join("\n");
   }
@@ -160,6 +171,7 @@
   }
   root.ABIcons = {
     ready: ready, html: html, ghost: ghostHtml, canvas: canvasFor, url: urlFor, css: css, installStyle: installStyle, recipeFor: recipeFor,
+    hasArt: function (item) { return !!art(item); },
     keys: function () { var d = D(); return d ? Object.keys(d.recipes) : []; },
     stats: function () { return { cached: Object.keys(cvCache).length, drawn: stats.drawn, hits: stats.hits }; },
     clear: function () { cvCache = Object.create(null); urlCache = Object.create(null); stats = { drawn: 0, hits: 0 }; }
