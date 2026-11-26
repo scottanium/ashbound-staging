@@ -45,11 +45,11 @@
     "idleSpeed": 0.25
   },
   "stamina": {
-    "maxBase": 80,
-    "perVitality": 2.5,
+    "maxBase": 200,
+    "perVitality": 6.25,
     "drainPerSec": 16,
-    "regenWalk": 22,
-    "regenIdle": 36,
+    "regenWalk": 27.5,
+    "regenIdle": 45,
     "resumeFrac": 0.28,
     "bar": {
       "width": 72,

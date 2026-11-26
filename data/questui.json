@@ -1,0 +1,46 @@
+{
+  "about": "Quest indicator copy and layout. Objective lines, the edge compass, the ground beacon and the minimap pip all read from here.",
+  "lookAhead": 5,
+  "hereTiles": 1.2,
+  "edge": {
+    "pad": 20,
+    "top": 86,
+    "bottom": 150,
+    "side": 18,
+    "labelGap": 8
+  },
+  "lines": {
+    "through": "Go through the {exit} to the {zone}",
+    "reach": "Go to the {zone}",
+    "kill": "Kill {name}",
+    "killCount": "Kill {have}/{need}",
+    "use": "Use {name}",
+    "rift": "Clear the rift {have}/{total}",
+    "done": "The rift stone in Ashgate is warm",
+    "keep": "Keep going"
+  },
+  "bossNames": {
+    "true": "Veyra",
+    "veyra": "Veyra",
+    "morra": "Morra",
+    "sallow": "Sallow",
+    "mael": "Mael"
+  },
+  "arrow": {
+    "tiles": "{n} tiles",
+    "here": "Here",
+    "take": "Take the {exit}",
+    "thisWay": "This way",
+    "objective": "Objective"
+  },
+  "interact": {
+    "exit": "Take the {exit}",
+    "exitTown": "Return to {town}",
+    "archFallback": "Take the arch"
+  },
+  "minimap": {
+    "fill": "#ffe08a",
+    "stroke": "#3a1408",
+    "size": 8
+  }
+}

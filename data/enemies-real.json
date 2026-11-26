@@ -156,6 +156,161 @@
    "scale": 1.0,
    "group": "A",
    "headCheck": false
+  },
+  "pale_wolf": {
+   "path": "assets/enemies/pale_wolf/",
+   "scale": 1.0,
+   "group": "B",
+   "headCheck": true
+  },
+  "thorn_stag": {
+   "path": "assets/enemies/thorn_stag/",
+   "scale": 1.0,
+   "group": "B",
+   "headCheck": true
+  },
+  "briar_charger": {
+   "path": "assets/enemies/briar_charger/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "press_beetle": {
+   "path": "assets/enemies/press_beetle/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "orchard_knight": {
+   "path": "assets/enemies/orchard_knight/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "tomb_warden": {
+   "path": "assets/enemies/tomb_warden/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "tomb_shield": {
+   "path": "assets/enemies/tomb_shield/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "sap_crawler": {
+   "path": "assets/enemies/sap_crawler/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "sap_mite": {
+   "path": "assets/enemies/sap_mite/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "hush_serpent": {
+   "path": "assets/enemies/hush_serpent/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "kiln_drake": {
+   "path": "assets/enemies/kiln_drake/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "gallery_moth": {
+   "path": "assets/enemies/gallery_moth/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "gale_kite": {
+   "path": "assets/enemies/gale_kite/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "pale_kiter": {
+   "path": "assets/enemies/pale_kiter/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "root_colossus": {
+   "path": "assets/enemies/root_colossus/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "stair_golem": {
+   "path": "assets/enemies/stair_golem/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "name_wraith": {
+   "path": "assets/enemies/name_wraith/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "sap_caller": {
+   "path": "assets/enemies/sap_caller/",
+   "scale": 1.0,
+   "group": "B"
+  },
+  "mael": {
+   "path": "assets/enemies/mael/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
+  },
+  "veyra": {
+   "path": "assets/enemies/veyra/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
+  },
+  "morra": {
+   "path": "assets/enemies/morra/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
+  },
+  "bell_warden": {
+   "path": "assets/enemies/bell_warden/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
+  },
+  "unbanked_shade": {
+   "path": "assets/enemies/unbanked_shade/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
+  },
+  "sallow": {
+   "path": "assets/enemies/sallow/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
+  },
+  "cinder_maw": {
+   "path": "assets/enemies/cinder_maw/",
+   "scale": 1.0,
+   "group": "C",
+   "boss": true,
+   "fine": true,
+   "idleFps": 4,
+   "strikeSec": 0.5
   }
  }
 }

@@ -122,7 +122,7 @@
     }
   },
   "arc": {
-    "about": "v72 skill arc around Strike (js/ab-hudarc.js). strikeScale multiplies the CSS Strike size (~20-25% larger). Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left (right-handed). The four skill slots use even angular spacing, as close as possible without overlapping.",
+    "about": "Skill arc around Strike (js/ab-hudarc.js). All 4 slots share one radius and even angular spacing, spanning spanDeg (default 90) from above Strike to its left (right-handed; mirrored for left hand). strikeScale multiplies the CSS Strike size (~20-25% larger). Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left.",
     "enabled": true,
     "ringGap": 6,
     "slotGap": 6,
@@ -133,7 +133,8 @@
     "beltGap": 8,
     "orbGap": 10,
     "dockGap": 8,
-    "strikeScale": 1.22
+    "strikeScale": 1.22,
+    "spanDeg": 90
   },
   "skillTree": {
     "labels": {
