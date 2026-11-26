@@ -2,31 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "cinder_warden",
-  "about": "Cinder Warden tree rework (v81t, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Tuning lives here; js/ab-skilltree.js reads it. Skill names and about text are Koto's (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again.",
-  "points": {
-    "about": "Tree points: 1 at level 1, +1 per level to 50 (50), plus 1 every 5 Paragon levels (20 by Paragon 100). 70 total. Points are derived from level and Paragon, so they can never exceed 70.",
-    "atLevel1": 1,
-    "perLevel": 1,
-    "maxLevel": 50,
-    "paragonEvery": 5,
-    "paragonAmount": 1,
-    "paragonCap": 20,
-    "total": 70
-  },
-  "unlockEvery": 5,
-  "ultimateAt": 40,
-  "treeMax": 50,
-  "rank": {
-    "about": "Rank of every unlocked skill in a tree = round(min(points,40) / perRank), at least 1, at most max. 40 points maxes a tree's skills (rank 20). Points past 40 do not raise rank. Gear +skills only adds to skills that are already unlocked.",
-    "perRank": 2,
-    "max": 20
-  },
-  "damageBand": {
-    "about": "Points 41-50: damage only (+pct per point to that tree's skills). No rank, area, stat or utility gain.",
-    "from": 41,
-    "to": 50,
-    "pctPerPoint": 6
-  },
+  "about": "Cinder Warden tree rework (v81t, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Shared point math lives in skilltrees-common.json; trees, bonuses and new skills live here; js/ab-skilltree.js reads it. Skill names and about text are Koto's (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again.",
   "trees": [
     {
       "id": "brand",
@@ -425,26 +401,8 @@
     }
   ],
   "strings": {
-    "pointsLine": "{free} to spend · {used} / {total} used",
-    "spend": "+1 {tree}",
-    "undo": "Undo",
-    "next": "Next: {skill} at {at} ({n} more)",
-    "allUnlocked": "All 8 unlocked. Points 41–50 add damage only.",
-    "maxed": "Tree full (50).",
-    "noPoints": "No points to spend. One comes with each level.",
-    "bandTitle": "41–50 damage band",
-    "bandLine": "+{pct}% {tree} damage (damage only)",
-    "bonusTitle": "Tree bonus now",
-    "ultimate": "Ultimate",
-    "locked": "at {at}",
-    "unlocked": "rank {rank}",
-    "oneUltimate": "Only one tree can reach its ultimate.",
     "notice": "The trees have shifted. Your points wait in the ash.",
-    "noticeShort": "The trees have shifted. Your points wait in the ash.",
-    "spent": "{tree} {n}.",
-    "unlockedToast": "A new skill stirs: {name}",
-    "detailLocked": "Unlocks at {at} points in {tree}.",
-    "detailUnlocked": "Rank {rank} from {pts} points in {tree}."
+    "noticeShort": "The trees have shifted. Your points wait in the ash."
   },
   "spellBookHook": {
     "about": "Next phase. ABTree.replaceTree(player, slotIndex, treeId) swaps one of the 3 tree slots for another tree def (registered with ABTree.registerTree) and resets every tree point for free. Not reachable from the game yet."

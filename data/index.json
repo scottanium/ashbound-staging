@@ -70,6 +70,11 @@
     "sets.json",
     "sustain.json",
     "uniques-ashen.json",
-    "skilltrees-warden.json"
+    "skilltrees-common.json",
+    "skilltrees-warden.json",
+    "skilltrees-reaver.json",
+    "skilltrees-chanter.json",
+    "skilltrees-caller.json",
+    "skilltrees-stalker.json"
   ]
 }
