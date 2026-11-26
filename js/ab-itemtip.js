@@ -154,6 +154,7 @@
   }
 
   function showTouch(el) {
+    if (document.body && document.body.classList.contains("item-pop-open")) return;
     var found = lookup(el);
     if (!found) return;
     render(found.item, found.where, true);
@@ -220,6 +221,9 @@
     document.addEventListener("click", onClick, true);
     document.addEventListener("keydown", onKey, true);
     window.addEventListener("resize", function () { if (tip && tip.classList.contains("on")) fitAndPlace(null); });
+    new MutationObserver(function () {
+      if (document.body && document.body.classList.contains("item-pop-open")) hide();
+    }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
     root.ABItemTip = { showHover: showHover, showTouch: showTouch, hide: hide, fine: fine, el: function () { return tip; }, back: function () { return back; } };
   }
 

@@ -3,7 +3,7 @@
 // Without the data file nothing is added and the game looks as it did before.
 (function (root) {
   "use strict";
-  var FRAMED = "#panel, #topbar, #quest-track, #bossbar, #minimap, .panel, .detail, .slot-card, .class-card, .shop-row, #tutor, .toast, #point-hint";
+  var FRAMED = "#panel, #topbar, #quest-track, #bossbar, #minimap, .panel, .detail, .slot-card, .class-card, .shop-row, #tutor, .toast";
   function px(v) { return v + "px"; }
   function frame(f) {
     var L = f.cornerLen, W = f.cornerW, c = f.corner, g = [];
@@ -13,7 +13,7 @@
       g.push("linear-gradient(" + c + "," + c + ") " + p[0] + " 4px " + p[1] + " 4px / " + W + "px " + L + "px no-repeat");
     });
     return FRAMED + " { border-color: " + f.line + "; box-shadow: 0 0 0 1px " + f.dark + ", inset 0 0 0 1px " + f.ring + ", inset 0 0 0 3px rgba(0,0,0,0.35), " + f.shadow + "; background-image: " + g.join(", ") + ", linear-gradient(" + f.paper + ", rgba(0,0,0,0.12)); }\n" +
-      ".toast, #tutor, #point-hint { background-image: linear-gradient(" + f.paper + ", rgba(0,0,0,0.12)); }\n" +
+      ".toast, #tutor { background-image: linear-gradient(" + f.paper + ", rgba(0,0,0,0.12)); }\n" +
       "#minimap { background-image: none; }\n";
   }
   function buttons(b) {
@@ -71,15 +71,33 @@
       q.push(".flask, .portal-btn { width: " + px(p.flask) + "; height: " + px(p.flask) + "; border-radius: 14px; } .flask .item-ico { width: 28px; height: 40px; } .flask-col { gap: 8px; } #belt-left { left: " + px(p.beltLeft) + "; bottom: " + px(p.beltBottom) + "; } #belt-right { right: " + px(p.beltRight) + "; bottom: " + px(p.beltBottom) + "; }");
       q.push(".skill-btn { width: " + px(p.skill) + "; height: " + px(p.skill) + "; border-radius: 16px; } #skillbar { grid-template-columns: " + px(p.skill) + " " + px(p.skill) + "; gap: 8px; } .skill-ico, .flask svg { width: 30px; height: 30px; } #btn-attack { width: " + px(p.attack) + "; height: " + px(p.attack) + "; } #cast { right: " + px(p.castRight) + "; bottom: " + px(p.castBottom) + "; gap: 12px; }");
       q.push("#minimap { width: " + px(p.minimapW) + "; height: " + px(p.minimapH) + "; border-radius: 12px; top: 10px; right: 10px; }");
-      q.push("#hud #toasts { top: " + px(p.toastTop) + "; width: " + px(p.toastW) + "; left: 14px; } #hud #hint { top: " + px(p.toastTop) + "; max-width: " + px(p.toastW) + "; left: 14px; } #hud #tutor { top: " + px(p.tutorTop) + "; max-width: " + px(p.tutorW) + "; left: 14px; padding: 8px 10px 8px 14px; } #tutor-skip { min-height: 36px; padding: 4px 14px; }");
+      q.push("#hud #toasts { top: " + px(p.toastTop) + "; width: " + px(p.toastW) + "; left: 14px; } #hud #hint { top: " + px(p.toastTop) + "; max-width: " + px(p.toastW) + "; left: 14px; } #hud #tutor { top: " + px(p.tutorTop) + "; max-width: " + px(p.tutorW) + "; left: 14px; padding: 8px 10px 8px 14px; } #tutor-skip { min-height: 36px; padding: 4px 14px; } body.left-hand #hud #toasts, body.left-hand #hud #hint, body.left-hand #hud #tutor { left: auto; right: calc(14px + var(--safe-r)); }");
       q.push("#interact { bottom: " + px(p.interactBottom) + "; max-width: 320px; min-height: 52px; padding: 10px 20px; }");
       q.push("#joystick { width: " + px(p.joy) + "; height: " + px(p.joy) + "; } #stick { width: " + px(p.stick) + "; height: " + px(p.stick) + "; left: " + px((p.joy - p.stick) / 2 - 2) + "; top: " + px((p.joy - p.stick) / 2 - 2) + "; }");
       q.push("#hud::before { height: 120px; } #hud::after { height: 110px; }");
     }
     return q.join("\n  ");
   }
+  function dockIcons(d) {
+    if (!d || d.enabled === false) return "";
+    var size = d.size || 52, ico = d.icon || 20, lab = d.label || 9, gap = d.gap != null ? d.gap : 6, pad = d.pad != null ? d.pad : 2;
+    return "#dock { gap: " + px(gap) + "; }\n" +
+      "#dock button { min-width: " + px(size) + "; width: " + px(size) + "; padding: " + px(pad) + "; gap: 1px; }\n" +
+      "#dock .dock-ico { width: " + px(ico) + "; height: " + px(ico) + "; }\n" +
+      "#dock .dock-lab { font-size: " + px(lab) + "; }\n";
+  }
+  function popups(p) {
+    if (!p) p = {};
+    var wp = p.maxWidthPct != null ? +p.maxWidthPct : 60;
+    var hp = p.maxHeightPct != null ? +p.maxHeightPct : 70;
+    var pad = p.pad != null ? +p.pad : 8;
+    return ":root { --popup-max-w: " + wp + "vw; --popup-max-h: " + hp + "vh; --popup-pad: " + pad + "px; }\n" +
+      ".overlay-card { width: min(520px, var(--popup-max-w), calc(100% - 32px - var(--safe-l) - var(--safe-r))); max-height: min(var(--popup-max-h), calc(100% - 36px - var(--safe-t) - var(--safe-b))); padding: var(--popup-pad); box-sizing: border-box; overflow: auto; }\n" +
+      ".rift-card, .season-card { width: min(520px, var(--popup-max-w), calc(100% - 20px - var(--safe-l) - var(--safe-r))); max-height: min(var(--popup-max-h), calc(100% - 24px - var(--safe-t) - var(--safe-b))); height: auto; }\n" +
+      ".rift-card { height: auto; max-height: min(var(--popup-max-h), calc(100% - 24px - var(--safe-t) - var(--safe-b))); }\n";
+  }
   function css(u) {
-    var out = frame(u.frame) + buttons(u.button) + orbs(u.orb) + tip(u.tip, u.frame);
+    var out = frame(u.frame) + buttons(u.button) + orbs(u.orb) + tip(u.tip, u.frame) + dockIcons(u.dockIcons) + popups(u.popups);
     Object.keys(u.profiles).forEach(function (k) { var p = u.profiles[k]; out += "@media " + p.query + " {\n  " + profile(p) + "\n}\n"; });
     return out;
   }

@@ -81,6 +81,12 @@
         bits.push('<div class="item-flag remnant">Remnant (this unique) is on this hero</div>');
       }
     }
+    if (root.ABCraft && ABCraft.isUnique && ABCraft.isUnique(item) && !(cur && cur.uid === item.uid) && !item.dormant) {
+      if (!(player && player.consumeUnlocked)) {
+        var hint = (ABCraft.consumeCfg && ABCraft.consumeCfg() && ABCraft.consumeCfg().hint) || "A unique can be consumed once this hero has Heart-Cinder.";
+        bits.push('<div class="item-flag consume-hint">' + R(hint) + "</div>");
+      }
+    }
     const ench = item.enchantLevel || 0;
     const cons = (cur && cur.uid === item.uid) ? (item.consumeLevel || 0) : 0;
     const ms = [ench >= 5 ? "enchant +" + ench : null, cons >= 5 ? "consume +" + cons : null].filter(Boolean);

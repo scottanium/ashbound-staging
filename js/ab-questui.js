@@ -1,6 +1,6 @@
 /* Ashbound quest indicator. Objective copy, a path-aware edge compass with a
    distance or "here" label, a ground beacon on the target, and a minimap pip.
-   Copy and sizes live in data/questui.json. Hooks from index.html call ABQuestUi. */
+   Copy, sizes, and the compass pointer shape live in data/questui.json. Hooks from index.html call ABQuestUi. */
 (function (root) {
   "use strict";
 
@@ -59,8 +59,9 @@
       "#obj-arrow[data-edge=right]{flex-direction:row-reverse;align-items:center;}",
       "#obj-arrow[data-edge=top]{flex-direction:column;}",
       "#obj-arrow[data-edge=bottom]{flex-direction:column-reverse;}",
-      "#obj-arrow .obj-ptr{display:block;flex:none;width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:20px solid #ffb067;filter:drop-shadow(0 0 3px #000) drop-shadow(0 0 8px rgba(255,176,80,.95));transform-origin:50% 50%;}",
-      "#obj-arrow.on-target .obj-ptr{border-left-color:#ffe7b0;}",
+      "#obj-arrow .obj-ptr{display:block;flex:none;width:var(--quest-ptr-l,28px);height:var(--quest-ptr-w,12px);overflow:visible;border:none;background:transparent;filter:drop-shadow(0 0 3px #000) drop-shadow(0 0 8px var(--quest-ptr-glow,rgba(255,176,80,.95)));transform-origin:50% 50%;color:var(--quest-ptr-fill,#ffb067);}",
+      "#obj-arrow .obj-ptr polygon{fill:currentColor;stroke:var(--quest-ptr-stroke,#3a1408);stroke-width:var(--quest-ptr-sw,1.4);stroke-linejoin:round;}",
+      "#obj-arrow.on-target .obj-ptr{color:var(--quest-ptr-fill-on,#ffe7b0);}",
       "#obj-arrow .obj-lab{pointer-events:none;white-space:nowrap;font:700 12px/1.15 system-ui,sans-serif;letter-spacing:.02em;color:#fff3d2;text-shadow:0 1px 2px #000,0 0 8px #000,0 0 2px #000;padding:3px 8px;border-radius:999px;background:rgba(28,16,10,.82);border:1px solid rgba(255,200,120,.65);box-shadow:0 0 10px rgba(255,160,60,.35);}",
       "#obj-arrow.on-target .obj-lab{border-color:#ffe7b0;background:rgba(40,22,10,.9);}",
       "#obj-arrow::after{content:none;display:none;}"
@@ -68,19 +69,76 @@
     document.head.appendChild(s);
   }
 
+  function ptrCfg() {
+    var p = (cfg().pointer) || {};
+    return {
+      kind: p.kind || "arrow",
+      length: p.length || 28,
+      width: p.width || 12,
+      head: p.head || 14,
+      tailW: p.tailW || 3.5,
+      stroke: p.stroke == null ? 1.4 : p.stroke,
+      fill: p.fill || "#ffb067",
+      fillOnTarget: p.fillOnTarget || "#ffe7b0",
+      strokeColor: p.strokeColor || "#3a1408",
+      glow: p.glow || "rgba(255,176,80,.95)"
+    };
+  }
+
+  function applyPtrVars(el) {
+    var p = ptrCfg();
+    var host = el || document.documentElement;
+    host.style.setProperty("--quest-ptr-l", p.length + "px");
+    host.style.setProperty("--quest-ptr-w", p.width + "px");
+    host.style.setProperty("--quest-ptr-fill", p.fill);
+    host.style.setProperty("--quest-ptr-fill-on", p.fillOnTarget);
+    host.style.setProperty("--quest-ptr-stroke", p.strokeColor);
+    host.style.setProperty("--quest-ptr-sw", String(p.stroke));
+    host.style.setProperty("--quest-ptr-glow", p.glow);
+  }
+
+  function makePtrSvg() {
+    var p = ptrCfg();
+    var L = p.length, W = p.width, H = Math.min(p.head || 14, L), tw = Math.min(p.tailW || 3.5, W - 0.5);
+    var mid = W / 2;
+    var shaft = Math.max(0, L - H);
+    var y1 = mid - tw / 2, y2 = mid + tw / 2;
+    var raw = [0, y1, shaft, y1, shaft, 0, L, mid, shaft, W, shaft, y2, 0, y2];
+    var pts = [];
+    var i;
+    for (i = 0; i < raw.length; i += 2) pts.push(raw[i].toFixed(2) + "," + raw[i + 1].toFixed(2));
+    var ns = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("class", "obj-ptr");
+    svg.setAttribute("viewBox", "0 0 " + L + " " + W);
+    svg.setAttribute("width", String(L));
+    svg.setAttribute("height", String(W));
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    var poly = document.createElementNS(ns, "polygon");
+    poly.setAttribute("points", pts.join(" "));
+    svg.appendChild(poly);
+    return svg;
+  }
+
   function ensureDom() {
     var el = document.getElementById("obj-arrow");
     if (!el) return null;
     ensureCss();
-    if (!el.querySelector(".obj-ptr")) {
-      el.textContent = "";
-      var ptr = document.createElement("i");
-      ptr.className = "obj-ptr";
-      ptr.setAttribute("aria-hidden", "true");
-      var lab = document.createElement("span");
-      lab.className = "obj-lab";
-      el.appendChild(ptr);
-      el.appendChild(lab);
+    applyPtrVars(el);
+    var ptr = el.querySelector(".obj-ptr");
+    var isSvg = ptr && ptr.tagName && ptr.tagName.toLowerCase() === "svg" && ptr.querySelector("polygon");
+    if (!isSvg) {
+      if (ptr && ptr.parentNode) ptr.parentNode.removeChild(ptr);
+      ptr = makePtrSvg();
+      var lab = el.querySelector(".obj-lab");
+      if (lab) el.insertBefore(ptr, lab);
+      else el.appendChild(ptr);
+    }
+    if (!el.querySelector(".obj-lab")) {
+      var lab2 = document.createElement("span");
+      lab2.className = "obj-lab";
+      el.appendChild(lab2);
     }
     return el;
   }
@@ -232,12 +290,14 @@
   function placeOnEdge(cx, cy, hx, hy, vw, vh, originPt) {
     var e = cfg().edge || {};
     var pad = e.pad || 20, top = e.top || 86, bottom = e.bottom || 150, side = e.side || 18;
+    var s = (root.ABSafeArea && ABSafeArea.insets && ABSafeArea.insets()) || { left: 0, right: 0, top: 0, bottom: 0 };
+    top += s.top; bottom += s.bottom; side = side; // side is applied per-edge below
     var dx = hx - cx, dy = hy - cy;
     if (!dx && !dy) { dx = 0; dy = 1; }
     var absx = Math.abs(dx), absy = Math.abs(dy);
     var boxes = hudBoxes();
     var x0 = originPt.left, y0 = originPt.top;
-    var left = x0 + side, right = x0 + vw - side, up = y0 + top, down = y0 + vh - bottom;
+    var left = x0 + side + s.left, right = x0 + vw - side - s.right, up = y0 + top, down = y0 + vh - bottom;
     // Prefer left/right when the bottom band is the HUD (phone landscape).
     var edge;
     if (absy >= absx * 1.15 && dy > 0) edge = dx >= 0 ? "right" : "left";
@@ -304,7 +364,9 @@
     var scrHint = isoScr(route.hint.x, route.hint.y);
     var pad = (cfg().edge) || {};
     var inward = 28, topM = pad.top || 86, botM = pad.bottom || 150, sideM = pad.side || 18;
-    var onScreen = scrFinal.x > sideM && scrFinal.x < vw - sideM && scrFinal.y > topM && scrFinal.y < vh - botM;
+    var sA = (root.ABSafeArea && ABSafeArea.insets && ABSafeArea.insets()) || { left: 0, right: 0, top: 0, bottom: 0 };
+    topM += sA.top; botM += sA.bottom;
+    var onScreen = scrFinal.x > sideM + sA.left && scrFinal.x < vw - sideM - sA.right && scrFinal.y > topM && scrFinal.y < vh - botM;
     var label, ang, px, py, mode, placedEdge = "";
     if (near || onScreen) {
       mode = near ? "here" : "on-target";
@@ -365,7 +427,8 @@
       mode: mode, label: label, target: { x: a.x, y: a.y, name: a.name, kind: a.kind },
       hint: { x: route.hint.x, y: route.hint.y }, pathLen: +((route.pathLen || 0).toFixed(2)),
       euclid: +((route.euclid || 0).toFixed(2)), pathTiles: route.path ? route.path.length : 0,
-      arrow: { x: px, y: py, ang: ang, edge: edge }, onScreen: onScreen, near: near, dist: dist
+      arrow: { x: px, y: py, ang: ang, edge: edge }, onScreen: onScreen, near: near, dist: dist,
+      pointer: { kind: ptrCfg().kind, length: ptrCfg().length, width: ptrCfg().width }
     };
   }
 

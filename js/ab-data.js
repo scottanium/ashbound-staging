@@ -16,10 +16,13 @@
     ["npcLines", "data/npc-lines.json"],
     ["campaignDifficulty", "data/difficulty.json"],
     ["inventoryLayout", "data/inventory-layout.json"],
+    ["townLayout", "data/town-layout.json", true],
     ["camera", "data/camera.json"],
     ["icons", "data/icons.json", true],
     ["props3d", "data/props3d.json", true],
     ["ui", "data/ui.json", true],
+    ["stats", "data/stats.json", true],
+    ["skillTreeUi", "data/skilltree-ui.json", true],
     ["guide", "data/guide.json", true],
     ["questUi", "data/questui.json", true],
     ["feel", "data/feel.json"],
@@ -159,6 +162,7 @@
     // Back-compat: D.skillTrees is the Warden's merged data (r9 tests and tools read it).
     D.skillTrees = D.skillTreesByClass.cinder_warden || null;
     D.inventoryLayout = bag.inventoryLayout || {};
+    D.townLayout = bag.townLayout || {};
     D.difficulty = bag.campaignDifficulty || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
     window.ASHBOUND_DATA = D;

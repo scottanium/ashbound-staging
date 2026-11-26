@@ -367,12 +367,49 @@
     const n = Math.round(v * 10) / 10, nm = STAT_NAMES[k] || k;
     return "+" + n + (nm.charAt(0) === "%" ? nm : " " + nm);
   }
+  function treeUi() {
+    const file = (root.ASHBOUND_DATA && root.ASHBOUND_DATA.skillTreeUi) || {};
+    const panel = ((root.ASHBOUND_DATA && root.ASHBOUND_DATA.ui) || {}).skillTreePanel || {};
+    return Object.assign({ enabled: true, cols: 4, colsNarrow: 2, narrowMax: 520, nodeMinH: 56, tapMin: 44, gapX: 22, gapY: 20, lineWidth: 3, boardPad: 8, assignMin: 44, pointsSize: 28, text: {} }, file, panel, { enabled: file.enabled !== false && panel.enabled !== false });
+  }
+  function treeUiStr(key, fill) {
+    const T = (treeUi().text || {});
+    let s = T[key] || "";
+    if (fill) Object.keys(fill).forEach((k) => { s = s.replace("{" + k + "}", String(fill[k])); });
+    return s;
+  }
+  function layoutBoard(rootEl) {
+    const board = (rootEl || document).querySelector(".tt-board");
+    if (!board) return;
+    const svg = board.querySelector("svg.tt-lines");
+    const nodes = [...board.querySelectorAll(".tt-node")].sort((a, b) => (+a.dataset.at) - (+b.dataset.at));
+    if (!svg || nodes.length < 2) return;
+    const U = treeUi();
+    const br = board.getBoundingClientRect();
+    const w = Math.max(1, br.width), h = Math.max(1, br.height);
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    svg.setAttribute("width", w);
+    svg.setAttribute("height", h);
+    let paths = "";
+    for (let i = 0; i < nodes.length - 1; i++) {
+      const a = nodes[i].getBoundingClientRect(), b = nodes[i + 1].getBoundingClientRect();
+      const x1 = a.left + a.width / 2 - br.left, y1 = a.top + a.height / 2 - br.top;
+      const x2 = b.left + b.width / 2 - br.left, y2 = b.top + b.height / 2 - br.top;
+      const live = nodes[i].classList.contains("st-unlocked");
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      paths += '<path class="tt-line ' + (live ? "is-on" : "is-off") + '" d="M' + x1.toFixed(1) + "," + y1.toFixed(1) + " L" + mx.toFixed(1) + "," + y1.toFixed(1) + " L" + mx.toFixed(1) + "," + y2.toFixed(1) + " L" + x2.toFixed(1) + "," + y2.toFixed(1) + '" />';
+    }
+    svg.innerHTML = paths;
+    svg.style.strokeWidth = String(U.lineWidth || 3);
+  }
+
   function panelHtml(e) {
     const p = e.player, trees = slotTrees(p); strCls = p.classId;
     let tab = e.ui.treeTab; if (!trees.some((t) => t.id === tab)) { const ts = treeOfSkill(p, e.ui.skillId); tab = (ts || trees[0]).id; e.ui.treeTab = tab; }
     const cur = treeOfSkill(p, e.ui.skillId); if (!cur || cur.id !== tab) e.ui.skillId = treeDef(tab).nodes[0].skill;
     const t = treeDef(tab), pts = p.tree.pts[tab] || 0, free = freePoints(p), cs = canSpend(p, tab), undo = (e.ui.treeUndo || []).length > 0;
     const nx = nextNode(t, pts), band = bandPoints(pts), bd = (data().damageBand || {});
+    const U = treeUi();
     const nextTxt = pts >= treeMax() ? str("maxed") : nx ? str("next", { skill: esc((skillDef(nx.skill) || {}).name || nx.skill), at: nx.at, n: nx.at - pts }) : str("allUnlocked");
     const tabs = trees.map((x) => {
       const xp = p.tree.pts[x.id] || 0, ult = xp >= ultAt();
@@ -389,11 +426,12 @@
     const pips = []; for (let i = (bd.from || 41); i <= (bd.to || 50); i++) pips.push(`<span class="tt-pip ${pts >= i ? "on" : ""}" title="${i}"></span>`);
     const fill = Math.min(100, pts / treeMax() * 100);
     const ticks = t.nodes.map((n) => `<span class="tt-tick ${pts >= n.at ? "on" : ""} ${n.ultimate ? "ult" : ""}" style="left:${n.at / treeMax() * 100}%"></span>`).join("");
-    return `<div class="tt-head"><p class="small tt-points" id="tt-points"><b>${free}</b> ${esc(str("pointsLine", { free: "", used: spentPoints(p), total: totalPoints(p) }).replace(/^\s+/, ""))}</p>
+    const ptsLabel = treeUiStr("pointsTitle") || "Skill points";
+    return `<div class="tt-head"><p class="tt-points" id="tt-points"><b>${free}</b> <span class="tt-points-lab">${esc(ptsLabel)}</span> ${esc(str("pointsLine", { free: "", used: spentPoints(p), total: totalPoints(p) }).replace(/^\s+/, ""))}</p>
       <button type="button" class="btn hold-respec" data-act="respec-arm">Hold to respec</button></div>
     <div class="tt-tabs" role="tablist">${tabs}</div>
     <div class="tree-wrap tt-wrap">
-      <section class="tt-tree" data-tree="${tab}">
+      <section class="tt-tree" data-tree="${tab}" style="--tt-cols:${U.cols || 4};--tt-cols-narrow:${U.colsNarrow || 2};--tt-gap-x:${U.gapX || 22}px;--tt-gap-y:${U.gapY || 20}px;--tt-node-h:${U.nodeMinH || 56}px;--tt-line:${U.lineWidth || 3}px;--tt-points:${U.pointsSize || 28}px;">
         <div class="tt-bonus" id="tt-bonus"><span class="muted">${esc(str("bonusTitle"))}:</span> ${bonusLine(t, pts)}</div>
         <div class="tt-spend">
           <button type="button" class="btn primary tt-plus" data-act="tree-spend" data-tree="${tab}" ${cs.ok ? "" : "disabled"}>${esc(str("spend", { tree: t.name }))}</button>
@@ -401,34 +439,49 @@
           <span class="small tt-next">${cs.ok || pts >= treeMax() ? nextTxt : esc(cs.reason)}</span>
         </div>
         <div class="tt-track" aria-label="${pts} of ${treeMax()}"><span class="tt-fill" style="width:${fill}%"></span>${ticks}<span class="tt-bandzone" style="left:${ultAt() / treeMax() * 100}%"></span></div>
-        <div class="tt-nodes">${nodes}</div>
+        <div class="tt-board"><svg class="tt-lines" aria-hidden="true"></svg><div class="tt-nodes">${nodes}</div></div>
         <div class="tt-band ${band > 0 ? "is-on" : ""}" id="tt-band"><span class="small"><b>${esc(str("bandTitle"))}</b></span><span class="tt-pips">${pips.join("")}</span><span class="small">${esc(str("bandLine", { pct: band * (bd.pctPerPoint || 0), tree: t.name }))}</span></div>
       </section>
     </div>`;
+  }
+  function rankLines(d, rank) {
+    let lines = [];
+    if (d.tree) { lines.push(d.about || ""); for (const n of d.notes || []) lines.push(n); }
+    else { try { lines = (H && H.describe ? H.describe(d, rank) : [d.about || ""]); } catch (err) { lines = [d.about || ""]; } }
+    return (lines || []).filter(Boolean);
   }
   function detailHtml(e) {
     const p = e.player, id = e.ui.skillId, d = skillDef(id), t = treeOfSkill(p, id); strCls = p.classId;
     if (!d || !t) return "";
     const node = t.nodes.find((n) => n.skill === id), pts = p.tree.pts[t.id] || 0, unlocked = pts >= node.at;
-    const rank = unlocked ? (e.sheet.ranks[id] || 0) : 0, shown = Math.max(1, rank);
-    let lines = [];
-    if (d.tree) { lines.push(d.about || ""); for (const n of d.notes || []) lines.push(n); }
-    else { try { lines = (H && H.describe ? H.describe(d, shown) : [d.about || ""]); } catch (err) { lines = [d.about || ""]; } }
+    const baseRank = unlocked ? nodeRank(node, pts) : 0;
+    const rank = unlocked ? Math.max(e.sheet.ranks[id] || 0, baseRank) : 0, shown = Math.max(1, rank);
+    const curLines = rankLines(d, shown);
+    const nextRank = unlocked ? rank + 1 : 1;
+    const nextLines = rankLines(d, Math.max(1, nextRank));
     const mana = d.type === "active" && H && H.mana ? ` \u00b7 mana ${H.mana(d, shown)}` : "";
     const cd = d.type === "active" && d.cooldown ? ` \u00b7 ${d.cooldown}s` : "";
     const head = unlocked ? str("detailUnlocked", { rank, pts, tree: t.name }) : str("detailLocked", { at: node.at, tree: t.name });
     const dmg = damagePct(t, pts), ar = areaPct(t, pts);
-    if (unlocked && (dmg || ar)) lines.push(`${str("bonusTitle")}: +${dmg}% damage` + (ar ? `, +${ar}% area` : "") + (pts >= ultAt() ? " (rank and area stop at 40)" : ""));
+    if (unlocked && (dmg || ar)) curLines.push(`${str("bonusTitle")}: +${dmg}% damage` + (ar ? `, +${ar}% area` : "") + (pts >= ultAt() ? " (rank and area stop at 40)" : ""));
+    const U = treeUi();
+    const curLab = treeUiStr("currentRank", { rank: unlocked ? rank : 0 }) || ("Rank " + (unlocked ? rank : 0));
+    const nextLab = unlocked
+      ? (treeUiStr("nextRank", { rank: nextRank }) || ("Next rank " + nextRank))
+      : (treeUiStr("nextUnlock", { at: node.at }) || str("detailLocked", { at: node.at, tree: t.name }));
+    const onBar = treeUiStr("onBar") || "Put on the action bar";
+    const slotLab = (n) => treeUiStr("slot", { n: n + 1 }) || ("Bar " + (n + 1));
     return `<div class="detail" id="detail">
     <div class="detail-head">
       <strong>${esc(d.name)}${node.ultimate ? ` <span class="tt-ult">${esc(str("ultimate"))}</span>` : ""}</strong>
       <div class="small muted">${esc(d.type)}${mana}${cd}</div>
       <div class="small ${unlocked ? "good" : "muted"}">${esc(head)}</div>
     </div>
-    <div class="detail-core">${lines.filter(Boolean).slice(0, 5).map((r) => `<div class="small">${esc(r)}</div>`).join("")}</div>
-    <div class="detail-actions"><div class="row">
-      ${d.type === "active" ? [0, 1, 2, 3].map((r) => `<button class="btn slim bar-slot" data-act="assign" data-skill="${d.id}" data-slot="${r}" aria-label="Bar ${r + 1}" ${unlocked ? "" : "disabled"}>${r + 1}</button>`).join("") : ""}
-    </div></div>
+    <div class="detail-core tt-tip">
+      <div class="tt-tip-cur"><h4>${esc(curLab)}</h4>${curLines.slice(0, 5).map((r) => `<div class="small">${esc(r)}</div>`).join("")}</div>
+      <div class="tt-tip-next"><h4>${esc(nextLab)}</h4>${nextLines.slice(0, 4).map((r) => `<div class="small">${esc(r)}</div>`).join("")}</div>
+    </div>
+    <div class="detail-actions tt-assign">${d.type === "active" ? `<div class="tt-assign-lab">${esc(onBar)}</div><div class="row">` + [0, 1, 2, 3].map((r) => `<button class="btn bar-slot" data-act="assign" data-skill="${d.id}" data-slot="${r}" aria-label="${esc(slotLab(r))}" ${unlocked ? "" : "disabled"}>${r + 1}</button>`).join("") + "</div>" : ""}</div>
   </div>`;
   }
 
@@ -447,7 +500,7 @@
     data, supports, active, fresh, totalPoints, spentPoints, freePoints, canSpend, spend, unspend, resetFree, derive,
     nodeRank, damagePct, areaPct, statBonus, betweenCount, bandPoints, treeDef, treeOfSkill,
     registerTree, replaceTree, sheetMods, postSheet, wrapCast, preDamage, tick, clearWorld,
-    migratePlayer, migrateSave, act, panelHtml, detailHtml, attach, kit,
+    migratePlayer, migrateSave, act, panelHtml, detailHtml, layoutBoard, attach, kit,
     // kit tools
     tools: { hooks, now, str, skillDef, rankOf, hasBuff, getBuff, addBuff, treeOfSkill, treeMul, skillMul, scaled, withMul,
       angTo, aimPoint, near, hit, burst, still, isStill, pool, pending, pools, behaviors: BEHAVIORS },

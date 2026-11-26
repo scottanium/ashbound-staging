@@ -4,7 +4,7 @@
 (function (root) {
   "use strict";
   var DEF = {
-    attack: { swingMin: 0.08, swingMax: 0.18, swingApsRef: 0.28, skillSwing: 0.11, autoSwing: 0.12, windup: 0, recoveryMul: 1, strikeAnimRef: 0.18, strikeAnimRate: 22 },
+    attack: { swingMin: 0.08, swingMax: 0.18, swingApsRef: 0.28, skillSwing: 0.11, autoSwing: 0.12, windup: 0, recoveryMul: 1, strikeAnimRef: 0.18, strikeAnimRate: 22, pressLatch: true, strikeOverHit: true },
     hit: { stop: 0.07, stopCrit: 0.11, stopKill: 0.13, stopHurt: 0.055, hurtThreshold: 16, flashHit: 0.18, flashHurt: 0.18, flashFriendly: 0.14, shakeHit: 1.8, shakeCrit: 2.8, shakeHitCap: 3.6, shakeCritCap: 5.2, shakeHurtMul: 0.1, shakeHurtAddCap: 2.4, shakeCap: 4.5, impactRing: 0.16, impactRingCrit: 0.22, impactRadius: 0.55, impactRadiusCrit: 0.85 },
     movement: { runMul: 0.85, walkMul: 0.4, walkStick: 0.62, deadzone: 0.18, accel: 16, decel: 22, slowMul: 0.72, channelMul: 0.5, runAnimSpeed: 3.05, idleSpeed: 0.25 },
     stamina: { maxBase: 200, perVitality: 6.25, drainPerSec: 16, regenWalk: 27.5, regenIdle: 45, resumeFrac: 0.28, bar: { width: 72, height: 8, gapAboveOrb: 6 } },
@@ -36,6 +36,8 @@
   }
   function skillSwing() { return attack().skillSwing; }
   function recoveryMul() { return attack().recoveryMul; }
+  function pressLatch() { return attack().pressLatch !== false; }
+  function strikeOverHit() { return attack().strikeOverHit !== false; }
   function attackPeriod(aps) { return (1 / (aps || 1)) * (recoveryMul() || 1); }
   function strikeFrame(swingT, swing) {
     var a = attack();
@@ -154,7 +156,7 @@
 
   root.ABFeel = {
     cfg, attack, hit, move, stamina, bootMove, affix,
-    swingTime, skillSwing, recoveryMul, attackPeriod, strikeFrame, hitStopFor,
+    swingTime, skillSwing, recoveryMul, pressLatch, strikeOverHit, attackPeriod, strikeFrame, hitStopFor,
     itemRank, bootPct, bootImplicitAffix, affixMods, frwClamp,
     stamMax, ensure, tickStamina,
     topSpeed, speeds, approach, gaitFromSpeed
