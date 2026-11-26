@@ -30,11 +30,19 @@
     ["sets", "data/sets.json"],
     ["sustain", "data/sustain.json"],
     ["uniquesAshen", "data/uniques-ashen.json"],
-    ["skillTrees", "data/skilltrees-warden.json", true],
+    // v82s: skill trees. Shared math in skilltrees-common.json, one file per class. All optional: a class with no file
+    // (or the staging/test fallback ?skilltrees=off) keeps the old per-skill system.
+    ["skillTreeCommon", "data/skilltrees-common.json", true],
+    ["skillTrees_warden", "data/skilltrees-warden.json", true],
+    ["skillTrees_reaver", "data/skilltrees-reaver.json", true],
+    ["skillTrees_chanter", "data/skilltrees-chanter.json", true],
+    ["skillTrees_caller", "data/skilltrees-caller.json", true],
+    ["skillTrees_stalker", "data/skilltrees-stalker.json", true],
   ];
+  const treesOff = (() => { try { return /(?:^|[?&])skilltrees=off(?:&|$)/.test(location.search || ""); } catch (e) { return false; } })();
   window.ASHBOUND_DATA_READY = Promise.all(
     files.map(([key, path, optional]) =>
-      fetch(path).then((res) => {
+      (treesOff && /^skillTree/.test(key)) ? Promise.resolve([key, null]) : fetch(path).then((res) => {
         if (!res.ok) throw new Error("Could not load " + path + " (" + res.status + ")");
         return res.json().then((data) => [key, data]);
       }).catch((err) => {
@@ -120,11 +128,18 @@
         D.uniques = list;
       }
     }
-    // v81s: Warden skill trees (optional). The tree's new skills join D.skills and the class skill list;
-    // if the file is missing or disabled, the Warden keeps the old per-skill system.
+    // v82s: skill trees (optional, per class). Each class file is merged over skilltrees-common.json (class keys win;
+    // strings merge key by key). A tree class's new skills join D.skills and its class skill list. A missing or
+    // disabled file leaves that class on the old per-skill system.
     D.skillTrees = null;
-    const st = bag.skillTrees;
-    if (st && st.enabled !== false && Array.isArray(st.trees)) {
+    D.skillTreesByClass = {};
+    D.skillTreeCommon = bag.skillTreeCommon || null;
+    const common = bag.skillTreeCommon || {};
+    for (const key of Object.keys(bag)) {
+      if (!/^skillTrees_/.test(key)) continue;
+      const raw = bag[key];
+      if (!raw || raw.enabled === false || !Array.isArray(raw.trees) || !raw.classId) continue;
+      const st = Object.assign({}, common, raw, { strings: Object.assign({}, common.strings || {}, raw.strings || {}) });
       const list = Array.isArray(D.skills) ? D.skills : [];
       const have = {};
       for (let i = 0; i < list.length; i++) if (list[i] && list[i].id) have[list[i].id] = true;
@@ -137,8 +152,10 @@
         for (let i = 0; i < extra.length; i++) if (extra[i] && ids.indexOf(extra[i].id) < 0) ids.push(extra[i].id);
         cls.skills = ids;
       }
-      D.skillTrees = st;
+      D.skillTreesByClass[st.classId] = st;
     }
+    // Back-compat: D.skillTrees is the Warden's merged data (r9 tests and tools read it).
+    D.skillTrees = D.skillTreesByClass.cinder_warden || null;
     D.inventoryLayout = bag.inventoryLayout || {};
     D.difficulty = bag.campaignDifficulty || {};
     D.campaignIntro = (bag.campaignDifficulty && bag.campaignDifficulty.campaignIntro) || bag.campaignDifficulty || {};
