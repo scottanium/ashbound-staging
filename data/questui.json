@@ -1,5 +1,5 @@
 {
-  "about": "Quest indicator copy and layout. Objective lines, the edge compass, the ground beacon and the minimap pip all read from here.",
+  "about": "Quest indicator copy and layout. Objective lines, the edge compass, the ground beacon and the minimap pip all read from here. The compass pointer shape and size are in 'pointer'.",
   "lookAhead": 5,
   "hereTiles": 1.2,
   "edge": {
@@ -42,5 +42,18 @@
     "fill": "#ffe08a",
     "stroke": "#3a1408",
     "size": 8
+  },
+  "pointer": {
+    "about": "v84g edge-compass mark. A long, narrow arrowhead with a short tail, rotated toward the target. Sizes in CSS px. 0 rad points right (positive x), matching atan2.",
+    "kind": "arrow",
+    "length": 28,
+    "width": 12,
+    "head": 14,
+    "tailW": 3.5,
+    "stroke": 1.4,
+    "fill": "#ffb067",
+    "fillOnTarget": "#ffe7b0",
+    "strokeColor": "#3a1408",
+    "glow": "rgba(255,176,80,.95)"
   }
 }

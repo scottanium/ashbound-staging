@@ -122,7 +122,7 @@
     }
   },
   "arc": {
-    "about": "Skill arc around Strike (js/ab-hudarc.js). All 4 slots share one radius and even angular spacing, spanning spanDeg (default 90) from above Strike to its left (right-handed; mirrored for left hand). strikeScale multiplies the CSS Strike size (~20-25% larger). Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left.",
+    "about": "Skill arc around Strike (js/ab-hudarc.js). All 4 slots share one radius and even angular spacing, spanning spanDeg (default 90) from above Strike to its left (right-handed; mirrored for left hand). strikeScale multiplies the CSS Strike size. strikeInsetX / strikeInsetY (CSS px) pull Strike toward the screen centre from its CSS corner so health and mana potions can sit just beside it and the skill buttons stay out of the deep corner. Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left. Potion sizes and offsets live in the flasks block.",
     "enabled": true,
     "ringGap": 6,
     "slotGap": 6,
@@ -133,8 +133,38 @@
     "beltGap": 8,
     "orbGap": 10,
     "dockGap": 8,
-    "strikeScale": 1.22,
-    "spanDeg": 90
+    "strikeScale": 1.1,
+    "spanDeg": 90,
+    "strikeInsetX": 52,
+    "strikeInsetY": 52
+  },
+  "flasks": {
+    "about": "v84g: a single health potion icon sits just to the lower-left of Strike (lower-right in left-hand mode) and holds lifeCharges charges; the count is drawn on the icon, and the icon dims when empty. Mana potions stay as separate slots just to the upper-right (upper-left in left-hand). lifeDX/lifeDY and manaDX/manaDY are direction vectors in screen space (x right, y down) for the right hand; X signs flip in left-hand mode. size and gap are CSS px. js/ab-hudarc.js places each visible flask and the portal along that ray, closest to Strike first, and keeps them in the safe area. js/ab-flasks.js reads lifeCharges for the health stack; pickup, vendor buy, and Fill belt still refill the same way, adapted to that cap.",
+    "enabled": true,
+    "size": 44,
+    "gap": 8,
+    "lifeDX": -0.35,
+    "lifeDY": 1,
+    "manaDX": 1,
+    "manaDY": -0.35,
+    "lifeCharges": 2
+  },
+  "hints": {
+    "about": "v84g: point and tutor hints are a small pulsing dot/ring plus a short label. They must never overlap the control they point at, nor any panel tab or HUD button. js/ index ashPointHint reads this. Labels keep the words 'skill point' / 'stat point' for existing tests.",
+    "dot": 14,
+    "ring": 22,
+    "gap": 8,
+    "labelMaxWidth": 110,
+    "skillLabel": "Skill points",
+    "statLabel": "Stat points",
+    "tutorMaxWidth": 200
+  },
+  "popups": {
+    "about": "v84g: death, victory, rift, season and other overlay cards cap at maxWidthPct / maxHeightPct of the viewport (phone landscape included), with compact padding in CSS px. Tap the dimmed veil outside the card to close rift and season popups. js/ab-ui.js applies these as --popup-* variables.",
+    "maxWidthPct": 60,
+    "maxHeightPct": 70,
+    "pad": 8,
+    "closeOnVeil": true
   },
   "skillTree": {
     "labels": {
@@ -475,6 +505,17 @@
       "pieces": "{n} of {m} pieces worn"
     }
   },
+  "safeArea": {
+    "about": "v84g: every panel and HUD element is padded by env(safe-area-inset-*) plus these extra CSS px, so the Dynamic Island and home indicator never cover inventory slots or HUD. js/ab-safearea.js reads the insets from a CSS probe (#ab-safe-probe) and exposes them as --safe-l/r/t/b and ABSafeArea.insets() for canvas-drawn UI. min* floors each side. Adjust here if a device still clips.",
+    "extraLeft": 0,
+    "extraRight": 0,
+    "extraTop": 0,
+    "extraBottom": 0,
+    "minLeft": 0,
+    "minRight": 0,
+    "minTop": 0,
+    "minBottom": 0
+  },
   "overheadBars": {
     "about": "Small health and mana bars drawn above the player. Off by default; the Settings toggle is saved with the rest of the device settings.",
     "defaultOn": false,
@@ -491,13 +532,20 @@
     }
   },
   "hudLayout": {
-    "about": "v72: life and mana orbs sit near the bottom centre (health left of centre, mana right), D2/D4 style. The dock keeps a 44px minimum tap target and the profile dock font; belts and the dock move so they do not overlap. js/ab-hudarc.js reads this.",
+    "about": "v72: life and mana orbs sit near the bottom centre (health left of centre, mana right), D2/D4 style. The dock keeps a 44px minimum tap target and the profile dock font; belts and the dock move so they do not overlap. js/ab-hudarc.js reads this. Dock icon sizes: dockIcons.",
     "enabled": true,
     "orbBottom": 8,
     "orbCenterGap": 10,
     "dockAbove": 8,
     "dockGap": 6,
     "interactAbove": 8
+  },
+  "dockSplit": {
+    "about": "v84g: the play dock is split like Diablo Immortal. Gear and Stats sit just to the left of the health orb; Skills, Journal and Menu sit just to the right of the mana orb. js/ab-hudarc.js places #dock-left and #dock-right. Gaps are CSS px. Left-hand mode keeps the orbs' order (health left, mana right) and the same flanking.",
+    "enabled": true,
+    "orbGap": 8,
+    "edge": 4,
+    "minBtn": 36
   },
   "muteBtn": {
     "about": "v72 HUD mute button (speaker icon). Size in CSS px; sits beside the minimap, away from orbs and skills. Toggles all game audio and is saved with the other device settings (abStore / staging prefix).",
@@ -507,5 +555,45 @@
       "mute": "Mute",
       "unmute": "Unmute"
     }
+  },
+  "itemBox": {
+    "about": "v84g item pop-up (js/ab-itembox.js). The card is a clean tooltip; Equip stays a wide button on the bottom; Unequip, Move to Stash, Drop and other secondary actions sit in a narrow icon strip beside the card. Drop asks for confirmation. Sizes in CSS px. A later settings screen can expose these as user-editable HUD values.",
+    "pad": 8,
+    "maxW": 340,
+    "maxH": 380,
+    "compareMaxW": 320,
+    "minW": 200,
+    "stackMin": 160,
+    "equipH": 44,
+    "icon": 44,
+    "iconGap": 6,
+    "stripGap": 6,
+    "z": 80,
+    "tipZ": 90
+  },
+  "dockIcons": {
+    "about": "v84g compact play dock (icon + short label). Sizes in CSS px. enabled turns the icon layout on; a later settings screen can expose these as user-editable HUD values. js/ab-ui.js and the dock markup in index.html read this.",
+    "enabled": true,
+    "size": 52,
+    "icon": 20,
+    "label": 9,
+    "gap": 6,
+    "pad": 2
+  },
+  "characterSheet": {
+    "about": "v84g Diablo 2-style character sheet (js/ab-charsheet.js). Sizes in CSS px. Labels live in data/stats.json. enabled is also gated by statsTab.enabled so existing tests can turn the sheet off.",
+    "enabled": true,
+    "panel": "stats",
+    "maxW": 720,
+    "pad": 12,
+    "plus": 44,
+    "previewHoldMs": 350,
+    "xpH": 8,
+    "colMin": 240,
+    "gap": 12
+  },
+  "skillTreePanel": {
+    "about": "v84g skill-tree panel. Sizes and copy live in data/skilltree-ui.json; js/ab-skilltree.js lays out #tt-band, .tt-node and connecting lines.",
+    "enabled": true
   }
 }

@@ -163,7 +163,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your servants strike cold. Their hits chill for 2 seconds, and they deal +25% damage against chilled foes.",
+      "about": "Your servants deal cold damage. Their hits chill for 2 seconds, and they deal +25% damage to chilled foes.",
       "notes": [],
       "params": {
         "chillSec": 2,
@@ -185,7 +185,7 @@
       ],
       "cooldown": 10,
       "behavior": "tree_rally",
-      "about": "Every servant leaps to the nearest foe and fights faster for a while, gaining +60% attack speed for 6 seconds.",
+      "about": "Every servant leaps to the nearest foe and gains +60% attack speed for 6 seconds.",
       "notes": [],
       "params": {
         "apsPct": 60,
@@ -209,7 +209,7 @@
       ],
       "cooldown": 30,
       "behavior": "tree_colossus",
-      "about": "You call up the glass giant that sleeps under the mere. It lasts 20 seconds, with 8 times a Glassling's life and 4 times its damage, and it slams cold around it every 2.5 seconds.",
+      "about": "You call a glass giant for 20 seconds: 8 times a Glassling's life, 4 times its damage, slamming cold every 2.5 seconds.",
       "notes": [],
       "params": {
         "duration": 20,
@@ -241,7 +241,7 @@
       ],
       "cooldown": 6,
       "behavior": "tree_black_ice",
-      "about": "A sheet of black glass spreads where you point. It bites when it forms and keeps biting, and it chills everything on it for 5 seconds.",
+      "about": "A sheet of black glass deals cold when it forms and while it lasts, and chills foes on it for 5 seconds.",
       "notes": [],
       "params": {
         "range": 7,
@@ -268,7 +268,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "A chilled foe that is nearly dead does not fall. It breaks. Chilled non-boss foes under 15% life shatter at once.",
+      "about": "Chilled non-boss foes below 15% life shatter at once.",
       "notes": [],
       "params": {
         "execPct": 15
@@ -285,7 +285,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "The cold of the deep mere is in you. Every 5 cold hits freeze a foe for 2 seconds (bosses are slowed). Frozen foes take +30% damage from you and your servants.",
+      "about": "Every 5 cold hits freeze a foe for 2 seconds, or slow a boss. Frozen foes take +30% damage from you and your servants.",
       "notes": [],
       "params": {
         "marks": 5,
@@ -308,7 +308,7 @@
       ],
       "cooldown": 4,
       "behavior": "tree_offering",
-      "about": "You break your own servants. Each one bursts into cold, dealing 35% of its max life as cold damage, and heals you for 4% of your max life.",
+      "about": "You break your own servants. Each bursts for 35% of its max life as cold damage, and heals you for 4% of your max life.",
       "notes": [],
       "params": {
         "burstPct": 35,
@@ -326,7 +326,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "When one of your servants breaks, for any reason, it leaves shards behind. The burst deals 25% of its max life as cold damage.",
+      "about": "When one of your servants breaks, the burst deals 25% of its max life as cold damage.",
       "notes": [],
       "params": {
         "burstPct": 25,
@@ -344,7 +344,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your chorus never ends. Servants that shatter re-form at your side 1.5 seconds later, for free, and servant bursts deal double.",
+      "about": "Servants that shatter re-form at your side 1.5 seconds later, for free, and their bursts deal double.",
       "notes": [],
       "params": {
         "reformSec": 1.5,

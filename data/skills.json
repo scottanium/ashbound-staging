@@ -392,7 +392,7 @@
     "maxRank": 20,
     "requires": [],
     "behavior": "passive",
-    "about": "Your minions deal more damage, and you can have one more of them.",
+    "about": "Your minions deal more damage, and your minion cap rises with each rank.",
     "notes": [],
     "params": {
       "perRank": {
@@ -731,7 +731,7 @@
     "behavior": "passive",
     "about": "Your snares reach farther, and you can have more of them armed at once.",
     "notes": [
-      "Each rank makes your traps wider. Every fourth rank lets one more snare stay armed."
+      "Each rank adds +1% poison resist and +0.08 trap radius. Every fourth rank lets one more snare stay armed."
     ],
     "params": {
       "perRank": {
@@ -916,7 +916,7 @@
     "behavior": "passive",
     "about": "Poison you inflict lasts longer.",
     "notes": [
-      "Each rank makes poison you inflict last longer."
+      "Each rank adds +1 poison damage and +0.22 seconds to poison duration."
     ],
     "params": {
       "perRank": {
@@ -1030,7 +1030,7 @@
     ],
     "cooldown": 0.35,
     "behavior": "melee",
-    "about": "A short, close cut. It hits harder when you are already attacking quickly.",
+    "about": "A short, close cut.",
     "notes": [
       "Quick Wrist makes the swing faster. Keen Edge makes it more likely to crit and hit."
     ],
@@ -1190,7 +1190,7 @@
       }
     ],
     "behavior": "passive",
-    "about": "You attack and move a little faster. Needs two ranks in Quick Wrist.",
+    "about": "You attack and move a little faster.",
     "notes": [
       "Increases attack speed, and a little move speed, so you don't have to dash to close in."
     ],
@@ -1326,7 +1326,7 @@
     "behavior": "projectile",
     "about": "Play a short note that deals lightning damage to the first foe it hits.",
     "notes": [
-      "Clear Tone adds lightning damage. Held Note does not reduce the mana cost. It helps the next note start sooner."
+      "Clear Tone adds lightning. Held Note does not lower the mana cost, but the next note starts sooner."
     ],
     "params": {
       "speed": 10,
@@ -1474,7 +1474,7 @@
     ],
     "cooldown": 10,
     "behavior": "ward",
-    "about": "Your armor is increased against the next hits.",
+    "about": "A ward absorbs incoming damage and grants lightning resist for 8 seconds.",
     "notes": [],
     "params": {
       "absorb": [
@@ -1531,7 +1531,7 @@
     "behavior": "passive",
     "about": "You have more life, and your companions deal a little more damage.",
     "notes": [
-      "This also increases the damage of Quill, and of any glass servants you did not call yourself, if they are with you."
+      "This also increases the damage of Quill, and of any glass servants you did not call yourself."
     ],
     "params": {
       "perRank": {
@@ -1718,7 +1718,7 @@
       }
     ],
     "behavior": "passive",
-    "about": "You can have one more servant at a time.",
+    "about": "Your servant cap rises with each rank.",
     "notes": [
       "Adds to the cap from Second Voice. It does not raise their damage by itself."
     ],
@@ -2019,9 +2019,9 @@
       }
     ],
     "behavior": "passive",
-    "about": "You gain a little more defense while a hymn is active.",
+    "about": "You gain more defense and lightning resist. This is always on.",
     "notes": [
-      "It does not change the hymn radius. It raises your defense while you stand in the hymn."
+      "This does not change hymn radius. The defense and lightning resist are always on, not only while a hymn is active."
     ],
     "params": {
       "perRank": {

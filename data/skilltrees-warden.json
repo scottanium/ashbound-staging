@@ -199,7 +199,7 @@
       ],
       "cooldown": 3.5,
       "behavior": "tree_flurry",
-      "about": "Three quick cuts stoke the fire, and the fourth breath lets it out.",
+      "about": "You land three quick cuts, then a burst of fire.",
       "notes": [
         "Each cut is a melee hit, so Quenchcrack counts all three."
       ],
@@ -296,7 +296,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your Ash Ward goes out in a blast, and the burned blow apart when they fall.",
+      "about": "When Ash Ward ends, it explodes. Foes you recently burned also explode when they die.",
       "notes": [
         "Death bursts are capped so a pack cannot chain forever."
       ],
@@ -318,7 +318,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "An old kiln still burns under the water inside you. Its fire cuts deeper and cares nothing for resistance.",
+      "about": "Fire crits deal 1.75 times damage and ignore 25% of fire resist. Every 3rd cast is a free bloom, 1.5 times as wide.",
       "notes": [],
       "params": {
         "fireCritMult": 1.75,
@@ -387,7 +387,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your armor becomes a weapon. When you're nearly beaten, Spiteplate hits twice as hard and you swing twice as fast.",
+      "about": "You deal 1 damage per 10 armor. When your life is below 40%, Spiteplate hits twice as hard and you swing twice as fast.",
       "notes": [
         "Armor turns into damage at 1 damage per 10 armor converted."
       ],

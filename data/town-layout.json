@@ -1,0 +1,263 @@
+{
+  "about": "Town layout. 'spacing' is the gap multiplier between buildings and props (1 keeps the original 22x16 plan). Only Hearthveil, the starting town, uses a larger spacing (1.4, about 40% more room) and a bigger map so the square and houses are less cramped. Other towns keep spacing 1 and the default plan. minBuildingSeparation is the minimum edge-to-edge gap the test requires, in tiles, using each building's tilesW x tilesH box.",
+  "spacing": {
+    "default": 1,
+    "hearthveil": 1.4
+  },
+  "minBuildingSeparation": {
+    "default": 1.8,
+    "hearthveil": 2.6
+  },
+  "default": {
+    "w": 22,
+    "h": 16,
+    "gate": [
+      11,
+      1.3
+    ],
+    "spawn": [
+      11,
+      10.85
+    ],
+    "path": {
+      "x0": 10,
+      "x1": 11,
+      "y0": 1,
+      "y1": 11
+    },
+    "buildings": [
+      {
+        "place": "smith",
+        "tx": 6,
+        "ty": 8,
+        "tw": 4,
+        "th": 2,
+        "x": 7.5,
+        "y": 10.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      },
+      {
+        "place": "inn",
+        "tx": 12,
+        "ty": 8,
+        "tw": 4,
+        "th": 2,
+        "x": 13.5,
+        "y": 10.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      },
+      {
+        "place": "stall",
+        "tx": 5,
+        "ty": 12,
+        "tw": 4,
+        "th": 2,
+        "x": 6.5,
+        "y": 14.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      },
+      {
+        "place": "house",
+        "tx": 13,
+        "ty": 12,
+        "tw": 4,
+        "th": 2,
+        "x": 14.5,
+        "y": 14.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      }
+    ],
+    "fenceXs": [
+      4.2,
+      6.4,
+      8.6,
+      14.2,
+      16.4,
+      18.4
+    ],
+    "fenceYTop": 4.6,
+    "fenceYBot": 15.15,
+    "stash": [
+      12.6,
+      11.7
+    ],
+    "bench": [
+      15.4,
+      10.9
+    ],
+    "fountain": [
+      8.8,
+      11.85
+    ],
+    "kiln": [
+      11,
+      12.75
+    ],
+    "npc": {
+      "smith": [
+        7.6,
+        11.35
+      ],
+      "dockhand": [
+        7.6,
+        11.35
+      ],
+      "elder": [
+        13.4,
+        10.55
+      ],
+      "innkeep": [
+        15.15,
+        11.05
+      ],
+      "merchant": [
+        8.5,
+        11.55
+      ]
+    },
+    "decor": [
+      [
+        4.4,
+        5.1
+      ],
+      [
+        17.5,
+        5.1
+      ],
+      [
+        17.5,
+        14.2
+      ]
+    ]
+  },
+  "hearthveil": {
+    "w": 28,
+    "h": 18,
+    "gate": [
+      14,
+      1.3
+    ],
+    "spawn": [
+      14,
+      12.4
+    ],
+    "path": {
+      "x0": 13,
+      "x1": 14,
+      "y0": 1,
+      "y1": 12
+    },
+    "buildings": [
+      {
+        "place": "smith",
+        "tx": 8,
+        "ty": 9,
+        "tw": 4,
+        "th": 2,
+        "x": 9.5,
+        "y": 11.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      },
+      {
+        "place": "inn",
+        "tx": 15,
+        "ty": 9,
+        "tw": 4,
+        "th": 2,
+        "x": 16.5,
+        "y": 11.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      },
+      {
+        "place": "stall",
+        "tx": 6,
+        "ty": 14,
+        "tw": 4,
+        "th": 2,
+        "x": 7.5,
+        "y": 16.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      },
+      {
+        "place": "house",
+        "tx": 16,
+        "ty": 14,
+        "tw": 4,
+        "th": 2,
+        "x": 17.5,
+        "y": 16.05,
+        "tilesW": 4,
+        "tilesH": 2.2
+      }
+    ],
+    "fenceXs": [
+      4.2,
+      7.0,
+      9.8,
+      17.2,
+      20.0,
+      22.8
+    ],
+    "fenceYTop": 4.8,
+    "fenceYBot": 17.15,
+    "stash": [
+      16.2,
+      13.0
+    ],
+    "bench": [
+      19.0,
+      12.2
+    ],
+    "fountain": [
+      11.5,
+      13.0
+    ],
+    "kiln": [
+      14,
+      13.45
+    ],
+    "npc": {
+      "smith": [
+        9.6,
+        12.5
+      ],
+      "dockhand": [
+        9.6,
+        12.5
+      ],
+      "elder": [
+        16.4,
+        11.5
+      ],
+      "innkeep": [
+        18.8,
+        12.3
+      ],
+      "merchant": [
+        11.2,
+        12.8
+      ]
+    },
+    "decor": [
+      [
+        5.0,
+        5.5
+      ],
+      [
+        22.0,
+        5.5
+      ],
+      [
+        22.0,
+        16.2
+      ]
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "about": "v84g Diablo Immortal / D2R skill-tree panel layout and copy. js/ab-skilltree.js reads this. Node point costs and balance stay in data/skilltrees-*.json.",
+  "enabled": true,
+  "cols": 4,
+  "colsNarrow": 2,
+  "narrowMax": 520,
+  "nodeMinH": 56,
+  "tapMin": 44,
+  "gapX": 22,
+  "gapY": 20,
+  "lineWidth": 3,
+  "boardPad": 8,
+  "assignMin": 44,
+  "pointsSize": 28,
+  "text": {
+    "currentRank": "Rank {rank}",
+    "nextRank": "Next rank {rank}",
+    "nextUnlock": "Unlocks at {at} points",
+    "onBar": "Put on the action bar",
+    "slot": "Bar {n}",
+    "pointsTitle": "Skill points"
+  }
+}

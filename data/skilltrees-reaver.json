@@ -163,7 +163,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "After a dash, your next two hits are certain crits. This works with Glass Step, Salt Feint, and the dashes in The Unstill.",
+      "about": "After a dash, your next 2 hits within 3 seconds are certain crits. This works with Glass Step and Salt Feint.",
       "notes": [],
       "params": {
         "hits": 2,
@@ -214,7 +214,7 @@
       ],
       "cooldown": 28,
       "behavior": "tree_salt_storm",
-      "about": "For a while you never stop moving. Dashes cost nothing and come back at once, and each one lands with a full-circle cut that uses Salt Cut's damage.",
+      "about": "For 10 seconds, dashes cost nothing and refresh at once. Each dash lands a full-circle cut that uses Salt Cut's damage.",
       "notes": [],
       "params": {
         "duration": 10,
@@ -231,7 +231,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Each hit soon after the last adds a Pace stack, and you attack faster with every stack. Stop hitting and it drops. You can have up to 10 stacks, or 20 with Unbroken Pace.",
+      "about": "Hits within 2 seconds add Pace stacks (+4% attack speed each). They fade if you stop hitting. Cap is 10, or 20 with Unbroken Pace.",
       "notes": [],
       "params": {
         "window": 2,
@@ -254,7 +254,7 @@
       ],
       "cooldown": 4,
       "behavior": "tree_measure",
-      "about": "You spend every Pace stack on one full-circle cut. The more stacks you spend, the harder the cut. With no stacks it is a plain spin.",
+      "about": "You spend every Pace stack on one full-circle cut. More stacks make it hit harder. With no stacks it is a plain spin.",
       "notes": [],
       "params": {
         "range": 2.1,
@@ -277,7 +277,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your pace never breaks. Attack speed past the limit is not wasted: it turns into damage. Attack speed is capped at +140%, and each 1% over the cap adds 1.5% damage to your attacks.",
+      "about": "Attack speed is capped at +140%. Each 1% over the cap adds 1.5% damage to your attacks.",
       "notes": [],
       "params": {
         "ias": 20,
@@ -302,7 +302,7 @@
       ],
       "cooldown": 5,
       "behavior": "tree_bloodletting",
-      "about": "A lunging cut that heals you for every enemy it opens. You heal 3% of your max life per enemy hit, up to 5.",
+      "about": "A lunging cut that heals you for 3% of your max life per enemy hit, up to 5 enemies.",
       "notes": [],
       "params": {
         "range": 2.0,
@@ -325,7 +325,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Life you steal or heal past full is not lost. It hardens into a Brine Shell, up to 30% of your max life. The shell fades if you stop fighting for 3 seconds.",
+      "about": "Life you steal or heal past full becomes a Brine Shell, up to 30% of max life. It fades if you stop fighting for 3 seconds.",
       "notes": [],
       "params": {
         "capPctLife": 30,
@@ -349,7 +349,7 @@
       ],
       "cooldown": 30,
       "behavior": "tree_red_tide",
-      "about": "For a few seconds nothing can finish you. You steal more life, and when it ends a share of the damage you dealt comes back as healing. You cannot drop below 1 life while it lasts. Healing past full goes into Brine Shell.",
+      "about": "For 8 seconds you cannot drop below 1 life. You gain +8% life steal, and 25% of damage dealt returns as healing. Overflow goes into Brine Shell.",
       "notes": [],
       "params": {
         "duration": 8,

@@ -43,7 +43,7 @@
     "notice": "Your skills now grow in trees. Every point is back to spend.",
     "noticeShort": "Your skills now grow in trees. Every point is back to spend.",
     "spent": "{tree} {n}.",
-    "unlockedToast": "A new skill stirs: {name}",
+    "unlockedToast": "A new skill is ready: {name}",
     "detailLocked": "Unlocks at {at} points in {tree}.",
     "detailUnlocked": "Rank {rank} from {pts} points in {tree}."
   }

@@ -9,7 +9,9 @@
     "windup": 0,
     "recoveryMul": 1,
     "strikeAnimRef": 0.18,
-    "strikeAnimRate": 22
+    "strikeAnimRate": 22,
+    "pressLatch": true,
+    "strikeOverHit": true
   },
   "hit": {
     "stop": 0.07,

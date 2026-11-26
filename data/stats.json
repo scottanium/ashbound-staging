@@ -1,0 +1,333 @@
+{
+  "about": "v84g character-sheet labels and stat rows. Layout sizes live in data/ui.json characterSheet. js/ab-charsheet.js reads this.",
+  "title": "Character",
+  "dockLabel": "Stats",
+  "dockAria": "Character stats",
+  "tab": "Stats",
+  "text": {
+    "base": "Base",
+    "gear": "Gear",
+    "bonus": "Bonus",
+    "perPoint": "Each point gives:",
+    "toSpend": "to spend",
+    "cap": "cap",
+    "level": "Level",
+    "xp": "Experience",
+    "pointsLeft": "{n} to spend",
+    "previewArrow": "\u2192",
+    "class": "Class",
+    "previewHold": "Hold + to preview"
+  },
+  "attributes": [
+    {
+      "id": "strength",
+      "label": "Strength",
+      "perPoint": [
+        {
+          "metric": "dmgAvg",
+          "mode": "pct",
+          "unit": "%",
+          "dp": 1,
+          "label": "weapon damage"
+        }
+      ]
+    },
+    {
+      "id": "dexterity",
+      "label": "Dexterity",
+      "perPoint": [
+        {
+          "metric": "attack",
+          "dp": 0,
+          "label": "attack rating"
+        },
+        {
+          "metric": "block",
+          "unit": "%",
+          "dp": 1,
+          "label": "block",
+          "hideZero": true
+        }
+      ]
+    },
+    {
+      "id": "vitality",
+      "label": "Vitality",
+      "perPoint": [
+        {
+          "metric": "life",
+          "dp": 0,
+          "label": "life"
+        },
+        {
+          "metric": "stamina",
+          "dp": 1,
+          "label": "stamina"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "label": "Energy",
+      "perPoint": [
+        {
+          "metric": "mana",
+          "dp": 0,
+          "label": "mana"
+        },
+        {
+          "metric": "manaRegen",
+          "dp": 2,
+          "unit": "/s",
+          "label": "mana regen"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Offense",
+      "rows": [
+        {
+          "label": "Damage",
+          "metric": "dmgAvg",
+          "range": [
+            "dmgMin",
+            "dmgMax"
+          ],
+          "dp": 0
+        },
+        {
+          "label": "Fire damage",
+          "metric": "fireAvg",
+          "dp": 1,
+          "hideZero": true
+        },
+        {
+          "label": "Cold damage",
+          "metric": "coldAvg",
+          "dp": 1,
+          "hideZero": true
+        },
+        {
+          "label": "Lightning damage",
+          "metric": "lightAvg",
+          "dp": 1,
+          "hideZero": true
+        },
+        {
+          "label": "Poison damage",
+          "metric": "poisonAvg",
+          "dp": 1,
+          "hideZero": true
+        },
+        {
+          "label": "Attack rating",
+          "metric": "attack",
+          "dp": 0
+        },
+        {
+          "label": "Attacks per second",
+          "metric": "aps",
+          "dp": 2
+        },
+        {
+          "label": "Crit chance",
+          "metric": "crit",
+          "unit": "%",
+          "dp": 1
+        },
+        {
+          "label": "Crit damage",
+          "metric": "critMult",
+          "unit": "%",
+          "dp": 0
+        },
+        {
+          "label": "Faster cast",
+          "metric": "fcr",
+          "unit": "%",
+          "dp": 0
+        },
+        {
+          "label": "Life stolen per hit",
+          "metric": "leech",
+          "unit": "%",
+          "dp": 1,
+          "hideZero": true
+        },
+        {
+          "label": "Mana stolen per hit",
+          "metric": "manaLeech",
+          "unit": "%",
+          "dp": 1,
+          "hideZero": true
+        }
+      ]
+    },
+    {
+      "title": "Defense",
+      "rows": [
+        {
+          "label": "Defense",
+          "metric": "defense",
+          "dp": 0
+        },
+        {
+          "label": "Block",
+          "metric": "block",
+          "unit": "%",
+          "dp": 0,
+          "hideZero": true
+        },
+        {
+          "label": "Life regeneration",
+          "metric": "lifeRegen",
+          "unit": "/s",
+          "dp": 2
+        },
+        {
+          "label": "Mana regeneration",
+          "metric": "manaRegen",
+          "unit": "/s",
+          "dp": 2
+        },
+        {
+          "label": "Thorns",
+          "metric": "thorns",
+          "dp": 0,
+          "hideZero": true
+        }
+      ]
+    },
+    {
+      "title": "Movement and luck",
+      "rows": [
+        {
+          "label": "Stamina",
+          "metric": "stamina",
+          "dp": 0
+        },
+        {
+          "label": "Stamina per Vitality",
+          "metric": "staminaPerVit",
+          "dp": 2
+        },
+        {
+          "label": "Move speed",
+          "metric": "moveSpeed",
+          "unit": " tiles/s",
+          "dp": 2
+        },
+        {
+          "label": "Faster run",
+          "metric": "frw",
+          "unit": "%",
+          "dp": 0
+        },
+        {
+          "label": "Magic find",
+          "metric": "mf",
+          "unit": "%",
+          "dp": 0
+        }
+      ]
+    },
+    {
+      "title": "Resistances",
+      "note": "Each point cuts that damage by 1%. Capped at 75%.",
+      "rows": [
+        {
+          "label": "Fire",
+          "metric": "resFire",
+          "unit": "%",
+          "dp": 0,
+          "cap": 75
+        },
+        {
+          "label": "Cold",
+          "metric": "resCold",
+          "unit": "%",
+          "dp": 0,
+          "cap": 75
+        },
+        {
+          "label": "Lightning",
+          "metric": "resLightning",
+          "unit": "%",
+          "dp": 0,
+          "cap": 75
+        },
+        {
+          "label": "Poison",
+          "metric": "resPoison",
+          "unit": "%",
+          "dp": 0,
+          "cap": 75
+        }
+      ]
+    },
+    {
+      "title": "Chance to be hit",
+      "note": "Armor against a foe's attack rating. Never below 50% or above 94%.",
+      "rows": [
+        {
+          "metric": "hit",
+          "monsters": [
+            "bramble_hound",
+            "orchard_knight",
+            "kiln_drake",
+            "stair_golem"
+          ]
+        }
+      ]
+    }
+  ],
+  "mainBonuses": {
+    "crit": {
+      "metric": "crit",
+      "unit": "%",
+      "dp": 3,
+      "label": "crit chance"
+    },
+    "armorDefense": {
+      "mode": "rate",
+      "rateFrom": "armorDefensePerPoint",
+      "unit": "%",
+      "dp": 2,
+      "label": "armor defense",
+      "hideZero": true
+    },
+    "spellDamage": {
+      "mode": "rate",
+      "rateFrom": "spellDamagePerPoint",
+      "unit": "%",
+      "dp": 2,
+      "label": "spell damage"
+    },
+    "skillDamage": {
+      "mode": "rate",
+      "rateFrom": "skillDamagePerPoint",
+      "unit": "%",
+      "dp": 2,
+      "label": "skill damage"
+    }
+  },
+  "sets": {
+    "title": "Sets",
+    "empty": "No set pieces worn.",
+    "pieces": "{n} of {m} pieces worn"
+  },
+  "preview": {
+    "metrics": [
+      "dmgAvg",
+      "attack",
+      "defense",
+      "life",
+      "mana",
+      "stamina",
+      "crit",
+      "move"
+    ]
+  }
+}

@@ -163,7 +163,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your lightning does not stop at one foe. Each hit answers on another one nearby, dealing 40% of the hit, and does not jump again.",
+      "about": "Each lightning hit also hits one nearby foe for 40% of the damage, and does not jump again.",
       "notes": [],
       "params": {
         "arcs": 1,
@@ -217,7 +217,7 @@
       ],
       "cooldown": 26,
       "behavior": "tree_carillon",
-      "about": "For a while you are a whole tower of bells. Bell Note, Overtone, and Counterpoint fire as a fan of three, and lightning hits jump to 2 more foes for 50%.",
+      "about": "For 10 seconds, Bell Note, Overtone, and Counterpoint fire as a fan of three. Lightning jumps to 2 more foes for 50%.",
       "notes": [],
       "params": {
         "duration": 10,
@@ -238,7 +238,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Whatever your hymns slow down is easier to break. Slowed foes take more damage from you, and foes held by The Late Toll take double that.",
+      "about": "Slowed foes take +25% damage from you, plus 1% per rank. Foes held by The Late Toll take twice that.",
       "notes": [],
       "params": {
         "pct": 25,
@@ -261,7 +261,7 @@
       ],
       "cooldown": 6,
       "behavior": "tree_hush",
-      "about": "A ring of lightning that leaves everything it touches slowed for 4 seconds, so The Weight applies at once.",
+      "about": "A ring of lightning that slows everything it touches for 4 seconds, so The Weight applies at once.",
       "notes": [],
       "params": {
         "radius": [
@@ -293,7 +293,7 @@
       ],
       "cooldown": 30,
       "behavior": "tree_silence",
-      "about": "The room goes still. Nothing near you moves or swings, and the damage they take is held for one last toll. Non-boss foes are held for 4 seconds; bosses are slowed. When it ends, 40% of the damage they took rings out again.",
+      "about": "Non-boss foes near you are held for 4 seconds; bosses are slowed. When it ends, 40% of that damage rings out again.",
       "notes": [],
       "params": {
         "radius": 5.5,
@@ -330,7 +330,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Part of every blow lands on your mana instead of your life. While you have mana, 25% of the damage you take is paid from mana, at 1 mana per life.",
+      "about": "While you have mana, 25% of the damage you take is paid from mana, at 1 mana per life.",
       "notes": [],
       "params": {
         "pct": 25,
@@ -348,7 +348,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your mana is a bell that never stops ringing. It guards you, it strikes with you, and when it is more than half full you cast faster. Bronze Plate pays 50%. Your spells add lightning equal to 1.5% of your max mana. Above half mana, you gain +30% cast speed.",
+      "about": "Bronze Plate pays 50%. Spells add lightning equal to 1.5% of your max mana. Above half mana, you gain +30% cast speed.",
       "notes": [],
       "params": {
         "skinPct": 50,

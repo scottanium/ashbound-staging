@@ -53,6 +53,7 @@
     "npc-lines.json",
     "difficulty.json",
     "inventory-layout.json",
+    "town-layout.json",
     "camera.json",
     "icons.json",
     "props3d.json",

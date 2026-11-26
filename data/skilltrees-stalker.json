@@ -163,7 +163,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your traps are set to spring twice. A trap that fires sets itself again in the same spot, once, 0.35 seconds later.",
+      "about": "A trap that fires sets itself again in the same spot, once, 0.35 seconds later.",
       "notes": [],
       "params": {
         "rearm": 1,
@@ -186,7 +186,7 @@
       ],
       "cooldown": 5,
       "behavior": "tree_seed_scatter",
-      "about": "You throw a handful of thorn seeds, and three snares land in an arc ahead of you. They use Thorn Snare's damage. You can have up to 6 scattered snares at once.",
+      "about": "Three snares land in an arc ahead of you. They use Thorn Snare's damage. You can have up to 6 of these snares at once.",
       "notes": [],
       "params": {
         "count": 3,
@@ -211,7 +211,7 @@
       ],
       "cooldown": 30,
       "behavior": "tree_garden",
-      "about": "The ground around you grows teeth. You plant 8 snares around you, and for 8 seconds every trap that fires re-arms at once.",
+      "about": "You plant 8 snares around you. For 8 seconds, every trap that fires re-arms at once.",
       "notes": [],
       "params": {
         "count": 8,
@@ -230,7 +230,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Poison does not die with its host. It looks for the next one. A poisoned foe that dies passes its poison to foes within 2.5, and that poison lasts 2 seconds longer.",
+      "about": "When a poisoned foe dies, its poison spreads to foes within 2.5 range and lasts 2 seconds longer.",
       "notes": [],
       "params": {
         "radius": 2.5,
@@ -270,7 +270,7 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your poisons no longer crowd each other out. Every dose bites on its own. Up to 8 doses on a foe tick at once. Normally only the strongest counts.",
+      "about": "Up to 8 poison doses on a foe can tick at once. Normally only the strongest counts.",
       "notes": [],
       "params": {
         "maxStacks": 8
@@ -291,7 +291,7 @@
       ],
       "cooldown": 6,
       "behavior": "dash",
-      "about": "You step through the fight and out of sight for a moment. You cannot be hit for 1.2 seconds after the dash.",
+      "about": "You dash and cannot be hit for 1.2 seconds after it.",
       "notes": [],
       "params": {
         "distance": [
@@ -339,7 +339,7 @@
       ],
       "cooldown": 30,
       "behavior": "tree_veil",
-      "about": "You fade into the dusk. For 5 seconds nothing can touch you, and you move +40% faster. Your first strike out of the dusk deals triple damage plus heavy poison, and ends it.",
+      "about": "For 5 seconds you cannot be hit and move +40% faster. Your first strike deals 3 times damage plus heavy poison, then ends it.",
       "notes": [],
       "params": {
         "duration": 5,
