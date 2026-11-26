@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "reed_caller",
-  "about": "Reed Caller trees (v82s, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-caller.js runs the new mechanics. New names are placeholders for Koto (kotoPlaceholder, KOTO-NAMES-caller.md). Delete this file (or set enabled false) and the Caller uses the old per-skill system again.",
+  "about": "Reed Caller trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-caller.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-caller.md). Delete this file (or set enabled false) and the Caller uses the old per-skill system again.",
   "trees": [
     {
       "id": "call",
@@ -155,8 +155,7 @@
   "skills": [
     {
       "id": "cold_chorus",
-      "name": "Rime Choir",
-      "kotoPlaceholder": true,
+      "name": "The Cold Line",
       "branch": "call",
       "type": "passive",
       "icon": "spark",
@@ -164,10 +163,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your servants strike cold. Their hits chill, and they hit chilled foes harder.",
-      "notes": [
-        "Chill lasts 2 seconds. +25% servant damage against chilled foes."
-      ],
+      "about": "Your servants strike cold. Their hits chill for 2 seconds, and they deal +25% damage against chilled foes.",
+      "notes": [],
       "params": {
         "chillSec": 2,
         "pct": 25
@@ -175,8 +172,7 @@
     },
     {
       "id": "rally",
-      "name": "Rally",
-      "kotoPlaceholder": true,
+      "name": "The Leap In",
       "branch": "call",
       "type": "active",
       "icon": "dash",
@@ -189,10 +185,8 @@
       ],
       "cooldown": 10,
       "behavior": "tree_rally",
-      "about": "Every servant leaps to the nearest foe and fights faster for a while.",
-      "notes": [
-        "+60% servant attack speed for 6 seconds."
-      ],
+      "about": "Every servant leaps to the nearest foe and fights faster for a while, gaining +60% attack speed for 6 seconds.",
+      "notes": [],
       "params": {
         "apsPct": 60,
         "duration": 6,
@@ -201,8 +195,7 @@
     },
     {
       "id": "mere_colossus",
-      "name": "Glassmere Colossus",
-      "kotoPlaceholder": true,
+      "name": "The Mere Giant",
       "ultimate": true,
       "branch": "call",
       "type": "active",
@@ -216,10 +209,8 @@
       ],
       "cooldown": 30,
       "behavior": "tree_colossus",
-      "about": "You call up the glass giant that sleeps under the mere. It does not last, but while it stands nothing else matters.",
-      "notes": [
-        "Lasts 20 seconds. 8x a glassling's life, 4x its damage, and a cold slam around it every 2.5 seconds."
-      ],
+      "about": "You call up the glass giant that sleeps under the mere. It lasts 20 seconds, with 8 times a Glassling's life and 4 times its damage, and it slams cold around it every 2.5 seconds.",
+      "notes": [],
       "params": {
         "duration": 20,
         "lifeMul": 8,
@@ -237,8 +228,7 @@
     },
     {
       "id": "black_ice",
-      "name": "Black Ice",
-      "kotoPlaceholder": true,
+      "name": "Black Glass",
       "branch": "tide",
       "type": "active",
       "icon": "spark",
@@ -251,10 +241,8 @@
       ],
       "cooldown": 6,
       "behavior": "tree_black_ice",
-      "about": "A sheet of black ice spreads where you point. It bites when it forms and keeps biting.",
-      "notes": [
-        "The field chills everything on it for 5 seconds."
-      ],
+      "about": "A sheet of black glass spreads where you point. It bites when it forms and keeps biting, and it chills everything on it for 5 seconds.",
+      "notes": [],
       "params": {
         "range": 7,
         "radius": 1.8,
@@ -272,8 +260,7 @@
     },
     {
       "id": "deep_cold",
-      "name": "Shatter",
-      "kotoPlaceholder": true,
+      "name": "Gone to Glass",
       "branch": "tide",
       "type": "passive",
       "icon": "spark",
@@ -281,18 +268,15 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "A chilled foe that is nearly dead does not fall. It breaks.",
-      "notes": [
-        "Chilled non-boss foes under 15% life shatter at once."
-      ],
+      "about": "A chilled foe that is nearly dead does not fall. It breaks. Chilled non-boss foes under 15% life shatter at once.",
+      "notes": [],
       "params": {
         "execPct": 15
       }
     },
     {
       "id": "glassmere_heart",
-      "name": "Glassmere Heart",
-      "kotoPlaceholder": true,
+      "name": "The Deep Mere",
       "ultimate": true,
       "branch": "tide",
       "type": "passive",
@@ -301,10 +285,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "The cold of the deep mere is in you. Hit a foe with it enough and it freezes solid.",
-      "notes": [
-        "Every 5 cold hits freeze a foe for 2 seconds (bosses are slowed). Frozen foes take +30% damage from you and your servants."
-      ],
+      "about": "The cold of the deep mere is in you. Every 5 cold hits freeze a foe for 2 seconds (bosses are slowed). Frozen foes take +30% damage from you and your servants.",
+      "notes": [],
       "params": {
         "marks": 5,
         "freezeSec": 2,
@@ -313,8 +295,7 @@
     },
     {
       "id": "glass_offering",
-      "name": "Glass Offering",
-      "kotoPlaceholder": true,
+      "name": "Paid in Glass",
       "branch": "bond",
       "type": "active",
       "icon": "bloom",
@@ -327,10 +308,8 @@
       ],
       "cooldown": 4,
       "behavior": "tree_offering",
-      "about": "You break your own servants. Each one bursts into cold, and some of its life comes back to you.",
-      "notes": [
-        "Each burst deals 35% of the servant's max life as cold damage and heals you 4% of your max life."
-      ],
+      "about": "You break your own servants. Each one bursts into cold, dealing 35% of its max life as cold damage, and heals you for 4% of your max life.",
+      "notes": [],
       "params": {
         "burstPct": 35,
         "burstRadius": 2,
@@ -339,8 +318,7 @@
     },
     {
       "id": "shatter_bond",
-      "name": "Glass Echo",
-      "kotoPlaceholder": true,
+      "name": "The Shards",
       "branch": "bond",
       "type": "passive",
       "icon": "spark",
@@ -348,10 +326,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "When one of your servants breaks, for any reason, it takes something with it.",
-      "notes": [
-        "Bursts for 25% of its max life as cold damage."
-      ],
+      "about": "When one of your servants breaks, for any reason, it leaves shards behind. The burst deals 25% of its max life as cold damage.",
+      "notes": [],
       "params": {
         "burstPct": 25,
         "burstRadius": 1.8
@@ -359,8 +335,7 @@
     },
     {
       "id": "endless_chorus",
-      "name": "Endless Chorus",
-      "kotoPlaceholder": true,
+      "name": "They Come Back",
       "ultimate": true,
       "branch": "bond",
       "type": "passive",
@@ -369,10 +344,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your chorus never ends. Broken servants come back, whole, a moment later.",
-      "notes": [
-        "Servants that shatter re-form at your side 1.5 seconds later for free. Servant bursts deal double."
-      ],
+      "about": "Your chorus never ends. Servants that shatter re-form at your side 1.5 seconds later, for free, and servant bursts deal double.",
+      "notes": [],
       "params": {
         "reformSec": 1.5,
         "burstMul": 2
@@ -380,9 +353,7 @@
     }
   ],
   "strings": {
-    "notice": "Your calls now grow in trees. Every point is back to spend."
-  },
-  "kotoPlaceholderStrings": [
-    "notice"
-  ]
+    "notice": "The mere's trees have opened. Your points wait in the glass.",
+    "noticeShort": "The mere's trees have opened. Your points wait in the glass."
+  }
 }

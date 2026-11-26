@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "briar_stalker",
-  "about": "Briar Stalker trees (v82s, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-stalker.js runs the new mechanics. New names are placeholders for Koto (kotoPlaceholder, KOTO-NAMES-stalker.md). Delete this file (or set enabled false) and the Stalker uses the old per-skill system again.",
+  "about": "Briar Stalker trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-stalker.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-stalker.md). Delete this file (or set enabled false) and the Stalker uses the old per-skill system again.",
   "trees": [
     {
       "id": "snare",
@@ -155,8 +155,7 @@
   "skills": [
     {
       "id": "hair_trigger",
-      "name": "Hair Trigger",
-      "kotoPlaceholder": true,
+      "name": "Set Twice",
       "branch": "snare",
       "type": "passive",
       "icon": "spark",
@@ -164,10 +163,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your traps are set to spring twice. A trap that fires sets itself again in the same spot.",
-      "notes": [
-        "Re-arms once, 0.35 seconds later."
-      ],
+      "about": "Your traps are set to spring twice. A trap that fires sets itself again in the same spot, once, 0.35 seconds later.",
+      "notes": [],
       "params": {
         "rearm": 1,
         "arm": 0.35,
@@ -176,8 +173,7 @@
     },
     {
       "id": "seed_scatter",
-      "name": "Seed Scatter",
-      "kotoPlaceholder": true,
+      "name": "A Short Row",
       "branch": "snare",
       "type": "active",
       "icon": "spark",
@@ -190,10 +186,8 @@
       ],
       "cooldown": 5,
       "behavior": "tree_seed_scatter",
-      "about": "You throw a handful of thorn seeds. Three snares land in an arc ahead of you.",
-      "notes": [
-        "Uses Thorn Snare's damage. Up to 6 scattered snares at once."
-      ],
+      "about": "You throw a handful of thorn seeds, and three snares land in an arc ahead of you. They use Thorn Snare's damage. You can have up to 6 scattered snares at once.",
+      "notes": [],
       "params": {
         "count": 3,
         "dist": 2.4,
@@ -203,8 +197,7 @@
     },
     {
       "id": "garden_of_thorns",
-      "name": "Garden of Thorns",
-      "kotoPlaceholder": true,
+      "name": "Grown Teeth",
       "ultimate": true,
       "branch": "snare",
       "type": "active",
@@ -218,10 +211,8 @@
       ],
       "cooldown": 30,
       "behavior": "tree_garden",
-      "about": "The ground around you grows teeth. For a while, no trap you own ever stays sprung.",
-      "notes": [
-        "Plants 8 snares around you. For 8 seconds every trap that fires re-arms at once."
-      ],
+      "about": "The ground around you grows teeth. You plant 8 snares around you, and for 8 seconds every trap that fires re-arms at once.",
+      "notes": [],
       "params": {
         "count": 8,
         "ringRadius": 2.3,
@@ -231,8 +222,7 @@
     },
     {
       "id": "virulence",
-      "name": "Virulence",
-      "kotoPlaceholder": true,
+      "name": "The Next Host",
       "branch": "venom",
       "type": "passive",
       "icon": "leech",
@@ -240,10 +230,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Poison does not die with its host. It looks for the next one.",
-      "notes": [
-        "A poisoned foe that dies passes its poison to foes within 2.5, lasting 2 seconds longer."
-      ],
+      "about": "Poison does not die with its host. It looks for the next one. A poisoned foe that dies passes its poison to foes within 2.5, and that poison lasts 2 seconds longer.",
+      "notes": [],
       "params": {
         "radius": 2.5,
         "extraSec": 2
@@ -251,8 +239,7 @@
     },
     {
       "id": "fang_volley",
-      "name": "Fang Volley",
-      "kotoPlaceholder": true,
+      "name": "Three Needles",
       "branch": "venom",
       "type": "active",
       "icon": "spark",
@@ -265,10 +252,8 @@
       ],
       "cooldown": 1.5,
       "behavior": "tree_fang_volley",
-      "about": "Three needles at once, fanned wide.",
-      "notes": [
-        "Each needle hits like Needle."
-      ],
+      "about": "Three needles at once, fanned wide. Each needle hits like Needle.",
+      "notes": [],
       "params": {
         "count": 3,
         "spread": 0.28
@@ -276,8 +261,7 @@
     },
     {
       "id": "thousandfold_venom",
-      "name": "Thousandfold Venom",
-      "kotoPlaceholder": true,
+      "name": "Eightfold Rot",
       "ultimate": true,
       "branch": "venom",
       "type": "passive",
@@ -286,18 +270,15 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your poisons no longer crowd each other out. Every dose bites on its own.",
-      "notes": [
-        "Your poison stacks: up to 8 doses on a foe tick at once. Normally only the strongest counts."
-      ],
+      "about": "Your poisons no longer crowd each other out. Every dose bites on its own. Up to 8 doses on a foe tick at once. Normally only the strongest counts.",
+      "notes": [],
       "params": {
         "maxStacks": 8
       }
     },
     {
       "id": "vanish",
-      "name": "Vanish",
-      "kotoPlaceholder": true,
+      "name": "Out of Sight",
       "branch": "hide",
       "type": "active",
       "icon": "hide",
@@ -310,10 +291,8 @@
       ],
       "cooldown": 6,
       "behavior": "dash",
-      "about": "You step through the fight and out of sight for a moment.",
-      "notes": [
-        "Cannot be hit for 1.2 seconds after the dash."
-      ],
+      "about": "You step through the fight and out of sight for a moment. You cannot be hit for 1.2 seconds after the dash.",
+      "notes": [],
       "params": {
         "distance": [
           3,
@@ -329,8 +308,7 @@
     },
     {
       "id": "ambusher",
-      "name": "Ambusher",
-      "kotoPlaceholder": true,
+      "name": "The First Blow",
       "branch": "hide",
       "type": "passive",
       "icon": "eye",
@@ -338,10 +316,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "The first blow is the one that counts.",
-      "notes": [
-        "+60% damage (poison too) to foes at full life."
-      ],
+      "about": "The first blow is the one that counts. You deal +60% damage, including poison, to foes at full life.",
+      "notes": [],
       "params": {
         "pct": 60,
         "fullAt": 0.98
@@ -349,8 +325,7 @@
     },
     {
       "id": "twilight_veil",
-      "name": "Twilight Veil",
-      "kotoPlaceholder": true,
+      "name": "Into the Dusk",
       "ultimate": true,
       "branch": "hide",
       "type": "active",
@@ -364,10 +339,8 @@
       ],
       "cooldown": 30,
       "behavior": "tree_veil",
-      "about": "You fade into the dusk. Nothing can touch you, and the first thing you touch regrets it.",
-      "notes": [
-        "5 seconds: cannot be hit, +40% move speed. Your first strike out of the veil deals triple damage plus heavy poison, and ends it."
-      ],
+      "about": "You fade into the dusk. For 5 seconds nothing can touch you, and you move +40% faster. Your first strike out of the dusk deals triple damage plus heavy poison, and ends it.",
+      "notes": [],
       "params": {
         "duration": 5,
         "frw": 40,
@@ -382,9 +355,7 @@
     }
   ],
   "strings": {
-    "notice": "Your craft now grows in trees. Every point is back to spend."
-  },
-  "kotoPlaceholderStrings": [
-    "notice"
-  ]
+    "notice": "The rows have new trees. Your points wait in the briar.",
+    "noticeShort": "The rows have new trees. Your points wait in the briar."
+  }
 }

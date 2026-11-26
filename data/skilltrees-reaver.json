@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "salt_reaver",
-  "about": "Salt Reaver trees (v82s, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-reaver.js runs the new mechanics. New names are placeholders for Koto (kotoPlaceholder, KOTO-NAMES-reaver.md). Delete this file (or set enabled false) and the Reaver uses the old per-skill system again.",
+  "about": "Salt Reaver trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-reaver.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-reaver.md). Delete this file (or set enabled false) and the Reaver uses the old per-skill system again.",
   "trees": [
     {
       "id": "edge",
@@ -155,8 +155,7 @@
   "skills": [
     {
       "id": "wake_edge",
-      "name": "Wake Edge",
-      "kotoPlaceholder": true,
+      "name": "Afterblow",
       "branch": "edge",
       "type": "passive",
       "icon": "eye",
@@ -164,10 +163,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "After any dash, your next two hits are certain crits.",
-      "notes": [
-        "Works with Glass Step, Salt Feint and the dashes in Salt Storm."
-      ],
+      "about": "After a dash, your next two hits are certain crits. This works with Glass Step, Salt Feint, and the dashes in The Unstill.",
+      "notes": [],
       "params": {
         "hits": 2,
         "window": 3
@@ -175,8 +172,7 @@
     },
     {
       "id": "brine_flurry",
-      "name": "Brine Flurry",
-      "kotoPlaceholder": true,
+      "name": "Salt Rake",
       "branch": "edge",
       "type": "active",
       "icon": "slash",
@@ -189,10 +185,8 @@
       ],
       "cooldown": 4,
       "behavior": "tree_flurry",
-      "about": "Five fast cuts in front of you.",
-      "notes": [
-        "Each cut is a melee hit, so Wake Edge and Rhythm count all five."
-      ],
+      "about": "Five fast cuts in front of you. Each one is a melee hit, so Afterblow and The Pace count all five.",
+      "notes": [],
       "params": {
         "hits": 5,
         "gap": 0.09,
@@ -206,8 +200,7 @@
     },
     {
       "id": "salt_storm",
-      "name": "Salt Storm",
-      "kotoPlaceholder": true,
+      "name": "The Unstill",
       "ultimate": true,
       "branch": "edge",
       "type": "active",
@@ -221,10 +214,8 @@
       ],
       "cooldown": 28,
       "behavior": "tree_salt_storm",
-      "about": "For a while you never stop moving. Dashes cost nothing and come back at once, and each one lands with a full-circle cut.",
-      "notes": [
-        "The landing cut uses Salt Cut's damage."
-      ],
+      "about": "For a while you never stop moving. Dashes cost nothing and come back at once, and each one lands with a full-circle cut that uses Salt Cut's damage.",
+      "notes": [],
       "params": {
         "duration": 10,
         "frw": 35
@@ -232,8 +223,7 @@
     },
     {
       "id": "rhythm",
-      "name": "Rhythm",
-      "kotoPlaceholder": true,
+      "name": "The Pace",
       "branch": "tempo",
       "type": "passive",
       "icon": "slash",
@@ -241,10 +231,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Each hit soon after the last adds a Rhythm stack: more attack speed per stack. Stop hitting and it drops.",
-      "notes": [
-        "Up to 10 stacks (20 with Perfect Tempo)."
-      ],
+      "about": "Each hit soon after the last adds a Pace stack, and you attack faster with every stack. Stop hitting and it drops. You can have up to 10 stacks, or 20 with Unbroken Pace.",
+      "notes": [],
       "params": {
         "window": 2,
         "max": 10,
@@ -253,8 +241,7 @@
     },
     {
       "id": "full_measure",
-      "name": "Full Measure",
-      "kotoPlaceholder": true,
+      "name": "Spend the Pace",
       "branch": "tempo",
       "type": "active",
       "icon": "arc",
@@ -267,10 +254,8 @@
       ],
       "cooldown": 4,
       "behavior": "tree_measure",
-      "about": "Spend every Rhythm stack on one full-circle cut. More stacks, harder cut.",
-      "notes": [
-        "With no stacks it is a plain spin."
-      ],
+      "about": "You spend every Pace stack on one full-circle cut. The more stacks you spend, the harder the cut. With no stacks it is a plain spin.",
+      "notes": [],
       "params": {
         "range": 2.1,
         "arc": 6.28,
@@ -283,8 +268,7 @@
     },
     {
       "id": "perfect_tempo",
-      "name": "Perfect Tempo",
-      "kotoPlaceholder": true,
+      "name": "Unbroken Pace",
       "ultimate": true,
       "branch": "tempo",
       "type": "passive",
@@ -293,10 +277,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your rhythm never breaks. Attack speed past the limit stops being wasted and turns into damage.",
-      "notes": [
-        "Attack speed is capped at +140%. Each 1% over the cap adds 1.5% damage to your attacks."
-      ],
+      "about": "Your pace never breaks. Attack speed past the limit is not wasted: it turns into damage. Attack speed is capped at +140%, and each 1% over the cap adds 1.5% damage to your attacks.",
+      "notes": [],
       "params": {
         "ias": 20,
         "max": 20,
@@ -307,8 +289,7 @@
     },
     {
       "id": "bloodletting",
-      "name": "Bloodletting",
-      "kotoPlaceholder": true,
+      "name": "The Opening",
       "branch": "vein",
       "type": "active",
       "icon": "leech",
@@ -321,10 +302,8 @@
       ],
       "cooldown": 5,
       "behavior": "tree_bloodletting",
-      "about": "A lunging cut that heals you for every enemy it opens.",
-      "notes": [
-        "Heals 3% of your max life per enemy hit (up to 5)."
-      ],
+      "about": "A lunging cut that heals you for every enemy it opens. You heal 3% of your max life per enemy hit, up to 5.",
+      "notes": [],
       "params": {
         "range": 2.0,
         "arc": 0.9,
@@ -338,8 +317,7 @@
     },
     {
       "id": "brine_surplus",
-      "name": "Brine Surplus",
-      "kotoPlaceholder": true,
+      "name": "Brine Shell",
       "branch": "vein",
       "type": "passive",
       "icon": "ward",
@@ -347,10 +325,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Life you steal or heal past full is not lost. It hardens into a Brine shield.",
-      "notes": [
-        "Shield up to 30% of max life. It fades if you stop fighting for 3 seconds."
-      ],
+      "about": "Life you steal or heal past full is not lost. It hardens into a Brine Shell, up to 30% of your max life. The shell fades if you stop fighting for 3 seconds.",
+      "notes": [],
       "params": {
         "capPctLife": 30,
         "fadeAfter": 3,
@@ -359,8 +335,7 @@
     },
     {
       "id": "red_tide",
-      "name": "Red Tide",
-      "kotoPlaceholder": true,
+      "name": "High Water",
       "ultimate": true,
       "branch": "vein",
       "type": "active",
@@ -374,10 +349,8 @@
       ],
       "cooldown": 30,
       "behavior": "tree_red_tide",
-      "about": "For a few seconds nothing can finish you. You steal more life, and when it ends a share of the damage you dealt comes back as healing.",
-      "notes": [
-        "You cannot drop below 1 life while it lasts. Healing past full goes into Brine Surplus's shield."
-      ],
+      "about": "For a few seconds nothing can finish you. You steal more life, and when it ends a share of the damage you dealt comes back as healing. You cannot drop below 1 life while it lasts. Healing past full goes into Brine Shell.",
+      "notes": [],
       "params": {
         "duration": 8,
         "leechPct": 8,
@@ -386,9 +359,7 @@
     }
   ],
   "strings": {
-    "notice": "Your blade's skills now grow in trees. Every point is back to spend."
-  },
-  "kotoPlaceholderStrings": [
-    "notice"
-  ]
+    "notice": "The blade's trees have opened. Your points wait in the salt.",
+    "noticeShort": "The blade's trees have opened. Your points wait in the salt."
+  }
 }

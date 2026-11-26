@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "bell_chanter",
-  "about": "Bell Chanter trees (v82s, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-chanter.js runs the new mechanics. New names are placeholders for Koto (kotoPlaceholder, KOTO-NAMES-chanter.md). Delete this file (or set enabled false) and the Chanter uses the old per-skill system again.",
+  "about": "Bell Chanter trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-chanter.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-chanter.md). Delete this file (or set enabled false) and the Chanter uses the old per-skill system again.",
   "trees": [
     {
       "id": "bell",
@@ -155,8 +155,7 @@
   "skills": [
     {
       "id": "sympathy",
-      "name": "Sympathy",
-      "kotoPlaceholder": true,
+      "name": "The Answer",
       "branch": "bell",
       "type": "passive",
       "icon": "spark",
@@ -164,10 +163,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your lightning does not stop at one foe. Each hit jumps to another one nearby.",
-      "notes": [
-        "The jump deals 40% of the hit and does not jump again."
-      ],
+      "about": "Your lightning does not stop at one foe. Each hit answers on another one nearby, dealing 40% of the hit, and does not jump again.",
+      "notes": [],
       "params": {
         "arcs": 1,
         "pct": 40,
@@ -176,8 +173,7 @@
     },
     {
       "id": "thunder_toll",
-      "name": "Thunder Toll",
-      "kotoPlaceholder": true,
+      "name": "Three Tolls",
       "branch": "bell",
       "type": "active",
       "icon": "spark",
@@ -190,10 +186,8 @@
       ],
       "cooldown": 5,
       "behavior": "tree_toll",
-      "about": "A spot ahead of you is struck by lightning three times.",
-      "notes": [
-        "Aims at the nearest foe in front of you."
-      ],
+      "about": "A spot ahead of you is struck by lightning three times. It aims at the nearest foe in front of you.",
+      "notes": [],
       "params": {
         "range": 7,
         "radius": 1.5,
@@ -209,8 +203,7 @@
     },
     {
       "id": "carillon",
-      "name": "Carillon",
-      "kotoPlaceholder": true,
+      "name": "The Open Tower",
       "ultimate": true,
       "branch": "bell",
       "type": "active",
@@ -224,10 +217,8 @@
       ],
       "cooldown": 26,
       "behavior": "tree_carillon",
-      "about": "For a while you are a whole tower of bells. Every note is three notes, and every strike jumps on.",
-      "notes": [
-        "Bell Note, Overtone and Counterpoint fire as a fan of three. Lightning hits jump to 2 more foes for 50%."
-      ],
+      "about": "For a while you are a whole tower of bells. Bell Note, Overtone, and Counterpoint fire as a fan of three, and lightning hits jump to 2 more foes for 50%.",
+      "notes": [],
       "params": {
         "duration": 10,
         "fcr": 30,
@@ -239,8 +230,7 @@
     },
     {
       "id": "dirge_weight",
-      "name": "Dirge Weight",
-      "kotoPlaceholder": true,
+      "name": "The Weight",
       "branch": "hymn",
       "type": "passive",
       "icon": "ward",
@@ -248,10 +238,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Whatever your hymns slow down is easier to break.",
-      "notes": [
-        "Slowed foes take more damage from you; held foes (Grand Silence) take double that."
-      ],
+      "about": "Whatever your hymns slow down is easier to break. Slowed foes take more damage from you, and foes held by The Late Toll take double that.",
+      "notes": [],
       "params": {
         "pct": 25,
         "pctPerRank": 1,
@@ -260,8 +248,7 @@
     },
     {
       "id": "hush",
-      "name": "Hush",
-      "kotoPlaceholder": true,
+      "name": "The Slow Ring",
       "branch": "hymn",
       "type": "active",
       "icon": "bloom",
@@ -274,10 +261,8 @@
       ],
       "cooldown": 6,
       "behavior": "tree_hush",
-      "about": "A ring of lightning that leaves everything it touches slow.",
-      "notes": [
-        "Slows for 4 seconds, so Dirge Weight applies right away."
-      ],
+      "about": "A ring of lightning that leaves everything it touches slowed for 4 seconds, so The Weight applies at once.",
+      "notes": [],
       "params": {
         "radius": [
           3.0,
@@ -294,8 +279,7 @@
     },
     {
       "id": "grand_silence",
-      "name": "Grand Silence",
-      "kotoPlaceholder": true,
+      "name": "The Late Toll",
       "ultimate": true,
       "branch": "hymn",
       "type": "active",
@@ -309,10 +293,8 @@
       ],
       "cooldown": 30,
       "behavior": "tree_silence",
-      "about": "The room goes still. Nothing near you moves or swings, and the damage you do to it is held back for one last toll.",
-      "notes": [
-        "Holds non-boss foes for 4 seconds; bosses are slowed. 40% of the damage they take rings out again when it ends."
-      ],
+      "about": "The room goes still. Nothing near you moves or swings, and the damage they take is held for one last toll. Non-boss foes are held for 4 seconds; bosses are slowed. When it ends, 40% of the damage they took rings out again.",
+      "notes": [],
       "params": {
         "radius": 5.5,
         "duration": 4,
@@ -321,8 +303,7 @@
     },
     {
       "id": "still_water",
-      "name": "Still Water",
-      "kotoPlaceholder": true,
+      "name": "A Deep Breath",
       "branch": "keep",
       "type": "active",
       "icon": "ward",
@@ -331,10 +312,8 @@
       "requires": [],
       "cooldown": 16,
       "behavior": "tree_still_water",
-      "about": "A breath of quiet. Your mana comes back and your casting quickens.",
-      "notes": [
-        "Restores 25% of max mana; +25% cast speed for 6 seconds."
-      ],
+      "about": "A breath of quiet. You restore 25% of your max mana, and your casting is 25% faster for 6 seconds.",
+      "notes": [],
       "params": {
         "manaPct": 25,
         "fcr": 25,
@@ -343,8 +322,7 @@
     },
     {
       "id": "mana_skin",
-      "name": "Bell Skin",
-      "kotoPlaceholder": true,
+      "name": "Bronze Plate",
       "branch": "keep",
       "type": "passive",
       "icon": "hide",
@@ -352,10 +330,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Part of every blow lands on your mana instead of your life.",
-      "notes": [
-        "25% of damage taken is paid from mana (1 mana per life) while you have mana."
-      ],
+      "about": "Part of every blow lands on your mana instead of your life. While you have mana, 25% of the damage you take is paid from mana, at 1 mana per life.",
+      "notes": [],
       "params": {
         "pct": 25,
         "manaPerLife": 1
@@ -363,8 +339,7 @@
     },
     {
       "id": "bell_that_holds",
-      "name": "The Bell That Holds",
-      "kotoPlaceholder": true,
+      "name": "The Live Bell",
       "ultimate": true,
       "branch": "keep",
       "type": "passive",
@@ -373,10 +348,8 @@
       "maxRank": 20,
       "requires": [],
       "behavior": "passive",
-      "about": "Your mana is a bell that never stops ringing. It guards you, it strikes with you, and when it is full you cast faster.",
-      "notes": [
-        "Bell Skin pays 50%. Spells add lightning equal to 1.5% of max mana. Above half mana: +30% cast speed."
-      ],
+      "about": "Your mana is a bell that never stops ringing. It guards you, it strikes with you, and when it is more than half full you cast faster. Bronze Plate pays 50%. Your spells add lightning equal to 1.5% of your max mana. Above half mana, you gain +30% cast speed.",
+      "notes": [],
       "params": {
         "skinPct": 50,
         "manaToLightPct": 1.5,
@@ -386,9 +359,7 @@
     }
   ],
   "strings": {
-    "notice": "Your hymns now grow in trees. Every point is back to spend."
-  },
-  "kotoPlaceholderStrings": [
-    "notice"
-  ]
+    "notice": "The hymns have new trees. Your points wait in the bronze.",
+    "noticeShort": "The hymns have new trees. Your points wait in the bronze."
+  }
 }
