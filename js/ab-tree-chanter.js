@@ -131,7 +131,7 @@
       if (high !== lastHigh || (!high && X.getBuff(p, "bell_resonance"))) {
         lastHigh = high;
         p.buffs = (p.buffs || []).filter((b) => b.id !== "bell_resonance");
-        if (high) p.buffs.push({ id: "bell_resonance", name: (X.skillDef("bell_that_holds") || {}).name || "Resonance", remaining: 1e9, mods: { fcr: P("bell_that_holds").fcrHigh || 30 } });
+        if (high) p.buffs.push({ id: "bell_resonance", name: (X.skillDef("bell_that_holds") || {}).name || "The Live Bell", remaining: 1e9, mods: { fcr: P("bell_that_holds").fcrHigh || 30 } });
         H().recalc();
       }
       if (!freeze && silenced.size) {

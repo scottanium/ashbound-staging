@@ -27,7 +27,7 @@
     if (root.ABSustain.fightingBoss && root.ABSustain.fightingBoss(e)) extra *= 0.5;
     const cap = sh.life * (P("brine_surplus").capPctLife || 30) / 100;
     let b = X.getBuff(p, "brine_shield");
-    if (!b) b = X.addBuff(p, { id: "brine_shield", name: (X.skillDef("brine_surplus") || {}).name || "Brine", remaining: 1e9, absorb: 0, absorbMax: cap, mods: {} });
+    if (!b) b = X.addBuff(p, { id: "brine_shield", name: (X.skillDef("brine_surplus") || {}).name || "Brine Shell", remaining: 1e9, absorb: 0, absorbMax: cap, mods: {} });
     b.absorbMax = cap; b.absorb = Math.min(cap, (b.absorb || 0) + extra);
     T.brineGained = (T.brineGained || 0) + extra;
   }
@@ -39,7 +39,7 @@
     if (n === rhythm && (n === 0) === !X.getBuff(p, "rhythm")) return;
     rhythm = n; T.rhythm = n;
     p.buffs = (p.buffs || []).filter((b) => b.id !== "rhythm");
-    if (n > 0) p.buffs.push({ id: "rhythm", name: ((X.skillDef("rhythm") || {}).name || "Rhythm") + " " + n, remaining: 1e9, stacks: n, mods: { ias: n * (P("rhythm").iasPer || 4) } });
+    if (n > 0) p.buffs.push({ id: "rhythm", name: ((X.skillDef("rhythm") || {}).name || "The Pace") + " " + n, remaining: 1e9, stacks: n, mods: { ias: n * (P("rhythm").iasPer || 4) } });
     H().recalc();
   }
 
