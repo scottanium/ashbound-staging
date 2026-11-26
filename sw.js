@@ -58,6 +58,8 @@ self.addEventListener('install', (event) => {
     './data/models-hd.json',
     './js/ab-heroreal.js',
     './data/heroes-real.json',
+    './js/ab-enemyreal.js',
+    './data/enemies-real.json',
     './js/ab-panelscroll.js',
     './js/ab-testtools.js',
     './js/ab-move.js',
