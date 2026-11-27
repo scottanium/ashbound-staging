@@ -39,10 +39,10 @@
     if (c.rankMin) bits.push(label(d.ranks, c.rankMin) + "+");
     if (c.slot) bits.push(label(d.slots, c.slot));
     if (c.lvl) bits.push("Lv " + (c.lvl[0] || 0) + (c.lvl[1] == null ? "+" : "\u2013" + c.lvl[1]));
-    if (c.t6) bits.push("T6+");
+    if (c.t6) bits.push(d.t6Label || "Top tier (T6+)");
     return bits.length ? bits.join(" \u00b7 ") : (d.anyLabel || "Any item");
   }
-  function button() { var f = cfg(); var n = f ? f.rules.length : 0; return '<button class="btn" data-act="le-filter-open">' + esc(D().title || "Loot filter") + ": " + (f && f.on && n ? n + " " + (n === 1 ? "rule" : "rules") : "off") + "</button>"; }
+  function button() { var f = cfg(); var n = f ? f.rules.length : 0; return '<button class="btn" data-act="le-filter-open">' + esc(D().title || "Loot Filter") + ": " + (f && f.on && n ? n + " " + (n === 1 ? "rule" : "rules") : "off") + "</button>"; }
   function chips(key, list, cur, extra) {
     return list.map(function (o) { var on = cur === o[0]; return '<button type="button" class="le-fchip' + (on ? " is-on" : "") + '" data-act="le-filter-pick" data-key="' + key + '" data-val="' + esc(o[0]) + '" aria-pressed="' + on + '"' + (extra ? extra(o) : "") + ">" + esc(o[1]) + "</button>"; }).join("");
   }
@@ -50,14 +50,14 @@
     var d = D(), r = ui.leFDraft || { act: "show", cond: {} }, c = r.cond || {}, cols = d.colors || {};
     var row = function (lab, html) { return '<div class="le-frow"><span class="le-flab">' + esc(lab) + '</span><div class="le-fchips">' + html + "</div></div>"; };
     var lv = c.lvl || null;
-    var h = row(d.actLabel || "Do", chips("act", d.acts, r.act));
-    if (r.act === "recolor") h += row(d.colorLabel || "Colour", Object.keys(cols).map(function (k) { var on = r.color === k; return '<button type="button" class="le-fsw' + (on ? " is-on" : "") + '" data-act="le-filter-pick" data-key="color" data-val="' + esc(k) + '" aria-label="' + esc(k) + '" style="background:' + esc(cols[k]) + '"></button>'; }).join(""));
-    h += row(d.rankLabel || "Rank at least", chips("rankMin", [["", "Any"]].concat(d.ranks || []), c.rankMin || ""));
-    h += row(d.familyLabel || "Family", chips("family", [["", "Any"]].concat(d.families || []), c.family || "") + '<span class="le-fgap"></span>' +
-      '<button type="button" class="le-fchip' + (c.t6 ? " is-on" : "") + '" data-act="le-filter-pick" data-key="t6" data-val="1" aria-pressed="' + !!c.t6 + '">T6+</button>' +
+    var h = row(d.actLabel || "Action", chips("act", d.acts, r.act));
+    if (r.act === "recolor") h += row(d.colorLabel || "Color", Object.keys(cols).map(function (k) { var on = r.color === k; return '<button type="button" class="le-fsw' + (on ? " is-on" : "") + '" data-act="le-filter-pick" data-key="color" data-val="' + esc(k) + '" aria-label="' + esc(k) + '" style="background:' + esc(cols[k]) + '"></button>'; }).join(""));
+    h += row(d.rankLabel || "Minimum rank", chips("rankMin", [["", "Any"]].concat(d.ranks || []), c.rankMin || ""));
+    h += row(d.familyLabel || "Kind", chips("family", [["", "Any"]].concat(d.families || []), c.family || "") + '<span class="le-fgap"></span>' +
+      '<button type="button" class="le-fchip' + (c.t6 ? " is-on" : "") + '" data-act="le-filter-pick" data-key="t6" data-val="1" aria-pressed="' + !!c.t6 + '">' + esc(d.t6Label || "Top tier (T6+)") + '</button>' +
       '<span class="le-fgap"></span><span class="le-flv">' + esc(d.levelLabel || "Level") + ' <button type="button" class="le-fstep" data-act="le-filter-lv" data-d="-5" aria-label="Lower">\u2212</button><b>' + (lv ? (lv[0] || 0) + "+" : "Any") + '</b><button type="button" class="le-fstep" data-act="le-filter-lv" data-d="5" aria-label="Higher">+</button></span>');
     h += row(d.slotLabel || "Slot", chips("slot", [["", "Any"]].concat(d.slots || []), c.slot || ""));
-    return '<div class="le-fsheet le-fedit" role="dialog" aria-label="' + esc(d.title || "Loot filter") + '"><div class="le-fin"><div class="le-fhead"><b>' + esc(ui.leFEdit === "new" ? (d.addLabel || "New rule") : (d.editLabel || "Edit rule")) + "</b><span>" + esc(summary(r)) + "</span></div>" + h +
+    return '<div class="le-fsheet le-fedit" role="dialog" aria-label="' + esc(d.title || "Loot Filter") + '"><div class="le-fin"><div class="le-fhead"><b>' + esc(ui.leFEdit === "new" ? (d.addLabel || "New rule") : (d.editLabel || "Edit rule")) + "</b><span>" + esc(summary(r)) + "</span></div>" + h +
       '<div class="le-fbtns"><span class="le-fgap"></span><button type="button" class="btn slim le-btn" data-act="le-filter-cancel">Cancel</button><button type="button" class="btn slim primary le-btn" data-act="le-filter-save">Save</button></div></div></div>';
   }
   function sheet() {
@@ -73,9 +73,9 @@
         '<button type="button" class="le-fmv" data-act="le-filter-move" data-i="' + i + '" data-d="1" aria-label="Down"' + (i < f.rules.length - 1 ? "" : " disabled") + ">\u25bc</button>" +
         '<button type="button" class="le-fdel" data-act="le-filter-del" data-i="' + i + '" aria-label="Delete">\u00d7</button></div>';
     }).join("");
-    return '<div class="le-fsheet" role="dialog" aria-label="' + esc(d.title || "Loot filter") + '"><div class="le-fin"><div class="le-fhead"><b>' + esc(d.title || "Loot filter") + "</b><span>" + esc(d.help || "") + "</span></div>" +
+    return '<div class="le-fsheet" role="dialog" aria-label="' + esc(d.title || "Loot Filter") + '"><div class="le-fin"><div class="le-fhead"><b>' + esc(d.title || "Loot Filter") + "</b><span>" + esc(d.help || "") + "</span></div>" +
       '<div class="le-frules">' + (rows || '<p class="le-fnone">' + esc(d.empty || "No rules yet.") + "</p>") + "</div>" +
-      '<div class="le-fbtns"><button type="button" class="btn slim le-btn le-fmaster" data-act="le-filter-onoff">' + esc(d.title || "Loot filter") + ": " + (f.on ? "on" : "off") + '</button><span class="le-fgap"></span>' +
+      '<div class="le-fbtns"><button type="button" class="btn slim le-btn le-fmaster" data-act="le-filter-onoff">' + esc(d.title || "Loot Filter") + ": " + (f.on ? "on" : "off") + '</button><span class="le-fgap"></span>' +
       (f.rules.length < (d.max || 20) ? '<button type="button" class="btn slim le-btn" data-act="le-filter-edit" data-i="new">' + esc(d.addLabel || "New rule") + "</button>" : "") +
       '<button type="button" class="btn slim primary le-btn" data-act="le-filter-close">Done</button></div></div></div>';
   }

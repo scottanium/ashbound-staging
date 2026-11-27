@@ -43,18 +43,40 @@
     return out;
   }
 
+  // Every body the player may not walk into. Heavies used to be skipped here (v55), which let the
+  // player bulldoze golems, brutes and knights across the floor. tune.playerBlockHeavies (default
+  // true) keeps them solid; set it false to get the old v55 behaviour back.
+  function abOverlapBody(e, p, pad) {
+    let T = tune(), all = T.playerBlockHeavies !== false, out = [];
+    if (pad == null) pad = T.playerResolvePad != null ? T.playerResolvePad : 0.04;
+    for (let m of e.monsters || []) {
+      if (m.dead || (!all && abMayShove(m))) continue;
+      if (dist(p, m) < (p.radius || 0.34) + (m.radius || 0.3) + pad) out.push(m);
+    }
+    return out;
+  }
+
   function abPlayerResolve(e, p, x0, y0) {
     if (!e || !p) return;
-    let ov = abOverlapNonShove(e, p);
+    p._slideOut = false;
+    let ov = abOverlapBody(e, p);
     if (!ov.length) return;
-    if (abSurrounded(e, p)) return;
+    if (abSurrounded(e, p)) { p._slideOut = true; return; }
     if (p.x === x0 && p.y === y0) return;
+    // Only block a step that closes on a body; stepping away from one is always fine.
+    let closer = function () {
+      for (let m of abOverlapBody(e, p)) {
+        let d1 = dist(p, m), d0 = Math.hypot(x0 - m.x, y0 - m.y);
+        if (d1 < d0 - 1e-6) return true;
+      }
+      return false;
+    };
     let dx = p.x - x0, dy = p.y - y0;
     p.x = x0; p.y = y0;
     p.x = x0 + dx;
-    if (abOverlapNonShove(e, p).length) p.x = x0;
+    if (closer()) p.x = x0;
     p.y = y0 + dy;
-    if (abOverlapNonShove(e, p).length) p.y = y0;
+    if (closer()) p.y = y0;
   }
 
   function abHitShove(e, mon, vic) {
@@ -156,6 +178,7 @@
     if (!e) return;
     let T = tune();
     let shoveLeft = e._shoveLeft != null ? e._shoveLeft : (T.shoveFrameCap || 0.03);
+    let padP = T.monsterPlayerPad != null ? T.monsterPlayerPad : 0.02;
     for (let iter = 0; iter < 3; iter++) {
       let hash = abHashBuild(e, 1);
       for (let t of e.monsters || []) {
@@ -171,8 +194,12 @@
           let m = (l - i) * 0.55, dx = (t.x - s.x) / i, dy = (t.y - s.y) / i;
           move(e, t, dx * m * 0.55, dy * m * 0.55);
         }
-        if (p && !p.dead) {
-          let i = dist(t, p), l = (t.radius || 0.3) + (p.radius || 0.34) + 0.06;
+        // Player contact: only undo overlap the monster walked into. The player is stopped by
+        // abPlayerResolve at playerResolvePad, so a pad below that never fires from the player's
+        // own step (the old 0.06 pad nudged the body 0.02 every frame the player leaned on it).
+        // While the player squeezes out of a full surround (_slideOut) nothing is pushed.
+        if (p && !p.dead && !p._slideOut) {
+          let i = dist(t, p), l = (t.radius || 0.3) + (p.radius || 0.34) + padP;
           if (i < 1e-4) {
             let ang = abUidAng(t.uid, p.uid || "p");
             move(e, t, Math.cos(ang) * 0.2, Math.sin(ang) * 0.2);
@@ -188,7 +215,7 @@
 
   const names = {
     attach, mayShove: abMayShove, surrounded: abSurrounded,
-    overlapNonShove: abOverlapNonShove, playerResolve: abPlayerResolve,
+    overlapNonShove: abOverlapNonShove, overlapBody: abOverlapBody, playerResolve: abPlayerResolve,
     hitShove: abHitShove, shoveTick: abShoveTick, hashBuild: abHashBuild,
     uidAng: abUidAng, angDiff: abAngDiff, assignRing: abAssignRing,
     separate: abSeparate
@@ -197,6 +224,7 @@
   root.abMayShove = abMayShove;
   root.abSurrounded = abSurrounded;
   root.abOverlapNonShove = abOverlapNonShove;
+  root.abOverlapBody = abOverlapBody;
   root.abPlayerResolve = abPlayerResolve;
   root.abHitShove = abHitShove;
   root.abShoveTick = abShoveTick;

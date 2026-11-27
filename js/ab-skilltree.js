@@ -370,7 +370,7 @@
   function treeUi() {
     const file = (root.ASHBOUND_DATA && root.ASHBOUND_DATA.skillTreeUi) || {};
     const panel = ((root.ASHBOUND_DATA && root.ASHBOUND_DATA.ui) || {}).skillTreePanel || {};
-    return Object.assign({ enabled: true, cols: 4, colsNarrow: 2, narrowMax: 520, nodeMinH: 56, tapMin: 44, gapX: 22, gapY: 20, lineWidth: 3, boardPad: 8, assignMin: 44, pointsSize: 28, text: {} }, file, panel, { enabled: file.enabled !== false && panel.enabled !== false });
+    return Object.assign({ enabled: true, direction: "down", layout: "forest", pack: "zigzag2", cols: 2, colsNarrow: 2, narrowMax: 520, tile: 56, tileDesktop: 64, tileShort: 56, nodeMinH: 56, tapMin: 44, gapX: 10, gapY: 8, nameSize: 9, lineWidth: 3, boardPad: 4, assignMin: 44, pointsSize: 28, text: {} }, file, panel, { enabled: file.enabled !== false && panel.enabled !== false });
   }
   function treeUiStr(key, fill) {
     const T = (treeUi().text || {});
@@ -378,70 +378,136 @@
     if (fill) Object.keys(fill).forEach((k) => { s = s.replace("{" + k + "}", String(fill[k])); });
     return s;
   }
-  function layoutBoard(rootEl) {
-    const board = (rootEl || document).querySelector(".tt-board");
-    if (!board) return;
+  function skillIco(d) {
+    const fn = (typeof ABSkillIco === "function" && ABSkillIco)
+      || (root && root.ABSkillIco)
+      || (typeof window !== "undefined" && window.ABSkillIco)
+      || null;
+    if (typeof fn === "function") {
+      try { const html = fn(d); if (html) return html; } catch (err) { console.warn("skillIco", err); }
+    }
+    const ch = ((d && (d.name || d.id)) || "?").toString().charAt(0);
+    return `<span class="tt-glyph" aria-hidden="true">${esc(ch)}</span>`;
+  }
+  function nodeHtml(e, t, n, pts, nx, tab) {
+    const d = skillDef(n.skill) || { name: n.skill, type: "", id: n.skill };
+    const unlocked = pts >= n.at, isNext = nx && nx.at === n.at;
+    const rank = unlocked ? (e.sheet.ranks[n.skill] || 0) : 0, base = unlocked ? nodeRank(n, pts) : 0;
+    const shown = unlocked ? (rank || base) : 0;
+    const st = unlocked ? "unlocked" : isNext ? "next" : "locked";
+    const ico = skillIco(d);
+    const rankMark = unlocked ? `<span class="tt-rank" title="Rank ${shown}">${shown}</span>` : "";
+    const ult = n.ultimate ? `<em class="tt-ult">ULT</em>` : "";
+    return `<button type="button" class="tt-node tt-tile st-${st} ${n.ultimate ? "is-ult" : ""} ${e.ui.skillId === n.skill ? "is-sel" : ""}" data-act="select-skill" data-skill="${n.skill}" data-at="${n.at}" data-tree="${t.id}" aria-label="${esc(d.name)}${unlocked ? " rank " + shown : " locked until " + n.at}">
+      <span class="tt-plate">${ico}${rankMark}${ult}<span class="tt-at">${n.at}</span></span>
+      <span class="tt-nm">${esc(d.name)}</span>
+    </button>`;
+  }
+  function elbowPath(a, b, br) {
+    const acx = a.left + a.width / 2 - br.left, acy = a.top + a.height / 2 - br.top;
+    const bcx = b.left + b.width / 2 - br.left, bcy = b.top + b.height / 2 - br.top;
+    const sameRow = Math.abs(a.top - b.top) < Math.max(a.height, b.height) * 0.45;
+    if (sameRow) {
+      const toRight = bcx >= acx;
+      const x1 = (toRight ? a.right : a.left) - br.left;
+      const x2 = (toRight ? b.left : b.right) - br.left;
+      const y = (acy + bcy) / 2;
+      return "M" + x1.toFixed(1) + "," + y.toFixed(1) + " L" + x2.toFixed(1) + "," + y.toFixed(1);
+    }
+    const x1 = acx, y1 = a.bottom - br.top, x2 = bcx, y2 = b.top - br.top;
+    const mx = (x1 + x2) / 2;
+    return "M" + x1.toFixed(1) + "," + y1.toFixed(1) + " L" + mx.toFixed(1) + "," + y1.toFixed(1) + " L" + mx.toFixed(1) + "," + y2.toFixed(1) + " L" + x2.toFixed(1) + "," + y2.toFixed(1);
+  }
+  function paintBoard(board, U) {
+    const spine = board.querySelector(".tt-spine") || board;
     const svg = board.querySelector("svg.tt-lines");
     const nodes = [...board.querySelectorAll(".tt-node")].sort((a, b) => (+a.dataset.at) - (+b.dataset.at));
     if (!svg || nodes.length < 2) return;
-    const U = treeUi();
-    const br = board.getBoundingClientRect();
-    const w = Math.max(1, br.width), h = Math.max(1, br.height);
+    const br = spine.getBoundingClientRect();
+    const w = Math.max(1, spine.offsetWidth || br.width);
+    const h = Math.max(1, spine.offsetHeight || br.height);
     svg.setAttribute("viewBox", "0 0 " + w + " " + h);
     svg.setAttribute("width", w);
     svg.setAttribute("height", h);
     let paths = "";
     for (let i = 0; i < nodes.length - 1; i++) {
       const a = nodes[i].getBoundingClientRect(), b = nodes[i + 1].getBoundingClientRect();
-      const x1 = a.left + a.width / 2 - br.left, y1 = a.top + a.height / 2 - br.top;
-      const x2 = b.left + b.width / 2 - br.left, y2 = b.top + b.height / 2 - br.top;
       const live = nodes[i].classList.contains("st-unlocked");
-      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
-      paths += '<path class="tt-line ' + (live ? "is-on" : "is-off") + '" d="M' + x1.toFixed(1) + "," + y1.toFixed(1) + " L" + mx.toFixed(1) + "," + y1.toFixed(1) + " L" + mx.toFixed(1) + "," + y2.toFixed(1) + " L" + x2.toFixed(1) + "," + y2.toFixed(1) + '" />';
+      paths += '<path class="tt-line ' + (live ? "is-on" : "is-off") + '" d="' + elbowPath(a, b, br) + '" />';
     }
     svg.innerHTML = paths;
     svg.style.strokeWidth = String(U.lineWidth || 3);
+  }
+  function syncTipFade(rootEl) {
+    const tip = (rootEl || document).querySelector("#detail .detail-scroll");
+    if (!tip) return;
+    const over = tip.scrollHeight > tip.clientHeight + 2;
+    const atEnd = tip.scrollTop + tip.clientHeight >= tip.scrollHeight - 2;
+    tip.classList.toggle("is-overflow", over);
+    tip.classList.toggle("is-at-end", atEnd);
+    const wrap = tip.parentElement;
+    if (wrap && wrap.classList.contains("tt-tip-wrap")) {
+      wrap.classList.toggle("is-overflow", over);
+      wrap.classList.toggle("is-at-end", atEnd);
+    }
+    if (!tip.dataset.fadeBound) {
+      tip.dataset.fadeBound = "1";
+      tip.addEventListener("scroll", function () { syncTipFade(rootEl); }, { passive: true });
+    }
+  }
+  function layoutBoard(rootEl) {
+    const rootNode = rootEl || document;
+    const U = treeUi();
+    const boards = [...rootNode.querySelectorAll(".tt-board")];
+    if (!boards.length) {
+      const one = rootNode.querySelector && rootNode.querySelector(".tt-board");
+      if (one) boards.push(one);
+    }
+    boards.forEach((b) => paintBoard(b, U));
+    syncTipFade(rootNode);
   }
 
   function panelHtml(e) {
     const p = e.player, trees = slotTrees(p); strCls = p.classId;
     let tab = e.ui.treeTab; if (!trees.some((t) => t.id === tab)) { const ts = treeOfSkill(p, e.ui.skillId); tab = (ts || trees[0]).id; e.ui.treeTab = tab; }
-    const cur = treeOfSkill(p, e.ui.skillId); if (!cur || cur.id !== tab) e.ui.skillId = treeDef(tab).nodes[0].skill;
+    // Clicking a tile in another column selects that tree (D2-style forest).
+    const cur = treeOfSkill(p, e.ui.skillId);
+    if (cur && cur.id !== tab) { tab = cur.id; e.ui.treeTab = tab; }
+    else if (!cur) e.ui.skillId = treeDef(tab).nodes[0].skill;
     const t = treeDef(tab), pts = p.tree.pts[tab] || 0, free = freePoints(p), cs = canSpend(p, tab), undo = (e.ui.treeUndo || []).length > 0;
     const nx = nextNode(t, pts), band = bandPoints(pts), bd = (data().damageBand || {});
     const U = treeUi();
     const nextTxt = pts >= treeMax() ? str("maxed") : nx ? str("next", { skill: esc((skillDef(nx.skill) || {}).name || nx.skill), at: nx.at, n: nx.at - pts }) : str("allUnlocked");
-    const tabs = trees.map((x) => {
-      const xp = p.tree.pts[x.id] || 0, ult = xp >= ultAt();
-      return `<button type="button" class="tt-tab ${x.id === tab ? "is-on" : ""} ${ult ? "has-ult" : ""}" data-act="tree-tab" data-tree="${x.id}" aria-pressed="${x.id === tab}">${esc(x.name)} <b>${xp}</b></button>`;
-    }).join("");
-    const nodes = t.nodes.map((n) => {
-      const d = skillDef(n.skill) || { name: n.skill, type: "" }, unlocked = pts >= n.at, isNext = nx && nx.at === n.at;
-      const rank = unlocked ? (e.sheet.ranks[n.skill] || 0) : 0, base = unlocked ? nodeRank(n, pts) : 0;
-      const st = unlocked ? "unlocked" : isNext ? "next" : "locked";
-      return `<button type="button" class="tt-node st-${st} ${n.ultimate ? "is-ult" : ""} ${e.ui.skillId === n.skill ? "is-sel" : ""}" data-act="select-skill" data-skill="${n.skill}" data-at="${n.at}">
-        <span class="tt-at">${n.at}</span><span class="tt-nm">${esc(d.name)}${n.ultimate ? `<em class="tt-ult">${esc(str("ultimate"))}</em>` : ""}</span>
-        <span class="tt-st">${unlocked ? esc(str("unlocked", { rank: base })) + (rank > base ? `<i>+${rank - base}</i>` : "") : (d.type === "passive" ? "passive \u00b7 " : "") + esc(str("locked", { at: n.at }))}</span></button>`;
-    }).join("");
+    const ptsLabel = treeUiStr("pointsTitle") || "Skill points";
+    const tile = U.tile || 56;
+    const forest = (U.layout || "forest") === "forest";
+    const packCols = U.cols || 2;
+    const styleVars = `--tt-cols:${packCols};--tt-cols-narrow:${U.colsNarrow || 2};--tt-gap-x:${U.gapX || 10}px;--tt-gap-y:${U.gapY || 8}px;--tt-node-h:${U.nodeMinH || tile}px;--tt-tile:${tile}px;--tt-tile-desktop:${U.tileDesktop || 64}px;--tt-tile-short:${U.tileShort || 56}px;--tt-line:${U.lineWidth || 3}px;--tt-points:${U.pointsSize || 28}px;--tt-pad:${U.boardPad || 4}px;--tt-name:${U.nameSize || 9}px;`;
+
+    function colHtml(x) {
+      const def = treeDef(x.id), xp = p.tree.pts[x.id] || 0, ult = xp >= ultAt();
+      const nxCol = nextNode(def, xp);
+      const nodes = def.nodes.map((n) => nodeHtml(e, def, n, xp, nxCol, tab)).join("");
+      return `<section class="tt-col ${x.id === tab ? "is-on" : ""} ${ult ? "has-ult" : ""}" data-tree="${x.id}">
+        <button type="button" class="tt-tab ${x.id === tab ? "is-on" : ""} ${ult ? "has-ult" : ""}" data-act="tree-tab" data-tree="${x.id}" aria-pressed="${x.id === tab}">${esc(x.name)} <b>${xp}</b></button>
+        <div class="tt-board"><div class="tt-spine"><svg class="tt-lines" aria-hidden="true"></svg><div class="tt-nodes">${nodes}</div></div></div>
+      </section>`;
+    }
+
     const pips = []; for (let i = (bd.from || 41); i <= (bd.to || 50); i++) pips.push(`<span class="tt-pip ${pts >= i ? "on" : ""}" title="${i}"></span>`);
     const fill = Math.min(100, pts / treeMax() * 100);
     const ticks = t.nodes.map((n) => `<span class="tt-tick ${pts >= n.at ? "on" : ""} ${n.ultimate ? "ult" : ""}" style="left:${n.at / treeMax() * 100}%"></span>`).join("");
-    const ptsLabel = treeUiStr("pointsTitle") || "Skill points";
-    return `<div class="tt-head"><p class="tt-points" id="tt-points"><b>${free}</b> <span class="tt-points-lab">${esc(ptsLabel)}</span> ${esc(str("pointsLine", { free: "", used: spentPoints(p), total: totalPoints(p) }).replace(/^\s+/, ""))}</p>
-      <button type="button" class="btn hold-respec" data-act="respec-arm">Hold to respec</button></div>
-    <div class="tt-tabs" role="tablist">${tabs}</div>
+    const forestHtml = forest
+      ? `<div class="tt-forest">${trees.map(colHtml).join("")}</div>`
+      : colHtml(t);
+
+    return `<p class="tt-bonus" id="tt-bonus"><span class="muted">${esc(str("bonusTitle"))}:</span> ${bonusLine(t, pts)}</p>
     <div class="tree-wrap tt-wrap">
-      <section class="tt-tree" data-tree="${tab}" style="--tt-cols:${U.cols || 4};--tt-cols-narrow:${U.colsNarrow || 2};--tt-gap-x:${U.gapX || 22}px;--tt-gap-y:${U.gapY || 20}px;--tt-node-h:${U.nodeMinH || 56}px;--tt-line:${U.lineWidth || 3}px;--tt-points:${U.pointsSize || 28}px;">
-        <div class="tt-bonus" id="tt-bonus"><span class="muted">${esc(str("bonusTitle"))}:</span> ${bonusLine(t, pts)}</div>
-        <div class="tt-spend">
-          <button type="button" class="btn primary tt-plus" data-act="tree-spend" data-tree="${tab}" ${cs.ok ? "" : "disabled"}>${esc(str("spend", { tree: t.name }))}</button>
-          <button type="button" class="btn tt-undo" data-act="tree-undo" ${undo ? "" : "disabled"}>${esc(str("undo"))}</button>
-          <span class="small tt-next">${cs.ok || pts >= treeMax() ? nextTxt : esc(cs.reason)}</span>
-        </div>
+      <div class="tt-tree tt-forest-wrap" data-tree="${tab}" data-dir="${U.direction || "down"}" data-layout="${U.layout || "forest"}" data-pack="${U.pack || "zigzag2"}" style="${styleVars}">
         <div class="tt-track" aria-label="${pts} of ${treeMax()}"><span class="tt-fill" style="width:${fill}%"></span>${ticks}<span class="tt-bandzone" style="left:${ultAt() / treeMax() * 100}%"></span></div>
-        <div class="tt-board"><svg class="tt-lines" aria-hidden="true"></svg><div class="tt-nodes">${nodes}</div></div>
+        ${forestHtml}
         <div class="tt-band ${band > 0 ? "is-on" : ""}" id="tt-band"><span class="small"><b>${esc(str("bandTitle"))}</b></span><span class="tt-pips">${pips.join("")}</span><span class="small">${esc(str("bandLine", { pct: band * (bd.pctPerPoint || 0), tree: t.name }))}</span></div>
-      </section>
+      </div>
     </div>`;
   }
   function rankLines(d, rank) {
@@ -471,15 +537,31 @@
       : (treeUiStr("nextUnlock", { at: node.at }) || str("detailLocked", { at: node.at, tree: t.name }));
     const onBar = treeUiStr("onBar") || "Put on the action bar";
     const slotLab = (n) => treeUiStr("slot", { n: n + 1 }) || ("Bar " + (n + 1));
+    const free = freePoints(p), cs = canSpend(p, t.id), undo = (e.ui.treeUndo || []).length > 0;
+    const nx = nextNode(t, pts);
+    const nextTxt = pts >= treeMax() ? str("maxed") : nx ? str("next", { skill: esc((skillDef(nx.skill) || {}).name || nx.skill), at: nx.at, n: nx.at - pts }) : str("allUnlocked");
+    const ptsLabel = treeUiStr("pointsTitle") || "Skill points";
     return `<div class="detail" id="detail">
+    <div class="tt-head tt-toolbar">
+      <p class="tt-points" id="tt-points"><b>${free}</b> <span class="tt-points-lab">${esc(ptsLabel)}</span> ${esc(str("pointsLine", { free: "", used: spentPoints(p), total: totalPoints(p) }).replace(/^\s+/, ""))}</p>
+      <div class="tt-spend">
+        <button type="button" class="btn primary tt-plus" data-act="tree-spend" data-tree="${t.id}" ${cs.ok ? "" : "disabled"}>${esc(str("spend", { tree: t.name }))}</button>
+        <button type="button" class="btn tt-undo" data-act="tree-undo" ${undo ? "" : "disabled"}>${esc(str("undo"))}</button>
+        <button type="button" class="btn hold-respec" data-act="respec-arm" aria-label="Hold to respec"><span class="tt-respec-full">Hold to respec</span><span class="tt-respec-short">Respec</span></button>
+      </div>
+      <span class="small tt-next">${cs.ok || pts >= treeMax() ? nextTxt : esc(cs.reason)}</span>
+    </div>
     <div class="detail-head">
       <strong>${esc(d.name)}${node.ultimate ? ` <span class="tt-ult">${esc(str("ultimate"))}</span>` : ""}</strong>
       <div class="small muted">${esc(d.type)}${mana}${cd}</div>
       <div class="small ${unlocked ? "good" : "muted"}">${esc(head)}</div>
     </div>
-    <div class="detail-core tt-tip">
-      <div class="tt-tip-cur"><h4>${esc(curLab)}</h4>${curLines.slice(0, 5).map((r) => `<div class="small">${esc(r)}</div>`).join("")}</div>
-      <div class="tt-tip-next"><h4>${esc(nextLab)}</h4>${nextLines.slice(0, 4).map((r) => `<div class="small">${esc(r)}</div>`).join("")}</div>
+    <div class="tt-tip-wrap">
+      <div class="detail-scroll tt-tip">
+        <div class="tt-tip-cur"><h4>${esc(curLab)}</h4>${curLines.map((r) => `<p class="small">${esc(r)}</p>`).join("")}</div>
+        <div class="tt-tip-next"><h4>${esc(nextLab)}</h4>${nextLines.map((r) => `<p class="small">${esc(r)}</p>`).join("")}</div>
+      </div>
+      <div class="tt-tip-fade" aria-hidden="true"></div>
     </div>
     <div class="detail-actions tt-assign">${d.type === "active" ? `<div class="tt-assign-lab">${esc(onBar)}</div><div class="row">` + [0, 1, 2, 3].map((r) => `<button class="btn bar-slot" data-act="assign" data-skill="${d.id}" data-slot="${r}" aria-label="${esc(slotLab(r))}" ${unlocked ? "" : "disabled"}>${r + 1}</button>`).join("") + "</div>" : ""}</div>
   </div>`;

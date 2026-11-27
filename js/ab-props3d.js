@@ -124,7 +124,8 @@
     if (!ready()) return false; var d = D(), k = b.kind, spec = null, key = null, vi = 0;
     if (k === "decor") { spec = (d.decor || {})[b.sprite]; key = "d:" + b.sprite; }
     else if (k === "fence") { spec = fenceSpec(b.sprite || "fence_ash", b.tilesW || 2); key = "f:" + (b.sprite || "") + ":" + (b.tilesW || 2); }
-    else if (k === "exit") { spec = d.props.exit; key = "p:exit"; }
+    else if (k === "exit" || k === "entry") { spec = d.props.exit; key = "p:exit"; }
+    else if (k === "waypoint" && d.props.waypoint) { spec = d.props.waypoint; key = "p:waypoint"; }
     else if (k === "rift") { spec = d.props.rift; key = "p:rift"; }
     else if (k === "setpiece") {
       var pc = b.piece;

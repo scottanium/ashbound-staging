@@ -20,6 +20,7 @@
     ["camera", "data/camera.json"],
     ["icons", "data/icons.json", true],
     ["props3d", "data/props3d.json", true],
+    ["zonesCfg", "data/zones.json", true],
     ["ui", "data/ui.json", true],
     ["uiArt", "data/ui-art.json", true],
     ["stashCfg", "data/stash.json", true],
@@ -77,6 +78,7 @@
     D.stashCfg = bag.stashCfg || null;
     D.lootFilter = bag.lootFilter || null;
     D.props3d = bag.props3d || null;
+    D.zonesCfg = bag.zonesCfg || null;
     D.ui = bag.ui || null;
     D.guide = bag.guide || null;
     D.questUi = bag.questUi || null;

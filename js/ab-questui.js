@@ -422,6 +422,15 @@
           el.style.left = px + "px";
         }
       }
+      // v84i: a top/bottom edge label is centred on the pointer, so near a corner half of it could hang off the screen
+      // (seen as "Way Down · 79 tiles" cut at the right edge). Keep the whole box inside the safe area.
+      var si = (root.ABSafeArea && ABSafeArea.insets && ABSafeArea.insets()) || { left: 0, right: 0, top: 0, bottom: 0 };
+      var rb = el.getBoundingClientRect(), lo = (si.left || 0) + 4, hi = vw - (si.right || 0) - 4;
+      if (rb.width && rb.right > hi) { px -= rb.right - hi; el.style.left = px + "px"; }
+      else if (rb.width && rb.left < lo) { px += lo - rb.left; el.style.left = px + "px"; }
+      var tp = (si.top || 0) + 4, bt = vh - (si.bottom || 0) - 4;
+      if (rb.height && rb.bottom > bt) { py -= rb.bottom - bt; el.style.top = py + "px"; }
+      else if (rb.height && rb.top < tp) { py += tp - rb.top; el.style.top = py + "px"; }
     }
     lastDebug = {
       mode: mode, label: label, target: { x: a.x, y: a.y, name: a.name, kind: a.kind },

@@ -140,6 +140,10 @@
     if (typeof root.ABLeData !== "undefined" && root.ABLeData.migrateSave) {
       root.ABLeData.migrateSave(e);
     }
+    // zones (v84i): waypoints found = player.progress.wps, filled once from zones already reached (fill-missing, no version bump)
+    if (typeof root.ABZones !== "undefined" && root.ABZones.migrateSave) {
+      root.ABZones.migrateSave(e);
+    }
     e.v = VERSION;
     return e;
   }
