@@ -148,8 +148,26 @@
     return n;
   }
   function say(m) { S.msg = m; B.toast(m, "good"); }
+  // v84m1: Menu > "Go to Reed Marsh (test)". Label, zone, toast and level clamp live in data/zonegfx.json stagingTest.
+  function tcfg() { var Z = self.ABZoneGfx && self.ABZoneGfx.cfg && self.ABZoneGfx.cfg(); return (Z && Z.stagingTest) || null; }
+  function menuButton() {
+    var T = tcfg(); if (!self.ASHBOUND_CONFIG || self.ASHBOUND_CONFIG.STAGING !== true || !T || !T.label || !B.o.player) return "";
+    return '<button class="btn" data-act="tt-zonetest">' + esc(T.label) + "</button>";
+  }
+  function zoneTest(p) {
+    var T = tcfg(), id = T && T.zone, z = id && B.zones.find(function (x) { return x.id === id; });
+    if (!z || !self.ABZones || !self.ABZones._go) return say("Zone test is not available.");
+    var old = z.mlvl, C2 = T.clamp || {}, lo = old ? old[0] : 1, hi = old ? old[1] : 1;
+    if (C2.enabled !== false && old) {
+      var cap = Math.max(1, (p.level || 1) + (C2.above || 0));
+      if (cap < old[1]) { hi = cap; lo = Math.max(1, Math.min(old[0], cap - (C2.span || 0))); z.mlvl = [lo, hi]; }
+    }
+    try { self.ABZones._go(id); } finally { z.mlvl = old; }
+    say(String(T.toast || "").replace("{lo}", lo).replace("{hi}", hi));
+  }
   function act(e, t) {
     var o = B.o, p = o.player; if (!p) return;
+    if (e === "tt-zonetest") { zoneTest(p); return; }
     if (e === "tt-add" || e === "tt-equip") {
       var items = make(), ok = 0, last = null;
       items.forEach(function (it) { if (give(it)) { ok++; last = it; } });
@@ -223,6 +241,6 @@
       ".tt .btn{min-height:44px}.tt .row{display:flex;gap:8px;flex-wrap:wrap}.tt .row .btn{flex:1 1 120px}.tt-counts .btn{flex:1 1 44px}";
     document.head.appendChild(st);
   }
-  self.ABSTG = { render: render, act: act, state: S };
+  self.ABSTG = { render: render, act: act, state: S, menuButton: menuButton };
   B.refresh();
 })();

@@ -1086,5 +1086,16 @@
    ],
    "glow": false
   }
+ },
+ "stagingTest": {
+  "_doc": "STAGING ONLY (config STAGING: true; js/ab-testtools.js is never loaded on live). Menu button that takes the current hero straight into a zone through the normal zone-travel path (arrive at the zone start, door back to the previous town, waypoint found by walking to it, game saved). clamp: while that zone is built, monster level is capped at hero level + above (range span levels wide, never above the zone's own levels); leaving and coming back later builds the zone at its real levels.",
+  "label": "Go to Reed Marsh (test)",
+  "zone": "reed_marsh",
+  "toast": "Test jump: Reed Marsh, monsters level {lo}–{hi}.",
+  "clamp": {
+   "enabled": true,
+   "above": 1,
+   "span": 2
+  }
  }
 }
