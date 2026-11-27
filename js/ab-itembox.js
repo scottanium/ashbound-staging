@@ -42,7 +42,7 @@
     s.textContent = [
       ":root{--ib-pad:" + c.pad + "px;--ib-icon:" + c.icon + "px;--ib-icon-gap:" + c.iconGap + "px;--ib-strip-gap:" + c.stripGap + "px;--ib-equip-h:" + c.equipH + "px;--ib-z:" + c.z + ";--ib-tip-z:" + c.tipZ + ";}",
       "#item-pop-back{z-index:calc(var(--ib-z) - 1);}",
-      "#panel .detail.item-pop,.detail.item-pop{z-index:var(--ib-z);overflow:visible;max-width:min(" + c.maxW + "px, calc(100vw - 16px));max-height:min(74vh, " + c.maxH + "px);}",
+      "#panel .detail.item-pop,.detail.item-pop{z-index:var(--ib-z);overflow:visible !important;max-width:min(" + c.maxW + "px, calc(100vw - 16px - var(--safe-l,0px) - var(--safe-r,0px)));max-height:min(74vh, " + c.maxH + "px);}",
       ".detail.item-pop-compare{z-index:calc(var(--ib-z) + 1);}",
       "body.item-pop-open #hud #toasts,body.item-pop-open #hud #hint{display:none !important;visibility:hidden;pointer-events:none;}",
       ".detail.item-pop .detail-actions{flex:0 0 auto;background:transparent;padding-top:8px;border-top:1px solid rgba(154,116,72,0.45);}",
@@ -50,7 +50,7 @@
       ".detail.item-pop .detail-actions .btn[data-act=equip],.detail.item-pop .detail-actions .btn[data-act=buy]{flex:1 1 100%;min-height:var(--ib-equip-h);font-size:16px;font-weight:700;}",
       ".detail.item-pop .detail-actions.is-empty{display:none;}",
       ".detail.item-pop .detail-scroll{flex:1 1 auto;min-height:0;overflow:auto;}",
-      ".item-side-strip{position:absolute;top:40px;display:flex;flex-direction:column;gap:var(--ib-icon-gap);z-index:2;pointer-events:auto;}",
+      ".item-side-strip{position:absolute;top:40px;display:flex;flex-direction:column;gap:var(--ib-icon-gap);z-index:8;pointer-events:auto;}",
       ".item-side-strip.strip-right{left:100%;right:auto;margin-left:var(--ib-strip-gap);margin-right:0;}",
       ".item-side-strip.strip-left{right:100%;left:auto;margin-right:var(--ib-strip-gap);margin-left:0;}",
       "#panel .detail.item-pop .item-icon-btn,.detail.item-pop .item-icon-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:var(--ib-icon) !important;min-width:var(--ib-icon) !important;min-height:var(--ib-icon) !important;max-width:var(--ib-icon);padding:4px 2px 3px;margin:0;border-radius:10px;font-size:9px !important;line-height:1.1;font-weight:600;letter-spacing:0.02em;flex:0 0 auto;}",
@@ -307,131 +307,167 @@
     var vw = root.innerWidth || 0, vh = root.innerHeight || 0;
     var safe = (root.ABSafeArea && ABSafeArea.insets && ABSafeArea.insets()) || { left: 0, right: 0, top: 0, bottom: 0 };
     vw = Math.max(0, vw); vh = Math.max(0, vh);
+    var minX = (safe.left || 0) + c.pad;
+    var maxX = vw - (safe.right || 0) - c.pad;
+    var minY = (safe.top || 0) + c.pad;
+    var maxY = vh - (safe.bottom || 0) - c.pad;
+    var availW = Math.max(0, maxX - minX);
+    var availH = Math.max(0, maxY - minY);
     var A = root.ASHBOUND, uid = A && A.state && A.state.ui && A.state.ui.selected && A.state.ui.selected.uid;
     var anchor = anchorFor(uid, panel, box, cmp);
     var ar = anchor ? anchor.getBoundingClientRect() : { left: vw / 2, right: vw / 2, top: vh / 2, bottom: vh / 2, width: 0, height: 0 };
 
-    var mainW = Math.min(c.maxW, vw - 2 * c.pad);
-    var cmpW = Math.min(c.compareMaxW, vw - 2 * c.pad);
-    var maxH = c.maxH;
     var swMain = stripW(box);
     var swCmp = cmp ? stripW(cmp) : 0;
-    /* Portrait phones are narrower than maxW + the icon strip; shrink the card. */
-    if (mainW + swMain > vw - 2 * c.pad) mainW = Math.max(c.minW, vw - 2 * c.pad - swMain);
-    if (cmpW + swCmp > vw - 2 * c.pad) cmpW = Math.max(c.minW, vw - 2 * c.pad - swCmp);
-    if (cmp && mainW + c.pad + cmpW + swMain + swCmp > vw - 2 * c.pad) {
-      var each = Math.floor((vw - 2 * c.pad - c.pad - swMain - swCmp) / 2);
+    var mainW = Math.min(c.maxW, availW);
+    var cmpW = Math.min(c.compareMaxW, availW);
+    var maxH = c.maxH;
+    /* Portrait phones and a card plus its icon strip must stay inside the safe area. */
+    if (mainW + swMain > availW) mainW = Math.max(c.minW, availW - swMain);
+    if (cmpW + swCmp > availW) cmpW = Math.max(c.minW, availW - swCmp);
+    if (cmp && mainW + c.pad + cmpW + swMain + swCmp > availW) {
+      var each = Math.floor((availW - c.pad - swMain - swCmp) / 2);
       mainW = Math.max(c.minW, each);
       cmpW = Math.max(c.minW, each);
     }
-    /* le-ui fit level 3+: a crowded main card gets wider (fewer wrapped lines) while the compare card still fits beside it */
+    /* le-ui fit level 3+: a crowded main card gets wider, but never so wide that
+       its side strip (Drop / Stash / …) is covered by the compare card or the Island. */
     var wide = +(box.getAttribute("data-le-wide") || 0);
     if (wide > mainW) {
-      var wMain = Math.min(wide, vw - 2 * c.pad - swMain);
       if (cmp) {
-        var wCmp = Math.min(cmpW, vw - 3 * c.pad - swMain - swCmp - wMain);
-        if (wCmp >= c.minW) { mainW = wMain; cmpW = wCmp; }
-      } else mainW = wMain;
+        var wMain = Math.min(wide, Math.max(c.minW, availW - swMain - c.pad - c.minW - swCmp));
+        var wCmp = Math.min(cmpW, availW - swMain - c.pad - swCmp - wMain);
+        if (wCmp >= c.minW && wMain >= c.minW) { mainW = wMain; cmpW = wCmp; }
+      } else {
+        mainW = Math.min(wide, Math.max(c.minW, availW - swMain));
+      }
     }
-    if (cmp && 2 * 180 + c.pad > vh - 2 * c.pad) {
-      maxH = Math.max(c.stackMin, Math.floor((vh - 3 * c.pad) / 2));
-    }
-
     var br = sizeBox(box, vw, vh, mainW, maxH);
     var left, top;
     var needW = br.width + swMain;
-    if (ar.right + c.pad + needW <= vw - c.pad) { left = ar.right + c.pad; top = ar.top; }
-    else if (ar.left - c.pad - needW >= c.pad) { left = ar.left - c.pad - needW; top = ar.top; }
-    else if (ar.bottom + c.pad + br.height <= vh - c.pad) { left = ar.left; top = ar.bottom + c.pad; }
-    else if (ar.top - c.pad - br.height >= c.pad) { left = ar.left; top = ar.top - c.pad - br.height; }
-    else { left = (vw - needW) / 2; top = (vh - br.height) / 2; }
-    left = clamp(left, c.pad, vw - needW - c.pad);
-    top = clamp(top, c.pad, Math.max(c.pad, vh - br.height - c.pad));
+    if (ar.right + c.pad + needW <= maxX) { left = ar.right + c.pad; top = ar.top; }
+    else if (ar.left - c.pad - needW >= minX) { left = ar.left - c.pad - needW; top = ar.top; }
+    else if (ar.bottom + c.pad + br.height <= maxY) { left = ar.left; top = ar.bottom + c.pad; }
+    else if (ar.top - c.pad - br.height >= minY) { left = ar.left; top = ar.top - c.pad - br.height; }
+    else { left = minX + (availW - needW) / 2; top = minY + Math.max(0, availH - br.height) / 2; }
+    left = clamp(left, minX, Math.max(minX, maxX - needW));
+    top = clamp(top, minY, Math.max(minY, maxY - br.height));
 
     if (cmp) {
       var cr = sizeBox(cmp, vw, vh, cmpW, maxH);
       var groupW = br.width + swMain + c.pad + cr.width + swCmp;
-      var cmpLeft, cmpTop, sideBySide = groupW <= vw - 2 * c.pad;
+      var cmpLeft, cmpTop, sideBySide = groupW <= availW + 0.5;
       if (sideBySide) {
-        /* main strip on the right of main, compare strip on the right of compare */
+        /* Strips stay on the inner sides of the pair: [main][strip] gap [cmp][strip]
+           or, if the group is packed against the right, both on the left. The pair
+           is placed as one unit so a later clamp cannot slide the compare card
+           over the pack item's Drop button (iPhone 17 + a widened max-affix card). */
         setStripSide(box, "right");
         setStripSide(cmp, "right");
-        if (left + br.width + swMain + c.pad + cr.width + swCmp <= vw - c.pad) {
-          cmpLeft = left + br.width + swMain + c.pad; cmpTop = top;
-        } else if (left - swMain - c.pad - cr.width - swCmp >= c.pad) {
+        var groupLeft = clamp(left, minX, maxX - groupW);
+        if (left + br.width + swMain + c.pad + cr.width + swCmp <= maxX + 0.5) {
+          groupLeft = clamp(left, minX, maxX - groupW);
+        } else if (left - swMain - c.pad - cr.width - swCmp >= minX - 0.5) {
           setStripSide(box, "left");
           setStripSide(cmp, "left");
-          /* v85: leave room for main's own strip, which now sits on its left */
-          cmpLeft = left - swMain - c.pad - cr.width; cmpTop = top;
-          /* main has strip on its left, so shift main right by swMain if needed */
+          groupW = br.width + swMain + c.pad + cr.width + swCmp;
+          groupLeft = clamp(left - swMain - c.pad - cr.width, minX, maxX - groupW);
+          left = groupLeft + cr.width + swCmp + c.pad + swMain;
+          cmpLeft = groupLeft + swCmp;
+          cmpTop = top;
         } else {
-          left = clamp(c.pad, c.pad, vw - c.pad - groupW);
-          setStripSide(box, "right");
-          setStripSide(cmp, "right");
-          cmpLeft = left + br.width + swMain + c.pad; cmpTop = top;
+          groupLeft = minX;
+        }
+        if (box.querySelector(".item-side-strip.strip-right")) {
+          left = groupLeft;
+          cmpLeft = left + br.width + swMain + c.pad;
+          cmpTop = top;
         }
       } else {
-        setStripSide(box, (left + br.width + swMain <= vw - c.pad) ? "right" : "left");
-        setStripSide(cmp, (left + cr.width + swCmp <= vw - c.pad) ? "right" : "left");
+        setStripSide(box, (left + br.width + swMain <= maxX + 0.5) ? "right" : "left");
+        setStripSide(cmp, (left + cr.width + swCmp <= maxX + 0.5) ? "right" : "left");
         var stackH = br.height + c.pad + cr.height;
-        if (stackH > vh - 2 * c.pad) {
-          maxH = Math.max(c.stackMin, Math.floor((vh - 3 * c.pad) / 2));
+        if (stackH > availH) {
+          maxH = Math.max(c.stackMin, Math.floor((availH - c.pad) / 2));
           br = sizeBox(box, vw, vh, mainW, maxH);
           cr = sizeBox(cmp, vw, vh, cmpW, maxH);
         }
         var mainNeed = br.width + swMain;
-        left = clamp(left, c.pad, vw - mainNeed - c.pad);
-        if (top + br.height + c.pad + cr.height <= vh - c.pad) {
+        left = clamp(left, minX + (box.querySelector(".item-side-strip.strip-left") ? swMain : 0),
+          maxX - br.width - (box.querySelector(".item-side-strip.strip-right") ? swMain : 0));
+        if (top + br.height + c.pad + cr.height <= maxY + 0.5) {
           cmpLeft = left; cmpTop = top + br.height + c.pad;
-        } else if (top - c.pad - cr.height >= c.pad) {
+        } else if (top - c.pad - cr.height >= minY - 0.5) {
           cmpLeft = left; cmpTop = top - c.pad - cr.height;
         } else {
-          top = c.pad;
-          cmpLeft = left; cmpTop = Math.min(top + br.height + c.pad, vh - cr.height - c.pad);
+          top = minY;
+          cmpLeft = left; cmpTop = Math.min(top + br.height + c.pad, maxY - cr.height);
         }
+        var cmpNeedL = (cmp.querySelector(".item-side-strip.strip-left") ? swCmp : 0);
+        var cmpNeedR = (cmp.querySelector(".item-side-strip.strip-right") ? swCmp : 0);
+        cmpLeft = clamp(cmpLeft, minX + cmpNeedL, maxX - cr.width - cmpNeedR);
       }
-      if (sideBySide) {
-        /* v85: slide the pair as one so neither card nor strip lands under a safe-area inset (Dynamic Island) */
-        var mL = box.querySelector(".item-side-strip.strip-left") ? swMain : 0, mR = box.querySelector(".item-side-strip.strip-right") ? swMain : 0;
-        var kL = cmp.querySelector(".item-side-strip.strip-left") ? swCmp : 0, kR = cmp.querySelector(".item-side-strip.strip-right") ? swCmp : 0;
-        var gL = Math.min(left - mL, cmpLeft - kL), gR = Math.max(left + br.width + mR, cmpLeft + cr.width + kR);
-        var minL = safe.left + c.pad, maxR = vw - safe.right - c.pad, sh = gL < minL ? minL - gL : (gR > maxR ? maxR - gR : 0);
-        if (sh && gL + sh >= minL - 0.5 && gR + sh <= maxR + 0.5) { left += sh; cmpLeft += sh; }
-      }
-      top = clamp(top, c.pad, Math.max(c.pad, vh - br.height - c.pad));
-      left = clamp(left, c.pad + (box.querySelector(".item-side-strip.strip-left") ? swMain : 0), vw - br.width - c.pad - (box.querySelector(".item-side-strip.strip-right") ? swMain : 0));
-      var cmpNeedL = (cmp.querySelector(".item-side-strip.strip-left") ? swCmp : 0);
-      var cmpNeedR = (cmp.querySelector(".item-side-strip.strip-right") ? swCmp : 0);
+      top = clamp(top, minY, Math.max(minY, maxY - br.height));
       setPos(box, left, top);
-      setPos(cmp, clamp(cmpLeft, c.pad + cmpNeedL, vw - cr.width - c.pad - cmpNeedR), clamp(cmpTop, c.pad, Math.max(c.pad, vh - cr.height - c.pad)));
+      setPos(cmp, cmpLeft, clamp(cmpTop, minY, Math.max(minY, maxY - cr.height)));
     } else {
-      setStripSide(box, (left + br.width + swMain <= vw - c.pad) ? "right" : "left");
+      setStripSide(box, (left + br.width + swMain <= maxX + 0.5) ? "right" : "left");
       if (box.querySelector(".item-side-strip.strip-left")) {
-        left = clamp(left, c.pad + swMain, vw - br.width - c.pad);
+        left = clamp(left, minX + swMain, maxX - br.width);
       } else {
-        left = clamp(left, c.pad, vw - br.width - swMain - c.pad);
+        left = clamp(left, minX, maxX - br.width - swMain);
       }
       setPos(box, left, top);
+    }
+    function rectOf(el) { return el ? el.getBoundingClientRect() : null; }
+    function overlap(a, b) {
+      return !!(a && b && a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1);
     }
     function stayInSafe(el, extraL, extraR) {
       if (!el) return;
       var r = el.getBoundingClientRect();
-      var minX = safe.left + c.pad + (extraL || 0);
-      var minY = safe.top + c.pad;
-      var maxX = vw - safe.right - c.pad - r.width - (extraR || 0);
-      var maxY = vh - safe.bottom - c.pad - r.height;
-      if (maxX < minX) maxX = minX;
-      if (maxY < minY) maxY = minY;
-      if (r.left < minX - 0.5 || r.left > maxX + 0.5 || r.top < minY - 0.5 || r.top > maxY + 0.5) {
-        setPos(el, clamp(r.left, minX, maxX), clamp(r.top, minY, maxY));
+      var x0 = minX + (extraL || 0), y0 = minY;
+      var x1 = maxX - r.width - (extraR || 0), y1 = maxY - r.height;
+      if (x1 < x0) x1 = x0;
+      if (y1 < y0) y1 = y0;
+      if (r.left < x0 - 0.5 || r.left > x1 + 0.5 || r.top < y0 - 0.5 || r.top > y1 + 0.5) {
+        setPos(el, clamp(r.left, x0, x1), clamp(r.top, y0, y1));
       }
     }
-    stayInSafe(box,
-      box.querySelector(".item-side-strip.strip-left") ? swMain : 0,
-      box.querySelector(".item-side-strip.strip-right") ? swMain : 0);
-    if (cmp) stayInSafe(cmp,
-      cmp.querySelector(".item-side-strip.strip-left") ? swCmp : 0,
-      cmp.querySelector(".item-side-strip.strip-right") ? swCmp : 0);
+    /* Keep the pair together when shifting for the Dynamic Island, and never let
+       the compare card cover the pack item's action strip (Drop). */
+    if (cmp) {
+      var boxR = rectOf(box), cmpR = rectOf(cmp);
+      var sMain = box.querySelector(".item-side-strip");
+      var sCmp = cmp.querySelector(".item-side-strip");
+      var sMainR = rectOf(sMain), sCmpR = rectOf(sCmp);
+      var gL = Math.min(boxR.left - (sMain && sMain.classList.contains("strip-left") ? swMain : 0),
+                        cmpR.left - (sCmp && sCmp.classList.contains("strip-left") ? swCmp : 0));
+      var gR = Math.max(boxR.right + (sMain && sMain.classList.contains("strip-right") ? swMain : 0),
+                        cmpR.right + (sCmp && sCmp.classList.contains("strip-right") ? swCmp : 0));
+      var sh = gL < minX ? minX - gL : (gR > maxX ? maxX - gR : 0);
+      if (sh && gL + sh >= minX - 0.5 && gR + sh <= maxX + 0.5) {
+        setPos(box, boxR.left + sh, boxR.top);
+        setPos(cmp, cmpR.left + sh, cmpR.top);
+        boxR = rectOf(box); cmpR = rectOf(cmp); sMainR = rectOf(sMain); sCmpR = rectOf(sCmp);
+      }
+      if (overlap(sMainR, cmpR) || overlap(sCmpR, boxR)) {
+        /* Push the overlapping card away if there is room; otherwise shrink and re-place next frame. */
+        if (overlap(sMainR, cmpR) && cmpR.left < sMainR.right) {
+          var push = sMainR.right + c.pad - cmpR.left;
+          if (cmpR.right + push + (sCmp && sCmp.classList.contains("strip-right") ? swCmp : 0) <= maxX + 0.5) {
+            setPos(cmp, cmpR.left + push, cmpR.top);
+          } else if (boxR.left - push - (sMain && sMain.classList.contains("strip-left") ? 0 : 0) >= minX - 0.5) {
+            setPos(box, boxR.left - push, boxR.top);
+          }
+        }
+      }
+    } else {
+      stayInSafe(box,
+        box.querySelector(".item-side-strip.strip-left") ? swMain : 0,
+        box.querySelector(".item-side-strip.strip-right") ? swMain : 0);
+    }
+
     /* le-ui (v85): a skin may tighten the card so nothing scrolls (js/ab-leui.js fitCard) */
     if (root.ABItemBox && typeof root.ABItemBox.afterPlace === "function") root.ABItemBox.afterPlace(box, cmp);
   }

@@ -312,6 +312,10 @@
 
   function layout() {
     st.dirtyA = st.dirtyO = true;
+    // v84j: while a full-screen panel is open the HUD is hidden; don't relayout then. Clearing the inline spots here used to
+    // drop the flasks and the Town Portal button to the top-left corner of #hud, where they could peek out at the left edge
+    // behind the panel (and flash there for a frame on close). Closing the panel changes the body class, which lays out again.
+    if (document.body.classList.contains("panel-open") && st.runs > 0) { st.skippedOpen = (st.skippedOpen || 0) + 1; return; }
     var c = withFlaskInsets(cfg()), cast = q("#cast"), bar = q("#skillbar"), atk = q("#btn-attack");
     if (!cast || !bar || !atk) return;
     var slots = [0, 1, 2, 3].map(function (i) { return q("#skill-" + i); }).filter(Boolean);

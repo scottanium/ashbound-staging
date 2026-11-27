@@ -118,12 +118,20 @@
       P + ".gear-board:not(.stash-board) .gear-bag > .grid{grid-column:1;grid-row:1;--cell:min(var(--le-cell),calc((100cqw - var(--le-tool) - 12px) / var(--cols)))}",
       P + ".gear-board:not(.stash-board) .gear-bag > .row{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:0;min-width:0}",
       P + ".gear-board:not(.stash-board) .gear-bag > .row .btn{min-height:44px;padding:2px 8px;font-size:13px;white-space:nowrap}",
-      "html.ua-ready #panel .gitem .new-dot{position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:0;background:" + v("g_ashpip_on") + " center/contain no-repeat;box-shadow:none;z-index:3;animation:le-spark 1.6s ease-in-out infinite}",
-      "@keyframes le-spark{50%{filter:brightness(1.6) drop-shadow(0 0 3px #ff9a3c)}}",
+      // New-loot pips stay visible until the item is inspected, but they must not pulse:
+      // the looping le-spark brightness/glow read as the item art flickering.
+      "html.ua-ready #panel .gitem .new-dot{position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:0;background:" + v("g_ashpip_on") + " center/contain no-repeat;box-shadow:none;z-index:3;animation:none;filter:none}",
       "html.ua-ready #panel .gitem .sockdots{z-index:3;bottom:3px;right:3px}",
       "html.ua-ready #panel .gitem .sockdots i{width:5px;height:5px;background:#120c08;box-shadow:inset 0 0 0 1px #b89a72}",
       "html.ua-ready #panel .gitem .sockdots i.on{background:#ff9a3c;box-shadow:0 0 3px #ff9a3c}",
-      "html.ua-ready #panel .gitem{margin:0;border-radius:2px}"
+      "html.ua-ready #panel .gitem{margin:0;border-radius:2px}",
+      // Sheet = doll + combat stats; Pack = doll + bag grid. Both tabs used to share one layout.
+      P + ".gear-board.sheet-board{grid-template-columns:var(--le-dollw,262px) minmax(0,1fr);grid-template-rows:minmax(0,1fr) 34px}",
+      P + ".sheet-board .gear-stats{grid-column:2;grid-row:1;min-width:0;max-height:100%;overflow:auto;padding:0 2px 0 0}",
+      "html.ua-ready #panel .sheet-stats{display:grid;grid-template-columns:1fr 1fr;gap:3px 8px}",
+      "html.ua-ready #panel .sheet-stat{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0;padding:3px 8px;min-height:22px;background:rgba(12,8,6,.55);border:1px solid rgba(130,96,60,.4);border-radius:2px;font-family:var(--ua-label);font-size:11px;color:#d8c7a6}",
+      "html.ua-ready #panel .sheet-stat span{color:#a8977c;letter-spacing:.04em}",
+      "html.ua-ready #panel .sheet-stat b{color:#f0e2c6;font-weight:600;font-variant-numeric:tabular-nums}"
     ].join("\n");
   }
   // step 7: item card v2 — the v84g pop-up keeps its placement, strip, Drop confirm and Equip; only its look changes.
@@ -211,7 +219,7 @@
       C + "[data-le-fit='5'] .detail-scroll .le-flavor{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden}",
       C + "[data-le-fit='4'] .detail-scroll{font-size:10.5px;line-height:1.12}",
       C + "[data-le-fit='5'] .detail-scroll{font-size:10px;line-height:1.1}",
-      C + "[data-le-wide]{max-width:calc(100vw - 16px) !important}",
+      C + "[data-le-wide]{max-width:calc(100vw - 16px - var(--safe-l,0px) - var(--safe-r,0px) - var(--ib-icon,44px) - var(--ib-strip-gap,6px)) !important}",
       C + ":is([data-le-fit='4'],[data-le-fit='5']) .detail-scroll .compare .le-delta{font-size:10px;line-height:13px}",
       // v84g side strip: square iron wells, the leading action (Unequip) lit with ember
       "html.ua-ready :is(#panel,body) .detail.item-pop .item-icon-btn{border:0 !important;border-radius:2px !important;background:" + v("slot_well") + " center/100% 100% no-repeat,#16100c !important;color:#e8d6b0 !important;box-shadow:0 2px 6px rgba(0,0,0,.6) !important;font-family:var(--ua-label);letter-spacing:.04em}",

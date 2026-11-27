@@ -552,6 +552,7 @@
       <span class="small tt-next">${cs.ok || pts >= treeMax() ? nextTxt : esc(cs.reason)}</span>
     </div>
     <div class="detail-head">
+      <span class="tt-dico">${skillIco(d)}</span>
       <strong>${esc(d.name)}${node.ultimate ? ` <span class="tt-ult">${esc(str("ultimate"))}</span>` : ""}</strong>
       <div class="small muted">${esc(d.type)}${mana}${cd}</div>
       <div class="small ${unlocked ? "good" : "muted"}">${esc(head)}</div>

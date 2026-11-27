@@ -23,10 +23,13 @@
     ["zonesCfg", "data/zones.json", true],
     ["ui", "data/ui.json", true],
     ["uiArt", "data/ui-art.json", true],
+    ["reskin", "data/reskin.json", true],
+    ["audio", "data/audio.json", true],
     ["stashCfg", "data/stash.json", true],
     ["lootFilter", "data/lootfilter.json", true],
     ["stats", "data/stats.json", true],
     ["skillTreeUi", "data/skilltree-ui.json", true],
+    ["skillArt", "data/skill-art.json", true],
     ["guide", "data/guide.json", true],
     ["questUi", "data/questui.json", true],
     ["feel", "data/feel.json"],
@@ -75,6 +78,9 @@
     D.camera = bag.camera || {};
     D.icons = bag.icons || null;
     D.uiArt = bag.uiArt || null;
+    D.reskin = bag.reskin || null;
+    D.audio = bag.audio || null; // v84j: sound off by default (data/audio.json)
+    D.skillArt = bag.skillArt || null; // r14: painted skill icons (optional)
     D.stashCfg = bag.stashCfg || null;
     D.lootFilter = bag.lootFilter || null;
     D.props3d = bag.props3d || null;
