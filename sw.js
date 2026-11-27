@@ -3,6 +3,21 @@ const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
 
+// r14: cache every painted skill icon listed in data/skill-art.json. Best effort: a missing icon never fails install.
+async function cacheSkillArt(cache) {
+  try {
+    const res = await fetch('./data/skill-art.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const cfg = await res.json();
+    const dir = cfg.dir || '';
+    const urls = Object.keys(cfg.skills || {}).map((id) => {
+      const e = cfg.skills[id];
+      return './' + dir + (typeof e === 'string' ? e : e.file);
+    });
+    await Promise.all(urls.map((u) => cache.add(u).catch(() => null)));
+  } catch (err) { /* offline or no art: the game falls back to glyphs */ }
+}
+
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll([
@@ -65,6 +80,9 @@ self.addEventListener('install', (event) => {
     './js/ab-feel.js',
     './js/ab-itemtip.js',
     './js/ab-itembox.js',
+    './js/ab-reskin.js',
+    './data/reskin.json',
+    './data/audio.json',
     './js/ab-ui.js',
     './js/ab-charsheet.js',
     './js/ab-flasks.js',
@@ -105,7 +123,9 @@ self.addEventListener('install', (event) => {
     './manifest.webmanifest',
     './icon-192.png',
     './icon-512.png',
-  ])));
+    './data/skill-art.json',
+    './js/ab-skillart.js',
+  ]).then(() => cacheSkillArt(cache))));
 });
 
 self.addEventListener('activate', (event) => {
