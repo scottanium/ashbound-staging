@@ -100,6 +100,7 @@
   function has(name) { return ready() && !!spriteName(name, 0); }
   // grid props (trees, rocks, clutter): P = tile centre on screen
   function sprite(e, name, P, s, n, h, alpha, cam, time) {
+    if (root.ABZoneGfx && root.ABZoneGfx.sprite(e, name, P, s, n, h, alpha, time)) return true; // zonegfx (r17): painted set art
     if (!ready()) return false; var nm = spriteName(name, h); if (!nm) return false;
     var spec = D().sprites[nm], vi = Math.floor(h * 3) % 3, b = getBaked("s:" + nm, spec, cam, s, n, vi);
     blit(e, b, P, alpha); if (spec.live && time != null) live(e, spec, P, s, time, cam, vi, alpha); return true;
@@ -121,6 +122,7 @@
   }
   // other prop kinds: decor, fence, exit, rift, setpiece. Returns true when drawn.
   function prop(e, b, P, s, n, time, alpha, cam) {
+    if (root.ABZoneGfx && root.ABZoneGfx.prop3(e, b, P, s, time, alpha)) return true; // zonegfx (r17): painted set art
     if (!ready()) return false; var d = D(), k = b.kind, spec = null, key = null, vi = 0;
     if (k === "decor") { spec = (d.decor || {})[b.sprite]; key = "d:" + b.sprite; }
     else if (k === "fence") { spec = fenceSpec(b.sprite || "fence_ash", b.tilesW || 2); key = "f:" + (b.sprite || "") + ":" + (b.tilesW || 2); }
