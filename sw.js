@@ -54,6 +54,8 @@ self.addEventListener('install', (event) => {
     './assets/fonts/marcellus-sc.woff2',
     './data/props3d.json',
     './js/ab-props3d.js',
+    './js/ab-zones.js',
+    './data/zones.json',
     './data/ui.json',
     './data/stats.json',
     './data/skilltree-ui.json',
