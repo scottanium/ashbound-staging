@@ -189,16 +189,25 @@
     var keep = [], LV = st.S.live || {}, FO = LV.foliage || {};
     (d.props || []).forEach(function (p) { if (p && p.x != null && p.kind !== "npc") keep.push([p.x, p.y, p.kind === "exit" || p.kind === "entry" || p.kind === "waypoint" ? (FO.keepDoor || 2.2) : 1.2]); });
     if (d.spawn) keep.push([d.spawn.x, d.spawn.y, 2.2]);
+    // v84m2 paths read at a glance: no plants/reeds on (or within margin of) road tiles, fewer next to them (data: live.foliage.path)
+    var PA = FO.path || null, road = d.road, pathCut = 0, nearCut = 0, nearAll = 0;
+    function thin(x, y, salt) { if (!PA || PA.nearMul == null || !roadAdj(Math.floor(x), Math.floor(y), PA.nearDist || 1)) return false; nearAll++; if (nearRoadPt(x, y, PA.margin || .3)) { pathCut++; return true; } if (hash(x * 13 | 0, y * 13 | 0, salt) > PA.nearMul) { nearCut++; return true; } return false; }
+    function isR(i, j) { return !!road && i >= 0 && j >= 0 && i < d.w && j < d.h && road[j * d.w + i] === T_.FLOOR; }
+    function nearRoadPt(x, y, mg) { if (!PA || !road) return false; var i0 = Math.floor(x), j0 = Math.floor(y); for (var dj = -1; dj <= 1; dj++) for (var di = -1; di <= 1; di++) { var ii = i0 + di, jj = j0 + dj; if (!isR(ii, jj)) continue; var dx = Math.max(ii - x, 0, x - (ii + 1)), dy = Math.max(jj - y, 0, y - (jj + 1)); if (Math.hypot(dx, dy) < mg) return true; } return false; }
+    function roadAdj(i, j, r) { if (!PA || !road) return false; for (var dj = -r; dj <= r; dj++) for (var di = -r; di <= r; di++) if (isR(i + di, j + dj)) return true; return false; }
     function clear(x, y, extra) { for (var q = 0; q < keep.length; q++) { var K = keep[q]; if (Math.hypot(K[0] - x, K[1] - y) < K[2] + (extra || 0)) return false; } return true; }
     var fringe = [], fol = [], maxF = P(st, "foliageMax") || FO.max || 120, sprites = FO.sprites || [];
     for (var j2 = 1; j2 < d.h - 1 && sprites.length; j2++) for (var i2 = 1; i2 < d.w - 1; i2++) {
       var k3 = j2 * d.w + i2, t3 = d.tiles[k3]; if (t3 !== T_.FLOOR) continue;
       if (FO.keepOffPath && d.road && d.road[k3] === T_.FLOOR) continue;
-      var ch = dW[k3] <= 1 ? FO.nearWater : dTree[k3] <= 1 ? FO.nearTree : FO.open;
+      var ch = dW[k3] <= 1 ? FO.nearWater : dTree[k3] <= 1 ? FO.nearTree : FO.open, adj = roadAdj(i2, j2, (PA && PA.nearDist) || 1);
       for (var r = 0; r < 2; r++) {
-        if (hash(i2 * 3 + r, j2, seed) > (ch || 0)) continue;
+        var hh = hash(i2 * 3 + r, j2, seed); if (hh > (ch || 0)) continue;
+        if (adj) nearAll++;
+        if (adj && PA.nearMul != null && hh > (ch || 0) * PA.nearMul) { nearCut++; continue; }
         var x = i2 + .15 + hash(i2, j2 * 5 + r, seed + 1) * .7, y = j2 + .15 + hash(i2 * 7 + r, j2, seed + 2) * .7;
         if (!clear(x, y)) continue;
+        if (PA && nearRoadPt(x, y, PA.margin || .3)) { pathCut++; continue; }
         var nm = sprites[Math.floor(hash(i2, j2 + r * 13, seed + 3) * sprites.length) % sprites.length];
         nm = dW[k3] <= 1 ? (hash(i2, j2, seed + 9) < .75 ? sprites[0] : sprites[sprites.length - 1]) : (hash(i2, j2, seed + 9) < .3 ? sprites[0] : sprites[sprites.length - 1]);
         var sc = FO.scale || [1, 1]; fol.push({ x: x, y: y, n: nm, s: sc[0] + (sc[1] - sc[0]) * hash(i2 + r, j2, seed + 4), f: hash(i2, j2, seed + 5) < .5, ph: hash(i2, j2, seed + 6) * 6.28 });
@@ -210,13 +219,13 @@
       if (tileAt(d, i6, j6) !== T_.WALL) continue;
       if (FR.top && (tileAt(d, i6 + 1, j6) !== T_.WALL || tileAt(d, i6, j6 + 1) !== T_.WALL || tileAt(d, i6 - 1, j6) !== T_.WALL || tileAt(d, i6, j6 - 1) !== T_.WALL) && hash(i6, j6, seed + 51) < FR.top) {
         var tx_ = i6 + .25 + hash(i6, j6, seed + 52) * .5, ty_ = j6 + .25 + hash(i6, j6, seed + 53) * .5, tr = hash(i6, j6, seed + 54) < (FR.topTrees || 0) * (P(st, "fringeTrees") != null ? P(st, "fringeTrees") : 1);
-        var ar = tr ? FR.trees : FR.sprites; fringe.push({ x: tx_, y: ty_, n: ar[Math.floor(hash(i6, j6, seed + 55) * ar.length) % ar.length], s: 1 + hash(i6, j6, seed + 56) * .4, f: hash(i6, j6, seed + 57) < .5, ph: hash(i6, j6, seed + 58) * 6.28, tree: tr, lift: 1 });
+        var ar = tr ? FR.trees : FR.sprites; if (!thin(tx_, ty_, 61)) fringe.push({ x: tx_, y: ty_, n: ar[Math.floor(hash(i6, j6, seed + 55) * ar.length) % ar.length], s: 1 + hash(i6, j6, seed + 56) * .4, f: hash(i6, j6, seed + 57) < .5, ph: hash(i6, j6, seed + 58) * 6.28, tree: tr, lift: 1 });
       }
       [[0, 1], [1, 0], [0, -1], [-1, 0]].forEach(function (o, q) {
         var ni = i6 + o[0], nj = j6 + o[1], tt = tileAt(d, ni, nj); if (tt === T_.WALL || ni < 0 || nj < 0 || ni >= d.w || nj >= d.h) return;
         var along = hash(i6 * 5 + q, j6, seed + 41), ins = FR.inset || .12;
         var x = (o[0] ? (o[0] > 0 ? ni + ins : ni + 1 - ins) : i6 + .15 + along * .7), y = (o[1] ? (o[1] > 0 ? nj + ins : nj + 1 - ins) : j6 + .15 + along * .7);
-        if (!clear(x, y, -.6)) return;
+        if (!clear(x, y, -.6)) return; if (thin(x, y, 62)) return;
         var tree = hash(i6, j6 * 3 + q, seed + 43) < (FR.treeChance || 0) * (P(st, "fringeTrees") != null ? P(st, "fringeTrees") : 1), arr = tree ? FR.trees : FR.sprites, nm2 = arr[Math.floor(hash(i6 + q, j6, seed + 44) * arr.length) % arr.length];
         var sc2 = FR.scale || [1, 1]; fringe.push({ x: x, y: y, n: nm2, s: sc2[0] + (sc2[1] - sc2[0]) * hash(i6, j6 + q, seed + 45), f: hash(i6 + q, j6, seed + 46) < .5, ph: hash(i6, j6 + q, seed + 47) * 6.28, tree: tree });
       });
@@ -243,7 +252,8 @@
     for (var k5 = 0; k5 < N && gl.length < (WA.glints || 0) * 4; k5++) if (d.tiles[k5] === waterIs && hash(k5, 3, seed + 31) < .5) gl.push({ x: k5 % d.w + hash(k5, 1, seed) , y: (k5 / d.w | 0) + hash(k5, 2, seed), ph: hash(k5, 4, seed) * 6.28 });
     var fM = P(st, "fringeMax"); if (fM != null && fringe.length > fM) { fringe.sort(function (a, b) { return hash(a.x * 9 | 0, a.y * 9 | 0, 7) - hash(b.x * 9 | 0, b.y * 9 | 0, 7); }); fringe.length = fM; }
     fol = fringe.concat(fol);
-    return { mat: mat, mi: mi, dW: dW, fol: fol, lam: lam, ban: ban, gl: gl, waterIs: waterIs };
+    var onRoad = PA ? fol.filter(function (f) { return !f.tree && nearRoadPt(f.x, f.y, (PA.margin || .3) - .01); }).length : 0;
+    return { mat: mat, mi: mi, dW: dW, fol: fol, lam: lam, ban: ban, gl: gl, waterIs: waterIs, path: PA ? { cut: pathCut, nearCut: nearCut, nearAll: nearAll, onRoad: onRoad, isR: isR, roadAdj: roadAdj } : null };
   }
 
   // ---------- pre / bake ----------
@@ -264,6 +274,13 @@
     var st = setOf(d); W = null; if (!st) return;
     var t0 = performance.now(), PH = {}, tp = t0, ph = function (k) { var t = performance.now(); PH[k] = +(t - tp).toFixed(1); tp = t; }, B = st.S.bake || {}, L = layout(d, st); ph('layout'); var img = st.img, mats = B.materials || [];
     W = { d: d, st: st, L: L, T: T };
+    var PA2 = ((st.S.live || {}).foliage || {}).path, propCut = 0, propNear = 0;
+    if (PA2 && PA2.props !== false && L.path && ISO.props) ISO.props = ISO.props.filter(function (q) {
+      if (q.tall && (PA2.propKinds || []).indexOf(q.w) < 0) return true; // trees/rocks stand on their own (solid) tiles: kept
+      var on = L.path.isR(q.i, q.j), nr = on || L.path.roadAdj(q.i, q.j, PA2.nearDist || 1); if (!nr) return true; propNear++;
+      if (on || hash(q.i, q.j, 77) > (PA2.nearMul != null ? PA2.nearMul : 1)) { propCut++; return false; }
+      return true;
+    });
     var CW = d.w * T, CH = d.h * T, MR = 16, MW = d.w * MR, MH = d.h * MR;
     // 1) material weight masks at MR px/tile: warped bilinear tile weights, height-blended, sharpened
     var NM = mats.length, masks = [], datas = [];
@@ -303,6 +320,9 @@
       if (m3 === baseM) { x.fillStyle = pat; x.fillRect(0, 0, CW, CH); continue; }
       tx.globalCompositeOperation = "source-over"; tx.clearRect(R3[0], R3[1], R3[2], R3[3]);
       tx.fillStyle = pat; tx.fillRect(R3[0], R3[1], R3[2], R3[3]);
+      var TN = (B.tone || {})[mats[m3]]; // v84m2: per-material tone (data: bake.tone), e.g. a lighter, higher-contrast path
+      if (TN) { if (TN.contrast) { tx.globalCompositeOperation = "overlay"; tx.globalAlpha = TN.contrast; tx.fillRect(R3[0], R3[1], R3[2], R3[3]); }
+        if (TN.lift) { tx.globalCompositeOperation = "screen"; tx.globalAlpha = TN.liftAlpha || .12; tx.fillStyle = TN.lift; tx.fillRect(R3[0], R3[1], R3[2], R3[3]); } tx.globalAlpha = 1; }
       tx.globalCompositeOperation = "destination-in"; tx.imageSmoothingEnabled = true; tx.drawImage(masks[m3], R3[0] / T * MR, R3[1] / T * MR, R3[2] / T * MR, R3[3] / T * MR, R3[0], R3[1], R3[2], R3[3]);
       x.drawImage(tmp, R3[0], R3[1], R3[2], R3[3], R3[0], R3[1], R3[2], R3[3]);
     }
@@ -387,7 +407,7 @@
     // the water tiles are not lava here: no orange glow circles / lava lights
     if (B.waterNotLava !== false) { var A = ISO.anim, keepA = []; for (var q5 = 0; q5 < A.length; q5 += 3) if (A[q5 + 2] !== L.waterIs) keepA.push(A[q5], A[q5 + 1], A[q5 + 2]); ISO.anim = keepA; }
     W.wmask = wm || null; W.MR = MR;
-    ph('ao'); stats.bakePh = PH; stats.bakeMs = +(performance.now() - t0).toFixed(1); stats.foliage = L.fol.length; stats.fringeTrees = L.fol.filter(function (f) { return f.tree; }).length; stats.low = lowFx(); stats.lanterns = L.lam.length; stats.banners = L.ban.length;
+    ph('ao'); stats.bakePh = PH; stats.bakeMs = +(performance.now() - t0).toFixed(1); stats.foliage = L.fol.length; stats.fringeTrees = L.fol.filter(function (f) { return f.tree; }).length; stats.low = lowFx(); stats.path = L.path ? { cut: L.path.cut, nearCut: L.path.nearCut, nearAll: L.path.nearAll, onRoad: L.path.onRoad, propCut: propCut, propNear: propNear, keptNear: +(1 - (L.path.cut + L.path.nearCut + propCut) / Math.max(1, L.path.nearAll + propNear)).toFixed(3) } : null; stats.lanterns = L.lam.length; stats.banners = L.ban.length;
   }
 
   // ---------- per frame ----------
@@ -405,7 +425,8 @@
     if (BD && img[BD.img]) {
       var bp = w.bdPat || (w.bdPat = e.createPattern(img[BD.img], "repeat")), M = BD.margin || 40, kb = (BD.tiles || 6) / img[BD.img].width;
       isoM(e, d, s, g, n, ISO, 1); if (bp.setTransform) bp.setTransform(new DOMMatrix([kb, 0, 0, kb, 0, 0]));
-      e.beginPath(); e.rect(-M, -M, d.w + M * 2, d.h + M * 2); e.rect(0, 0, d.w, d.h);
+      var WLb = (st.S.live || {}).walls || {}, R = WLb.outerFaces === false ? (WLb.outerRing || 1) : 0; // v84m2: canopy runs up under the outer bank (its off-map faces are not drawn)
+      e.beginPath(); e.rect(-M, -M, d.w + M * 2, d.h + M * 2); e.rect(0, 0, d.w - R, d.h - R);
       e.globalCompositeOperation = "source-over"; e.fillStyle = BD.col || "#050c0d"; e.globalAlpha = 1; e.fill("evenodd");
       e.globalAlpha = BD.alpha || .6; e.fillStyle = bp; e.fill("evenodd"); e.globalAlpha = 1;
     }
@@ -608,12 +629,21 @@
     var w = cur(d); if (!w) return null; var WL = (w.st.S.live || {}).walls; if (!WL) return null;
     var top = w.st.img[WL.top], side = w.st.img[WL.side]; if (!top || !side) return null;
     var SS = WL.sideShade || [.4, .58]; // south / east face darkening over the painted bank side (data)
-    return w.wallInfo || (w.wallInfo = { id: w.st.id, top: top, side: side, shS: "rgba(0,0,0," + SS[0] + ")", shE: "rgba(0,0,0," + SS[1] + ")" });
+    return w.wallInfo || (w.wallInfo = { id: w.st.id, top: top, side: side, shS: "rgba(0,0,0," + SS[0] + ")", shE: "rgba(0,0,0," + SS[1] + ")", skirt: WL.outerFaces === false });
+  }
+
+  // v84m2 test/readout only (reads pixels back, never called per frame): mean luminance of road vs plain floor tile centres in the baked ground
+  function pathLum() {
+    var w = W, c = ISOref && ISOref.gc; if (!w || !w.L.path || !c) return null; var d = w.d, T = w.T, x = c.getContext("2d"), L = w.L;
+    var lr = 0, nr = 0, lg = 0, ng = 0; for (var jl = 1; jl < d.h - 1; jl++) for (var il = 1; il < d.w - 1; il++) { var kl = jl * d.w + il; if (d.tiles[kl] !== T_.FLOOR) continue; var rd = L.path.isR(il, jl); if (!rd && L.path.roadAdj(il, jl, 1)) continue;
+      var px_ = x.getImageData(il * T + (T >> 2), jl * T + (T >> 2), T >> 1, T >> 1).data, lu = 0; for (var q = 0; q < px_.length; q += 4) lu += .2126 * px_[q] + .7152 * px_[q + 1] + .0722 * px_[q + 2]; lu /= px_.length / 4;
+      if (rd) { lr += lu; nr++; } else { lg += lu; ng++; } }
+    return { road: +(lr / Math.max(1, nr)).toFixed(1), ground: +(lg / Math.max(1, ng)).toFixed(1), nRoad: nr, nGround: ng };
   }
 
   root.ABZoneGfx = { pre: pre, bake: bake, ground: ground, list: list, post: post, light: light, sprite: sprite, wall: wall, liquid: liquid, prop: prop, prop3: prop3,
     active: function () { return !!(W && root.ASHBOUND && W.d === root.ASHBOUND.state.world); },
     stats: function () { return Object.assign({ set: W && W.st.id, low: lowFx(), ready: Object.keys(sets).filter(function (k) { return sets[k].ready; }) }, stats); },
     cfg: function () { return CFG; }, lowDpr: function () { return lowFx(); }, todButton: todButton, todCycle: todCycle, setWeather: setWeather, registerWeather: registerWeather,
-    tod: function () { return { mode: todMode(), hour: +TOD.hour.toFixed(2), preset: todPreset(), weights: TOD.wts, weather: WX.state }; }, rebuild: function () { if (ISOref) ISOref.gw = null; } };
+    tod: function () { return { mode: todMode(), hour: +TOD.hour.toFixed(2), preset: todPreset(), weights: TOD.wts, weather: WX.state }; }, rebuild: function () { if (ISOref) ISOref.gw = null; }, pathLum: pathLum };
 })(window);

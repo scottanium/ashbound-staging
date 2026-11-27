@@ -48,7 +48,31 @@
     return { left: r.left || 0, top: r.top || 0 };
   }
 
+  // v84m2: slim top-left HUD (hero strip + quest tracker); every value comes from data/questui.json "hud"
+  var HUD_ID = "ab-hudstyle-css";
+  function hudCss() {
+    if (typeof document === "undefined" || document.getElementById(HUD_ID)) return;
+    var H = cfg().hud; if (!H || !H.strip || !document.head) return;
+    var S = H.strip, Q = H.quest || {}, px = function (v) { return (+v || 0) + "px"; }, B = "html body #hud ";
+    var stripH = S.padY * 2 + Math.ceil(S.nameSize * 1.2) + Math.ceil(S.zoneSize * 1.25) + (S.xpGap || 0) + S.xpHeight + 2;
+    var el = document.createElement("style"); el.id = HUD_ID;
+    el.textContent = [
+      B + "#topbar{left:calc(" + px(S.left) + " + var(--safe-l));top:calc(" + px(S.top) + " + var(--safe-t));transform:none;width:" + px(S.width) + ";padding:" + px(S.padY) + " " + px(S.padX) + ";border-radius:" + px(S.radius) + ";background:" + S.bg + ";border:" + S.border + ";border-image:none;box-shadow:none;display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:" + px(S.goldGap) + ";row-gap:0;font-size:" + px(S.nameSize) + ";text-shadow:" + S.shadow + ";}",
+      B + "#topbar .who{font-size:" + px(S.nameSize) + ";letter-spacing:.02em;line-height:1.2;font-variant:normal;text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}",
+      B + "#topbar #hud-level," + B + "#topbar #hud-name{font-variant:normal;text-transform:none;}",
+      B + "#hud-gold{font-family:" + (S.goldFont || "inherit") + ";font-size:" + px(S.goldSize) + ";text-align:left;justify-self:start;font-variant:normal;text-transform:none;white-space:nowrap;}",
+      B + "#hud-zone{font-family:" + (S.zoneFont || "inherit") + ";grid-column:1/-1;font-size:" + px(S.zoneSize) + ";line-height:1.25;color:" + S.zoneColor + ";font-variant:normal;text-transform:none;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}",
+      B + "#hud-zone .hz-n{font-size:" + px(S.countSize) + ";color:" + S.countColor + ";}",
+      B + "#topbar .bar.xp{grid-column:1/-1;height:" + px(S.xpHeight) + ";margin-top:" + px(S.xpGap) + ";border:0;box-shadow:none;border-radius:" + px(S.xpHeight) + ";background:" + S.xpBg + ";}",
+      B + "#quest-track{left:calc(" + px(S.left) + " + var(--safe-l));top:calc(" + px(S.top + stripH + (Q.gap || 0)) + " + var(--safe-t));transform:none;width:" + px(Q.width || S.width) + ";padding:" + px(Q.padY) + " " + px(Q.padX) + ";min-height:" + px(Q.minHeight) + ";border-radius:" + px(Q.radius) + ";background:" + Q.bg + ";border:" + Q.border + ";border-image:none;box-shadow:none;overflow:visible;}",
+      B + "#quest-track::before{content:'';position:absolute;inset:-" + px(Q.hit) + ";}",
+      B + "#quest-track #quest-kicker{font-size:" + px(Q.kickerSize) + ";line-height:1.2;margin:0;letter-spacing:.12em;}",
+      B + "#quest-track #hud-goal{font-size:" + px(Q.goalSize) + ";line-height:" + (Q.lineHeight || 1.2) + ";-webkit-line-clamp:" + (Q.lines || 2) + ";max-height:" + (Q.goalSize * (Q.lineHeight || 1.2) * (Q.lines || 2) + 1).toFixed(1) + "px;}"
+    ].map(function (r) { return r.replace(/;(?=[^{}]*})/g, " !important;").replace(/([^;{])}$/, "$1 !important}"); }).join("\n"); // beats the reskin plate (also !important) by specificity
+    document.head.appendChild(el);
+  }
   function ensureCss() {
+    hudCss();
     if (document.getElementById(CSS_ID)) return;
     var s = document.createElement("style");
     s.id = CSS_ID;
@@ -203,6 +227,7 @@
   }
 
   function line(quest) {
+    if (typeof document !== "undefined") hudCss();
     var L = (cfg().lines) || {};
     if (!quest) return L.keep || "Keep going";
     var need = quest.need || {};
@@ -542,7 +567,31 @@
   var lastDebug = { mode: "init" };
   function debug() { return lastDebug; }
 
+  // v84m2: the tracker follows where the hero actually is. If the hero stands in a later act than the first open main
+  // step (a staging test jump, or TEST tools > Go to zone), show the first open step of that act instead, skipping
+  // "reach the act town" when already out in that act's wild zones. In order play this never changes the step.
+  function questAct(list, k) {
+    for (var i = k; i >= 0; i--) {
+      var nd = list[i].need || {}, z = zoneById(nd.waypoint || nd.enter);
+      if (z && z.act) return z.act;
+    }
+    return 1;
+  }
+  function pickHere(list, n, world) {
+    if (!n || !world || !list || !list.length) return n;
+    var here = zoneById(world.id), A = (here && here.act) || world.act; if (!A) return n;
+    var k = list.indexOf(n); if (k < 0 || questAct(list, k) >= A) return n;
+    for (var i = k + 1; i < list.length; i++) {
+      var q = list[i]; if (q.done || questAct(list, i) !== A) continue;
+      var tz = zoneById((q.need || {}).waypoint || (q.need || {}).enter);
+      if (tz && tz.kind === "town" && here && here.kind !== "town") continue;
+      return q;
+    }
+    return n;
+  }
   root.ABQuestUi = {
+    pickHere: pickHere,
+    hudCss: hudCss,
     cfg: cfg,
     layerCfg: layerCfg,
     line: line,

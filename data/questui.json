@@ -60,5 +60,46 @@
     "fillOnTarget": "#ffe7b0",
     "strokeColor": "#3a1408",
     "glow": "rgba(255,176,80,.95)"
+  },
+  "hud": {
+    "_doc": "v84m2 top-left HUD look (js/ab-questui.js turns this into CSS). strip = hero panel: one slim translucent strip, line 1 level + name + gold, line 2 zone name with a small muted count, thin XP line. quest = the quest tracker under it: smaller text and padding, light border, at most `lines` lines; `hit` px of extra invisible tap area keep it easy to tap. left/top are added to the safe-area insets (Dynamic Island).",
+    "strip": {
+      "left": 8,
+      "top": 4,
+      "width": 210,
+      "padX": 8,
+      "padY": 3,
+      "radius": 7,
+      "bg": "rgba(10,7,5,0.40)",
+      "border": "1px solid rgba(255,220,180,0.10)",
+      "nameSize": 13,
+      "goldSize": 12,
+      "goldGap": 8,
+      "zoneSize": 10.5,
+      "zoneColor": "rgba(236,222,200,0.88)",
+      "countSize": 9.5,
+      "countColor": "rgba(205,185,155,0.62)",
+      "xpHeight": 2,
+      "xpGap": 3,
+      "xpBg": "rgba(255,220,180,0.12)",
+      "shadow": "0 1px 2px rgba(0,0,0,0.9)",
+      "goldFont": "var(--sans)",
+      "zoneFont": "var(--sans)"
+    },
+    "quest": {
+      "gap": 4,
+      "width": 210,
+      "padX": 7,
+      "padY": 3,
+      "radius": 7,
+      "bg": "rgba(10,7,5,0.32)",
+      "border": "1px solid rgba(255,200,130,0.12)",
+      "kickerSize": 7.5,
+      "goalSize": 9.5,
+      "lineHeight": 1.22,
+      "lines": 2,
+      "minHeight": 0,
+      "hit": 8
+    }
   }
 }

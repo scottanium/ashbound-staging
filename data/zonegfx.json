@@ -292,7 +292,15 @@
      "wall": 0.5,
      "tree": 0.25
     },
-    "texTiles": 3
+    "texTiles": 3,
+    "tone": {
+     "_doc": "v84m2 per-material tone at bake time: contrast = overlay of the texture on itself (0..1), lift = screen colour at liftAlpha. Makes the path a bit lighter and higher-contrast than the ground so the route reads at a glance.",
+     "path": {
+      "contrast": 0.35,
+      "lift": "#e8d4a6",
+      "liftAlpha": 0.14
+     }
+    }
    },
    "live": {
     "void": "#0a1416",
@@ -370,6 +378,16 @@
       "inset": 0.12,
       "top": 0.85,
       "topTrees": 0.12
+     },
+     "path": {
+      "_doc": "v84m2 path readability: plants, reeds and wall-fringe thickets never stand on a road tile or within margin (tiles) of one; on tiles within nearDist of a road only nearMul of the usual plants are kept (0.62 = about 38% fewer); props:true applies the same to the game's own grid plants (small ones, plus the tall kinds in propKinds, e.g. reed clumps); trees and rocks on their solid tiles are kept.",
+      "margin": 0.35,
+      "nearDist": 1,
+      "nearMul": 0.62,
+      "props": true,
+      "propKinds": [
+       "reed"
+      ]
      }
     },
     "treeSway": {
@@ -496,7 +514,10 @@
       0.26
      ],
      "ground": "bankside",
-     "groundShade": 0.3
+     "groundShade": 0.3,
+     "outerFaces": false,
+     "outerRing": 1,
+     "_outerDoc": "outerFaces false: the outer ring's wall faces that point off the map (south face of the last row, east face of the last column) are not drawn and the backdrop canopy is painted over the outer ring's ground (outerRing tiles), so no dark band runs past the map edge."
     },
     "occlude": {
      "alpha": 0.42,
