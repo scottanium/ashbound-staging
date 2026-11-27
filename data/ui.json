@@ -593,7 +593,7 @@
     "gap": 12
   },
   "skillTreePanel": {
-    "about": "v84g skill-tree panel. Sizes and copy live in data/skilltree-ui.json; js/ab-skilltree.js lays out #tt-band, .tt-node and connecting lines.",
+    "about": "v84h top-down skill-tree panel as compact icon tiles. Layout in data/skilltree-ui.json (layout: forest, pack: zigzag2, tile: 56); js/ab-skilltree.js draws three tree columns, downward connectors, and the detail pane.",
     "enabled": true
   },
   "leui": {

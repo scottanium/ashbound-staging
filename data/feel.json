@@ -32,7 +32,10 @@
     "impactRing": 0.16,
     "impactRingCrit": 0.22,
     "impactRadius": 0.55,
-    "impactRadiusCrit": 0.85
+    "impactRadiusCrit": 0.85,
+    "knock": 0,
+    "knockCrit": 0,
+    "knockBoss": 0
   },
   "movement": {
     "runMul": 0.85,

@@ -35,5 +35,8 @@
   "shoveFrameCap": 0.03,
   "shoveSecCap": 0.12,
   "hitShove": 0.06,
-  "activeCap": 40
+  "activeCap": 40,
+  "playerBlockHeavies": true,
+  "playerResolvePad": 0.04,
+  "monsterPlayerPad": 0.02
 }

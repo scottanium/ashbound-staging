@@ -1,0 +1,117 @@
+{
+  "about": "Zone travel (zones branch, D2 style). Doors: a field zone's entry door leads back to the previous zone, its far arch only to the next zone; a town gate leads to the act's first zone; a boss arena's forward arch is sealed until the boss falls, then leads to the next act's town (the last act leads home). Waypoints: one in every town plus the zones listed per act; walk within discoverRadius (tiles) or tap one to add it; the Waypoint panel lists only found ones by act. townPortal: castTime seconds; cooldown seconds (0 = none); scrolls null = free (a number = uses carried, refilled in town); interruptOnHit / cancelOnMove false = a hit or a step doesn't stop the cast. waypoints.townSpot / townPortal.townSpot = [x, y] tile spot in each town (open square north of the houses, on the way to the gate). All player-facing words are in 'text' (Koto pass pending).",
+  "entryOffset": [
+    -1.4,
+    1.2
+  ],
+  "arriveBackStep": 2.1,
+  "waypoints": {
+    "discoverRadius": 2.2,
+    "towns": [
+      "hearthveil",
+      "brinehollow",
+      "vesper_orchard",
+      "ashgate"
+    ],
+    "zones": {
+      "1": [
+        "salt_causeway",
+        "sunken_kiln"
+      ],
+      "2": [
+        "mirror_flats",
+        "bell_caverns"
+      ],
+      "3": [
+        "sap_press",
+        "root_nave"
+      ],
+      "4": [
+        "ember_tombs",
+        "stair_of_names"
+      ]
+    },
+    "alongRoad": 6.5,
+    "townSpot": {
+      "hearthveil": [
+        14,
+        6.2
+      ],
+      "brinehollow": [
+        11,
+        5.6
+      ],
+      "vesper_orchard": [
+        11,
+        5.6
+      ],
+      "ashgate": [
+        11,
+        5.6
+      ]
+    }
+  },
+  "townPortal": {
+    "castTime": 0.9,
+    "cooldown": 0,
+    "scrolls": null,
+    "interruptOnHit": false,
+    "cancelOnMove": false,
+    "fieldOffset": [
+      1.2,
+      -0.6
+    ],
+    "townOffset": [
+      1.6,
+      0.4
+    ],
+    "townSpot": {
+      "hearthveil": [
+        18.2,
+        5.6
+      ],
+      "brinehollow": [
+        14.8,
+        5.0
+      ],
+      "vesper_orchard": [
+        14.8,
+        5.0
+      ],
+      "ashgate": [
+        14.8,
+        5.0
+      ]
+    }
+  },
+  "text": {
+    "goTo": "Go to {zone}",
+    "backTo": "Back to {zone}",
+    "sealed": "Sealed until {boss} is defeated",
+    "sealedToast": "The way is sealed. Defeat {boss} first.",
+    "roadTo": "Road to {zone}",
+    "riftOut": "Back to {zone}",
+    "wpUse": "Use the waypoint",
+    "wpFound": "Waypoint found: {zone}.",
+    "wpTitle": "Waypoints",
+    "wpIntro": "Tap a waypoint to travel there. Find more by walking up to them.",
+    "wpHere": "Here",
+    "wpGo": "Travel",
+    "wpNone": "No waypoints found in this act yet.",
+    "wpShut": "You have not found that waypoint yet.",
+    "wpAlready": "You are already here.",
+    "act": "Act {n}",
+    "difficulty": "Difficulty",
+    "tpCast": "Opening a Town Portal",
+    "tpTown": "You are already in town.",
+    "tpCooldown": "Town Portal is not ready yet.",
+    "tpNoScroll": "You have no Town Portal scrolls.",
+    "tpOpened": "A portal to {town} is open.",
+    "tpEnterField": "Portal to {town}",
+    "tpEnterTown": "Return to {zone}",
+    "tpGone": "The portal has closed.",
+    "tpButton": "Town Portal",
+    "tpRift": "Town Portal does not work inside a rift.",
+    "zoneOpen": "New area: {zone}."
+  }
+}
