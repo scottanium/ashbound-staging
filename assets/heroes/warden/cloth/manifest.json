@@ -169,6 +169,118 @@
    ],
    "mask": "walk_mask.webp",
    "mask_bytes": 23380
+  },
+  "cast": {
+   "file": "cast.webp",
+   "bytes": 50978,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    238,
+    187
+   ],
+   "foot": [
+    119.0,
+    160.84
+   ],
+   "src_bbox": [
+    9,
+    96,
+    247,
+    283
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "cast_mask.webp",
+   "mask_bytes": 8778
+  },
+  "dash": {
+   "file": "dash.webp",
+   "bytes": 53004,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    256,
+    246
+   ],
+   "foot": [
+    128.0,
+    203.84
+   ],
+   "src_bbox": [
+    0,
+    53,
+    256,
+    299
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "dash_mask.webp",
+   "mask_bytes": 10322
+  },
+  "slam": {
+   "file": "slam.webp",
+   "bytes": 49536,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    256,
+    239
+   ],
+   "foot": [
+    128.0,
+    196.84
+   ],
+   "src_bbox": [
+    0,
+    60,
+    256,
+    299
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "slam_mask.webp",
+   "mask_bytes": 10146
+  },
+  "throw": {
+   "file": "throw.webp",
+   "bytes": 51984,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    256,
+    269
+   ],
+   "foot": [
+    128.0,
+    179.84
+   ],
+   "src_bbox": [
+    0,
+    77,
+    256,
+    346
+   ],
+   "render": [
+    256,
+    384
+   ],
+   "mask": "throw_mask.webp",
+   "mask_bytes": 10162
   }
  },
  "cell": [
@@ -180,5 +292,5 @@
   137.84
  ],
  "charHeight": 148,
- "bytes": 477114
+ "bytes": 682616
 }
