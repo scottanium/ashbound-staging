@@ -2,6 +2,7 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
+// v84l: the cache name follows config.js VERSION (ashbound-staging-v84l on staging), so this build installs a fresh cache and drops v84k.
 
 // r14: cache every painted skill icon listed in data/skill-art.json. Best effort: a missing icon never fails install.
 async function cacheSkillArt(cache) {
@@ -26,6 +27,7 @@ self.addEventListener('install', (event) => {
     './js/ab-data.js',
     './js/ab-safearea.js',
     './js/ab-ashen.js',
+    './js/ab-lootpick.js',
     './js/ab-craft.js',
     './js/ab-bus.js',
     './js/ab-physics.js',
@@ -81,13 +83,18 @@ self.addEventListener('install', (event) => {
     './js/ab-itemtip.js',
     './js/ab-itembox.js',
     './js/ab-reskin.js',
+    './js/ab-spawns.js',
+    './data/spawns.json',
     './data/reskin.json',
     './data/audio.json',
     './js/ab-ui.js',
     './js/ab-charsheet.js',
     './js/ab-flasks.js',
+    './js/ab-invpots.js',
     './js/ab-hudarc.js',
     './js/ab-questui.js',
+    './js/ab-skillbar.js',
+    './data/skillbar.json',
     './data/progress.json',
     './js/ab-progress.js',
     './js/ab-skilltree.js',
@@ -110,6 +117,8 @@ self.addEventListener('install', (event) => {
     './js/ab-panelscroll.js',
     './js/ab-testtools.js',
     './js/ab-move.js',
+    './js/ab-collide.js',
+    './data/collision.json',
     './data/unique-effects.json',
     './data/milestone-curve.json',
     './data/milestones.json',
@@ -117,6 +126,8 @@ self.addEventListener('install', (event) => {
     './data/sets.json',
     './data/sustain.json',
     './data/uniques-ashen.json',
+    './data/lootpick.json',
+    './data/uniques-r15.json',
     './js/ab-sustain.js',
     './js/ab-effects.js',
     './js/ab-consume.js',
@@ -125,6 +136,8 @@ self.addEventListener('install', (event) => {
     './icon-512.png',
     './data/skill-art.json',
     './js/ab-skillart.js',
+    './data/skill-fx.json',
+    './js/ab-skillfx.js',
   ]).then(() => cacheSkillArt(cache))));
 });
 
