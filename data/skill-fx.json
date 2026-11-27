@@ -1,0 +1,3640 @@
+{
+ "version": 1,
+ "about": "r15 skillfx: per-skill cast look. pose = hero action (poses table; baked anims live in assets/heroes/*/<look>/<anim>.webp, missing ones fall back to the strike swing). pal = colour family (palettes). shapes = what is drawn on cast (kinds: slash cleave thrust spin nova zapring ripple shout sigil scorch cloud glyph plant fan cone streak link bolt meteor pillar dome swirl veil burst flash). at = hero|aim|ahead|start|path|friends|traps|arc|ring. impact = sparks on hits that came from this skill. proj = projectile skin. ready = when to light the skill button (and a matching ring on the hero). auras = look on the hero while that buff runs; the buff row by the life orb shows icon and seconds. telegraph = enemy wind-up cues. js/ab-skillfx.js draws it; nothing here changes damage.",
+ "caps": {
+  "particles": 140,
+  "particlesLow": 60,
+  "shapes": 48,
+  "shapesLow": 20,
+  "impactsPerFrame": 6,
+  "impactsPerFrameLow": 2
+ },
+ "palettes": {
+  "fire": {
+   "core": "#fff1c0",
+   "main": "#ff7a2a",
+   "edge": "#b8320f",
+   "glow": "#ff8a30"
+  },
+  "kiln": {
+   "core": "#fff6d0",
+   "main": "#ffb02e",
+   "edge": "#e04010",
+   "glow": "#ffa040"
+  },
+  "slag": {
+   "core": "#ffe0a0",
+   "main": "#ff5a1a",
+   "edge": "#5a1a0a",
+   "glow": "#ff5020"
+  },
+  "ash": {
+   "core": "#f4e6d4",
+   "main": "#c9b29a",
+   "edge": "#5a4a40",
+   "glow": "#d8a070"
+  },
+  "vigil": {
+   "core": "#fff0c0",
+   "main": "#e0b15a",
+   "edge": "#7a5020",
+   "glow": "#ffd070"
+  },
+  "bulwark": {
+   "core": "#ffe8e0",
+   "main": "#d0505a",
+   "edge": "#4a1418",
+   "glow": "#ff6070"
+  },
+  "tide": {
+   "core": "#f0fcff",
+   "main": "#9fd4ea",
+   "edge": "#2a6a8a",
+   "glow": "#80c8ff"
+  },
+  "glass": {
+   "core": "#ffffff",
+   "main": "#b8f0ff",
+   "edge": "#4aa8c8",
+   "glow": "#a0f0ff"
+  },
+  "wisp": {
+   "core": "#ffffff",
+   "main": "#e8f4f0",
+   "edge": "#8ab0b8",
+   "glow": "#d8fff8"
+  },
+  "brine": {
+   "core": "#e8fbff",
+   "main": "#5fc0d8",
+   "edge": "#1d5a78",
+   "glow": "#60d0f0"
+  },
+  "frost": {
+   "core": "#e0f0ff",
+   "main": "#7fb8d6",
+   "edge": "#18283a",
+   "glow": "#6aa0ff"
+  },
+  "lantern": {
+   "core": "#fffbe0",
+   "main": "#ffe08a",
+   "edge": "#8a6a20",
+   "glow": "#ffe090"
+  },
+  "bell": {
+   "core": "#fff8d8",
+   "main": "#f0c14a",
+   "edge": "#8a6418",
+   "glow": "#ffd060"
+  },
+  "storm": {
+   "core": "#ffffff",
+   "main": "#e8f0ff",
+   "edge": "#6a7aff",
+   "glow": "#b0c0ff"
+  },
+  "hymn": {
+   "core": "#f6f0ff",
+   "main": "#c8b8ff",
+   "edge": "#5a4a9a",
+   "glow": "#b8a0ff"
+  },
+  "ironbell": {
+   "core": "#fffbe8",
+   "main": "#c9b07a",
+   "edge": "#5a4a2a",
+   "glow": "#e8d090"
+  },
+  "silence": {
+   "core": "#ffffff",
+   "main": "#a0a8c8",
+   "edge": "#2a2e48",
+   "glow": "#8890c0"
+  },
+  "hush": {
+   "core": "#ffffff",
+   "main": "#d0a8ff",
+   "edge": "#4a2a8a",
+   "glow": "#c090ff"
+  },
+  "still": {
+   "core": "#f0ffff",
+   "main": "#8ad8d0",
+   "edge": "#2a6a68",
+   "glow": "#80e0d8"
+  },
+  "salt": {
+   "core": "#ffffff",
+   "main": "#dff6fb",
+   "edge": "#7fc8de",
+   "glow": "#bff0ff"
+  },
+  "pace": {
+   "core": "#fffef0",
+   "main": "#e8e0c0",
+   "edge": "#8a7a50",
+   "glow": "#fff0c0"
+  },
+  "blood": {
+   "core": "#ffd0d0",
+   "main": "#e0303a",
+   "edge": "#6a0a14",
+   "glow": "#ff3040"
+  },
+  "briar": {
+   "core": "#f0ffd0",
+   "main": "#9dce6a",
+   "edge": "#3a5a1a",
+   "glow": "#b0e070"
+  },
+  "wire": {
+   "core": "#ffffe0",
+   "main": "#d8d070",
+   "edge": "#5a5a20",
+   "glow": "#f0f080"
+  },
+  "seed": {
+   "core": "#fff8e0",
+   "main": "#c8b060",
+   "edge": "#5a4a20",
+   "glow": "#e0c070"
+  },
+  "venom": {
+   "core": "#f0ffb0",
+   "main": "#b6e03a",
+   "edge": "#3a6a10",
+   "glow": "#c0ff40"
+  },
+  "spit": {
+   "core": "#f8ffd0",
+   "main": "#88b82a",
+   "edge": "#2a4a08",
+   "glow": "#a0d030"
+  },
+  "miasma": {
+   "core": "#e0ffc0",
+   "main": "#7aa85a",
+   "edge": "#2a3a1a",
+   "glow": "#90c060"
+  },
+  "herb": {
+   "core": "#fffff0",
+   "main": "#d8e8a0",
+   "edge": "#6a7a30",
+   "glow": "#e0ff90"
+  },
+  "shade": {
+   "core": "#e0d8ff",
+   "main": "#6f7fa8",
+   "edge": "#1a1830",
+   "glow": "#8070c0"
+  },
+  "steel": {
+   "core": "#ffffff",
+   "main": "#c8ccd4",
+   "edge": "#5a6070",
+   "glow": "#c0d0ff"
+  }
+ },
+ "poses": {
+  "strike": {
+   "anim": "strike",
+   "dur": 0.22,
+   "about": "the class's normal weapon swing"
+  },
+  "sweep": {
+   "anim": "strike",
+   "dur": 0.32,
+   "spin": 0.3,
+   "about": "swing carried a quarter turn"
+  },
+  "flurry3": {
+   "anim": "strike",
+   "dur": 0.48,
+   "loops": 3,
+   "about": "three swings back to back"
+  },
+  "flurry5": {
+   "anim": "strike",
+   "dur": 0.5,
+   "loops": 5,
+   "about": "five quick swings"
+  },
+  "spin": {
+   "anim": "strike",
+   "dur": 0.42,
+   "spin": 1,
+   "about": "one full turn with the blade out"
+  },
+  "spin2": {
+   "anim": "strike",
+   "dur": 0.55,
+   "spin": 2,
+   "about": "two full turns"
+  },
+  "slam": {
+   "anim": "slam",
+   "fb": "strike",
+   "dur": 0.45,
+   "hop": 0.35,
+   "about": "weapon high overhead, then down into the ground (baked Jump_Land)"
+  },
+  "raise": {
+   "anim": "slam",
+   "fb": "strike",
+   "dur": 0.62,
+   "hop": 0.55,
+   "about": "big rise and slam for ultimates"
+  },
+  "throw": {
+   "anim": "throw",
+   "fb": "strike",
+   "dur": 0.36,
+   "about": "overhand throw (baked OverhandThrow)"
+  },
+  "cast": {
+   "anim": "cast",
+   "fb": "strike",
+   "dur": 0.32,
+   "about": "one hand thrust forward (baked Spell_Simple_Shoot)"
+  },
+  "channel": {
+   "anim": "cast",
+   "fb": "strike",
+   "dur": 0.62,
+   "about": "held cast while a ward or circle forms"
+  },
+  "dash": {
+   "anim": "dash",
+   "fb": "strike",
+   "dur": 0.32,
+   "about": "low forward lunge (baked Sword_Dash)"
+  },
+  "hook": {
+   "anim": "hook",
+   "fb": "strike",
+   "dur": 0.3,
+   "about": "hooking lunge (baked Melee_Hook)"
+  },
+  "plant": {
+   "anim": "plant",
+   "fb": "strike",
+   "dur": 0.5,
+   "about": "kneel and set something in the ground (baked Farm_PlantSeed)"
+  },
+  "roll": {
+   "anim": "roll",
+   "fb": "strike",
+   "dur": 0.42,
+   "about": "dive roll (baked Roll)"
+  }
+ },
+ "skills": {
+  "ash_strike": {
+   "cls": "cinder_warden",
+   "pose": "strike",
+   "pal": "fire",
+   "shapes": [
+    {
+     "k": "slash",
+     "r": 1.4,
+     "arc": 1.2,
+     "w": 0.22,
+     "dur": 0.24
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "spark",
+     "speed": [
+      2,
+      5
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    }
+   },
+   "look": "quick orange crescent at waist height"
+  },
+  "kiln_hook": {
+   "cls": "cinder_warden",
+   "pose": "hook",
+   "pal": "kiln",
+   "shapes": [
+    {
+     "k": "thrust",
+     "r": 1.9,
+     "w": 0.28,
+     "dur": 0.3,
+     "rings": 2
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 7,
+     "kind": "spark",
+     "speed": [
+      3,
+      6
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    },
+    "flash": 0.12
+   },
+   "look": "long yellow-orange lance with two pulse rings"
+  },
+  "sear_step": {
+   "cls": "cinder_warden",
+   "pose": "dash",
+   "pal": "fire",
+   "shapes": [
+    {
+     "k": "streak",
+     "at": "path",
+     "w": 0.42,
+     "dur": 0.4,
+     "ghosts": 3,
+     "emit": {
+      "n": 10,
+      "kind": "ember",
+      "speed": [
+       0.3,
+       1
+      ],
+      "up": [
+       1,
+       3
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     },
+     "emitAt": "end"
+    },
+    {
+     "k": "nova",
+     "r": 1.25,
+     "dur": 0.28,
+     "lw": 0.08
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "spark",
+     "speed": [
+      2,
+      5
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    }
+   },
+   "look": "burning streak with afterimages, ring where you land"
+  },
+  "pyre_arc": {
+   "cls": "cinder_warden",
+   "pose": "sweep",
+   "pal": "fire",
+   "shapes": [
+    {
+     "k": "cleave",
+     "r": 1.75,
+     "arc": 2.4,
+     "w": 0.45,
+     "dur": 0.34,
+     "emit": {
+      "n": 14,
+      "kind": "ember",
+      "speed": [
+       0.2,
+       0.6
+      ],
+      "up": [
+       1,
+       3
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0,
+      "ring": [
+       1.1,
+       1.7
+      ],
+      "spread": 2.4
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "spark",
+     "speed": [
+      2,
+      5
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    },
+    "ring": 0.45
+   },
+   "ready": {
+    "foes": 3,
+    "r": 1.9
+   },
+   "look": "wide two-band flame fan with embers along the arc"
+  },
+  "furnace_flurry": {
+   "cls": "cinder_warden",
+   "pose": "flurry3",
+   "pal": "kiln",
+   "shapes": [
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.6,
+     "w": 0.22,
+     "dur": 0.18,
+     "sweep": 1
+    },
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.6,
+     "w": 0.22,
+     "dur": 0.18,
+     "sweep": -1,
+     "delay": 0.13
+    },
+    {
+     "k": "slash",
+     "r": 1.55,
+     "arc": 1.7,
+     "w": 0.26,
+     "dur": 0.2,
+     "sweep": 1,
+     "delay": 0.26,
+     "double": true
+    },
+    {
+     "k": "nova",
+     "r": 1.6,
+     "petals": 6,
+     "dur": 0.32,
+     "delay": 0.4,
+     "shake": 1.5,
+     "emit": {
+      "n": 12,
+      "kind": "ember",
+      "speed": [
+       0.5,
+       2
+      ],
+      "up": [
+       1,
+       3
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "spark",
+     "speed": [
+      2,
+      5
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    }
+   },
+   "window": 1.0,
+   "look": "three alternating cuts then a petal burst"
+  },
+  "avatar_of_the_kiln": {
+   "cls": "cinder_warden",
+   "pose": "raise",
+   "pal": "kiln",
+   "shapes": [
+    {
+     "k": "pillar",
+     "h": 3.2,
+     "w": 1.0,
+     "dur": 0.75
+    },
+    {
+     "k": "nova",
+     "r": 2.4,
+     "petals": 10,
+     "dur": 0.6,
+     "delay": 0.25,
+     "shake": 3.5,
+     "emit": {
+      "n": 20,
+      "kind": "ember",
+      "speed": [
+       1,
+       3
+      ],
+      "up": [
+       1,
+       3
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "ember",
+     "speed": [
+      0.5,
+      2
+     ],
+     "up": [
+      1,
+      2
+     ],
+     "life": [
+      0.4,
+      0.8
+     ],
+     "size": [
+      2,
+      4
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 0
+    }
+   },
+   "ready": {
+    "foes": 4,
+    "r": 4
+   },
+   "look": "fire column, then a ten-petal burst; flame aura while it lasts"
+  },
+  "cinder_spark": {
+   "cls": "cinder_warden",
+   "pose": "throw",
+   "pal": "fire",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 8,
+     "kind": "spark",
+     "speed": [
+      2,
+      6
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    },
+    "ring": 0.55
+   },
+   "proj": {
+    "head": "coal",
+    "r": 0.13,
+    "tw": 0.1,
+    "drip": {
+     "n": 1,
+     "kind": "ember",
+     "speed": [
+      0,
+      0.2
+     ],
+     "up": [
+      0.2,
+      0.6
+     ],
+     "life": [
+      0.2,
+      0.4
+     ],
+     "size": [
+      2,
+      4
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 0
+    }
+   },
+   "look": "spinning coal with an ember tail"
+  },
+  "ash_ward": {
+   "cls": "cinder_warden",
+   "pose": "channel",
+   "pal": "ash",
+   "shapes": [
+    {
+     "k": "dome",
+     "r": 0.85,
+     "dur": 0.5
+    },
+    {
+     "k": "swirl",
+     "r": 0.9,
+     "dur": 0.55,
+     "emit": {
+      "n": 10,
+      "kind": "flake",
+      "speed": [
+       1,
+       3
+      ],
+      "up": [
+       0.3,
+       1.2
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       3
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 1,
+      "ring": [
+       0.4,
+       0.8
+      ]
+     }
+    }
+   ],
+   "ready": {
+    "lifeBelow": 0.6,
+    "noBuff": true
+   },
+   "look": "grey ash bubble; aura shell shows what is left of the shield"
+  },
+  "cinder_bloom": {
+   "cls": "cinder_warden",
+   "pose": "slam",
+   "pal": "fire",
+   "shapes": [
+    {
+     "k": "nova",
+     "r": 2.6,
+     "petals": 8,
+     "dur": 0.42,
+     "delay": 0.18,
+     "shake": 2.2,
+     "emit": {
+      "n": 16,
+      "kind": "ember",
+      "speed": [
+       0.5,
+       2
+      ],
+      "up": [
+       1,
+       3
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0,
+      "ring": [
+       0.3,
+       1.2
+      ]
+     }
+    },
+    {
+     "k": "scorch",
+     "r": 2.4,
+     "dur": 1.4,
+     "delay": 0.18
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "spark",
+     "speed": [
+      2,
+      5
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    },
+    "ring": 0.5
+   },
+   "ready": {
+    "foes": 3,
+    "r": 2.4
+   },
+   "look": "slam, eight-petal fire bloom, scorched ground"
+  },
+  "slag_rain": {
+   "cls": "cinder_warden",
+   "pose": "throw",
+   "pal": "slag",
+   "shapes": [
+    {
+     "k": "meteor",
+     "at": "aim",
+     "r": 1.7,
+     "dur": 0.6
+    },
+    {
+     "k": "nova",
+     "at": "aim",
+     "r": 1.7,
+     "dur": 0.35,
+     "delay": 0.24,
+     "shake": 1.5,
+     "emit": {
+      "n": 12,
+      "kind": "ember",
+      "speed": [
+       1,
+       2.5
+      ],
+      "up": [
+       1,
+       3
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "spark",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.15,
+      0.35
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    }
+   },
+   "window": 0.9,
+   "look": "clinker falls from above and leaves a cracked lava pool"
+  },
+  "vigil": {
+   "cls": "cinder_warden",
+   "pose": "channel",
+   "pal": "vigil",
+   "shapes": [
+    {
+     "k": "sigil",
+     "r": 4.2,
+     "dur": 0.7,
+     "ticks": 16,
+     "star": 5,
+     "grow": 0.4
+    }
+   ],
+   "ready": {
+    "foes": 3,
+    "r": 4,
+    "noBuff": true
+   },
+   "look": "gold rune circle with a star; the circle stays on you while it lasts"
+  },
+  "life_spite_bulwark": {
+   "cls": "cinder_warden",
+   "pose": "channel",
+   "pal": "bulwark",
+   "shapes": [
+    {
+     "k": "swirl",
+     "r": 0.9,
+     "dur": 0.6,
+     "emit": {
+      "n": 8,
+      "kind": "drop",
+      "speed": [
+       1.5,
+       3.5
+      ],
+      "up": [
+       1,
+       2.5
+      ],
+      "life": [
+       0.3,
+       0.6
+      ],
+      "size": [
+       2.5,
+       4
+      ],
+      "colors": [
+       "main",
+       "edge"
+      ],
+      "gravity": 9
+     }
+    },
+    {
+     "k": "dome",
+     "r": 0.95,
+     "dur": 0.55,
+     "hex": true,
+     "delay": 0.15
+    }
+   ],
+   "ready": {
+    "foes": 2,
+    "r": 3,
+    "noBuff": true
+   },
+   "look": "blood spirals up and hardens into a hex shell"
+  },
+  "glassling": {
+   "cls": "reed_caller",
+   "pose": "cast",
+   "pal": "glass",
+   "shapes": [
+    {
+     "k": "pillar",
+     "at": "ahead",
+     "dist": 0.8,
+     "h": 2.0,
+     "w": 0.5,
+     "dur": 0.55
+    },
+    {
+     "k": "burst",
+     "at": "ahead",
+     "dist": 0.8,
+     "r": 0.8,
+     "n": 8,
+     "dur": 0.35,
+     "delay": 0.2,
+     "emit": {
+      "n": 8,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core",
+       "edge"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "look": "glass column and shard burst where the servant forms"
+  },
+  "salt_wisp": {
+   "cls": "reed_caller",
+   "pose": "channel",
+   "pal": "wisp",
+   "shapes": [
+    {
+     "k": "pillar",
+     "at": "ahead",
+     "dist": 0.8,
+     "h": 1.6,
+     "w": 0.35,
+     "dur": 0.5
+    },
+    {
+     "k": "swirl",
+     "at": "ahead",
+     "dist": 0.8,
+     "r": 0.6,
+     "dur": 0.6,
+     "emit": {
+      "n": 10,
+      "kind": "mote",
+      "speed": [
+       0.2,
+       0.8
+      ],
+      "up": [
+       0.8,
+       1.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       2,
+       3
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     }
+    }
+   ],
+   "look": "thin pale column with motes circling"
+  },
+  "chorus": {
+   "cls": "reed_caller",
+   "pose": "cast",
+   "pal": "tide",
+   "shapes": [
+    {
+     "k": "link",
+     "to": "friends",
+     "dur": 0.35
+    },
+    {
+     "k": "nova",
+     "at": "friends",
+     "r": 2.1,
+     "dur": 0.35,
+     "delay": 0.12,
+     "emit": {
+      "n": 5,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    }
+   },
+   "ready": {
+    "friends": 1,
+    "foes": 2,
+    "r": 6
+   },
+   "look": "water lines run to every servant and each one rings out"
+  },
+  "rally": {
+   "cls": "reed_caller",
+   "pose": "slam",
+   "pal": "glass",
+   "shapes": [
+    {
+     "k": "shout",
+     "r": 2.6,
+     "dur": 0.45
+    },
+    {
+     "k": "link",
+     "to": "friends",
+     "dur": 0.5,
+     "jag": true
+    }
+   ],
+   "ready": {
+    "friends": 1,
+    "foes": 1,
+    "r": 8
+   },
+   "look": "chevron shout and crackling lines to every servant"
+  },
+  "mere_colossus": {
+   "cls": "reed_caller",
+   "pose": "raise",
+   "pal": "glass",
+   "shapes": [
+    {
+     "k": "pillar",
+     "at": "ahead",
+     "dist": 1.2,
+     "h": 3.6,
+     "w": 1.3,
+     "dur": 0.8
+    },
+    {
+     "k": "ripple",
+     "at": "ahead",
+     "dist": 1.2,
+     "r": 2.6,
+     "rings": 3,
+     "dur": 0.7,
+     "delay": 0.2,
+     "shake": 3,
+     "emit": {
+      "n": 14,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core",
+       "edge"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "ready": {
+    "foes": 4,
+    "r": 6
+   },
+   "look": "huge glass column and three water rings"
+  },
+  "reed_bolt": {
+   "cls": "reed_caller",
+   "pose": "cast",
+   "pal": "tide",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    }
+   },
+   "proj": {
+    "head": "shard",
+    "r": 0.12,
+    "tw": 0.08,
+    "trail": "edge"
+   },
+   "look": "frozen reed shard with a blue trail"
+  },
+  "brine_ward": {
+   "cls": "reed_caller",
+   "pose": "channel",
+   "pal": "brine",
+   "shapes": [
+    {
+     "k": "dome",
+     "r": 0.85,
+     "dur": 0.5
+    },
+    {
+     "k": "ripple",
+     "r": 1.1,
+     "rings": 2,
+     "dur": 0.5
+    }
+   ],
+   "ready": {
+    "lifeBelow": 0.6,
+    "noBuff": true
+   },
+   "look": "sea-blue bubble with water rings"
+  },
+  "tide_ring": {
+   "cls": "reed_caller",
+   "pose": "slam",
+   "pal": "tide",
+   "shapes": [
+    {
+     "k": "ripple",
+     "r": 2.8,
+     "rings": 3,
+     "dur": 0.55,
+     "delay": 0.15,
+     "emit": {
+      "n": 12,
+      "kind": "drop",
+      "speed": [
+       1.5,
+       3.5
+      ],
+      "up": [
+       1,
+       2.5
+      ],
+      "life": [
+       0.3,
+       0.6
+      ],
+      "size": [
+       2.5,
+       4
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 9
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 9
+    }
+   },
+   "ready": {
+    "foes": 3,
+    "r": 2.6
+   },
+   "look": "three expanding water rings with spray"
+  },
+  "black_ice": {
+   "cls": "reed_caller",
+   "pose": "throw",
+   "pal": "frost",
+   "shapes": [
+    {
+     "k": "nova",
+     "at": "aim",
+     "r": 1.8,
+     "dur": 0.4,
+     "delay": 0.2,
+     "fill": "edge"
+    },
+    {
+     "k": "burst",
+     "at": "aim",
+     "r": 1.2,
+     "n": 9,
+     "dur": 0.35,
+     "delay": 0.2,
+     "emit": {
+      "n": 10,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "core",
+       "main"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ],
+     "gravity": 6
+    }
+   },
+   "window": 0.8,
+   "look": "dark ice sheet with white shards; the sheet stays as a cracked decal"
+  },
+  "lantern_pact": {
+   "cls": "reed_caller",
+   "pose": "channel",
+   "pal": "lantern",
+   "shapes": [
+    {
+     "k": "sigil",
+     "r": 4.4,
+     "dur": 0.7,
+     "ticks": 8,
+     "grow": 0.4,
+     "emit": {
+      "n": 10,
+      "kind": "mote",
+      "speed": [
+       0.2,
+       0.8
+      ],
+      "up": [
+       0.8,
+       1.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       2,
+       3
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0,
+      "ring": [
+       0.3,
+       0.8
+      ]
+     }
+    }
+   ],
+   "ready": {
+    "foes": 3,
+    "r": 4.4,
+    "noBuff": true
+   },
+   "look": "warm lantern circle with eight marks; stays on you"
+  },
+  "glass_offering": {
+   "cls": "reed_caller",
+   "pose": "cast",
+   "pal": "glass",
+   "shapes": [
+    {
+     "k": "link",
+     "to": "friends",
+     "dur": 0.3,
+     "jag": true
+    },
+    {
+     "k": "burst",
+     "at": "friends",
+     "r": 2.0,
+     "n": 12,
+     "dur": 0.4,
+     "delay": 0.15,
+     "emit": {
+      "n": 10,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core",
+       "edge"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    }
+   },
+   "ready": {
+    "friends": 1,
+    "foes": 2,
+    "r": 7
+   },
+   "look": "servants shatter in twelve-point glass bursts"
+  },
+  "bell_note": {
+   "cls": "bell_chanter",
+   "pose": "cast",
+   "pal": "bell",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 3,
+     "kind": "note",
+     "speed": [
+      0.3,
+      1
+     ],
+     "up": [
+      1.2,
+      2.2
+     ],
+     "life": [
+      0.6,
+      1
+     ],
+     "size": [
+      2.5,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 0
+    }
+   },
+   "proj": {
+    "head": "note",
+    "r": 0.13,
+    "tw": 0.08,
+    "wave": true
+   },
+   "look": "gold note that wobbles in flight"
+  },
+  "overtone": {
+   "cls": "bell_chanter",
+   "pose": "throw",
+   "pal": "storm",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "zap",
+     "speed": [
+      1,
+      3
+     ],
+     "life": [
+      0.12,
+      0.28
+     ],
+     "size": [
+      3,
+      5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ]
+    }
+   },
+   "proj": {
+    "head": "bolt",
+    "r": 0.12,
+    "tw": 0.06
+   },
+   "look": "white-blue lightning dart with a long thin trail"
+  },
+  "peal": {
+   "cls": "bell_chanter",
+   "pose": "slam",
+   "pal": "bell",
+   "shapes": [
+    {
+     "k": "zapring",
+     "r": 2.6,
+     "dur": 0.45,
+     "delay": 0.15,
+     "spokes": 6,
+     "emit": {
+      "n": 6,
+      "kind": "note",
+      "speed": [
+       0.3,
+       1
+      ],
+      "up": [
+       1.2,
+       2.2
+      ],
+      "life": [
+       0.6,
+       1
+      ],
+      "size": [
+       2.5,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0,
+      "ring": [
+       0.4,
+       1
+      ]
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "zap",
+     "speed": [
+      1,
+      3
+     ],
+     "life": [
+      0.12,
+      0.28
+     ],
+     "size": [
+      3,
+      5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ]
+    }
+   },
+   "ready": {
+    "foes": 3,
+    "r": 2.6
+   },
+   "look": "gold crackling ring with spokes and notes"
+  },
+  "counterpoint": {
+   "cls": "bell_chanter",
+   "pose": "throw",
+   "pal": "bell",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "zap",
+     "speed": [
+      1,
+      3
+     ],
+     "life": [
+      0.12,
+      0.28
+     ],
+     "size": [
+      3,
+      5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ]
+    },
+    "ring": 0.7,
+    "shake": 1.2
+   },
+   "proj": {
+    "head": "ring",
+    "r": 0.2,
+    "tw": 0.18
+   },
+   "look": "heavy pulsing gold disc"
+  },
+  "thunder_toll": {
+   "cls": "bell_chanter",
+   "pose": "raise",
+   "pal": "storm",
+   "shapes": [
+    {
+     "k": "bolt",
+     "at": "aim",
+     "r": 1.5,
+     "dur": 0.3,
+     "delay": 0.05,
+     "shake": 2
+    },
+    {
+     "k": "bolt",
+     "at": "aim",
+     "r": 1.5,
+     "dur": 0.3,
+     "delay": 0.3,
+     "shake": 2
+    },
+    {
+     "k": "bolt",
+     "at": "aim",
+     "r": 1.5,
+     "dur": 0.3,
+     "delay": 0.55,
+     "shake": 2.5
+    },
+    {
+     "k": "zapring",
+     "at": "aim",
+     "r": 1.5,
+     "dur": 0.8,
+     "delay": 0.05
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "zap",
+     "speed": [
+      1,
+      3
+     ],
+     "life": [
+      0.12,
+      0.28
+     ],
+     "size": [
+      3,
+      5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ]
+    }
+   },
+   "window": 1.1,
+   "look": "three sky bolts on one spot"
+  },
+  "carillon": {
+   "cls": "bell_chanter",
+   "pose": "channel",
+   "pal": "bell",
+   "shapes": [
+    {
+     "k": "sigil",
+     "r": 1.6,
+     "dur": 0.6,
+     "star": 7,
+     "ticks": 7,
+     "emit": {
+      "n": 8,
+      "kind": "note",
+      "speed": [
+       0.3,
+       1
+      ],
+      "up": [
+       1.2,
+       2.2
+      ],
+      "life": [
+       0.6,
+       1
+      ],
+      "size": [
+       2.5,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0,
+      "ring": [
+       0.3,
+       0.8
+      ]
+     }
+    }
+   ],
+   "ready": {
+    "foes": 3,
+    "r": 7,
+    "noBuff": true
+   },
+   "look": "seven-point bell star; notes orbit you while it lasts"
+  },
+  "slow_hymn": {
+   "cls": "bell_chanter",
+   "pose": "channel",
+   "pal": "hymn",
+   "shapes": [
+    {
+     "k": "sigil",
+     "r": 4.2,
+     "dur": 0.75,
+     "ticks": 12,
+     "grow": 0.45,
+     "emit": {
+      "n": 8,
+      "kind": "note",
+      "speed": [
+       0.3,
+       1
+      ],
+      "up": [
+       1.2,
+       2.2
+      ],
+      "life": [
+       0.6,
+       1
+      ],
+      "size": [
+       2.5,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0,
+      "ring": [
+       1,
+       3
+      ]
+     }
+    }
+   ],
+   "ready": {
+    "foes": 3,
+    "r": 4.2,
+    "noBuff": true
+   },
+   "look": "violet circle with drifting notes; stays on you"
+  },
+  "iron_hymn": {
+   "cls": "bell_chanter",
+   "pose": "channel",
+   "pal": "ironbell",
+   "shapes": [
+    {
+     "k": "dome",
+     "r": 0.9,
+     "dur": 0.55,
+     "hex": true
+    },
+    {
+     "k": "zapring",
+     "r": 1.0,
+     "dur": 0.4,
+     "n": 18
+    }
+   ],
+   "ready": {
+    "lifeBelow": 0.6,
+    "noBuff": true
+   },
+   "look": "bronze hex dome with a small crackle"
+  },
+  "quiet_room": {
+   "cls": "bell_chanter",
+   "pose": "slam",
+   "pal": "silence",
+   "shapes": [
+    {
+     "k": "sigil",
+     "r": 5.4,
+     "dur": 0.8,
+     "ticks": 24,
+     "grow": 0.5
+    },
+    {
+     "k": "dome",
+     "r": 1.4,
+     "dur": 0.6
+    }
+   ],
+   "ready": {
+    "foes": 4,
+    "r": 5.4,
+    "noBuff": true
+   },
+   "look": "wide grey-blue circle of 24 marks"
+  },
+  "hush": {
+   "cls": "bell_chanter",
+   "pose": "cast",
+   "pal": "hush",
+   "shapes": [
+    {
+     "k": "zapring",
+     "r": 3.0,
+     "dur": 0.5,
+     "n": 36,
+     "emit": {
+      "n": 8,
+      "kind": "zap",
+      "speed": [
+       1,
+       3
+      ],
+      "life": [
+       0.12,
+       0.28
+      ],
+      "size": [
+       3,
+       5
+      ],
+      "colors": [
+       "core",
+       "main"
+      ],
+      "ring": [
+       1,
+       2.6
+      ]
+     }
+    },
+    {
+     "k": "ripple",
+     "r": 3.0,
+     "rings": 2,
+     "dur": 0.6,
+     "delay": 0.1
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 3,
+     "kind": "zap",
+     "speed": [
+      1,
+      3
+     ],
+     "life": [
+      0.12,
+      0.28
+     ],
+     "size": [
+      3,
+      5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ]
+    }
+   },
+   "ready": {
+    "foes": 3,
+    "r": 3
+   },
+   "look": "violet lightning ring with soft ripples"
+  },
+  "grand_silence": {
+   "cls": "bell_chanter",
+   "pose": "raise",
+   "pal": "silence",
+   "shapes": [
+    {
+     "k": "nova",
+     "r": 5.5,
+     "dur": 0.7,
+     "delay": 0.2,
+     "shake": 3,
+     "lw": 0.16
+    },
+    {
+     "k": "sigil",
+     "r": 5.0,
+     "dur": 1.0,
+     "delay": 0.2,
+     "ticks": 32,
+     "star": 9
+    }
+   ],
+   "ready": {
+    "foes": 5,
+    "r": 5.5
+   },
+   "look": "huge grey wave and a nine-point seal"
+  },
+  "still_water": {
+   "cls": "bell_chanter",
+   "pose": "channel",
+   "pal": "still",
+   "shapes": [
+    {
+     "k": "ripple",
+     "r": 1.3,
+     "rings": 3,
+     "dur": 0.8
+    },
+    {
+     "k": "swirl",
+     "r": 0.7,
+     "dur": 0.7,
+     "emit": {
+      "n": 6,
+      "kind": "mote",
+      "speed": [
+       0.2,
+       0.8
+      ],
+      "up": [
+       0.8,
+       1.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       2,
+       3
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     }
+    }
+   ],
+   "ready": {
+    "manaBelow": 0.35,
+    "noBuff": true
+   },
+   "look": "calm teal rings at your feet"
+  },
+  "salt_cut": {
+   "cls": "salt_reaver",
+   "pose": "strike",
+   "pal": "salt",
+   "shapes": [
+    {
+     "k": "slash",
+     "r": 1.35,
+     "arc": 2.2,
+     "w": 0.18,
+     "dur": 0.2,
+     "double": true
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "shard",
+     "speed": [
+      2,
+      4
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "core",
+      "main"
+     ],
+     "gravity": 6
+    }
+   },
+   "look": "white double crescent"
+  },
+  "glass_step": {
+   "cls": "salt_reaver",
+   "pose": "dash",
+   "pal": "salt",
+   "shapes": [
+    {
+     "k": "streak",
+     "at": "path",
+     "w": 0.32,
+     "dur": 0.38,
+     "ghosts": 4
+    },
+    {
+     "k": "burst",
+     "r": 0.9,
+     "n": 8,
+     "dur": 0.3,
+     "emit": {
+      "n": 8,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core",
+       "edge"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    }
+   },
+   "look": "white streak with four afterimages, shards where you stop"
+  },
+  "salt_feint": {
+   "cls": "salt_reaver",
+   "pose": "dash",
+   "pal": "brine",
+   "shapes": [
+    {
+     "k": "streak",
+     "at": "path",
+     "w": 0.22,
+     "dur": 0.3,
+     "ghosts": 1
+    },
+    {
+     "k": "flash",
+     "at": "start",
+     "r": 0.8,
+     "dur": 0.25
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 3,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 6
+    }
+   },
+   "look": "thin blue streak, flash where you left"
+  },
+  "parting_cut": {
+   "cls": "salt_reaver",
+   "pose": "hook",
+   "pal": "salt",
+   "shapes": [
+    {
+     "k": "thrust",
+     "r": 1.7,
+     "w": 0.36,
+     "dur": 0.32,
+     "rings": 1
+    },
+    {
+     "k": "slash",
+     "r": 1.3,
+     "arc": 0.9,
+     "w": 0.3,
+     "dur": 0.22,
+     "delay": 0.08
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 9,
+     "kind": "shard",
+     "speed": [
+      3,
+      6
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    },
+    "ring": 0.6,
+    "shake": 1.5,
+    "flash": 0.15
+   },
+   "look": "lunge and a short heavy crescent"
+  },
+  "brine_flurry": {
+   "cls": "salt_reaver",
+   "pose": "flurry5",
+   "pal": "brine",
+   "shapes": [
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.4,
+     "w": 0.16,
+     "dur": 0.14,
+     "sweep": 1,
+     "delay": 0.0
+    },
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.4,
+     "w": 0.16,
+     "dur": 0.14,
+     "sweep": -1,
+     "delay": 0.09
+    },
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.4,
+     "w": 0.16,
+     "dur": 0.14,
+     "sweep": 1,
+     "delay": 0.18
+    },
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.4,
+     "w": 0.16,
+     "dur": 0.14,
+     "sweep": -1,
+     "delay": 0.27
+    },
+    {
+     "k": "slash",
+     "r": 1.5,
+     "arc": 1.4,
+     "w": 0.16,
+     "dur": 0.14,
+     "sweep": 1,
+     "delay": 0.36
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 3,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 6
+    }
+   },
+   "window": 0.8,
+   "look": "five fast alternating blue cuts"
+  },
+  "salt_storm": {
+   "cls": "salt_reaver",
+   "pose": "spin",
+   "pal": "salt",
+   "shapes": [
+    {
+     "k": "spin",
+     "r": 1.8,
+     "turns": 1,
+     "w": 0.35,
+     "dur": 0.45,
+     "ghost": true
+    },
+    {
+     "k": "burst",
+     "r": 1.6,
+     "n": 14,
+     "dur": 0.4,
+     "emit": {
+      "n": 16,
+      "kind": "flake",
+      "speed": [
+       1,
+       3
+      ],
+      "up": [
+       0.3,
+       1.2
+      ],
+      "life": [
+       0.4,
+       0.8
+      ],
+      "size": [
+       2,
+       3
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 1,
+      "ring": [
+       0.4,
+       1
+      ]
+     }
+    }
+   ],
+   "ready": {
+    "foes": 3,
+    "r": 4,
+    "noBuff": true
+   },
+   "look": "white spin and burst; salt flurries around you while it lasts"
+  },
+  "salt_guard": {
+   "cls": "salt_reaver",
+   "pose": "channel",
+   "pal": "salt",
+   "shapes": [
+    {
+     "k": "dome",
+     "r": 0.8,
+     "dur": 0.45,
+     "hex": true
+    },
+    {
+     "k": "burst",
+     "r": 0.7,
+     "n": 6,
+     "dur": 0.25
+    }
+   ],
+   "ready": {
+    "lifeBelow": 0.6,
+    "noBuff": true
+   },
+   "look": "tight white hex guard"
+  },
+  "red_line": {
+   "cls": "salt_reaver",
+   "pose": "spin",
+   "pal": "blood",
+   "shapes": [
+    {
+     "k": "spin",
+     "r": 2.15,
+     "turns": 1,
+     "w": 0.3,
+     "dur": 0.42,
+     "ghost": true
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main",
+      "edge"
+     ],
+     "gravity": 9
+    }
+   },
+   "ready": {
+    "foes": 3,
+    "r": 2.1
+   },
+   "look": "one red full-circle cut"
+  },
+  "full_measure": {
+   "cls": "salt_reaver",
+   "pose": "spin2",
+   "pal": "pace",
+   "shapes": [
+    {
+     "k": "spin",
+     "r": 2.1,
+     "turns": 2,
+     "w": 0.4,
+     "dur": 0.55
+    },
+    {
+     "k": "nova",
+     "r": 2.2,
+     "dur": 0.35,
+     "delay": 0.4,
+     "shake": 2.5,
+     "emit": {
+      "n": 14,
+      "kind": "shard",
+      "speed": [
+       2,
+       4.5
+      ],
+      "up": [
+       0.5,
+       2
+      ],
+      "life": [
+       0.25,
+       0.5
+      ],
+      "size": [
+       2,
+       3.5
+      ],
+      "colors": [
+       "core",
+       "main"
+      ],
+      "gravity": 6
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "shard",
+     "speed": [
+      2,
+      4.5
+     ],
+     "up": [
+      0.5,
+      2
+     ],
+     "life": [
+      0.25,
+      0.5
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    }
+   },
+   "ready": {
+    "stacks": [
+     "rhythm",
+     5
+    ]
+   },
+   "look": "two silver-gold turns ending in a burst; glows when Pace is high"
+  },
+  "bloodletting": {
+   "cls": "salt_reaver",
+   "pose": "hook",
+   "pal": "blood",
+   "shapes": [
+    {
+     "k": "thrust",
+     "r": 2.0,
+     "w": 0.3,
+     "dur": 0.32,
+     "rings": 2,
+     "emit": {
+      "n": 8,
+      "kind": "drop",
+      "speed": [
+       1.5,
+       3.5
+      ],
+      "up": [
+       1,
+       2.5
+      ],
+      "life": [
+       0.3,
+       0.6
+      ],
+      "size": [
+       2.5,
+       4
+      ],
+      "colors": [
+       "main",
+       "edge"
+      ],
+      "gravity": 9
+     },
+     "emitAt": "end"
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main",
+      "edge"
+     ],
+     "gravity": 9
+    },
+    "flash": 0.12
+   },
+   "ready": {
+    "lifeBelow": 0.6,
+    "foes": 1,
+    "r": 2.2
+   },
+   "look": "red lunge that sprays blood"
+  },
+  "red_tide": {
+   "cls": "salt_reaver",
+   "pose": "raise",
+   "pal": "blood",
+   "shapes": [
+    {
+     "k": "pillar",
+     "h": 2.8,
+     "w": 0.9,
+     "dur": 0.7
+    },
+    {
+     "k": "nova",
+     "r": 2.0,
+     "dur": 0.5,
+     "delay": 0.25,
+     "shake": 2.5,
+     "emit": {
+      "n": 16,
+      "kind": "drop",
+      "speed": [
+       1.5,
+       3.5
+      ],
+      "up": [
+       1,
+       2.5
+      ],
+      "life": [
+       0.3,
+       0.6
+      ],
+      "size": [
+       2.5,
+       4
+      ],
+      "colors": [
+       "main",
+       "edge"
+      ],
+      "gravity": 9
+     }
+    }
+   ],
+   "ready": {
+    "lifeBelow": 0.5
+   },
+   "look": "red column and wave; red ring stays on you"
+  },
+  "thorn_snare": {
+   "cls": "briar_stalker",
+   "pose": "plant",
+   "pal": "briar",
+   "shapes": [
+    {
+     "k": "plant",
+     "at": "ahead",
+     "dist": 0.85,
+     "r": 0.45,
+     "spikes": 6,
+     "dur": 0.6,
+     "emit": {
+      "n": 5,
+      "kind": "thorn",
+      "speed": [
+       2,
+       4
+      ],
+      "up": [
+       0.5,
+       1.5
+      ],
+      "life": [
+       0.25,
+       0.45
+      ],
+      "size": [
+       2.5,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 5
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "thorn",
+     "speed": [
+      2,
+      4
+     ],
+     "up": [
+      0.5,
+      1.5
+     ],
+     "life": [
+      0.25,
+      0.45
+     ],
+     "size": [
+      2.5,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 5
+    }
+   },
+   "look": "six-thorn ring pressed into the ground"
+  },
+  "tripwire": {
+   "cls": "briar_stalker",
+   "pose": "plant",
+   "pal": "wire",
+   "shapes": [
+    {
+     "k": "plant",
+     "at": "ahead",
+     "dist": 0.85,
+     "r": 0.4,
+     "spikes": 2,
+     "dur": 0.55
+    },
+    {
+     "k": "fan",
+     "at": "ahead",
+     "dist": 0.85,
+     "n": 2,
+     "spread": 3.14,
+     "r": 0.9,
+     "dur": 0.5
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "thorn",
+     "speed": [
+      2,
+      4
+     ],
+     "up": [
+      0.5,
+      1.5
+     ],
+     "life": [
+      0.25,
+      0.45
+     ],
+     "size": [
+      2.5,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 5
+    }
+   },
+   "look": "pale-yellow wire pulled across a small ring"
+  },
+  "bramble_bed": {
+   "cls": "briar_stalker",
+   "pose": "plant",
+   "pal": "briar",
+   "shapes": [
+    {
+     "k": "plant",
+     "at": "ahead",
+     "dist": 0.85,
+     "r": 1.1,
+     "spikes": 12,
+     "dur": 0.7
+    },
+    {
+     "k": "cloud",
+     "at": "ahead",
+     "dist": 0.85,
+     "r": 1.1,
+     "dur": 0.7
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 8,
+     "kind": "thorn",
+     "speed": [
+      2,
+      4
+     ],
+     "up": [
+      0.5,
+      1.5
+     ],
+     "life": [
+      0.25,
+      0.45
+     ],
+     "size": [
+      2.5,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 5
+    }
+   },
+   "look": "wide twelve-thorn bed with leaf haze"
+  },
+  "spring_jaw": {
+   "cls": "briar_stalker",
+   "pose": "cast",
+   "pal": "briar",
+   "shapes": [
+    {
+     "k": "link",
+     "to": "traps",
+     "dur": 0.25
+    },
+    {
+     "k": "burst",
+     "at": "traps",
+     "r": 1.0,
+     "n": 8,
+     "dur": 0.3,
+     "delay": 0.1,
+     "emit": {
+      "n": 8,
+      "kind": "thorn",
+      "speed": [
+       2,
+       4
+      ],
+      "up": [
+       0.5,
+       1.5
+      ],
+      "life": [
+       0.25,
+       0.45
+      ],
+      "size": [
+       2.5,
+       3.5
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 5
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "thorn",
+     "speed": [
+      2,
+      4
+     ],
+     "up": [
+      0.5,
+      1.5
+     ],
+     "life": [
+      0.25,
+      0.45
+     ],
+     "size": [
+      2.5,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 5
+    }
+   },
+   "ready": {
+    "traps": 1
+   },
+   "look": "green lines to every snare, then each snaps"
+  },
+  "seed_scatter": {
+   "cls": "briar_stalker",
+   "pose": "throw",
+   "pal": "seed",
+   "shapes": [
+    {
+     "k": "fan",
+     "n": 3,
+     "spread": 0.55,
+     "r": 2.4,
+     "dur": 0.3
+    },
+    {
+     "k": "plant",
+     "at": "arc",
+     "n": 3,
+     "spread": 0.55,
+     "dist": 2.4,
+     "r": 0.45,
+     "spikes": 5,
+     "dur": 0.6,
+     "delay": 0.15
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "thorn",
+     "speed": [
+      2,
+      4
+     ],
+     "up": [
+      0.5,
+      1.5
+     ],
+     "life": [
+      0.25,
+      0.45
+     ],
+     "size": [
+      2.5,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 5
+    }
+   },
+   "look": "three seed arcs that land as snares"
+  },
+  "garden_of_thorns": {
+   "cls": "briar_stalker",
+   "pose": "plant",
+   "pal": "briar",
+   "shapes": [
+    {
+     "k": "plant",
+     "at": "ring",
+     "n": 8,
+     "dist": 2.3,
+     "r": 0.45,
+     "spikes": 6,
+     "dur": 0.7,
+     "delay": 0.1
+    },
+    {
+     "k": "sigil",
+     "r": 2.3,
+     "dur": 0.8,
+     "ticks": 8
+    }
+   ],
+   "ready": {
+    "foes": 4,
+    "r": 4
+   },
+   "look": "eight snares bloom in a ring around you"
+  },
+  "needle": {
+   "cls": "briar_stalker",
+   "pose": "throw",
+   "pal": "venom",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 9
+    }
+   },
+   "proj": {
+    "head": "needle",
+    "r": 0.1,
+    "tw": 0.05
+   },
+   "look": "thin yellow-green needle"
+  },
+  "spit": {
+   "cls": "briar_stalker",
+   "pose": "cast",
+   "pal": "spit",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 8,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main",
+      "edge"
+     ],
+     "gravity": 9
+    }
+   },
+   "proj": {
+    "head": "glob",
+    "r": 0.17,
+    "tw": 0.14,
+    "drip": {
+     "n": 1,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main"
+     ],
+     "gravity": 9
+    }
+   },
+   "look": "dripping green glob"
+  },
+  "miasma": {
+   "cls": "briar_stalker",
+   "pose": "cast",
+   "pal": "miasma",
+   "shapes": [
+    {
+     "k": "cloud",
+     "r": 2.6,
+     "dur": 0.9,
+     "emit": {
+      "n": 10,
+      "kind": "puff",
+      "speed": [
+       0.4,
+       1.4
+      ],
+      "up": [
+       0.2,
+       0.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       6,
+       11
+      ],
+      "colors": [
+       "edge",
+       "main"
+      ],
+      "lit": false,
+      "ring": [
+       0.5,
+       2.2
+      ]
+     }
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 2,
+     "kind": "puff",
+     "speed": [
+      0.4,
+      1.4
+     ],
+     "up": [
+      0.2,
+      0.8
+     ],
+     "life": [
+      0.6,
+      1.1
+     ],
+     "size": [
+      6,
+      11
+     ],
+     "colors": [
+      "edge",
+      "main"
+     ],
+     "lit": false
+    }
+   },
+   "ready": {
+    "foes": 3,
+    "r": 2.6
+   },
+   "look": "spreading green cloud"
+  },
+  "fang_volley": {
+   "cls": "briar_stalker",
+   "pose": "throw",
+   "pal": "venom",
+   "shapes": [
+    {
+     "k": "fan",
+     "n": 3,
+     "spread": 0.56,
+     "r": 1.3,
+     "dur": 0.25
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 3,
+     "kind": "drop",
+     "speed": [
+      1.5,
+      3.5
+     ],
+     "up": [
+      1,
+      2.5
+     ],
+     "life": [
+      0.3,
+      0.6
+     ],
+     "size": [
+      2.5,
+      4
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 9
+    }
+   },
+   "proj": {
+    "head": "needle",
+    "r": 0.1,
+    "tw": 0.05
+   },
+   "look": "three needles fanned, muzzle lines"
+  },
+  "antidote": {
+   "cls": "briar_stalker",
+   "pose": "cast",
+   "pal": "herb",
+   "shapes": [
+    {
+     "k": "swirl",
+     "r": 0.6,
+     "dur": 0.6,
+     "emit": {
+      "n": 8,
+      "kind": "mote",
+      "speed": [
+       0.2,
+       0.8
+      ],
+      "up": [
+       0.8,
+       1.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       2,
+       3
+      ],
+      "colors": [
+       "main",
+       "core"
+      ],
+      "gravity": 0
+     }
+    },
+    {
+     "k": "dome",
+     "r": 0.75,
+     "dur": 0.45
+    }
+   ],
+   "ready": {
+    "poisoned": true
+   },
+   "look": "pale-green swirl and small shell; glows when you are poisoned"
+  },
+  "vanish": {
+   "cls": "briar_stalker",
+   "pose": "roll",
+   "pal": "shade",
+   "shapes": [
+    {
+     "k": "veil",
+     "at": "start",
+     "r": 0.9,
+     "dur": 0.6,
+     "emit": {
+      "n": 8,
+      "kind": "puff",
+      "speed": [
+       0.4,
+       1.4
+      ],
+      "up": [
+       0.2,
+       0.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       6,
+       11
+      ],
+      "colors": [
+       "edge",
+       "main"
+      ],
+      "lit": false
+     }
+    },
+    {
+     "k": "streak",
+     "at": "path",
+     "w": 0.25,
+     "dur": 0.3,
+     "ghosts": 2
+    }
+   ],
+   "look": "smoke where you were and a faint roll trail"
+  },
+  "twilight_veil": {
+   "cls": "briar_stalker",
+   "pose": "cast",
+   "pal": "shade",
+   "shapes": [
+    {
+     "k": "veil",
+     "r": 1.1,
+     "dur": 0.7,
+     "emit": {
+      "n": 12,
+      "kind": "puff",
+      "speed": [
+       0.4,
+       1.4
+      ],
+      "up": [
+       0.2,
+       0.8
+      ],
+      "life": [
+       0.6,
+       1.1
+      ],
+      "size": [
+       6,
+       11
+      ],
+      "colors": [
+       "edge",
+       "main"
+      ],
+      "lit": false
+     }
+    },
+    {
+     "k": "dome",
+     "r": 1.0,
+     "dur": 0.5
+    }
+   ],
+   "ready": {
+    "foes": 3,
+    "r": 6,
+    "noBuff": true
+   },
+   "look": "dusk smoke closes around you; you stay dark while it lasts"
+  }
+ },
+ "auras": {
+  "avatar_of_the_kiln": {
+   "k": "flames",
+   "pal": "kiln",
+   "emitRate": 28
+  },
+  "ash_ward": {
+   "k": "shell",
+   "pal": "ash",
+   "r": 0.72,
+   "pat": "cracks"
+  },
+  "vigil": {
+   "k": "ring",
+   "pal": "vigil",
+   "r": "aura",
+   "ticks": 16,
+   "spin": 0.3
+  },
+  "life_spite_bulwark": {
+   "k": "shell",
+   "pal": "bulwark",
+   "r": 0.78,
+   "pat": "hex"
+  },
+  "brine_ward": {
+   "k": "shell",
+   "pal": "brine",
+   "r": 0.72,
+   "pat": "wave"
+  },
+  "lantern_pact": {
+   "k": "ring",
+   "pal": "lantern",
+   "r": "aura",
+   "ticks": 8,
+   "spin": 0.25
+  },
+  "carillon": {
+   "k": "motes",
+   "pal": "bell",
+   "n": 3
+  },
+  "slow_hymn": {
+   "k": "ring",
+   "pal": "hymn",
+   "r": "aura",
+   "ticks": 12,
+   "spin": -0.3
+  },
+  "iron_hymn": {
+   "k": "shell",
+   "pal": "ironbell",
+   "r": 0.74,
+   "pat": "bands"
+  },
+  "quiet_room": {
+   "k": "ring",
+   "pal": "silence",
+   "r": "aura",
+   "ticks": 24,
+   "spin": 0.15
+  },
+  "still_water": {
+   "k": "calm",
+   "pal": "still",
+   "r": 0.9,
+   "spin": 0.6
+  },
+  "salt_storm": {
+   "k": "storm",
+   "pal": "salt",
+   "emitRate": 30
+  },
+  "salt_guard": {
+   "k": "shell",
+   "pal": "salt",
+   "r": 0.7,
+   "pat": "facets"
+  },
+  "brine_shield": {
+   "k": "shell",
+   "pal": "brine",
+   "r": 0.68,
+   "pat": "wave"
+  },
+  "rhythm": {
+   "k": "motes",
+   "pal": "pace",
+   "stacksFrom": true
+  },
+  "red_tide": {
+   "k": "blood",
+   "pal": "blood",
+   "r": 1.0,
+   "rate": 7
+  },
+  "antidote": {
+   "k": "shell",
+   "pal": "herb",
+   "r": 0.7,
+   "pat": "leaves"
+  },
+  "twilight_veil": {
+   "k": "shadow",
+   "pal": "shade",
+   "emitRate": 14
+  },
+  "garden_of_thorns": {
+   "k": "ring",
+   "pal": "briar",
+   "r": 2.3,
+   "ticks": 8,
+   "spin": 0.2
+  },
+  "rally": {
+   "k": "glow",
+   "pal": "glass",
+   "r": 1
+  }
+ },
+ "pools": {
+  "slag": {
+   "pal": "slag",
+   "k": "lava",
+   "rate": 7,
+   "emit": {
+    "n": 1,
+    "kind": "ember",
+    "speed": [
+     0,
+     0.3
+    ],
+    "up": [
+     0.6,
+     1.4
+    ],
+    "life": [
+     0.4,
+     0.8
+    ],
+    "size": [
+     2,
+     4
+    ],
+    "colors": [
+     "main",
+     "core"
+    ],
+    "gravity": 0
+   },
+   "emitRate": 10
+  },
+  "black_ice": {
+   "pal": "frost",
+   "k": "ice",
+   "rate": 3
+  }
+ },
+ "buffRow": {
+  "about": "Icons above the life and mana orbs for every timed buff that has an aura or a skill entry here."
+ },
+ "telegraph": {
+  "about": "Enemy wind-ups. eliteWarn: elites, champions, minibosses and bosses also telegraph hits above eliteWarnPct of your life (normal foes keep the 20% rule). leapWindup/chargeWindup: seconds a leaper or charger stands and shows an arrow before it jumps.",
+  "eliteWarn": true,
+  "eliteWarnPct": 0.1,
+  "leapWindup": 0.35,
+  "chargeWindup": 0.45,
+  "leapLen": 2.1,
+  "color": "#ffb040",
+  "eliteColor": "#ff7a20",
+  "bossColor": "#ff3020",
+  "bossEdge": true
+ }
+}

@@ -43,6 +43,11 @@
     "stroke": "#3a1408",
     "size": 8
   },
+  "layer": {
+    "about": "The distance/direction pill keeps its edge placement but paints under every HUD control (skill arc, Strike, belts, joystick, dock, orbs, mute) so skills stay visible and tappable when the pill overlaps them. pointer-events is none; taps pass through.",
+    "zIndex": 1,
+    "pointerEvents": "none"
+  },
   "pointer": {
     "about": "v84g edge-compass mark. A long, narrow arrowhead with a short tail, rotated toward the target. Sizes in CSS px. 0 rad points right (positive x), matching atan2.",
     "kind": "arrow",

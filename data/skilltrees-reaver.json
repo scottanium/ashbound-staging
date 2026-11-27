@@ -28,23 +28,27 @@
         },
         {
           "at": 15,
-          "skill": "glass_step"
+          "skill": "glass_step",
+          "pick": "edge_dash"
         },
         {
           "at": 20,
-          "skill": "salt_feint"
+          "skill": "salt_feint",
+          "pick": "edge_dash"
         },
         {
           "at": 25,
-          "skill": "parting_cut"
+          "skill": "parting_cut",
+          "pick": "edge_cut"
         },
         {
           "at": 30,
-          "skill": "wake_edge"
+          "skill": "brine_flurry",
+          "pick": "edge_cut"
         },
         {
           "at": 35,
-          "skill": "brine_flurry"
+          "skill": "wake_edge"
         },
         {
           "at": 40,
@@ -77,7 +81,8 @@
         },
         {
           "at": 15,
-          "skill": "red_line"
+          "skill": "red_line",
+          "pick": "tempo_spin"
         },
         {
           "at": 20,
@@ -93,7 +98,8 @@
         },
         {
           "at": 35,
-          "skill": "full_measure"
+          "skill": "full_measure",
+          "pick": "tempo_spin"
         },
         {
           "at": 40,
@@ -126,11 +132,13 @@
         },
         {
           "at": 15,
-          "skill": "close_vein"
+          "skill": "close_vein",
+          "pick": "vein_answer"
         },
         {
           "at": 20,
-          "skill": "riposte"
+          "skill": "riposte",
+          "pick": "vein_answer"
         },
         {
           "at": 25,

@@ -1,0 +1,93 @@
+{
+  "about": "wallfix (r15): what blocks movement, so collision matches what is drawn. solidSprites = the obstacle drawn on a solid TREE or ROCK tile, by zone palette (the same pick the renderer uses: list[floor(tileHash * length)]). They are tall obstacle sprites only, never a ground-clutter sprite that also lies on walkable floor. propCollider = TREE/ROCK tiles block as a circle at the tile centre instead of the whole tile square. The radius is the drawn sprite's cross-section at shin height (0.12 tiles, from data/props3d.json, times its size variant) plus pad, clamped to [min, max]; bySprite overrides one sprite by name. min stays above 0.17 so two solids side by side never leave a gap the hero fits through; max may pass 0.5 for wide bushes and salt drifts that overhang their tile. Walls, lava/water and buildings keep full-tile squares (they are drawn as full tiles). round=false restores the old full-square colliders.",
+  "solidSprites": {
+    "wood": {
+      "tree": [
+        "char",
+        "char2",
+        "char3",
+        "char4"
+      ],
+      "rock": [
+        "boulder_wood"
+      ]
+    },
+    "salt": {
+      "tree": [
+        "shard",
+        "saltspire",
+        "mirror",
+        "drift"
+      ],
+      "rock": [
+        "boulder_salt"
+      ]
+    },
+    "orchard": {
+      "tree": [
+        "briar",
+        "briar2",
+        "thorn",
+        "sapling"
+      ],
+      "rock": [
+        "boulder_orchard"
+      ]
+    },
+    "pale": {
+      "tree": [
+        "bone",
+        "bone2",
+        "cairn",
+        "cairn2"
+      ],
+      "rock": [
+        "boulder_pale"
+      ]
+    },
+    "mere": {
+      "tree": [
+        "tree",
+        "tree2",
+        "tree3"
+      ],
+      "rock": [
+        "rock"
+      ]
+    },
+    "kiln": {
+      "tree": [
+        "boulder_kiln"
+      ],
+      "rock": [
+        "boulder_kiln"
+      ]
+    },
+    "spire": {
+      "tree": [
+        "rock"
+      ],
+      "rock": [
+        "rock"
+      ]
+    },
+    "default": {
+      "tree": [
+        "tree",
+        "tree2",
+        "tree3"
+      ],
+      "rock": [
+        "rock"
+      ]
+    }
+  },
+  "propCollider": {
+    "round": true,
+    "pad": 0.1,
+    "min": 0.24,
+    "max": 0.62,
+    "default": 0.34,
+    "bySprite": {}
+  }
+}

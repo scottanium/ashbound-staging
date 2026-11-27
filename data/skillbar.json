@@ -1,0 +1,33 @@
+{
+  "about": "v84k skill bar (js/ab-skillbar.js, js/ab-hudarc.js, js/ab-skilltree.js). hud.order: leftToRight puts HUD slot 1 (#skill-0, hotkey 1) leftmost and slot 4 rightmost, matching the 1-4 picker in the skill screen; 'arc' keeps the old angle order. respec: the skill screen's Hold to respec refunds tree points only (stats, gear and non-tree buffs stay); costPerLevel x level gold, same as before. rememberBar puts each skill back in the slot it had once it is learned again. cooldown: the overlay on each HUD skill button. Colours are CSS colours; sizes are CSS px; times in ms or s as named.",
+  "hud": { "order": "leftToRight" },
+  "respec": {
+    "mode": "tree",
+    "costPerLevel": 40,
+    "rememberBar": true,
+    "toast": "Tree points refunded. Your stats and gear stay.",
+    "costToast": "Respec costs {cost} gold."
+  },
+  "picker": {
+    "showEquipped": true,
+    "label": "Put on the action bar"
+  },
+  "cooldown": {
+    "enabled": true,
+    "shade": "rgba(0,0,0,0.70)",
+    "rim": "rgba(255,170,80,0.85)",
+    "text": "#fff4dc",
+    "textShadow": "0 0 3px #000, 0 1px 2px #000, 0 0 8px rgba(0,0,0,0.9)",
+    "fontPx": 20,
+    "fontPxSmall": 17,
+    "decimalUnderSec": 1,
+    "minShowSec": 0.05,
+    "desaturate": 0.9,
+    "dim": 0.6,
+    "readyFlashMs": 450,
+    "readyGlow": "rgba(255,196,96,0.95)",
+    "noManaTint": "rgba(40,90,220,0.50)",
+    "noManaText": "#a8ccff",
+    "noManaLabel": "mana"
+  }
+}

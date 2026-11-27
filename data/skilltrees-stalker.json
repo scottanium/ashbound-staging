@@ -28,23 +28,27 @@
         },
         {
           "at": 15,
-          "skill": "tripwire"
+          "skill": "tripwire",
+          "pick": "snare_trap"
         },
         {
           "at": 20,
-          "skill": "bramble_bed"
+          "skill": "bramble_bed",
+          "pick": "snare_trap"
         },
         {
           "at": 25,
-          "skill": "spring_jaw"
+          "skill": "spring_jaw",
+          "pick": "snare_burst"
         },
         {
           "at": 30,
-          "skill": "hair_trigger"
+          "skill": "seed_scatter",
+          "pick": "snare_burst"
         },
         {
           "at": 35,
-          "skill": "seed_scatter"
+          "skill": "hair_trigger"
         },
         {
           "at": 40,
@@ -85,15 +89,17 @@
         },
         {
           "at": 25,
-          "skill": "miasma"
+          "skill": "miasma",
+          "pick": "venom_spread"
         },
         {
           "at": 30,
-          "skill": "virulence"
+          "skill": "fang_volley",
+          "pick": "venom_spread"
         },
         {
           "at": 35,
-          "skill": "fang_volley"
+          "skill": "virulence"
         },
         {
           "at": 40,
@@ -126,15 +132,17 @@
         },
         {
           "at": 15,
-          "skill": "antidote"
+          "skill": "antidote",
+          "pick": "hide_out"
         },
         {
           "at": 20,
-          "skill": "barbed_coat"
+          "skill": "vanish",
+          "pick": "hide_out"
         },
         {
           "at": 25,
-          "skill": "vanish"
+          "skill": "barbed_coat"
         },
         {
           "at": 30,

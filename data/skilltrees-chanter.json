@@ -28,23 +28,27 @@
         },
         {
           "at": 15,
-          "skill": "overtone"
+          "skill": "overtone",
+          "pick": "bell_note2"
         },
         {
           "at": 20,
-          "skill": "peal"
+          "skill": "counterpoint",
+          "pick": "bell_note2"
         },
         {
           "at": 25,
-          "skill": "counterpoint"
+          "skill": "peal",
+          "pick": "bell_storm"
         },
         {
           "at": 30,
-          "skill": "sympathy"
+          "skill": "thunder_toll",
+          "pick": "bell_storm"
         },
         {
           "at": 35,
-          "skill": "thunder_toll"
+          "skill": "sympathy"
         },
         {
           "at": 40,
@@ -85,15 +89,17 @@
         },
         {
           "at": 25,
-          "skill": "quiet_room"
+          "skill": "quiet_room",
+          "pick": "hymn_slow"
         },
         {
           "at": 30,
-          "skill": "dirge_weight"
+          "skill": "hush",
+          "pick": "hymn_slow"
         },
         {
           "at": 35,
-          "skill": "hush"
+          "skill": "dirge_weight"
         },
         {
           "at": 40,
@@ -122,11 +128,13 @@
         },
         {
           "at": 10,
-          "skill": "rest_bar"
+          "skill": "rest_bar",
+          "pick": "keep_draw"
         },
         {
           "at": 15,
-          "skill": "damp"
+          "skill": "damp",
+          "pick": "keep_draw"
         },
         {
           "at": 20,

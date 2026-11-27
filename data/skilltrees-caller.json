@@ -36,15 +36,17 @@
         },
         {
           "at": 25,
-          "skill": "chorus"
+          "skill": "chorus",
+          "pick": "call_rouse"
         },
         {
           "at": 30,
-          "skill": "cold_chorus"
+          "skill": "rally",
+          "pick": "call_rouse"
         },
         {
           "at": 35,
-          "skill": "rally"
+          "skill": "cold_chorus"
         },
         {
           "at": 40,
@@ -85,11 +87,13 @@
         },
         {
           "at": 25,
-          "skill": "tide_ring"
+          "skill": "tide_ring",
+          "pick": "tide_spread"
         },
         {
           "at": 30,
-          "skill": "black_ice"
+          "skill": "black_ice",
+          "pick": "tide_spread"
         },
         {
           "at": 35,
@@ -122,11 +126,13 @@
         },
         {
           "at": 10,
-          "skill": "glass_heart"
+          "skill": "glass_heart",
+          "pick": "bond_share"
         },
         {
           "at": 15,
-          "skill": "shared_breath"
+          "skill": "shared_breath",
+          "pick": "bond_share"
         },
         {
           "at": 20,

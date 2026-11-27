@@ -1,0 +1,67 @@
+{
+  "about": "Monster spread (spawnspread, v84k candidate). Replaces the old pack placement in wild and dungeon campaign zones: the zone's mob budget (its normal pack count after the campaign density ramp, times the average of its packSize) is multiplied by mobMul, then split into many small packs plus a few stragglers that are spread along the walkable path from the entry to the far arch, with some packs in side pockets off the path. Towns, boss arenas and Ember Rifts keep their old spawns. No monster starts within entrySafe tiles of the zone entry, or within propSafe tiles of the entry door, waypoint or a town portal you come back through. keepZoneXp scales each pack monster's experience so a full clear of a zone gives about the same experience as before (the level curve stays where data/progress.json tuned it); loot is not scaled. Set enabled to false to get the old placement back. All distances are in tiles.",
+  "enabled": true,
+  "kinds": [
+    "wild",
+    "dungeon"
+  ],
+  "mobMul": {
+    "start": 1.7,
+    "end": 1.4,
+    "about": "Mob budget multiplier, first campaign fight zone to last, evenly by zone (same zone list as difficulty.json campaignIntro.zones)."
+  },
+  "minMobs": 10,
+  "packSize": {
+    "start": [
+      2,
+      4
+    ],
+    "end": [
+      3,
+      6
+    ],
+    "about": "Pack size range (min, max), first zone to last; never more than the zone's own packSize max + 2."
+  },
+  "stragglerShare": 0.12,
+  "stragglerSize": [
+    1,
+    2
+  ],
+  "offPathShare": 0.25,
+  "lateral": 3.5,
+  "minGap": 4.2,
+  "stragglerGap": 2.8,
+  "entrySafe": 10,
+  "propSafe": 9.5,
+  "portalSafe": 9.5,
+  "rankChanceMul": 0.7,
+  "keepZoneXp": true,
+  "zones": {
+    "salt_causeway": {
+      "mobMul": 1.4,
+      "about": "its old placement already lost packs to spacing; 1.4 lands near 2x what you met before"
+    },
+    "root_nave": {
+      "mobMul": 1.65,
+      "about": "its old room placement kept every pack; lifted so it gets about 1.6x"
+    },
+    "stair_of_names": {
+      "mobMul": 1.2,
+      "about": "largest zone; held to about 1.75x for phone performance"
+    },
+    "hush_galleries": {
+      "mobMul": 1.6,
+      "about": "lifted so it gets about 1.5x"
+    }
+  },
+  "zonesAbout": "Per-zone overrides: any key above (enabled, mobMul, packSize, entrySafe, ...) can be set for one zone.",
+  "safeAbout": "entrySafe / propSafe / portalSafe are kept just above the largest monster aggro range in data/monsters.json (9.2 tiles), so nothing charges you the moment you arrive.",
+  "offPathMinPacks": 6,
+  "offPathAbout": "offPathShare of the packs go to side pockets away from the path, but only in zones with at least offPathMinPacks packs; smaller zones keep every pack on the path.",
+  "byKind": {
+    "about": "Overrides by zone kind (applied before per-zone overrides). Dungeons send more packs into the side rooms off the main path.",
+    "dungeon": {
+      "offPathShare": 0.45
+    }
+  }
+}

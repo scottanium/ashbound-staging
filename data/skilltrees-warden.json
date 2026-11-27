@@ -28,23 +28,27 @@
         },
         {
           "at": 15,
-          "skill": "kiln_hook"
+          "skill": "kiln_hook",
+          "pick": "brand_reach"
         },
         {
           "at": 20,
-          "skill": "sear_step"
+          "skill": "sear_step",
+          "pick": "brand_reach"
         },
         {
           "at": 25,
-          "skill": "pyre_arc"
+          "skill": "pyre_arc",
+          "pick": "brand_sweep"
         },
         {
           "at": 30,
-          "skill": "forgebreaker"
+          "skill": "furnace_flurry",
+          "pick": "brand_sweep"
         },
         {
           "at": 35,
-          "skill": "furnace_flurry"
+          "skill": "forgebreaker"
         },
         {
           "at": 40,
@@ -85,11 +89,13 @@
         },
         {
           "at": 25,
-          "skill": "cinder_bloom"
+          "skill": "cinder_bloom",
+          "pick": "ember_blast"
         },
         {
           "at": 30,
-          "skill": "slag_rain"
+          "skill": "slag_rain",
+          "pick": "ember_blast"
         },
         {
           "at": 35,
@@ -126,15 +132,17 @@
         },
         {
           "at": 15,
-          "skill": "heat_draw"
+          "skill": "heat_draw",
+          "pick": "warden_hold"
         },
         {
           "at": 20,
-          "skill": "vigil"
+          "skill": "ash_skin",
+          "pick": "warden_hold"
         },
         {
           "at": 25,
-          "skill": "ash_skin"
+          "skill": "vigil"
         },
         {
           "at": 30,

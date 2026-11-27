@@ -141,7 +141,7 @@
     "strikeInsetY": 52
   },
   "flasks": {
-    "about": "v84g: a single health potion icon sits just to the lower-left of Strike (lower-right in left-hand mode) and holds lifeCharges charges; the count is drawn on the icon, and the icon dims when empty. Mana potions stay as separate slots just to the upper-right (upper-left in left-hand). lifeDX/lifeDY and manaDX/manaDY are direction vectors in screen space (x right, y down) for the right hand; X signs flip in left-hand mode. size and gap are CSS px. js/ab-hudarc.js places each visible flask and the portal along that ray, closest to Strike first, and keeps them in the safe area. js/ab-flasks.js reads lifeCharges for the health stack; pickup, vendor buy, and Fill belt still refill the same way, adapted to that cap.",
+    "about": "v84g: a single health potion icon sits just to the lower-left of Strike (lower-right in left-hand mode) and holds lifeCharges charges; the count is drawn on the icon, and the icon dims when empty. Mana potions stay as separate slots just to the upper-right (upper-left in left-hand). lifeDX/lifeDY and manaDX/manaDY are direction vectors in screen space (x right, y down) for the right hand; X signs flip in left-hand mode. size and gap are CSS px. js/ab-hudarc.js places each visible flask and the portal along that ray, closest to Strike first, and keeps them in the safe area. js/ab-flasks.js reads lifeCharges for the health stack; pickup, vendor buy, and Fill belt still refill the same way, adapted to that cap. invpots: mana potions now stack on one icon with a count, like health (the second mana slot is retired). The equipped belt's rank sets how many of each potion type the belt holds (beltCaps; noBelt when no belt is worn; uniques and set belts use at least uniqueMin / setMin). If a belt is taken off, extra charges are kept until drunk. autoPickup: walking over a potion picks it up into the belt when that type has room; with a full belt it stays on the ground (tap it to put it in the Pack). lifeCharges is the old v84g cap, kept as the no-belt fallback.",
     "enabled": true,
     "size": 44,
     "gap": 8,
@@ -149,7 +149,23 @@
     "lifeDY": 1,
     "manaDX": 1,
     "manaDY": -0.35,
-    "lifeCharges": 2
+    "lifeCharges": 2,
+    "manaStack": true,
+    "autoPickup": true,
+    "autoPickupRadius": 0.72,
+    "noBelt": 2,
+    "beltCaps": {
+      "common": 3,
+      "magic": 4,
+      "rare": 5,
+      "elite": 6,
+      "epic": 7,
+      "legendary": 8,
+      "fabled": 9,
+      "mythical": 10
+    },
+    "uniqueMin": 10,
+    "setMin": 10
   },
   "hints": {
     "about": "v84g: point and tutor hints are a small pulsing dot/ring plus a short label. They must never overlap the control they point at, nor any panel tab or HUD button. js/ index ashPointHint reads this. Labels keep the words 'skill point' / 'stat point' for existing tests.",

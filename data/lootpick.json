@@ -1,0 +1,18 @@
+{
+  "about": "r15 loot picker (js/ab-lootpick.js). Fixes the item-base window that collapsed to Heart Mallet / Spire Blade / Kiln Plate at monster level 19-26 (Act 2), which made Act 2 uniques mostly weapons and mostly Heart Nail. Drops now pick a gear kind first (kindWeights), then a base of that kind near the top of what the level allows (baseWindow levels below the best base of that kind). Uniques and set pieces pick their kind the same way, so every slot can roll from Act 1. Uniques already found are weighted down (dupeWeight) but never locked out. Set pieces roll real affixes on top of their set stats (setAffixes per rank), like a rare of the same item level.",
+  "enabled": true,
+  "baseWindow": 10,
+  "kindWeights": {
+    "dagger": 0.6, "sword": 0.6, "mace": 0.6, "staff": 0.6, "bow": 0.6,
+    "armor": 1, "helm": 1, "gloves": 1, "boots": 1, "belt": 1, "shield": 1, "ring": 1, "amulet": 1
+  },
+  "unique": {
+    "dupeWeight": 0.15,
+    "dupeWeightPerExtra": 0.5,
+    "oldGap": 14,
+    "oldWeight": 0.5,
+    "trackFound": true
+  },
+  "setAffixes": { "common": 3, "magic": 3, "rare": 3, "elite": 3, "epic": 3, "legendary": 4, "fabled": 4, "mythical": 5 },
+  "setRollVersion": 1
+}

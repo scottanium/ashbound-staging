@@ -25,6 +25,12 @@
     "to": 50,
     "pctPerPoint": 6
   },
+  "choices": {
+    "about": "r15 treebudget: a full tree must make you choose. Two nodes with the same \"pick\" value in a tree are a pick-1-of-2 pair: once both are open you hold one at full rank and the other stays at rank 0. Swapping is free, any time, from the skill screen. The first one you open is held until you take the other. Rules (checked by tests/r15_treebudget.py and tools/tree_budget_audit.py): every tree has at least minPairsPerTree pairs, a full tree holds at most maxActivesPerTree actives (the action bar has 4 slots), and a tree with dropOneActiveFrom or more actives can never hold all of them.",
+    "minPairsPerTree": 1,
+    "maxActivesPerTree": 4,
+    "dropOneActiveFrom": 3
+  },
   "strings": {
     "pointsLine": "{free} to spend · {used} / {total} used",
     "spend": "+1 {tree}",
@@ -45,6 +51,14 @@
     "spent": "{tree} {n}.",
     "unlockedToast": "A new skill is ready: {name}",
     "detailLocked": "Unlocks at {at} points in {tree}.",
-    "detailUnlocked": "Rank {rank} from {pts} points in {tree}."
+    "detailUnlocked": "Rank {rank} from {pts} points in {tree}.",
+    "pickOr": "or {other}",
+    "pickNote": "Pick one: {a} or {b}. Swapping is free.",
+    "pickTake": "Take {name} instead",
+    "pickHeld": "Held. {other} is set aside.",
+    "pickAside": "Set aside. You hold {other}.",
+    "pickChosen": "You took {name}. {other} is set aside.",
+    "pickReady": "Choose one: {a} or {b}. Open either to swap.",
+    "pickIfTaken": "Rank {rank} if you take it"
   }
 }

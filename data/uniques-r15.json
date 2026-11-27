@@ -1,0 +1,383 @@
+{
+ "about": "r15 campaign uniques (non-weapon) so every slot has uniques through Acts 1-3. Merged into ASHBOUND_DATA.uniques by js/ab-lootpick.js at load. Item art comes from the base (data/icons.json bases), like every other unique. No Ashen twins yet. Names, flavor and effect wording are placeholders for Koto (kotoPolish: true).",
+ "uniques": [
+  {
+   "id": "hearth_cord",
+   "name": "Hearth Cord",
+   "baseId": "cord_amulet",
+   "qlvl": 3,
+   "mods": {
+    "life": 14,
+    "fireResist": 12,
+    "vitality": 3
+   },
+   "flavor": "A cord from the Hearthveil kiln door. It still smells of bread and smoke.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "life_on_kill",
+    "heal": 6
+   },
+   "capstone": {
+    "type": "hit_burst",
+    "chance": 20,
+    "damage": 10,
+    "element": "fire",
+    "radius": 1.0
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "tidewrack_band",
+   "name": "Tidewrack Band",
+   "baseId": "copper_ring",
+   "qlvl": 14,
+   "mods": {
+    "attackRating": 30,
+    "coldResist": 14,
+    "dexterity": 5,
+    "lifeLeech": 2
+   },
+   "flavor": "Salt crusted on the inside. It never quite dries.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "frost_on_hit",
+    "duration": 1.5
+   },
+   "capstone": {
+    "type": "life_on_hit",
+    "heal": 4
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "cinder_gauntlets",
+   "name": "Cinder Gauntlets",
+   "baseId": "scale_gloves",
+   "qlvl": 15,
+   "mods": {
+    "attackSpeed": 12,
+    "fireDamage": [
+     3,
+     8
+    ],
+    "strength": 5,
+    "fireResist": 10
+   },
+   "flavor": "Kiln gloves. The palms are black and the fingers do not burn.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "crit_ignite",
+    "damage": 18
+   },
+   "capstone": {
+    "type": "haste_on_kill",
+    "move": 8,
+    "ias": 8,
+    "duration": 3
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "bell_pendant",
+   "name": "Bell Pendant",
+   "baseId": "cord_amulet",
+   "qlvl": 19,
+   "mods": {
+    "mana": 24,
+    "lightningResist": 16,
+    "energy": 5,
+    "critChance": 3
+   },
+   "flavor": "A tongue from a drowned bell. Hold it close and it hums.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "nth_strike",
+    "every": 6,
+    "damage": 18,
+    "element": "light",
+    "chains": 1,
+    "radius": 2.0
+   },
+   "capstone": {
+    "type": "mana_on_kill",
+    "mana": 10
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "marsh_lantern_ring",
+   "name": "Marsh Lantern Ring",
+   "baseId": "copper_ring",
+   "qlvl": 21,
+   "mods": {
+    "life": 18,
+    "magicFind": 12,
+    "poisonResist": 14,
+    "mana": 14
+   },
+   "flavor": "A reed-light caught in glass. It finds the path through the mere.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "mana_on_kill",
+    "mana": 8
+   },
+   "capstone": {
+    "type": "ward_on_hit",
+    "absorb": 6,
+    "absorbMax": 20,
+    "duration": 6
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "drowned_visor",
+   "name": "Drowned Visor",
+   "baseId": "kiln_helm",
+   "qlvl": 22,
+   "mods": {
+    "defense": 24,
+    "coldResist": 18,
+    "life": 22,
+    "mana": 16
+   },
+   "flavor": "Pulled from the archive's lower stacks. Water still sits in the brow.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "freeze_attackers",
+    "duration": 2
+   },
+   "capstone": {
+    "type": "low_life_shield",
+    "hpPct": 35,
+    "absorb": 34,
+    "cooldown": 12,
+    "duration": 6
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "tollkeeper_board",
+   "name": "Tollkeeper Board",
+   "baseId": "kiln_shield",
+   "qlvl": 25,
+   "mods": {
+    "defense": 28,
+    "allResist": 8,
+    "life": 20,
+    "thorns": 6
+   },
+   "flavor": "The causeway toll was paid in planks. This was the last one.",
+   "baseRarity": "epic",
+   "effect": {
+    "type": "thorns_nova",
+    "damage": 16,
+    "element": "phys",
+    "radius": 1.3
+   },
+   "capstone": {
+    "type": "ward_on_hit",
+    "absorb": 8,
+    "absorbMax": 26,
+    "duration": 6
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "press_mail",
+   "name": "Press Mail",
+   "baseId": "kiln_plate",
+   "qlvl": 29,
+   "mods": {
+    "defense": 44,
+    "life": 32,
+    "poisonResist": 20,
+    "strength": 6
+   },
+   "flavor": "Hammered flat under the sap press. It does not dent twice.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "brand",
+    "stacks": 5,
+    "damage": 28,
+    "element": "poison"
+   },
+   "capstone": {
+    "type": "low_life_shield",
+    "hpPct": 35,
+    "absorb": 40,
+    "cooldown": 12,
+    "duration": 6
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "orchard_crown",
+   "name": "Orchard Crown",
+   "baseId": "kiln_helm",
+   "qlvl": 30,
+   "mods": {
+    "defense": 30,
+    "life": 26,
+    "poisonResist": 16,
+    "lifeRegen": 1.6,
+    "vitality": 5
+   },
+   "flavor": "A circlet of grafted vine. It blooms when you bleed.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "life_on_kill",
+    "heal": 16
+   },
+   "capstone": {
+    "type": "brand",
+    "stacks": 4,
+    "damage": 26,
+    "element": "poison"
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "rowwalker_greaves",
+   "name": "Rowwalker Greaves",
+   "baseId": "kiln_boots",
+   "qlvl": 30,
+   "mods": {
+    "moveSpeed": 18,
+    "defense": 20,
+    "dexterity": 6,
+    "fireResist": 16
+   },
+   "flavor": "Worn through the briar rows until the thorns gave up first.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "haste_on_kill",
+    "move": 14,
+    "ias": 8,
+    "duration": 3
+   },
+   "capstone": {
+    "type": "thorns_nova",
+    "damage": 18,
+    "element": "phys",
+    "radius": 1.3
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "graftband",
+   "name": "Graftband",
+   "baseId": "copper_ring",
+   "qlvl": 30,
+   "mods": {
+    "life": 22,
+    "attackSpeed": 10,
+    "critChance": 4,
+    "allResist": 6
+   },
+   "flavor": "Two rings grown into one. Neither will come off first.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "crit_ignite",
+    "damage": 24
+   },
+   "capstone": {
+    "type": "life_on_hit",
+    "heal": 5
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "hush_grips",
+   "name": "Hush Grips",
+   "baseId": "scale_gloves",
+   "qlvl": 31,
+   "mods": {
+    "attackSpeed": 14,
+    "critChance": 5,
+    "attackRating": 40,
+    "coldDamage": [
+     4,
+     10
+    ]
+   },
+   "flavor": "Gallery gloves. Even the strike makes no sound.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "frost_on_hit",
+    "duration": 2
+   },
+   "capstone": {
+    "type": "execute",
+    "hpPct": 25,
+    "damage": 24,
+    "element": "cold"
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "sapbound_girdle",
+   "name": "Sapbound Girdle",
+   "baseId": "plate_belt",
+   "qlvl": 32,
+   "mods": {
+    "life": 34,
+    "vitality": 8,
+    "fireResist": 16,
+    "lifeRegen": 1.8
+   },
+   "flavor": "Sealed in amber sap. It holds you together when you would come apart.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "life_on_kill",
+    "heal": 18
+   },
+   "capstone": {
+    "type": "low_life_shield",
+    "hpPct": 35,
+    "absorb": 42,
+    "cooldown": 12,
+    "duration": 6
+   },
+   "r15": true,
+   "kotoPolish": true
+  },
+  {
+   "id": "nave_ward",
+   "name": "Nave Ward",
+   "baseId": "kiln_shield",
+   "qlvl": 33,
+   "mods": {
+    "defense": 36,
+    "allResist": 10,
+    "life": 26,
+    "vitality": 6
+   },
+   "flavor": "A door from the root nave. The roots still hold it shut.",
+   "baseRarity": "legendary",
+   "effect": {
+    "type": "freeze_attackers",
+    "duration": 2
+   },
+   "capstone": {
+    "type": "ward_on_hit",
+    "absorb": 10,
+    "absorbMax": 30,
+    "duration": 6
+   },
+   "r15": true,
+   "kotoPolish": true
+  }
+ ]
+}
