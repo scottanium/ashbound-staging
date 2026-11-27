@@ -1,0 +1,106 @@
+{
+  "about": "reskin (r14): medieval / arcane look for every screen outside the gear tab, in the same painted kiln-iron style (chrome@2x atlas, data/ui-art.json). Decoration only: no box moves or resizes, so layout and the Dynamic Island clearances stay as they are. js/ab-reskin.js reads this. enabled:false or ?reskin=0 turns it off and the old look returns.",
+  "enabled": true,
+  "areas": {
+    "hud": true,
+    "dock": true,
+    "orbs": true,
+    "cast": true,
+    "belt": true,
+    "prompt": true,
+    "panels": true,
+    "popups": true,
+    "screens": true,
+    "tree": true
+  },
+  "frame": {
+    "hudBorder": 11,
+    "hudOutset": 2,
+    "paper": "rgba(14,10,8,.86)",
+    "paperTop": "rgba(46,26,14,.55)"
+  },
+  "text": {
+    "title": "#ecd6b0",
+    "label": "#d8c19a",
+    "muted": "#a8977c",
+    "ember": "#ffb067",
+    "gold": "#e8c36a",
+    "glow": "rgba(255,140,60,.28)"
+  },
+  "dock": {
+    "about": "Dock plates: glyph = painted icon size (px), label = caption size (>= 11px), rim = plate border width, hitPad = extra tap width each side (inside the 6px gap) so squeezed buttons still give a 44px target.",
+    "glyph": 24,
+    "glyphTop": 2,
+    "label": 11,
+    "rim": 10,
+    "hitPad": 3,
+    "glyphs": {
+      "gear": "armor",
+      "stats": "hood",
+      "skills": "rune",
+      "journal": "tome",
+      "menu": "cog"
+    }
+  },
+  "orb": {
+    "about": "Liquid globes: life/mana = [deep, body, surface] colours of the fill; rimOutset = how far the painted rim reaches past the orb (px, drawn only, no layout).",
+    "rimOutset": 6,
+    "life": [
+      "#4a0806",
+      "#b3261a",
+      "#ff7a5a"
+    ],
+    "mana": [
+      "#06103e",
+      "#2453c0",
+      "#8ab8ff"
+    ]
+  },
+  "cast": {
+    "about": "Strike and skill slots: painted rim outsets in px (drawn only; the arc layout in ui.json arc is unchanged).",
+    "slotOutset": 3,
+    "strikeOutset": 7
+  },
+  "belt": {
+    "about": "Potion + portal plates: rim = plate border px, glyphInset = portal glyph inset px.",
+    "rim": 9,
+    "glyphInset": 6
+  },
+  "banner": {
+    "about": "Action prompt banner (3-slice): endW = painted finial width px, endOutset = how far the finials reach past the button (drawn only).",
+    "endW": 30,
+    "endOutset": 16
+  },
+  "panels": {
+    "about": "Panels and tabs outside the gear board: cardBorder = painted card frame width px.",
+    "cardBorder": 10
+  },
+  "popups": {
+    "about": "Death / victory / rift / season cards and the NPC dialog: frame = painted frame width px.",
+    "frame": 20
+  },
+  "tree": {
+    "about": "vtree skill tree (D2 tile forest): painted wells and frames around each tile's icon slot (the icon itself is drawn by the tree / skill icon code, untouched), framed tree columns, the 41-50 strip and the detail pane. Px are drawn widths only; nothing moves or resizes. With painted skill icons (ab-skillart), the frame is a ring on the tile button from artRingOut px outside the plate to the icon's 3px inset (artRing px wide), so it never covers the picture. Tree headers use the title plaque (plaqueEnd px finials); the 41-50 strip uses the banner piece's rune-engraved edges (bandSliceY slice, bandEdgeY/bandEdgeX widths, bandOut px finial outset) on dark parchment with diamond rune sockets.",
+    "well": 6,
+    "frame": 8,
+    "colFrame": 9,
+    "colOutset": 2,
+    "bandFrame": 8,
+    "frames": {
+      "locked": "frame_common",
+      "next": "frame_common",
+      "unlocked": "frame_epic",
+      "ult": "frame_unique",
+      "ultLit": "frame_unique"
+    },
+    "pipOn": "chip_ember",
+    "pipOff": "slot_well",
+    "artRing": 4,
+    "artRingOut": 1,
+    "plaqueEnd": 14,
+    "bandSliceY": 30,
+    "bandEdgeY": 5,
+    "bandEdgeX": 7,
+    "bandOut": 6
+  }
+}

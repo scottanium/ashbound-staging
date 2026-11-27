@@ -1,0 +1,615 @@
+{
+ "_note": "Skill icon art. Each skill id maps to a painted 128px webp in dir. Missing or broken entries fall back to the old pixel glyph. Rebuild art with tools/build_skill_art.py.",
+ "enabled": true,
+ "dir": "assets/skills/",
+ "size": 128,
+ "classRim": {
+  "cinder_warden": "#ff7a28",
+  "salt_reaver": "#d62834",
+  "bell_chanter": "#966eff",
+  "reed_caller": "#46dcf0",
+  "briar_stalker": "#78dc3c"
+ },
+ "skills": {
+  "ambusher": {
+   "file": "ambusher.webp",
+   "class": "briar_stalker",
+   "subject": "a hidden dagger striking out from dark foliage, a single bright crit flash"
+  },
+  "antidote": {
+   "file": "antidote.webp",
+   "class": "briar_stalker",
+   "subject": "a small bitter herbal potion vial with a green leaf"
+  },
+  "ash_detonation": {
+   "file": "ash_detonation.webp",
+   "class": "cinder_warden",
+   "subject": "a fading ember shell bursting into a violent explosion"
+  },
+  "ash_skin": {
+   "file": "ash_skin.webp",
+   "class": "cinder_warden",
+   "subject": "a forearm covered in cracked grey ash skin armor with ember veins"
+  },
+  "ash_strike": {
+   "file": "ash_strike.webp",
+   "class": "cinder_warden",
+   "subject": "a heavy iron greatsword mid-slash trailing a bright arc of embers"
+  },
+  "ash_ward": {
+   "file": "ash_ward.webp",
+   "class": "cinder_warden",
+   "subject": "a kite-shaped knight's shield formed of swirling grey ash held together by glowing ember cracks"
+  },
+  "avatar_of_the_kiln": {
+   "file": "avatar_of_the_kiln.webp",
+   "class": "cinder_warden",
+   "subject": "a towering knight made of molten furnace iron, fire pouring from his visor, flames swirling around him"
+  },
+  "barbed_coat": {
+   "file": "barbed_coat.webp",
+   "class": "briar_stalker",
+   "subject": "a leather cloak covered in poisoned barbs"
+  },
+  "bell_note": {
+   "file": "bell_note.webp",
+   "class": "bell_chanter",
+   "subject": "a single small bronze bell ringing, throwing one bolt of lightning"
+  },
+  "bell_that_holds": {
+   "file": "bell_that_holds.webp",
+   "class": "bell_chanter",
+   "subject": "a living bronze bell with a glowing eye, wreathed in lightning"
+  },
+  "black_ice": {
+   "file": "black_ice.webp",
+   "class": "reed_caller",
+   "subject": "a sheet of jagged black glass ice cracking across the ground"
+  },
+  "blood_price": {
+   "file": "blood_price.webp",
+   "class": "salt_reaver",
+   "subject": "a dagger with blood drops flowing back up into a red gem"
+  },
+  "bloodletting": {
+   "file": "bloodletting.webp",
+   "class": "salt_reaver",
+   "subject": "a lunging rapier thrust with blood spraying and turning into healing red light"
+  },
+  "bramble_bed": {
+   "file": "bramble_bed.webp",
+   "class": "briar_stalker",
+   "subject": "a wide carpet of tangled brambles with long sharp thorns"
+  },
+  "brine_flurry": {
+   "file": "brine_flurry.webp",
+   "class": "salt_reaver",
+   "subject": "five raking claw-like blade slashes in a fan"
+  },
+  "brine_surplus": {
+   "file": "brine_surplus.webp",
+   "class": "salt_reaver",
+   "subject": "a translucent sea-salt crystal shell bubble around a heart"
+  },
+  "brine_ward": {
+   "file": "brine_ward.webp",
+   "class": "reed_caller",
+   "subject": "a round shield of swirling sea water and brine bubbles"
+  },
+  "carillon": {
+   "file": "carillon.webp",
+   "class": "bell_chanter",
+   "subject": "a stone bell tower with many bells blazing with lightning"
+  },
+  "choir": {
+   "file": "choir.webp",
+   "class": "bell_chanter",
+   "subject": "three hooded chanters singing with glowing open mouths of light"
+  },
+  "chorus": {
+   "file": "chorus.webp",
+   "class": "reed_caller",
+   "subject": "a ring of glass servants radiating cold frost waves"
+  },
+  "cinder_bloom": {
+   "file": "cinder_bloom.webp",
+   "class": "cinder_warden",
+   "subject": "an explosive ring-shaped burst of fire radiating outward like a blooming flower"
+  },
+  "cinder_brand": {
+   "file": "cinder_brand.webp",
+   "class": "cinder_warden",
+   "subject": "a red-hot glowing branding iron with a flaming sigil-shaped tip"
+  },
+  "cinder_spark": {
+   "file": "cinder_spark.webp",
+   "class": "cinder_warden",
+   "subject": "a single glowing coal thrown through the air, bursting with sparks"
+  },
+  "clear_tone": {
+   "file": "clear_tone.webp",
+   "class": "bell_chanter",
+   "subject": "a tuning fork vibrating with crackling lightning"
+  },
+  "close_vein": {
+   "file": "close_vein.webp",
+   "class": "salt_reaver",
+   "subject": "a fanged dagger draining a glowing red vein"
+  },
+  "cold_chorus": {
+   "file": "cold_chorus.webp",
+   "class": "reed_caller",
+   "subject": "a line of glass servants with frost breath, ice crystals"
+  },
+  "counterpoint": {
+   "file": "counterpoint.webp",
+   "class": "bell_chanter",
+   "subject": "a heavy massive bronze bell striking down with a thick thunderbolt"
+  },
+  "crouch": {
+   "file": "crouch.webp",
+   "class": "briar_stalker",
+   "subject": "a hooded hunter crouching low in the brush"
+  },
+  "damp": {
+   "file": "damp.webp",
+   "class": "bell_chanter",
+   "subject": "a hand muffling a bell, absorbing tiny lightning sparks"
+  },
+  "deep_cold": {
+   "file": "deep_cold.webp",
+   "class": "reed_caller",
+   "subject": "a frozen figure shattering into ice glass shards"
+  },
+  "deep_rot": {
+   "file": "deep_rot.webp",
+   "class": "briar_stalker",
+   "subject": "a rotting skull dripping toxic green ooze"
+  },
+  "dirge_weight": {
+   "file": "dirge_weight.webp",
+   "class": "bell_chanter",
+   "subject": "a heavy iron weight with chains crushing down"
+  },
+  "endless_chorus": {
+   "file": "endless_chorus.webp",
+   "class": "reed_caller",
+   "subject": "glass shards swirling back together to reform a servant figure"
+  },
+  "fang_volley": {
+   "file": "fang_volley.webp",
+   "class": "briar_stalker",
+   "subject": "three poisoned darts fanned out wide in flight"
+  },
+  "forgebreaker": {
+   "file": "forgebreaker.webp",
+   "class": "cinder_warden",
+   "subject": "a steel breastplate cracking apart with bright glowing fissures, hissing steam"
+  },
+  "full_measure": {
+   "file": "full_measure.webp",
+   "class": "salt_reaver",
+   "subject": "a huge full circle cut made of many layered red slashes"
+  },
+  "furnace_flurry": {
+   "file": "furnace_flurry.webp",
+   "class": "cinder_warden",
+   "subject": "three parallel sword slash marks ending in a burst of flame"
+  },
+  "garden_of_thorns": {
+   "file": "garden_of_thorns.webp",
+   "class": "briar_stalker",
+   "subject": "a ring of eight snapping thorn traps in a circle around a hooded figure"
+  },
+  "glass_heart": {
+   "file": "glass_heart.webp",
+   "class": "reed_caller",
+   "subject": "a human hand and a glass servant claw clasped together around a shared glowing heart"
+  },
+  "glass_offering": {
+   "file": "glass_offering.webp",
+   "class": "reed_caller",
+   "subject": "a glass servant shattering into a burst of icy shards"
+  },
+  "glass_step": {
+   "file": "glass_step.webp",
+   "class": "salt_reaver",
+   "subject": "a shadowy figure dashing through, leaving a trail of shattered glass shards"
+  },
+  "glassling": {
+   "file": "glassling.webp",
+   "class": "reed_caller",
+   "subject": "a small glass imp servant creature with glowing cyan eyes"
+  },
+  "glassmere_heart": {
+   "file": "glassmere_heart.webp",
+   "class": "reed_caller",
+   "subject": "a glowing frozen heart of ice resting in deep dark water"
+  },
+  "grand_silence": {
+   "file": "grand_silence.webp",
+   "class": "bell_chanter",
+   "subject": "a cracked bell frozen still with lightning held in suspension around it"
+  },
+  "hair_trigger": {
+   "file": "hair_trigger.webp",
+   "class": "briar_stalker",
+   "subject": "a trap with a glowing reset spring coiling twice"
+  },
+  "heart_of_the_sunken_kiln": {
+   "file": "heart_of_the_sunken_kiln.webp",
+   "class": "cinder_warden",
+   "subject": "an ancient brick furnace half underwater, glowing fire inside its open mouth"
+  },
+  "heat_draw": {
+   "file": "heat_draw.webp",
+   "class": "cinder_warden",
+   "subject": "a red heart drawing in streams of fiery heat"
+  },
+  "held_note": {
+   "file": "held_note.webp",
+   "class": "bell_chanter",
+   "subject": "a glowing violet sustained note sigil held between two hands"
+  },
+  "hush": {
+   "file": "hush.webp",
+   "class": "bell_chanter",
+   "subject": "a slow spreading ring of violet lightning, like ripples on dark water"
+  },
+  "iron_hymn": {
+   "file": "iron_hymn.webp",
+   "class": "bell_chanter",
+   "subject": "an iron shield engraved with a bell, crackling with lightning"
+  },
+  "iron_reply": {
+   "file": "iron_reply.webp",
+   "class": "cinder_warden",
+   "subject": "a spiked iron breastplate with spikes glowing, a sword shattering against it"
+  },
+  "keen_edge": {
+   "file": "keen_edge.webp",
+   "class": "salt_reaver",
+   "subject": "a razor sharp sword edge glinting with a bright star of light"
+  },
+  "keepers_knot": {
+   "file": "keepers_knot.webp",
+   "class": "reed_caller",
+   "subject": "a glowing celtic knot of reed cord binding two lights"
+  },
+  "kiln_hook": {
+   "file": "kiln_hook.webp",
+   "class": "cinder_warden",
+   "subject": "a long curved iron hook-blade with a glowing hot edge reaching forward"
+  },
+  "kindle": {
+   "file": "kindle.webp",
+   "class": "cinder_warden",
+   "subject": "a single tall vivid flame rising from cupped kindling"
+  },
+  "lantern_pact": {
+   "file": "lantern_pact.webp",
+   "class": "reed_caller",
+   "subject": "an old iron lantern casting a circle of cyan light on the ground"
+  },
+  "last_bell": {
+   "file": "last_bell.webp",
+   "class": "bell_chanter",
+   "subject": "a cracked lone bell with a single last spark"
+  },
+  "last_briar": {
+   "file": "last_briar.webp",
+   "class": "briar_stalker",
+   "subject": "a single thorny briar rose surviving in a dark crack"
+  },
+  "last_coal": {
+   "file": "last_coal.webp",
+   "class": "cinder_warden",
+   "subject": "a last dying ember glowing in a pile of grey ash"
+  },
+  "last_reed": {
+   "file": "last_reed.webp",
+   "class": "reed_caller",
+   "subject": "a single frozen reed standing upright in an icy lake"
+  },
+  "last_salt": {
+   "file": "last_salt.webp",
+   "class": "salt_reaver",
+   "subject": "a single white salt crystal glowing defiantly in darkness"
+  },
+  "life_spite_bulwark": {
+   "file": "life_spite_bulwark.webp",
+   "class": "cinder_warden",
+   "subject": "a tower shield with blood dripping down its iron face"
+  },
+  "living_coal": {
+   "file": "living_coal.webp",
+   "class": "cinder_warden",
+   "subject": "a pulsing ember coal shaped like a beating heart"
+  },
+  "long_bite": {
+   "file": "long_bite.webp",
+   "class": "briar_stalker",
+   "subject": "a snake fang with a long lingering trail of poison"
+  },
+  "low_chord": {
+   "file": "low_chord.webp",
+   "class": "bell_chanter",
+   "subject": "a deep resonating stringed lyre with heavy purple sound waves"
+  },
+  "mana_skin": {
+   "file": "mana_skin.webp",
+   "class": "bell_chanter",
+   "subject": "a bronze breastplate glowing with blue mana runes"
+  },
+  "measure": {
+   "file": "measure.webp",
+   "class": "salt_reaver",
+   "subject": "a brass compass divider measuring over a blade"
+  },
+  "mere_colossus": {
+   "file": "mere_colossus.webp",
+   "class": "reed_caller",
+   "subject": "a huge glass giant rising from a frozen lake, glowing cyan core"
+  },
+  "miasma": {
+   "file": "miasma.webp",
+   "class": "briar_stalker",
+   "subject": "a billowing toxic green poison cloud"
+  },
+  "needle": {
+   "file": "needle.webp",
+   "class": "briar_stalker",
+   "subject": "a single long poisoned needle dripping green venom"
+  },
+  "open_tempo": {
+   "file": "open_tempo.webp",
+   "class": "salt_reaver",
+   "subject": "a winged boot with a sword, speed lines"
+  },
+  "overtone": {
+   "file": "overtone.webp",
+   "class": "bell_chanter",
+   "subject": "a long streak of lightning shaped like a flying musical sound wave"
+  },
+  "parting_cut": {
+   "file": "parting_cut.webp",
+   "class": "salt_reaver",
+   "subject": "a heavy sword chop splitting a bright red wound line in two"
+  },
+  "peal": {
+   "file": "peal.webp",
+   "class": "bell_chanter",
+   "subject": "a large bronze bell with a ring of lightning expanding around it"
+  },
+  "perfect_tempo": {
+   "file": "perfect_tempo.webp",
+   "class": "salt_reaver",
+   "subject": "a golden hourglass with blades instead of sand, cracking"
+  },
+  "pyre_arc": {
+   "file": "pyre_arc.webp",
+   "class": "cinder_warden",
+   "subject": "a wide horizontal crescent sweep of roaring fire"
+  },
+  "quick_wrist": {
+   "file": "quick_wrist.webp",
+   "class": "salt_reaver",
+   "subject": "a gauntleted wrist flicking a dagger with motion blur speed lines"
+  },
+  "quiet_room": {
+   "file": "quiet_room.webp",
+   "class": "bell_chanter",
+   "subject": "a hooded figure with a finger to the lips inside a hushed glowing room"
+  },
+  "rally": {
+   "file": "rally.webp",
+   "class": "reed_caller",
+   "subject": "a glass servant leaping forward through the air, claws out"
+  },
+  "red_line": {
+   "file": "red_line.webp",
+   "class": "salt_reaver",
+   "subject": "a sword spinning in a full circle leaving a blood-red ring trail"
+  },
+  "red_tide": {
+   "file": "red_tide.webp",
+   "class": "salt_reaver",
+   "subject": "a towering crimson wave of blood cresting"
+  },
+  "reed_bolt": {
+   "file": "reed_bolt.webp",
+   "class": "reed_caller",
+   "subject": "a frozen reed shard flying like an ice javelin"
+  },
+  "rest_bar": {
+   "file": "rest_bar.webp",
+   "class": "bell_chanter",
+   "subject": "a quiet bronze bell resting on a cushion, soft blue mana glow"
+  },
+  "rhythm": {
+   "file": "rhythm.webp",
+   "class": "salt_reaver",
+   "subject": "a pulsing drum-like heartbeat ring with stacked blade notches"
+  },
+  "rime": {
+   "file": "rime.webp",
+   "class": "reed_caller",
+   "subject": "a branch coated in thick spiky white rime frost crystals"
+  },
+  "riposte": {
+   "file": "riposte.webp",
+   "class": "salt_reaver",
+   "subject": "a sword deflecting an incoming blade with a counterstrike arrow of sparks"
+  },
+  "salt_cut": {
+   "file": "salt_cut.webp",
+   "class": "salt_reaver",
+   "subject": "a short curved dagger making a single quick slash"
+  },
+  "salt_feint": {
+   "file": "salt_feint.webp",
+   "class": "salt_reaver",
+   "subject": "a ghostly double silhouette of a duelist sidestepping, afterimage"
+  },
+  "salt_guard": {
+   "file": "salt_guard.webp",
+   "class": "salt_reaver",
+   "subject": "two crossed short swords forming a tight parrying guard, sparks flying"
+  },
+  "salt_storm": {
+   "file": "salt_storm.webp",
+   "class": "salt_reaver",
+   "subject": "a whirlwind tornado of salt crystals and blades"
+  },
+  "salt_wisp": {
+   "file": "salt_wisp.webp",
+   "class": "reed_caller",
+   "subject": "a pale floating wisp spirit throwing white salt sparks"
+  },
+  "sear_step": {
+   "file": "sear_step.webp",
+   "class": "cinder_warden",
+   "subject": "an armored iron boot dashing forward leaving a trail of fiery footprints and speed streaks"
+  },
+  "second_voice": {
+   "file": "second_voice.webp",
+   "class": "reed_caller",
+   "subject": "two ghostly glass faces singing together"
+  },
+  "second_wind": {
+   "file": "second_wind.webp",
+   "class": "salt_reaver",
+   "subject": "a swirling gust of wind around a red heart and a helm"
+  },
+  "seed_scatter": {
+   "file": "seed_scatter.webp",
+   "class": "briar_stalker",
+   "subject": "three thorny seed pods flying in an arc"
+  },
+  "shared_breath": {
+   "file": "shared_breath.webp",
+   "class": "reed_caller",
+   "subject": "two streams of breath mist entwining into a spiral"
+  },
+  "shatter_bond": {
+   "file": "shatter_bond.webp",
+   "class": "reed_caller",
+   "subject": "a broken glass chain link exploding with frost"
+  },
+  "slag_rain": {
+   "file": "slag_rain.webp",
+   "class": "cinder_warden",
+   "subject": "falling chunks of glowing molten slag raining down onto burning ground"
+  },
+  "slow_hymn": {
+   "file": "slow_hymn.webp",
+   "class": "bell_chanter",
+   "subject": "an open hymn book with slow swirling blue mist curling out"
+  },
+  "soft_step": {
+   "file": "soft_step.webp",
+   "class": "briar_stalker",
+   "subject": "a soft leather boot stepping silently on a leaf"
+  },
+  "spit": {
+   "file": "spit.webp",
+   "class": "briar_stalker",
+   "subject": "a serpent head spitting a gob of green venom"
+  },
+  "spring_jaw": {
+   "file": "spring_jaw.webp",
+   "class": "briar_stalker",
+   "subject": "a bear trap snapping shut violently with a burst of poison"
+  },
+  "still_water": {
+   "file": "still_water.webp",
+   "class": "bell_chanter",
+   "subject": "a deep calm pool of glowing blue mana water with a single drop"
+  },
+  "sympathy": {
+   "file": "sympathy.webp",
+   "class": "bell_chanter",
+   "subject": "two bells connected by an arc of lightning jumping between them"
+  },
+  "tempered_hide": {
+   "file": "tempered_hide.webp",
+   "class": "cinder_warden",
+   "subject": "a thick riveted leather and iron pauldron glowing faintly with heat"
+  },
+  "third_voice": {
+   "file": "third_voice.webp",
+   "class": "reed_caller",
+   "subject": "three small glass servant figures standing in a row"
+  },
+  "thorn_snare": {
+   "file": "thorn_snare.webp",
+   "class": "briar_stalker",
+   "subject": "an open iron jaw trap wrapped in thorny vines dripping green poison"
+  },
+  "thousandfold_venom": {
+   "file": "thousandfold_venom.webp",
+   "class": "briar_stalker",
+   "subject": "eight venom drops stacked in a circle around a fang"
+  },
+  "thunder_toll": {
+   "file": "thunder_toll.webp",
+   "class": "bell_chanter",
+   "subject": "three lightning bolts striking down on one spot"
+  },
+  "tide_ring": {
+   "file": "tide_ring.webp",
+   "class": "reed_caller",
+   "subject": "a cloaked figure at the center of an expanding ring-shaped shockwave of icy water"
+  },
+  "tripwire": {
+   "file": "tripwire.webp",
+   "class": "briar_stalker",
+   "subject": "a taut thorny wire stretched between two stakes, glinting"
+  },
+  "twilight_veil": {
+   "file": "twilight_veil.webp",
+   "class": "briar_stalker",
+   "subject": "a hooded hunter cloaked in dusk shadows under a crescent moon"
+  },
+  "unbroken_bastion": {
+   "file": "unbroken_bastion.webp",
+   "class": "cinder_warden",
+   "subject": "a fortified stone castle wall on fire, flames along its battlements"
+  },
+  "undertow": {
+   "file": "undertow.webp",
+   "class": "reed_caller",
+   "subject": "a swirling cold water whirlpool dragging downward"
+  },
+  "vanish": {
+   "file": "vanish.webp",
+   "class": "briar_stalker",
+   "subject": "a hooded figure dissolving into wisps of green smoke"
+  },
+  "vigil": {
+   "file": "vigil.webp",
+   "class": "cinder_warden",
+   "subject": "a glowing golden eye inside a flaming ground circle"
+  },
+  "virulence": {
+   "file": "virulence.webp",
+   "class": "briar_stalker",
+   "subject": "a dead husk with green poison spreading out to new victims in tendrils"
+  },
+  "wake_edge": {
+   "file": "wake_edge.webp",
+   "class": "salt_reaver",
+   "subject": "a dagger with two glowing red crit-star marks after a dash streak"
+  },
+  "wide_hymn": {
+   "file": "wide_hymn.webp",
+   "class": "bell_chanter",
+   "subject": "a wide translucent dome of violet light over a kneeling chanter"
+  },
+  "wider_net": {
+   "file": "wider_net.webp",
+   "class": "briar_stalker",
+   "subject": "a wide thorny rope net spread out"
+  }
+ }
+}

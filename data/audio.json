@@ -1,0 +1,5 @@
+{
+  "about": "v84j: game sound. Scott: the current sounds are awful, remove them until there is good sound. defaultMuted mutes music and effects for new players; muteMigration is a one-time tag: any saved settings without it are set to muted once (settings.audioMig), so devices that had sound on start muted, and the sound button still turns it back on (and stays on). The audio code is kept. Set defaultMuted false to bring sound back by default.",
+  "defaultMuted": true,
+  "muteMigration": "v84j-mute"
+}
