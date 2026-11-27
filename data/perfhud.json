@@ -1,0 +1,8 @@
+{
+ "_doc": "v84m FPS / frame-time readout (js/ab-fps.js). settingKey = the key in the saved settings; default = shown on a fresh install; window = frames kept for the average and 1% low; updateMs = text refresh; top = px below the safe-area top.",
+ "settingKey": "showFps",
+ "default": false,
+ "window": 600,
+ "updateMs": 500,
+ "top": 4
+}
