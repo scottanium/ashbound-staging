@@ -2,7 +2,7 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
-// v84l: the cache name follows config.js VERSION (ashbound-staging-v84l on staging), so this build installs a fresh cache and drops v84k.
+// v84m: the cache name follows config.js VERSION (ashbound-staging-v84m on staging), so this build installs a fresh cache and drops v84l.
 
 // r14: cache every painted skill icon listed in data/skill-art.json. Best effort: a missing icon never fails install.
 async function cacheSkillArt(cache) {
@@ -138,6 +138,45 @@ self.addEventListener('install', (event) => {
     './js/ab-skillart.js',
     './data/skill-fx.json',
     './js/ab-skillfx.js',
+    // v84m zone graphics (painted Reed Marsh set, time of day) + FPS readout
+    './js/ab-zonegfx.js',
+    './data/zonegfx.json',
+    './js/ab-fps.js',
+    './data/perfhud.json',
+    './assets/zonegfx/mere/arch.webp',
+    './assets/zonegfx/mere/backdrop.webp',
+    './assets/zonegfx/mere/bankside.webp',
+    './assets/zonegfx/mere/banktop.webp',
+    './assets/zonegfx/mere/banner.webp',
+    './assets/zonegfx/mere/bones.png',
+    './assets/zonegfx/mere/crate.webp',
+    './assets/zonegfx/mere/detail.webp',
+    './assets/zonegfx/mere/lantern.webp',
+    './assets/zonegfx/mere/lily.webp',
+    './assets/zonegfx/mere/marker.webp',
+    './assets/zonegfx/mere/moss.webp',
+    './assets/zonegfx/mere/mud.webp',
+    './assets/zonegfx/mere/mudsplat.png',
+    './assets/zonegfx/mere/path.webp',
+    './assets/zonegfx/mere/pedestal.webp',
+    './assets/zonegfx/mere/planks.png',
+    './assets/zonegfx/mere/puddle.png',
+    './assets/zonegfx/mere/reeds1.webp',
+    './assets/zonegfx/mere/reeds2.webp',
+    './assets/zonegfx/mere/ripple.webp',
+    './assets/zonegfx/mere/rock1.webp',
+    './assets/zonegfx/mere/roots.png',
+    './assets/zonegfx/mere/scum.png',
+    './assets/zonegfx/mere/sedge.webp',
+    './assets/zonegfx/mere/shrine.webp',
+    './assets/zonegfx/mere/silt.webp',
+    './assets/zonegfx/mere/stone.webp',
+    './assets/zonegfx/mere/stones.png',
+    './assets/zonegfx/mere/tree1.webp',
+    './assets/zonegfx/mere/tree2.webp',
+    './assets/zonegfx/mere/tree3.webp',
+    './assets/zonegfx/mere/waterbed.webp',
+    './assets/zonegfx/mere/waypoint.webp',
   ]).then(() => cacheSkillArt(cache))));
 });
 
