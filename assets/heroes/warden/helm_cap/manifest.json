@@ -157,6 +157,110 @@
     256,
     384
    ]
+  },
+  "cast": {
+   "file": "cast.webp",
+   "bytes": 3806,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    26,
+    24
+   ],
+   "foot": [
+    13.0,
+    132.84
+   ],
+   "src_bbox": [
+    115,
+    124,
+    141,
+    148
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "dash": {
+   "file": "dash.webp",
+   "bytes": 4526,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    112,
+    83
+   ],
+   "foot": [
+    58.0,
+    114.84
+   ],
+   "src_bbox": [
+    70,
+    142,
+    182,
+    225
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "slam": {
+   "file": "slam.webp",
+   "bytes": 4466,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    88,
+    97
+   ],
+   "foot": [
+    44.0,
+    141.84
+   ],
+   "src_bbox": [
+    84,
+    115,
+    172,
+    212
+   ],
+   "render": [
+    256,
+    384
+   ]
+  },
+  "throw": {
+   "file": "throw.webp",
+   "bytes": 4970,
+   "cols": 3,
+   "rows": 8,
+   "frames": 3,
+   "dirs": 8,
+   "cell": [
+    161,
+    109
+   ],
+   "foot": [
+    81.0,
+    130.84
+   ],
+   "src_bbox": [
+    47,
+    126,
+    208,
+    235
+   ],
+   "render": [
+    256,
+    384
+   ]
   }
  },
  "cell": [
@@ -168,5 +272,5 @@
   132.84
  ],
  "charHeight": 148,
- "bytes": 43130
+ "bytes": 60898
 }
