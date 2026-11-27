@@ -579,7 +579,7 @@
     "pad": 8,
     "maxW": 340,
     "maxH": 380,
-    "compareMaxW": 320,
+    "compareMaxW": 400,
     "minW": 200,
     "stackMin": 160,
     "equipH": 44,
@@ -587,7 +587,9 @@
     "iconGap": 6,
     "stripGap": 6,
     "z": 80,
-    "tipZ": 90
+    "tipZ": 90,
+    "compareEven": true,
+    "compareAbout": "v84n: compareEven gives the equipped card an even share of the width (up to compareMaxW) so its full stats show."
   },
   "dockIcons": {
     "about": "v84g compact play dock (icon + short label). Sizes in CSS px. enabled turns the icon layout on; a later settings screen can expose these as user-editable HUD values. js/ab-ui.js and the dock markup in index.html read this.",
@@ -627,5 +629,39 @@
     "dragSlop": 9,
     "temperSpend": false,
     "railW": 54
+  },
+  "gearEquip": {
+    "about": "v84n: tapping Equip on an item pop-up equips it and closes the pop-up (same as skills). false = keep the pop-up open on the worn item (old behavior). The info button and tapping a worn item still open its details.",
+    "closeOnEquip": true
+  },
+  "compare": {
+    "about": "v84n (TTPC-49): item compare. The Compared to equipped block always shows when the item can go in an occupied slot (noChange when nothing differs). js/ab-compare.js puts each stat's difference next to its line on the bag item (colors.better green, colors.worse red) and lists stats only the worn item has as red lines tagged lostTag. lowerIsBetter: stat keys where less is better.",
+    "head": "Compared to equipped",
+    "noChange": "No change",
+    "colors": {
+      "better": "#6fdc7a",
+      "worse": "#ff6a5a"
+    },
+    "lostTag": "Lose",
+    "plus": "+",
+    "minus": "−",
+    "lowerIsBetter": []
+  },
+  "invFull": {
+    "about": "v84n (TTPC-52, js/ab-invfull.js): on phones in landscape the gear panel fills the whole screen; on the Pack tab Sort / Fill belt / Stow sit in one bottom row (rowH) beside the consume strip and the bag cells grow up to maxCell px into the freed room. Doll slots keep their size. Insets come from the safe area; pad / gap values in CSS px. Cell height = (screen - safe insets - padTop - padBottom - headH - 3*gap - rowH - slack) / rows; slack covers the grid border. artPad: px of padding around a bag item's art inside its 1px border (the art was 8px smaller than the cell, now 4px). Landscape only (portrait keeps the old panel). Makings chips (shards, runes, gems) ride in the bottom row as rowH squares, up to matsMaxW px wide, then scroll sideways.",
+    "enabled": true,
+    "profile": "phoneLandscape",
+    "padX": 10,
+    "padTop": 2,
+    "padBottom": 4,
+    "headH": 44,
+    "rowH": 44,
+    "gap": 4,
+    "colGap": 10,
+    "btnGap": 6,
+    "maxCell": 64,
+    "slack": 8,
+    "artPad": 1,
+    "matsMaxW": 240
   }
 }

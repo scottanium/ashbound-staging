@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "briar_stalker",
-  "about": "Briar Stalker trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-stalker.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-stalker.md). Delete this file (or set enabled false) and the Stalker uses the old per-skill system again.",
+  "about": "Briar Stalker trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-stalker.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-stalker.md). Delete this file (or set enabled false) and the Stalker uses the old per-skill system again. v84n: linear trees, 9 nodes (A1 1, P 5, A 10, P 15, A 20, P 25, A 30, P 35, ULT 40), no pick pairs; each tree has a mark (sig) applied by its A1 (signature node). See tools/build_v84n_trees.py.",
   "trees": [
     {
       "id": "snare",
@@ -19,43 +19,55 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "thorn_snare"
+          "at": 1,
+          "skill": "thorn_snare",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "wider_net"
         },
         {
+          "at": 10,
+          "skill": "bramble_bed"
+        },
+        {
           "at": 15,
-          "skill": "tripwire",
-          "pick": "snare_trap"
+          "skill": "barbs"
         },
         {
           "at": 20,
-          "skill": "bramble_bed",
-          "pick": "snare_trap"
+          "skill": "seed_scatter"
         },
         {
           "at": 25,
-          "skill": "spring_jaw",
-          "pick": "snare_burst"
+          "skill": "hair_trigger"
         },
         {
           "at": 30,
-          "skill": "seed_scatter",
-          "pick": "snare_burst"
+          "skill": "spring_jaw"
         },
         {
           "at": 35,
-          "skill": "hair_trigger"
+          "skill": "thorn_harvest"
         },
         {
           "at": 40,
           "skill": "garden_of_thorns",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "snared",
+        "name": "Snared",
+        "pct": 6,
+        "max": 3,
+        "sec": 5,
+        "slow": true,
+        "color": "#c6e07a"
+      },
+      "sigAbout": "Thorn Snare is the Stalker's trap: what it catches is Snared (slowed, easier to hurt); every trap adds to it."
     },
     {
       "id": "venom",
@@ -72,30 +84,33 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "needle"
+          "at": 1,
+          "skill": "needle",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "deep_rot"
         },
         {
-          "at": 15,
+          "at": 10,
           "skill": "spit"
         },
         {
-          "at": 20,
+          "at": 15,
           "skill": "long_bite"
         },
         {
+          "at": 20,
+          "skill": "miasma"
+        },
+        {
           "at": 25,
-          "skill": "miasma",
-          "pick": "venom_spread"
+          "skill": "full_sacs"
         },
         {
           "at": 30,
-          "skill": "fang_volley",
-          "pick": "venom_spread"
+          "skill": "fang_volley"
         },
         {
           "at": 35,
@@ -104,9 +119,19 @@
         {
           "at": 40,
           "skill": "thousandfold_venom",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "envenomed",
+        "name": "Envenomed",
+        "pct": 4,
+        "max": 4,
+        "sec": 6,
+        "color": "#9dce6a"
+      },
+      "sigAbout": "Needle Envenoms at range; Spit and Miasma pile it on, Three Needles cashes it in."
     },
     {
       "id": "hide",
@@ -123,22 +148,25 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "mark_quarry",
+          "signature": true
+        },
+        {
           "at": 5,
           "skill": "soft_step"
         },
         {
           "at": 10,
-          "skill": "crouch"
+          "skill": "vanish"
         },
         {
           "at": 15,
-          "skill": "antidote",
-          "pick": "hide_out"
+          "skill": "ambusher"
         },
         {
           "at": 20,
-          "skill": "vanish",
-          "pick": "hide_out"
+          "skill": "antidote"
         },
         {
           "at": 25,
@@ -146,7 +174,7 @@
         },
         {
           "at": 30,
-          "skill": "ambusher"
+          "skill": "from_the_dark"
         },
         {
           "at": 35,
@@ -155,9 +183,19 @@
         {
           "at": 40,
           "skill": "twilight_veil",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "quarry",
+        "name": "Quarry",
+        "pct": 7,
+        "max": 2,
+        "sec": 8,
+        "color": "#d0b0ff"
+      },
+      "sigAbout": "Mark the Quarry picks the kill; Out of Sight gets you there, From the Dark spends the mark in one blow."
     }
   ],
   "skills": [
@@ -172,12 +210,18 @@
       "requires": [],
       "behavior": "passive",
       "about": "A trap that fires sets itself again in the same spot, once, 0.35 seconds later.",
-      "notes": [],
+      "notes": [
+        "Snared lasts 2 seconds longer."
+      ],
       "params": {
         "rearm": 1,
         "arm": 0.35,
-        "minLife": 4
-      }
+        "minLife": 4,
+        "sigBoost": {
+          "sec": 2
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "seed_scatter",
@@ -200,7 +244,8 @@
         "count": 3,
         "dist": 2.4,
         "spread": 0.55,
-        "max": 6
+        "max": 6,
+        "sigApply": 1
       }
     },
     {
@@ -239,11 +284,21 @@
       "requires": [],
       "behavior": "passive",
       "about": "When a poisoned foe dies, its poison spreads to foes within 2.5 range and lasts 2 seconds longer.",
-      "notes": [],
+      "notes": [
+        "Envenomed foes also burst with poison when they die."
+      ],
       "params": {
         "radius": 2.5,
-        "extraSec": 2
-      }
+        "extraSec": 2,
+        "sigBoost": {
+          "burst": {
+            "pct": 12,
+            "radius": 2.5,
+            "el": "poison"
+          }
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "fang_volley",
@@ -261,11 +316,15 @@
       "cooldown": 1.5,
       "behavior": "tree_fang_volley",
       "about": "Three needles at once, fanned wide. Each needle hits like Needle.",
-      "notes": [],
+      "notes": [
+        "Each needle spends Envenomed stacks, dealing +8% damage per stack."
+      ],
       "params": {
         "count": 3,
-        "spread": 0.28
-      }
+        "spread": 0.28,
+        "sigConsume": 8
+      },
+      "kotoPolish": true
     },
     {
       "id": "thousandfold_venom",
@@ -300,7 +359,9 @@
       "cooldown": 6,
       "behavior": "dash",
       "about": "You dash and cannot be hit for 1.2 seconds after it.",
-      "notes": [],
+      "notes": [
+        "This marks foes you dash through as Quarry."
+      ],
       "params": {
         "distance": [
           3,
@@ -311,8 +372,10 @@
           0.6,
           0.02
         ],
-        "iframes": 1.2
-      }
+        "iframes": 1.2,
+        "sigApply": 1
+      },
+      "kotoPolish": true
     },
     {
       "id": "ambusher",
@@ -325,11 +388,17 @@
       "requires": [],
       "behavior": "passive",
       "about": "The first blow is the one that counts. You deal +60% damage, including poison, to foes at full life.",
-      "notes": [],
+      "notes": [
+        "Quarry takes +2% more damage from you per stack."
+      ],
       "params": {
         "pct": 60,
-        "fullAt": 0.98
-      }
+        "fullAt": 0.98,
+        "sigBoost": {
+          "pct": 2
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "twilight_veil",
@@ -360,6 +429,147 @@
           8
         ]
       }
+    },
+    {
+      "id": "barbs",
+      "name": "Barbs",
+      "branch": "snare",
+      "type": "passive",
+      "icon": "thorn",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Your snares deal more poison, and foes can carry one more Snared stack.",
+      "notes": [],
+      "params": {
+        "perRank": {
+          "poisonDamage": [
+            1,
+            2
+          ]
+        },
+        "sigBoost": {
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "thorn_harvest",
+      "name": "Thorn Harvest",
+      "branch": "snare",
+      "type": "passive",
+      "icon": "thorn",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "A Snared foe that dies bursts into thorns that poison the foes around it.",
+      "notes": [
+        "The burst deals 15% of the foe's max life as poison, and hits harder with more Snared stacks."
+      ],
+      "params": {
+        "sigBoost": {
+          "burst": {
+            "pct": 15,
+            "radius": 1.8,
+            "el": "poison"
+          }
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "full_sacs",
+      "name": "Full Sacs",
+      "branch": "venom",
+      "type": "passive",
+      "icon": "poison",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Foes can carry two more Envenomed stacks, and your poison hits a little harder.",
+      "notes": [],
+      "params": {
+        "perRank": {
+          "poisonDamage": [
+            1,
+            1
+          ]
+        },
+        "sigBoost": {
+          "stacks": 2
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "mark_quarry",
+      "name": "Mark the Quarry",
+      "branch": "hide",
+      "type": "active",
+      "icon": "thorn",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "projectile",
+      "about": "You throw a marked thorn. The foe it hits becomes your Quarry and takes +7% damage from you per stack (up to 2).",
+      "notes": [],
+      "params": {
+        "speed": 12,
+        "range": 7.5,
+        "radius": 0.14,
+        "poison": [
+          4,
+          7,
+          1.0,
+          1.3
+        ],
+        "sigApply": 1
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        4,
+        0.15
+      ],
+      "cooldown": 0.6
+    },
+    {
+      "id": "from_the_dark",
+      "name": "From the Dark",
+      "branch": "hide",
+      "type": "active",
+      "icon": "thorn",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "melee",
+      "about": "A single blow from hiding. It spends every Quarry stack on the foe, dealing +25% damage per stack.",
+      "notes": [
+        "+25% damage per Quarry stack spent."
+      ],
+      "params": {
+        "arc": 1.0,
+        "range": 1.5,
+        "physMult": [
+          1.7,
+          0.06
+        ],
+        "sigConsume": 25
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        10,
+        0.25
+      ],
+      "cooldown": 4
     }
   ],
   "strings": {

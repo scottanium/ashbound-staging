@@ -1,18 +1,18 @@
 {
-  "about": "v84h top-down skill-tree panel as compact icon tiles (D2-style). Three trees sit side by side; each packs its 8-node path into a 2-column zig-zag so 5 through the 40-point ultimate stay on screen in phone landscape. js/ab-skilltree.js reads this. Node costs stay in data/skilltrees-*.json. Icons come from the skill-button pixel art (Tn / skill id) when present.",
+  "about": "v84h top-down skill-tree panel as compact icon tiles (D2-style). Three trees sit side by side; each packs its 9-node path (v84n: 1,5,...,40) into a 3-wide snake (pack snake3: 1 5 10 / 25 20 15 / 30 35 40) so the whole tree through the 40-point ultimate stays on screen in phone landscape. js/ab-skilltree.js reads this. Node costs stay in data/skilltrees-*.json. Icons come from the skill-button pixel art (Tn / skill id) when present.",
   "enabled": true,
   "direction": "down",
   "layout": "forest",
-  "pack": "zigzag2",
-  "cols": 2,
+  "pack": "snake3",
+  "cols": 3,
   "colsNarrow": 2,
   "narrowMax": 520,
-  "tile": 56,
-  "tileDesktop": 64,
-  "tileShort": 56,
-  "nodeMinH": 56,
+  "tile": 50,
+  "tileDesktop": 60,
+  "tileShort": 48,
+  "nodeMinH": 48,
   "tapMin": 44,
-  "gapX": 10,
+  "gapX": 6,
   "gapY": 8,
   "nameSize": 9,
   "lineWidth": 3,
@@ -26,5 +26,15 @@
     "onBar": "Put on the action bar",
     "slot": "Bar {n}",
     "pointsTitle": "Skill points"
+  },
+  "header": {
+    "about": "v84n: each tree's header is its +1 button. Tap = +1 point in that tree (and opens it); hold = keep adding (holdDelayMs, then one every holdEveryMs). When the tree can't take a point the header only opens the tree and the chip dims (or reads maxText at 50). minH is the header height in CSS px (>=44 for touch).",
+    "spendOnTap": true,
+    "hold": true,
+    "holdDelayMs": 420,
+    "holdEveryMs": 110,
+    "minH": 44,
+    "plusText": "+1",
+    "maxText": "MAX"
   }
 }

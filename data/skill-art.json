@@ -610,6 +610,174 @@
    "file": "wider_net.webp",
    "class": "briar_stalker",
    "subject": "a wide thorny rope net spread out"
+  },
+  "brand_deep": {
+   "file": "brand_deep.webp",
+   "class": "cinder_warden",
+   "subject": "a glowing brand mark sinking deep into dark iron, embers in the cracks",
+   "placeholder": true,
+   "from": "pyre_arc"
+  },
+  "brandfall": {
+   "file": "brandfall.webp",
+   "class": "cinder_warden",
+   "subject": "a branded foe bursting into a ring of fire",
+   "placeholder": true,
+   "from": "ash_detonation"
+  },
+  "iron_call": {
+   "file": "iron_call.webp",
+   "class": "cinder_warden",
+   "subject": "a hammer ringing on an anvil, a hot shockwave circle around a planted shield",
+   "placeholder": true,
+   "from": "ash_ward"
+  },
+  "anvil_bash": {
+   "file": "anvil_bash.webp",
+   "class": "cinder_warden",
+   "subject": "a heavy shield bash with sparks flying off an anvil face",
+   "placeholder": true,
+   "from": "forgebreaker"
+  },
+  "brine_edge": {
+   "file": "brine_edge.webp",
+   "class": "salt_reaver",
+   "subject": "a curved blade dripping salt brine, white crystals on the edge",
+   "placeholder": true,
+   "from": "riposte"
+  },
+  "salt_in_wound": {
+   "file": "salt_in_wound.webp",
+   "class": "salt_reaver",
+   "subject": "salt crystals pouring into a red cut",
+   "placeholder": true,
+   "from": "bloodletting"
+  },
+  "open_vein": {
+   "file": "open_vein.webp",
+   "class": "salt_reaver",
+   "subject": "a thin red slash opening a vein, drops of blood in an arc",
+   "placeholder": true,
+   "from": "red_line"
+  },
+  "blood_ward": {
+   "file": "blood_ward.webp",
+   "class": "salt_reaver",
+   "subject": "a swirling shield of blood droplets around a helm",
+   "placeholder": true,
+   "from": "second_wind"
+  },
+  "red_reckoning": {
+   "file": "red_reckoning.webp",
+   "class": "salt_reaver",
+   "subject": "a crossed pair of blades over a crimson burst",
+   "placeholder": true,
+   "from": "full_measure"
+  },
+  "resonance": {
+   "file": "resonance.webp",
+   "class": "bell_chanter",
+   "subject": "concentric sound rings spreading from a bronze bell",
+   "placeholder": true,
+   "from": "overtone"
+  },
+  "cracked_bell": {
+   "file": "cracked_bell.webp",
+   "class": "bell_chanter",
+   "subject": "a cracked bronze bell releasing violet lightning",
+   "placeholder": true,
+   "from": "damp"
+  },
+  "held_breath": {
+   "file": "held_breath.webp",
+   "class": "bell_chanter",
+   "subject": "a hushed mouth with a held breath of pale mist",
+   "placeholder": true,
+   "from": "still_water"
+  },
+  "draining_toll": {
+   "file": "draining_toll.webp",
+   "class": "bell_chanter",
+   "subject": "a bolt of blue sound draining mana from a foe",
+   "placeholder": true,
+   "from": "rest_bar"
+  },
+  "bronze_ward": {
+   "file": "bronze_ward.webp",
+   "class": "bell_chanter",
+   "subject": "a bronze bell-shaped ward shimmering around a figure",
+   "placeholder": true,
+   "from": "iron_hymn"
+  },
+  "spent_breath": {
+   "file": "spent_breath.webp",
+   "class": "bell_chanter",
+   "subject": "a final exhale of violet mist bursting outward",
+   "placeholder": true,
+   "from": "quiet_room"
+  },
+  "pack_sense": {
+   "file": "pack_sense.webp",
+   "class": "reed_caller",
+   "subject": "glass servants turning their heads toward a marked prey",
+   "placeholder": true,
+   "from": "glass_heart"
+  },
+  "deep_water": {
+   "file": "deep_water.webp",
+   "class": "reed_caller",
+   "subject": "dark deep water with a frost rime spreading on its surface",
+   "placeholder": true,
+   "from": "lantern_pact"
+  },
+  "binding_shard": {
+   "file": "binding_shard.webp",
+   "class": "reed_caller",
+   "subject": "a glass shard trailing a cyan binding thread",
+   "placeholder": true,
+   "from": "reed_bolt"
+  },
+  "pull_the_knot": {
+   "file": "pull_the_knot.webp",
+   "class": "reed_caller",
+   "subject": "a cyan knot pulled tight, drawing a foe in",
+   "placeholder": true,
+   "from": "undertow"
+  },
+  "barbs": {
+   "file": "barbs.webp",
+   "class": "briar_stalker",
+   "subject": "hooked thorn barbs on a snare line",
+   "placeholder": true,
+   "from": "tripwire"
+  },
+  "thorn_harvest": {
+   "file": "thorn_harvest.webp",
+   "class": "briar_stalker",
+   "subject": "a sickle reaping thorny vines, green sparks",
+   "placeholder": true,
+   "from": "barbed_coat"
+  },
+  "full_sacs": {
+   "file": "full_sacs.webp",
+   "class": "briar_stalker",
+   "subject": "swollen green venom sacs dripping poison",
+   "placeholder": true,
+   "from": "antidote"
+  },
+  "mark_quarry": {
+   "file": "mark_quarry.webp",
+   "class": "briar_stalker",
+   "subject": "a hunter's thrown dart marking a glowing target sigil on prey",
+   "placeholder": true,
+   "from": "crouch"
+  },
+  "from_the_dark": {
+   "file": "from_the_dark.webp",
+   "class": "briar_stalker",
+   "subject": "a blade lunging out of deep shadow, green eyes in the dark",
+   "placeholder": true,
+   "from": "long_bite"
   }
  }
 }

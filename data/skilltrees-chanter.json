@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "bell_chanter",
-  "about": "Bell Chanter trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-chanter.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-chanter.md). Delete this file (or set enabled false) and the Chanter uses the old per-skill system again.",
+  "about": "Bell Chanter trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-chanter.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-chanter.md). Delete this file (or set enabled false) and the Chanter uses the old per-skill system again. v84n: linear trees, 9 nodes (A1 1, P 5, A 10, P 15, A 20, P 25, A 30, P 35, ULT 40), no pick pairs; each tree has a mark (sig) applied by its A1 (signature node). See tools/build_v84n_trees.py.",
   "trees": [
     {
       "id": "bell",
@@ -19,43 +19,54 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "bell_note"
+          "at": 1,
+          "skill": "bell_note",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "clear_tone"
         },
         {
+          "at": 10,
+          "skill": "counterpoint"
+        },
+        {
           "at": 15,
-          "skill": "overtone",
-          "pick": "bell_note2"
+          "skill": "resonance"
         },
         {
           "at": 20,
-          "skill": "counterpoint",
-          "pick": "bell_note2"
+          "skill": "peal"
         },
         {
           "at": 25,
-          "skill": "peal",
-          "pick": "bell_storm"
+          "skill": "sympathy"
         },
         {
           "at": 30,
-          "skill": "thunder_toll",
-          "pick": "bell_storm"
+          "skill": "thunder_toll"
         },
         {
           "at": 35,
-          "skill": "sympathy"
+          "skill": "cracked_bell"
         },
         {
           "at": 40,
           "skill": "carillon",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "ringing",
+        "name": "Ringing",
+        "pct": 5,
+        "max": 3,
+        "sec": 5,
+        "color": "#e6e38a"
+      },
+      "sigAbout": "Bell Note leaves foes Ringing; more notes ring them louder and Three Tolls cashes it in."
     },
     {
       "id": "hymn",
@@ -72,30 +83,33 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "hush",
+          "signature": true
+        },
+        {
           "at": 5,
-          "skill": "slow_hymn"
-        },
-        {
-          "at": 10,
-          "skill": "iron_hymn"
-        },
-        {
-          "at": 15,
           "skill": "low_chord"
         },
         {
-          "at": 20,
+          "at": 10,
+          "skill": "slow_hymn"
+        },
+        {
+          "at": 15,
           "skill": "wide_hymn"
         },
         {
+          "at": 20,
+          "skill": "iron_hymn"
+        },
+        {
           "at": 25,
-          "skill": "quiet_room",
-          "pick": "hymn_slow"
+          "skill": "held_breath"
         },
         {
           "at": 30,
-          "skill": "hush",
-          "pick": "hymn_slow"
+          "skill": "quiet_room"
         },
         {
           "at": 35,
@@ -104,9 +118,20 @@
         {
           "at": 40,
           "skill": "grand_silence",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "hushed",
+        "name": "Hushed",
+        "pct": 4,
+        "max": 3,
+        "sec": 5,
+        "slow": true,
+        "color": "#b6c8ff"
+      },
+      "sigAbout": "The Slow Ring Hushes everything it touches (slowed, easier to hurt); the Hymn tree is about holding a room still."
     },
     {
       "id": "keep",
@@ -123,30 +148,33 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "draining_toll",
+          "signature": true
+        },
+        {
           "at": 5,
           "skill": "held_note"
         },
         {
           "at": 10,
-          "skill": "rest_bar",
-          "pick": "keep_draw"
-        },
-        {
-          "at": 15,
-          "skill": "damp",
-          "pick": "keep_draw"
-        },
-        {
-          "at": 20,
-          "skill": "choir"
-        },
-        {
-          "at": 25,
           "skill": "still_water"
         },
         {
-          "at": 30,
+          "at": 15,
+          "skill": "choir"
+        },
+        {
+          "at": 20,
+          "skill": "bronze_ward"
+        },
+        {
+          "at": 25,
           "skill": "mana_skin"
+        },
+        {
+          "at": 30,
+          "skill": "spent_breath"
         },
         {
           "at": 35,
@@ -155,9 +183,20 @@
         {
           "at": 40,
           "skill": "bell_that_holds",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "drained",
+        "name": "Drained",
+        "pct": 3,
+        "max": 3,
+        "sec": 6,
+        "mana": 1.5,
+        "color": "#7ab0ff"
+      },
+      "sigAbout": "Draining Toll marks foes Drained: every hit on them gives mana back; Spent Breath spends it."
     }
   ],
   "skills": [
@@ -195,7 +234,9 @@
       "cooldown": 5,
       "behavior": "tree_toll",
       "about": "A spot ahead of you is struck by lightning three times. It aims at the nearest foe in front of you.",
-      "notes": [],
+      "notes": [
+        "This spends every Ringing stack, dealing +10% damage per stack."
+      ],
       "params": {
         "range": 7,
         "radius": 1.5,
@@ -206,8 +247,10 @@
           10,
           1.4,
           1.8
-        ]
-      }
+        ],
+        "sigConsume": 10
+      },
+      "kotoPolish": true
     },
     {
       "id": "carillon",
@@ -247,12 +290,18 @@
       "requires": [],
       "behavior": "passive",
       "about": "Slowed foes take +25% damage from you, plus 1% per rank. Foes held by The Late Toll take twice that.",
-      "notes": [],
+      "notes": [
+        "Hushed foes take +1% more damage from you per stack."
+      ],
       "params": {
         "pct": 25,
         "pctPerRank": 1,
-        "stillMul": 2
-      }
+        "stillMul": 2,
+        "sigBoost": {
+          "pct": 1
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "hush",
@@ -269,7 +318,7 @@
       ],
       "cooldown": 6,
       "behavior": "tree_hush",
-      "about": "A ring of lightning that slows everything it touches for 4 seconds, so The Weight applies at once.",
+      "about": "A ring of lightning that slows everything it touches for 4 seconds and leaves it Hushed: +4% damage from you per stack (up to 3).",
       "notes": [],
       "params": {
         "radius": [
@@ -282,8 +331,10 @@
           1.1,
           1.4
         ],
-        "slowSec": 4
-      }
+        "slowSec": 4,
+        "sigApply": 1
+      },
+      "kotoPolish": true
     },
     {
       "id": "grand_silence",
@@ -364,6 +415,180 @@
         "fcrHigh": 30,
         "highPct": 50
       }
+    },
+    {
+      "id": "resonance",
+      "name": "Resonance",
+      "branch": "bell",
+      "type": "passive",
+      "icon": "bolt",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Your notes deal more lightning damage, and foes can carry one more Ringing stack.",
+      "notes": [],
+      "params": {
+        "perRank": {
+          "lightningDamage": [
+            1,
+            1
+          ]
+        },
+        "sigBoost": {
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "cracked_bell",
+      "name": "Cracked Bell",
+      "branch": "bell",
+      "type": "passive",
+      "icon": "bolt",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "A Ringing foe that dies cracks like a bell and shocks the foes around it.",
+      "notes": [
+        "The burst deals 15% of the foe's max life as lightning, and hits harder with more Ringing stacks."
+      ],
+      "params": {
+        "sigBoost": {
+          "burst": {
+            "pct": 15,
+            "radius": 2.0,
+            "el": "light"
+          }
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "held_breath",
+      "name": "Held Breath",
+      "branch": "hymn",
+      "type": "passive",
+      "icon": "hide",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Hushed lasts 3 seconds longer, and you gain a little more defense.",
+      "notes": [],
+      "params": {
+        "perRank": {
+          "defense": 4
+        },
+        "sigBoost": {
+          "sec": 3
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "draining_toll",
+      "name": "Draining Toll",
+      "branch": "keep",
+      "type": "active",
+      "icon": "bolt",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "projectile",
+      "about": "A low note that leaves the foe Drained. Drained foes take +3% damage from you per stack (up to 3), and hits on them restore your mana.",
+      "notes": [
+        "Each Drained stack gives 1.5 mana per hit."
+      ],
+      "params": {
+        "speed": 9,
+        "range": 7,
+        "radius": 0.18,
+        "light": [
+          3,
+          5,
+          0.8,
+          1.1
+        ],
+        "sigApply": 1
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        3,
+        0.1
+      ],
+      "cooldown": 0.6
+    },
+    {
+      "id": "bronze_ward",
+      "name": "Bronze Ward",
+      "branch": "keep",
+      "type": "active",
+      "icon": "shield",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "ward",
+      "about": "A ward of ringing bronze absorbs the next hits.",
+      "notes": [],
+      "params": {
+        "absorb": [
+          16,
+          5
+        ],
+        "duration": 8,
+        "perRank": {
+          "mana": 2
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        12,
+        0.3
+      ],
+      "cooldown": 9
+    },
+    {
+      "id": "spent_breath",
+      "name": "Spent Breath",
+      "branch": "keep",
+      "type": "active",
+      "icon": "bolt",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "nova",
+      "about": "Lightning rings out around you and spends every Drained stack on the foes it hits, dealing +12% damage per stack.",
+      "notes": [
+        "+12% damage per Drained stack spent."
+      ],
+      "params": {
+        "radius": [
+          2.4,
+          0.03
+        ],
+        "light": [
+          5,
+          9,
+          1.3,
+          1.6
+        ],
+        "sigConsume": 12
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        14,
+        0.35
+      ],
+      "cooldown": 5
     }
   ],
   "strings": {

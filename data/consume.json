@@ -15,6 +15,7 @@
   "dormantSetMul": 0.25,
   "sleepRequiresCap": true,
   "hint": "A unique can be consumed once this hero has Heart-Cinder and the consume-slot recipe.",
+  "hintShort": "Consume: needs Heart-Cinder.",
   "materials": {
     "wake_oil": {
       "id": "wake_oil",

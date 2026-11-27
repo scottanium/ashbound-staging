@@ -3461,6 +3461,528 @@
     "noBuff": true
    },
    "look": "dusk smoke closes around you; you stay dark while it lasts"
+  },
+  "iron_call": {
+   "cls": "cinder_warden",
+   "pose": "raise",
+   "pal": "vigil",
+   "shapes": [
+    {
+     "k": "shout",
+     "r": 3.0,
+     "dur": 0.45
+    },
+    {
+     "k": "ripple",
+     "r": 3.0,
+     "rings": 2,
+     "dur": 0.55,
+     "delay": 0.08
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "spark",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    }
+   },
+   "look": "iron-gold shout ring that rolls out and marks foes Challenged"
+  },
+  "anvil_bash": {
+   "cls": "cinder_warden",
+   "pose": "slam",
+   "pal": "bulwark",
+   "shapes": [
+    {
+     "k": "cleave",
+     "r": 1.3,
+     "arc": 1.4,
+     "w": 0.3,
+     "dur": 0.28
+    },
+    {
+     "k": "burst",
+     "at": "ahead",
+     "dist": 1.0,
+     "r": 0.7,
+     "n": 6,
+     "dur": 0.3,
+     "delay": 0.12
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 8,
+     "kind": "spark",
+     "speed": [
+      3,
+      6
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ]
+    },
+    "flash": 0.14
+   },
+   "look": "heavy iron cleave with a spark burst on the anvil hit"
+  },
+  "open_vein": {
+   "cls": "salt_reaver",
+   "pose": "strike",
+   "pal": "blood",
+   "shapes": [
+    {
+     "k": "slash",
+     "r": 1.3,
+     "arc": 1.6,
+     "w": 0.16,
+     "dur": 0.2
+    },
+    {
+     "k": "streak",
+     "r": 1.2,
+     "dur": 0.3,
+     "delay": 0.08
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "drop",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 9
+    }
+   },
+   "look": "thin red cut with a trailing blood streak"
+  },
+  "red_reckoning": {
+   "cls": "salt_reaver",
+   "pose": "flurry3",
+   "pal": "blood",
+   "shapes": [
+    {
+     "k": "slash",
+     "r": 1.4,
+     "arc": 2.4,
+     "w": 0.22,
+     "dur": 0.3
+    },
+    {
+     "k": "burst",
+     "r": 1.0,
+     "n": 10,
+     "dur": 0.35,
+     "delay": 0.15
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 9,
+     "kind": "drop",
+     "speed": [
+      2,
+      5
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 9
+    }
+   },
+   "look": "three red cuts ending in a blood burst"
+  },
+  "binding_shard": {
+   "cls": "reed_caller",
+   "pose": "throw",
+   "pal": "glass",
+   "shapes": [
+    {
+     "k": "link",
+     "r": 0.6,
+     "dur": 0.4
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "shard",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core",
+      "edge"
+     ],
+     "gravity": 6
+    },
+    "ring": 0.5
+   },
+   "proj": {
+    "head": "shard",
+    "r": 0.12,
+    "tw": 0.06
+   },
+   "look": "glass shard trailing a binding thread"
+  },
+  "pull_the_knot": {
+   "cls": "reed_caller",
+   "pose": "channel",
+   "pal": "tide",
+   "shapes": [
+    {
+     "k": "swirl",
+     "r": 2.6,
+     "dur": 0.55
+    },
+    {
+     "k": "link",
+     "r": 2.6,
+     "dur": 0.5
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "drop",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 3
+    }
+   },
+   "look": "water swirl drawing bound foes in on threads"
+  },
+  "draining_toll": {
+   "cls": "bell_chanter",
+   "pose": "cast",
+   "pal": "ironbell",
+   "shapes": [],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "note",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "up": [
+      1,
+      2
+     ],
+     "gravity": 0
+    },
+    "ring": 0.45
+   },
+   "proj": {
+    "head": "ring",
+    "r": 0.14,
+    "tw": 0.06
+   },
+   "look": "dull bronze ring that tolls on hit and drains"
+  },
+  "bronze_ward": {
+   "cls": "bell_chanter",
+   "pose": "raise",
+   "pal": "bell",
+   "shapes": [
+    {
+     "k": "dome",
+     "r": 0.9,
+     "dur": 0.5
+    },
+    {
+     "k": "zapring",
+     "r": 0.95,
+     "dur": 0.45,
+     "n": 18
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 4,
+     "kind": "note",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 0
+    }
+   },
+   "ready": {
+    "lifeBelow": 0.6,
+    "noBuff": true
+   },
+   "look": "gold bell-shaped shell that hums"
+  },
+  "spent_breath": {
+   "cls": "bell_chanter",
+   "pose": "slam",
+   "pal": "hymn",
+   "shapes": [
+    {
+     "k": "nova",
+     "r": 2.8,
+     "dur": 0.45
+    },
+    {
+     "k": "flash",
+     "r": 1.2,
+     "dur": 0.2
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "note",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 0
+    }
+   },
+   "look": "pale hymn nova with a bright first flash"
+  },
+  "mark_quarry": {
+   "cls": "briar_stalker",
+   "pose": "throw",
+   "pal": "spit",
+   "shapes": [
+    {
+     "k": "sigil",
+     "at": "ahead",
+     "dist": 1.0,
+     "r": 0.5,
+     "dur": 0.6,
+     "delay": 0.2
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "drop",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 8
+    },
+    "ring": 0.5
+   },
+   "proj": {
+    "head": "glob",
+    "r": 0.12,
+    "tw": 0.08
+   },
+   "look": "green glob that leaves a quarry sigil on the foe"
+  },
+  "from_the_dark": {
+   "cls": "briar_stalker",
+   "pose": "dash",
+   "pal": "shade",
+   "shapes": [
+    {
+     "k": "streak",
+     "r": 2.0,
+     "dur": 0.25
+    },
+    {
+     "k": "thrust",
+     "r": 1.4,
+     "w": 0.2,
+     "dur": 0.22,
+     "delay": 0.15
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 6,
+     "kind": "puff",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 0
+    }
+   },
+   "look": "shadow dash ending in a stab"
+  },
+  "blood_ward": {
+   "cls": "salt_reaver",
+   "pose": "channel",
+   "pal": "blood",
+   "shapes": [
+    {
+     "k": "dome",
+     "r": 0.85,
+     "dur": 0.5
+    },
+    {
+     "k": "sigil",
+     "r": 0.9,
+     "dur": 0.55
+    }
+   ],
+   "impact": {
+    "emit": {
+     "n": 5,
+     "kind": "drop",
+     "speed": [
+      2,
+      4
+     ],
+     "life": [
+      0.2,
+      0.45
+     ],
+     "size": [
+      2,
+      3.5
+     ],
+     "colors": [
+      "main",
+      "core"
+     ],
+     "gravity": 4
+    }
+   },
+   "ready": {
+    "lifeBelow": 0.6,
+    "noBuff": true
+   },
+   "look": "dark red shell with a blood sigil underfoot"
   }
  },
  "auras": {

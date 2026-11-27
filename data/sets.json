@@ -73,7 +73,7 @@
         {
           "count": 3,
           "weight": 1.6,
-          "text": "+12% fire damage, +1 to Ash Strike",
+          "text": "+12% fire damage, +1 to Searing Brand",
           "mods": {
             "fireDamagePercent": 12,
             "skills": {

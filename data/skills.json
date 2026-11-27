@@ -1,7 +1,7 @@
 [
   {
     "id": "ash_strike",
-    "name": "Ash Strike",
+    "name": "Searing Brand",
     "branch": "brand",
     "type": "active",
     "icon": "slash",
@@ -14,7 +14,7 @@
     ],
     "cooldown": 0.4,
     "behavior": "melee",
-    "about": "A melee cut that deals weapon damage plus a little fire.",
+    "about": "A hot cut that presses a Brand into the foe. Branded foes take +6% damage from you per Brand (up to 3).",
     "notes": [
       "Kindle increases all of your fire damage, including this skill."
     ],
@@ -30,8 +30,11 @@
         5,
         1,
         1.25
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "v84nOldName": "Ash Strike",
+    "kotoPolish": true
   },
   {
     "id": "cinder_brand",
@@ -45,7 +48,8 @@
     "behavior": "passive",
     "about": "Your weapon swings deal extra fire damage.",
     "notes": [
-      "Extra flat fire damage applies to your basic attack and melee skills."
+      "Extra flat fire damage applies to your basic attack and melee skills.",
+      "Branded foes take +1% more damage from you per Brand, plus 0.1% per rank."
     ],
     "params": {
       "perRank": {
@@ -53,8 +57,13 @@
           1,
           2
         ]
+      },
+      "sigBoost": {
+        "pct": 1,
+        "pctPerRank": 0.1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "sear_step",
@@ -78,7 +87,8 @@
     "behavior": "dash",
     "about": "Dash forward and strike whatever you stop on.",
     "notes": [
-      "You are harder to hit for a moment while you dash."
+      "You are harder to hit for a moment while you dash.",
+      "This applies a Brand to the foe you stop on."
     ],
     "params": {
       "distance": [
@@ -95,8 +105,10 @@
         8,
         1.4,
         1.8
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "pyre_arc",
@@ -154,7 +166,8 @@
     "behavior": "projectile",
     "about": "Throw a coal that bursts when it hits the first foe.",
     "notes": [
-      "Kindle increases the fire damage of this coal too."
+      "Kindle increases the fire damage of this coal too.",
+      "This leaves the foe Kindled: they take +5% damage from you per stack (up to 3)."
     ],
     "params": {
       "speed": 9,
@@ -165,8 +178,10 @@
         10,
         2.1,
         2.6
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "kindle",
@@ -179,12 +194,18 @@
     "requires": [],
     "behavior": "passive",
     "about": "All of your fire damage is increased.",
-    "notes": [],
+    "notes": [
+      "Kindled foes take +1% more damage from you per stack."
+    ],
     "params": {
       "perRank": {
         "fireDamagePercent": 3
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "ash_ward",
@@ -243,7 +264,8 @@
     "behavior": "nova",
     "about": "A burst of fire hits everything close to you.",
     "notes": [
-      "Kindle increases this burst the same way it increases your other fire damage."
+      "Kindle increases this burst the same way it increases your other fire damage.",
+      "This applies Kindled to every foe it burns."
     ],
     "params": {
       "radius": [
@@ -255,8 +277,10 @@
         12,
         2.2,
         2.8
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "tempered_hide",
@@ -280,7 +304,7 @@
   {
     "id": "heat_draw",
     "name": "Heat Draw",
-    "branch": "warden",
+    "branch": "ember",
     "type": "passive",
     "icon": "leech",
     "reqLevel": 4,
@@ -294,14 +318,19 @@
     "behavior": "passive",
     "about": "Hits return a little life, and you gain mana faster.",
     "notes": [
-      "Life leech only applies to the physical part of a hit."
+      "Life leech only applies to the physical part of a hit.",
+      "Kindled lasts 3 seconds longer."
     ],
     "params": {
       "perRank": {
         "lifeLeech": 0.6,
         "manaRegen": 0.16
+      },
+      "sigBoost": {
+        "sec": 3
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "vigil",
@@ -342,12 +371,7 @@
     "icon": "coal",
     "reqLevel": 12,
     "maxRank": 1,
-    "requires": [
-      {
-        "id": "heat_draw",
-        "rank": 3
-      }
-    ],
+    "requires": [],
     "behavior": "last_coal",
     "about": "Once per zone, if a hit would kill you, you stay on your feet.",
     "notes": [
@@ -371,7 +395,7 @@
     ],
     "cooldown": 5,
     "behavior": "summon",
-    "about": "Call a small glass servant. It walks ahead and attacks the target you choose.",
+    "about": "Call a small glass servant. The foe in front of you becomes Prey: you and your servants deal +6% damage to Prey per stack (up to 3).",
     "notes": [
       "Second Voice increases minion damage and how many can be out at once."
     ],
@@ -380,8 +404,11 @@
       "max": [
         1,
         0.18
-      ]
-    }
+      ],
+      "sigOnCast": 1.6,
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "second_voice",
@@ -393,13 +420,19 @@
     "requires": [],
     "behavior": "passive",
     "about": "Your minions deal more damage, and your minion cap rises with each rank.",
-    "notes": [],
+    "notes": [
+      "Prey takes +1% more damage from you per stack."
+    ],
     "params": {
       "perRank": {
         "minionDamagePercent": 4,
         "maxMinions": 0.2
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "salt_wisp",
@@ -422,15 +455,19 @@
     "behavior": "summon",
     "about": "Call a pale wisp that stays behind you and throws salt sparks.",
     "notes": [
-      "Second Voice increases its damage too."
+      "Second Voice increases its damage too.",
+      "This marks the foe in front of you as Prey."
     ],
     "params": {
       "minion": "salt_wisp",
       "max": [
         1,
         0.12
-      ]
-    }
+      ],
+      "sigOnCast": 1.6,
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "chorus",
@@ -453,7 +490,8 @@
     "behavior": "command",
     "about": "Every servant you have deals cold damage to enemies near them.",
     "notes": [
-      "Undertow increases the cold damage."
+      "Undertow increases the cold damage.",
+      "This marks every foe it hits as Prey."
     ],
     "params": {
       "radius": 2.1,
@@ -462,8 +500,10 @@
         10,
         1.6,
         2
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "reed_bolt",
@@ -479,7 +519,7 @@
     ],
     "cooldown": 0.65,
     "behavior": "projectile",
-    "about": "Throw a shard of frozen reed. It hits from outside melee range.",
+    "about": "Throw a shard of frozen reed. It hits from outside melee range and leaves the foe Rimed: slowed, and +4% damage from you per stack (up to 3).",
     "notes": [
       "Undertow adds cold damage to the bolt and to Chorus."
     ],
@@ -492,8 +532,10 @@
         8,
         1.4,
         1.7
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "undertow",
@@ -569,7 +611,8 @@
     "behavior": "nova",
     "about": "A ring of cold water spreads around you and hits anything it touches.",
     "notes": [
-      "Undertow increases this cold damage."
+      "Undertow increases this cold damage.",
+      "This applies Rimed to everything it touches."
     ],
     "params": {
       "radius": [
@@ -581,8 +624,10 @@
         14,
         2.2,
         2.6
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "keepers_knot",
@@ -617,13 +662,19 @@
     ],
     "behavior": "passive",
     "about": "You gain mana faster, and hits return a little life.",
-    "notes": [],
+    "notes": [
+      "Bound foes take +1% more damage from you per stack."
+    ],
     "params": {
       "perRank": {
         "manaRegen": 0.18,
         "lifeLeech": 0.35
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "lantern_pact",
@@ -662,12 +713,7 @@
     "type": "passive",
     "reqLevel": 12,
     "maxRank": 1,
-    "requires": [
-      {
-        "id": "shared_breath",
-        "rank": 3
-      }
-    ],
+    "requires": [],
     "behavior": "last_coal",
     "about": "Once per zone, a killing blow fails and you remain standing.",
     "notes": [
@@ -691,7 +737,7 @@
     ],
     "cooldown": 0.9,
     "behavior": "trap",
-    "about": "Leave a snare at your feet. It arms, then bursts with poison when the first enemy steps in.",
+    "about": "Leave a snare at your feet. It arms, then bursts with poison when the first enemy steps in. Caught foes are Snared: slowed, and +6% damage from you per stack (up to 3).",
     "notes": [
       "Wider Net lets you have more snares, and makes each one wider."
     ],
@@ -717,8 +763,10 @@
         5,
         0.5,
         0.7
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "wider_net",
@@ -731,13 +779,18 @@
     "behavior": "passive",
     "about": "Your snares reach farther, and you can have more of them armed at once.",
     "notes": [
-      "Each rank adds +1% poison resist and +0.08 trap radius. Every fourth rank lets one more snare stay armed."
+      "Each rank adds +1% poison resist and +0.08 trap radius. Every fourth rank lets one more snare stay armed.",
+      "Snared foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
         "poisonResist": 1
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "bramble_bed",
@@ -760,7 +813,8 @@
     "behavior": "trap",
     "about": "A wide bed of briar. It waits longer and can catch a whole pack if they bunch up.",
     "notes": [
-      "Wider Net makes this bed wider too."
+      "Wider Net makes this bed wider too.",
+      "This applies Snared to foes it catches."
     ],
     "params": {
       "max": [
@@ -784,8 +838,10 @@
         6,
         0.5,
         0.8
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "spring_jaw",
@@ -831,7 +887,7 @@
     ],
     "cooldown": 0.55,
     "behavior": "projectile",
-    "about": "Throw a poisoned splinter. You can hit from a distance.",
+    "about": "Throw a poisoned splinter from a distance. It leaves the foe Envenomed: +4% damage from you per stack (up to 4).",
     "notes": [
       "Deep Rot adds poison damage. Long Bite makes the poison last longer."
     ],
@@ -844,8 +900,10 @@
         18,
         2.6,
         3.2
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "deep_rot",
@@ -858,7 +916,8 @@
     "behavior": "passive",
     "about": "Your poison damage is increased, on skills and snares.",
     "notes": [
-      "Adds flat poison damage to Needle, Miasma, and every trap."
+      "Adds flat poison damage to Needle, Miasma, and every trap.",
+      "Envenomed foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
@@ -866,8 +925,12 @@
           2,
           3
         ]
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "miasma",
@@ -890,7 +953,8 @@
     "behavior": "nova",
     "about": "A cloud of poison spreads around you and hits anything it touches.",
     "notes": [
-      "Deep Rot increases the poison in the cloud."
+      "Deep Rot increases the poison in the cloud.",
+      "This applies Envenomed to everything in the cloud."
     ],
     "params": {
       "radius": [
@@ -902,8 +966,10 @@
         14,
         2,
         2.5
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "long_bite",
@@ -916,7 +982,8 @@
     "behavior": "passive",
     "about": "Poison you inflict lasts longer.",
     "notes": [
-      "Each rank adds +1 poison damage and +0.22 seconds to poison duration."
+      "Each rank adds +1 poison damage and +0.22 seconds to poison duration.",
+      "Envenomed lasts 3 seconds longer."
     ],
     "params": {
       "perRank": {
@@ -924,8 +991,12 @@
           1,
           1
         ]
+      },
+      "sigBoost": {
+        "sec": 3
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "soft_step",
@@ -983,7 +1054,9 @@
     "requires": [],
     "behavior": "passive",
     "about": "Enemies that hit you take a little poison damage.",
-    "notes": [],
+    "notes": [
+      "Quarry lasts 3 seconds longer."
+    ],
     "params": {
       "perRank": {
         "thorns": 1,
@@ -991,8 +1064,12 @@
           1,
           1
         ]
+      },
+      "sigBoost": {
+        "sec": 3
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "last_briar",
@@ -1001,12 +1078,7 @@
     "type": "passive",
     "reqLevel": 12,
     "maxRank": 1,
-    "requires": [
-      {
-        "id": "barbed_coat",
-        "rank": 3
-      }
-    ],
+    "requires": [],
     "behavior": "last_coal",
     "about": "Once per zone, if a hit would kill you, you survive it.",
     "notes": [
@@ -1030,7 +1102,7 @@
     ],
     "cooldown": 0.35,
     "behavior": "melee",
-    "about": "A short, close cut.",
+    "about": "A short, close cut that leaves the foe Salted. Salted foes take +5% damage from you per stack (up to 4).",
     "notes": [
       "Quick Wrist makes the swing faster. Keen Edge makes it more likely to crit and hit."
     ],
@@ -1040,8 +1112,10 @@
       "physMult": [
         1.35,
         0.05
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "keen_edge",
@@ -1054,14 +1128,19 @@
     "behavior": "passive",
     "about": "You land more crits and have better aim.",
     "notes": [
-      "The crit and attack rating also apply to Salt Cut, Glass Step, and Red Line."
+      "The crit and attack rating also apply to Salt Cut, Glass Step, and Red Line.",
+      "Salted foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
         "critChance": 0.6,
         "attackRating": 8
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "glass_step",
@@ -1079,7 +1158,8 @@
     "behavior": "dash",
     "about": "Dash through enemies and damage them as you pass.",
     "notes": [
-      "Keen Edge can crit this skill. Blood Price steals life from the damage it deals."
+      "Keen Edge can crit this skill. Blood Price steals life from the damage it deals.",
+      "This applies Salted to every foe you pass through."
     ],
     "params": {
       "distance": [
@@ -1090,8 +1170,10 @@
       "physMult": [
         0.85,
         0.03
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "parting_cut",
@@ -1114,7 +1196,8 @@
     "behavior": "melee",
     "about": "A heavier cut against the foe in front of you.",
     "notes": [
-      "Uses the same crit and life steal as the short cut, but with more of the blade."
+      "Uses the same crit and life steal as the short cut, but with more of the blade.",
+      "This spends every Salted stack, dealing +12% damage per stack."
     ],
     "params": {
       "range": 1.35,
@@ -1122,8 +1205,10 @@
       "physMult": [
         1.6,
         0.06
-      ]
-    }
+      ],
+      "sigConsume": 12
+    },
+    "kotoPolish": true
   },
   {
     "id": "quick_wrist",
@@ -1163,7 +1248,7 @@
     ],
     "cooldown": 4,
     "behavior": "melee",
-    "about": "A spin with the blade that hits everything in reach.",
+    "about": "A spin with the blade that hits everything in reach and knocks it Off-Beat: slowed, and +4% damage from you per stack (up to 3).",
     "notes": [
       "Keen Edge can crit the spin. Blood Price steals life from it. It does not need a locked target."
     ],
@@ -1173,8 +1258,10 @@
       "physMult": [
         0.95,
         0.04
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "open_tempo",
@@ -1192,14 +1279,19 @@
     "behavior": "passive",
     "about": "You attack and move a little faster.",
     "notes": [
-      "Increases attack speed, and a little move speed, so you don't have to dash to close in."
+      "Increases attack speed, and a little move speed, so you don't have to dash to close in.",
+      "Off-Beat lasts 2 seconds longer."
     ],
     "params": {
       "perRank": {
         "attackSpeed": 1,
         "moveSpeed": 1
+      },
+      "sigBoost": {
+        "sec": 2
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "salt_guard",
@@ -1295,12 +1387,7 @@
     "type": "passive",
     "reqLevel": 12,
     "maxRank": 1,
-    "requires": [
-      {
-        "id": "second_wind",
-        "rank": 3
-      }
-    ],
+    "requires": [],
     "behavior": "last_coal",
     "about": "Once per zone, a killing blow cannot finish you.",
     "notes": [
@@ -1324,7 +1411,7 @@
     ],
     "cooldown": 0.6,
     "behavior": "projectile",
-    "about": "Play a short note that deals lightning damage to the first foe it hits.",
+    "about": "Play a short note that deals lightning damage to the first foe it hits and leaves it Ringing: +5% damage from you per stack (up to 3).",
     "notes": [
       "Clear Tone adds lightning. Held Note does not lower the mana cost, but the next note starts sooner."
     ],
@@ -1337,8 +1424,10 @@
         6,
         0.9,
         1.2
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "clear_tone",
@@ -1351,7 +1440,8 @@
     "behavior": "passive",
     "about": "Your lightning skills deal more damage.",
     "notes": [
-      "Adds lightning damage to Bell Note, Peal, and Counterpoint."
+      "Adds lightning damage to Bell Note, Peal, and Counterpoint.",
+      "Ringing foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
@@ -1359,8 +1449,12 @@
           1,
           1
         ]
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "peal",
@@ -1383,7 +1477,8 @@
     "behavior": "nova",
     "about": "A ring of lightning spreads around you.",
     "notes": [
-      "Clear Tone increases its damage. Slow Hymn keeps enemies in the ring longer."
+      "Clear Tone increases its damage. Slow Hymn keeps enemies in the ring longer.",
+      "This applies Ringing to every foe it touches."
     ],
     "params": {
       "radius": [
@@ -1395,8 +1490,10 @@
         7,
         1,
         1.3
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "counterpoint",
@@ -1419,7 +1516,8 @@
     "behavior": "projectile",
     "about": "A slower, heavier note that deals lightning damage.",
     "notes": [
-      "Clear Tone adds lightning damage to this too."
+      "Clear Tone adds lightning damage to this too.",
+      "This applies 2 Ringing stacks."
     ],
     "params": {
       "speed": 8,
@@ -1430,8 +1528,10 @@
         10,
         1.5,
         1.8
-      ]
-    }
+      ],
+      "sigApply": 2
+    },
+    "kotoPolish": true
   },
   {
     "id": "slow_hymn",
@@ -1449,7 +1549,8 @@
     "behavior": "vigil",
     "about": "A hymn that slows enemies near you.",
     "notes": [
-      "Quiet Room is a wider version of this slow. Use this one first."
+      "Quiet Room is a wider version of this slow. Use this one first.",
+      "This applies Hushed to foes near you when you start it."
     ],
     "params": {
       "duration": 12,
@@ -1457,8 +1558,11 @@
       "slow": 0.28,
       "perRank": {
         "defense": 2
-      }
-    }
+      },
+      "sigOnCast": 3.5,
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "iron_hymn",
@@ -1508,7 +1612,8 @@
     "behavior": "vigil",
     "about": "Enemies are slowed in a wider area, and you are harder to push back.",
     "notes": [
-      "This can be used with Slow Hymn. Cast the one you need."
+      "This can be used with Slow Hymn. Cast the one you need.",
+      "This applies Hushed to foes in the circle when you cast it."
     ],
     "params": {
       "duration": 10,
@@ -1517,8 +1622,11 @@
       "perRank": {
         "defense": 3,
         "mana": 2
-      }
-    }
+      },
+      "sigOnCast": 4.0,
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "low_chord",
@@ -1551,14 +1659,19 @@
     "behavior": "passive",
     "about": "You recover mana faster, and you cast more quickly.",
     "notes": [
-      "Cast speed shortens cooldowns. Mana regeneration helps you afford Peal."
+      "Cast speed shortens cooldowns. Mana regeneration helps you afford Peal.",
+      "Drained lasts 2 seconds longer."
     ],
     "params": {
       "perRank": {
         "manaRegen": 0.15,
         "castSpeed": 2
+      },
+      "sigBoost": {
+        "sec": 2
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "damp",
@@ -1594,15 +1707,20 @@
     "behavior": "passive",
     "about": "You gain more mana, more armor, and you act a little faster.",
     "notes": [
-      "This helps Peal and the hymns. It does not raise their rank."
+      "This helps Peal and the hymns. It does not raise their rank.",
+      "Drained foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
         "mana": 6,
         "defense": 4,
         "castSpeed": 1
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "last_bell",
@@ -1611,12 +1729,7 @@
     "type": "passive",
     "reqLevel": 12,
     "maxRank": 1,
-    "requires": [
-      {
-        "id": "iron_hymn",
-        "rank": 1
-      }
-    ],
+    "requires": [],
     "behavior": "last_coal",
     "about": "Once per zone, if a hit would kill you, you live through it.",
     "notes": [
@@ -1645,9 +1758,10 @@
     ],
     "cooldown": 1.4,
     "behavior": "melee",
-    "about": "A longer cut. It reaches a step farther than Ash Strike.",
+    "about": "A longer cut. It reaches a step farther than Searing Brand.",
     "notes": [
-      "Kindle and the fire on your weapon still apply."
+      "Kindle and the fire on your weapon still apply.",
+      "This also applies a Brand."
     ],
     "params": {
       "range": 1.7,
@@ -1661,8 +1775,10 @@
         5,
         0.6,
         0.9
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "living_coal",
@@ -1675,7 +1791,7 @@
     "behavior": "passive",
     "about": "Your weapon hits deal extra fire damage, even between skill uses.",
     "notes": [
-      "Adds flat fire damage to every hit, including Ash Strike."
+      "Adds flat fire damage to every hit, including Searing Brand."
     ],
     "params": {
       "perRank": {
@@ -1696,13 +1812,19 @@
     "requires": [],
     "behavior": "passive",
     "about": "You gain fire resist and more armor.",
-    "notes": [],
+    "notes": [
+      "Challenged lasts 3 seconds longer."
+    ],
     "params": {
       "perRank": {
         "defense": 4,
         "fireResist": 1
+      },
+      "sigBoost": {
+        "sec": 3
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "third_voice",
@@ -1739,7 +1861,8 @@
     "behavior": "passive",
     "about": "Your cold skills deal extra cold damage.",
     "notes": [
-      "Adds flat cold damage to Reed Bolt, Tide Ring, and Chorus."
+      "Adds flat cold damage to Reed Bolt, Tide Ring, and Chorus.",
+      "Rimed foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
@@ -1747,8 +1870,12 @@
           1,
           2
         ]
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "glass_heart",
@@ -1839,7 +1966,8 @@
     "behavior": "projectile",
     "about": "A short-range spit of poison. Less reach than Needle, more damage up close.",
     "notes": [
-      "Deep Rot and Long Bite apply to this skill."
+      "Deep Rot and Long Bite apply to this skill.",
+      "This applies 2 Envenomed stacks up close."
     ],
     "params": {
       "speed": 8,
@@ -1850,8 +1978,10 @@
         12,
         1.8,
         2.2
-      ]
-    }
+      ],
+      "sigApply": 2
+    },
+    "kotoPolish": true
   },
   {
     "id": "crouch",
@@ -1874,7 +2004,7 @@
   {
     "id": "salt_feint",
     "name": "Salt Feint",
-    "branch": "edge",
+    "branch": "tempo",
     "type": "active",
     "reqLevel": 3,
     "maxRank": 20,
@@ -1892,7 +2022,8 @@
     "behavior": "dash",
     "about": "A short dash through enemies that damages them as you pass.",
     "notes": [
-      "Keen Edge can crit it. Blood Price steals life from it."
+      "Keen Edge can crit it. Blood Price steals life from it.",
+      "This knocks foes you pass Off-Beat."
     ],
     "params": {
       "distance": [
@@ -1903,8 +2034,10 @@
       "physMult": [
         0.9,
         0.03
-      ]
-    }
+      ],
+      "sigApply": 1
+    },
+    "kotoPolish": true
   },
   {
     "id": "measure",
@@ -1917,14 +2050,19 @@
     "behavior": "passive",
     "about": "You gain a little attack rating and a little crit chance.",
     "notes": [
-      "Stacks with Keen Edge. It does not replace it."
+      "Stacks with Keen Edge. It does not replace it.",
+      "Off-Beat foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
         "attackRating": 6,
         "critChance": 0.4
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "close_vein",
@@ -1942,13 +2080,18 @@
     "behavior": "passive",
     "about": "You steal more life with each hit.",
     "notes": [
-      "Only the physical part of a hit is leeched."
+      "Only the physical part of a hit is leeched.",
+      "Bleeding foes take +1% more damage from you per stack."
     ],
     "params": {
       "perRank": {
         "lifeLeech": 0.4
+      },
+      "sigBoost": {
+        "pct": 1
       }
-    }
+    },
+    "kotoPolish": true
   },
   {
     "id": "overtone",
@@ -2021,13 +2164,18 @@
     "behavior": "passive",
     "about": "You gain more defense and lightning resist. This is always on.",
     "notes": [
-      "This does not change hymn radius. The defense and lightning resist are always on, not only while a hymn is active."
+      "This does not change hymn radius. The defense and lightning resist are always on, not only while a hymn is active.",
+      "Foes can carry 4 Hushed stacks."
     ],
     "params": {
       "perRank": {
         "defense": 3,
         "lightningResist": 1
+      },
+      "sigBoost": {
+        "stacks": 1
       }
-    }
+    },
+    "kotoPolish": true
   }
 ]

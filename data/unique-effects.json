@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "notes": "Reusable unique signature effects. Names and text are placeholders marked [Koto] for a later pass. Numbers on each unique are Epic-base values; ABEffects scales them by rarity and optional enchant milestones.",
+  "notes": "Reusable unique signature effects. Names and text are first drafts for Koto to polish (no tags in player text). Numbers on each unique are Epic-base values; ABEffects scales them by rarity and optional enchant milestones.",
   "rarityMul": {
     "epic": 1.0,
     "legendary": 1.35,
@@ -16,8 +16,8 @@
   "types": [
     {
       "id": "hit_burst",
-      "name": "[Koto] Ember Burst",
-      "text": "[Koto] {chance}% chance on hit to burst for {damage} {element} damage in a small ring.",
+      "name": "Ember Burst",
+      "text": "{chance}% chance on hit to burst for {damage} {element} damage in a small ring.",
       "trigger": "combat:hit",
       "scale": [
         "damage"
@@ -26,8 +26,8 @@
     },
     {
       "id": "kill_explode",
-      "name": "[Koto] Death Bloom",
-      "text": "[Koto] On kill, the target explodes for {damage} {element} damage.",
+      "name": "Death Bloom",
+      "text": "On kill, the target explodes for {damage} {element} damage.",
       "trigger": "combat:killed",
       "scale": [
         "damage"
@@ -36,8 +36,8 @@
     },
     {
       "id": "low_life_shield",
-      "name": "[Koto] Last Watch",
-      "text": "[Koto] When life falls below {hpPct}%, gain a {absorb} point shield. {cooldown}s cooldown.",
+      "name": "Last Watch",
+      "text": "When life falls below {hpPct}%, gain a {absorb} point shield. {cooldown}s cooldown.",
       "trigger": "combat:playerHurt",
       "scale": [
         "absorb"
@@ -46,8 +46,8 @@
     },
     {
       "id": "nth_strike",
-      "name": "[Koto] Counting Peal",
-      "text": "[Koto] Every {every}th hit chains {damage} {element} damage to a nearby foe.",
+      "name": "Counting Peal",
+      "text": "Every {every}th hit chains {damage} {element} damage to a nearby foe.",
       "trigger": "combat:hit",
       "scale": [
         "damage"
@@ -56,8 +56,8 @@
     },
     {
       "id": "freeze_attackers",
-      "name": "[Koto] Still Air",
-      "text": "[Koto] Attackers are chilled for {duration}s when they strike you.",
+      "name": "Still Air",
+      "text": "Attackers are chilled for {duration}s when they strike you.",
       "trigger": "combat:playerHurt",
       "scale": [
         "duration"
@@ -66,8 +66,8 @@
     },
     {
       "id": "thorns_nova",
-      "name": "[Koto] Hooked Reply",
-      "text": "[Koto] When hit, deal {damage} {element} damage to the attacker and nearby foes.",
+      "name": "Hooked Reply",
+      "text": "When hit, deal {damage} {element} damage to the attacker and nearby foes.",
       "trigger": "combat:playerHurt",
       "scale": [
         "damage"
@@ -76,8 +76,8 @@
     },
     {
       "id": "life_on_hit",
-      "name": "[Koto] Warm Return",
-      "text": "[Koto] Hits restore {heal} life.",
+      "name": "Warm Return",
+      "text": "Hits restore {heal} life.",
       "trigger": "combat:hit",
       "scale": [
         "heal"
@@ -86,8 +86,8 @@
     },
     {
       "id": "mana_on_kill",
-      "name": "[Koto] Quiet Draught",
-      "text": "[Koto] Kills restore {mana} mana.",
+      "name": "Quiet Draught",
+      "text": "Kills restore {mana} mana.",
       "trigger": "combat:killed",
       "scale": [
         "mana"
@@ -96,8 +96,8 @@
     },
     {
       "id": "haste_on_kill",
-      "name": "[Koto] Quick Step",
-      "text": "[Koto] Kills grant {move}% move speed and {ias}% attack speed for {duration}s.",
+      "name": "Quick Step",
+      "text": "Kills grant {move}% move speed and {ias}% attack speed for {duration}s.",
       "trigger": "combat:killed",
       "scale": [
         "move",
@@ -108,8 +108,8 @@
     },
     {
       "id": "crit_ignite",
-      "name": "[Koto] Kindled Crit",
-      "text": "[Koto] Critical hits ignite the target for {damage} fire damage.",
+      "name": "Kindled Crit",
+      "text": "Critical hits ignite the target for {damage} fire damage.",
       "trigger": "combat:hit",
       "scale": [
         "damage"
@@ -118,8 +118,8 @@
     },
     {
       "id": "brand",
-      "name": "[Koto] Marked Thorn",
-      "text": "[Koto] Hits apply a brand. At {stacks} stacks the mark bursts for {damage} {element} damage.",
+      "name": "Marked Thorn",
+      "text": "Hits apply a brand. At {stacks} stacks the mark bursts for {damage} {element} damage.",
       "trigger": "combat:hit",
       "scale": [
         "damage"
@@ -128,8 +128,8 @@
     },
     {
       "id": "frost_on_hit",
-      "name": "[Koto] Glass Chill",
-      "text": "[Koto] Hits chill the target for {duration}s.",
+      "name": "Glass Chill",
+      "text": "Hits chill the target for {duration}s.",
       "trigger": "combat:hit",
       "scale": [
         "duration"
@@ -138,8 +138,8 @@
     },
     {
       "id": "execute",
-      "name": "[Koto] Last Cut",
-      "text": "[Koto] Hits against foes below {hpPct}% life deal {damage} bonus {element} damage.",
+      "name": "Last Cut",
+      "text": "Hits against foes below {hpPct}% life deal {damage} bonus {element} damage.",
       "trigger": "combat:hit",
       "scale": [
         "damage"
@@ -148,8 +148,8 @@
     },
     {
       "id": "ward_on_hit",
-      "name": "[Koto] Soft Ward",
-      "text": "[Koto] Hits grant a {absorb} point ward, up to {absorbMax}.",
+      "name": "Soft Ward",
+      "text": "Hits grant a {absorb} point ward, up to {absorbMax}.",
       "trigger": "combat:hit",
       "scale": [
         "absorb",
@@ -159,8 +159,8 @@
     },
     {
       "id": "life_on_kill",
-      "name": "[Koto] Taken Breath",
-      "text": "[Koto] Kills restore {heal} life.",
+      "name": "Taken Breath",
+      "text": "Kills restore {heal} life.",
       "trigger": "combat:killed",
       "scale": [
         "heal"

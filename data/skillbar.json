@@ -1,6 +1,8 @@
 {
-  "about": "v84k skill bar (js/ab-skillbar.js, js/ab-hudarc.js, js/ab-skilltree.js). hud.order: leftToRight puts HUD slot 1 (#skill-0, hotkey 1) leftmost and slot 4 rightmost, matching the 1-4 picker in the skill screen; 'arc' keeps the old angle order. respec: the skill screen's Hold to respec refunds tree points only (stats, gear and non-tree buffs stay); costPerLevel x level gold, same as before. rememberBar puts each skill back in the slot it had once it is learned again. cooldown: the overlay on each HUD skill button. Colours are CSS colours; sizes are CSS px; times in ms or s as named.",
-  "hud": { "order": "leftToRight" },
+  "about": "v84k skill bar (js/ab-skillbar.js, js/ab-hudarc.js, js/ab-skilltree.js). hud.order: leftToRight puts HUD slot 1 (#skill-0, hotkey 1) leftmost and slot 4 rightmost, matching the 1-4 picker in the skill screen; 'arc' keeps the old angle order. respec: the skill screen's Hold to respec refunds tree points only (stats, gear and non-tree buffs stay); costPerLevel x level gold, same as before. rememberBar puts each skill back in the slot it had once it is learned again. cooldown: the overlay on each HUD skill button. Colours are CSS colours; sizes are CSS px; times in ms or s as named. v84n one-tap equip: picker.closeOnAssign 'always' closes the skill screen after a skill is put on the bar (no window left to close); 'fromHud' only when the screen was opened from an empty HUD slot; 'never' keeps it open. Tapping an empty HUD slot opens the skill screen in equip mode: tapping any learned active skill there puts it straight in that slot (picker.equipHint is the line shown).",
+  "hud": {
+    "order": "leftToRight"
+  },
   "respec": {
     "mode": "tree",
     "costPerLevel": 40,
@@ -10,7 +12,9 @@
   },
   "picker": {
     "showEquipped": true,
-    "label": "Put on the action bar"
+    "label": "Put on the action bar",
+    "closeOnAssign": "always",
+    "equipHint": "Tap a skill to put it in slot {n}"
   },
   "cooldown": {
     "enabled": true,
@@ -29,5 +33,23 @@
     "noManaTint": "rgba(40,90,220,0.50)",
     "noManaText": "#a8ccff",
     "noManaLabel": "mana"
+  },
+  "ult": {
+    "about": "v84n: the ultimate's own HUD button (hotkey 5), apart from slots 1-4. It shows the owned ACTIVE ultimate, is locked before one is learned (40 points in a tree), and a passive ultimate shows as always on. Placed on a ring around Strike, clear of the HUD, the Dynamic Island / safe area and the quest pill.",
+    "enabled": true,
+    "size": 54,
+    "minGap": 8,
+    "edge": 6,
+    "key": "5",
+    "label": "Ultimate",
+    "tag": "ULT",
+    "lockedText": "40",
+    "passiveText": "On",
+    "ring": "#ffd27a",
+    "ringLocked": "rgba(201,163,94,0.6)",
+    "glow": "rgba(255,170,70,0.55)",
+    "lockedToast": "Your ultimate unlocks at 40 points in a tree.",
+    "passiveToast": "Your ultimate is passive, and it is always on.",
+    "barRefuse": "Ultimates go on their own button (5), not slots 1-4."
   }
 }

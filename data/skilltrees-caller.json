@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "reed_caller",
-  "about": "Reed Caller trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-caller.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-caller.md). Delete this file (or set enabled false) and the Caller uses the old per-skill system again.",
+  "about": "Reed Caller trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-caller.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-caller.md). Delete this file (or set enabled false) and the Caller uses the old per-skill system again. v84n: linear trees, 9 nodes (A1 1, P 5, A 10, P 15, A 20, P 25, A 30, P 35, ULT 40), no pick pairs; each tree has a mark (sig) applied by its A1 (signature node). See tools/build_v84n_trees.py.",
   "trees": [
     {
       "id": "call",
@@ -19,30 +19,33 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "glassling"
+          "at": 1,
+          "skill": "glassling",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "second_voice"
         },
         {
-          "at": 15,
+          "at": 10,
           "skill": "salt_wisp"
         },
         {
-          "at": 20,
+          "at": 15,
           "skill": "third_voice"
         },
         {
+          "at": 20,
+          "skill": "chorus"
+        },
+        {
           "at": 25,
-          "skill": "chorus",
-          "pick": "call_rouse"
+          "skill": "pack_sense"
         },
         {
           "at": 30,
-          "skill": "rally",
-          "pick": "call_rouse"
+          "skill": "rally"
         },
         {
           "at": 35,
@@ -51,9 +54,19 @@
         {
           "at": 40,
           "skill": "mere_colossus",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "prey",
+        "name": "Prey",
+        "pct": 6,
+        "max": 3,
+        "sec": 6,
+        "color": "#d7f4ff"
+      },
+      "sigAbout": "Glassling points your servants at Prey: the foe in front of you when you call is marked, and you and your servants hurt it more."
     },
     {
       "id": "tide",
@@ -70,12 +83,17 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "reed_bolt",
+          "signature": true
+        },
+        {
           "at": 5,
-          "skill": "reed_bolt"
+          "skill": "undertow"
         },
         {
           "at": 10,
-          "skill": "undertow"
+          "skill": "brine_ward"
         },
         {
           "at": 15,
@@ -83,17 +101,15 @@
         },
         {
           "at": 20,
-          "skill": "brine_ward"
+          "skill": "tide_ring"
         },
         {
           "at": 25,
-          "skill": "tide_ring",
-          "pick": "tide_spread"
+          "skill": "deep_water"
         },
         {
           "at": 30,
-          "skill": "black_ice",
-          "pick": "tide_spread"
+          "skill": "black_ice"
         },
         {
           "at": 35,
@@ -102,9 +118,20 @@
         {
           "at": 40,
           "skill": "glassmere_heart",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "rimed",
+        "name": "Rimed",
+        "pct": 4,
+        "max": 3,
+        "sec": 5,
+        "slow": true,
+        "color": "#9fd4ea"
+      },
+      "sigAbout": "Reed Bolt Rimes a foe (slowed, easier to hurt); Tide Ring spreads it, Black Glass spends it."
     },
     {
       "id": "bond",
@@ -121,30 +148,33 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "binding_shard",
+          "signature": true
+        },
+        {
           "at": 5,
           "skill": "keepers_knot"
         },
         {
           "at": 10,
-          "skill": "glass_heart",
-          "pick": "bond_share"
-        },
-        {
-          "at": 15,
-          "skill": "shared_breath",
-          "pick": "bond_share"
-        },
-        {
-          "at": 20,
           "skill": "lantern_pact"
         },
         {
-          "at": 25,
+          "at": 15,
+          "skill": "shared_breath"
+        },
+        {
+          "at": 20,
           "skill": "glass_offering"
         },
         {
-          "at": 30,
+          "at": 25,
           "skill": "shatter_bond"
+        },
+        {
+          "at": 30,
+          "skill": "pull_the_knot"
         },
         {
           "at": 35,
@@ -153,9 +183,20 @@
         {
           "at": 40,
           "skill": "endless_chorus",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "bound",
+        "name": "Bound",
+        "pct": 3,
+        "max": 3,
+        "sec": 6,
+        "leech": 1.5,
+        "color": "#c0e8ff"
+      },
+      "sigAbout": "Binding Shard ties a foe to you: hits on it heal you; Pull the Knot spends the bond."
     }
   ],
   "skills": [
@@ -170,11 +211,17 @@
       "requires": [],
       "behavior": "passive",
       "about": "Your servants deal cold damage. Their hits chill for 2 seconds, and they deal +25% damage to chilled foes.",
-      "notes": [],
+      "notes": [
+        "Prey lasts 3 seconds longer."
+      ],
       "params": {
         "chillSec": 2,
-        "pct": 25
-      }
+        "pct": 25,
+        "sigBoost": {
+          "sec": 3
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "rally",
@@ -248,7 +295,9 @@
       "cooldown": 6,
       "behavior": "tree_black_ice",
       "about": "A sheet of black glass deals cold when it forms and while it lasts, and chills foes on it for 5 seconds.",
-      "notes": [],
+      "notes": [
+        "When it forms, this spends every Rimed stack, dealing +10% damage per stack."
+      ],
       "params": {
         "range": 7,
         "radius": 1.8,
@@ -261,8 +310,10 @@
         "poolSeconds": 5,
         "poolTick": 0.5,
         "poolPct": 22,
-        "chill": 1
-      }
+        "chill": 1,
+        "sigConsume": 10
+      },
+      "kotoPolish": true
     },
     {
       "id": "deep_cold",
@@ -333,11 +384,21 @@
       "requires": [],
       "behavior": "passive",
       "about": "When one of your servants breaks, the burst deals 25% of its max life as cold damage.",
-      "notes": [],
+      "notes": [
+        "Bound foes burst into glass when they die."
+      ],
       "params": {
         "burstPct": 25,
-        "burstRadius": 1.8
-      }
+        "burstRadius": 1.8,
+        "sigBoost": {
+          "burst": {
+            "pct": 12,
+            "radius": 1.8,
+            "el": "cold"
+          }
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "endless_chorus",
@@ -356,6 +417,122 @@
         "reformSec": 1.5,
         "burstMul": 2
       }
+    },
+    {
+      "id": "pack_sense",
+      "name": "Pack Sense",
+      "branch": "call",
+      "type": "passive",
+      "icon": "glass",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Your servants deal more damage, and foes can carry one more Prey stack.",
+      "notes": [],
+      "params": {
+        "perRank": {
+          "minionDamagePercent": 2
+        },
+        "sigBoost": {
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "deep_water",
+      "name": "Deep Water",
+      "branch": "tide",
+      "type": "passive",
+      "icon": "glass",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Rimed lasts 3 seconds longer, foes can carry one more Rimed stack, and you gain a little cold resist.",
+      "notes": [],
+      "params": {
+        "perRank": {
+          "coldResist": 1
+        },
+        "sigBoost": {
+          "sec": 3,
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "binding_shard",
+      "name": "Binding Shard",
+      "branch": "bond",
+      "type": "active",
+      "icon": "glass",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "projectile",
+      "about": "A shard of glass on a thread. The foe it hits is Bound: they take +3% damage from you per stack (up to 3), and hits on them heal you.",
+      "notes": [
+        "Each Bound stack heals you for 1.5% of the damage you deal to that foe."
+      ],
+      "params": {
+        "speed": 10,
+        "range": 7,
+        "radius": 0.18,
+        "cold": [
+          4,
+          7,
+          1.1,
+          1.4
+        ],
+        "sigApply": 1
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        4,
+        0.15
+      ],
+      "cooldown": 0.6
+    },
+    {
+      "id": "pull_the_knot",
+      "name": "Pull the Knot",
+      "branch": "bond",
+      "type": "active",
+      "icon": "glass",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "nova",
+      "about": "You pull every thread at once. Cold bursts around you and spends every Bound stack on the foes it hits, dealing +12% damage per stack.",
+      "notes": [
+        "+12% damage per Bound stack spent."
+      ],
+      "params": {
+        "radius": [
+          2.4,
+          0.03
+        ],
+        "cold": [
+          6,
+          10,
+          1.6,
+          2.0
+        ],
+        "sigConsume": 12
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        14,
+        0.35
+      ],
+      "cooldown": 5
     }
   ],
   "strings": {

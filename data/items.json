@@ -1243,7 +1243,7 @@
         },
         "fireDamagePercent": 12
       },
-      "flavor": "The brand does not wash off. It is meant for Ash Strike.",
+      "flavor": "The brand it leaves does not wash off. It was made for Searing Brand.",
       "baseRarity": "epic",
       "effect": {
         "type": "hit_burst",
@@ -2079,7 +2079,7 @@
         },
         {
           "count": 3,
-          "text": "+12% fire damage, +1 to Ash Strike",
+          "text": "+12% fire damage, +1 to Searing Brand",
           "mods": {
             "fireDamagePercent": 12,
             "skills": {

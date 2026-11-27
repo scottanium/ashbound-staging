@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "salt_reaver",
-  "about": "Salt Reaver trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-reaver.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-reaver.md). Delete this file (or set enabled false) and the Reaver uses the old per-skill system again.",
+  "about": "Salt Reaver trees (v82t, staging). Shared point math is in skilltrees-common.json; trees, between-point bonuses and the 9 new skills are here; js/ab-tree-reaver.js runs the new mechanics. Names and about text are Koto's (v82t, KOTO-NAMES-reaver.md). Delete this file (or set enabled false) and the Reaver uses the old per-skill system again. v84n: linear trees, 9 nodes (A1 1, P 5, A 10, P 15, A 20, P 25, A 30, P 35, ULT 40), no pick pairs; each tree has a mark (sig) applied by its A1 (signature node). See tools/build_v84n_trees.py.",
   "trees": [
     {
       "id": "edge",
@@ -19,43 +19,54 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "salt_cut"
+          "at": 1,
+          "skill": "salt_cut",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "keen_edge"
         },
         {
+          "at": 10,
+          "skill": "glass_step"
+        },
+        {
           "at": 15,
-          "skill": "glass_step",
-          "pick": "edge_dash"
+          "skill": "wake_edge"
         },
         {
           "at": 20,
-          "skill": "salt_feint",
-          "pick": "edge_dash"
+          "skill": "parting_cut"
         },
         {
           "at": 25,
-          "skill": "parting_cut",
-          "pick": "edge_cut"
+          "skill": "brine_edge"
         },
         {
           "at": 30,
-          "skill": "brine_flurry",
-          "pick": "edge_cut"
+          "skill": "brine_flurry"
         },
         {
           "at": 35,
-          "skill": "wake_edge"
+          "skill": "salt_in_wound"
         },
         {
           "at": 40,
           "skill": "salt_storm",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "salted",
+        "name": "Salted",
+        "pct": 5,
+        "max": 4,
+        "sec": 5,
+        "color": "#e8f0f4"
+      },
+      "sigAbout": "Salt Cut rubs salt in: Salted foes take more from you; dashes add salt, Parting Cut spends it."
     },
     {
       "id": "tempo",
@@ -72,21 +83,25 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "red_line",
+          "signature": true
+        },
+        {
           "at": 5,
           "skill": "quick_wrist"
         },
         {
           "at": 10,
-          "skill": "salt_guard"
+          "skill": "salt_feint"
         },
         {
           "at": 15,
-          "skill": "red_line",
-          "pick": "tempo_spin"
+          "skill": "measure"
         },
         {
           "at": 20,
-          "skill": "measure"
+          "skill": "salt_guard"
         },
         {
           "at": 25,
@@ -94,19 +109,29 @@
         },
         {
           "at": 30,
-          "skill": "rhythm"
+          "skill": "full_measure"
         },
         {
           "at": 35,
-          "skill": "full_measure",
-          "pick": "tempo_spin"
+          "skill": "rhythm"
         },
         {
           "at": 40,
           "skill": "perfect_tempo",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "offbeat",
+        "name": "Off-Beat",
+        "pct": 4,
+        "max": 3,
+        "sec": 4,
+        "slow": true,
+        "color": "#ffb0a0"
+      },
+      "sigAbout": "Red Line knocks foes Off-Beat (slowed, easier to hurt); Spend the Pace cashes the beat in."
     },
     {
       "id": "vein",
@@ -123,30 +148,33 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "open_vein",
+          "signature": true
+        },
+        {
           "at": 5,
           "skill": "blood_price"
         },
         {
           "at": 10,
-          "skill": "second_wind"
-        },
-        {
-          "at": 15,
-          "skill": "close_vein",
-          "pick": "vein_answer"
-        },
-        {
-          "at": 20,
-          "skill": "riposte",
-          "pick": "vein_answer"
-        },
-        {
-          "at": 25,
           "skill": "bloodletting"
         },
         {
-          "at": 30,
+          "at": 15,
+          "skill": "close_vein"
+        },
+        {
+          "at": 20,
+          "skill": "blood_ward"
+        },
+        {
+          "at": 25,
           "skill": "brine_surplus"
+        },
+        {
+          "at": 30,
+          "skill": "red_reckoning"
         },
         {
           "at": 35,
@@ -155,9 +183,20 @@
         {
           "at": 40,
           "skill": "red_tide",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "bleeding",
+        "name": "Bleeding",
+        "pct": 3,
+        "max": 3,
+        "sec": 6,
+        "leech": 2,
+        "color": "#d03838"
+      },
+      "sigAbout": "Open Vein makes foes Bleed: every hit on a Bleeding foe heals you; Red Reckoning spends the wound."
     }
   ],
   "skills": [
@@ -194,7 +233,9 @@
       "cooldown": 4,
       "behavior": "tree_flurry",
       "about": "Five fast cuts in front of you. Each one is a melee hit, so Afterblow and The Pace count all five.",
-      "notes": [],
+      "notes": [
+        "Each cut applies Salted."
+      ],
       "params": {
         "hits": 5,
         "gap": 0.09,
@@ -203,8 +244,10 @@
         "physMult": [
           0.5,
           0.025
-        ]
-      }
+        ],
+        "sigApply": 1
+      },
+      "kotoPolish": true
     },
     {
       "id": "salt_storm",
@@ -240,12 +283,18 @@
       "requires": [],
       "behavior": "passive",
       "about": "Hits within 2 seconds add Pace stacks (+4% attack speed each). They fade if you stop hitting. Cap is 10, or 20 with Unbroken Pace.",
-      "notes": [],
+      "notes": [
+        "Foes can carry 4 Off-Beat stacks."
+      ],
       "params": {
         "window": 2,
         "max": 10,
-        "iasPer": 4
-      }
+        "iasPer": 4,
+        "sigBoost": {
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "full_measure",
@@ -263,7 +312,9 @@
       "cooldown": 4,
       "behavior": "tree_measure",
       "about": "You spend every Pace stack on one full-circle cut. More stacks make it hit harder. With no stacks it is a plain spin.",
-      "notes": [],
+      "notes": [
+        "This also spends every Off-Beat stack, dealing +10% damage per stack."
+      ],
       "params": {
         "range": 2.1,
         "arc": 6.28,
@@ -271,8 +322,10 @@
           1.0,
           0.04
         ],
-        "perStackPct": 15
-      }
+        "perStackPct": 15,
+        "sigConsume": 10
+      },
+      "kotoPolish": true
     },
     {
       "id": "perfect_tempo",
@@ -334,12 +387,18 @@
       "requires": [],
       "behavior": "passive",
       "about": "Life you steal or heal past full becomes a Brine Shell, up to 30% of max life. It fades if you stop fighting for 3 seconds.",
-      "notes": [],
+      "notes": [
+        "Bleeding lasts 3 seconds longer."
+      ],
       "params": {
         "capPctLife": 30,
         "fadeAfter": 3,
-        "fadePctPerSec": 4
-      }
+        "fadePctPerSec": 4,
+        "sigBoost": {
+          "sec": 3
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "red_tide",
@@ -364,6 +423,149 @@
         "leechPct": 8,
         "healBackPct": 25
       }
+    },
+    {
+      "id": "brine_edge",
+      "name": "Brine Edge",
+      "branch": "edge",
+      "type": "passive",
+      "icon": "slash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "You land more crits, and foes can carry more Salted stacks.",
+      "notes": [
+        "Foes can carry 5 Salted stacks."
+      ],
+      "params": {
+        "perRank": {
+          "critChance": 0.4
+        },
+        "sigBoost": {
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "salt_in_wound",
+      "name": "Salt in the Wound",
+      "branch": "edge",
+      "type": "passive",
+      "icon": "slash",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "A Salted foe that dies bursts and cuts the foes around it.",
+      "notes": [
+        "The burst deals 15% of the foe's max life as physical damage, and hits harder with more Salted stacks."
+      ],
+      "params": {
+        "sigBoost": {
+          "burst": {
+            "pct": 15,
+            "radius": 1.6,
+            "el": "phys"
+          }
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "open_vein",
+      "name": "Open Vein",
+      "branch": "vein",
+      "type": "active",
+      "icon": "leech",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "melee",
+      "about": "A quick cut that leaves the foe Bleeding. Bleeding foes take +3% damage from you per stack (up to 3), and hits on them heal you.",
+      "notes": [
+        "Each Bleeding stack heals you for 2% of the damage you deal to that foe."
+      ],
+      "params": {
+        "arc": 1.4,
+        "range": 1.35,
+        "physMult": [
+          1.15,
+          0.05
+        ],
+        "sigApply": 1
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        4,
+        0.15
+      ],
+      "cooldown": 0.5
+    },
+    {
+      "id": "blood_ward",
+      "name": "Blood Ward",
+      "branch": "vein",
+      "type": "active",
+      "icon": "leech",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "ward",
+      "about": "You harden your blood into a ward that absorbs the next hits.",
+      "notes": [],
+      "params": {
+        "absorb": [
+          15,
+          5
+        ],
+        "duration": 7,
+        "perRank": {
+          "life": 2
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        10,
+        0.25
+      ],
+      "cooldown": 8
+    },
+    {
+      "id": "red_reckoning",
+      "name": "Red Reckoning",
+      "branch": "vein",
+      "type": "active",
+      "icon": "leech",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "melee",
+      "about": "A wide cut that spends every Bleeding stack on the foes it hits, dealing +15% damage per stack.",
+      "notes": [
+        "+15% damage per Bleeding stack spent."
+      ],
+      "params": {
+        "arc": 2.4,
+        "range": 1.6,
+        "physMult": [
+          1.2,
+          0.05
+        ],
+        "sigConsume": 15
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        12,
+        0.3
+      ],
+      "cooldown": 4
     }
   ],
   "strings": {

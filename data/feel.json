@@ -42,12 +42,16 @@
     "walkMul": 0.4,
     "walkStick": 0.62,
     "deadzone": 0.18,
-    "accel": 16,
-    "decel": 22,
+    "accel": 120,
+    "decel": 200,
     "slowMul": 0.72,
     "channelMul": 0.5,
     "runAnimSpeed": 3.05,
-    "idleSpeed": 0.25
+    "idleSpeed": 0.25,
+    "turnSnap": true,
+    "wallBleed": false,
+    "pathLos": true,
+    "about": "v84n crisp movement (Scott: 'rubber bandy'). accel/decel in tiles/s^2: 120/200 reach full speed or stop in about one frame (v84l was 16/22: 0.25 s to full speed, 0.18 s / 10 px slide on stop, 0.48 s to reverse). turnSnap: while the stick is held the hero moves exactly where it points at once (only the speed ramps), so turning and reversing don't drift. wallBleed false: speed pushed into a wall is dropped, so you don't spring off when the wall ends. pathLos: tap-to-move walks straight to the farthest path point it can see instead of zig-zagging through tile centres. v84l values: accel 16, decel 22, turnSnap false."
   },
   "stamina": {
     "maxBase": 200,

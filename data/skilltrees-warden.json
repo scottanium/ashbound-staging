@@ -2,7 +2,7 @@
   "version": 1,
   "enabled": true,
   "classId": "cinder_warden",
-  "about": "Cinder Warden tree rework (v81t, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Shared point math lives in skilltrees-common.json; trees, bonuses and new skills live here; js/ab-skilltree.js reads it. Skill names and about text are Koto's (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again.",
+  "about": "Cinder Warden tree rework (v81t, staging trial). Points go into trees, not single skills. Every 5 points in a tree unlocks its next skill (8 per tree, the 8th at 40 is the ultimate). Each point between unlocks adds that tree's bonus to every skill in it. Points 41-50 add damage only. Shared point math lives in skilltrees-common.json; trees, bonuses and new skills live here; js/ab-skilltree.js reads it. Skill names and about text are Koto's (see KOTO-NAMES.md). Delete this file (or set enabled false) and the Warden uses the old per-skill system again. v84n: linear trees, 9 nodes (A1 1, P 5, A 10, P 15, A 20, P 25, A 30, P 35, ULT 40), no pick pairs; each tree has a mark (sig) applied by its A1 (signature node). See tools/build_v84n_trees.py.",
   "trees": [
     {
       "id": "brand",
@@ -19,43 +19,54 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "ash_strike"
+          "at": 1,
+          "skill": "ash_strike",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "cinder_brand"
         },
         {
+          "at": 10,
+          "skill": "kiln_hook"
+        },
+        {
           "at": 15,
-          "skill": "kiln_hook",
-          "pick": "brand_reach"
+          "skill": "forgebreaker"
         },
         {
           "at": 20,
-          "skill": "sear_step",
-          "pick": "brand_reach"
+          "skill": "sear_step"
         },
         {
           "at": 25,
-          "skill": "pyre_arc",
-          "pick": "brand_sweep"
+          "skill": "brand_deep"
         },
         {
           "at": 30,
-          "skill": "furnace_flurry",
-          "pick": "brand_sweep"
+          "skill": "furnace_flurry"
         },
         {
           "at": 35,
-          "skill": "forgebreaker"
+          "skill": "brandfall"
         },
         {
           "at": 40,
           "skill": "avatar_of_the_kiln",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "active"
         }
-      ]
+      ],
+      "sig": {
+        "id": "brand",
+        "name": "Brand",
+        "pct": 6,
+        "max": 3,
+        "sec": 6,
+        "color": "#ff8a3c"
+      },
+      "sigAbout": "Ash Strike becomes Searing Brand: the cut presses a Brand into the foe. Branded foes take more damage from you; every Brand skill feeds or spends it."
     },
     {
       "id": "ember",
@@ -72,30 +83,33 @@
       },
       "nodes": [
         {
-          "at": 5,
-          "skill": "cinder_spark"
+          "at": 1,
+          "skill": "cinder_spark",
+          "signature": true
         },
         {
-          "at": 10,
+          "at": 5,
           "skill": "kindle"
         },
         {
-          "at": 15,
+          "at": 10,
           "skill": "ash_ward"
         },
         {
-          "at": 20,
+          "at": 15,
           "skill": "living_coal"
         },
         {
+          "at": 20,
+          "skill": "cinder_bloom"
+        },
+        {
           "at": 25,
-          "skill": "cinder_bloom",
-          "pick": "ember_blast"
+          "skill": "heat_draw"
         },
         {
           "at": 30,
-          "skill": "slag_rain",
-          "pick": "ember_blast"
+          "skill": "slag_rain"
         },
         {
           "at": 35,
@@ -104,9 +118,19 @@
         {
           "at": 40,
           "skill": "heart_of_the_sunken_kiln",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "kindled",
+        "name": "Kindled",
+        "pct": 5,
+        "max": 3,
+        "sec": 6,
+        "color": "#ff6a2a"
+      },
+      "sigAbout": "Cinder Spark sets foes Kindled at range; Ember's blasts spread it and Clinker Fall cashes it in."
     },
     {
       "id": "warden",
@@ -123,26 +147,29 @@
       },
       "nodes": [
         {
+          "at": 1,
+          "skill": "iron_call",
+          "signature": true
+        },
+        {
           "at": 5,
           "skill": "tempered_hide"
         },
         {
           "at": 10,
-          "skill": "iron_reply"
+          "skill": "vigil"
         },
         {
           "at": 15,
-          "skill": "heat_draw",
-          "pick": "warden_hold"
+          "skill": "iron_reply"
         },
         {
           "at": 20,
-          "skill": "ash_skin",
-          "pick": "warden_hold"
+          "skill": "anvil_bash"
         },
         {
           "at": 25,
-          "skill": "vigil"
+          "skill": "ash_skin"
         },
         {
           "at": 30,
@@ -155,9 +182,21 @@
         {
           "at": 40,
           "skill": "unbroken_bastion",
-          "ultimate": true
+          "ultimate": true,
+          "kind": "passive"
         }
-      ]
+      ],
+      "sig": {
+        "id": "challenged",
+        "name": "Challenged",
+        "pct": 4,
+        "max": 3,
+        "sec": 7,
+        "slow": true,
+        "leech": 1.5,
+        "color": "#e8c890"
+      },
+      "sigAbout": "Iron Call is the Warden's stand: foes around you are Challenged (slowed, and every hit on them mends you a little); Anvil Bash spends it."
     }
   ],
   "upgrades": {
@@ -184,13 +223,18 @@
       "behavior": "passive",
       "about": "Your blows make armor brittle, and every fourth swing finds the flaw.",
       "notes": [
-        "Cracked armor makes the target easier to hit for a few seconds."
+        "Cracked armor makes the target easier to hit for a few seconds.",
+        "A foe can carry 4 Brands."
       ],
       "params": {
         "everyNth": 4,
         "armorBreakPct": 15,
-        "armorBreakSec": 4
-      }
+        "armorBreakSec": 4,
+        "sigBoost": {
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "furnace_flurry",
@@ -209,7 +253,8 @@
       "behavior": "tree_flurry",
       "about": "You land three quick cuts, then a burst of fire.",
       "notes": [
-        "Each cut is a melee hit, so Quenchcrack counts all three."
+        "Each cut is a melee hit, so Quenchcrack counts all three.",
+        "This spends every Brand on the foe, dealing +12% damage per Brand."
       ],
       "params": {
         "hits": 3,
@@ -231,8 +276,10 @@
           10,
           1.5,
           2
-        ]
-      }
+        ],
+        "sigConsume": 12
+      },
+      "kotoPolish": true
     },
     {
       "id": "avatar_of_the_kiln",
@@ -278,7 +325,8 @@
       "behavior": "tree_slag",
       "about": "You hurl hot clinker that bursts, and the ground stays burning.",
       "notes": [
-        "Kindle increases this fire too."
+        "Kindle increases this fire too.",
+        "The first burst spends every Kindled stack, dealing +10% damage per stack."
       ],
       "params": {
         "range": 7.5,
@@ -291,8 +339,10 @@
         ],
         "poolSeconds": 4,
         "poolTick": 0.5,
-        "poolPct": 25
-      }
+        "poolPct": 25,
+        "sigConsume": 10
+      },
+      "kotoPolish": true
     },
     {
       "id": "ash_detonation",
@@ -306,14 +356,23 @@
       "behavior": "passive",
       "about": "When Ash Ward ends, it explodes. Foes you recently burned also explode when they die.",
       "notes": [
-        "Death bursts are capped so a pack cannot chain forever."
+        "Death bursts are capped so a pack cannot chain forever.",
+        "Kindled foes also burst into fire when they die."
       ],
       "params": {
         "burnWindow": 2.5,
         "deathRadius": 1.5,
         "deathPctMaxHp": 12,
-        "deathCapPerSec": 6
-      }
+        "deathCapPerSec": 6,
+        "sigBoost": {
+          "burst": {
+            "pct": 15,
+            "radius": 1.8,
+            "el": "fire"
+          }
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "heart_of_the_sunken_kiln",
@@ -347,13 +406,19 @@
       "behavior": "passive",
       "about": "Whoever hits your armor gets hit back by it.",
       "notes": [
-        "Warden tree damage bonuses raise this too."
+        "Warden tree damage bonuses raise this too.",
+        "Challenged foes take +1% more damage from you per stack, and can carry 4 stacks."
       ],
       "params": {
         "armorPct": 12,
         "icd": 0.35,
-        "armorPctPerRank": 0.3
-      }
+        "armorPctPerRank": 0.3,
+        "sigBoost": {
+          "pct": 1,
+          "stacks": 1
+        }
+      },
+      "kotoPolish": true
     },
     {
       "id": "life_spite_bulwark",
@@ -406,6 +471,133 @@
         "lowLifeReplyMul": 2,
         "lowLifeIas": 100
       }
+    },
+    {
+      "id": "brand_deep",
+      "name": "Deep Brand",
+      "branch": "brand",
+      "type": "passive",
+      "icon": "flame",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "Your Brands hit harder and last longer.",
+      "notes": [
+        "Branded foes take +1% more damage from you per Brand, and Brands last 2 seconds longer."
+      ],
+      "params": {
+        "perRank": {
+          "fireDamage": [
+            1,
+            1
+          ]
+        },
+        "sigBoost": {
+          "pct": 1,
+          "sec": 2
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "brandfall",
+      "name": "Brandfall",
+      "branch": "brand",
+      "type": "passive",
+      "icon": "flame",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "passive",
+      "about": "A Branded foe that dies bursts into fire around it.",
+      "notes": [
+        "The burst deals 18% of the foe's max life as fire, and hits harder with more Brands."
+      ],
+      "params": {
+        "sigBoost": {
+          "burst": {
+            "pct": 18,
+            "radius": 1.8,
+            "el": "fire"
+          }
+        }
+      },
+      "kotoPolish": true,
+      "v84n": "new"
+    },
+    {
+      "id": "iron_call",
+      "name": "Iron Call",
+      "branch": "warden",
+      "type": "active",
+      "icon": "shield",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "nova",
+      "about": "You strike steel on steel. Fire bursts around you, and nearby foes are Challenged: they are slowed, they take +4% damage from you per stack (up to 3), and hits on them heal you.",
+      "notes": [
+        "Each Challenged stack heals you for 1.5% of the damage you deal to that foe."
+      ],
+      "params": {
+        "radius": [
+          2.2,
+          0.03
+        ],
+        "fire": [
+          3,
+          5,
+          0.8,
+          1.0
+        ],
+        "sigApply": 1
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        6,
+        0.2
+      ],
+      "cooldown": 2.5
+    },
+    {
+      "id": "anvil_bash",
+      "name": "Anvil Bash",
+      "branch": "warden",
+      "type": "active",
+      "icon": "shield",
+      "reqLevel": 1,
+      "maxRank": 20,
+      "requires": [],
+      "behavior": "melee",
+      "about": "A heavy shield blow that spends every Challenged stack on the foe, dealing +15% damage per stack.",
+      "notes": [
+        "+15% damage per Challenged stack spent."
+      ],
+      "params": {
+        "arc": 1.2,
+        "range": 1.4,
+        "physMult": [
+          1.3,
+          0.05
+        ],
+        "fire": [
+          2,
+          4,
+          0.8,
+          1.0
+        ],
+        "sigConsume": 15
+      },
+      "kotoPolish": true,
+      "v84n": "new",
+      "mana": [
+        8,
+        0.25
+      ],
+      "cooldown": 3
     }
   ],
   "strings": {
