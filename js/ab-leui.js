@@ -237,6 +237,17 @@
   function fitCard(box, cmp) {
     if (!root.document.documentElement.classList.contains("ua-ready")) return;
     var again = false, safe0 = (root.ABSafeArea && ABSafeArea.insets && ABSafeArea.insets()) || {}, room = (root.innerHeight || 0) - (safe0.top || 0) - (safe0.bottom || 0) - 16;
+    /* v84n (TTPC-49): remembered fit level per item + card + screen, applied in one step (was up to 5 re-layouts per open) */
+    var S0 = root.ASHBOUND && ASHBOUND.state && ASHBOUND.state.ui, sel = S0 && S0.selected, fkey = function (el) {
+      return (sel && sel.uid || "") + "|" + el.id + "|" + (cmp ? 1 : 0) + "|" + (root.innerWidth || 0) + "x" + (root.innerHeight || 0) + "|" + (S0 && S0.itemDetails ? 1 : 0);
+    };
+    var FC = fitCard._cache || (fitCard._cache = {}), jumped = false;
+    [box, cmp].forEach(function (el) {
+      if (!el || el.hasAttribute("data-le-fit")) return;
+      var k = FC[fkey(el)]; if (!k) return;
+      el.setAttribute("data-le-fit", String(k.lvl)); if (k.wide) el.setAttribute("data-le-wide", k.wide); jumped = true;
+    });
+    if (jumped && root.ABItemBox && ABItemBox.layout) { ABItemBox.layout(); return; }
     [box, cmp].forEach(function (el) {
       if (!el) return;
       var mh = parseFloat(el.style.maxHeight) || 0; if (room > 120 && (!mh || mh > room)) el.style.maxHeight = room + "px";
@@ -248,6 +259,12 @@
       }
     });
     if (again && root.ABItemBox && ABItemBox.layout) { ABItemBox.layout(); return; }
+    [box, cmp].forEach(function (el) {
+      if (!el) return;
+      var lv = +(el.getAttribute("data-le-fit") || 0); if (!lv) return;
+      var ks = Object.keys(FC); if (ks.length > 200) delete FC[ks[0]];
+      FC[fkey(el)] = { lvl: lv, wide: el.getAttribute("data-le-wide") || "" };
+    });
     var safe = (root.ABSafeArea && ABSafeArea.insets && ABSafeArea.insets()) || { bottom: 0, top: 0 };
     var vh = root.innerHeight || 0, pad = 8;
     [box, cmp].forEach(function (el) {

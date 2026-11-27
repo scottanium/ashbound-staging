@@ -354,6 +354,8 @@
     placeCenterOrbs(c, vw, vh, arcBox, joy);
     placeStam();
     placeMute();
+    // v84n: the ultimate button sits clear of everything placed above (js/ab-skillbar.js placeUlt).
+    if (window.ABSkillBar && ABSkillBar.placeUlt) { try { ABSkillBar.placeUlt(); } catch (e) { console.warn("placeUlt", e); } }
     st.last = { H: Math.round(packed && packed.R ? packed.R[0] : (Rs + r + c.ringGap)), r: r, Rs: Rs, cx: Math.round(cx), cy: Math.round(cy), vw: vw, vh: vh, left: left, strikeScale: c.strikeScale, strikeInsetX: c.strikeInsetX || 0, strikeInsetY: c.strikeInsetY || 0, step: packed && packed.step, mid: packed && packed.mid, R: packed && packed.R && packed.R[0] };
     keepOut();
   }
@@ -537,7 +539,7 @@
     }
   }
   // HUD boxes the objective arrow must not sit on (refreshed on every layout, not per frame)
-  var AVOID = ["#btn-mute", "#life-orb", "#mana-orb", "#stam-bar", "#skill-0", "#skill-1", "#skill-2", "#skill-3", "#btn-attack", "#belt-left", "#belt-right", "#joystick", "#dock-left", "#dock-right", "#minimap", "#quest-track", "#topbar"];
+  var AVOID = ["#btn-mute", "#life-orb", "#mana-orb", "#stam-bar", "#skill-0", "#skill-1", "#skill-2", "#skill-3", "#skill-ult", "#btn-attack", "#belt-left", "#belt-right", "#joystick", "#dock-left", "#dock-right", "#minimap", "#quest-track", "#topbar"];
   function keepOut() {
     st.avoid = AVOID.map(function (s) { var b = rect(q(s)); return b && { left: b.left, top: b.top, right: b.right, bottom: b.bottom }; }).filter(Boolean);
     flaskBoxes().forEach(function (b) { st.avoid.push({ left: b.left, top: b.top, right: b.right, bottom: b.bottom }); });

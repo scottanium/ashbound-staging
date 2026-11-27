@@ -305,7 +305,7 @@
   }
 
   function hudBoxes() {
-    var ids = ["#btn-mute", "#life-orb", "#mana-orb", "#stam-bar", "#skill-0", "#skill-1", "#skill-2", "#skill-3", "#btn-attack", "#belt-left", "#belt-right", "#joystick", "#dock", "#minimap", "#quest-track", "#topbar", "#toasts", "#hint", "#tutor", "#act-banner", "#quest-banner"];
+    var ids = ["#btn-mute", "#life-orb", "#mana-orb", "#stam-bar", "#skill-0", "#skill-1", "#skill-2", "#skill-3", "#skill-ult", "#btn-attack", "#belt-left", "#belt-right", "#joystick", "#dock", "#minimap", "#quest-track", "#topbar", "#toasts", "#hint", "#tutor", "#act-banner", "#quest-banner"];
     var out = [];
     for (var i = 0; i < ids.length; i++) {
       var el = document.querySelector(ids[i]);

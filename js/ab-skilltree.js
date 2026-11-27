@@ -76,16 +76,26 @@
     const def = skillDef(node.skill);
     return Math.min(r, (def && def.maxRank) || max);
   }
-  // r15 treebudget: pick-1-of-2 pairs. Two nodes in a tree with the same "pick" value: once both are open you hold one
-  // (full rank) and the other stays at rank 0. The first one opened is held until you take the other (p.tree.picks[group]).
-  function pickMate(t, n) { return (n && n.pick && t.nodes.find((x) => x.pick === n.pick && x.skill !== n.skill)) || null; }
-  function heldPick(p, t, group, pts) {
-    const open = t.nodes.filter((x) => x.pick === group && pts >= x.at).sort((a, b) => a.at - b.at);
-    if (!open.length) return null;
-    const want = p && p.tree && p.tree.picks && p.tree.picks[group];
-    return want && open.some((x) => x.skill === want) ? want : open[0].skill;
+  // v84n: trees are linear. No pick-1-of-2 pairs: every node a tree has reached is owned and levels with the tree.
+  // isHeld stays (always true) so kit code that asked keeps working.
+  function isHeld() { return true; }
+  // Ultimate nodes ({ultimate:true, kind:"active"|"passive"}). One per tree today; a second (e.g. at 80) only needs a node.
+  function ultKind(n) { if (n.kind) return n.kind; const d = skillDef(n.skill); return d && d.type === "passive" ? "passive" : "active"; }
+  function isUltId(id) {
+    if (!id) return false;
+    const all = D().skillTreesByClass || {};
+    for (const c of Object.keys(all)) for (const t of (all[c] && all[c].trees) || []) for (const n of t.nodes || []) if (n.ultimate && n.skill === id) return true;
+    for (const k of Object.keys(extraTrees)) for (const n of extraTrees[k].nodes || []) if (n.ultimate && n.skill === id) return true;
+    return false;
   }
-  function isHeld(p, t, n, pts) { return !n.pick || heldPick(p, t, n.pick, pts) === n.skill; }
+  function ultNodes(p) {
+    const out = [];
+    if (!active(p)) return out;
+    for (const t of slotTrees(p)) for (const n of t.nodes) if (n.ultimate) out.push({ tree: t.id, skill: n.skill, at: n.at, kind: ultKind(n), owned: ((p.skills && p.skills[n.skill]) || 0) > 0 });
+    return out;
+  }
+  // The HUD ult button shows only an owned ACTIVE ultimate (a passive ult is always on and needs no button).
+  function ultOf(p) { const u = ultNodes(p).filter((x) => x.owned && x.kind === "active").sort((a, b) => a.at - b.at)[0]; return u ? u.skill : null; }
   function treeOfSkill(p, id) {
     for (const t of slotTrees(p)) for (const n of t.nodes) if (n.skill === id) return t;
     return null;
@@ -105,9 +115,11 @@
     const cls = (D().classes || []).find((c) => c.id === p.classId);
     const sk = {};
     for (const id of (cls && cls.skills) || []) sk[id] = 0;
-    for (const t of slotTrees(p)) { const pts = p.tree.pts[t.id] || 0; for (const n of t.nodes) sk[n.skill] = isHeld(p, t, n, pts) ? nodeRank(n, pts) : 0; }
+    for (const t of slotTrees(p)) { const pts = p.tree.pts[t.id] || 0; for (const n of t.nodes) sk[n.skill] = nodeRank(n, pts); }
     p.skills = sk;
-    if (Array.isArray(p.bar)) p.bar = p.bar.map((id) => (id && sk[id] > 0 ? id : null));
+    // Bar slots 1-4 are for actives only; an ultimate lives on its own HUD button (ultOf), so it never sits here.
+    if (Array.isArray(p.bar)) p.bar = p.bar.map((id) => (id && sk[id] > 0 && !isUltId(id) ? id : null));
+    if (Array.isArray(p.barMemory)) p.barMemory = p.barMemory.map((id) => (id && !isUltId(id) ? id : null));
     p.skillPoints = freePoints(p);
   }
   function spend(p, treeId) {
@@ -116,38 +128,14 @@
     p.tree.pts[treeId] = before + 1;
     derive(p);
     const node = t.nodes.find((n) => n.at === before + 1);
-    const mate = node && pickMate(t, node);
-    const pick = mate && before + 1 >= mate.at ? [heldPick(p, t, node.pick, before + 1), node.skill === heldPick(p, t, node.pick, before + 1) ? mate.skill : node.skill] : null;
-    return { ok: true, unlocked: node ? node.skill : null, pick };
+    return { ok: true, unlocked: node ? node.skill : null };
   }
-  // Take one side of a pick pair (free, any time); the other side drops to rank 0 and off the bar.
-  function pick(p, id) {
-    if (!active(p)) return { ok: false };
-    const t = treeOfSkill(p, id), n = t && t.nodes.find((x) => x.skill === id);
-    if (!n || !n.pick) return { ok: false };
-    const pts = p.tree.pts[t.id] || 0; if (pts < n.at) return { ok: false, reason: str("detailLocked", { at: n.at, tree: t.name }) };
-    const mate = pickMate(t, n), was = heldPick(p, t, n.pick, pts);
-    p.tree.picks = p.tree.picks || {}; p.tree.picks[n.pick] = id;
-    if (mate) p.buffs = (p.buffs || []).filter((b) => b.id !== mate.skill);
-    derive(p);
-    return { ok: true, changed: was !== id, other: mate ? mate.skill : null };
-  }
-  // Load: re-derive ranks from the tree (nodes may have moved) and, for an old save with both sides of a pair open, hold
-  // the side that is on the action bar. Fill-missing only; points never change, so SAVE_VERSION stays 7.
+  // Load: re-derive ranks from the tree. v84n: saves from the pick-pair builds (p.tree.picks) simply own every skill again
+  // (the set-aside side comes back at the tree's rank) and an ultimate on bar slots 1-4 moves to the ult button.
+  // Points never change, so SAVE_VERSION stays 7.
   function normalizePicks(p) {
     if (!active(p)) return false;
-    p.tree.picks = p.tree.picks || {};
-    const bar = Array.isArray(p.bar) ? p.bar : [];
-    for (const t of slotTrees(p)) {
-      const pts = p.tree.pts[t.id] || 0, seen = {};
-      for (const n of t.nodes) {
-        if (!n.pick || seen[n.pick] || p.tree.picks[n.pick]) continue; seen[n.pick] = 1;
-        const open = t.nodes.filter((x) => x.pick === n.pick && pts >= x.at);
-        if (open.length < 2) continue;
-        const onBar = open.filter((x) => bar.indexOf(x.skill) >= 0);
-        if (onBar.length) p.tree.picks[n.pick] = onBar.sort((a, b) => bar.indexOf(a.skill) - bar.indexOf(b.skill))[0].skill;
-      }
-    }
+    if (p.tree.picks) delete p.tree.picks;
     derive(p);
     return true;
   }
@@ -220,6 +208,9 @@
   function treeMul(p, t) { const pts = p.tree.pts[t.id] || 0; return { mul: 1 + damagePct(t, pts) / 100, area: 1 + areaPct(t, pts) / 100 }; }
   function skillMul(p, id) { const t = treeOfSkill(p, id); return t ? treeMul(p, t) : { mul: 1, area: 1 }; }
   function withMul(mul, fn) { const prev = api.curMul; api.curMul = mul; try { return fn(); } finally { api.curMul = prev; } }
+  // v84n: which skill is casting (tree marks read it). Queued hits (pending) remember the skill that queued them.
+  function withSkill(id, fn) { const prev = api.curSkill; api.curSkill = id || null; try { return fn(); } finally { api.curSkill = prev; } }
+  pending.push = function () { for (const q of arguments) if (q && q.skill === undefined) q.skill = api.curSkill || null; return Array.prototype.push.apply(this, arguments); };
 
   function wrapCast(e, def, rank, raw) {
     const p = e.player;
@@ -228,12 +219,15 @@
     const { mul, area } = treeMul(p, t), k = kitOf(p);
     const extra = k && k.castExtra ? k.castExtra(e, def, t) : null;
     const d2 = scaled(def, mul, area, extra);
-    withMul(mul, () => {
-      const fn = (k && k.behaviors && k.behaviors[def.behavior]) || BEHAVIORS[def.behavior];
-      if (fn) fn(e, d2, rank, mul, raw);
-      else raw(e, d2, rank);
+    withSkill(def.id, () => {
+      withMul(mul, () => {
+        const fn = (k && k.behaviors && k.behaviors[def.behavior]) || BEHAVIORS[def.behavior];
+        if (fn) fn(e, d2, rank, mul, raw);
+        else raw(e, d2, rank);
+      });
+      if (k && k.afterCast) withMul(mul, () => k.afterCast(e, def, d2, t, rank, mul));
+      sigOnCast(e, def);
     });
-    if (k && k.afterCast) withMul(mul, () => k.afterCast(e, def, d2, t, rank, mul));
     return true;
   }
 
@@ -276,7 +270,7 @@
     return true;
   }
   function isStill(m) { return !!(m && m._abStillT > 0); }
-  function pool(q) { pools.push(Object.assign({ tick: q.every || 0.5, every: 0.5, el: "fire", color: "#c8461e", spark: "#ff6a2a", kind: "fire", tag: "pool" }, q)); }
+  function pool(q) { pools.push(Object.assign({ skill: api.curSkill || null, tick: q.every || 0.5, every: 0.5, el: "fire", color: "#c8461e", spark: "#ff6a2a", kind: "fire", tag: "pool" }, q)); }
 
   // Shared tree behaviors any kit can use.
   const BEHAVIORS = {
@@ -293,15 +287,105 @@
     }
   };
 
+  // ---- v84n tree signatures --------------------------------------------------------------------------------------------
+  // Each tree's level-1 active (its "signature" node) marks the foes it hits with the tree's mark (tree.sig in data:
+  // id, name, pct = +% damage you deal to the foe per stack, max stacks, sec, plus optional slow / leech / mana / color).
+  // Other skills build on it from data: params.sigApply (stacks added per hit), params.sigConsume (+% per stack on this hit,
+  // then the mark is spent), and passives params.sigBoost {pct, stacks, sec, burst:{pct (of the foe's max life), radius, el}}.
+  // A hit knows its skill from a.skill (projectiles and traps carry it) or from the cast in progress (api.curSkill).
+  const DMG_KEYS = ["phys", "fire", "cold", "light", "poison", "holy", "magic"];
+  function sigOf(t) { return (t && t.sig) || null; }
+  function sigNodeOf(p, id) {
+    for (const t of slotTrees(p)) for (const n of t.nodes) if (n.skill === id) return { t, n };
+    return null;
+  }
+  function sigBoost(p, t) {
+    const out = { pct: 0, stacks: 0, sec: 0, burst: null };
+    const pts = p.tree.pts[t.id] || 0;
+    for (const n of t.nodes) {
+      if (pts < n.at) continue;
+      const d = skillDef(n.skill), b = d && d.params && d.params.sigBoost; if (!b) continue;
+      const r = (p.skills && p.skills[n.skill]) || 0; if (r <= 0) continue;
+      out.pct += (b.pct || 0) + (b.pctPerRank || 0) * r; out.stacks += b.stacks || 0; out.sec += b.sec || 0;
+      if (b.burst) out.burst = b.burst;
+    }
+    return out;
+  }
+  function sigStacks(m, treeId) { const s = m && m._sigs && m._sigs[treeId]; return s && s.t > 0 ? s.n : 0; }
+  function markFoe(e, m, t, add) {
+    const g = sigOf(t); if (!g || !m || m.dead || m.friendly) return 0;
+    const p = e.player, b = sigBoost(p, t), max = (g.max || 3) + b.stacks;
+    m._sigs = m._sigs || {};
+    const cur = m._sigs[t.id] && m._sigs[t.id].t > 0 ? m._sigs[t.id].n : 0;
+    const n = Math.min(max, cur + (add || 1));
+    m._sigs[t.id] = { n, t: (g.sec || 6) + b.sec, tree: t.id };
+    if (g.slow) m.slowT = Math.max(m.slowT || 0, Math.min(1, g.sec || 1));
+    api.sigMarks = (api.sigMarks || 0) + 1;
+    return n;
+  }
+  function sigPre(e, target, a) {
+    const p = e.player; if (!active(p) || !a || a.source !== "player") return;
+    // 1) bonus from every mark on the foe
+    let pct = 0;
+    if (target._sigs) for (const id of Object.keys(target._sigs)) {
+      const s = target._sigs[id]; if (!(s.t > 0) || !(s.n > 0)) continue;
+      const t = treeDef(id), g = sigOf(t); if (!g || (p.tree.slots || []).indexOf(id) < 0) continue;
+      pct += ((g.pct || 0) + sigBoost(p, t).pct) * s.n;
+    }
+    // 2) what this hit does to the mark
+    const sid = a.skill || api.curSkill, hit = sid && sigNodeOf(p, sid);
+    if (hit && isHeld(p, hit.t, hit.n, p.tree.pts[hit.t.id] || 0) && sigOf(hit.t)) {
+      const d = skillDef(sid), pr = (d && d.params) || {};
+      const apply = hit.n.signature ? (pr.sigApply || 1) : (pr.sigApply || 0);
+      if (pr.sigConsume) { const n = sigStacks(target, hit.t.id); if (n > 0) { pct += pr.sigConsume * n; target._sigs[hit.t.id].t = 0; target._sigs[hit.t.id].n = 0; api.sigConsumed = (api.sigConsumed || 0) + n; } }
+      else if (apply > 0) markFoe(e, target, hit.t, apply);
+    }
+    if (pct > 0) { const k = 1 + pct / 100; for (const f of DMG_KEYS) if (typeof a[f] === "number") a[f] *= k; a.sigPct = pct; }
+  }
+  function sigHit(ev, e) {
+    const p = e.player, m = ev.target; if (!m || !m._sigs || !(ev.amount > 0)) return;
+    for (const id of Object.keys(m._sigs)) {
+      const s = m._sigs[id]; if (!(s.t > 0)) continue; const g = sigOf(treeDef(id)); if (!g) continue;
+      if (g.leech && e.sheet) { const h = ev.amount * g.leech / 100 * s.n; p.hp = Math.min(e.sheet.life, (p.hp || 0) + h); }
+      if (g.mana && e.sheet) p.mana = Math.min(e.sheet.mana, (p.mana || 0) + g.mana * s.n);
+    }
+  }
+  function sigKilled(ev, e) {
+    const m = ev.target, p = e.player; if (!m || !m._sigs) return;
+    for (const id of Object.keys(m._sigs)) {
+      const s = m._sigs[id]; if (!(s.t > 0)) continue; const t = treeDef(id); if (!sigOf(t)) continue;
+      const b = sigBoost(p, t).burst; if (!b) continue;
+      const amt = (m.maxHp || m.hp || 50) * (b.pct || 15) / 100 * Math.min(1, 0.5 + 0.25 * s.n);
+      burst(e, m.x, m.y, b.radius || 1.8, b.el || "fire", amt, "sigburst", (sigOf(t).color || "#ffb067"), { skill: null });
+      api.sigBursts = (api.sigBursts || 0) + 1;
+    }
+    m._sigs = null;
+  }
+  function sigTick(e, dt) {
+    for (const m of (e.world && e.world.monsters) || []) {
+      if (!m._sigs) continue;
+      for (const id of Object.keys(m._sigs)) { const s = m._sigs[id]; s.t -= dt; if (s.t <= 0) delete m._sigs[id]; else { const g = sigOf(treeDef(id)); if (g && g.slow) m.slowT = Math.max(m.slowT || 0, 0.2); } }
+      if (!Object.keys(m._sigs).length) m._sigs = null;
+    }
+  }
+  // Signature A1s that don't hit (a summon, a circle) mark the foe they aim at when cast (params.sigOnCast = radius).
+  function sigOnCast(e, def) {
+    const p = e.player, r = def && def.params && def.params.sigOnCast; if (!r) return;
+    const hit = sigNodeOf(p, def.id); if (!hit || !sigOf(hit.t)) return;
+    const ap = aimPoint(e, def.params.sigRange || 7, 0.9);
+    for (const m of near(e, ap.x, ap.y, r)) markFoe(e, m, hit.t, def.params.sigApply || 1);
+  }
+
   // ---- damage hooks (called from the game's damage function) ----------------
   function preDamage(e, target, a) {
     const p = e.player;
     if (!active(p) || !a || a.source !== "player" || target === p || target.friendly) return;
+    sigPre(e, target, a);
     const k = kitOf(p); if (k && k.preDamage) k.preDamage(e, target, a);
   }
-  function onHit(ev) { const e = ev.state; if (!e || !active(e.player) || ev.source !== "player") return; const k = kitOf(e.player); if (k && k.onHit) k.onHit(ev, e); }
+  function onHit(ev) { const e = ev.state; if (!e || !active(e.player) || ev.source !== "player") return; sigHit(ev, e); const k = kitOf(e.player); if (k && k.onHit) k.onHit(ev, e); }
   function onHurt(ev) { const e = ev.state; if (!e || !active(e.player)) return; const k = kitOf(e.player); if (k && k.onHurt) k.onHurt(ev, e); }
-  function onKilled(ev) { const e = ev.state, t = ev.target; if (!e || !t || !active(e.player) || t.friendly) return; const k = kitOf(e.player); if (k && k.onKilled) k.onKilled(ev, e); }
+  function onKilled(ev) { const e = ev.state, t = ev.target; if (!e || !t || !active(e.player) || t.friendly) return; const k = kitOf(e.player); if (k && k.onKilled) k.onKilled(ev, e); sigKilled(ev, e); }
 
   // ---- tick ---------------------------------------------------------------
   function tick(e, dt, freeze) {
@@ -331,9 +415,10 @@
       m.x = m._abStillX; m.y = m._abStillY; m.attackCd = Math.max(m.attackCd || 0, 0.3);
     }
     if (freeze) return;
+    sigTick(e, dt);
     for (let i = pending.length - 1; i >= 0; i--) {
       const q = pending[i]; q.t -= dt;
-      if (q.t <= 0) { pending.splice(i, 1); try { withMul(q.mul || 1, q.fn); } catch (err) { console.warn("ABTree pending", err); } }
+      if (q.t <= 0) { pending.splice(i, 1); try { withSkill(q.skill, () => withMul(q.mul || 1, q.fn)); } catch (err) { console.warn("ABTree pending", err); } }
     }
     for (let i = pools.length - 1; i >= 0; i--) {
       const q = pools[i]; q.t -= dt; q.tick -= dt;
@@ -341,7 +426,7 @@
         q.tick += q.every;
         for (const m of e.world.monsters) {
           if (m.dead || Math.hypot(m.x - q.x, m.y - q.y) > q.r + (m.radius || 0.3)) continue;
-          hit(e, m, q.el, q.dmg, q.tag);
+          hit(e, m, q.el, q.dmg, q.tag, q.skill ? { skill: q.skill } : null);
           if (q.slow) m.slowT = Math.max(m.slowT || 0, q.slow);
           api.poolTicks = (api.poolTicks || 0) + 1;
         }
@@ -382,18 +467,11 @@
       e.ui.treeUndo = e.ui.treeUndo || []; e.ui.treeUndo.push(tree);
       if (p.progress && p.progress.seen) { p.progress.seen.skilled = true; p.progress.seen.steps = p.progress.seen.steps || {}; p.progress.seen.steps.point = true; if (r.unlocked) p.progress.seen.steps.skill = true; }
       if (r.unlocked) e.ui.skillId = r.unlocked;
+      else if (!treeOfSkill(p, e.ui.skillId) || treeOfSkill(p, e.ui.skillId).id !== tree) e.ui.skillId = treeDef(tree).nodes[0].skill;
       H && H.recalc();
       e.sfx && e.sfx.push("ui");
-      if (r.pick) { const a = skillDef(r.pick[0]), b = skillDef(r.pick[1]); return { toast: str("pickReady", { a: (a && a.name) || r.pick[0], b: (b && b.name) || r.pick[1] }), kind: "good" }; }
       if (r.unlocked) { const d = skillDef(r.unlocked); const nm = d ? d.name : r.unlocked; return { toast: str("unlockedToast", { name: nm, skill: nm }), kind: "good" }; }
       return {};
-    }
-    if (name === "tree-pick") {
-      const id = (t && t.skill) || e.ui.skillId, r = pick(p, id);
-      if (!r.ok) return { toast: r.reason || "You cannot take that yet.", kind: "bad", save: false };
-      e.ui.skillId = id; H && H.recalc(); e.sfx && e.sfx.push("ui");
-      const a = skillDef(id), b = skillDef(r.other);
-      return { toast: str("pickChosen", { name: (a && a.name) || id, other: (b && b.name) || r.other }), kind: "good" };
     }
     if (name === "tree-undo") {
       const st = e.ui.treeUndo || []; const last = st.pop();
@@ -440,20 +518,28 @@
     const ch = ((d && (d.name || d.id)) || "?").toString().charAt(0);
     return `<span class="tt-glyph" aria-hidden="true">${esc(ch)}</span>`;
   }
-  function nodeHtml(e, t, n, pts, nx, tab) {
+  // v84n: snake packing (data/skilltree-ui.json pack "snake3"): row 1 left to right, row 2 right to left, ... so the
+  // path never crosses itself and each step is a neighbour.
+  // Positions go out as CSS variables for the wide (cols) and narrow (colsNarrow, portrait) grids; the CSS picks one.
+  function snakePos(i, U) {
+    if ((U.pack || "") !== "snake3") return "";
+    const one = (c) => { const r = Math.floor(i / c), k = i % c; return [r + 1, r % 2 ? c - k : k + 1]; };
+    const w = one(U.cols || 3), n = one(U.colsNarrow || 2);
+    return `--sr:${w[0]};--sc:${w[1]};--snr:${n[0]};--snc:${n[1]}`;
+  }
+  function nodeHtml(e, t, n, pts, nx, tab, pos) {
     const d = skillDef(n.skill) || { name: n.skill, type: "", id: n.skill };
     const unlocked = pts >= n.at, isNext = nx && nx.at === n.at;
-    const mate = pickMate(t, n), aside = unlocked && !isHeld(e.player, t, n, pts);
-    const rank = unlocked && !aside ? (e.sheet.ranks[n.skill] || 0) : 0, base = unlocked && !aside ? nodeRank(n, pts) : 0;
+    const rank = unlocked ? (e.sheet.ranks[n.skill] || 0) : 0, base = unlocked ? nodeRank(n, pts) : 0;
     const shown = unlocked ? (rank || base) : 0;
     const st = unlocked ? "unlocked" : isNext ? "next" : "locked";
     const ico = skillIco(d);
-    const rankMark = unlocked && !aside ? `<span class="tt-rank" title="Rank ${shown}">${shown}</span>` : "";
+    const rankMark = unlocked ? `<span class="tt-rank" title="Rank ${shown}">${shown}</span>` : "";
     const ult = n.ultimate ? `<em class="tt-ult">ULT</em>` : "";
-    const md = mate && (skillDef(mate.skill) || { name: mate.skill });
-    const orMark = mate ? `<em class="tt-or" title="${esc(str("pickOr", { other: md.name }))}">OR</em>` : "";
-    return `<button type="button" class="tt-node tt-tile st-${st} ${n.ultimate ? "is-ult" : ""} ${mate ? "is-pick" : ""} ${aside ? "is-aside" : ""} ${e.ui.skillId === n.skill ? "is-sel" : ""}" data-act="select-skill" data-skill="${n.skill}" data-at="${n.at}" data-tree="${t.id}" ${mate ? `data-pick="${esc(n.pick)}"` : ""} aria-label="${esc(d.name)}${aside ? ", set aside" : unlocked ? " rank " + shown : " locked until " + n.at}${mate ? ", " + esc(str("pickOr", { other: md.name })) : ""}">
-      <span class="tt-plate">${ico}${rankMark}${ult}${orMark}<span class="tt-at">${n.at}</span></span>
+    const sigMark = n.signature && t.sig ? `<em class="tt-sig" title="${esc(t.sig.name)}" style="--sig:${esc(t.sig.color || "#ffb067")}"></em>` : "";
+    const eqOk = e.ui.equipSlot != null && unlocked && d.type === "active" && !n.ultimate;
+    return `<button type="button" class="tt-node tt-tile st-${st} ${n.ultimate ? "is-ult" : ""} ${n.signature ? "is-sig" : ""} ${eqOk ? "is-equippable" : ""} ${e.ui.skillId === n.skill ? "is-sel" : ""}" data-act="select-skill" ${pos ? `style="${pos}"` : ""} data-skill="${n.skill}" data-at="${n.at}" data-tree="${t.id}" data-kind="${n.ultimate ? "ult-" + ultKind(n) : d.type}" aria-label="${esc(d.name)}${unlocked ? " rank " + shown : " locked until " + n.at}">
+      <span class="tt-plate">${ico}${rankMark}${ult}${sigMark}<span class="tt-at">${n.at}</span></span>
       <span class="tt-nm">${esc(d.name)}</span>
     </button>`;
   }
@@ -521,7 +607,38 @@
     syncTipFade(rootNode);
   }
 
+  // v84n: the tree header is the main +1 control. Tap adds a point (when the tree can take one), hold repeats (see bindHold).
+  function hdrHtml(p, x, xp, tab, ult, U) {
+    const hd = U.header || {}, cs = canSpend(p, x.id), can = cs.ok && hd.spendOnTap !== false, full = xp >= treeMax();
+    const chip = full ? (hd.maxText || "MAX") : (hd.plusText || "+1");
+    const lab = x.name + " " + xp + ". " + (can ? str("spend", { tree: x.name }) : (cs.reason || ""));
+    return `<button type="button" class="tt-tab tt-hdr ${can ? "can-spend" : "no-spend"} ${x.id === tab ? "is-on" : ""} ${ult ? "has-ult" : ""}" data-act="${can ? "tree-spend" : "tree-tab"}" data-tree="${x.id}" data-hdr="1"${can && hd.hold !== false ? ' data-hold="1"' : ""} aria-pressed="${x.id === tab}" aria-label="${esc(lab)}" style="min-height:${Math.max(44, hd.minH || 44)}px"><span class="tt-hname">${esc(x.name)}</span> <b class="tt-hpts">${xp}</b><span class="tt-hplus ${can ? "is-can" : "is-not"}" aria-hidden="true">${esc(chip)}</span></button>`;
+  }
+  // Hold a header to keep adding points. A finished hold swallows the click that follows it.
+  let holdT = 0, holdIv = 0, holdFired = 0;
+  function holdStop() { clearTimeout(holdT); clearInterval(holdIv); holdT = holdIv = 0; }
+  function bindHold() {
+    if (api.holdBound || typeof document === "undefined") return; api.holdBound = true;
+    document.addEventListener("pointerdown", function (ev) {
+      const b = ev.target && ev.target.closest && ev.target.closest('.tt-hdr[data-hold="1"]'); if (!b) return;
+      const hd = treeUi().header || {}, tree = b.dataset.tree; holdStop(); holdFired = 0;
+      holdT = setTimeout(function () {
+        holdIv = setInterval(function () {
+          const nb = document.querySelector('.tt-hdr[data-tree="' + tree + '"]');
+          if (!nb || nb.dataset.act !== "tree-spend") { holdStop(); return; }
+          holdFired++; nb.click();
+        }, hd.holdEveryMs || 110);
+      }, hd.holdDelayMs || 420);
+    }, true);
+    const end = function () { holdStop(); if (holdFired) { const n = holdFired; holdFired = 0; api._swallow = Date.now(); api._holdAdded = n; } };
+    document.addEventListener("pointerup", end, true);
+    document.addEventListener("pointercancel", end, true);
+    document.addEventListener("click", function (ev) {
+      if (api._swallow && Date.now() - api._swallow < 450 && ev.isTrusted && ev.target.closest && ev.target.closest(".tt-hdr")) { api._swallow = 0; ev.stopPropagation(); ev.preventDefault(); }
+    }, true);
+  }
   function panelHtml(e) {
+    bindHold();
     const p = e.player, trees = slotTrees(p); strCls = p.classId;
     let tab = e.ui.treeTab; if (!trees.some((t) => t.id === tab)) { const ts = treeOfSkill(p, e.ui.skillId); tab = (ts || trees[0]).id; e.ui.treeTab = tab; }
     // Clicking a tile in another column selects that tree (D2-style forest).
@@ -541,9 +658,9 @@
     function colHtml(x) {
       const def = treeDef(x.id), xp = p.tree.pts[x.id] || 0, ult = xp >= ultAt();
       const nxCol = nextNode(def, xp);
-      const nodes = def.nodes.map((n) => nodeHtml(e, def, n, xp, nxCol, tab)).join("");
+      const nodes = def.nodes.map((n, i) => nodeHtml(e, def, n, xp, nxCol, tab, snakePos(i, U))).join("");
       return `<section class="tt-col ${x.id === tab ? "is-on" : ""} ${ult ? "has-ult" : ""}" data-tree="${x.id}">
-        <button type="button" class="tt-tab ${x.id === tab ? "is-on" : ""} ${ult ? "has-ult" : ""}" data-act="tree-tab" data-tree="${x.id}" aria-pressed="${x.id === tab}">${esc(x.name)} <b>${xp}</b></button>
+        ${hdrHtml(p, x, xp, tab, ult, U)}
         <div class="tt-board"><div class="tt-spine"><svg class="tt-lines" aria-hidden="true"></svg><div class="tt-nodes">${nodes}</div></div></div>
       </section>`;
     }
@@ -572,33 +689,39 @@
   }
   // v84k: each picker slot shows its number (1-4, left to right like the HUD) plus a small icon of the skill already in it;
   // the slot holding this skill is lit (is-on, aria-pressed). data/skillbar.json picker.showEquipped turns the icons off.
-  function barSlotHtml(p, d, r, unlocked, slotLab) {
+  // v84n: equip mode (opened from an empty HUD slot): the hint line and the target slot glow.
+  function equipHint(slot) {
+    const t = (((root.ASHBOUND_DATA || {}).skillbar || {}).picker || {}).equipHint || "Tap a skill to put it in slot {n}";
+    return t.split("{n}").join(String(Number(slot) + 1));
+  }
+  function barSlotHtml(p, d, r, unlocked, slotLab, eqSlot) {
     const sbCfg = ((root.ASHBOUND_DATA || {}).skillbar || {}).picker || {};
     const cur = (p.bar || [])[r] || null, on = cur === d.id, cd = cur ? skillDef(cur) : null;
     const ico = sbCfg.showEquipped !== false && cd ? `<span class="bs-ico" aria-hidden="true">${skillIco(cd)}</span>` : "";
     const lab = slotLab(r) + (cd ? " \u00b7 " + (cd.name || cur) : "");
-    return `<button class="btn bar-slot${on ? " is-on" : ""}${cd ? " has-skill" : ""}" data-act="assign" data-skill="${d.id}" data-slot="${r}" aria-pressed="${on}" aria-label="${esc(lab)}" title="${esc(lab)}" ${unlocked ? "" : "disabled"}><b class="bs-n">${r + 1}</b>${ico}</button>`;
+    const tgt = eqSlot != null && Number(eqSlot) === r;
+    return `<button class="btn bar-slot${on ? " is-on" : ""}${cd ? " has-skill" : ""}${tgt ? " is-target" : ""}" data-act="assign" data-skill="${d.id}" data-slot="${r}" aria-pressed="${on}" aria-label="${esc(lab)}" title="${esc(lab)}" ${unlocked ? "" : "disabled"}><b class="bs-n">${r + 1}</b>${ico}</button>`;
   }
   function detailHtml(e) {
     const p = e.player, id = e.ui.skillId, d = skillDef(id), t = treeOfSkill(p, id); strCls = p.classId;
     if (!d || !t) return "";
     const node = t.nodes.find((n) => n.skill === id), pts = p.tree.pts[t.id] || 0;
-    const mate = pickMate(t, node), md = mate && (skillDef(mate.skill) || { name: mate.skill });
-    const aside = pts >= node.at && !isHeld(p, t, node, pts), unlocked = pts >= node.at && !aside;
+    const unlocked = pts >= node.at;
     const baseRank = unlocked ? nodeRank(node, pts) : 0;
-    const rank = unlocked ? Math.max(e.sheet.ranks[id] || 0, baseRank) : 0, shown = Math.max(1, aside ? nodeRank(node, pts) : rank);
+    const rank = unlocked ? Math.max(e.sheet.ranks[id] || 0, baseRank) : 0, shown = Math.max(1, rank);
     const curLines = rankLines(d, shown);
     const nextRank = unlocked ? rank + 1 : 1;
     const nextLines = rankLines(d, Math.max(1, nextRank));
     const mana = d.type === "active" && H && H.mana ? ` \u00b7 mana ${H.mana(d, shown)}` : "";
     const cd = d.type === "active" && d.cooldown ? ` \u00b7 ${d.cooldown}s` : "";
-    const head = aside ? str("pickAside", { other: md.name }) : unlocked ? str("detailUnlocked", { rank, pts, tree: t.name }) : str("detailLocked", { at: node.at, tree: t.name });
-    const pickLine = !mate || aside ? "" : unlocked && pts >= mate.at ? str("pickHeld", { other: md.name }) : str("pickNote", { a: d.name, b: md.name });
+    const head = unlocked ? str("detailUnlocked", { rank, pts, tree: t.name }) : str("detailLocked", { at: node.at, tree: t.name });
+    const sigLine = node.signature && t.sig ? str("sigLine", { name: t.sig.name, pct: t.sig.pct, max: t.sig.max || 3 }) : "";
+    const ultLine = node.ultimate ? str(ultKind(node) === "active" ? "ultButton" : "ultPassive") : "";
     const dmg = damagePct(t, pts), ar = areaPct(t, pts);
     if (unlocked && (dmg || ar)) curLines.push(`${str("bonusTitle")}: +${dmg}% damage` + (ar ? `, +${ar}% area` : "") + (pts >= ultAt() ? " (rank and area stop at 40)" : ""));
     const U = treeUi();
-    const curLab = aside ? str("pickIfTaken", { rank: shown }) : treeUiStr("currentRank", { rank: unlocked ? rank : 0 }) || ("Rank " + (unlocked ? rank : 0));
-    const nextLab = aside ? str("pickIfTaken", { rank: Math.max(1, nextRank) }) : unlocked
+    const curLab = treeUiStr("currentRank", { rank: unlocked ? rank : 0 }) || ("Rank " + (unlocked ? rank : 0));
+    const nextLab = unlocked
       ? (treeUiStr("nextRank", { rank: nextRank }) || ("Next rank " + nextRank))
       : (treeUiStr("nextUnlock", { at: node.at }) || str("detailLocked", { at: node.at, tree: t.name }));
     const onBar = treeUiStr("onBar") || "Put on the action bar";
@@ -615,23 +738,23 @@
         <button type="button" class="btn tt-undo" data-act="tree-undo" ${undo ? "" : "disabled"}>${esc(str("undo"))}</button>
         <button type="button" class="btn hold-respec" data-act="respec-arm" aria-label="Hold to respec"><span class="tt-respec-full">Hold to respec</span><span class="tt-respec-short">Respec</span></button>
       </div>
-      <span class="small tt-next">${cs.ok || pts >= treeMax() ? nextTxt : esc(cs.reason)}</span>
+      ${e.ui.equipSlot != null ? `<span class="small tt-next tt-equiphint">${esc(equipHint(e.ui.equipSlot))}</span>` : `<span class="small tt-next">${cs.ok || pts >= treeMax() ? nextTxt : esc(cs.reason)}</span>`}
     </div>
     <div class="detail-head">
       <span class="tt-dico">${skillIco(d)}</span>
       <strong>${esc(d.name)}${node.ultimate ? ` <span class="tt-ult">${esc(str("ultimate"))}</span>` : ""}</strong>
       <div class="small muted">${esc(d.type)}${mana}${cd}</div>
       <div class="small ${unlocked ? "good" : "muted"}">${esc(head)}</div>
-      ${pickLine ? `<div class="small tt-pickline">${esc(pickLine)}</div>` : ""}
     </div>
     <div class="tt-tip-wrap">
       <div class="detail-scroll tt-tip">
+      ${sigLine ? `<div class="small tt-sigline">${esc(sigLine)}</div>` : ""}
         <div class="tt-tip-cur"><h4>${esc(curLab)}</h4>${curLines.map((r) => `<p class="small">${esc(r)}</p>`).join("")}</div>
-        ${aside ? "" : `<div class="tt-tip-next"><h4>${esc(nextLab)}</h4>${nextLines.map((r) => `<p class="small">${esc(r)}</p>`).join("")}</div>`}
+        <div class="tt-tip-next"><h4>${esc(nextLab)}</h4>${nextLines.map((r) => `<p class="small">${esc(r)}</p>`).join("")}</div>
       </div>
       <div class="tt-tip-fade" aria-hidden="true"></div>
     </div>
-    <div class="detail-actions tt-assign">${aside ? `<button type="button" class="btn primary tt-take" data-act="tree-pick" data-skill="${d.id}">${esc(str("pickTake", { name: d.name }))}</button>` : d.type === "active" ? `<div class="tt-assign-lab">${esc(onBar)}</div><div class="row">` + [0, 1, 2, 3].map((r) => barSlotHtml(p, d, r, unlocked, slotLab)).join("") + "</div>" : ""}</div>
+    <div class="detail-actions tt-assign">${ultLine ? `<div class="tt-assign-lab tt-ultline">${esc(ultLine)}</div>` : d.type === "active" ? `<div class="tt-assign-lab">${esc(onBar)}</div><div class="row">` + [0, 1, 2, 3].map((r) => barSlotHtml(p, d, r, unlocked, slotLab, e.ui.equipSlot)).join("") + "</div>" : ""}</div>
   </div>`;
   }
 
@@ -648,12 +771,12 @@
 
   Object.assign(api, {
     data, supports, active, fresh, totalPoints, spentPoints, freePoints, canSpend, spend, unspend, resetFree, derive,
-    nodeRank, pickMate, heldPick, isHeld, pick, normalizePicks, damagePct, areaPct, statBonus, betweenCount, bandPoints, treeDef, treeOfSkill,
+    nodeRank, isHeld, isUltId, ultNodes, ultOf, ultKind, normalizePicks, markFoe, sigStacks, sigBoost, damagePct, areaPct, statBonus, betweenCount, bandPoints, treeDef, treeOfSkill,
     registerTree, replaceTree, sheetMods, postSheet, wrapCast, preDamage, tick, clearWorld,
     migratePlayer, migrateSave, act, panelHtml, detailHtml, layoutBoard, attach, kit,
     // kit tools
     tools: { hooks, now, str, skillDef, rankOf, hasBuff, getBuff, addBuff, treeOfSkill, treeMul, skillMul, scaled, withMul,
-      angTo, aimPoint, near, hit, burst, still, isStill, pool, pending, pools, behaviors: BEHAVIORS },
+      angTo, aimPoint, near, hit, burst, still, isStill, pool, pending, pools, behaviors: BEHAVIORS, withSkill, markFoe, sigStacks },
     _pools: pools, _pending: pending, _kits: kits
   });
   root.ABTree = api;
@@ -708,7 +831,7 @@
       H.recalc();
     }
     function freeBloom(e, radiusMul, why) {
-      // r15: Cinder Bloom may be set aside for Clinker Fall; the free blooms (Last Ember, Drowned Furnace) still use its tree rank.
+      // r15 (v84n: no pick pairs now, both are owned): the free blooms (Last Ember, Drowned Furnace) still use its tree rank.
       const p = e.player, bloom = skillDef("cinder_bloom"), t = treeOfSkill(p, "cinder_bloom");
       const r = rankOf(e, "cinder_bloom") || (t ? nodeRank(t.nodes.find((n) => n.skill === "cinder_bloom"), p.tree.pts[t.id] || 0) : 0);
       if (!bloom || r <= 0 || !t) return;

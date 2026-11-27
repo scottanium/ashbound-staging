@@ -139,6 +139,9 @@
       D.setItems = items;
     }
     D.sustain = bag.sustain || {};
+    // v84n: skillbar.json and skilltree-ui.json were fetched but never exposed (code ran on built-in copies of the same values).
+    D.skillbar = bag.skillbar || null;
+    D.skillTreeUi = bag.skillTreeUi || null;
     // r15: campaign uniques from data/uniques-r15.json join the original list (before the Ashen twins).
     D.lootPick = bag.lootPick || null;
     if (bag.uniquesR15 && Array.isArray(bag.uniquesR15.uniques)) {

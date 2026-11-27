@@ -83,7 +83,11 @@
     }
     if (root.ABCraft && ABCraft.isUnique && ABCraft.isUnique(item) && !(cur && cur.uid === item.uid) && !item.dormant) {
       if (!(player && player.consumeUnlocked)) {
-        var hint = (ABCraft.consumeCfg && ABCraft.consumeCfg() && ABCraft.consumeCfg().hint) || "A unique can be consumed once this hero has Heart-Cinder.";
+        var ccfg = (ABCraft.consumeCfg && ABCraft.consumeCfg()) || {};
+        var full = ccfg.hint || "A unique can be consumed once this hero has Heart-Cinder.";
+        // v84n (TTPC-49): a short line on the card; the full sentence under Details
+        var det = !!(root.ASHBOUND && ASHBOUND.state && ASHBOUND.state.ui && ASHBOUND.state.ui.itemDetails);
+        var hint = det ? full : (ccfg.hintShort || full);
         bits.push('<div class="item-flag consume-hint">' + R(hint) + "</div>");
       }
     }

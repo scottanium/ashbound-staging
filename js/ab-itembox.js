@@ -11,6 +11,7 @@
     maxW: 340,
     maxH: 380,
     compareMaxW: 320,
+    compareEven: false,
     minW: 200,
     stackMin: 160,
     equipH: 44,
@@ -371,6 +372,11 @@
       } else {
         mainW = Math.min(wide, Math.max(c.minW, availW - swMain));
       }
+    }
+    /* v84n (TTPC-49): the equipped card gets an even share so its full stats show (data/ui.json itemBox.compareEven). */
+    if (cmp && c.compareEven) {
+      var half = Math.floor((availW - c.pad - swMain - swCmp) / 2);
+      if (half >= c.minW) { mainW = Math.min(half, Math.max(c.maxW, wide || 0)); cmpW = Math.min(half, c.compareMaxW); }
     }
     var br = sizeBox(box, vw, vh, mainW, maxH);
     var left, top;

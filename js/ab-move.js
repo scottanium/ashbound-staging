@@ -179,6 +179,12 @@
     return tiles;
   }
 
+  function losOn() { const f = root.ASHBOUND_DATA && root.ASHBOUND_DATA.feel; return !!(f && f.movement && f.movement.pathLos); }
+  function clearLine(world, x0, y0, x1, y1, r) {
+    const n = Math.max(1, Math.ceil(Math.hypot(x1 - x0, y1 - y0) / 0.2));
+    for (let k = 1; k <= n; k++) { const t = k / n; if (blocked(world, x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, r)) return false; }
+    return true;
+  }
   function pathKey(dest) {
     return dest ? (Math.round(dest.x * 4) + "," + Math.round(dest.y * 4)) : "";
   }
@@ -195,6 +201,8 @@
     let pts = dest._path || [dest];
     let i = dest._pathI || 0;
     while (i < pts.length - 1 && Math.hypot(pts[i].x - ent.x, pts[i].y - ent.y) < 0.35) i++;
+    // v84n pathLos (data/feel.json movement.pathLos): head for the farthest path point in clear sight, not each tile centre.
+    if (losOn()) while (i < pts.length - 1 && clearLine(world, ent.x, ent.y, pts[i + 1].x, pts[i + 1].y, rad(ent))) i++;
     dest._pathI = i;
     return pts[i] || dest;
   }
