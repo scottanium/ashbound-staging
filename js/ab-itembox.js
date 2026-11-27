@@ -1,8 +1,8 @@
 /* v84g: Diablo Immortal-style item pop-up. The detail box sits over or beside the
    tapped item, stays on screen, and closes when you tap outside it. A second
    box shows the currently equipped item when there is room. Equip stays a wide
-   button on the bottom of the card; Unequip, Move to Stash, Drop and the other
-   secondary actions sit in a narrow icon strip beside the card. Drop asks for
+   button on the bottom of the card with Drop beside it (v84k: Drop lives inside the card); Unequip, Move to
+   Stash and the other secondary actions sit in a narrow icon strip beside the card. Drop asks for
    confirmation. Sizes come from data/ui.json "itemBox". A unique's
    "A unique can be consumed…" tip is moved inside the box so it never draws over it. */
 (function (root) {
@@ -49,6 +49,10 @@
       ".detail.item-pop .detail-actions .row{display:flex;flex-wrap:wrap;gap:6px;margin:0;}",
       ".detail.item-pop .detail-actions .btn[data-act=equip],.detail.item-pop .detail-actions .btn[data-act=buy]{flex:1 1 100%;min-height:var(--ib-equip-h);font-size:16px;font-weight:700;}",
       ".detail.item-pop .detail-actions.is-empty{display:none;}",
+      ":is(#panel,body) .detail.item-pop .detail-actions .row > .btn[data-act=equip],:is(#panel,body) .detail.item-pop .detail-actions .row > .btn[data-act=buy]{flex:1 1 0;min-width:0;white-space:normal;line-height:1.15;}",
+      ":is(#panel,body) .detail.item-pop .detail-actions .btn.item-drop-inline{flex:0 0 auto;min-width:88px;min-height:var(--ib-equip-h);display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:15px;padding:0 14px;}",
+      ":is(#panel,body) .detail.item-pop .detail-actions .row > .btn.item-drop-inline:only-child{flex:1 1 100%;}",
+      ".detail.item-pop .detail-actions .btn.item-drop-inline svg{width:18px;height:18px;flex:0 0 auto;fill:currentColor;}",
       ".detail.item-pop .detail-scroll{flex:1 1 auto;min-height:0;overflow:auto;}",
       ".item-side-strip{position:absolute;top:40px;display:flex;flex-direction:column;gap:var(--ib-icon-gap);z-index:8;pointer-events:auto;}",
       ".item-side-strip.strip-right{left:100%;right:auto;margin-left:var(--ib-strip-gap);margin-right:0;}",
@@ -155,8 +159,22 @@
     strip.setAttribute("role", "group");
     strip.setAttribute("aria-label", "Item actions");
 
+    // v84k: Drop sits inside the card, next to Equip, as a normal iron button. Beside the card it could end up
+    // under the compare card or the Island on iPhone 17 landscape.
+    var dropBtn = null;
+    /* v84k: at the vendor the Equipped compare card is for reading only; no Unequip / Stash / Drop on it. */
+    var A0 = root.ASHBOUND, atVendor = box.id === "detail-compare" && !!(A0 && A0.state && A0.state.ui && A0.state.ui.panel === "vendor");
     function take(btn) {
       if (!btn || isPrimary(btn)) return;
+      if (atVendor) {
+        var a0 = btn.getAttribute("data-act");
+        if (a0 !== "deselect" && a0 !== "item-details") btn.remove();
+        return;
+      }
+      if (btn.getAttribute("data-act") === "drop" && !btn.hasAttribute("data-drop-ok")) {
+        if (!dropBtn) dropBtn = btn; else btn.remove();
+        return;
+      }
       restyleIcon(btn);
       strip.appendChild(btn);
     }
@@ -167,9 +185,21 @@
       [].slice.call(scroll.querySelectorAll("button[data-act]")).forEach(take);
     }
     if (strip.children.length) box.appendChild(strip);
+    if (dropBtn) {
+      if (!row) {
+        if (!actions) { actions = document.createElement("div"); actions.className = "detail-actions"; box.appendChild(actions); }
+        row = document.createElement("div"); row.className = "row"; actions.appendChild(row);
+      }
+      dropBtn.classList.add("btn", "item-drop-inline");
+      dropBtn.classList.remove("slim", "primary", "item-icon-btn", "equip-btn");
+      dropBtn.innerHTML = ICONS.drop + '<span class="item-drop-lab">Drop</span>';
+      dropBtn.setAttribute("aria-label", "Drop");
+      row.appendChild(dropBtn);
+      actions.classList.remove("is-empty");
+    }
     if (actions && row && !row.querySelector("button")) actions.classList.add("is-empty");
 
-    if (!box.querySelector(".item-drop-confirm")) {
+    if (!atVendor && !box.querySelector(".item-drop-confirm")) {
       var conf = document.createElement("div");
       conf.className = "item-drop-confirm";
       conf.innerHTML = '<span class="drop-ask">Drop this item?</span><div class="row">' +
@@ -378,7 +408,9 @@
         } else {
           groupLeft = minX;
         }
-        if (box.querySelector(".item-side-strip.strip-right")) {
+        /* v84k: also when the main card has no strip at all (vendor: Buy only). cmpLeft used to stay
+           undefined there, so the compare card kept its probe spot and sat over the shop card. */
+        if (cmpLeft == null) {
           left = groupLeft;
           cmpLeft = left + br.width + swMain + c.pad;
           cmpTop = top;

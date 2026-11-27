@@ -1,5 +1,5 @@
 /* le-ui (v85): painted UI art loader. data/ui-art.json maps two atlases:
-   - items@2x.webp / items@1x.webp: painted item icons, 128 (64) px per grid cell. Drawn with a tiny <svg viewBox> crop so
+   - items@2x.webp / items@1x.webp: painted item icons, 128 (64) px per grid cell. Cut once into a small blob URL per icon (v84k; the old <svg viewBox> crop is only a fallback) so
      every icon shares one decoded atlas (about 10 MB at @2x, 2.6 MB at @1x).
    - chrome@2x.webp: frames, 9-slices, slots, rarity plates/frames/glows, tab icons, chips, badges and glyphs in one file.
      After the first load each piece is cut once into a small blob URL (CSS border-image needs its own image), exposed as
@@ -7,7 +7,7 @@
    Nothing here changes game rules. If the json or an image is missing, ready stays false and the old look stays. */
 (function (root) {
   "use strict";
-  var st = { ready: false, failed: false, pieces: {}, itemsSrc: "", started: false, ms: 0, bytes: 0, err: "" };
+  var st = { ready: false, failed: false, pieces: {}, items: {}, itemsSrc: "", started: false, ms: 0, bytes: 0, err: "" };
   var waiters = [];
   function D() { return (root.ASHBOUND_DATA || {}).uiArt || null; }
   function off() {
@@ -46,9 +46,18 @@
     st.itemsSrc = itemsSrc();
     return Promise.all([loadImg(d.chrome.src), loadImg(st.itemsSrc)]).then(function (ims) {
       var im = ims[0], keys = Object.keys(d.chrome.rects);
-      return Promise.all(keys.map(function (k) { return cut(im, d.chrome.rects[k]).then(function (u) { st.pieces[k] = u; }); })).then(function () {
+      // v84k: every item icon is cut once into its own small image too. iOS Safari blanked the old per-icon <svg> crops
+      // (each one drew the whole atlas under a CSS filter, which blew its filter memory budget once the reskin added more layers).
+      var it = ims[1], k = hd() ? 1 : 0.5, ir = d.items.rects || {};
+      var cuts = keys.map(function (key) { return cut(im, d.chrome.rects[key]).then(function (u) { st.pieces[key] = u; }); });
+      Object.keys(ir).forEach(function (id) {
+        var r = ir[id], rr = [Math.round(r[0] * k), Math.round(r[1] * k), Math.round(r[2] * k), Math.round(r[3] * k)];
+        cuts.push(cut(it, rr).then(function (u) { st.items[id] = u; }, function () {}));
+      });
+      return Promise.all(cuts).then(function () {
         im.src = ""; // release the full chrome atlas; the small pieces stay
-        st.itemsW = ims[1].naturalWidth; st.itemsH = ims[1].naturalHeight;
+        st.itemsW = it.naturalWidth; st.itemsH = it.naturalHeight;
+        if (Object.keys(st.items).length === Object.keys(ir).length) it.src = ""; // every icon has its own cut: drop the decoded atlas too
         installVars(); st.ready = true; st.ms = Math.round(((root.performance && performance.now()) || Date.now()) - t0);
         document.documentElement.classList.add("ua-ready");
         flush(); return true;
@@ -79,16 +88,22 @@
     return '<svg class="item-ico art ' + (cls || "") + '" data-art="' + id + '" viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">' +
       '<svg width="' + w + '" height="' + h + '" viewBox="' + x + " " + y + " " + w + " " + h + '"><image href="' + (st.itemsSrc || itemsSrc()) + '" width="' + W + '" height="' + H + '"/></svg></svg>';
   }
-  function itemHtml(item, cls) { if (off() || !D()) return ""; var id = itemArtId(item); return id ? artSvg(id, cls) : ""; }
+  // v84k: a plain <img> of the icon's own cut-out (same class + data-art as before); the svg crop is only a fallback.
+  function artImg(id, cls) {
+    var u = st.items[id]; if (!u) return "";
+    return '<img class="item-ico art ' + (cls || "") + '" data-art="' + id + '" alt="" draggable="false" src="' + u + '">';
+  }
+  function itemHtml(item, cls) { if (off() || !D()) return ""; var id = itemArtId(item); return id ? (artImg(id, cls) || artSvg(id, cls)) : ""; }
   function piece(k) { return st.pieces[k] || ""; }
   root.ABUiArt = {
     start: start, whenReady: whenReady, ready: function () { return st.ready; }, failed: function () { return st.failed; },
-    off: off, data: D, itemArtId: itemArtId, itemHtml: itemHtml, artSvg: artSvg, piece: piece,
+    off: off, data: D, itemArtId: itemArtId, itemHtml: itemHtml, artSvg: artSvg, artImg: artImg, piece: piece,
+    itemUrl: function (id) { return st.items[id] || ""; },
     stats: function () {
       var d = D() || { chrome: { size: [0, 0], rects: {} } }, px = 0;
       Object.keys(d.chrome.rects || {}).forEach(function (k) { var r = d.chrome.rects[k]; px += r[2] * r[3]; });
       return { ready: st.ready, failed: st.failed, err: st.err, ms: st.ms, pieces: Object.keys(st.pieces).length, rects: Object.keys(d.chrome.rects || {}).length,
-        itemsSrc: st.itemsSrc, itemsW: st.itemsW || 0, itemsH: st.itemsH || 0, blobBytes: st.bytes,
+        items: Object.keys(st.items).length, itemsSrc: st.itemsSrc, itemsW: st.itemsW || 0, itemsH: st.itemsH || 0, blobBytes: st.bytes,
         decodedMB: +(((st.itemsW || 0) * (st.itemsH || 0) * 4 + px * 4) / 1048576).toFixed(1) };
     }
   };

@@ -161,6 +161,7 @@
       if (r.img) o.push(sel.split(",").map(function (s) { return s + " .item-ico.pic"; }).join(",") + "{filter:drop-shadow(0 0 " + r.img + "px " + (r.glow || r.border) + ")}");
     });
     o.push(".item-ico.pic{object-fit:contain;image-rendering:auto;width:100%;height:100%;display:block}");
+    o.push("img.item-ico.art{width:100%;height:100%;display:block;object-fit:contain;image-rendering:auto;-webkit-user-drag:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.7))}");
     o.push("svg.item-ico.art{width:100%;height:100%;display:block;overflow:hidden;filter:drop-shadow(0 1px 1px rgba(0,0,0,.7))}");
     o.push(".shop-ico,.detail-ico{border:1px solid #8d7b68;border-radius:5px}");
     return o.join("\n");
