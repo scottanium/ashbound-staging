@@ -430,7 +430,12 @@
     var a = m.anims;
     if (!(a.idle && atlasses.has(m.path + a.idle.file) && a.walk && atlasses.has(m.path + a.walk.file))) return;
     warmDone.add(wk);
-    var go = function () { prefetch(cfg, look.id, ["run", "strike", "hit"], needMask); };
+    var go = function () {
+      prefetch(cfg, look.id, ["run", "strike", "hit"], needMask);
+      /* r15 skillfx: warm the cast poses this look has (slam/throw/cast/...) a beat later */
+      var extra = Object.keys(a).filter(function (k) { return FX_ANIMS[k]; });
+      if (extra.length) setTimeout(function () { prefetch(cfg, look.id, extra, needMask); }, 900);
+    };
     if (w.requestIdleCallback) w.requestIdleCallback(go, { timeout: 2500 }); else setTimeout(go, 600);
   }
 
@@ -439,7 +444,9 @@
       ? ["walk", "idle", "strike", "hit", "death"]
       : anim === "walk"
         ? ["idle", "run", "strike", "hit", "death"]
-        : ["idle", "walk", "run", "strike", "hit", "death"];
+        : (anim === "idle" || anim === "strike" || anim === "hit" || anim === "death")
+          ? ["idle", "walk", "run", "strike", "hit", "death"]
+          : ["strike", "idle", "walk", "run", "hit", "death"]; /* r15 skillfx cast poses fall back to the strike swing */
     for (var i = 0; i < order.length; i++) {
       var cand = order[i];
       var rec = m.anims[cand];
@@ -537,6 +544,20 @@
     return scaled ? { F: scaled, mir: 0 } : null;
   }
   w.abRealFrame = abRealFrame;
+  /* r15 skillfx: does the hero's current look have this baked anim (and how many frames)? */
+  var FX_ANIMS = { slam: 1, throw: 1, dash: 1, hook: 1, cast: 1, plant: 1, roll: 1 };
+  function curManifest() { return activePath ? manifests.get(activePath) : null; }
+  w.abRealHas = function (anim) {
+    var m = curManifest(); var rec = m && m.anims && m.anims[anim];
+    if (!rec) return false;
+    if (!atlasses.has(m.path + rec.file)) { if (FX_ANIMS[anim]) { loadImage(m.path + rec.file).catch(function () {}); if (activeNeedsMask && rec.mask) loadImage(m.path + rec.mask).catch(function () {}); } return false; }
+    if (activeHelmPath) { /* a worn helm layer must have the pose too, or the helm would blink off mid-cast */
+      var hm = manifests.get(activeHelmPath), hr = hm && hm.anims && hm.anims[anim];
+      if (!(hr && atlasses.has(hm.path + hr.file))) { if (hm && hr) loadImage(hm.path + hr.file).catch(function () {}); return false; }
+    }
+    return true;
+  };
+  w.abRealFrames = function (anim) { var m = curManifest(); var rec = m && m.anims && m.anims[anim]; return rec ? rec.frames : 0; };
   w.abRealStats = function () {
     return {
       on: enabled(), look: lastLook, atlasMB: +(atlasBytes / 1048576).toFixed(2),

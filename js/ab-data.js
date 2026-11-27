@@ -20,11 +20,13 @@
     ["camera", "data/camera.json"],
     ["icons", "data/icons.json", true],
     ["props3d", "data/props3d.json", true],
+    ["collision", "data/collision.json", true],
     ["zonesCfg", "data/zones.json", true],
     ["ui", "data/ui.json", true],
     ["uiArt", "data/ui-art.json", true],
     ["reskin", "data/reskin.json", true],
     ["audio", "data/audio.json", true],
+    ["spawns", "data/spawns.json", true],
     ["stashCfg", "data/stash.json", true],
     ["lootFilter", "data/lootfilter.json", true],
     ["stats", "data/stats.json", true],
@@ -32,6 +34,7 @@
     ["skillArt", "data/skill-art.json", true],
     ["guide", "data/guide.json", true],
     ["questUi", "data/questui.json", true],
+    ["skillbar", "data/skillbar.json", true],
     ["feel", "data/feel.json"],
     ["progress", "data/progress.json"],
     ["uniqueEffects", "data/unique-effects.json"],
@@ -41,6 +44,9 @@
     ["sets", "data/sets.json"],
     ["sustain", "data/sustain.json"],
     ["uniquesAshen", "data/uniques-ashen.json"],
+    // r15: loot picker config and extra campaign uniques (js/ab-lootpick.js). Optional: missing = old drop picker.
+    ["lootPick", "data/lootpick.json", true],
+    ["uniquesR15", "data/uniques-r15.json", true],
     // v82s: skill trees. Shared math in skilltrees-common.json, one file per class. All optional: a class with no file
     // (or the staging/test fallback ?skilltrees=off) keeps the old per-skill system.
     ["skillTreeCommon", "data/skilltrees-common.json", true],
@@ -80,10 +86,12 @@
     D.uiArt = bag.uiArt || null;
     D.reskin = bag.reskin || null;
     D.audio = bag.audio || null; // v84j: sound off by default (data/audio.json)
+    D.spawns = bag.spawns || null; // spawnspread: monster spread along each zone (data/spawns.json)
     D.skillArt = bag.skillArt || null; // r14: painted skill icons (optional)
     D.stashCfg = bag.stashCfg || null;
     D.lootFilter = bag.lootFilter || null;
     D.props3d = bag.props3d || null;
+    D.collision = bag.collision || null; // r15 wallfix: colliders match the drawn obstacles (data/collision.json)
     D.zonesCfg = bag.zonesCfg || null;
     D.ui = bag.ui || null;
     D.guide = bag.guide || null;
@@ -131,6 +139,16 @@
       D.setItems = items;
     }
     D.sustain = bag.sustain || {};
+    // r15: campaign uniques from data/uniques-r15.json join the original list (before the Ashen twins).
+    D.lootPick = bag.lootPick || null;
+    if (bag.uniquesR15 && Array.isArray(bag.uniquesR15.uniques)) {
+      const list = Array.isArray(D.uniques) ? D.uniques.slice() : [];
+      const have = {};
+      for (let i = 0; i < list.length; i++) if (list[i] && list[i].id) have[list[i].id] = true;
+      for (const u of bag.uniquesR15.uniques) if (u && u.id && !have[u.id]) { list.push(u); have[u.id] = true; }
+      D.uniques = list;
+      D.uniquesR15 = bag.uniquesR15.uniques;
+    }
     if (bag.uniquesAshen) {
       if (typeof ABAshen !== "undefined" && ABAshen.merge) ABAshen.merge(D, bag.uniquesAshen);
       else {

@@ -339,6 +339,11 @@
     // (slot 1 highest? comment said "slot 1 lowest / nearest the thumb, 4 at the top") but measure names slot1 as the top-most in practice.
     // Existing tests number #skill-0 as slot1 and expect tight neighbours in index order (0-1, 1-2, 2-3).
     // packed.pos is already in increasing angle (up-right ... around to left-down), which matches current slot1..slot4 order.
+    // v84k: number the slots 1-4 left to right (data/skillbar.json hud.order, default leftToRight) so the HUD matches the
+    // 1-4 row in the skill screen's "Put on the action bar" picker and hotkeys 1-4. Neighbours stay neighbours (0-1, 1-2, 2-3).
+    var order = (((window.ASHBOUND_DATA || {}).skillbar || {}).hud || {}).order || "leftToRight";
+    // Walk the arc from whichever end is further left; reversing (not sorting) keeps arc neighbours adjacent.
+    if (order === "leftToRight" && pos[0][0] > pos[pos.length - 1][0]) pos = pos.slice().reverse();
     slots.forEach(function (b, i) {
       var p = pos[i]; b.style.left = (p[0] - r - Cr.left) + "px"; b.style.top = (p[1] - r - Cr.top) + "px";
     });

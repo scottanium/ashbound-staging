@@ -66,15 +66,20 @@
   }
   function arrive(w, side) {
     var st = S(), pl = st.player; if (!pl || !w) return;
-    if (side && typeof side === "object") { var qa = walk(w, side.x, side.y); pl.x = qa.x; pl.y = qa.y; return; }
+    if (side && typeof side === "object") {
+      var qa = walk(w, side.x, side.y); pl.x = qa.x; pl.y = qa.y;
+      // spawnspread: back through a town portal, the landing spot is kept clear (data/spawns.json portalSafe)
+      if (side.portal && window.ABSpawns) { var sc = (window.ASHBOUND_DATA || {}).spawns; if (sc && sc.enabled !== false) ABSpawns.clearAround(w, pl.x, pl.y, sc.portalSafe || 4.5, function (x, y) { return A.solid(w, x, y); }); }
+      return;
+    }
     if (side === "tp") {
       var tpp = (w.props || []).find(function (p) { return p.uid === "ztp"; });
-      if (tpp) { var q1 = walk(w, tpp.x - .9, tpp.y + 1.1); pl.x = q1.x; pl.y = q1.y; }
+      if (tpp) { var q1 = walk(w, tpp.x - .9, tpp.y + 1.1); pl.x = q1.x; pl.y = q1.y; spawnSafe(w, true); }
       return;
     }
     if (side === "wp") {
       var wp = (w.props || []).find(function (p) { return p.uid === "zwp"; });
-      if (wp) { var q0 = walk(w, wp.x + .2, wp.y + 1.3); pl.x = q0.x; pl.y = q0.y; }
+      if (wp) { var q0 = walk(w, wp.x + .2, wp.y + 1.3); pl.x = q0.x; pl.y = q0.y; spawnSafe(w, false); }
       return;
     }
     if (side !== "back") return;
@@ -84,8 +89,12 @@
     var q = walk(w, tgt.x + dx / d * k, tgt.y + dy / d * k);
     pl.x = q.x; pl.y = q.y;
   }
+  function spawnSafe(w, portal) { // spawnspread: no fight on arrival at the entry, waypoint or a town portal
+    if (window.ABSpawns && w) ABSpawns.safeProps(w, function (x, y) { return A.solid(w, x, y); }, portal);
+  }
   function onWorld(w, fresh) {
     decorate(w);
+    if (fresh) spawnSafe(w, false);
     var z = w && zone(w.id);
     if (z && z.kind === "town" && S().player && typeof pcfg().scrolls === "number") S().player.tpScrolls = Math.max(S().player.tpScrolls || 0, pcfg().scrolls);
     if (z && z.kind === "town" && isWpZone(z.id) && S().player) { ensure(S().player); if (!found(z.id)) discover(z.id, true); }
@@ -260,7 +269,7 @@
     var tp = pl.tp; if (!tp || !zone(tp.zone)) { pl.tp = null; syncTownPortal(w); A.toast(T("tpGone")); return true; }
     pl.tp = null; A.closePanel();
     pl.x = tp.x; pl.y = tp.y;
-    pendingArrive = { x: tp.x, y: tp.y };
+    pendingArrive = { x: tp.x, y: tp.y, portal: true };
     A.goSnap(tp.zone, tp.snap || null);
     return true;
   }

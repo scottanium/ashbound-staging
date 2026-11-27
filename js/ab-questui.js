@@ -53,7 +53,7 @@
     var s = document.createElement("style");
     s.id = CSS_ID;
     s.textContent = [
-      "#obj-arrow{position:absolute;z-index:6;pointer-events:none;width:auto;height:auto;margin:0;border:none;border-radius:0;background:transparent;box-shadow:none;animation:none;display:flex;flex-direction:column;align-items:center;gap:5px;}",
+      "#obj-arrow{position:absolute;z-index:var(--quest-z,1);pointer-events:none;width:auto;height:auto;margin:0;border:none;border-radius:0;background:transparent;box-shadow:none;animation:none;display:flex;flex-direction:column;align-items:center;gap:5px;}",
       "#obj-arrow.hidden{display:none;}",
       "#obj-arrow[data-edge=left]{flex-direction:row;align-items:center;}",
       "#obj-arrow[data-edge=right]{flex-direction:row-reverse;align-items:center;}",
@@ -85,8 +85,17 @@
     };
   }
 
+  function layerCfg() {
+    var L = (cfg().layer) || {};
+    return {
+      zIndex: L.zIndex == null ? 1 : +L.zIndex,
+      pointerEvents: L.pointerEvents || "none"
+    };
+  }
+
   function applyPtrVars(el) {
     var p = ptrCfg();
+    var L = layerCfg();
     var host = el || document.documentElement;
     host.style.setProperty("--quest-ptr-l", p.length + "px");
     host.style.setProperty("--quest-ptr-w", p.width + "px");
@@ -95,6 +104,11 @@
     host.style.setProperty("--quest-ptr-stroke", p.strokeColor);
     host.style.setProperty("--quest-ptr-sw", String(p.stroke));
     host.style.setProperty("--quest-ptr-glow", p.glow);
+    host.style.setProperty("--quest-z", String(L.zIndex));
+    if (el) {
+      el.style.zIndex = String(L.zIndex);
+      el.style.pointerEvents = L.pointerEvents;
+    }
   }
 
   function makePtrSvg() {
@@ -437,7 +451,8 @@
       hint: { x: route.hint.x, y: route.hint.y }, pathLen: +((route.pathLen || 0).toFixed(2)),
       euclid: +((route.euclid || 0).toFixed(2)), pathTiles: route.path ? route.path.length : 0,
       arrow: { x: px, y: py, ang: ang, edge: edge }, onScreen: onScreen, near: near, dist: dist,
-      pointer: { kind: ptrCfg().kind, length: ptrCfg().length, width: ptrCfg().width }
+      pointer: { kind: ptrCfg().kind, length: ptrCfg().length, width: ptrCfg().width },
+      layer: { zIndex: layerCfg().zIndex, pointerEvents: layerCfg().pointerEvents }
     };
   }
 
@@ -529,6 +544,7 @@
 
   root.ABQuestUi = {
     cfg: cfg,
+    layerCfg: layerCfg,
     line: line,
     target: target,
     placeArrow: placeArrow,

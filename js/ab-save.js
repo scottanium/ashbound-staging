@@ -1,9 +1,9 @@
 // Narrow save DTO. Combat/AI live objects are not snapshotted by reference.
-// On-disk shape is SAVE_VERSION 7 (v85 le-ui: affix tiers, stash tabs, Temper/Ashmarks, makings, loot filter; v6 v81s: player.tree for the Warden skill trees). v1–v6 still load; items are mapped to the
+// On-disk shape is SAVE_VERSION 8 (v8 invpots: compact item sizes, stacked mana potions; v85 le-ui: affix tiers, stash tabs, Temper/Ashmarks, makings, loot filter; v6 v81s: player.tree for the Warden skill trees). v1–v6 still load; items are mapped to the
 // eight ranks, and an old Warden gets every skill point back for free on a fresh tree (level, paragon, gear, stash, story kept).
 (function (root) {
-  const VERSION = 7;
-  const SUPPORTED = [1, 2, 3, 4, 5, 6, 7];
+  const VERSION = 8;
+  const SUPPORTED = [1, 2, 3, 4, 5, 6, 7, 8];
   const OMIT_PLAYER = { flash: 1, moving: 1, swingT: 1 };
 
   function cloneJson(value, fallback) {
@@ -140,10 +140,20 @@
     if (typeof root.ABLeData !== "undefined" && root.ABLeData.migrateSave) {
       root.ABLeData.migrateSave(e);
     }
+    // r15 uniquefix: player.uniquesFound seeded from owned uniques (dupe weighting), old set pieces get their rolled affixes (js/ab-lootpick.js). Fill-missing and idempotent (setRolled flag), so no version bump
+    if (typeof root.ABLootPick !== "undefined" && root.ABLootPick.migrateSave) {
+      root.ABLootPick.migrateSave(e);
+    }
     // zones (v84i): waypoints found = player.progress.wps, filled once from zones already reached (fill-missing, no version bump)
     if (typeof root.ABZones !== "undefined" && root.ABZones.migrateSave) {
       root.ABZones.migrateSave(e);
     }
+    // v8 (invpots): compact item sizes (re-pack, nothing lost) and stacked mana potions in the belt. Idempotent, so it also
+    // runs on v8 saves; other branches may bump SAVE_VERSION too (merge to the highest number and keep every step).
+    if (typeof root.ABInvPots !== "undefined" && root.ABInvPots.migrateSave) {
+      root.ABInvPots.migrateSave(e);
+    }
+    if (typeof root.ABFlasks !== "undefined" && root.ABFlasks.migrate) root.ABFlasks.migrate(t);
     e.v = VERSION;
     return e;
   }

@@ -34,6 +34,8 @@
 
   // Push an overlapping circle out of solid tiles so later slides can start cleanly.
   function depenetrate(world, x, y, r) {
+    // r15 wallfix: round TREE/ROCK colliders push out from their circle, not the whole tile square.
+    if (root.ABCollide && root.ABCollide.on()) return root.ABCollide.pushOut(world, x, y, r);
     let s = Math.floor(x - r), e = Math.floor(x + r), i = Math.floor(y - r), l = Math.floor(y + r);
     for (let row = i; row <= l; row++) {
       for (let col = s; col <= e; col++) {
