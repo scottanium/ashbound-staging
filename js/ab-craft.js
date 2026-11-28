@@ -375,8 +375,10 @@
     const def = item.uniqueId ? uniqueDef(item.uniqueId) : null;
     if (!def || !def.mods) return item;
     const mul = uniqueStatMul(item);
-    if (root.ABEffects && ABEffects.scaleMods) item.fixedMods = ABEffects.scaleMods(def.mods, mul);
-    else item.fixedMods = def.mods;
+    // v84o: this copy's rolled stats (item.uniqueRoll, js/ab-uroll.js) over def.mods; old items have no rolls and keep def.mods
+    const baseMods = root.ABURoll ? ABURoll.base(item, def.mods) : def.mods;
+    if (root.ABEffects && ABEffects.scaleMods) item.fixedMods = ABEffects.scaleMods(baseMods, mul);
+    else item.fixedMods = baseMods;
     item.uniqueStatMul = mul;
     if (def.effect && !item.effect) item.effect = def.effect;
     if (def.capstone && !item.capstone) item.capstone = def.capstone;
@@ -402,6 +404,8 @@
     if (item.consumeLevel == null) item.consumeLevel = 0;
     if (item.consumeXp == null) item.consumeXp = 0;
     if (item.dormant == null) item.dormant = false;
+    // v84o: Ashen uniques got their own names (Koto); saved copies take the current def name
+    if (isAshen(item) && item.uniqueId) { const ad = uniqueDef(item.uniqueId); if (ad && ad.name && item.name !== ad.name) item.name = ad.name; }
     stampTier(item);
     if (isStagingStore() && (isUnique(item) || isSet(item)) && !isAshen(item) && item.tier === "mythical") {
       item.tier = "fabled";
@@ -659,7 +663,7 @@
     if (!item) return {};
     if (item.uniqueId) {
       const def = uniqueDef(item.uniqueId);
-      if (def && def.mods) return def.mods;
+      if (def && def.mods) return root.ABURoll ? ABURoll.base(item, def.mods) : def.mods;
     }
     if (item.setItemId) {
       const def = setItemDef(item.setItemId);
