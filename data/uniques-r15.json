@@ -11,6 +11,7 @@
     "fireResist": 12,
     "vitality": 3
    },
+   "ranges": {"life": [12, 16], "fireResist": [10, 14]},
    "flavor": "A cord from the Hearthveil kiln door. It still smells of bread and smoke.",
    "baseRarity": "epic",
    "effect": {
@@ -38,6 +39,7 @@
     "dexterity": 5,
     "lifeLeech": 2
    },
+   "ranges": {"attackRating": [25, 35], "coldResist": [12, 16], "dexterity": [4, 6]},
    "flavor": "Salt crusted on the inside. It never quite dries.",
    "baseRarity": "epic",
    "effect": {
@@ -65,6 +67,7 @@
     "strength": 5,
     "fireResist": 10
    },
+   "ranges": {"attackSpeed": [10, 14], "fireDamage": [[3, 3], [7, 9]], "strength": [4, 6], "fireResist": [8, 12]},
    "flavor": "Kiln gloves. The palms are black and the fingers do not burn.",
    "baseRarity": "epic",
    "effect": {
@@ -91,6 +94,7 @@
     "energy": 5,
     "critChance": 3
    },
+   "ranges": {"mana": [20, 28], "lightningResist": [13, 19], "energy": [4, 6]},
    "flavor": "A tongue from a drowned bell. Hold it close and it hums.",
    "baseRarity": "epic",
    "effect": {
@@ -119,6 +123,7 @@
     "poisonResist": 14,
     "mana": 14
    },
+   "ranges": {"life": [15, 21], "magicFind": [10, 14], "poisonResist": [12, 16], "mana": [12, 16]},
    "flavor": "A reed-light caught in glass. It finds the path through the mere.",
    "baseRarity": "epic",
    "effect": {
@@ -145,6 +150,7 @@
     "life": 22,
     "mana": 16
    },
+   "ranges": {"defense": [20, 28], "coldResist": [15, 21], "life": [18, 26], "mana": [13, 19]},
    "flavor": "Pulled from the archive's lower stacks. Water still sits in the brow.",
    "baseRarity": "epic",
    "effect": {
@@ -172,6 +178,7 @@
     "life": 20,
     "thorns": 6
    },
+   "ranges": {"defense": [23, 33], "allResist": [7, 9], "life": [17, 23], "thorns": [5, 7]},
    "flavor": "The causeway toll was paid in planks. This was the last one.",
    "baseRarity": "epic",
    "effect": {
@@ -200,6 +207,7 @@
     "poisonResist": 20,
     "strength": 6
    },
+   "ranges": {"defense": [37, 51], "life": [27, 37], "poisonResist": [17, 23], "strength": [5, 7]},
    "flavor": "Hammered flat under the sap press. It does not dent twice.",
    "baseRarity": "legendary",
    "effect": {
@@ -230,6 +238,7 @@
     "lifeRegen": 1.6,
     "vitality": 5
    },
+   "ranges": {"defense": [25, 35], "life": [22, 30], "poisonResist": [13, 19], "vitality": [4, 6]},
    "flavor": "A circlet of grafted vine. It blooms when you bleed.",
    "baseRarity": "legendary",
    "effect": {
@@ -256,6 +265,7 @@
     "dexterity": 6,
     "fireResist": 16
    },
+   "ranges": {"moveSpeed": [15, 21], "defense": [17, 23], "dexterity": [5, 7], "fireResist": [13, 19]},
    "flavor": "Worn through the briar rows until the thorns gave up first.",
    "baseRarity": "legendary",
    "effect": {
@@ -284,6 +294,7 @@
     "critChance": 4,
     "allResist": 6
    },
+   "ranges": {"life": [18, 26], "attackSpeed": [8, 12], "critChance": [3, 5], "allResist": [5, 7]},
    "flavor": "Two rings grown into one. Neither will come off first.",
    "baseRarity": "legendary",
    "effect": {
@@ -311,6 +322,7 @@
      10
     ]
    },
+   "ranges": {"attackSpeed": [12, 16], "critChance": [4, 6], "attackRating": [33, 47], "coldDamage": [[3, 5], [8, 12]]},
    "flavor": "Gallery gloves. Even the strike makes no sound.",
    "baseRarity": "legendary",
    "effect": {
@@ -337,6 +349,7 @@
     "fireResist": 16,
     "lifeRegen": 1.8
    },
+   "ranges": {"life": [28, 40], "vitality": [7, 9], "fireResist": [13, 19]},
    "flavor": "Sealed in amber sap. It holds you together when you would come apart.",
    "baseRarity": "legendary",
    "effect": {
@@ -364,6 +377,7 @@
     "life": 26,
     "vitality": 6
    },
+   "ranges": {"defense": [30, 42], "allResist": [8, 12], "life": [22, 30], "vitality": [5, 7]},
    "flavor": "A door from the root nave. The roots still hold it shut.",
    "baseRarity": "legendary",
    "effect": {

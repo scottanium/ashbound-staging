@@ -530,6 +530,7 @@
           "ash_strike": 1
         }
       },
+      "ranges": {"enhancedDamage": [33, 47], "fireDamage": [[4, 6], [10, 14]], "attackSpeed": [8, 12]},
       "flavor": "Warmed each dawn in the public kiln until the steel remembered fire.",
       "baseRarity": "epic",
       "effect": {
@@ -557,6 +558,7 @@
         "defense": 10,
         "moveSpeed": 8
       },
+      "ranges": {"life": [25, 35], "allResist": [8, 12], "defense": [8, 12], "moveSpeed": [7, 9]},
       "flavor": "The watch cap from the last shift on the Spire stair.",
       "baseRarity": "epic",
       "effect": {
@@ -583,6 +585,7 @@
         "fireResist": 22,
         "life": 16
       },
+      "ranges": {"moveSpeed": [17, 23], "fireResist": [18, 26], "life": [13, 19]},
       "flavor": "Soot baked into the seams. The floor never quite burns.",
       "baseRarity": "epic",
       "effect": {
@@ -607,6 +610,7 @@
         "life": 22,
         "fireResist": 10
       },
+      "ranges": {"defense": [23, 33], "thorns": [10, 14], "life": [18, 26], "fireResist": [8, 12]},
       "flavor": "Hung for years on a broken beam, and still keeping watch.",
       "baseRarity": "epic",
       "effect": {
@@ -631,6 +635,7 @@
         "lifeRegen": 1.3,
         "magicFind": 10
       },
+      "ranges": {"vitality": [4, 6], "life": [15, 21], "magicFind": [8, 12]},
       "flavor": "Senn says it counts fair. Count it yourself.",
       "baseRarity": "epic",
       "effect": {
@@ -656,6 +661,7 @@
           9
         ]
       },
+      "ranges": {"critChance": [7, 9], "attackSpeed": [12, 18], "dexterity": [7, 9], "coldDamage": [[3, 5], [7, 11]]},
       "flavor": "A thin glass promise. You can see through it.",
       "baseRarity": "epic",
       "effect": {
@@ -683,6 +689,7 @@
         ],
         "life": 22
       },
+      "ranges": {"strength": [7, 9], "fireResist": [21, 29], "fireDamage": [[3, 5], [7, 11]], "life": [18, 26]},
       "flavor": "The collar cracked when the tyrant did. The heat stayed.",
       "baseRarity": "legendary",
       "effect": {
@@ -713,6 +720,7 @@
         "attackSpeed": 12,
         "dexterity": 4
       },
+      "ranges": {"enhancedDamage": [23, 33], "poisonDamage": [[3, 5], [7, 11]], "attackSpeed": [10, 14], "dexterity": [3, 5]},
       "flavor": "Snapped from a snare that had already caught something. The sap never dried.",
       "baseRarity": "epic",
       "effect": {
@@ -739,6 +747,7 @@
         "magicFind": 8,
         "energy": 3
       },
+      "ranges": {"mana": [15, 21], "fireResist": [10, 14], "magicFind": [7, 9]},
       "flavor": "A hood scorched from the inside, as if a small fire had lived there and left.",
       "baseRarity": "epic",
       "effect": {
@@ -762,6 +771,7 @@
         "coldResist": 14,
         "dexterity": 4
       },
+      "ranges": {"moveSpeed": [13, 19], "coldResist": [12, 16], "dexterity": [3, 5]},
       "flavor": "The salt ate the stitching and then, politely, held the boot together anyway.",
       "baseRarity": "epic",
       "effect": {
@@ -785,6 +795,7 @@
         "attackRating": 24,
         "lifeLeech": 3
       },
+      "ranges": {"attackSpeed": [12, 16], "attackRating": [20, 28]},
       "flavor": "Wrapped for a watch that ended at dawn. The grip stayed warm.",
       "baseRarity": "epic",
       "effect": {
@@ -812,6 +823,7 @@
         "strength": 8,
         "life": 16
       },
+      "ranges": {"enhancedDamage": [30, 42], "fireDamage": [[5, 7], [12, 16]], "strength": [7, 9], "life": [13, 19]},
       "flavor": "Sworn on the public kiln. The oath cracked. The maul did not.",
       "baseRarity": "epic",
       "effect": {
@@ -842,6 +854,7 @@
         "attackRating": 36,
         "dexterity": 6
       },
+      "ranges": {"enhancedDamage": [20, 28], "coldDamage": [[3, 5], [8, 12]], "attackRating": [30, 42], "dexterity": [5, 7]},
       "flavor": "Strung with a reed from the mere. It hums when the air is wet.",
       "baseRarity": "epic",
       "effect": {
@@ -871,6 +884,7 @@
         ],
         "castSpeed": 8
       },
+      "ranges": {"energy": [7, 9], "mana": [20, 28], "poisonDamage": [[3, 3], [7, 9]], "castSpeed": [7, 9]},
       "flavor": "The galleries asked for quiet. The staff agreed, and then it did not.",
       "baseRarity": "epic",
       "effect": {
@@ -895,6 +909,7 @@
         "allResist": 8,
         "critChance": 4
       },
+      "ranges": {"enhancedDamage": [28, 40], "attackSpeed": [10, 14], "allResist": [7, 9], "critChance": [3, 5]},
       "flavor": "A watch blade left point-down in a cracked step. It is still on duty.",
       "baseRarity": "epic",
       "effect": {
@@ -926,6 +941,7 @@
         "life": 28,
         "thorns": 6
       },
+      "ranges": {"enhancedDamage": [35, 49], "fireDamage": [[7, 9], [15, 21]], "life": [23, 33], "thorns": [5, 7]},
       "flavor": "Used to pin a kiln door that would not stay shut. The door lost.",
       "baseRarity": "epic",
       "effect": {
@@ -953,6 +969,7 @@
         "life": 30,
         "thorns": 8
       },
+      "ranges": {"defense": [30, 42], "fireResist": [17, 23], "life": [25, 35], "thorns": [7, 9]},
       "flavor": "The last shift wore this until the stairs gave. The plate came back. They did not.",
       "baseRarity": "epic",
       "effect": {
@@ -980,6 +997,7 @@
         "fireResist": 10,
         "thorns": 3
       },
+      "ranges": {"defense": [12, 16], "life": [13, 19], "fireResist": [8, 12]},
       "flavor": "A prayer woven in, then smoked over the kiln until the words went black.",
       "baseRarity": "epic",
       "effect": {
@@ -1007,6 +1025,7 @@
         "thorns": 10,
         "life": 18
       },
+      "ranges": {"defense": [25, 35], "fireResist": [18, 26], "thorns": [8, 12], "life": [15, 21]},
       "flavor": "A slice of the kiln door, still convinced it is a door.",
       "baseRarity": "epic",
       "effect": {
@@ -1031,6 +1050,7 @@
         "lifeLeech": 3,
         "fireResist": 8
       },
+      "ranges": {"life": [17, 23], "strength": [3, 5], "fireResist": [7, 9]},
       "flavor": "Cut from a garnet that sat too long in the heat. It is still warm.",
       "baseRarity": "epic",
       "effect": {
@@ -1053,6 +1073,7 @@
         "energy": 5,
         "magicFind": 10
       },
+      "ranges": {"mana": [22, 30], "coldResist": [13, 19], "energy": [4, 6], "magicFind": [8, 12]},
       "flavor": "Fished out of still water. It has the same look as the mere.",
       "baseRarity": "epic",
       "effect": {
@@ -1075,6 +1096,7 @@
         "attackRating": 20,
         "dexterity": 5
       },
+      "ranges": {"defense": [10, 14], "coldResist": [13, 19], "attackRating": [17, 23], "dexterity": [4, 6]},
       "flavor": "A cap glazed with salt until it rang. That ring is your warning.",
       "baseRarity": "epic",
       "effect": {
@@ -1099,6 +1121,7 @@
         "life": 24,
         "thorns": 6
       },
+      "ranges": {"defense": [27, 37], "poisonResist": [20, 28], "life": [20, 28], "thorns": [5, 7]},
       "flavor": "Plates from a press beetle that would not stop pushing. The mail still leans forward.",
       "baseRarity": "epic",
       "effect": {
@@ -1127,6 +1150,7 @@
         "life": 26,
         "allSkills": 1
       },
+      "ranges": {"defense": [18, 26], "coldResist": [17, 23], "poisonResist": [13, 19], "life": [22, 30]},
       "flavor": "Morra wore the water. What dried on this coat is not quite mud.",
       "baseRarity": "legendary",
       "effect": {
@@ -1157,6 +1181,7 @@
         ],
         "allSkills": 1
       },
+      "ranges": {"defense": [20, 28], "allResist": [10, 14], "life": [30, 42], "poisonDamage": [[5, 7], [10, 14]]},
       "flavor": "Grown, not forged. It fits whoever cut the first tree, and it is still angry.",
       "baseRarity": "fabled",
       "effect": {
@@ -1183,6 +1208,7 @@
         "poisonResist": 14,
         "lifeRegen": 1.6
       },
+      "ranges": {"vitality": [7, 9], "life": [23, 33], "poisonResist": [12, 16]},
       "flavor": "A root that decided to be a belt. It tightens when you are afraid.",
       "baseRarity": "epic",
       "effect": {
@@ -1211,6 +1237,7 @@
         "critChance": 6,
         "attackSpeed": 10
       },
+      "ranges": {"enhancedDamage": [22, 30], "poisonDamage": [[5, 7], [12, 16]], "critChance": [5, 7], "attackSpeed": [8, 12]},
       "flavor": "Used on fruit that should not have been red. The edge still smells sweet and wrong.",
       "baseRarity": "legendary",
       "effect": {
@@ -1243,6 +1270,7 @@
         },
         "fireDamagePercent": 12
       },
+      "ranges": {"enhancedDamage": [29, 41], "fireDamage": [[7, 9], [13, 19]], "fireDamagePercent": [10, 14]},
       "flavor": "The brand it leaves does not wash off. It was made for Searing Brand.",
       "baseRarity": "epic",
       "effect": {
@@ -1274,6 +1302,7 @@
         },
         "manaRegen": 1.4
       },
+      "ranges": {"mana": [25, 35], "coldDamage": [[3, 5], [7, 9]]},
       "flavor": "Tied while the glass was still wet. More mana, and stronger bolts.",
       "baseRarity": "epic",
       "effect": {
@@ -1305,6 +1334,7 @@
         },
         "life": 16
       },
+      "ranges": {"moveSpeed": [15, 21], "poisonDamage": [[4, 6], [8, 12]], "life": [13, 19]},
       "flavor": "The rows do not catch these. The snares do the catching.",
       "baseRarity": "epic",
       "effect": {
@@ -1331,6 +1361,7 @@
         "life": 20,
         "mana": 20
       },
+      "ranges": {"allResist": [10, 14], "life": [17, 23], "mana": [17, 23]},
       "flavor": "One rank in every skill you have. The kiln does not get a vote.",
       "baseRarity": "fabled",
       "effect": {
@@ -1358,6 +1389,7 @@
           "red_line": 1
         }
       },
+      "ranges": {"critChance": [7, 9], "lifeLeech": [3, 5], "attackSpeed": [12, 18]},
       "flavor": "A cut that returns a little life. Do not stand still to collect.",
       "baseRarity": "epic",
       "effect": {
@@ -1386,6 +1418,7 @@
         "castSpeed": 12,
         "mana": 24
       },
+      "ranges": {"lightningDamage": [[5, 7], [15, 21]], "castSpeed": [10, 14], "mana": [20, 28]},
       "flavor": "Wrapped, then unwrapped. The note is yours now.",
       "baseRarity": "legendary",
       "effect": {
@@ -1418,6 +1451,7 @@
           "sear_step": 2
         }
       },
+      "ranges": {"attackSpeed": [10, 14], "fireDamage": [[3, 3], [7, 9]]},
       "flavor": "Sear Step hits harder with this on.",
       "baseRarity": "epic",
       "effect": {
@@ -1447,6 +1481,7 @@
           "vigil": 2
         }
       },
+      "ranges": {"defense": [8, 12], "fireResist": [12, 16], "life": [12, 16]},
       "flavor": "Worn for a watch that did not end. Vigil still holds.",
       "baseRarity": "epic",
       "effect": {
@@ -1475,6 +1510,7 @@
           "cinder_spark": 1
         }
       },
+      "ranges": {"mana": [13, 19], "fireDamagePercent": [8, 12]},
       "flavor": "A ring that helps you throw Cinder Spark.",
       "baseRarity": "epic",
       "effect": {
@@ -1502,6 +1538,7 @@
           "brine_ward": 2
         }
       },
+      "ranges": {"defense": [18, 26], "coldResist": [15, 21], "life": [13, 19]},
       "flavor": "A board from a stilt house, made to keep the cold off.",
       "baseRarity": "epic",
       "effect": {
@@ -1530,6 +1567,7 @@
           "second_voice": 1
         }
       },
+      "ranges": {"mana": [23, 33], "coldDamage": [[3, 3], [7, 9]]},
       "flavor": "Lets you keep one more servant. The coat holds them together.",
       "baseRarity": "legendary",
       "effect": {
@@ -1556,6 +1594,7 @@
           "spring_jaw": 2
         }
       },
+      "ranges": {"life": [18, 26], "poisonDamage": [[3, 5], [8, 12]]},
       "flavor": "Tied so the snares close when you say so, not when they feel like it.",
       "baseRarity": "legendary",
       "effect": {
@@ -1586,6 +1625,7 @@
           "needle": 2
         }
       },
+      "ranges": {"attackSpeed": [8, 12], "poisonDamage": [[4, 6], [10, 14]]},
       "flavor": "The point was already in the glove. You just give it a direction.",
       "baseRarity": "legendary",
       "effect": {
@@ -1611,6 +1651,7 @@
           "crouch": 2
         }
       },
+      "ranges": {"moveSpeed": [13, 19], "poisonResist": [12, 16]},
       "flavor": "Other boots get heard in the rows. These stay quiet.",
       "baseRarity": "legendary",
       "effect": {
@@ -1636,6 +1677,7 @@
           "last_coal": 1
         }
       },
+      "ranges": {"life": [20, 28], "allResist": [8, 12]},
       "flavor": "One coal kept back from the kiln. It is meant to be spent once, and to count.",
       "baseRarity": "fabled",
       "effect": {
@@ -1668,6 +1710,7 @@
           "overtone": 2
         }
       },
+      "ranges": {"lightningDamage": [[5, 7], [13, 19]], "castSpeed": [8, 12], "mana": [17, 23]},
       "flavor": "A note cut into the stair and then pulled back out. It still rings.",
       "baseRarity": "fabled",
       "effect": {
@@ -1697,6 +1740,7 @@
         "life": 28,
         "fireResist": 16
       },
+      "ranges": {"fireDamage": [[7, 9], [15, 21]], "life": [23, 33], "fireResist": [13, 19]},
       "flavor": "The ring sweats when the floor opens.",
       "baseRarity": "fabled",
       "effect": {
@@ -1724,6 +1768,7 @@
         "allResist": 12,
         "life": 20
       },
+      "ranges": {"mana": [25, 35], "allResist": [10, 14], "life": [17, 23]},
       "flavor": "A bell that was wrapped before it could finish the note.",
       "baseRarity": "fabled",
       "effect": {
@@ -1754,6 +1799,7 @@
         "mana": 18,
         "moveSpeed": 8
       },
+      "ranges": {"coldDamage": [[5, 7], [12, 16]], "energy": [10, 14], "mana": [15, 21], "moveSpeed": [7, 9]},
       "flavor": "Worn by something that stepped out of its own shadow.",
       "baseRarity": "fabled",
       "effect": {
@@ -1782,6 +1828,7 @@
         "attackSpeed": 12,
         "critChance": 4
       },
+      "ranges": {"enhancedDamage": [29, 41], "fireDamage": [[5, 7], [12, 16]], "attackSpeed": [10, 14], "critChance": [3, 5]},
       "flavor": "A tooth of the kiln. It stays sharp because the fire never left it.",
       "baseRarity": "fabled",
       "effect": {

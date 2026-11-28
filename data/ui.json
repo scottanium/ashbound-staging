@@ -663,5 +663,123 @@
     "slack": 8,
     "artPad": 1,
     "matsMaxW": 240
+  },
+  "uniqueRanges": {
+    "about": "v84o (TTPC-51): D2-style unique stat ranges. Ranges live per unique in its \"ranges\" (data/items.json, uniques-r15.json, uniques-ashen.json; tools/add_v84o_ranges.py made the defaults, about +-17%). New drops roll inside each range (js/ab-uroll.js); old saved items keep their values. The tooltip shows the range muted after the rolled stat and a small mark on a perfect roll.",
+    "enabled": true,
+    "show": true,
+    "dash": "–",
+    "pairJoin": " to ",
+    "mutedColor": "#9a8f80",
+    "perfectMark": "★",
+    "perfectTitle": "Perfect roll",
+    "perfectColor": "#ffd27a",
+    "perfectGlow": "rgba(255,190,80,.8)"
+  },
+  "ashenMark": {
+    "about": "v84o (TTPC-51): small ember marker for Ashen (Mythical-tier) uniques, which now have their own names instead of the \"Ashen \" prefix. Tooltip: before the name (tipPx). Bag, gear slots and tooltip icon: bottom-left corner (badgePx, badgeInset). Ground label: groundGlyph before the name. js/ab-ashenmark.js.",
+    "enabled": true,
+    "title": "Ashen · Mythical tier",
+    "tipPx": 9,
+    "badgePx": 7,
+    "badgeInset": 3,
+    "haloPx": 4,
+    "groundGlyph": "✦",
+    "colors": {
+      "core": "#fff1c2",
+      "mid": "#ff9a3a",
+      "edge": "#c8360f",
+      "halo": "rgba(255,110,30,.85)"
+    }
+  },
+  "rarityGlow": {
+    "about": "v84o (TTPC-51): glow on painted item art by rarity (bag, gear slots, tooltip icon, ground drops), like the old pixel-art icon glow. Colours default to data/icons.json rarity[...].glow (set 'color' here to override). px = glow blur, alpha = strength, ring = tight inner outline, inner = hot core colour; pulse = slow halo behind the art (uniques, Ashen). Priority: ashen > unique > set > rank. ground: same glow as a cached sprite behind the drop (blurMul scales px to world size). LOW_FX or reduced motion stops the pulses. js/ab-rarityglow.js.",
+    "enabled": true,
+    "order": [
+      "magic",
+      "rare",
+      "elite",
+      "epic",
+      "legendary",
+      "fabled",
+      "mythical",
+      "set",
+      "unique",
+      "ashen"
+    ],
+    "tiers": {
+      "magic": {
+        "px": 3.5,
+        "alpha": 0.85
+      },
+      "rare": {
+        "px": 4,
+        "alpha": 0.9
+      },
+      "elite": {
+        "px": 4,
+        "alpha": 0.9
+      },
+      "epic": {
+        "px": 3.5,
+        "alpha": 0.85
+      },
+      "legendary": {
+        "px": 4,
+        "alpha": 0.85
+      },
+      "fabled": {
+        "px": 4,
+        "alpha": 0.9
+      },
+      "mythical": {
+        "px": 4.5,
+        "alpha": 0.9
+      },
+      "set": {
+        "px": 4.5,
+        "alpha": 0.9,
+        "ring": 1
+      },
+      "unique": {
+        "px": 5,
+        "alpha": 0.95,
+        "ring": 1.5,
+        "pulse": true,
+        "pulseAlpha": 0.42,
+        "periodS": 2.8
+      },
+      "ashen": {
+        "px": 6,
+        "alpha": 1,
+        "ring": 1.5,
+        "color": "#ff7a2a",
+        "inner": "#ffe2a0",
+        "innerPx": 1,
+        "pulse": true,
+        "pulseAlpha": 0.55,
+        "periodS": 2.2,
+        "groundBoost": 1.15
+      }
+    },
+    "pulse": {
+      "enabled": true,
+      "size": "82%",
+      "min": 0.3,
+      "max": 0.9
+    },
+    "ground": {
+      "enabled": true,
+      "blurMul": 1.6,
+      "padPx": 4,
+      "alpha": 0.9,
+      "pulseAmp": 0.3
+    },
+    "maxed": {
+      "enabled": true,
+      "className": "glow-maxed",
+      "css": "",
+      "about": "Hook for a future special effect on maxed Mythical items (Ashen / Mythical with every ranged stat at max). Such items get <i class=\"glow-maxed\"> in their icon box and ABRarityGlow.hooks.maxedGround(ctx, item, x, y, w, h, time) is called for their ground drop; nothing is drawn yet. Put CSS for the effect in css."
+    }
   }
 }
