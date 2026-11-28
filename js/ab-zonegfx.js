@@ -102,11 +102,13 @@
     Object.keys((S.import || {}).strips || {}).forEach(function (n) { names[n] = n + ".webp"; });
     var G = S.gen || {}; Object.keys(G.textures || {}).forEach(function (n) { names[n] = n + ".webp"; });
     Object.keys(G.decals || {}).forEach(function (n) { names[n] = n + ".png"; });
+    // v84r: S.use = { name: "otherSet/file.webp" } borrows art from a shared kit (e.g. the Act 1 interactables in assets/zonegfx/act1/)
+    var ext = {}; Object.keys(S.use || {}).forEach(function (n) { ext[n] = "assets/zonegfx/" + S.use[n]; names[n] = 1; });
     var st = sets[id] = { id: id, S: S, img: {}, ready: false, left: 0 };
     Object.keys(names).forEach(function (n) {
       st.left++; var im = new Image(); im.decoding = "async";
-      im.onload = function () { st.img[n] = im; done(); }; im.onerror = function () { done(); };
-      im.src = dir + names[n];
+      im.onload = function () { st.img[n] = im; done(); }; im.onerror = function () { (st.miss = st.miss || []).push(n); done(); };
+      im.src = ext[n] || dir + names[n];
     });
     function done() { if (--st.left <= 0) { st.ready = true; var I = ISOref; if (I && I.gw && setOf(I.gw) === st) I.gw = null; } }
   }
@@ -115,7 +117,8 @@
     var s = root.ASHBOUND && root.ASHBOUND.state && root.ASHBOUND.state.settings; return !!(s && (s.gfx === "low"));
   }
   function setOf(d) {
-    if (!CFG || Q === "0" || CFG.enabled === false || !d || d.kind === "town" || d.kind === "rift") return null;
+    if (!CFG || Q === "0" || CFG.enabled === false || !d || d.kind === "rift") return null;
+    if (d.kind === "town" && !(CFG.zones || {})[d.id]) return null; // v84r: a town is painted only when zones{} names it (opt-in, e.g. hearthveil); never via the palette fallback
     var id = (CFG.zones || {})[d.id] || (CFG.palettes || {})[d.palette]; var st = id && sets[id];
     return st && st.ready ? st : null;
   }
@@ -187,7 +190,7 @@
     }
     // decoration spots: keep clear of doors, waypoints and interactables so nothing important is hidden
     var keep = [], LV = st.S.live || {}, FO = LV.foliage || {};
-    (d.props || []).forEach(function (p) { if (p && p.x != null && p.kind !== "npc") keep.push([p.x, p.y, p.kind === "exit" || p.kind === "entry" || p.kind === "waypoint" ? (FO.keepDoor || 2.2) : 1.2]); });
+    (d.props || []).forEach(function (p) { if (p && p.x != null && p.kind !== "npc") keep.push([p.x, p.y, (FO.keepKinds || {})[p.kind] || (p.kind === "exit" || p.kind === "entry" || p.kind === "waypoint" ? (FO.keepDoor || 2.2) : 1.2)]); }); // v84r: keepKinds{kind: radius} (town fountain/stash)
     if (d.spawn) keep.push([d.spawn.x, d.spawn.y, 2.2]);
     // v84m2 paths read at a glance: no plants/reeds on (or within margin of) road tiles, fewer next to them (data: live.foliage.path)
     var PA = FO.path || null, road = d.road, pathCut = 0, nearCut = 0, nearAll = 0;
@@ -225,7 +228,7 @@
         var ni = i6 + o[0], nj = j6 + o[1], tt = tileAt(d, ni, nj); if (tt === T_.WALL || ni < 0 || nj < 0 || ni >= d.w || nj >= d.h) return;
         var along = hash(i6 * 5 + q, j6, seed + 41), ins = FR.inset || .12;
         var x = (o[0] ? (o[0] > 0 ? ni + ins : ni + 1 - ins) : i6 + .15 + along * .7), y = (o[1] ? (o[1] > 0 ? nj + ins : nj + 1 - ins) : j6 + .15 + along * .7);
-        if (!clear(x, y, -.6)) return; if (thin(x, y, 62)) return;
+        if (FR.chance != null && hash(i6 * 7 + q, j6 * 3, seed + 49) > FR.chance) return; /* v84r: dungeon wall bases are thinner */ if (!clear(x, y, -.6)) return; if (thin(x, y, 62)) return;
         var tree = hash(i6, j6 * 3 + q, seed + 43) < (FR.treeChance || 0) * (P(st, "fringeTrees") != null ? P(st, "fringeTrees") : 1), arr = tree ? FR.trees : FR.sprites, nm2 = arr[Math.floor(hash(i6 + q, j6, seed + 44) * arr.length) % arr.length];
         var sc2 = FR.scale || [1, 1]; fringe.push({ x: x, y: y, n: nm2, s: sc2[0] + (sc2[1] - sc2[0]) * hash(i6, j6 + q, seed + 45), f: hash(i6 + q, j6, seed + 46) < .5, ph: hash(i6, j6 + q, seed + 47) * 6.28, tree: tree });
       });
@@ -237,6 +240,8 @@
       var i4 = k4 % d.w, j4 = k4 / d.w | 0; if (d.tiles[k4] !== T_.FLOOR || (d.road && d.road[k4] === T_.FLOOR)) continue;
       var nearRoad = false; for (var dj = -1; dj <= 1 && !nearRoad; dj++) for (var di = -1; di <= 1; di++) { var kk = (j4 + dj) * d.w + i4 + di; if (d.road && d.road[kk] === T_.FLOOR) { nearRoad = true; break; } }
       if (LA.nearPath && !nearRoad && d.road) continue;
+      if (LA.offBuilding) { var nb = false; for (var dj3 = -LA.offBuilding; dj3 <= LA.offBuilding && !nb; dj3++) for (var di3 = -LA.offBuilding; di3 <= LA.offBuilding; di3++) if (tileAt(d, i4 + di3, j4 + dj3) === T_.BUILDING) { nb = true; break; } if (nb) continue; } // v84r town: no lantern/banner hugging a house
+      if (LA.nearWall) { var nw = false; for (var dj2 = -1; dj2 <= 1 && !nw; dj2++) for (var di2 = -1; di2 <= 1; di2++) if (tileAt(d, i4 + di2, j4 + dj2) === T_.WALL) { nw = true; break; } if (!nw) continue; } // v84r dungeons: braziers stand against a wall
       cand.push([i4 + .5, j4 + .5, hash(i4, j4, seed + 21)]);
     }
     cand.sort(function (a, b) { return a[2] - b[2]; });
@@ -643,7 +648,7 @@
 
   root.ABZoneGfx = { pre: pre, bake: bake, ground: ground, list: list, post: post, light: light, sprite: sprite, wall: wall, liquid: liquid, prop: prop, prop3: prop3,
     active: function () { return !!(W && root.ASHBOUND && W.d === root.ASHBOUND.state.world); },
-    stats: function () { return Object.assign({ set: W && W.st.id, low: lowFx(), ready: Object.keys(sets).filter(function (k) { return sets[k].ready; }) }, stats); },
+    stats: function () { return Object.assign({ set: W && W.st.id, low: lowFx(), ready: Object.keys(sets).filter(function (k) { return sets[k].ready; }), missing: Object.keys(sets).reduce(function (a, k) { (sets[k].miss || []).forEach(function (n) { a.push(k + '/' + n); }); return a; }, []) }, stats); },
     cfg: function () { return CFG; }, lowDpr: function () { return lowFx(); }, todButton: todButton, todCycle: todCycle, setWeather: setWeather, registerWeather: registerWeather,
     tod: function () { return { mode: todMode(), hour: +TOD.hour.toFixed(2), preset: todPreset(), weights: TOD.wts, weather: WX.state }; }, rebuild: function () { if (ISOref) ISOref.gw = null; }, pathLum: pathLum };
 })(window);
