@@ -2,7 +2,8 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
-// v84q: the cache name follows config.js VERSION (ashbound-staging-v84q on staging), so this build installs a fresh cache and drops v84o.
+// v84q1: the cache name follows config.js VERSION (ashbound-staging-v84q1 on staging), so this build installs a fresh cache and drops v84q.
+// v84q1: Bench list/picker icons match doll-slot size; ground drops can show awaken stage art.
 // v84q adds item power, awaken bench, forge, runeword codex (ab-power, ab-bench, ab-awaken, ab-forge, ab-runes, data/power.json, data/awaken-art.json).
 
 // r14: cache every painted skill icon listed in data/skill-art.json. Best effort: a missing icon never fails install.
