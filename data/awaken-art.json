@@ -1,0 +1,646 @@
+{
+ "about": "Awaken art per unique and stage (v84q hook, mimic art TTPC-54 from v84p-notes/art/awaken-art.json). items.<uniqueId>.<stage 0..5> = image path. Stage 0 (inanimate) shows when the item is unawakened; stages 1-5 exist for main-slot uniques (weapon, chest, helm, offhand). Missing stage -> highest lower stage -> the item's normal icon. Rarity glow is drawn in code on top.",
+ "stages": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "cellPx": 192,
+ "items": {
+  "hearthbrand": {
+   "0": "assets/awaken/hearthbrand-awake-0.png",
+   "1": "assets/awaken/hearthbrand-awake-1.png",
+   "2": "assets/awaken/hearthbrand-awake-2.png",
+   "3": "assets/awaken/hearthbrand-awake-3.png",
+   "4": "assets/awaken/hearthbrand-awake-4.png",
+   "5": "assets/awaken/hearthbrand-awake-5.png"
+  },
+  "last_vigil": {
+   "0": "assets/awaken/last_vigil-awake-0.png",
+   "1": "assets/awaken/last_vigil-awake-1.png",
+   "2": "assets/awaken/last_vigil-awake-2.png",
+   "3": "assets/awaken/last_vigil-awake-3.png",
+   "4": "assets/awaken/last_vigil-awake-4.png",
+   "5": "assets/awaken/last_vigil-awake-5.png"
+  },
+  "kilnwalker": {
+   "0": "assets/awaken/kilnwalker-awake-0.png"
+  },
+  "spire_widow": {
+   "0": "assets/awaken/spire_widow-awake-0.png",
+   "1": "assets/awaken/spire_widow-awake-1.png",
+   "2": "assets/awaken/spire_widow-awake-2.png",
+   "3": "assets/awaken/spire_widow-awake-3.png",
+   "4": "assets/awaken/spire_widow-awake-4.png",
+   "5": "assets/awaken/spire_widow-awake-5.png"
+  },
+  "senns_measure": {
+   "0": "assets/awaken/senns_measure-awake-0.png"
+  },
+  "glass_oath": {
+   "0": "assets/awaken/glass_oath-awake-0.png",
+   "1": "assets/awaken/glass_oath-awake-1.png",
+   "2": "assets/awaken/glass_oath-awake-2.png",
+   "3": "assets/awaken/glass_oath-awake-3.png",
+   "4": "assets/awaken/glass_oath-awake-4.png",
+   "5": "assets/awaken/glass_oath-awake-5.png"
+  },
+  "kiln_tyrants_collar": {
+   "0": "assets/awaken/kiln_tyrants_collar-awake-0.png"
+  },
+  "briar_tooth": {
+   "0": "assets/awaken/briar_tooth-awake-0.png",
+   "1": "assets/awaken/briar_tooth-awake-1.png",
+   "2": "assets/awaken/briar_tooth-awake-2.png",
+   "3": "assets/awaken/briar_tooth-awake-3.png",
+   "4": "assets/awaken/briar_tooth-awake-4.png",
+   "5": "assets/awaken/briar_tooth-awake-5.png"
+  },
+  "moth_lamp": {
+   "0": "assets/awaken/moth_lamp-awake-0.png",
+   "1": "assets/awaken/moth_lamp-awake-1.png",
+   "2": "assets/awaken/moth_lamp-awake-2.png",
+   "3": "assets/awaken/moth_lamp-awake-3.png",
+   "4": "assets/awaken/moth_lamp-awake-4.png",
+   "5": "assets/awaken/moth_lamp-awake-5.png"
+  },
+  "salt_march": {
+   "0": "assets/awaken/salt_march-awake-0.png"
+  },
+  "widow_grip": {
+   "0": "assets/awaken/widow_grip-awake-0.png"
+  },
+  "kiln_oath": {
+   "0": "assets/awaken/kiln_oath-awake-0.png",
+   "1": "assets/awaken/kiln_oath-awake-1.png",
+   "2": "assets/awaken/kiln_oath-awake-2.png",
+   "3": "assets/awaken/kiln_oath-awake-3.png",
+   "4": "assets/awaken/kiln_oath-awake-4.png",
+   "5": "assets/awaken/kiln_oath-awake-5.png"
+  },
+  "reed_string": {
+   "0": "assets/awaken/reed_string-awake-0.png",
+   "1": "assets/awaken/reed_string-awake-1.png",
+   "2": "assets/awaken/reed_string-awake-2.png",
+   "3": "assets/awaken/reed_string-awake-3.png",
+   "4": "assets/awaken/reed_string-awake-4.png",
+   "5": "assets/awaken/reed_string-awake-5.png"
+  },
+  "hush_staff": {
+   "0": "assets/awaken/hush_staff-awake-0.png",
+   "1": "assets/awaken/hush_staff-awake-1.png",
+   "2": "assets/awaken/hush_staff-awake-2.png",
+   "3": "assets/awaken/hush_staff-awake-3.png",
+   "4": "assets/awaken/hush_staff-awake-4.png",
+   "5": "assets/awaken/hush_staff-awake-5.png"
+  },
+  "spire_vow": {
+   "0": "assets/awaken/spire_vow-awake-0.png",
+   "1": "assets/awaken/spire_vow-awake-1.png",
+   "2": "assets/awaken/spire_vow-awake-2.png",
+   "3": "assets/awaken/spire_vow-awake-3.png",
+   "4": "assets/awaken/spire_vow-awake-4.png",
+   "5": "assets/awaken/spire_vow-awake-5.png"
+  },
+  "heart_nail": {
+   "0": "assets/awaken/heart_nail-awake-0.png",
+   "1": "assets/awaken/heart_nail-awake-1.png",
+   "2": "assets/awaken/heart_nail-awake-2.png",
+   "3": "assets/awaken/heart_nail-awake-3.png",
+   "4": "assets/awaken/heart_nail-awake-4.png",
+   "5": "assets/awaken/heart_nail-awake-5.png"
+  },
+  "last_watch_plate": {
+   "0": "assets/awaken/last_watch_plate-awake-0.png",
+   "1": "assets/awaken/last_watch_plate-awake-1.png",
+   "2": "assets/awaken/last_watch_plate-awake-2.png",
+   "3": "assets/awaken/last_watch_plate-awake-3.png",
+   "4": "assets/awaken/last_watch_plate-awake-4.png",
+   "5": "assets/awaken/last_watch_plate-awake-5.png"
+  },
+  "wicker_prayer": {
+   "0": "assets/awaken/wicker_prayer-awake-0.png",
+   "1": "assets/awaken/wicker_prayer-awake-1.png",
+   "2": "assets/awaken/wicker_prayer-awake-2.png",
+   "3": "assets/awaken/wicker_prayer-awake-3.png",
+   "4": "assets/awaken/wicker_prayer-awake-4.png",
+   "5": "assets/awaken/wicker_prayer-awake-5.png"
+  },
+  "kiln_door": {
+   "0": "assets/awaken/kiln_door-awake-0.png",
+   "1": "assets/awaken/kiln_door-awake-1.png",
+   "2": "assets/awaken/kiln_door-awake-2.png",
+   "3": "assets/awaken/kiln_door-awake-3.png",
+   "4": "assets/awaken/kiln_door-awake-4.png",
+   "5": "assets/awaken/kiln_door-awake-5.png"
+  },
+  "garnet_loop": {
+   "0": "assets/awaken/garnet_loop-awake-0.png"
+  },
+  "mere_pearl": {
+   "0": "assets/awaken/mere_pearl-awake-0.png"
+  },
+  "glass_cap": {
+   "0": "assets/awaken/glass_cap-awake-0.png",
+   "1": "assets/awaken/glass_cap-awake-1.png",
+   "2": "assets/awaken/glass_cap-awake-2.png",
+   "3": "assets/awaken/glass_cap-awake-3.png",
+   "4": "assets/awaken/glass_cap-awake-4.png",
+   "5": "assets/awaken/glass_cap-awake-5.png"
+  },
+  "beetle_mail": {
+   "0": "assets/awaken/beetle_mail-awake-0.png",
+   "1": "assets/awaken/beetle_mail-awake-1.png",
+   "2": "assets/awaken/beetle_mail-awake-2.png",
+   "3": "assets/awaken/beetle_mail-awake-3.png",
+   "4": "assets/awaken/beetle_mail-awake-4.png",
+   "5": "assets/awaken/beetle_mail-awake-5.png"
+  },
+  "silt_shroud": {
+   "0": "assets/awaken/silt_shroud-awake-0.png",
+   "1": "assets/awaken/silt_shroud-awake-1.png",
+   "2": "assets/awaken/silt_shroud-awake-2.png",
+   "3": "assets/awaken/silt_shroud-awake-3.png",
+   "4": "assets/awaken/silt_shroud-awake-4.png",
+   "5": "assets/awaken/silt_shroud-awake-5.png"
+  },
+  "sallow_crown": {
+   "0": "assets/awaken/sallow_crown-awake-0.png",
+   "1": "assets/awaken/sallow_crown-awake-1.png",
+   "2": "assets/awaken/sallow_crown-awake-2.png",
+   "3": "assets/awaken/sallow_crown-awake-3.png",
+   "4": "assets/awaken/sallow_crown-awake-4.png",
+   "5": "assets/awaken/sallow_crown-awake-5.png"
+  },
+  "root_belt": {
+   "0": "assets/awaken/root_belt-awake-0.png"
+  },
+  "orchard_knife": {
+   "0": "assets/awaken/orchard_knife-awake-0.png",
+   "1": "assets/awaken/orchard_knife-awake-1.png",
+   "2": "assets/awaken/orchard_knife-awake-2.png",
+   "3": "assets/awaken/orchard_knife-awake-3.png",
+   "4": "assets/awaken/orchard_knife-awake-4.png",
+   "5": "assets/awaken/orchard_knife-awake-5.png"
+  },
+  "branded_saber": {
+   "0": "assets/awaken/branded_saber-awake-0.png",
+   "1": "assets/awaken/branded_saber-awake-1.png",
+   "2": "assets/awaken/branded_saber-awake-2.png",
+   "3": "assets/awaken/branded_saber-awake-3.png",
+   "4": "assets/awaken/branded_saber-awake-4.png",
+   "5": "assets/awaken/branded_saber-awake-5.png"
+  },
+  "callers_cord": {
+   "0": "assets/awaken/callers_cord-awake-0.png"
+  },
+  "row_walkers": {
+   "0": "assets/awaken/row_walkers-awake-0.png"
+  },
+  "unbanked_loop": {
+   "0": "assets/awaken/unbanked_loop-awake-0.png"
+  },
+  "short_promise": {
+   "0": "assets/awaken/short_promise-awake-0.png",
+   "1": "assets/awaken/short_promise-awake-1.png",
+   "2": "assets/awaken/short_promise-awake-2.png",
+   "3": "assets/awaken/short_promise-awake-3.png",
+   "4": "assets/awaken/short_promise-awake-4.png",
+   "5": "assets/awaken/short_promise-awake-5.png"
+  },
+  "kept_bell": {
+   "0": "assets/awaken/kept_bell-awake-0.png",
+   "1": "assets/awaken/kept_bell-awake-1.png",
+   "2": "assets/awaken/kept_bell-awake-2.png",
+   "3": "assets/awaken/kept_bell-awake-3.png",
+   "4": "assets/awaken/kept_bell-awake-4.png",
+   "5": "assets/awaken/kept_bell-awake-5.png"
+  },
+  "sear_cuff": {
+   "0": "assets/awaken/sear_cuff-awake-0.png"
+  },
+  "vigil_hood": {
+   "0": "assets/awaken/vigil_hood-awake-0.png",
+   "1": "assets/awaken/vigil_hood-awake-1.png",
+   "2": "assets/awaken/vigil_hood-awake-2.png",
+   "3": "assets/awaken/vigil_hood-awake-3.png",
+   "4": "assets/awaken/vigil_hood-awake-4.png",
+   "5": "assets/awaken/vigil_hood-awake-5.png"
+  },
+  "spark_band": {
+   "0": "assets/awaken/spark_band-awake-0.png"
+  },
+  "brine_board": {
+   "0": "assets/awaken/brine_board-awake-0.png",
+   "1": "assets/awaken/brine_board-awake-1.png",
+   "2": "assets/awaken/brine_board-awake-2.png",
+   "3": "assets/awaken/brine_board-awake-3.png",
+   "4": "assets/awaken/brine_board-awake-4.png",
+   "5": "assets/awaken/brine_board-awake-5.png"
+  },
+  "second_thread": {
+   "0": "assets/awaken/second_thread-awake-0.png",
+   "1": "assets/awaken/second_thread-awake-1.png",
+   "2": "assets/awaken/second_thread-awake-2.png",
+   "3": "assets/awaken/second_thread-awake-3.png",
+   "4": "assets/awaken/second_thread-awake-4.png",
+   "5": "assets/awaken/second_thread-awake-5.png"
+  },
+  "jaw_cord": {
+   "0": "assets/awaken/jaw_cord-awake-0.png"
+  },
+  "needle_wrap": {
+   "0": "assets/awaken/needle_wrap-awake-0.png"
+  },
+  "crouch_tread": {
+   "0": "assets/awaken/crouch_tread-awake-0.png"
+  },
+  "banked_coal": {
+   "0": "assets/awaken/banked_coal-awake-0.png"
+  },
+  "pale_note": {
+   "0": "assets/awaken/pale_note-awake-0.png",
+   "1": "assets/awaken/pale_note-awake-1.png",
+   "2": "assets/awaken/pale_note-awake-2.png",
+   "3": "assets/awaken/pale_note-awake-3.png",
+   "4": "assets/awaken/pale_note-awake-4.png",
+   "5": "assets/awaken/pale_note-awake-5.png"
+  },
+  "mawglass": {
+   "0": "assets/awaken/mawglass-awake-0.png"
+  },
+  "stillbell": {
+   "0": "assets/awaken/stillbell-awake-0.png"
+  },
+  "shadechord": {
+   "0": "assets/awaken/shadechord-awake-0.png",
+   "1": "assets/awaken/shadechord-awake-1.png",
+   "2": "assets/awaken/shadechord-awake-2.png",
+   "3": "assets/awaken/shadechord-awake-3.png",
+   "4": "assets/awaken/shadechord-awake-4.png",
+   "5": "assets/awaken/shadechord-awake-5.png"
+  },
+  "kilntooth": {
+   "0": "assets/awaken/kilntooth-awake-0.png",
+   "1": "assets/awaken/kilntooth-awake-1.png",
+   "2": "assets/awaken/kilntooth-awake-2.png",
+   "3": "assets/awaken/kilntooth-awake-3.png",
+   "4": "assets/awaken/kilntooth-awake-4.png",
+   "5": "assets/awaken/kilntooth-awake-5.png"
+  },
+  "hearth_cord": {
+   "0": "assets/awaken/hearth_cord-awake-0.png"
+  },
+  "tidewrack_band": {
+   "0": "assets/awaken/tidewrack_band-awake-0.png"
+  },
+  "cinder_gauntlets": {
+   "0": "assets/awaken/cinder_gauntlets-awake-0.png"
+  },
+  "bell_pendant": {
+   "0": "assets/awaken/bell_pendant-awake-0.png"
+  },
+  "marsh_lantern_ring": {
+   "0": "assets/awaken/marsh_lantern_ring-awake-0.png"
+  },
+  "drowned_visor": {
+   "0": "assets/awaken/drowned_visor-awake-0.png",
+   "1": "assets/awaken/drowned_visor-awake-1.png",
+   "2": "assets/awaken/drowned_visor-awake-2.png",
+   "3": "assets/awaken/drowned_visor-awake-3.png",
+   "4": "assets/awaken/drowned_visor-awake-4.png",
+   "5": "assets/awaken/drowned_visor-awake-5.png"
+  },
+  "tollkeeper_board": {
+   "0": "assets/awaken/tollkeeper_board-awake-0.png",
+   "1": "assets/awaken/tollkeeper_board-awake-1.png",
+   "2": "assets/awaken/tollkeeper_board-awake-2.png",
+   "3": "assets/awaken/tollkeeper_board-awake-3.png",
+   "4": "assets/awaken/tollkeeper_board-awake-4.png",
+   "5": "assets/awaken/tollkeeper_board-awake-5.png"
+  },
+  "press_mail": {
+   "0": "assets/awaken/press_mail-awake-0.png",
+   "1": "assets/awaken/press_mail-awake-1.png",
+   "2": "assets/awaken/press_mail-awake-2.png",
+   "3": "assets/awaken/press_mail-awake-3.png",
+   "4": "assets/awaken/press_mail-awake-4.png",
+   "5": "assets/awaken/press_mail-awake-5.png"
+  },
+  "orchard_crown": {
+   "0": "assets/awaken/orchard_crown-awake-0.png",
+   "1": "assets/awaken/orchard_crown-awake-1.png",
+   "2": "assets/awaken/orchard_crown-awake-2.png",
+   "3": "assets/awaken/orchard_crown-awake-3.png",
+   "4": "assets/awaken/orchard_crown-awake-4.png",
+   "5": "assets/awaken/orchard_crown-awake-5.png"
+  },
+  "rowwalker_greaves": {
+   "0": "assets/awaken/rowwalker_greaves-awake-0.png"
+  },
+  "graftband": {
+   "0": "assets/awaken/graftband-awake-0.png"
+  },
+  "hush_grips": {
+   "0": "assets/awaken/hush_grips-awake-0.png"
+  },
+  "sapbound_girdle": {
+   "0": "assets/awaken/sapbound_girdle-awake-0.png"
+  },
+  "nave_ward": {
+   "0": "assets/awaken/nave_ward-awake-0.png",
+   "1": "assets/awaken/nave_ward-awake-1.png",
+   "2": "assets/awaken/nave_ward-awake-2.png",
+   "3": "assets/awaken/nave_ward-awake-3.png",
+   "4": "assets/awaken/nave_ward-awake-4.png",
+   "5": "assets/awaken/nave_ward-awake-5.png"
+  },
+  "ashen_hearthbrand": {
+   "0": "assets/awaken/ashen_hearthbrand-awake-0.png",
+   "1": "assets/awaken/ashen_hearthbrand-awake-1.png",
+   "2": "assets/awaken/ashen_hearthbrand-awake-2.png",
+   "3": "assets/awaken/ashen_hearthbrand-awake-3.png",
+   "4": "assets/awaken/ashen_hearthbrand-awake-4.png",
+   "5": "assets/awaken/ashen_hearthbrand-awake-5.png"
+  },
+  "ashen_last_vigil": {
+   "0": "assets/awaken/ashen_last_vigil-awake-0.png",
+   "1": "assets/awaken/ashen_last_vigil-awake-1.png",
+   "2": "assets/awaken/ashen_last_vigil-awake-2.png",
+   "3": "assets/awaken/ashen_last_vigil-awake-3.png",
+   "4": "assets/awaken/ashen_last_vigil-awake-4.png",
+   "5": "assets/awaken/ashen_last_vigil-awake-5.png"
+  },
+  "ashen_kilnwalker": {
+   "0": "assets/awaken/ashen_kilnwalker-awake-0.png"
+  },
+  "ashen_spire_widow": {
+   "0": "assets/awaken/ashen_spire_widow-awake-0.png",
+   "1": "assets/awaken/ashen_spire_widow-awake-1.png",
+   "2": "assets/awaken/ashen_spire_widow-awake-2.png",
+   "3": "assets/awaken/ashen_spire_widow-awake-3.png",
+   "4": "assets/awaken/ashen_spire_widow-awake-4.png",
+   "5": "assets/awaken/ashen_spire_widow-awake-5.png"
+  },
+  "ashen_senns_measure": {
+   "0": "assets/awaken/ashen_senns_measure-awake-0.png"
+  },
+  "ashen_glass_oath": {
+   "0": "assets/awaken/ashen_glass_oath-awake-0.png",
+   "1": "assets/awaken/ashen_glass_oath-awake-1.png",
+   "2": "assets/awaken/ashen_glass_oath-awake-2.png",
+   "3": "assets/awaken/ashen_glass_oath-awake-3.png",
+   "4": "assets/awaken/ashen_glass_oath-awake-4.png",
+   "5": "assets/awaken/ashen_glass_oath-awake-5.png"
+  },
+  "ashen_kiln_tyrants_collar": {
+   "0": "assets/awaken/ashen_kiln_tyrants_collar-awake-0.png"
+  },
+  "ashen_briar_tooth": {
+   "0": "assets/awaken/ashen_briar_tooth-awake-0.png",
+   "1": "assets/awaken/ashen_briar_tooth-awake-1.png",
+   "2": "assets/awaken/ashen_briar_tooth-awake-2.png",
+   "3": "assets/awaken/ashen_briar_tooth-awake-3.png",
+   "4": "assets/awaken/ashen_briar_tooth-awake-4.png",
+   "5": "assets/awaken/ashen_briar_tooth-awake-5.png"
+  },
+  "ashen_moth_lamp": {
+   "0": "assets/awaken/ashen_moth_lamp-awake-0.png",
+   "1": "assets/awaken/ashen_moth_lamp-awake-1.png",
+   "2": "assets/awaken/ashen_moth_lamp-awake-2.png",
+   "3": "assets/awaken/ashen_moth_lamp-awake-3.png",
+   "4": "assets/awaken/ashen_moth_lamp-awake-4.png",
+   "5": "assets/awaken/ashen_moth_lamp-awake-5.png"
+  },
+  "ashen_salt_march": {
+   "0": "assets/awaken/ashen_salt_march-awake-0.png"
+  },
+  "ashen_widow_grip": {
+   "0": "assets/awaken/ashen_widow_grip-awake-0.png"
+  },
+  "ashen_kiln_oath": {
+   "0": "assets/awaken/ashen_kiln_oath-awake-0.png",
+   "1": "assets/awaken/ashen_kiln_oath-awake-1.png",
+   "2": "assets/awaken/ashen_kiln_oath-awake-2.png",
+   "3": "assets/awaken/ashen_kiln_oath-awake-3.png",
+   "4": "assets/awaken/ashen_kiln_oath-awake-4.png",
+   "5": "assets/awaken/ashen_kiln_oath-awake-5.png"
+  },
+  "ashen_reed_string": {
+   "0": "assets/awaken/ashen_reed_string-awake-0.png",
+   "1": "assets/awaken/ashen_reed_string-awake-1.png",
+   "2": "assets/awaken/ashen_reed_string-awake-2.png",
+   "3": "assets/awaken/ashen_reed_string-awake-3.png",
+   "4": "assets/awaken/ashen_reed_string-awake-4.png",
+   "5": "assets/awaken/ashen_reed_string-awake-5.png"
+  },
+  "ashen_hush_staff": {
+   "0": "assets/awaken/ashen_hush_staff-awake-0.png",
+   "1": "assets/awaken/ashen_hush_staff-awake-1.png",
+   "2": "assets/awaken/ashen_hush_staff-awake-2.png",
+   "3": "assets/awaken/ashen_hush_staff-awake-3.png",
+   "4": "assets/awaken/ashen_hush_staff-awake-4.png",
+   "5": "assets/awaken/ashen_hush_staff-awake-5.png"
+  },
+  "ashen_spire_vow": {
+   "0": "assets/awaken/ashen_spire_vow-awake-0.png",
+   "1": "assets/awaken/ashen_spire_vow-awake-1.png",
+   "2": "assets/awaken/ashen_spire_vow-awake-2.png",
+   "3": "assets/awaken/ashen_spire_vow-awake-3.png",
+   "4": "assets/awaken/ashen_spire_vow-awake-4.png",
+   "5": "assets/awaken/ashen_spire_vow-awake-5.png"
+  },
+  "ashen_heart_nail": {
+   "0": "assets/awaken/ashen_heart_nail-awake-0.png",
+   "1": "assets/awaken/ashen_heart_nail-awake-1.png",
+   "2": "assets/awaken/ashen_heart_nail-awake-2.png",
+   "3": "assets/awaken/ashen_heart_nail-awake-3.png",
+   "4": "assets/awaken/ashen_heart_nail-awake-4.png",
+   "5": "assets/awaken/ashen_heart_nail-awake-5.png"
+  },
+  "ashen_last_watch_plate": {
+   "0": "assets/awaken/ashen_last_watch_plate-awake-0.png",
+   "1": "assets/awaken/ashen_last_watch_plate-awake-1.png",
+   "2": "assets/awaken/ashen_last_watch_plate-awake-2.png",
+   "3": "assets/awaken/ashen_last_watch_plate-awake-3.png",
+   "4": "assets/awaken/ashen_last_watch_plate-awake-4.png",
+   "5": "assets/awaken/ashen_last_watch_plate-awake-5.png"
+  },
+  "ashen_wicker_prayer": {
+   "0": "assets/awaken/ashen_wicker_prayer-awake-0.png",
+   "1": "assets/awaken/ashen_wicker_prayer-awake-1.png",
+   "2": "assets/awaken/ashen_wicker_prayer-awake-2.png",
+   "3": "assets/awaken/ashen_wicker_prayer-awake-3.png",
+   "4": "assets/awaken/ashen_wicker_prayer-awake-4.png",
+   "5": "assets/awaken/ashen_wicker_prayer-awake-5.png"
+  },
+  "ashen_kiln_door": {
+   "0": "assets/awaken/ashen_kiln_door-awake-0.png",
+   "1": "assets/awaken/ashen_kiln_door-awake-1.png",
+   "2": "assets/awaken/ashen_kiln_door-awake-2.png",
+   "3": "assets/awaken/ashen_kiln_door-awake-3.png",
+   "4": "assets/awaken/ashen_kiln_door-awake-4.png",
+   "5": "assets/awaken/ashen_kiln_door-awake-5.png"
+  },
+  "ashen_garnet_loop": {
+   "0": "assets/awaken/ashen_garnet_loop-awake-0.png"
+  },
+  "ashen_mere_pearl": {
+   "0": "assets/awaken/ashen_mere_pearl-awake-0.png"
+  },
+  "ashen_glass_cap": {
+   "0": "assets/awaken/ashen_glass_cap-awake-0.png",
+   "1": "assets/awaken/ashen_glass_cap-awake-1.png",
+   "2": "assets/awaken/ashen_glass_cap-awake-2.png",
+   "3": "assets/awaken/ashen_glass_cap-awake-3.png",
+   "4": "assets/awaken/ashen_glass_cap-awake-4.png",
+   "5": "assets/awaken/ashen_glass_cap-awake-5.png"
+  },
+  "ashen_beetle_mail": {
+   "0": "assets/awaken/ashen_beetle_mail-awake-0.png",
+   "1": "assets/awaken/ashen_beetle_mail-awake-1.png",
+   "2": "assets/awaken/ashen_beetle_mail-awake-2.png",
+   "3": "assets/awaken/ashen_beetle_mail-awake-3.png",
+   "4": "assets/awaken/ashen_beetle_mail-awake-4.png",
+   "5": "assets/awaken/ashen_beetle_mail-awake-5.png"
+  },
+  "ashen_silt_shroud": {
+   "0": "assets/awaken/ashen_silt_shroud-awake-0.png",
+   "1": "assets/awaken/ashen_silt_shroud-awake-1.png",
+   "2": "assets/awaken/ashen_silt_shroud-awake-2.png",
+   "3": "assets/awaken/ashen_silt_shroud-awake-3.png",
+   "4": "assets/awaken/ashen_silt_shroud-awake-4.png",
+   "5": "assets/awaken/ashen_silt_shroud-awake-5.png"
+  },
+  "ashen_sallow_crown": {
+   "0": "assets/awaken/ashen_sallow_crown-awake-0.png",
+   "1": "assets/awaken/ashen_sallow_crown-awake-1.png",
+   "2": "assets/awaken/ashen_sallow_crown-awake-2.png",
+   "3": "assets/awaken/ashen_sallow_crown-awake-3.png",
+   "4": "assets/awaken/ashen_sallow_crown-awake-4.png",
+   "5": "assets/awaken/ashen_sallow_crown-awake-5.png"
+  },
+  "ashen_root_belt": {
+   "0": "assets/awaken/ashen_root_belt-awake-0.png"
+  },
+  "ashen_orchard_knife": {
+   "0": "assets/awaken/ashen_orchard_knife-awake-0.png",
+   "1": "assets/awaken/ashen_orchard_knife-awake-1.png",
+   "2": "assets/awaken/ashen_orchard_knife-awake-2.png",
+   "3": "assets/awaken/ashen_orchard_knife-awake-3.png",
+   "4": "assets/awaken/ashen_orchard_knife-awake-4.png",
+   "5": "assets/awaken/ashen_orchard_knife-awake-5.png"
+  },
+  "ashen_branded_saber": {
+   "0": "assets/awaken/ashen_branded_saber-awake-0.png",
+   "1": "assets/awaken/ashen_branded_saber-awake-1.png",
+   "2": "assets/awaken/ashen_branded_saber-awake-2.png",
+   "3": "assets/awaken/ashen_branded_saber-awake-3.png",
+   "4": "assets/awaken/ashen_branded_saber-awake-4.png",
+   "5": "assets/awaken/ashen_branded_saber-awake-5.png"
+  },
+  "ashen_callers_cord": {
+   "0": "assets/awaken/ashen_callers_cord-awake-0.png"
+  },
+  "ashen_row_walkers": {
+   "0": "assets/awaken/ashen_row_walkers-awake-0.png"
+  },
+  "ashen_unbanked_loop": {
+   "0": "assets/awaken/ashen_unbanked_loop-awake-0.png"
+  },
+  "ashen_short_promise": {
+   "0": "assets/awaken/ashen_short_promise-awake-0.png",
+   "1": "assets/awaken/ashen_short_promise-awake-1.png",
+   "2": "assets/awaken/ashen_short_promise-awake-2.png",
+   "3": "assets/awaken/ashen_short_promise-awake-3.png",
+   "4": "assets/awaken/ashen_short_promise-awake-4.png",
+   "5": "assets/awaken/ashen_short_promise-awake-5.png"
+  },
+  "ashen_kept_bell": {
+   "0": "assets/awaken/ashen_kept_bell-awake-0.png",
+   "1": "assets/awaken/ashen_kept_bell-awake-1.png",
+   "2": "assets/awaken/ashen_kept_bell-awake-2.png",
+   "3": "assets/awaken/ashen_kept_bell-awake-3.png",
+   "4": "assets/awaken/ashen_kept_bell-awake-4.png",
+   "5": "assets/awaken/ashen_kept_bell-awake-5.png"
+  },
+  "ashen_sear_cuff": {
+   "0": "assets/awaken/ashen_sear_cuff-awake-0.png"
+  },
+  "ashen_vigil_hood": {
+   "0": "assets/awaken/ashen_vigil_hood-awake-0.png",
+   "1": "assets/awaken/ashen_vigil_hood-awake-1.png",
+   "2": "assets/awaken/ashen_vigil_hood-awake-2.png",
+   "3": "assets/awaken/ashen_vigil_hood-awake-3.png",
+   "4": "assets/awaken/ashen_vigil_hood-awake-4.png",
+   "5": "assets/awaken/ashen_vigil_hood-awake-5.png"
+  },
+  "ashen_spark_band": {
+   "0": "assets/awaken/ashen_spark_band-awake-0.png"
+  },
+  "ashen_brine_board": {
+   "0": "assets/awaken/ashen_brine_board-awake-0.png",
+   "1": "assets/awaken/ashen_brine_board-awake-1.png",
+   "2": "assets/awaken/ashen_brine_board-awake-2.png",
+   "3": "assets/awaken/ashen_brine_board-awake-3.png",
+   "4": "assets/awaken/ashen_brine_board-awake-4.png",
+   "5": "assets/awaken/ashen_brine_board-awake-5.png"
+  },
+  "ashen_second_thread": {
+   "0": "assets/awaken/ashen_second_thread-awake-0.png",
+   "1": "assets/awaken/ashen_second_thread-awake-1.png",
+   "2": "assets/awaken/ashen_second_thread-awake-2.png",
+   "3": "assets/awaken/ashen_second_thread-awake-3.png",
+   "4": "assets/awaken/ashen_second_thread-awake-4.png",
+   "5": "assets/awaken/ashen_second_thread-awake-5.png"
+  },
+  "ashen_jaw_cord": {
+   "0": "assets/awaken/ashen_jaw_cord-awake-0.png"
+  },
+  "ashen_needle_wrap": {
+   "0": "assets/awaken/ashen_needle_wrap-awake-0.png"
+  },
+  "ashen_crouch_tread": {
+   "0": "assets/awaken/ashen_crouch_tread-awake-0.png"
+  },
+  "ashen_banked_coal": {
+   "0": "assets/awaken/ashen_banked_coal-awake-0.png"
+  },
+  "ashen_pale_note": {
+   "0": "assets/awaken/ashen_pale_note-awake-0.png",
+   "1": "assets/awaken/ashen_pale_note-awake-1.png",
+   "2": "assets/awaken/ashen_pale_note-awake-2.png",
+   "3": "assets/awaken/ashen_pale_note-awake-3.png",
+   "4": "assets/awaken/ashen_pale_note-awake-4.png",
+   "5": "assets/awaken/ashen_pale_note-awake-5.png"
+  },
+  "ashen_mawglass": {
+   "0": "assets/awaken/ashen_mawglass-awake-0.png"
+  },
+  "ashen_stillbell": {
+   "0": "assets/awaken/ashen_stillbell-awake-0.png"
+  },
+  "ashen_shadechord": {
+   "0": "assets/awaken/ashen_shadechord-awake-0.png",
+   "1": "assets/awaken/ashen_shadechord-awake-1.png",
+   "2": "assets/awaken/ashen_shadechord-awake-2.png",
+   "3": "assets/awaken/ashen_shadechord-awake-3.png",
+   "4": "assets/awaken/ashen_shadechord-awake-4.png",
+   "5": "assets/awaken/ashen_shadechord-awake-5.png"
+  },
+  "ashen_kilntooth": {
+   "0": "assets/awaken/ashen_kilntooth-awake-0.png",
+   "1": "assets/awaken/ashen_kilntooth-awake-1.png",
+   "2": "assets/awaken/ashen_kilntooth-awake-2.png",
+   "3": "assets/awaken/ashen_kilntooth-awake-3.png",
+   "4": "assets/awaken/ashen_kilntooth-awake-4.png",
+   "5": "assets/awaken/ashen_kilntooth-awake-5.png"
+  }
+ },
+ "badge": {
+  "show": true
+ }
+}

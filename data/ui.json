@@ -627,7 +627,7 @@
     "dragHoldMs": 220,
     "dragLift": 40,
     "dragSlop": 9,
-    "temperSpend": false,
+    "temperSpend": true,
     "railW": 54
   },
   "gearEquip": {

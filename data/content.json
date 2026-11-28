@@ -940,6 +940,49 @@
         "lifeLeech": 3,
         "critChance": 2
       }
+    },
+    {
+      "id": "kel",
+      "name": "Kel",
+      "tier": 9,
+      "elder": true,
+      "mods": {
+        "enhancedDamage": 14,
+        "life": 20
+      }
+    },
+    {
+      "id": "mor",
+      "name": "Mor",
+      "tier": 10,
+      "elder": true,
+      "mods": {
+        "allResist": 6,
+        "defense": 30
+      }
+    },
+    {
+      "id": "ost",
+      "name": "Ost",
+      "tier": 11,
+      "elder": true,
+      "mods": {
+        "fireDamage": [
+          6,
+          14
+        ],
+        "critChance": 3
+      }
+    },
+    {
+      "id": "vael",
+      "name": "Vael",
+      "tier": 12,
+      "elder": true,
+      "mods": {
+        "allSkills": 1,
+        "lifeLeech": 2
+      }
     }
   ],
   "runewords": [
@@ -1234,6 +1277,76 @@
         }
       },
       "flavor": "The hymn stays in the cloth. The room slows down around whoever wears it."
+    },
+    {
+      "id": "kilnheart",
+      "name": "Kilnheart",
+      "elder": true,
+      "runes": [
+        "kel",
+        "ix",
+        "mor",
+        "hal"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "enhancedDamage": 60,
+        "fireDamage": [
+          18,
+          36
+        ],
+        "attackSpeed": 18,
+        "life": 40,
+        "fireDamagePercent": 12
+      },
+      "flavor": "Four old runes and a heart that will not cool. The kiln remembers every hand that fed it."
+    },
+    {
+      "id": "ashen_vow",
+      "name": "Ashen Vow",
+      "elder": true,
+      "runes": [
+        "mor",
+        "dor",
+        "ost",
+        "gar"
+      ],
+      "slots": [
+        "armor"
+      ],
+      "mods": {
+        "defense": 120,
+        "life": 70,
+        "allResist": 14,
+        "thorns": 30
+      },
+      "flavor": "Spoken once, over ash. It keeps the speaker standing when the rest of the line has fallen."
+    },
+    {
+      "id": "last_ember",
+      "name": "Last Ember",
+      "elder": true,
+      "runes": [
+        "vael",
+        "ost",
+        "kel",
+        "cal"
+      ],
+      "slots": [
+        "weapon"
+      ],
+      "mods": {
+        "allSkills": 2,
+        "fireDamage": [
+          24,
+          48
+        ],
+        "critChance": 8,
+        "lifeLeech": 5
+      },
+      "flavor": "The last coal of the First Kiln, carried in a blade. It burns brighter the closer the end is."
     }
   ],
   "hirelings": [

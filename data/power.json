@@ -1,0 +1,961 @@
+{
+ "version": 1,
+ "enabled": true,
+ "about": "v84q item power (Scott approved the power-notes design Nov 27 2026). Item Power = levelPower(ilvl) x rarityPower[tier] x awaken stagePower x budget. Power stats are multiplied by Item Power; utility stats only by utilityMul (their caps stay). Turn the whole system off with enabled:false or ?power=off (staging test flag).",
+ "powerStats": [
+  "dmg",
+  "defense",
+  "fireDamage",
+  "coldDamage",
+  "lightningDamage",
+  "poisonDamage",
+  "life",
+  "mana",
+  "thorns",
+  "lifeRegen",
+  "attackRating",
+  "effectDamage"
+ ],
+ "utilityStats": [
+  "attackSpeed",
+  "castSpeed",
+  "critChance",
+  "moveSpeed",
+  "lifeLeech",
+  "manaLeech",
+  "magicFind",
+  "fireResist",
+  "coldResist",
+  "lightningResist",
+  "poisonResist",
+  "allResist",
+  "allSkills",
+  "skills",
+  "enhancedDamage",
+  "fireDamagePercent",
+  "minionDamagePercent",
+  "strength",
+  "dexterity",
+  "vitality",
+  "energy"
+ ],
+ "levelPower": {
+  "anchorIlvl": 14,
+  "growth": 1.045,
+  "minPower": 1.0,
+  "about": "levelPower(L) = max(1, 1.045^(L-14)). Nothing changes at or below level 14 (Act 1). L30 = 2.02, L40 = 3.14, L50 = 4.88."
+ },
+ "rarityPower": {
+  "common": 1.0,
+  "magic": 1.0,
+  "rare": 1.0,
+  "elite": 1.0,
+  "epic": 1.0,
+  "legendary": 1.8,
+  "fabled": 3.5,
+  "mythical": 7.0
+ },
+ "rarityPowerNote": "Common..Epic stay 1.0 so Act 1 and early drops are unchanged (the design table had 0.8-0.96; changed so nothing gets weaker).",
+ "utilityMul": {
+  "common": 1.0,
+  "magic": 1.0,
+  "rare": 1.0,
+  "elite": 1.0,
+  "epic": 1.0,
+  "legendary": 1.1,
+  "fabled": 1.2,
+  "mythical": 1.35
+ },
+ "affixCount": {
+  "magic": 0,
+  "rare": 0,
+  "elite": 4,
+  "epic": 4,
+  "legendary": 5,
+  "fabled": 5,
+  "mythical": 6
+ },
+ "affixCountNote": "Top-up target after the normal roll; 0 = leave the old roll (magic 1-2, rare 3-4). Limited by the affix groups that fit the slot.",
+ "budget": {
+  "unique": 1.2,
+  "ashen": 1.25,
+  "ashenDividesOutAshenScale": true
+ },
+ "effect": {
+  "useLevelPower": true,
+  "useStagePower": true,
+  "sigBonusFromStage": 3,
+  "sigBonus": 1.5
+ },
+ "monsterScale": {
+  "anchorLevel": 14,
+  "hpGrowth": 1.035,
+  "dmgGrowth": 1.025,
+  "about": "Above level 14 monsters get hpGrowth^(L-14) life and dmgGrowth^(L-14) damage on top of hp + hpLvl*L (L50: x3.45 life, x2.43 damage). Gentler than item levelPower (1.045) because skill base damage does not scale with gear."
+ },
+ "drops": {
+  "about": "Scott Nov 27 10:45 PM: the campaign ends mostly Elite/Epic with a rare lucky Legendary; more Legendary, then Fabled and Mythical, come from Ember Rifts and harder difficulty, scaled by rift tier and difficulty rather than monster level. Grades are rolled top-down (order); p = base + MF% x magicFind + the champion/elitePack/boss bump, then x ramp (campaign) or the rift formula (in a rift), then x the difficulty multiplier. Elite/rare/magic/unique/set come from data/difficulty.json drops; this adds epic, legendary, fabled, mythical.",
+  "order": [
+   "unique",
+   "set",
+   "mythical",
+   "fabled",
+   "legendary",
+   "epic",
+   "elite",
+   "rare",
+   "magic",
+   "common"
+  ],
+  "base": {
+   "epic": 0.05,
+   "legendary": 0.0015,
+   "fabled": 0,
+   "mythical": 0
+  },
+  "magicFind": {
+   "epic": 0.03,
+   "legendary": 0.002,
+   "fabled": 0,
+   "mythical": 0
+  },
+  "champion": {
+   "epic": 0.03,
+   "legendary": 0.001
+  },
+  "elitePack": {
+   "epic": 0.06,
+   "legendary": 0.004
+  },
+  "boss": {
+   "epic": 0.18,
+   "legendary": 0.02
+  },
+  "minMlvl": {
+   "epic": 20,
+   "legendary": 40
+  },
+  "ramp": {
+   "about": "campaign only: the chance grows linearly from 25% at the gate level to 100% at full",
+   "epic": [
+    20,
+    40
+   ],
+   "legendary": [
+    40,
+    54
+   ]
+  },
+  "rift": {
+   "about": "In an Ember Rift of tier T (1-30) these replace the campaign chances for the top grades: p = per[g] x max(0, T - from[g] + 1), capped at max[g]; bosses x bossMul; champion/elite packs x packMul; MF adds magicFindMul x MF% x p. Epic in rifts: epicBase + epicPerTier x T.",
+   "per": {
+    "legendary": 0.0012,
+    "fabled": 0.0005,
+    "mythical": 0.00012
+   },
+   "from": {
+    "legendary": 1,
+    "fabled": 5,
+    "mythical": 10
+   },
+   "max": {
+    "legendary": 0.05,
+    "fabled": 0.015,
+    "mythical": 0.004
+   },
+   "epicBase": 0.08,
+   "epicPerTier": 0.004,
+   "bossMul": 6,
+   "packMul": 2,
+   "magicFindMul": 1.0
+  },
+  "difficulty": {
+   "about": "multiplier on the top grades by difficulty (campaign and rifts). White Ash opens a sliver of Fabled in the campaign (fabledCampaign) from mlvl 50.",
+   "normal": {
+    "legendary": 1,
+    "fabled": 1,
+    "mythical": 1
+   },
+   "kindled": {
+    "legendary": 1.6,
+    "fabled": 1.3,
+    "mythical": 1.2,
+    "epic": 1.2
+   },
+   "whiteash": {
+    "legendary": 2.5,
+    "fabled": 1.8,
+    "mythical": 1.5,
+    "epic": 1.4,
+    "fabledCampaign": 0.0003,
+    "fabledCampaignMinMlvl": 50
+   }
+  }
+ },
+ "awaken": {
+  "slots": [
+   "weapon",
+   "armor",
+   "helm",
+   "offhand"
+  ],
+  "maxStageByRarity": {
+   "common": 0,
+   "magic": 0,
+   "rare": 0,
+   "elite": 1,
+   "epic": 1,
+   "legendary": 2,
+   "fabled": 3,
+   "mythical": 5
+  },
+  "stagePower": [
+   1.0,
+   1.3,
+   1.7,
+   2.3,
+   3.1,
+   4.3
+  ],
+  "stageNames": [
+   "Dormant",
+   "Stirring",
+   "Watching",
+   "Hungry",
+   "Ravenous",
+   "Awake"
+  ],
+  "artStage": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "ichorToStage": [
+   0,
+   400,
+   1200,
+   3200,
+   8000,
+   20000
+  ],
+  "ichorPerKill": {
+   "normal": 1,
+   "champion": 4,
+   "elite": 10,
+   "boss": 120,
+   "levelBonusPer10": 0.25
+  },
+  "gateMats": [
+   null,
+   {
+    "wake_oil": 1
+   },
+   {
+    "wake_oil": 2
+   },
+   {
+    "heart_cinder": 1,
+    "wake_oil": 3
+   },
+   {
+    "heart_cinder": 2,
+    "mimic_heart": 1
+   },
+   {
+    "mimic_heart": 3,
+    "gold": 50000
+   }
+  ],
+  "hunger": {
+   "fromStage": 3,
+   "max": 100,
+   "drainPerSecInCombat": [
+    0,
+    0,
+    0,
+    0.6,
+    1.0,
+    1.5
+   ],
+   "perKill": 4,
+   "perEliteKill": 15,
+   "starved": {
+    "selfDamagePctPerSec": 1.0,
+    "dropStages": 1,
+    "about": "At 0 Hunger the item bites: 1% max life per second and it fights one stage lower until fed."
+   },
+   "lethal": false,
+   "about": "From stage 3 each awakened item has a Hunger bar that drains in combat and fills on kills. At 0 it is Starved: it bites for 1% max life a second (never below 1 life) and fights one stage lower until fed."
+  },
+  "suppress": {
+   "free": true,
+   "raiseDelaySec": 6,
+   "outOfCombatToRaise": true,
+   "leashBonusPerStageSuppressed": {
+    "allResist": 3
+   }
+  },
+  "about": "Awaken (v84q): items in the 4 main slots earn Ichor from kills while worn, then finish each stage at the Bench with a gate cost. Stage art 1..5 reads data/awaken-art.json (per item), falling back to the item's normal icon. Folds the old Consume slot in (Remnants kept).",
+  "stageLines": [
+   "",
+   "Its best affix grows by 20%.",
+   "A hidden affix opens, themed to what the item does.",
+   "Its signature effect is 50% stronger. It starts to hunger.",
+   "It grows into its power (x3.1 item power).",
+   "It moves on its own: Mimic Strike."
+  ],
+  "runewordMaxStage": 3,
+  "bestAffixBonus": 0.2,
+  "themeAffix": {
+   "weapon": {
+    "fire": {
+     "fireDamage": [
+      6,
+      12
+     ]
+    },
+    "cold": {
+     "coldDamage": [
+      5,
+      10
+     ]
+    },
+    "lightning": {
+     "lightningDamage": [
+      2,
+      16
+     ]
+    },
+    "poison": {
+     "poisonDamage": [
+      6,
+      14
+     ]
+    },
+    "phys": {
+     "attackRating": 60,
+     "life": 12
+    }
+   },
+   "default": {
+    "fire": {
+     "fireResist": 10,
+     "life": 18
+    },
+    "cold": {
+     "coldResist": 10,
+     "life": 18
+    },
+    "lightning": {
+     "lightningResist": 10,
+     "life": 18
+    },
+    "poison": {
+     "poisonResist": 10,
+     "life": 18
+    },
+    "phys": {
+     "defense": 20,
+     "life": 18
+    }
+   }
+  },
+  "themeNames": {
+   "fire": "Ember",
+   "cold": "Rime",
+   "lightning": "Storm",
+   "poison": "Rot",
+   "phys": "Iron"
+  },
+  "mimicStrike": {
+   "everySec": 8,
+   "weaponPct": 3.0,
+   "range": 4.5,
+   "inCombatOnly": true
+  },
+  "combatWindowSec": 4,
+  "matDrops": {
+   "wake_oil": {
+    "elite": 0.01,
+    "champion": 0.003,
+    "boss": 1,
+    "minMlvl": 1
+   },
+   "heart_cinder": {
+    "boss": 0.5,
+    "elite": 0.0015,
+    "minMlvl": 20,
+    "riftPerTier": 0.0001
+   },
+   "mimic_heart": {
+    "boss": 0.25,
+    "elite": 0.0008,
+    "minMlvl": 45,
+    "eliteRiftFrom": 10,
+    "riftPerTier": 5e-05
+   }
+  },
+  "sleep": {
+   "fromStage": 5,
+   "about": "Put a stage-5 item to sleep for good: it leaves a Remnant (data/consume.json remnantMul) on the hero and goes back to Dormant, locked."
+  },
+  "consumeFold": {
+   "levelsPerStage": 4
+  },
+  "gateMatNames": {
+   "wake_oil": "Wake-Oil",
+   "heart_cinder": "Heart-Cinder",
+   "mimic_heart": "Mimic Heart",
+   "gold": "gold"
+  },
+  "craftLevelForStage": [
+   0,
+   0,
+   0,
+   0,
+   4,
+   6
+  ]
+ },
+ "endgame": {
+  "riftTierHp": 1.16,
+  "riftTierDmg": 1.07,
+  "riftTiers": 30,
+  "difficultyAdd": {
+   "kindled": {
+    "hpMul": 2.5,
+    "dmgMul": 1.8
+   },
+   "whiteash": {
+    "hpMul": 6.0,
+    "dmgMul": 3.0
+   }
+  },
+  "about": "v84q Ember Rift ladder (DESIGN.md 2d): 30 tiers. Monster life x riftTierHp^T and damage x riftTierDmg^T on top of the level scale; the rift's monster level is riftMlvl.base + perTier x T, capped at riftMlvl.max so item levels stay in the campaign's range (power comes from the tier, not from ilvl). Bosses every bossEvery tiers (the 3 rift bosses cycle past T12). difficultyAdd replaces the Kindled / White Ash life and damage multipliers (data/content.json difficulties) while power is on.",
+  "riftMlvl": {
+   "base": 32,
+   "perTier": 3,
+   "max": 54
+  },
+  "bossEvery": 4
+ },
+ "statsNote": "Attributes are utility (not Item Power): they already feed damage, life and crit through the class rates, so scaling them by Item Power would compound.",
+ "crafting": {
+  "about": "v84q Bench crafting (power-notes/DESIGN.md 2c, js/ab-forge.js). Every forge action spends Temper from the item (data/ui.json leui.temperSpend:true); at 0 the item is Set and can't be worked. Materials sit in the hero's wallet (player.craftMats, no bag space). Crafting XP comes from every Bench action; levels gate Hone T6/T7, Rank Up to Mythical and Awaken stages 4-5. Uniques and set pieces have no Temper: only the unique range reroll works on them (costs no Temper).",
+  "materials": {
+   "ember_dust": {
+    "name": "Ember Dust",
+    "about": "Salvaged from Common and Magic gear."
+   },
+   "cinder_glass": {
+    "name": "Cinder Glass",
+    "about": "Salvaged from Rare, Elite and Epic gear."
+   },
+   "ichor_shard": {
+    "name": "Ichor Shards",
+    "about": "Salvaged from Legendary and better gear and uniques."
+   },
+   "rank_stone_1": {
+    "name": "Rank Stone I",
+    "about": "Raises an item to Rare, Elite or Epic."
+   },
+   "rank_stone_2": {
+    "name": "Rank Stone II",
+    "about": "Raises an Epic to Legendary."
+   },
+   "rank_stone_3": {
+    "name": "Rank Stone III",
+    "about": "Raises a Legendary to Fabled."
+   },
+   "rank_stone_4": {
+    "name": "Rank Stone IV",
+    "about": "Raises a Fabled to Mythical."
+   }
+  },
+  "matOrder": [
+   "ember_dust",
+   "cinder_glass",
+   "ichor_shard",
+   "rank_stone_1",
+   "rank_stone_2",
+   "rank_stone_3",
+   "rank_stone_4"
+  ],
+  "salvage": {
+   "byRank": {
+    "common": {
+     "ember_dust": [
+      1,
+      2
+     ]
+    },
+    "magic": {
+     "ember_dust": [
+      1,
+      3
+     ]
+    },
+    "rare": {
+     "cinder_glass": [
+      1,
+      1
+     ],
+     "ember_dust": [
+      1,
+      2
+     ]
+    },
+    "elite": {
+     "cinder_glass": [
+      1,
+      2
+     ]
+    },
+    "epic": {
+     "cinder_glass": [
+      2,
+      3
+     ]
+    },
+    "legendary": {
+     "ichor_shard": [
+      1,
+      1
+     ],
+     "cinder_glass": [
+      1,
+      2
+     ]
+    },
+    "fabled": {
+     "ichor_shard": [
+      1,
+      2
+     ],
+     "cinder_glass": [
+      2,
+      3
+     ]
+    },
+    "mythical": {
+     "ichor_shard": [
+      2,
+      4
+     ]
+    }
+   },
+   "unique": {
+    "ichor_shard": [
+     2,
+     3
+    ]
+   },
+   "set": {
+    "ichor_shard": [
+     1,
+     2
+    ]
+   },
+   "rankStoneChance": {
+    "legendary": {
+     "rank_stone_2": 0.1
+    },
+    "fabled": {
+     "rank_stone_3": 0.08
+    },
+    "mythical": {
+     "rank_stone_4": 0.04
+    }
+   },
+   "xp": 2,
+   "about": "Salvage destroys the item (not worn, not locked) for materials. Runes in its sockets come back first."
+  },
+  "temperCost": {
+   "hone": 4,
+   "reforge": 3,
+   "imbue": 6,
+   "rankUp": 8,
+   "rankUpFail": 4,
+   "punch": 3,
+   "seal": 1
+  },
+  "hone": {
+   "cost": {
+    "low": {
+     "ember_dust": 3,
+     "gold": 200
+    },
+    "high": {
+     "cinder_glass": 2,
+     "gold": 800
+    }
+   },
+   "highFromTier": 4,
+   "craftLevelForTier": {
+    "6": 4,
+    "7": 6
+   },
+   "xp": 4,
+   "about": "Raise one affix one tier (T1-T7). If its group has a bigger affix the item level allows, it becomes that one; otherwise its numbers grow by stepPct (15%) of the pool values per hone. Capped by the item level's tier; T6/T7 need crafting level 4/6.",
+   "stepPct": 0.15
+  },
+  "reforge": {
+   "cost": {
+    "cinder_glass": 1,
+    "gold": 300
+   },
+   "xp": 3,
+   "about": "Reroll one affix into a different one the item can roll (same prefix/suffix side)."
+  },
+  "imbue": {
+   "cost": {
+    "cinder_glass": 2,
+    "ichor_shard": 1,
+    "gold": 1500
+   },
+   "xp": 6,
+   "about": "Add an affix, up to maxAffixes for the rank (Magic 2, Rare/Elite/Epic 4, Legendary/Fabled 5, Mythical 6).",
+   "maxAffixes": {
+    "magic": 2,
+    "rare": 4,
+    "elite": 4,
+    "epic": 4,
+    "legendary": 5,
+    "fabled": 5,
+    "mythical": 6
+   }
+  },
+  "rankUp": {
+   "stoneFor": {
+    "rare": "rank_stone_1",
+    "elite": "rank_stone_1",
+    "epic": "rank_stone_1",
+    "legendary": "rank_stone_2",
+    "fabled": "rank_stone_3",
+    "mythical": "rank_stone_4"
+   },
+   "chance": {
+    "rare": 1.0,
+    "elite": 0.85,
+    "epic": 0.75,
+    "legendary": 0.6,
+    "fabled": 0.35,
+    "mythical": 0.15
+   },
+   "gold": {
+    "rare": 300,
+    "elite": 800,
+    "epic": 1500,
+    "legendary": 4000,
+    "fabled": 12000,
+    "mythical": 40000
+   },
+   "craftLevelFor": {
+    "mythical": 6,
+    "fabled": 3
+   },
+   "xp": 10,
+   "about": "+1 rank with a Rank Stone and gold. A miss still spends the stone, the gold and some Temper, and keeps the item. Normal items only (uniques and sets keep their rank)."
+  },
+  "sockets": {
+   "punch": {
+    "cost": {
+     "cinder_glass": 2,
+     "gold": 500
+    },
+    "xp": 3
+   },
+   "seal": {
+    "cost": {
+     "ember_dust": 2,
+     "gold": 100
+    },
+    "xp": 1
+   },
+   "about": "Punch adds one socket up to the base's max; Seal removes one empty socket. So you can make an exact count for a runeword. Not on uniques, sets or finished runewords."
+  },
+  "uniqueReroll": {
+   "cost": {
+    "cinder_glass": 2,
+    "ichor_shard": 1,
+    "gold": 1000
+   },
+   "xp": 5,
+   "about": "Reroll one of a unique's ranged stats inside its range (js/ab-uroll.js). Uniques have no Temper, so this costs only materials."
+  },
+  "level": {
+   "xpToLevel": [
+    0,
+    0,
+    30,
+    80,
+    160,
+    280,
+    450,
+    700,
+    1000,
+    1400,
+    1900
+   ],
+   "max": 10,
+   "about": "Crafting XP from every Bench action (awaken 8). xpToLevel[n] is the total XP for level n."
+  },
+  "awakenXp": 8,
+  "matDrops": {
+   "rank_stone_1": {
+    "elite": 0.02,
+    "champion": 0.006,
+    "boss": 0.5
+   },
+   "rank_stone_2": {
+    "elite": 0.008,
+    "boss": 0.25,
+    "minMlvl": 20
+   },
+   "rank_stone_3": {
+    "elite": 0.003,
+    "boss": 0.12,
+    "minMlvl": 32
+   },
+   "rank_stone_4": {
+    "elite": 0.001,
+    "boss": 0.05,
+    "minMlvl": 44
+   },
+   "ember_dust": {
+    "normal": 0.02,
+    "champion": 0.1,
+    "elite": 0.3,
+    "boss": 1
+   },
+   "cinder_glass": {
+    "champion": 0.03,
+    "elite": 0.1,
+    "boss": 1,
+    "minMlvl": 8
+   }
+  },
+  "ranks": [
+   "common",
+   "magic",
+   "rare",
+   "elite",
+   "epic",
+   "legendary",
+   "fabled",
+   "mythical"
+  ]
+ },
+ "runewords": {
+  "about": "v84q runeword overhaul (power-notes/DESIGN.md 2e, js/ab-runes.js). Word stats (and rune stats in sockets) scale with the base's Item Power (js/ab-power.js). Normal words awaken to stage 3 at most (Fabled); Elder words (4 sockets, Elder runes Kel/Mor/Ost/Vael T9-12) may go on Mythical bases to stage 5. A runeword keeps its base's affixes but loses affixLoss affix slots for imbue.",
+  "tabLabel": "Runewords",
+  "how": "Put runes in a socketed item in the right order. The item needs exactly as many sockets as the word has runes, and the right slot. Runes can always be taken back out.",
+  "filters": [
+   [
+    "make",
+    "Can make now"
+   ],
+   [
+    "close",
+    "Close"
+   ],
+   [
+    "weapon",
+    "Weapon"
+   ],
+   [
+    "armor",
+    "Body / Shield"
+   ],
+   [
+    "elder",
+    "Elder"
+   ],
+   [
+    "all",
+    "All"
+   ],
+   [
+    "runes",
+    "Runes"
+   ]
+  ],
+  "elderMinMlvl": 40,
+  "elderLabel": "Elder",
+  "affixLoss": 2,
+  "drop": {
+   "normal": 0.05,
+   "pinnedWeight": 2,
+   "bossRunes": 2,
+   "bossMaxTier": 6,
+   "bossElderFromMlvl": 44,
+   "bossElderChance": 0.15
+  },
+  "where": {
+   "1": "Act 1 monsters",
+   "2": "Act 1 monsters",
+   "3": "Act 1+ monsters",
+   "4": "Act 1+ monsters",
+   "5": "Act 2+ monsters",
+   "6": "Act 2+ monsters, bosses",
+   "7": "Act 3+ monsters",
+   "8": "Act 3+ monsters",
+   "9": "Elder: monsters level 40+, rifts",
+   "10": "Elder: monsters level 40+, rifts",
+   "11": "Elder: monsters level 40+, rifts",
+   "12": "Elder: monsters level 40+, rifts",
+   "upgrade": "or 3 of the rune below at the Bench box"
+  },
+  "signatures": {
+   "ashbrand": {
+    "name": "Brand Strike",
+    "type": "hit_burst",
+    "chance": 25,
+    "damage": 18,
+    "element": "fire",
+    "radius": 1.2
+   },
+   "hearthwall": {
+    "name": "Ember Ward",
+    "type": "low_life_shield",
+    "hpPct": 40,
+    "absorb": 45,
+    "cooldown": 12,
+    "duration": 6
+   },
+   "glasspath": {
+    "name": "Glass Step",
+    "type": "haste_on_kill",
+    "move": 10,
+    "ias": 10,
+    "duration": 3
+   },
+   "coalfire": {
+    "name": "Coal Heart",
+    "type": "crit_ignite",
+    "damage": 24
+   },
+   "reedwalk": {
+    "name": "Reed Wake",
+    "type": "frost_on_hit",
+    "duration": 1.5
+   },
+   "briarbind": {
+    "name": "Briar Mark",
+    "type": "brand",
+    "stacks": 5,
+    "damage": 24,
+    "element": "poison"
+   },
+   "siltward": {
+    "name": "Silt Skin",
+    "type": "ward_on_hit",
+    "absorb": 6,
+    "absorbMax": 24,
+    "duration": 6
+   },
+   "lantern_oath": {
+    "name": "Lamp Light",
+    "type": "life_on_hit",
+    "heal": 5
+   },
+   "rootking": {
+    "name": "Root Rot",
+    "type": "execute",
+    "hpPct": 30,
+    "damage": 26,
+    "element": "poison"
+   },
+   "saltedge": {
+    "name": "Salt Spray",
+    "type": "nth_strike",
+    "every": 4,
+    "damage": 12,
+    "element": "cold"
+   },
+   "bellnote": {
+    "name": "Bell Peal",
+    "type": "nth_strike",
+    "every": 5,
+    "damage": 20,
+    "element": "lightning"
+   },
+   "palestep": {
+    "name": "Pale Step",
+    "type": "freeze_attackers",
+    "duration": 1.5
+   },
+   "maelbank": {
+    "name": "Banked Fire",
+    "type": "kill_explode",
+    "damage": 30,
+    "element": "fire",
+    "radius": 1.6
+   },
+   "emberwake": {
+    "name": "Ember Wake",
+    "type": "hit_burst",
+    "chance": 20,
+    "damage": 20,
+    "element": "fire",
+    "radius": 1.3
+   },
+   "stillchord": {
+    "name": "Still Chord",
+    "type": "mana_on_kill",
+    "mana": 10
+   },
+   "kilnheart": {
+    "name": "Kiln Heart",
+    "type": "hit_burst",
+    "chance": 35,
+    "damage": 40,
+    "element": "fire",
+    "radius": 1.6
+   },
+   "ashen_vow": {
+    "name": "Vow of Ash",
+    "type": "thorns_nova",
+    "damage": 40,
+    "element": "fire",
+    "radius": 1.6
+   },
+   "last_ember": {
+    "name": "Last Ember",
+    "type": "kill_explode",
+    "damage": 60,
+    "element": "fire",
+    "radius": 2.0
+   }
+  },
+  "firstWord": {
+   "npcRole": "lye",
+   "minLevel": 2,
+   "runes": [
+    "an",
+    "bri"
+   ],
+   "base": "ashwood_knife",
+   "sockets": 2,
+   "word": "saltedge",
+   "rewardGold": 150,
+   "title": "A first word",
+   "offer": "Two runes and a knife with two holes. Put An first, then Bri. That spells Saltedge.",
+   "take": "Take the runes and knife",
+   "done": "You spelled your first word. The book has more of them.",
+   "track": "Put An, then Bri, in the 2-socket Ashwood Knife (Bench > Sockets)."
+  },
+  "socketTab": {
+   "label": "Sockets",
+   "help": "Tap a rune to put it in the next empty socket. Runes can always be taken back out."
+  },
+  "firstSetToast": "You hold every rune for {word}. Check the Runewords codex.",
+  "groundSockets": true,
+  "pinNote": "Pinned: its runes and bases get a mark in your bag, and its runes drop twice as often.",
+  "normalRankCap": "fabled",
+  "sockLineWhen": "spelling"
+ }
+}

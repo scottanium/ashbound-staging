@@ -1,12 +1,22 @@
 {
   "version": 1,
   "notes": "One major-slot unique (weapon, chest, helm, or shield). Heart-Cinder unlocks the slot per character. Sleep is free at the cap, leaves a permanent remnant, and does not stack the same unique. Wake-Oil reawakens one item and turns its remnant off. Consume +20 is about 1.4x to 1.6x on that unique (package 0.50). Remnants are 12% of the unconsumed unique lines, never the full mechanic. Dormant set bonuses are 25% of awakened.",
-  "majorSlots": ["weapon", "armor", "helm", "offhand"],
-  "jewelrySlots": ["ring", "amulet"],
+  "majorSlots": [
+    "weapon",
+    "armor",
+    "helm",
+    "offhand"
+  ],
+  "jewelrySlots": [
+    "ring",
+    "amulet"
+  ],
   "unlock": {
     "craftingLevel": 6,
     "gold": 2500,
-    "mats": { "heart_cinder": 1 },
+    "mats": {
+      "heart_cinder": 1
+    },
     "recipeId": "consume_slot"
   },
   "cap": 20,
@@ -35,6 +45,16 @@
       "h": 1,
       "giveToHigherCrafter": true,
       "flavor": "Character-bound. Opens the consume slot. May be given to a higher-level crafter as a mat, not traded as goods."
+    },
+    "mimic_heart": {
+      "id": "mimic_heart",
+      "name": "Mimic Heart",
+      "bound": false,
+      "rarity": "material",
+      "w": 1,
+      "h": 1,
+      "flavor": "Still beating. Opens the last two awaken stages."
     }
-  }
+  },
+  "awakenNote": "v84q: the Consume slot is folded into Awaken (data/power.json awaken). Remnants and the materials stay."
 }

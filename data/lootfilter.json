@@ -13,6 +13,7 @@
   "levelLabel": "Level",
   "slotLabel": "Slot",
   "t6Label": "Top tier (T6+)",
+  "sockLabel": "Sockets",
   "max": 20,
   "bigSize": 15,
   "acts": [["show", "Show"], ["hide", "Hide"], ["recolor", "Recolor"], ["big", "Larger name"]],
