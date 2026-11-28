@@ -3,4 +3,4 @@
 // Staging uses its own prefix so existing ashbound-staging: keys are left in place and unused.
 // No secrets belong here.
 // LOW_FX: true trims skill effects (fewer particles, no glow sprites) for slow phones; players can also pick Particles: Low.
-self.ASHBOUND_CONFIG = { STAGING: true, VERSION: "v84o", STORAGE_PREFIX: "ashbound-staging-v71:", LOW_FX: false };
+self.ASHBOUND_CONFIG = { STAGING: true, VERSION: "v84q", STORAGE_PREFIX: "ashbound-staging-v71:", LOW_FX: false };
