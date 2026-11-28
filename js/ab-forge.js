@@ -269,7 +269,7 @@
     if (!l.length) return lvlHtml(p) + '<div class="card mut">No gear to work on.</div>';
     if (!sel || !l.some(function (r) { return r.it.uid === sel; })) sel = l[0].it.uid;
     var it = l.find(function (r) { return r.it.uid === sel; }).it;
-    var h = lvlHtml(p) + '<div class="fpick">' + l.map(function (r) { return '<button type="button" data-bench-act="pick" data-uid="' + esc(r.it.uid) + '" class="' + (r.it.uid === sel ? "on" : "") + '" title="' + esc(r.it.name) + '">' + (r.worn ? '<span class="w">worn</span>' : "") + W().icon(r.it) + "</button>"; }).join("") + "</div>";
+    var h = lvlHtml(p) + '<div class="fpick">' + l.map(function (r) { return '<button type="button" data-bench-act="pick" data-uid="' + esc(r.it.uid) + '" class="' + (root.ABBench && ABBench.pickCls ? ABBench.pickCls(r.it, r.it.uid === sel ? "on" : "") : (r.it.uid === sel ? "on" : "")) + '" style="' + (root.ABBench && ABBench.iconStyle ? ABBench.iconStyle(r.it, 'pick') : "") + '" title="' + esc(r.it.name) + '">' + (r.worn ? '<span class="w">worn</span>' : "") + W().icon(r.it) + "</button>"; }).join("") + "</div>";
     var temper = isNormal(it) && it.temperMax ? ' \u00b7 Temper <b style="color:' + (it.temper ? "#ffcf96" : "#ff9a8a") + '">' + (it.temper | 0) + "</b> / " + it.temperMax + (it.temper ? "" : " (Set)") : (isNormal(it) ? "" : " \u00b7 no Temper");
     h += '<div class="card" data-forge-item="' + esc(it.uid) + '"><div class="nm">' + esc(it.name) + ' <span class="mut">' + esc(root.ABCraft && ABCraft.rankLabel ? ABCraft.rankLabel(it) : rankName(it.rarity)) + " \u00b7 item level " + (it.ilvl || 1) + temper + "</span></div>";
     if (isNormal(it)) {
@@ -302,7 +302,7 @@
     if (!l.length) return h + '<div class="card mut">No gear in your bag.</div>';
     return h + l.map(function (it) {
       var y = salvageYield(it), c = canSalvage(p, it);
-      return '<div class="card" data-salv="' + esc(it.uid) + '"><div class="row"><div class="ico">' + W().icon(it) + '</div><div style="flex:1;min-width:0"><div class="nm">' + esc(it.name) + ' <span class="mut">' + esc(root.ABCraft && ABCraft.rankLabel ? ABCraft.rankLabel(it) : it.rarity) + '</span></div><div class="mut">' +
+      return '<div class="card" data-salv="' + esc(it.uid) + '"><div class="row">' + (root.ABBench && ABBench.icoWrap ? ABBench.icoWrap(W().icon(it), it) : '<div class="ico">' + W().icon(it) + '</div>') + '<div style="flex:1;min-width:0"><div class="nm">' + esc(it.name) + ' <span class="mut">' + esc(root.ABCraft && ABCraft.rankLabel ? ABCraft.rankLabel(it) : it.rarity) + '</span></div><div class="mut">' +
         Object.keys(y).map(function (k) { return y[k][0] + (y[k][1] > y[k][0] ? "\u2013" + y[k][1] : "") + " " + esc(W().matName(k)); }).join(" \u00b7 ") + (c.ok ? "" : " \u00b7 " + esc(c.reason)) + "</div></div>" + btn("salvage", "Salvage", c, ' data-uid="' + esc(it.uid) + '"') + "</div></div>";
     }).join("");
   }

@@ -53,8 +53,9 @@
     if (done || !root.document) return; done = true;
     var c = cfg(); if (c.enabled === false) return;
     var T = c.tiers || {}, P = c.pulse || {}, out = [];
-    var boxes = function (q) { return [".gitem" + q + " .item-ico.art", ".doll-slot" + q + " .item-ico.art", ".detail-ico" + q + " .item-ico.art"].join(","); };
-    var halos = function (q) { return [".gitem" + q + " .ico::before", ".doll-slot" + q + " .slot-ico::before", ".detail-ico" + q + "::before"].join(","); };
+    var joinSel = function (base, extra, q) { return base.concat((extra || []).map(function (t) { return t.replace(/\{q\}/g, q); })).join(","); };
+    var boxes = function (q) { return joinSel([".gitem" + q + " .item-ico.art", ".doll-slot" + q + " .item-ico.art", ".detail-ico" + q + " .item-ico.art"], c.extraBoxes, q); };
+    var halos = function (q) { return joinSel([".gitem" + q + " .ico::before", ".doll-slot" + q + " .slot-ico::before", ".detail-ico" + q + "::before"], c.extraHalos, q); };
     var order = (c.order || ["magic", "rare", "elite", "epic", "legendary", "fabled", "mythical", "set", "unique", "ashen"]);
     order.forEach(function (k) {
       var t = T[k]; if (!t) return;

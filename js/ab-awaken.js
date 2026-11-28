@@ -301,7 +301,7 @@
         (s0 > 0 ? '<button type="button" class="btn2" data-bench-act="sup-down" data-uid="' + esc(it.uid) + '">Suppress \u2212</button><button type="button" class="btn2" data-bench-act="sup-up" data-uid="' + esc(it.uid) + '">Wake +</button>' : "") +
         (s0 >= ((C().sleep || {}).fromStage || 5) && it.uniqueId ? '<button type="button" class="btn2" data-bench-act="sleep" data-uid="' + esc(it.uid) + '">Sleep (Remnant)</button>' : "");
       var mul = root.ABPower ? ABPower.stagePower(it) : 1;
-      return '<div class="card" data-aw-row="' + esc(it.uid) + '"><div class="row"><div class="ico">' + icon(it) + '</div><div style="flex:1;min-width:0"><div class="nm">' + esc(it.name) + ' <span class="mut">' + esc(row.where) + " \u00b7 " + esc((root.ABCraft && ABCraft.rankLabel ? ABCraft.rankLabel(it) : tierOf(it))) + '</span></div><div>' + esc(names[held(it)]) + ' <span style="color:#ff7a4a;letter-spacing:2px">' + pips(it) + '</span> <span class="mut">item power x' + mul.toFixed(1) + "</span>" + (a.starved ? ' <span class="no">Starved</span>' : "") + "</div>" + nxt +
+      return '<div class="card" data-aw-row="' + esc(it.uid) + '"><div class="row">' + (root.ABBench && ABBench.icoWrap ? ABBench.icoWrap(icon(it), it) : '<div class="ico">' + icon(it) + '</div>') + '<div style="flex:1;min-width:0"><div class="nm">' + esc(it.name) + ' <span class="mut">' + esc(row.where) + " \u00b7 " + esc((root.ABCraft && ABCraft.rankLabel ? ABCraft.rankLabel(it) : tierOf(it))) + '</span></div><div>' + esc(names[held(it)]) + ' <span style="color:#ff7a4a;letter-spacing:2px">' + pips(it) + '</span> <span class="mut">item power x' + mul.toFixed(1) + "</span>" + (a.starved ? ' <span class="no">Starved</span>' : "") + "</div>" + nxt +
         '</div><div style="display:flex;flex-direction:column;gap:4px">' + btns + "</div></div>" + (c.ok || s0 >= m ? "" : '<div class="mut">' + esc(c.reason) + "</div>") + "</div>";
     }).join("");
   }
@@ -340,14 +340,41 @@
     if (bound || !root.ABBus) return; bound = true;
     ABBus.on("combat:killed", onKill); ABBus.on("combat:hit", onCombat); ABBus.on("combat:struck", onCombat); ABBus.on("combat:playerHurt", onCombat);
   }
+  /* v84q1: ground drops show stage art when cheap — lazy-load the file, bake a small canvas, cache per path; until ready the normal icon stays */
+  var gCache = Object.create(null);
+  function groundOn() { return on() && C().groundArt !== false; }
+  function groundCanvas(item) {
+    if (!groundOn() || !item || !root.document) return null;
+    var pth = artPath(item, artStage(item)); if (!pth) return null;
+    var c = gCache[pth]; if (c && c !== "loading" && c !== "fail") return c;
+    if (!c) {
+      gCache[pth] = "loading";
+      var im = new Image();
+      im.onload = function () {
+        var max = C().groundMaxPx || 64, sc = max / Math.max(1, im.naturalWidth, im.naturalHeight);
+        var w = Math.max(1, Math.round(im.naturalWidth * sc)), h = Math.max(1, Math.round(im.naturalHeight * sc));
+        var cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+        cv.getContext("2d").drawImage(im, 0, 0, w, h);
+        gCache[pth] = cv;
+      };
+      im.onerror = function () { gCache[pth] = "fail"; };
+      im.src = pth;
+    }
+    return null;
+  }
+  function wrapCanvas() {
+    if (!root.ABIcons || ABIcons.__aw || !ABIcons.canvas) return;
+    var orig = ABIcons.canvas; ABIcons.__aw = true;
+    ABIcons.canvas = function (item) { return groundCanvas(item) || orig.apply(this, arguments); };
+  }
   function init() {
-    bind(); wrapArt();
+    bind(); wrapArt(); wrapCanvas();
     if (root.ABBench) ABBench.register({ id: "awaken", label: "Awaken", order: 10, html: benchHtml, onAct: benchAct });
   }
   if (root.document) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init(); }
-  if (root.ASHBOUND_DATA_READY && root.ASHBOUND_DATA_READY.then) root.ASHBOUND_DATA_READY.then(function () { wrapArt(); });
+  if (root.ASHBOUND_DATA_READY && root.ASHBOUND_DATA_READY.then) root.ASHBOUND_DATA_READY.then(function () { wrapArt(); wrapCanvas(); });
   root.ABAwaken = { on: on, eligible: eligible, maxStage: maxStage, ensure: ensure, stage: stage, held: held, active: active, need: need, ready: ready, gate: gate,
     canAwaken: canAwaken, awaken: awaken, suppress: suppress, sleep: sleep, bagExtra: bagExtra, onKill: onKill, tick: tick, inCombat: inCombat,
     markCombat: function (t) { lastCombat = t == null ? nowT() : t; }, theme: theme, block: block, badge: badge, artPath: artPath, artStage: artStage, wallet: wallet, count: count, canPay: canPay, pay: pay,
-    addMat: addMat, matName: matName, costText: costText, walletText: walletText, migrateSave: migrateSave, migratePlayer: migratePlayer, placeReturned: placeReturned, icon: icon, findItem: findItem, wrapArt: wrapArt };
+    addMat: addMat, matName: matName, costText: costText, walletText: walletText, migrateSave: migrateSave, migratePlayer: migratePlayer, placeReturned: placeReturned, icon: icon, findItem: findItem, wrapArt: wrapArt, groundCanvas: groundCanvas, groundCache: function () { return gCache; } };
 })(typeof window !== "undefined" ? window : self);
