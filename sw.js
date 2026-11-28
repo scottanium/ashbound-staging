@@ -2,7 +2,8 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
-// v84o: the cache name follows config.js VERSION (ashbound-staging-v84o on staging), so this build installs a fresh cache and drops v84n.
+// v84q: the cache name follows config.js VERSION (ashbound-staging-v84q on staging), so this build installs a fresh cache and drops v84o.
+// v84q adds item power, awaken bench, forge, runeword codex (ab-power, ab-bench, ab-awaken, ab-forge, ab-runes, data/power.json, data/awaken-art.json).
 
 // r14: cache every painted skill icon listed in data/skill-art.json. Best effort: a missing icon never fails install.
 async function cacheSkillArt(cache) {
@@ -136,6 +137,13 @@ self.addEventListener('install', (event) => {
     './js/ab-ashenmark.js',
     './js/ab-rarityglow.js',
     './js/ab-invfull.js',
+    './data/power.json',
+    './data/awaken-art.json',
+    './js/ab-power.js',
+    './js/ab-bench.js',
+    './js/ab-awaken.js',
+    './js/ab-forge.js',
+    './js/ab-runes.js',
     './manifest.webmanifest',
     './icon-192.png',
     './icon-512.png',
