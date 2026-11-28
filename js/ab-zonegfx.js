@@ -281,7 +281,9 @@
     W = { d: d, st: st, L: L, T: T };
     var PA2 = ((st.S.live || {}).foliage || {}).path, propCut = 0, propNear = 0;
     if (PA2 && PA2.props !== false && L.path && ISO.props) ISO.props = ISO.props.filter(function (q) {
-      if (q.tall && (PA2.propKinds || []).indexOf(q.w) < 0) return true; // trees/rocks stand on their own (solid) tiles: kept
+      var tt = d.tiles[q.j * d.w + q.i];
+      if (tt === T_.TREE || tt === T_.ROCK) return true; // trees/rocks stand on their own (solid) tiles: kept, even when their sprite name is also in propKinds (orchard TREE 'briar')
+      if (q.tall && (PA2.propKinds || []).indexOf(q.w) < 0) return true;
       var on = L.path.isR(q.i, q.j), nr = on || L.path.roadAdj(q.i, q.j, PA2.nearDist || 1); if (!nr) return true; propNear++;
       if (on || hash(q.i, q.j, 77) > (PA2.nearMul != null ? PA2.nearMul : 1)) { propCut++; return false; }
       return true;
@@ -597,7 +599,7 @@
   // interactables / doors / waypoint bases: painted set art (live.props[kind]); labels stay the game's
   function propDef(b) {
     var d = root.ASHBOUND && root.ASHBOUND.state && root.ASHBOUND.state.world, w = cur(d); if (!w) return null;
-    var PR = (w.st.S.live || {}).props || {}, k = b.kind === "entry" ? "exit" : b.kind, df = PR[k]; if (!df) return null;
+    var PR = (w.st.S.live || {}).props || {}, k = b.kind === "entry" ? "exit" : (b.kind === "setpiece" && b.piece && PR["setpiece_" + b.piece]) ? "setpiece_" + b.piece : b.kind, df = PR[k]; if (!df) return null; // v84t: a set can paint one setpiece piece (setpiece_trees, ...) without touching the others
     var im = w.st.img[df.img]; return im ? { w: w, df: df, im: im } : null;
   }
   function drawProp(e, R, P, s, b, time, al) {
