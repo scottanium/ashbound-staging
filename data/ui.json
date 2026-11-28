@@ -1,785 +1,793 @@
 {
-  "about": "UI skin for the game screen and menus (v70). js/ab-ui.js turns this file into one stylesheet that sits on top of the base CSS. No game rules here. frame = the double border and corner marks on panels and cards; button = bevel and gradients; orb = the life/mana rings; tip = item tooltip text; profiles = sizes in CSS pixels per screen kind (desktop is wide and tall, phoneLandscape is a short wide window such as an iPhone on its side, including small-phone landscape). Portrait phones show a rotate overlay and do not use a portrait HUD profile. Delete this file and the game looks as it did in v69. Phone profiles only change text and button sizes, never positions, so the phone layouts stay as they were; desktop also resizes and moves the HUD.",
-  "inventoryDefaultTab": "pack",
-  "inventoryDefaultTabAbout": "v84k: tab the inventory (Gear button, I hotkey, any entry point without its own tab) opens on: pack (bag), gear (Sheet), or stash / shared (town only; elsewhere falls back to pack).",
-  "frame": {
-    "line": "#9a7448",
-    "lineHi": "#e6b878",
-    "ring": "rgba(255, 214, 160, 0.16)",
-    "dark": "#0d0907",
-    "corner": "#e8b676",
-    "cornerLen": 11,
-    "cornerW": 2,
-    "shadow": "0 8px 24px rgba(0, 0, 0, 0.55)",
-    "paper": "rgba(255, 236, 205, 0.045)"
+ "about": "UI skin for the game screen and menus (v70). js/ab-ui.js turns this file into one stylesheet that sits on top of the base CSS. No game rules here. frame = the double border and corner marks on panels and cards; button = bevel and gradients; orb = the life/mana rings; tip = item tooltip text; profiles = sizes in CSS pixels per screen kind (desktop is wide and tall, phoneLandscape is a short wide window such as an iPhone on its side, including small-phone landscape). Portrait phones show a rotate overlay and do not use a portrait HUD profile. Delete this file and the game looks as it did in v69. Phone profiles only change text and button sizes, never positions, so the phone layouts stay as they were; desktop also resizes and moves the HUD.",
+ "inventoryDefaultTab": "pack",
+ "inventoryDefaultTabAbout": "v84k: tab the inventory (Gear button, I hotkey, any entry point without its own tab) opens on: pack (bag), gear (Sheet), or stash / shared (town only; elsewhere falls back to pack).",
+ "frame": {
+  "line": "#9a7448",
+  "lineHi": "#e6b878",
+  "ring": "rgba(255, 214, 160, 0.16)",
+  "dark": "#0d0907",
+  "corner": "#e8b676",
+  "cornerLen": 11,
+  "cornerW": 2,
+  "shadow": "0 8px 24px rgba(0, 0, 0, 0.55)",
+  "paper": "rgba(255, 236, 205, 0.045)"
+ },
+ "button": {
+  "top": "#4a3425",
+  "bottom": "#2b1d15",
+  "hi": "rgba(255, 226, 190, 0.2)",
+  "edge": "#0e0906",
+  "primaryTop": "#f6ac64",
+  "primaryBottom": "#c0501c",
+  "primaryEdge": "#6a2a0e",
+  "text": "#f8efe2"
+ },
+ "orb": {
+  "rim": "#0e0906",
+  "life": [
+   "#f0785a",
+   "#3a1814",
+   "#a14a3a"
+  ],
+  "mana": [
+   "#7aaaf6",
+   "#142033",
+   "#4a6ea0"
+  ],
+  "inner": [
+   "#3f2a20",
+   "#0f0a08"
+  ],
+  "gloss": 0.2
+ },
+ "tip": {
+  "name": 1.12,
+  "line": 1.38,
+  "gap": 3
+ },
+ "profiles": {
+  "desktop": {
+   "query": "(min-width: 1000px) and (min-height: 640px)",
+   "base": 17,
+   "btnH": 54,
+   "tapMin": 48,
+   "btnFont": 18,
+   "panelH2": 34,
+   "small": 15,
+   "detailFont": 16,
+   "slotName": 14,
+   "topbarW": 560,
+   "topbarTop": 10,
+   "who": 24,
+   "zone": 16,
+   "xpBar": 7,
+   "questTop": 112,
+   "questW": 560,
+   "goal": 17,
+   "bossTop": 118,
+   "bossW": 460,
+   "bossName": 17,
+   "orb": 104,
+   "orbInner": 76,
+   "orbFont": 24,
+   "orbBottom": 176,
+   "orbSide": 28,
+   "dockH": 60,
+   "dockFont": 19,
+   "dockPad": 20,
+   "dockBottom": 14,
+   "flask": 66,
+   "beltLeft": 148,
+   "beltRight": 316,
+   "beltBottom": 18,
+   "skill": 70,
+   "skillKey": 12,
+   "attack": 112,
+   "attackFont": 20,
+   "castRight": 18,
+   "castBottom": 14,
+   "minimapW": 168,
+   "minimapH": 132,
+   "toastTop": 168,
+   "toastW": 380,
+   "toastFont": 15,
+   "hint": 17,
+   "tutor": 17,
+   "tutorTop": 232,
+   "tutorW": 420,
+   "interact": 18,
+   "interactBottom": 96,
+   "joy": 130,
+   "stick": 60
   },
-  "button": {
-    "top": "#4a3425",
-    "bottom": "#2b1d15",
-    "hi": "rgba(255, 226, 190, 0.2)",
-    "edge": "#0e0906",
-    "primaryTop": "#f6ac64",
-    "primaryBottom": "#c0501c",
-    "primaryEdge": "#6a2a0e",
-    "text": "#f8efe2"
-  },
-  "orb": {
-    "rim": "#0e0906",
-    "life": [
-      "#f0785a",
-      "#3a1814",
-      "#a14a3a"
-    ],
-    "mana": [
-      "#7aaaf6",
-      "#142033",
-      "#4a6ea0"
-    ],
-    "inner": [
-      "#3f2a20",
-      "#0f0a08"
-    ],
-    "gloss": 0.2
-  },
-  "tip": {
-    "name": 1.12,
-    "line": 1.38,
-    "gap": 3
-  },
-  "profiles": {
-    "desktop": {
-      "query": "(min-width: 1000px) and (min-height: 640px)",
-      "base": 17,
-      "btnH": 54,
-      "tapMin": 48,
-      "btnFont": 18,
-      "panelH2": 34,
-      "small": 15,
-      "detailFont": 16,
-      "slotName": 14,
-      "topbarW": 560,
-      "topbarTop": 10,
-      "who": 24,
-      "zone": 16,
-      "xpBar": 7,
-      "questTop": 112,
-      "questW": 560,
-      "goal": 17,
-      "bossTop": 118,
-      "bossW": 460,
-      "bossName": 17,
-      "orb": 104,
-      "orbInner": 76,
-      "orbFont": 24,
-      "orbBottom": 176,
-      "orbSide": 28,
-      "dockH": 60,
-      "dockFont": 19,
-      "dockPad": 20,
-      "dockBottom": 14,
-      "flask": 66,
-      "beltLeft": 148,
-      "beltRight": 316,
-      "beltBottom": 18,
-      "skill": 70,
-      "skillKey": 12,
-      "attack": 112,
-      "attackFont": 20,
-      "castRight": 18,
-      "castBottom": 14,
-      "minimapW": 168,
-      "minimapH": 132,
-      "toastTop": 168,
-      "toastW": 380,
-      "toastFont": 15,
-      "hint": 17,
-      "tutor": 17,
-      "tutorTop": 232,
-      "tutorW": 420,
-      "interact": 18,
-      "interactBottom": 96,
-      "joy": 130,
-      "stick": 60
-    },
-    "phoneLandscape": {
-      "query": "(max-height: 430px) and (min-aspect-ratio: 1/1)",
-      "base": 15,
-      "btnH": 46,
-      "tapMin": 44,
-      "btnFont": 16,
-      "panelH2": 22,
-      "small": 13.5,
-      "detailFont": 13.5,
-      "slotName": 12,
-      "who": 16,
-      "zone": 12,
-      "goal": 13,
-      "orbFont": 15,
-      "dockFont": 16,
-      "skillKey": 10,
-      "attackFont": 16,
-      "interact": 15,
-      "dockH": 44,
-      "dockPad": 8
-    }
-  },
-  "arc": {
-    "about": "Skill arc around Strike (js/ab-hudarc.js). All 4 slots share one radius and even angular spacing, spanning spanDeg (default 90) from above Strike to its left (right-handed; mirrored for left hand). strikeScale multiplies the CSS Strike size. strikeInsetX / strikeInsetY (CSS px) pull Strike toward the screen centre from its CSS corner so health and mana potions can sit just beside it and the skill buttons stay out of the deep corner. Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left. Potion sizes and offsets live in the flasks block.",
-    "enabled": true,
-    "ringGap": 6,
-    "slotGap": 6,
-    "centerDeg": 135,
-    "minDeg": 80,
-    "maxDeg": 200,
-    "edge": 4,
-    "beltGap": 8,
-    "orbGap": 10,
-    "dockGap": 8,
-    "strikeScale": 1.1,
-    "spanDeg": 90,
-    "strikeInsetX": 52,
-    "strikeInsetY": 52
-  },
-  "flasks": {
-    "about": "v84g: a single health potion icon sits just to the lower-left of Strike (lower-right in left-hand mode) and holds lifeCharges charges; the count is drawn on the icon, and the icon dims when empty. Mana potions stay as separate slots just to the upper-right (upper-left in left-hand). lifeDX/lifeDY and manaDX/manaDY are direction vectors in screen space (x right, y down) for the right hand; X signs flip in left-hand mode. size and gap are CSS px. js/ab-hudarc.js places each visible flask and the portal along that ray, closest to Strike first, and keeps them in the safe area. js/ab-flasks.js reads lifeCharges for the health stack; pickup, vendor buy, and Fill belt still refill the same way, adapted to that cap. invpots: mana potions now stack on one icon with a count, like health (the second mana slot is retired). The equipped belt's rank sets how many of each potion type the belt holds (beltCaps; noBelt when no belt is worn; uniques and set belts use at least uniqueMin / setMin). If a belt is taken off, extra charges are kept until drunk. autoPickup: walking over a potion picks it up into the belt when that type has room; with a full belt it stays on the ground (tap it to put it in the Pack). lifeCharges is the old v84g cap, kept as the no-belt fallback.",
-    "enabled": true,
-    "size": 44,
-    "gap": 8,
-    "lifeDX": -0.35,
-    "lifeDY": 1,
-    "manaDX": 1,
-    "manaDY": -0.35,
-    "lifeCharges": 2,
-    "manaStack": true,
-    "autoPickup": true,
-    "autoPickupRadius": 0.72,
-    "noBelt": 2,
-    "beltCaps": {
-      "common": 3,
-      "magic": 4,
-      "rare": 5,
-      "elite": 6,
-      "epic": 7,
-      "legendary": 8,
-      "fabled": 9,
-      "mythical": 10
-    },
-    "uniqueMin": 10,
-    "setMin": 10
-  },
-  "hints": {
-    "about": "v84g: point and tutor hints are a small pulsing dot/ring plus a short label. They must never overlap the control they point at, nor any panel tab or HUD button. js/ index ashPointHint reads this. Labels keep the words 'skill point' / 'stat point' for existing tests.",
-    "dot": 14,
-    "ring": 22,
-    "gap": 8,
-    "labelMaxWidth": 110,
-    "skillLabel": "Skill points",
-    "statLabel": "Stat points",
-    "tutorMaxWidth": 200
-  },
-  "popups": {
-    "about": "v84g: death, victory, rift, season and other overlay cards cap at maxWidthPct / maxHeightPct of the viewport (phone landscape included), with compact padding in CSS px. Tap the dimmed veil outside the card to close rift and season popups. js/ab-ui.js applies these as --popup-* variables.",
-    "maxWidthPct": 60,
-    "maxHeightPct": 70,
-    "pad": 8,
-    "closeOnVeil": true
-  },
-  "skillTree": {
-    "labels": {
-      "locked": "Lv {n}",
-      "needs": "Needs {skill}",
-      "ready": "Ready",
-      "open": "Open",
-      "learned": "",
-      "maxed": "Max"
-    }
-  },
-  "runeTips": {
-    "labels": {
-      "head": "Rune · Tier {tier}",
-      "effect": "When socketed:",
-      "usedIn": "Used in runewords:",
-      "order": "{runes} · {slots}",
-      "none": "Not part of a runeword yet.",
-      "codex": "Effects:"
-    }
-  },
-  "mobCount": {
-    "enabled": true,
-    "hideInTowns": true,
-    "refreshMs": 250,
-    "label": "{name} · {n} left",
-    "clear": "{name} · Cleared"
-  },
-  "statsTab": {
-    "enabled": true,
-    "tab": "Stats",
-    "text": {
-      "base": "Base",
-      "gear": "Gear",
-      "bonus": "Bonus",
-      "perPoint": "Each point gives:",
-      "toSpend": "to spend",
-      "cap": "cap"
-    },
-    "attributes": [
-      {
-        "id": "strength",
-        "label": "Strength",
-        "perPoint": [
-          {
-            "metric": "dmgAvg",
-            "mode": "pct",
-            "unit": "%",
-            "dp": 1,
-            "label": "weapon damage"
-          }
-        ]
-      },
-      {
-        "id": "dexterity",
-        "label": "Dexterity",
-        "perPoint": [
-          {
-            "metric": "attack",
-            "dp": 0,
-            "label": "attack rating"
-          },
-          {
-            "metric": "block",
-            "unit": "%",
-            "dp": 1,
-            "label": "block",
-            "hideZero": true
-          }
-        ]
-      },
-      {
-        "id": "vitality",
-        "label": "Vitality",
-        "perPoint": [
-          {
-            "metric": "life",
-            "dp": 0,
-            "label": "life"
-          },
-          {
-            "metric": "stamina",
-            "dp": 1,
-            "label": "stamina"
-          }
-        ]
-      },
-      {
-        "id": "energy",
-        "label": "Energy",
-        "perPoint": [
-          {
-            "metric": "mana",
-            "dp": 0,
-            "label": "mana"
-          },
-          {
-            "metric": "manaRegen",
-            "dp": 2,
-            "unit": "/s",
-            "label": "mana regen"
-          }
-        ]
-      }
-    ],
-    "groups": [
-      {
-        "title": "Offense",
-        "rows": [
-          {
-            "label": "Damage",
-            "metric": "dmgAvg",
-            "range": [
-              "dmgMin",
-              "dmgMax"
-            ],
-            "dp": 0
-          },
-          {
-            "label": "Fire damage",
-            "metric": "fireAvg",
-            "dp": 1,
-            "hideZero": true
-          },
-          {
-            "label": "Cold damage",
-            "metric": "coldAvg",
-            "dp": 1,
-            "hideZero": true
-          },
-          {
-            "label": "Lightning damage",
-            "metric": "lightAvg",
-            "dp": 1,
-            "hideZero": true
-          },
-          {
-            "label": "Poison damage",
-            "metric": "poisonAvg",
-            "dp": 1,
-            "hideZero": true
-          },
-          {
-            "label": "Attack rating",
-            "metric": "attack",
-            "dp": 0
-          },
-          {
-            "label": "Attacks per second",
-            "metric": "aps",
-            "dp": 2
-          },
-          {
-            "label": "Crit chance",
-            "metric": "crit",
-            "unit": "%",
-            "dp": 1
-          },
-          {
-            "label": "Crit damage",
-            "metric": "critMult",
-            "unit": "%",
-            "dp": 0
-          },
-          {
-            "label": "Faster cast",
-            "metric": "fcr",
-            "unit": "%",
-            "dp": 0
-          },
-          {
-            "label": "Life stolen per hit",
-            "metric": "leech",
-            "unit": "%",
-            "dp": 1,
-            "hideZero": true
-          },
-          {
-            "label": "Mana stolen per hit",
-            "metric": "manaLeech",
-            "unit": "%",
-            "dp": 1,
-            "hideZero": true
-          }
-        ]
-      },
-      {
-        "title": "Defense",
-        "rows": [
-          {
-            "label": "Defense",
-            "metric": "defense",
-            "dp": 0
-          },
-          {
-            "label": "Block",
-            "metric": "block",
-            "unit": "%",
-            "dp": 0,
-            "hideZero": true
-          },
-          {
-            "label": "Life regeneration",
-            "metric": "lifeRegen",
-            "unit": "/s",
-            "dp": 2
-          },
-          {
-            "label": "Mana regeneration",
-            "metric": "manaRegen",
-            "unit": "/s",
-            "dp": 2
-          },
-          {
-            "label": "Thorns",
-            "metric": "thorns",
-            "dp": 0,
-            "hideZero": true
-          }
-        ]
-      },
-      {
-        "title": "Movement and luck",
-        "rows": [
-          {
-            "label": "Stamina",
-            "metric": "stamina",
-            "dp": 0
-          },
-          {
-            "label": "Stamina per Vitality",
-            "metric": "staminaPerVit",
-            "dp": 2
-          },
-          {
-            "label": "Move speed",
-            "metric": "moveSpeed",
-            "unit": " tiles/s",
-            "dp": 2
-          },
-          {
-            "label": "Faster run",
-            "metric": "frw",
-            "unit": "%",
-            "dp": 0
-          },
-          {
-            "label": "Magic find",
-            "metric": "mf",
-            "unit": "%",
-            "dp": 0
-          }
-        ]
-      },
-      {
-        "title": "Resistances",
-        "note": "Each point cuts that damage by 1%. Capped at 75%.",
-        "rows": [
-          {
-            "label": "Fire",
-            "metric": "resFire",
-            "unit": "%",
-            "dp": 0,
-            "cap": 75
-          },
-          {
-            "label": "Cold",
-            "metric": "resCold",
-            "unit": "%",
-            "dp": 0,
-            "cap": 75
-          },
-          {
-            "label": "Lightning",
-            "metric": "resLightning",
-            "unit": "%",
-            "dp": 0,
-            "cap": 75
-          },
-          {
-            "label": "Poison",
-            "metric": "resPoison",
-            "unit": "%",
-            "dp": 0,
-            "cap": 75
-          }
-        ]
-      },
-      {
-        "title": "Chance to be hit",
-        "note": "Armor against a foe's attack rating. Never below 50% or above 94%.",
-        "rows": [
-          {
-            "metric": "hit",
-            "monsters": [
-              "bramble_hound",
-              "orchard_knight",
-              "kiln_drake",
-              "stair_golem"
-            ]
-          }
-        ]
-      }
-    ],
-    "mainBonuses": {
-      "crit": {
-        "metric": "crit",
-        "unit": "%",
-        "dp": 3,
-        "label": "crit chance"
-      },
-      "armorDefense": {
-        "mode": "rate",
-        "rateFrom": "armorDefensePerPoint",
-        "unit": "%",
-        "dp": 2,
-        "label": "armor defense",
-        "hideZero": true
-      },
-      "spellDamage": {
-        "mode": "rate",
-        "rateFrom": "spellDamagePerPoint",
-        "unit": "%",
-        "dp": 2,
-        "label": "spell damage"
-      },
-      "skillDamage": {
-        "mode": "rate",
-        "rateFrom": "skillDamagePerPoint",
-        "unit": "%",
-        "dp": 2,
-        "label": "skill damage"
-      }
-    },
-    "sets": {
-      "title": "Sets",
-      "empty": "No set pieces worn.",
-      "pieces": "{n} of {m} pieces worn"
-    }
-  },
-  "safeArea": {
-    "about": "v84g: every panel and HUD element is padded by env(safe-area-inset-*) plus these extra CSS px, so the Dynamic Island and home indicator never cover inventory slots or HUD. js/ab-safearea.js reads the insets from a CSS probe (#ab-safe-probe) and exposes them as --safe-l/r/t/b and ABSafeArea.insets() for canvas-drawn UI. min* floors each side. Adjust here if a device still clips.",
-    "extraLeft": 0,
-    "extraRight": 0,
-    "extraTop": 0,
-    "extraBottom": 0,
-    "minLeft": 0,
-    "minRight": 0,
-    "minTop": 0,
-    "minBottom": 0
-  },
-  "overheadBars": {
-    "about": "Small health and mana bars drawn above the player. Off by default; the Settings toggle is saved with the rest of the device settings.",
-    "defaultOn": false,
-    "width": 44,
-    "height": 5,
-    "gap": 2,
-    "aboveHead": 8,
-    "labels": {
-      "button": "Bars over head",
-      "on": "on",
-      "off": "off",
-      "toastOn": "Health and mana bars sit over your head.",
-      "toastOff": "Bars over your head are off."
-    }
-  },
-  "hudLayout": {
-    "about": "v72: life and mana orbs sit near the bottom centre (health left of centre, mana right), D2/D4 style. The dock keeps a 44px minimum tap target and the profile dock font; belts and the dock move so they do not overlap. js/ab-hudarc.js reads this. Dock icon sizes: dockIcons.",
-    "enabled": true,
-    "orbBottom": 8,
-    "orbCenterGap": 10,
-    "dockAbove": 8,
-    "dockGap": 6,
-    "interactAbove": 8
-  },
-  "dockSplit": {
-    "about": "v84g: the play dock is split like Diablo Immortal. Gear and Stats sit just to the left of the health orb; Skills, Journal and Menu sit just to the right of the mana orb. js/ab-hudarc.js places #dock-left and #dock-right. Gaps are CSS px. Left-hand mode keeps the orbs' order (health left, mana right) and the same flanking.",
-    "enabled": true,
-    "orbGap": 8,
-    "edge": 4,
-    "minBtn": 36
-  },
-  "muteBtn": {
-    "about": "v72 HUD mute button (speaker icon). Size in CSS px; sits beside the minimap, away from orbs and skills. Toggles all game audio and is saved with the other device settings (abStore / staging prefix).",
-    "size": 48,
-    "gap": 8,
-    "labels": {
-      "mute": "Mute",
-      "unmute": "Unmute"
-    }
-  },
-  "itemBox": {
-    "about": "v84g item pop-up (js/ab-itembox.js). The card is a clean tooltip; Equip stays a wide button on the bottom; Unequip, Move to Stash, Drop and other secondary actions sit in a narrow icon strip beside the card. Drop asks for confirmation. Sizes in CSS px. A later settings screen can expose these as user-editable HUD values.",
-    "pad": 8,
-    "maxW": 340,
-    "maxH": 380,
-    "compareMaxW": 400,
-    "minW": 200,
-    "stackMin": 160,
-    "equipH": 44,
-    "icon": 44,
-    "iconGap": 6,
-    "stripGap": 6,
-    "z": 80,
-    "tipZ": 90,
-    "compareEven": true,
-    "compareAbout": "v84n: compareEven gives the equipped card an even share of the width (up to compareMaxW) so its full stats show."
-  },
-  "dockIcons": {
-    "about": "v84g compact play dock (icon + short label). Sizes in CSS px. enabled turns the icon layout on; a later settings screen can expose these as user-editable HUD values. js/ab-ui.js and the dock markup in index.html read this.",
-    "enabled": true,
-    "size": 52,
-    "icon": 20,
-    "label": 9,
-    "gap": 6,
-    "pad": 2
-  },
-  "characterSheet": {
-    "about": "v84g Diablo 2-style character sheet (js/ab-charsheet.js). Sizes in CSS px. Labels live in data/stats.json. enabled is also gated by statsTab.enabled so existing tests can turn the sheet off.",
-    "enabled": true,
-    "panel": "stats",
-    "maxW": 720,
-    "pad": 12,
-    "plus": 44,
-    "previewHoldMs": 350,
-    "xpH": 8,
-    "colMin": 240,
-    "gap": 12
-  },
-  "skillTreePanel": {
-    "about": "v84h top-down skill-tree panel as compact icon tiles. Layout in data/skilltree-ui.json (layout: forest, pack: zigzag2, tile: 56); js/ab-skilltree.js draws three tree columns, downward connectors, and the detail pane.",
-    "enabled": true
-  },
-  "leui": {
-    "about": "le-ui (v85) inventory/stash look. packCell/stashCell = pack and stash grid cell in CSS px on phone landscape (the Last Epoch-style sheet); toolbarW = width of the pack's side button column; dollW = paper-doll column width. iconHD false forces the half-size item atlas. dragHoldMs = long-press before an item lifts; dragLift = how far above the finger the carried item floats (CSS px) so the finger never hides the drop spot; dragSlop = finger travel that cancels the hold (scroll/tap). railW = stash category rail width.",
-    "packCell": 42,
-    "stashCell": 33,
-    "stashPackCell": 26,
-    "toolbarW": 104,
-    "dollW": 262,
-    "iconHD": true,
-    "dragHoldMs": 220,
-    "dragLift": 40,
-    "dragSlop": 9,
-    "temperSpend": true,
-    "railW": 54
-  },
-  "gearEquip": {
-    "about": "v84n: tapping Equip on an item pop-up equips it and closes the pop-up (same as skills). false = keep the pop-up open on the worn item (old behavior). The info button and tapping a worn item still open its details.",
-    "closeOnEquip": true
-  },
-  "compare": {
-    "about": "v84n (TTPC-49): item compare. The Compared to equipped block always shows when the item can go in an occupied slot (noChange when nothing differs). js/ab-compare.js puts each stat's difference next to its line on the bag item (colors.better green, colors.worse red) and lists stats only the worn item has as red lines tagged lostTag. lowerIsBetter: stat keys where less is better.",
-    "head": "Compared to equipped",
-    "noChange": "No change",
-    "colors": {
-      "better": "#6fdc7a",
-      "worse": "#ff6a5a"
-    },
-    "lostTag": "Lose",
-    "plus": "+",
-    "minus": "−",
-    "lowerIsBetter": []
-  },
-  "invFull": {
-    "about": "v84n (TTPC-52, js/ab-invfull.js): on phones in landscape the gear panel fills the whole screen; on the Pack tab Sort / Fill belt / Stow sit in one bottom row (rowH) beside the consume strip and the bag cells grow up to maxCell px into the freed room. Doll slots keep their size. Insets come from the safe area; pad / gap values in CSS px. Cell height = (screen - safe insets - padTop - padBottom - headH - 3*gap - rowH - slack) / rows; slack covers the grid border. artPad: px of padding around a bag item's art inside its 1px border (the art was 8px smaller than the cell, now 4px). Landscape only (portrait keeps the old panel). Makings chips (shards, runes, gems) ride in the bottom row as rowH squares, up to matsMaxW px wide, then scroll sideways.",
-    "enabled": true,
-    "profile": "phoneLandscape",
-    "padX": 10,
-    "padTop": 2,
-    "padBottom": 4,
-    "headH": 44,
-    "rowH": 44,
-    "gap": 4,
-    "colGap": 10,
-    "btnGap": 6,
-    "maxCell": 64,
-    "slack": 8,
-    "artPad": 1,
-    "matsMaxW": 240
-  },
-  "uniqueRanges": {
-    "about": "v84o (TTPC-51): D2-style unique stat ranges. Ranges live per unique in its \"ranges\" (data/items.json, uniques-r15.json, uniques-ashen.json; tools/add_v84o_ranges.py made the defaults, about +-17%). New drops roll inside each range (js/ab-uroll.js); old saved items keep their values. The tooltip shows the range muted after the rolled stat and a small mark on a perfect roll.",
-    "enabled": true,
-    "show": true,
-    "dash": "–",
-    "pairJoin": " to ",
-    "mutedColor": "#9a8f80",
-    "perfectMark": "★",
-    "perfectTitle": "Perfect roll",
-    "perfectColor": "#ffd27a",
-    "perfectGlow": "rgba(255,190,80,.8)"
-  },
-  "ashenMark": {
-    "about": "v84o (TTPC-51): small ember marker for Ashen (Mythical-tier) uniques, which now have their own names instead of the \"Ashen \" prefix. Tooltip: before the name (tipPx). Bag, gear slots and tooltip icon: bottom-left corner (badgePx, badgeInset). Ground label: groundGlyph before the name. js/ab-ashenmark.js.",
-    "enabled": true,
-    "title": "Ashen · Mythical tier",
-    "tipPx": 9,
-    "badgePx": 7,
-    "badgeInset": 3,
-    "haloPx": 4,
-    "groundGlyph": "✦",
-    "colors": {
-      "core": "#fff1c2",
-      "mid": "#ff9a3a",
-      "edge": "#c8360f",
-      "halo": "rgba(255,110,30,.85)"
-    }
-  },
-  "rarityGlow": {
-    "about": "v84o (TTPC-51): glow on painted item art by rarity (bag, gear slots, tooltip icon, ground drops), like the old pixel-art icon glow. Colours default to data/icons.json rarity[...].glow (set 'color' here to override). px = glow blur, alpha = strength, ring = tight inner outline, inner = hot core colour; pulse = slow halo behind the art (uniques, Ashen). Priority: ashen > unique > set > rank. ground: same glow as a cached sprite behind the drop (blurMul scales px to world size). LOW_FX or reduced motion stops the pulses. js/ab-rarityglow.js.",
-    "enabled": true,
-    "order": [
-      "magic",
-      "rare",
-      "elite",
-      "epic",
-      "legendary",
-      "fabled",
-      "mythical",
-      "set",
-      "unique",
-      "ashen"
-    ],
-    "tiers": {
-      "magic": {
-        "px": 3.5,
-        "alpha": 0.85
-      },
-      "rare": {
-        "px": 4,
-        "alpha": 0.9
-      },
-      "elite": {
-        "px": 4,
-        "alpha": 0.9
-      },
-      "epic": {
-        "px": 3.5,
-        "alpha": 0.85
-      },
-      "legendary": {
-        "px": 4,
-        "alpha": 0.85
-      },
-      "fabled": {
-        "px": 4,
-        "alpha": 0.9
-      },
-      "mythical": {
-        "px": 4.5,
-        "alpha": 0.9
-      },
-      "set": {
-        "px": 4.5,
-        "alpha": 0.9,
-        "ring": 1
-      },
-      "unique": {
-        "px": 5,
-        "alpha": 0.95,
-        "ring": 1.5,
-        "pulse": true,
-        "pulseAlpha": 0.42,
-        "periodS": 2.8
-      },
-      "ashen": {
-        "px": 6,
-        "alpha": 1,
-        "ring": 1.5,
-        "color": "#ff7a2a",
-        "inner": "#ffe2a0",
-        "innerPx": 1,
-        "pulse": true,
-        "pulseAlpha": 0.55,
-        "periodS": 2.2,
-        "groundBoost": 1.15
-      }
-    },
-    "pulse": {
-      "enabled": true,
-      "size": "82%",
-      "min": 0.3,
-      "max": 0.9
-    },
-    "ground": {
-      "enabled": true,
-      "blurMul": 1.6,
-      "padPx": 4,
-      "alpha": 0.9,
-      "pulseAmp": 0.3
-    },
-    "maxed": {
-      "enabled": true,
-      "className": "glow-maxed",
-      "css": "",
-      "about": "Hook for a future special effect on maxed Mythical items (Ashen / Mythical with every ranged stat at max). Such items get <i class=\"glow-maxed\"> in their icon box and ABRarityGlow.hooks.maxedGround(ctx, item, x, y, w, h, time) is called for their ground drop; nothing is drawn yet. Put CSS for the effect in css."
-    }
+  "phoneLandscape": {
+   "query": "(max-height: 430px) and (min-aspect-ratio: 1/1)",
+   "base": 15,
+   "btnH": 46,
+   "tapMin": 44,
+   "btnFont": 16,
+   "panelH2": 22,
+   "small": 13.5,
+   "detailFont": 13.5,
+   "slotName": 12,
+   "who": 16,
+   "zone": 12,
+   "goal": 13,
+   "orbFont": 15,
+   "dockFont": 16,
+   "skillKey": 10,
+   "attackFont": 16,
+   "interact": 15,
+   "dockH": 44,
+   "dockPad": 8
   }
+ },
+ "arc": {
+  "about": "Skill arc around Strike (js/ab-hudarc.js). All 4 slots share one radius and even angular spacing, spanning spanDeg (default 90) from above Strike to its left (right-handed; mirrored for left hand). strikeScale multiplies the CSS Strike size. strikeInsetX / strikeInsetY (CSS px) pull Strike toward the screen centre from its CSS corner so health and mana potions can sit just beside it and the skill buttons stay out of the deep corner. Gaps in CSS px; angles in degrees, 90 = straight up, 180 = straight left. Potion sizes and offsets live in the flasks block.",
+  "enabled": true,
+  "ringGap": 6,
+  "slotGap": 6,
+  "centerDeg": 135,
+  "minDeg": 80,
+  "maxDeg": 200,
+  "edge": 4,
+  "beltGap": 8,
+  "orbGap": 10,
+  "dockGap": 8,
+  "strikeScale": 1.1,
+  "spanDeg": 90,
+  "strikeInsetX": 52,
+  "strikeInsetY": 52
+ },
+ "flasks": {
+  "about": "v84g: a single health potion icon sits just to the lower-left of Strike (lower-right in left-hand mode) and holds lifeCharges charges; the count is drawn on the icon, and the icon dims when empty. Mana potions stay as separate slots just to the upper-right (upper-left in left-hand). lifeDX/lifeDY and manaDX/manaDY are direction vectors in screen space (x right, y down) for the right hand; X signs flip in left-hand mode. size and gap are CSS px. js/ab-hudarc.js places each visible flask and the portal along that ray, closest to Strike first, and keeps them in the safe area. js/ab-flasks.js reads lifeCharges for the health stack; pickup, vendor buy, and Fill belt still refill the same way, adapted to that cap. invpots: mana potions now stack on one icon with a count, like health (the second mana slot is retired). The equipped belt's rank sets how many of each potion type the belt holds (beltCaps; noBelt when no belt is worn; uniques and set belts use at least uniqueMin / setMin). If a belt is taken off, extra charges are kept until drunk. autoPickup: walking over a potion picks it up into the belt when that type has room; with a full belt it stays on the ground (tap it to put it in the Pack). lifeCharges is the old v84g cap, kept as the no-belt fallback.",
+  "enabled": true,
+  "size": 44,
+  "gap": 8,
+  "lifeDX": -0.35,
+  "lifeDY": 1,
+  "manaDX": 1,
+  "manaDY": -0.35,
+  "lifeCharges": 2,
+  "manaStack": true,
+  "autoPickup": true,
+  "autoPickupRadius": 0.72,
+  "noBelt": 2,
+  "beltCaps": {
+   "common": 3,
+   "magic": 4,
+   "rare": 5,
+   "elite": 6,
+   "epic": 7,
+   "legendary": 8,
+   "fabled": 9,
+   "mythical": 10
+  },
+  "uniqueMin": 10,
+  "setMin": 10
+ },
+ "hints": {
+  "about": "v84g: point and tutor hints are a small pulsing dot/ring plus a short label. They must never overlap the control they point at, nor any panel tab or HUD button. js/ index ashPointHint reads this. Labels keep the words 'skill point' / 'stat point' for existing tests.",
+  "dot": 14,
+  "ring": 22,
+  "gap": 8,
+  "labelMaxWidth": 110,
+  "skillLabel": "Skill points",
+  "statLabel": "Stat points",
+  "tutorMaxWidth": 200
+ },
+ "popups": {
+  "about": "v84g: death, victory, rift, season and other overlay cards cap at maxWidthPct / maxHeightPct of the viewport (phone landscape included), with compact padding in CSS px. Tap the dimmed veil outside the card to close rift and season popups. js/ab-ui.js applies these as --popup-* variables.",
+  "maxWidthPct": 60,
+  "maxHeightPct": 70,
+  "pad": 8,
+  "closeOnVeil": true
+ },
+ "skillTree": {
+  "labels": {
+   "locked": "Lv {n}",
+   "needs": "Needs {skill}",
+   "ready": "Ready",
+   "open": "Open",
+   "learned": "",
+   "maxed": "Max"
+  }
+ },
+ "runeTips": {
+  "labels": {
+   "head": "Rune \u00b7 Tier {tier}",
+   "effect": "When socketed:",
+   "usedIn": "Used in runewords:",
+   "order": "{runes} \u00b7 {slots}",
+   "none": "Not part of a runeword yet.",
+   "codex": "Effects:"
+  }
+ },
+ "mobCount": {
+  "enabled": true,
+  "hideInTowns": true,
+  "refreshMs": 250,
+  "label": "{name} \u00b7 {n} left",
+  "clear": "{name} \u00b7 Cleared"
+ },
+ "statsTab": {
+  "enabled": true,
+  "tab": "Stats",
+  "text": {
+   "base": "Base",
+   "gear": "Gear",
+   "bonus": "Bonus",
+   "perPoint": "Each point gives:",
+   "toSpend": "to spend",
+   "cap": "cap"
+  },
+  "attributes": [
+   {
+    "id": "strength",
+    "label": "Strength",
+    "perPoint": [
+     {
+      "metric": "dmgAvg",
+      "mode": "pct",
+      "unit": "%",
+      "dp": 1,
+      "label": "weapon damage"
+     }
+    ]
+   },
+   {
+    "id": "dexterity",
+    "label": "Dexterity",
+    "perPoint": [
+     {
+      "metric": "attack",
+      "dp": 0,
+      "label": "attack rating"
+     },
+     {
+      "metric": "block",
+      "unit": "%",
+      "dp": 1,
+      "label": "block",
+      "hideZero": true
+     }
+    ]
+   },
+   {
+    "id": "vitality",
+    "label": "Vitality",
+    "perPoint": [
+     {
+      "metric": "life",
+      "dp": 0,
+      "label": "life"
+     },
+     {
+      "metric": "stamina",
+      "dp": 1,
+      "label": "stamina"
+     }
+    ]
+   },
+   {
+    "id": "energy",
+    "label": "Energy",
+    "perPoint": [
+     {
+      "metric": "mana",
+      "dp": 0,
+      "label": "mana"
+     },
+     {
+      "metric": "manaRegen",
+      "dp": 2,
+      "unit": "/s",
+      "label": "mana regen"
+     }
+    ]
+   }
+  ],
+  "groups": [
+   {
+    "title": "Offense",
+    "rows": [
+     {
+      "label": "Damage",
+      "metric": "dmgAvg",
+      "range": [
+       "dmgMin",
+       "dmgMax"
+      ],
+      "dp": 0
+     },
+     {
+      "label": "Fire damage",
+      "metric": "fireAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Cold damage",
+      "metric": "coldAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Lightning damage",
+      "metric": "lightAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Poison damage",
+      "metric": "poisonAvg",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Attack rating",
+      "metric": "attack",
+      "dp": 0
+     },
+     {
+      "label": "Attacks per second",
+      "metric": "aps",
+      "dp": 2
+     },
+     {
+      "label": "Crit chance",
+      "metric": "crit",
+      "unit": "%",
+      "dp": 1
+     },
+     {
+      "label": "Crit damage",
+      "metric": "critMult",
+      "unit": "%",
+      "dp": 0
+     },
+     {
+      "label": "Faster cast",
+      "metric": "fcr",
+      "unit": "%",
+      "dp": 0
+     },
+     {
+      "label": "Life stolen per hit",
+      "metric": "leech",
+      "unit": "%",
+      "dp": 1,
+      "hideZero": true
+     },
+     {
+      "label": "Mana stolen per hit",
+      "metric": "manaLeech",
+      "unit": "%",
+      "dp": 1,
+      "hideZero": true
+     }
+    ]
+   },
+   {
+    "title": "Defense",
+    "rows": [
+     {
+      "label": "Defense",
+      "metric": "defense",
+      "dp": 0
+     },
+     {
+      "label": "Block",
+      "metric": "block",
+      "unit": "%",
+      "dp": 0,
+      "hideZero": true
+     },
+     {
+      "label": "Life regeneration",
+      "metric": "lifeRegen",
+      "unit": "/s",
+      "dp": 2
+     },
+     {
+      "label": "Mana regeneration",
+      "metric": "manaRegen",
+      "unit": "/s",
+      "dp": 2
+     },
+     {
+      "label": "Thorns",
+      "metric": "thorns",
+      "dp": 0,
+      "hideZero": true
+     }
+    ]
+   },
+   {
+    "title": "Movement and luck",
+    "rows": [
+     {
+      "label": "Stamina",
+      "metric": "stamina",
+      "dp": 0
+     },
+     {
+      "label": "Stamina per Vitality",
+      "metric": "staminaPerVit",
+      "dp": 2
+     },
+     {
+      "label": "Move speed",
+      "metric": "moveSpeed",
+      "unit": " tiles/s",
+      "dp": 2
+     },
+     {
+      "label": "Faster run",
+      "metric": "frw",
+      "unit": "%",
+      "dp": 0
+     },
+     {
+      "label": "Magic find",
+      "metric": "mf",
+      "unit": "%",
+      "dp": 0
+     }
+    ]
+   },
+   {
+    "title": "Resistances",
+    "note": "Each point cuts that damage by 1%. Capped at 75%.",
+    "rows": [
+     {
+      "label": "Fire",
+      "metric": "resFire",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     },
+     {
+      "label": "Cold",
+      "metric": "resCold",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     },
+     {
+      "label": "Lightning",
+      "metric": "resLightning",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     },
+     {
+      "label": "Poison",
+      "metric": "resPoison",
+      "unit": "%",
+      "dp": 0,
+      "cap": 75
+     }
+    ]
+   },
+   {
+    "title": "Chance to be hit",
+    "note": "Armor against a foe's attack rating. Never below 50% or above 94%.",
+    "rows": [
+     {
+      "metric": "hit",
+      "monsters": [
+       "bramble_hound",
+       "orchard_knight",
+       "kiln_drake",
+       "stair_golem"
+      ]
+     }
+    ]
+   }
+  ],
+  "mainBonuses": {
+   "crit": {
+    "metric": "crit",
+    "unit": "%",
+    "dp": 3,
+    "label": "crit chance"
+   },
+   "armorDefense": {
+    "mode": "rate",
+    "rateFrom": "armorDefensePerPoint",
+    "unit": "%",
+    "dp": 2,
+    "label": "armor defense",
+    "hideZero": true
+   },
+   "spellDamage": {
+    "mode": "rate",
+    "rateFrom": "spellDamagePerPoint",
+    "unit": "%",
+    "dp": 2,
+    "label": "spell damage"
+   },
+   "skillDamage": {
+    "mode": "rate",
+    "rateFrom": "skillDamagePerPoint",
+    "unit": "%",
+    "dp": 2,
+    "label": "skill damage"
+   }
+  },
+  "sets": {
+   "title": "Sets",
+   "empty": "No set pieces worn.",
+   "pieces": "{n} of {m} pieces worn"
+  }
+ },
+ "safeArea": {
+  "about": "v84g: every panel and HUD element is padded by env(safe-area-inset-*) plus these extra CSS px, so the Dynamic Island and home indicator never cover inventory slots or HUD. js/ab-safearea.js reads the insets from a CSS probe (#ab-safe-probe) and exposes them as --safe-l/r/t/b and ABSafeArea.insets() for canvas-drawn UI. min* floors each side. Adjust here if a device still clips.",
+  "extraLeft": 0,
+  "extraRight": 0,
+  "extraTop": 0,
+  "extraBottom": 0,
+  "minLeft": 0,
+  "minRight": 0,
+  "minTop": 0,
+  "minBottom": 0
+ },
+ "overheadBars": {
+  "about": "Small health and mana bars drawn above the player. Off by default; the Settings toggle is saved with the rest of the device settings.",
+  "defaultOn": false,
+  "width": 44,
+  "height": 5,
+  "gap": 2,
+  "aboveHead": 8,
+  "labels": {
+   "button": "Bars over head",
+   "on": "on",
+   "off": "off",
+   "toastOn": "Health and mana bars sit over your head.",
+   "toastOff": "Bars over your head are off."
+  }
+ },
+ "hudLayout": {
+  "about": "v72: life and mana orbs sit near the bottom centre (health left of centre, mana right), D2/D4 style. The dock keeps a 44px minimum tap target and the profile dock font; belts and the dock move so they do not overlap. js/ab-hudarc.js reads this. Dock icon sizes: dockIcons.",
+  "enabled": true,
+  "orbBottom": 8,
+  "orbCenterGap": 10,
+  "dockAbove": 8,
+  "dockGap": 6,
+  "interactAbove": 8
+ },
+ "dockSplit": {
+  "about": "v84g: the play dock is split like Diablo Immortal. Gear and Stats sit just to the left of the health orb; Skills, Journal and Menu sit just to the right of the mana orb. js/ab-hudarc.js places #dock-left and #dock-right. Gaps are CSS px. Left-hand mode keeps the orbs' order (health left, mana right) and the same flanking.",
+  "enabled": true,
+  "orbGap": 8,
+  "edge": 4,
+  "minBtn": 36
+ },
+ "muteBtn": {
+  "about": "v72 HUD mute button (speaker icon). Size in CSS px; sits beside the minimap, away from orbs and skills. Toggles all game audio and is saved with the other device settings (abStore / staging prefix).",
+  "size": 48,
+  "gap": 8,
+  "labels": {
+   "mute": "Mute",
+   "unmute": "Unmute"
+  }
+ },
+ "itemBox": {
+  "about": "v84g item pop-up (js/ab-itembox.js). The card is a clean tooltip; Equip stays a wide button on the bottom; Unequip, Move to Stash, Drop and other secondary actions sit in a narrow icon strip beside the card. Drop asks for confirmation. Sizes in CSS px. A later settings screen can expose these as user-editable HUD values.",
+  "pad": 8,
+  "maxW": 340,
+  "maxH": 380,
+  "compareMaxW": 400,
+  "minW": 200,
+  "stackMin": 160,
+  "equipH": 44,
+  "icon": 44,
+  "iconGap": 6,
+  "stripGap": 6,
+  "z": 80,
+  "tipZ": 90,
+  "compareEven": true,
+  "compareAbout": "v84n: compareEven gives the equipped card an even share of the width (up to compareMaxW) so its full stats show."
+ },
+ "dockIcons": {
+  "about": "v84g compact play dock (icon + short label). Sizes in CSS px. enabled turns the icon layout on; a later settings screen can expose these as user-editable HUD values. js/ab-ui.js and the dock markup in index.html read this.",
+  "enabled": true,
+  "size": 52,
+  "icon": 20,
+  "label": 9,
+  "gap": 6,
+  "pad": 2
+ },
+ "characterSheet": {
+  "about": "v84g Diablo 2-style character sheet (js/ab-charsheet.js). Sizes in CSS px. Labels live in data/stats.json. enabled is also gated by statsTab.enabled so existing tests can turn the sheet off.",
+  "enabled": true,
+  "panel": "stats",
+  "maxW": 720,
+  "pad": 12,
+  "plus": 44,
+  "previewHoldMs": 350,
+  "xpH": 8,
+  "colMin": 240,
+  "gap": 12
+ },
+ "skillTreePanel": {
+  "about": "v84h top-down skill-tree panel as compact icon tiles. Layout in data/skilltree-ui.json (layout: forest, pack: zigzag2, tile: 56); js/ab-skilltree.js draws three tree columns, downward connectors, and the detail pane.",
+  "enabled": true
+ },
+ "leui": {
+  "about": "le-ui (v85) inventory/stash look. packCell/stashCell = pack and stash grid cell in CSS px on phone landscape (the Last Epoch-style sheet); toolbarW = width of the pack's side button column; dollW = paper-doll column width. iconHD false forces the half-size item atlas. dragHoldMs = long-press before an item lifts; dragLift = how far above the finger the carried item floats (CSS px) so the finger never hides the drop spot; dragSlop = finger travel that cancels the hold (scroll/tap). railW = stash category rail width.",
+  "packCell": 42,
+  "stashCell": 33,
+  "stashPackCell": 26,
+  "toolbarW": 104,
+  "dollW": 262,
+  "iconHD": true,
+  "dragHoldMs": 220,
+  "dragLift": 40,
+  "dragSlop": 9,
+  "temperSpend": true,
+  "railW": 54
+ },
+ "gearEquip": {
+  "about": "v84n: tapping Equip on an item pop-up equips it and closes the pop-up (same as skills). false = keep the pop-up open on the worn item (old behavior). The info button and tapping a worn item still open its details.",
+  "closeOnEquip": true
+ },
+ "compare": {
+  "about": "v84n (TTPC-49): item compare. The Compared to equipped block always shows when the item can go in an occupied slot (noChange when nothing differs). js/ab-compare.js puts each stat's difference next to its line on the bag item (colors.better green, colors.worse red) and lists stats only the worn item has as red lines tagged lostTag. lowerIsBetter: stat keys where less is better.",
+  "head": "Compared to equipped",
+  "noChange": "No change",
+  "colors": {
+   "better": "#6fdc7a",
+   "worse": "#ff6a5a"
+  },
+  "lostTag": "Lose",
+  "plus": "+",
+  "minus": "\u2212",
+  "lowerIsBetter": []
+ },
+ "invFull": {
+  "about": "v84n (TTPC-52, js/ab-invfull.js): on phones in landscape the gear panel fills the whole screen; on the Pack tab Sort / Fill belt / Stow sit in one bottom row (rowH) beside the consume strip and the bag cells grow up to maxCell px into the freed room. Doll slots keep their size. Insets come from the safe area; pad / gap values in CSS px. Cell height = (screen - safe insets - padTop - padBottom - headH - 3*gap - rowH - slack) / rows; slack covers the grid border. artPad: px of padding around a bag item's art inside its 1px border (the art was 8px smaller than the cell, now 4px). Landscape only (portrait keeps the old panel). Makings chips (shards, runes, gems) ride in the bottom row as rowH squares, up to matsMaxW px wide, then scroll sideways.",
+  "enabled": true,
+  "profile": "phoneLandscape",
+  "padX": 10,
+  "padTop": 2,
+  "padBottom": 4,
+  "headH": 44,
+  "rowH": 44,
+  "gap": 4,
+  "colGap": 10,
+  "btnGap": 6,
+  "maxCell": 64,
+  "slack": 8,
+  "artPad": 1,
+  "matsMaxW": 240
+ },
+ "uniqueRanges": {
+  "about": "v84o (TTPC-51): D2-style unique stat ranges. Ranges live per unique in its \"ranges\" (data/items.json, uniques-r15.json, uniques-ashen.json; tools/add_v84o_ranges.py made the defaults, about +-17%). New drops roll inside each range (js/ab-uroll.js); old saved items keep their values. The tooltip shows the range muted after the rolled stat and a small mark on a perfect roll.",
+  "enabled": true,
+  "show": true,
+  "dash": "\u2013",
+  "pairJoin": " to ",
+  "mutedColor": "#9a8f80",
+  "perfectMark": "\u2605",
+  "perfectTitle": "Perfect roll",
+  "perfectColor": "#ffd27a",
+  "perfectGlow": "rgba(255,190,80,.8)"
+ },
+ "ashenMark": {
+  "about": "v84o (TTPC-51): small ember marker for Ashen (Mythical-tier) uniques, which now have their own names instead of the \"Ashen \" prefix. Tooltip: before the name (tipPx). Bag, gear slots and tooltip icon: bottom-left corner (badgePx, badgeInset). Ground label: groundGlyph before the name. js/ab-ashenmark.js.",
+  "enabled": true,
+  "title": "Ashen \u00b7 Mythical tier",
+  "tipPx": 9,
+  "badgePx": 7,
+  "badgeInset": 3,
+  "haloPx": 4,
+  "groundGlyph": "\u2726",
+  "colors": {
+   "core": "#fff1c2",
+   "mid": "#ff9a3a",
+   "edge": "#c8360f",
+   "halo": "rgba(255,110,30,.85)"
+  }
+ },
+ "rarityGlow": {
+  "about": "v84o (TTPC-51): glow on painted item art by rarity (bag, gear slots, tooltip icon, ground drops), like the old pixel-art icon glow. Colours default to data/icons.json rarity[...].glow (set 'color' here to override). px = glow blur, alpha = strength, ring = tight inner outline, inner = hot core colour; pulse = slow halo behind the art (uniques, Ashen). Priority: ashen > unique > set > rank. ground: same glow as a cached sprite behind the drop (blurMul scales px to world size). LOW_FX or reduced motion stops the pulses. js/ab-rarityglow.js. v84q1: extraBoxes/extraHalos add the Bench list and picker so those icons get the same glow.",
+  "enabled": true,
+  "order": [
+   "magic",
+   "rare",
+   "elite",
+   "epic",
+   "legendary",
+   "fabled",
+   "mythical",
+   "set",
+   "unique",
+   "ashen"
+  ],
+  "tiers": {
+   "magic": {
+    "px": 3.5,
+    "alpha": 0.85
+   },
+   "rare": {
+    "px": 4,
+    "alpha": 0.9
+   },
+   "elite": {
+    "px": 4,
+    "alpha": 0.9
+   },
+   "epic": {
+    "px": 3.5,
+    "alpha": 0.85
+   },
+   "legendary": {
+    "px": 4,
+    "alpha": 0.85
+   },
+   "fabled": {
+    "px": 4,
+    "alpha": 0.9
+   },
+   "mythical": {
+    "px": 4.5,
+    "alpha": 0.9
+   },
+   "set": {
+    "px": 4.5,
+    "alpha": 0.9,
+    "ring": 1
+   },
+   "unique": {
+    "px": 5,
+    "alpha": 0.95,
+    "ring": 1.5,
+    "pulse": true,
+    "pulseAlpha": 0.42,
+    "periodS": 2.8
+   },
+   "ashen": {
+    "px": 6,
+    "alpha": 1,
+    "ring": 1.5,
+    "color": "#ff7a2a",
+    "inner": "#ffe2a0",
+    "innerPx": 1,
+    "pulse": true,
+    "pulseAlpha": 0.55,
+    "periodS": 2.2,
+    "groundBoost": 1.15
+   }
+  },
+  "pulse": {
+   "enabled": true,
+   "size": "82%",
+   "min": 0.3,
+   "max": 0.9
+  },
+  "ground": {
+   "enabled": true,
+   "blurMul": 1.6,
+   "padPx": 4,
+   "alpha": 0.9,
+   "pulseAmp": 0.3
+  },
+  "maxed": {
+   "enabled": true,
+   "className": "glow-maxed",
+   "css": "",
+   "about": "Hook for a future special effect on maxed Mythical items (Ashen / Mythical with every ranged stat at max). Such items get <i class=\"glow-maxed\"> in their icon box and ABRarityGlow.hooks.maxedGround(ctx, item, x, y, w, h, time) is called for their ground drop; nothing is drawn yet. Put CSS for the effect in css."
+  },
+  "extraBoxes": [
+   "#ab-bench .ico{q} .item-ico.art",
+   "#ab-bench .fpick button{q} .item-ico.art"
+  ],
+  "extraHalos": [
+   "#ab-bench .ico{q}::before",
+   "#ab-bench .fpick button{q}::before"
+  ]
+ }
 }

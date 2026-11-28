@@ -418,7 +418,10 @@
    0,
    4,
    6
-  ]
+  ],
+  "groundArt": true,
+  "groundMaxPx": 64,
+  "groundArtAbout": "v84q1: ground drops use the item's awaken-stage art when it is already known (lazy, baked to groundMaxPx, cached per path). Falls back to the normal icon until the image is ready. Cheap: only items on the ground, one small canvas each."
  },
  "endgame": {
   "riftTierHp": 1.16,
@@ -957,5 +960,54 @@
   "pinNote": "Pinned: its runes and bases get a mark in your bag, and its runes drop twice as often.",
   "normalRankCap": "fabled",
   "sockLineWhen": "spelling"
+ },
+ "bench": {
+  "about": "v84q1: list icons on the Bench (Awaken, Salvage) match the compact doll slot for that item (weapon/offhand 58x116, armor 92x116, others 58x56). Forge/Sockets picker buttons use the same widths and a slightly shorter tall size (88px) so the tab's actions still fit on phone landscape. Stage art and rarity glow still draw. Sizes in px.",
+  "icon": {
+   "default": [
+    58,
+    56
+   ],
+   "slots": {
+    "weapon": [
+     58,
+     116
+    ],
+    "offhand": [
+     58,
+     116
+    ],
+    "armor": [
+     92,
+     116
+    ],
+    "helm": [
+     58,
+     56
+    ]
+   },
+   "pick": {
+    "default": [
+     58,
+     56
+    ],
+    "weapon": [
+     58,
+     88
+    ],
+    "offhand": [
+     58,
+     88
+    ],
+    "armor": [
+     68,
+     88
+    ],
+    "helm": [
+     58,
+     56
+    ]
+   }
+  }
  }
 }
