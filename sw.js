@@ -2,7 +2,7 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
-// v84n: the cache name follows config.js VERSION (ashbound-staging-v84n on staging), so this build installs a fresh cache and drops v84m.
+// v84o: the cache name follows config.js VERSION (ashbound-staging-v84o on staging), so this build installs a fresh cache and drops v84n.
 
 // r14: cache every painted skill icon listed in data/skill-art.json. Best effort: a missing icon never fails install.
 async function cacheSkillArt(cache) {
@@ -132,6 +132,9 @@ self.addEventListener('install', (event) => {
     './js/ab-effects.js',
     './js/ab-consume.js',
     './js/ab-compare.js',
+    './js/ab-uroll.js',
+    './js/ab-ashenmark.js',
+    './js/ab-rarityglow.js',
     './js/ab-invfull.js',
     './manifest.webmanifest',
     './icon-192.png',
