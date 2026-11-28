@@ -2,7 +2,13 @@
  "about": "zonegfx (r17): textured, lit, animated zone look, drawn by js/ab-zonegfx.js. A zone gets the look when zones[zoneId] or palettes[palette] names a set (sample: only reed_marsh). Each set = one act/biome art kit: gen (texture recipes for tools/gen_zonegfx.py -> assets/zonegfx/<set>/), bake (ground splat: materials, blend, relief, decals, cast shadows; baked once per zone load into the ground picture) and live (per-frame: water, foliage sway, lanterns, banners, motes, fog, grade, light tint). low = overrides for the low-graphics setting (Settings gfx low, or ?zgfx=low). ?zgfx=0 turns the whole thing off. Gameplay never reads this file: tiles, walls, collision and props are untouched; foliage, lanterns and banners here are decoration only (no hit boxes) and are kept off the path and away from doors.",
  "enabled": true,
  "zones": {
-  "reed_marsh": "mere"
+  "reed_marsh": "mere",
+  "cinderwood": "wood",
+  "salt_causeway": "salt",
+  "ruined_spire": "spire",
+  "sunken_kiln": "kiln",
+  "heart_kiln": "kiln",
+  "hearthveil": "town"
  },
  "palettes": {},
  "low": {
@@ -826,6 +832,3621 @@
       ],
       "sat": 0.85,
       "gain": 2.1
+     }
+    }
+   }
+  },
+  "act1": {
+   "act": 1,
+   "label": "Act 1 shared interactables kit (not a zone look; borrowed by the Act 1 sets via use{}).",
+   "import": {
+    "about": "painted Act 1 interactables (see assets/zonegfx/CREDITS.md); src dir zonegfx-notes/act1/gen-src/act1",
+    "textures": {},
+    "strips": {},
+    "sprites": {
+     "shrine": {
+      "src": "spr_shrine.jpg",
+      "h": 512,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "crate": {
+      "src": "spr_crate.jpg",
+      "h": 384,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "arch": {
+      "src": "spr_arch.jpg",
+      "h": 512,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "marker": {
+      "src": "spr_marker.jpg",
+      "h": 512,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "pedestal": {
+      "src": "spr_pedestal.jpg",
+      "h": 384,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "waypoint": {
+      "src": "spr_waypoint.jpg",
+      "h": 384,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "brazier": {
+      "src": "spr_brazier.jpg",
+      "h": 384,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "cursed": {
+      "src": "spr_cursed.jpg",
+      "h": 384,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "banner": {
+      "src": "spr_banner.jpg",
+      "h": 384,
+      "sat": 0.9,
+      "gain": 0.95
+     }
+    }
+   }
+  },
+  "wood": {
+   "act": 1,
+   "label": "Act 1 Cinderwood: packed ash dirt, charred trunks with ember veins, stumps, ash piles, timber-palisade banks, warm ember fill rgba(255,214,150,.20). Key light upper-left, shadows lower-right.",
+   "gen": {
+    "seed": 2026,
+    "size": 256,
+    "quality": 88,
+    "textures": {
+     "detail": {
+      "kind": "gray",
+      "beta": 0.7,
+      "lo": 8,
+      "contrast": 1.3
+     },
+     "ripple": {
+      "kind": "gray",
+      "beta": 1.1,
+      "lo": 3,
+      "hi": 40,
+      "streak": true,
+      "contrast": 1.0,
+      "sharpen": 0.55
+     }
+    },
+    "decals": {
+     "ashpile": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#3a3632",
+       "#56504a",
+       "#7a746c"
+      ],
+      "alpha": 0.6
+     },
+     "scorch": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#0c0a08",
+       "#17120e",
+       "#211a14"
+      ],
+      "alpha": 0.8
+     },
+     "embers": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#1a0c06",
+       "#5a1e08",
+       "#ff5a1a"
+      ],
+      "alpha": 0.55
+     },
+     "stones": {
+      "kind": "stones",
+      "size": 128,
+      "n": 7,
+      "cols": [
+       "#4a4440",
+       "#5c5650",
+       "#3a3430",
+       "#6a625a"
+      ]
+     },
+     "roots": {
+      "kind": "roots",
+      "size": 128,
+      "n": 5,
+      "col": "#1e1612"
+     },
+     "planks": {
+      "kind": "planks",
+      "size": 128,
+      "n": 3,
+      "col": "#3a2a1e"
+     },
+     "bones": {
+      "kind": "bones",
+      "size": 96
+     }
+    },
+    "sprites": {}
+   },
+   "bake": {
+    "texel": 48,
+    "tiltTexel": 56,
+    "smooth": true,
+    "texScale": 0.5,
+    "warp": 0.38,
+    "blend": 0.32,
+    "macro": 0.16,
+    "materials": [
+     "ash",
+     "litter",
+     "mud",
+     "path",
+     "stone",
+     "waterbed"
+    ],
+    "rules": {
+     "floor": [
+      "ash",
+      "litter"
+     ],
+     "floorSplit": 0.5,
+     "road": "path",
+     "path": "path",
+     "tree": "litter",
+     "rock": "stone",
+     "water": "waterbed",
+     "wall": "mud",
+     "exit": "stone",
+     "bank": "mud",
+     "bankDist": 1
+    },
+    "height": {
+     "litter": 0.08,
+     "stone": 0.18,
+     "path": 0.02,
+     "ash": 0.0,
+     "mud": -0.04,
+     "waterbed": -0.35
+    },
+    "relief": 0.55,
+    "lightDir": [
+     -1,
+     -1
+    ],
+    "water": {
+     "deep": "#06171a",
+     "shallow": "#163a3c",
+     "edgeWet": 0.55,
+     "shore": "#86b8ae",
+     "shoreAlpha": 0.45,
+     "depth": 0.5
+    },
+    "decals": [
+     {
+      "img": "ashpile",
+      "on": [
+       "ash",
+       "litter"
+      ],
+      "chance": 0.06,
+      "scale": [
+       0.9,
+       1.6
+      ]
+     },
+     {
+      "img": "scorch",
+      "on": [
+       "ash",
+       "litter"
+      ],
+      "chance": 0.07,
+      "scale": [
+       1.0,
+       1.9
+      ]
+     },
+     {
+      "img": "embers",
+      "on": [
+       "ash",
+       "litter"
+      ],
+      "chance": 0.025,
+      "scale": [
+       0.5,
+       0.9
+      ]
+     },
+     {
+      "img": "stones",
+      "on": [
+       "ash",
+       "stone",
+       "path"
+      ],
+      "chance": 0.06,
+      "scale": [
+       0.7,
+       1.1
+      ]
+     },
+     {
+      "img": "roots",
+      "on": [
+       "litter"
+      ],
+      "nearTree": true,
+      "chance": 0.3,
+      "scale": [
+       0.8,
+       1.3
+      ]
+     },
+     {
+      "img": "planks",
+      "on": [
+       "path"
+      ],
+      "chance": 0.04,
+      "scale": [
+       0.8,
+       1.1
+      ]
+     },
+     {
+      "img": "bones",
+      "on": [
+       "ash",
+       "mud"
+      ],
+      "chance": 0.012,
+      "scale": [
+       0.8,
+       1.0
+      ]
+     }
+    ],
+    "shadows": {
+     "dir": [
+      0.55,
+      0.42
+     ],
+     "tree": [
+      1.05,
+      0.6,
+      0.48
+     ],
+     "rock": [
+      0.55,
+      0.38,
+      0.4
+     ],
+     "wall": 0.42,
+     "blur": 0.35
+    },
+    "ao": {
+     "wall": 0.5,
+     "tree": 0.25
+    },
+    "texTiles": 3,
+    "tone": {
+     "_doc": "v84m2 per-material tone at bake time: contrast = overlay of the texture on itself (0..1), lift = screen colour at liftAlpha. Makes the path a bit lighter and higher-contrast than the ground so the route reads at a glance.",
+     "path": {
+      "contrast": 0.3,
+      "lift": "#c8a47a",
+      "liftAlpha": 0.06
+     }
+    }
+   },
+   "live": {
+    "void": "#0a0806",
+    "detail": {
+     "img": "detail",
+     "alpha": 0.22,
+     "scale": 0.55,
+     "op": "overlay"
+    },
+    "water": {
+     "img": "ripple",
+     "alpha": 0.5,
+     "scale": 0.7,
+     "speed": [
+      0.05,
+      0.018
+     ],
+     "speed2": [
+      -0.03,
+      0.04
+     ],
+     "reflect": "#ffb070",
+     "reflectAlpha": 0.34,
+     "glints": 40,
+     "glintCol": "#ffd0a0",
+     "every": 2
+    },
+    "foliage": {
+     "sprites": [
+      "grass",
+      "grass",
+      "stump"
+     ],
+     "max": 90,
+     "nearWater": 0.3,
+     "nearTree": 0.32,
+     "open": 0.035,
+     "scale": [
+      0.8,
+      1.25
+     ],
+     "keepOffPath": true,
+     "keepDoor": 2.4,
+     "sway": {
+      "amp": 0.07,
+      "speed": 1.3,
+      "gust": 0.5,
+      "gustSpeed": 0.17,
+      "wave": 0.21
+     },
+     "h": {
+      "grass": 0.6,
+      "stump": 1.0,
+      "tree1": 2.7,
+      "tree2": 2.6,
+      "tree3": 2.6
+     },
+     "fringe": {
+      "sprites": [
+       "grass",
+       "stump",
+       "grass"
+      ],
+      "trees": [
+       "tree1",
+       "tree3",
+       "tree2",
+       "tree1"
+      ],
+      "treeChance": 0.22,
+      "scale": [
+       0.95,
+       1.35
+      ],
+      "inset": 0.12,
+      "top": 0.85,
+      "topTrees": 0.14
+     },
+     "path": {
+      "_doc": "v84m2 path readability: plants, reeds and wall-fringe thickets never stand on a road tile or within margin (tiles) of one; on tiles within nearDist of a road only nearMul of the usual plants are kept (0.62 = about 38% fewer); props:true applies the same to the game's own grid plants (small ones, plus the tall kinds in propKinds, e.g. reed clumps); trees and rocks on their solid tiles are kept.",
+      "margin": 0.35,
+      "nearDist": 1,
+      "nearMul": 0.62,
+      "props": true,
+      "propKinds": [
+       "stump",
+       "ashpile"
+      ]
+     }
+    },
+    "treeSway": {
+     "amp": 0.008,
+     "speed": 0.7
+    },
+    "lanterns": {
+     "img": "brazier",
+     "count": 5,
+     "minGap": 6,
+     "nearPath": true,
+     "light": 2.9,
+     "flicker": 0.12,
+     "color": "#ff8a3c",
+     "scale": 0.62
+    },
+    "banners": {
+     "count": 2,
+     "colors": [
+      "#5a1e18",
+      "#2a2420"
+     ],
+     "pole": "#2a1e16",
+     "w": 0.42,
+     "h": 0.75,
+     "poleH": 1.9,
+     "wave": 2.2
+    },
+    "motes": {
+     "fireflies": 18,
+     "fireflyCol": "#ff8a3c",
+     "dust": 34,
+     "dustCol": "#cfc6ba",
+     "spread": 9
+    },
+    "fog": {
+     "col": "#120c08",
+     "top": 0.42,
+     "topAlpha": 0.3,
+     "mist": 5,
+     "mistAlpha": 0.1,
+     "mistCol": "#b8aca0",
+     "drift": [
+      0.05,
+      0.02
+     ]
+    },
+    "grade": {
+     "shadow": "#3a2418",
+     "shadowAlpha": 0.3,
+     "highlight": "#ffd696",
+     "highlightAlpha": 0.14,
+     "op": "soft-light"
+    },
+    "light": {
+     "dark": 0.3,
+     "darkCol": [
+      10,
+      7,
+      5
+     ],
+     "heroFill": [
+      255,
+      214,
+      150
+     ],
+     "heroFillAlpha": 0.2,
+     "heroR": 6.4
+    },
+    "swap": {
+     "char": {
+      "imgs": [
+       "tree1",
+       "tree3",
+       "tree2"
+      ],
+      "h": 2.8,
+      "vary": 0.22,
+      "ax": 0.5,
+      "dy": 0.12
+     },
+     "char2": {
+      "imgs": [
+       "tree3",
+       "tree1"
+      ],
+      "h": 2.7,
+      "vary": 0.22,
+      "dy": 0.12
+     },
+     "char3": {
+      "imgs": [
+       "tree2",
+       "tree1"
+      ],
+      "h": 2.8,
+      "vary": 0.2,
+      "dy": 0.12
+     },
+     "char4": {
+      "imgs": [
+       "tree1",
+       "tree3"
+      ],
+      "h": 2.6,
+      "vary": 0.2,
+      "dy": 0.12
+     },
+     "boulder_wood": {
+      "imgs": [
+       "rock1"
+      ],
+      "h": 1.0,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.15
+     },
+     "charrock": {
+      "imgs": [
+       "rock1"
+      ],
+      "h": 0.55,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.1
+     },
+     "stump": {
+      "imgs": [
+       "stump"
+      ],
+      "h": 0.95,
+      "vary": 0.2,
+      "sway": false,
+      "dy": 0.1
+     }
+    },
+    "walls": {
+     "top": "banktop",
+     "side": "bankside",
+     "topTiles": 1,
+     "edge": 0.1,
+     "sideShade": [
+      0.12,
+      0.26
+     ],
+     "ground": "bankside",
+     "groundShade": 0.3,
+     "outerFaces": false,
+     "outerRing": 1,
+     "_outerDoc": "outerFaces false: the outer ring's wall faces that point off the map (south face of the last row, east face of the last column) are not drawn and the backdrop canopy is painted over the outer ring's ground (outerRing tiles), so no dark band runs past the map edge."
+    },
+    "occlude": {
+     "alpha": 0.42,
+     "top": 0.95,
+     "w": 0.38
+    },
+    "props": {
+     "shrine": {
+      "img": "shrine",
+      "h": 1.75,
+      "lbl": "#ffd7a8",
+      "glow": [
+       -0.06,
+       1.0,
+       0.42,
+       "#ff8a3c",
+       0.15,
+       0.32
+      ],
+      "light": 1.2,
+      "shadow": [
+       0.9,
+       0.5,
+       0.4
+      ],
+      "labelAt": 0.95
+     },
+     "crate": {
+      "img": "crate",
+      "h": 0.74,
+      "ay": 0.9,
+      "shadow": [
+       0.5,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     },
+     "relic": {
+      "img": "pedestal",
+      "h": 0.72,
+      "gem": [
+       0.95,
+       0.13,
+       "#ffd7a8",
+       "#ff8a3c"
+      ],
+      "light": 1.2,
+      "glow": [
+       0,
+       0.95,
+       0.35,
+       "#ff8a3c",
+       0.1,
+       0.4
+      ],
+      "lbl": "#ffd7a8",
+      "labelAt": 1.6,
+      "shadow": [
+       0.5,
+       0.45,
+       0.35
+      ]
+     },
+     "marker": {
+      "img": "marker",
+      "h": 1.45,
+      "lbl": "#f0d56a",
+      "lblWarn": "#ffb067",
+      "glow": [
+       -0.17,
+       0.72,
+       0.3,
+       "#ffb45a",
+       0.08,
+       0.5
+      ],
+      "shadow": [
+       0.8,
+       0.3,
+       0.35
+      ]
+     },
+     "exit": {
+      "img": "arch",
+      "h": 2.5,
+      "ay": 0.93,
+      "glow": [
+       0,
+       0.9,
+       0.7,
+       "#e07a32",
+       0.12,
+       0.35
+      ],
+      "light": 2.2,
+      "shadow": [
+       1.2,
+       1.0,
+       0.4
+      ]
+     },
+     "waypoint": {
+      "img": "waypoint",
+      "h": 1.0,
+      "ay": 0.62,
+      "occlude": false
+     },
+     "cursed": {
+      "img": "cursed",
+      "h": 0.8,
+      "ay": 0.9,
+      "lbl": "#ff9a8a",
+      "glow": [
+       0,
+       0.45,
+       0.3,
+       "#ff3a1a",
+       0.18,
+       0.35
+      ],
+      "shadow": [
+       0.55,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     }
+    },
+    "backdrop": {
+     "img": "backdrop",
+     "tiles": 7,
+     "alpha": 0.6,
+     "col": "#060403",
+     "margin": 40
+    },
+    "exposure": {
+     "col": "#808080",
+     "alpha": 0.0,
+     "op": "overlay"
+    }
+   },
+   "import": {
+    "about": "painted source art (see assets/zonegfx/CREDITS.md); src dir zonegfx-notes/act1/gen-src/wood",
+    "textures": {
+     "ash": {
+      "src": "tex_ash.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 1.0
+     },
+     "litter": {
+      "src": "tex_litter.jpg",
+      "size": 512,
+      "sat": 0.8,
+      "gain": 0.95
+     },
+     "path": {
+      "src": "tex_path.jpg",
+      "size": 512,
+      "sat": 0.95,
+      "gain": 0.5,
+      "gamma": 1.15,
+      "tint": [
+       255,
+       200,
+       150
+      ],
+      "tintAmt": 0.12
+     },
+     "stone": {
+      "src": "tex_stone.jpg",
+      "size": 512,
+      "sat": 0.8,
+      "gain": 0.95
+     },
+     "waterbed": {
+      "src": "tex_stone.jpg",
+      "size": 256,
+      "sat": 0.6,
+      "gain": 0.4
+     },
+     "mud": {
+      "src": "tex_ash.jpg",
+      "size": 512,
+      "sat": 0.8,
+      "gain": 0.62,
+      "gamma": 1.15
+     },
+     "banktop": {
+      "src": "tex_litter.jpg",
+      "size": 256,
+      "sat": 0.7,
+      "gain": 0.72
+     },
+     "backdrop": {
+      "src": "tex_backdrop.jpg",
+      "size": 512,
+      "sat": 0.95,
+      "gain": 1.1
+     }
+    },
+    "sprites": {
+     "tree1": {
+      "src": "spr_tree1.jpg",
+      "h": 512,
+      "sat": 0.95,
+      "gain": 1.1
+     },
+     "tree2": {
+      "src": "spr_tree2.jpg",
+      "h": 512,
+      "sat": 0.9,
+      "gain": 1.1
+     },
+     "tree3": {
+      "src": "spr_tree3.jpg",
+      "h": 512,
+      "sat": 0.95,
+      "gain": 1.05
+     },
+     "rock1": {
+      "src": "spr_rock1.jpg",
+      "h": 320,
+      "sat": 0.8,
+      "gain": 0.95
+     },
+     "grass": {
+      "src": "spr_grass.jpg",
+      "h": 192,
+      "sat": 0.8,
+      "gain": 0.9
+     },
+     "stump": {
+      "src": "spr_stump.jpg",
+      "h": 256,
+      "sat": 0.95,
+      "gain": 1.0
+     }
+    },
+    "strips": {
+     "bankside": {
+      "src": "tex_bankside.jpg",
+      "crop": [
+       0,
+       150,
+       1024,
+       890
+      ],
+      "size": [
+       256,
+       200
+      ],
+      "sat": 0.9,
+      "gain": 1.25
+     }
+    }
+   },
+   "use": {
+    "shrine": "act1/shrine.webp",
+    "crate": "act1/crate.webp",
+    "arch": "act1/arch.webp",
+    "marker": "act1/marker.webp",
+    "pedestal": "act1/pedestal.webp",
+    "waypoint": "act1/waypoint.webp",
+    "brazier": "act1/brazier.webp",
+    "banner": "act1/banner.webp",
+    "cursed": "act1/cursed.webp"
+   },
+   "tod": {
+    "presets": {
+     "day": {
+      "fog": {
+       "col": "#5a4a3a",
+       "topAlpha": 0.1,
+       "mist": 2,
+       "mistAlpha": 0.04,
+       "mistCol": "#efe4d4"
+      },
+      "grade": {
+       "shadow": "#4a3a2a",
+       "shadowAlpha": 0.1,
+       "highlight": "#ffe2a8",
+       "highlightAlpha": 0.2
+      },
+      "backdrop": {
+       "alpha": 0.85,
+       "col": "#120c08"
+      },
+      "water": {
+       "reflect": "#e8e4dc",
+       "reflectAlpha": 0.45
+      }
+     },
+     "dusk": {
+      "fog": {
+       "col": "#2a1610",
+       "topAlpha": 0.34,
+       "mist": 8,
+       "mistAlpha": 0.12,
+       "mistCol": "#d8a888"
+      },
+      "backdrop": {
+       "alpha": 0.6,
+       "col": "#0a0604"
+      }
+     },
+     "dawn": {
+      "fog": {
+       "col": "#4a4048",
+       "topAlpha": 0.22,
+       "mist": 10,
+       "mistAlpha": 0.12,
+       "mistCol": "#e8e0e4"
+      },
+      "backdrop": {
+       "alpha": 0.7,
+       "col": "#0c0a0c"
+      }
+     }
+    }
+   }
+  },
+  "salt": {
+   "act": 1,
+   "label": "Act 1 Salt Causeway: cracked salt crust, salt mud, an old fitted-stone causeway, dark brine pools (not fire), salt crystal spires and drifts, layered salt-cut banks, cool fill rgba(220,236,244,.22). Key light upper-left, shadows lower-right.",
+   "gen": {
+    "seed": 2026,
+    "size": 256,
+    "quality": 88,
+    "textures": {
+     "detail": {
+      "kind": "gray",
+      "beta": 0.7,
+      "lo": 8,
+      "contrast": 1.3
+     },
+     "ripple": {
+      "kind": "gray",
+      "beta": 1.1,
+      "lo": 3,
+      "hi": 40,
+      "streak": true,
+      "contrast": 1.0,
+      "sharpen": 0.55
+     }
+    },
+    "decals": {
+     "saltbloom": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#9aa6a2",
+       "#c8d2ce",
+       "#e8eeea"
+      ],
+      "alpha": 0.55
+     },
+     "puddle": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#0a1418",
+       "#142228",
+       "#22343a"
+      ],
+      "rim": "#c8d8d4",
+      "alpha": 0.85
+     },
+     "grime": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#3a3a36",
+       "#55554e",
+       "#6a6a62"
+      ],
+      "alpha": 0.45
+     },
+     "stones": {
+      "kind": "stones",
+      "size": 128,
+      "n": 7,
+      "cols": [
+       "#7a807c",
+       "#8e948e",
+       "#6a706c",
+       "#a0a49c"
+      ]
+     },
+     "planks": {
+      "kind": "planks",
+      "size": 128,
+      "n": 3,
+      "col": "#4a3e32"
+     },
+     "bones": {
+      "kind": "bones",
+      "size": 96
+     }
+    },
+    "sprites": {}
+   },
+   "bake": {
+    "texel": 48,
+    "tiltTexel": 56,
+    "smooth": true,
+    "texScale": 0.5,
+    "warp": 0.38,
+    "blend": 0.32,
+    "macro": 0.16,
+    "materials": [
+     "crust",
+     "saltmud",
+     "mud",
+     "path",
+     "stone",
+     "waterbed"
+    ],
+    "rules": {
+     "floor": [
+      "crust",
+      "saltmud"
+     ],
+     "floorSplit": 0.55,
+     "road": "path",
+     "path": "path",
+     "tree": "crust",
+     "rock": "saltmud",
+     "water": "waterbed",
+     "wall": "mud",
+     "exit": "path",
+     "bank": "saltmud",
+     "bankDist": 1
+    },
+    "height": {
+     "crust": 0.04,
+     "saltmud": -0.02,
+     "path": 0.03,
+     "stone": 0.12,
+     "mud": -0.05,
+     "waterbed": -0.35
+    },
+    "relief": 0.55,
+    "lightDir": [
+     -1,
+     -1
+    ],
+    "water": {
+     "deep": "#0a161c",
+     "shallow": "#1e3640",
+     "edgeWet": 0.5,
+     "shore": "#dfe8e4",
+     "shoreAlpha": 0.5,
+     "depth": 0.5
+    },
+    "decals": [
+     {
+      "img": "saltbloom",
+      "on": [
+       "saltmud",
+       "crust"
+      ],
+      "chance": 0.07,
+      "scale": [
+       1.0,
+       1.8
+      ]
+     },
+     {
+      "img": "puddle",
+      "on": [
+       "saltmud"
+      ],
+      "chance": 0.05,
+      "scale": [
+       0.8,
+       1.4
+      ]
+     },
+     {
+      "img": "grime",
+      "on": [
+       "crust"
+      ],
+      "chance": 0.06,
+      "scale": [
+       1.0,
+       1.9
+      ]
+     },
+     {
+      "img": "stones",
+      "on": [
+       "crust",
+       "path",
+       "saltmud"
+      ],
+      "chance": 0.05,
+      "scale": [
+       0.7,
+       1.1
+      ]
+     },
+     {
+      "img": "planks",
+      "on": [
+       "path"
+      ],
+      "chance": 0.03,
+      "scale": [
+       0.8,
+       1.1
+      ]
+     },
+     {
+      "img": "bones",
+      "on": [
+       "crust",
+       "saltmud"
+      ],
+      "chance": 0.012,
+      "scale": [
+       0.8,
+       1.0
+      ]
+     }
+    ],
+    "shadows": {
+     "dir": [
+      0.55,
+      0.42
+     ],
+     "tree": [
+      1.05,
+      0.6,
+      0.48
+     ],
+     "rock": [
+      0.55,
+      0.38,
+      0.4
+     ],
+     "wall": 0.42,
+     "blur": 0.35
+    },
+    "ao": {
+     "wall": 0.5,
+     "tree": 0.25
+    },
+    "texTiles": 3,
+    "tone": {
+     "_doc": "v84m2 per-material tone at bake time: contrast = overlay of the texture on itself (0..1), lift = screen colour at liftAlpha. Makes the path a bit lighter and higher-contrast than the ground so the route reads at a glance.",
+     "path": {
+      "contrast": 0.3,
+      "lift": "#000000",
+      "liftAlpha": 0.0
+     }
+    }
+   },
+   "live": {
+    "void": "#0c1216",
+    "detail": {
+     "img": "detail",
+     "alpha": 0.18,
+     "scale": 0.55,
+     "op": "overlay"
+    },
+    "water": {
+     "img": "ripple",
+     "alpha": 0.45,
+     "scale": 0.7,
+     "speed": [
+      0.05,
+      0.018
+     ],
+     "speed2": [
+      -0.03,
+      0.04
+     ],
+     "reflect": "#d8e8f0",
+     "reflectAlpha": 0.3,
+     "glints": 50,
+     "glintCol": "#f4fbff",
+     "every": 2
+    },
+    "foliage": {
+     "sprites": [
+      "grass",
+      "grass",
+      "drift"
+     ],
+     "max": 80,
+     "nearWater": 0.45,
+     "nearTree": 0.2,
+     "open": 0.025,
+     "scale": [
+      0.75,
+      1.15
+     ],
+     "keepOffPath": true,
+     "keepDoor": 2.4,
+     "sway": {
+      "amp": 0.07,
+      "speed": 1.3,
+      "gust": 0.5,
+      "gustSpeed": 0.17,
+      "wave": 0.21
+     },
+     "h": {
+      "grass": 0.55,
+      "drift": 0.5,
+      "shard1": 1.9,
+      "pillar": 2.1
+     },
+     "fringe": {
+      "sprites": [
+       "grass",
+       "drift",
+       "grass"
+      ],
+      "trees": [
+       "shard1",
+       "pillar",
+       "shard1"
+      ],
+      "treeChance": 0.16,
+      "scale": [
+       0.95,
+       1.3
+      ],
+      "inset": 0.12,
+      "top": 0.85,
+      "topTrees": 0.1
+     },
+     "path": {
+      "_doc": "v84m2 path readability: plants, reeds and wall-fringe thickets never stand on a road tile or within margin (tiles) of one; on tiles within nearDist of a road only nearMul of the usual plants are kept (0.62 = about 38% fewer); props:true applies the same to the game's own grid plants (small ones, plus the tall kinds in propKinds, e.g. reed clumps); trees and rocks on their solid tiles are kept.",
+      "margin": 0.35,
+      "nearDist": 1,
+      "nearMul": 0.62,
+      "props": true,
+      "propKinds": [
+       "shardbit",
+       "whitedrift"
+      ]
+     }
+    },
+    "treeSway": {
+     "amp": 0.0,
+     "speed": 0.0
+    },
+    "lanterns": {
+     "img": "brazier",
+     "count": 5,
+     "minGap": 6,
+     "nearPath": true,
+     "light": 2.9,
+     "flicker": 0.12,
+     "color": "#ffb060",
+     "scale": 0.62
+    },
+    "banners": {
+     "count": 2,
+     "colors": [
+      "#5a1e18",
+      "#2a2420"
+     ],
+     "pole": "#2a1e16",
+     "w": 0.42,
+     "h": 0.75,
+     "poleH": 1.9,
+     "wave": 2.2
+    },
+    "motes": {
+     "fireflies": 0,
+     "fireflyCol": "#ffffff",
+     "dust": 40,
+     "dustCol": "#e8f0f4",
+     "spread": 9
+    },
+    "fog": {
+     "col": "#0c1418",
+     "top": 0.42,
+     "topAlpha": 0.3,
+     "mist": 4,
+     "mistAlpha": 0.07,
+     "mistCol": "#dce8ec",
+     "drift": [
+      0.06,
+      0.02
+     ]
+    },
+    "grade": {
+     "shadow": "#2a3a48",
+     "shadowAlpha": 0.28,
+     "highlight": "#f0f6ff",
+     "highlightAlpha": 0.05,
+     "op": "soft-light"
+    },
+    "light": {
+     "dark": 0.36,
+     "darkCol": [
+      8,
+      12,
+      16
+     ],
+     "heroFill": [
+      220,
+      236,
+      244
+     ],
+     "heroFillAlpha": 0.22,
+     "heroR": 6.4
+    },
+    "swap": {
+     "shard": {
+      "imgs": [
+       "shard1",
+       "pillar"
+      ],
+      "h": 1.65,
+      "vary": 0.22,
+      "sway": false,
+      "dy": 0.12
+     },
+     "saltspire": {
+      "imgs": [
+       "pillar",
+       "shard1"
+      ],
+      "h": 1.85,
+      "vary": 0.2,
+      "sway": false,
+      "dy": 0.12
+     },
+     "mirror": {
+      "imgs": [
+       "shard1"
+      ],
+      "h": 1.7,
+      "vary": 0.2,
+      "sway": false,
+      "dy": 0.12
+     },
+     "drift": {
+      "imgs": [
+       "drift"
+      ],
+      "h": 0.9,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.12
+     },
+     "boulder_salt": {
+      "imgs": [
+       "rock1"
+      ],
+      "h": 1.0,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.15
+     },
+     "saltrock": {
+      "imgs": [
+       "rock1"
+      ],
+      "h": 0.5,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.1
+     },
+     "shardbit": {
+      "imgs": [
+       "shard1"
+      ],
+      "h": 0.55,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.1
+     },
+     "whitedrift": {
+      "imgs": [
+       "drift"
+      ],
+      "h": 0.42,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.1
+     }
+    },
+    "walls": {
+     "top": "banktop",
+     "side": "bankside",
+     "topTiles": 1,
+     "edge": 0.1,
+     "sideShade": [
+      0.22,
+      0.38
+     ],
+     "ground": "bankside",
+     "groundShade": 0.3,
+     "outerFaces": false,
+     "outerRing": 1,
+     "_outerDoc": "outerFaces false: the outer ring's wall faces that point off the map (south face of the last row, east face of the last column) are not drawn and the backdrop canopy is painted over the outer ring's ground (outerRing tiles), so no dark band runs past the map edge."
+    },
+    "occlude": {
+     "alpha": 0.42,
+     "top": 0.95,
+     "w": 0.38
+    },
+    "props": {
+     "shrine": {
+      "img": "shrine",
+      "h": 1.75,
+      "lbl": "#ffd7a8",
+      "glow": [
+       -0.06,
+       1.0,
+       0.42,
+       "#ff8a3c",
+       0.15,
+       0.32
+      ],
+      "light": 1.2,
+      "shadow": [
+       0.9,
+       0.5,
+       0.4
+      ],
+      "labelAt": 0.95
+     },
+     "crate": {
+      "img": "crate",
+      "h": 0.74,
+      "ay": 0.9,
+      "shadow": [
+       0.5,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     },
+     "relic": {
+      "img": "pedestal",
+      "h": 0.72,
+      "gem": [
+       0.95,
+       0.13,
+       "#ffd7a8",
+       "#ff8a3c"
+      ],
+      "light": 1.2,
+      "glow": [
+       0,
+       0.95,
+       0.35,
+       "#ff8a3c",
+       0.1,
+       0.4
+      ],
+      "lbl": "#ffd7a8",
+      "labelAt": 1.6,
+      "shadow": [
+       0.5,
+       0.45,
+       0.35
+      ]
+     },
+     "marker": {
+      "img": "marker",
+      "h": 1.45,
+      "lbl": "#f0d56a",
+      "lblWarn": "#ffb067",
+      "glow": [
+       -0.17,
+       0.72,
+       0.3,
+       "#ffb45a",
+       0.08,
+       0.5
+      ],
+      "shadow": [
+       0.8,
+       0.3,
+       0.35
+      ]
+     },
+     "exit": {
+      "img": "arch",
+      "h": 2.5,
+      "ay": 0.93,
+      "glow": [
+       0,
+       0.9,
+       0.7,
+       "#e07a32",
+       0.12,
+       0.35
+      ],
+      "light": 2.2,
+      "shadow": [
+       1.2,
+       1.0,
+       0.4
+      ]
+     },
+     "waypoint": {
+      "img": "waypoint",
+      "h": 1.0,
+      "ay": 0.62,
+      "occlude": false
+     },
+     "cursed": {
+      "img": "cursed",
+      "h": 0.8,
+      "ay": 0.9,
+      "lbl": "#ff9a8a",
+      "glow": [
+       0,
+       0.45,
+       0.3,
+       "#ff3a1a",
+       0.18,
+       0.35
+      ],
+      "shadow": [
+       0.55,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     }
+    },
+    "backdrop": {
+     "img": "backdrop",
+     "tiles": 7,
+     "alpha": 0.8,
+     "col": "#04070a",
+     "margin": 40
+    },
+    "exposure": {
+     "col": "#808080",
+     "alpha": 0.0,
+     "op": "overlay"
+    }
+   },
+   "import": {
+    "about": "painted source art (see assets/zonegfx/CREDITS.md); src dir zonegfx-notes/act1/gen-src/salt",
+    "textures": {
+     "crust": {
+      "src": "tex_crust.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 0.6,
+      "tint": [
+       190,
+       210,
+       200
+      ],
+      "tintAmt": 0.1
+     },
+     "saltmud": {
+      "src": "tex_saltmud.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 0.64
+     },
+     "path": {
+      "src": "tex_path.jpg",
+      "size": 512,
+      "sat": 0.8,
+      "gain": 0.72
+     },
+     "stone": {
+      "src": "tex_path.jpg",
+      "size": 256,
+      "sat": 0.6,
+      "gain": 0.6
+     },
+     "waterbed": {
+      "src": "tex_brine.jpg",
+      "size": 512,
+      "sat": 0.9,
+      "gain": 0.8
+     },
+     "mud": {
+      "src": "tex_saltmud.jpg",
+      "size": 512,
+      "sat": 0.7,
+      "gain": 0.5,
+      "gamma": 1.15
+     },
+     "banktop": {
+      "src": "tex_crust.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 0.5
+     },
+     "backdrop": {
+      "src": "tex_backdrop.jpg",
+      "size": 512,
+      "sat": 0.9,
+      "gain": 0.42
+     }
+    },
+    "sprites": {
+     "shard1": {
+      "src": "spr_shard1.jpg",
+      "h": 448,
+      "sat": 0.8,
+      "gain": 0.66
+     },
+     "pillar": {
+      "src": "spr_pillar.jpg",
+      "h": 448,
+      "sat": 0.85,
+      "gain": 0.66
+     },
+     "drift": {
+      "src": "spr_drift.jpg",
+      "h": 256,
+      "sat": 0.85,
+      "gain": 0.62
+     },
+     "rock1": {
+      "src": "spr_rock.jpg",
+      "h": 288,
+      "sat": 0.8,
+      "gain": 0.6
+     },
+     "grass": {
+      "src": "spr_grass.jpg",
+      "h": 192,
+      "sat": 0.8,
+      "gain": 0.85
+     }
+    },
+    "strips": {
+     "bankside": {
+      "src": "tex_bankside.jpg",
+      "crop": [
+       0,
+       60,
+       1024,
+       1000
+      ],
+      "size": [
+       256,
+       200
+      ],
+      "sat": 0.85,
+      "gain": 0.75
+     }
+    }
+   },
+   "use": {
+    "shrine": "act1/shrine.webp",
+    "crate": "act1/crate.webp",
+    "arch": "act1/arch.webp",
+    "marker": "act1/marker.webp",
+    "pedestal": "act1/pedestal.webp",
+    "waypoint": "act1/waypoint.webp",
+    "brazier": "act1/brazier.webp",
+    "banner": "act1/banner.webp",
+    "cursed": "act1/cursed.webp"
+   },
+   "tod": {
+    "presets": {
+     "day": {
+      "fog": {
+       "col": "#5a4a3a",
+       "topAlpha": 0.1,
+       "mist": 2,
+       "mistAlpha": 0.04,
+       "mistCol": "#efe4d4"
+      },
+      "grade": {
+       "shadow": "#4a3a2a",
+       "shadowAlpha": 0.1,
+       "highlight": "#ffe2a8",
+       "highlightAlpha": 0.2
+      },
+      "backdrop": {
+       "alpha": 0.85,
+       "col": "#120c08"
+      },
+      "water": {
+       "reflect": "#e8e4dc",
+       "reflectAlpha": 0.45
+      }
+     },
+     "dusk": {
+      "fog": {
+       "col": "#2a1610",
+       "topAlpha": 0.34,
+       "mist": 8,
+       "mistAlpha": 0.12,
+       "mistCol": "#d8a888"
+      },
+      "backdrop": {
+       "alpha": 0.6,
+       "col": "#0a0604"
+      }
+     },
+     "dawn": {
+      "fog": {
+       "col": "#4a4048",
+       "topAlpha": 0.22,
+       "mist": 10,
+       "mistAlpha": 0.12,
+       "mistCol": "#e8e0e4"
+      },
+      "backdrop": {
+       "alpha": 0.7,
+       "col": "#0c0a0c"
+      }
+     }
+    }
+   }
+  },
+  "spire": {
+   "act": 1,
+   "label": "Act 1 Ruined Spire (dungeon): slate flagstones, rubble, ashlar masonry walls, broken columns, bones; cooler steel light, dry and ashen (not the kiln). Indoors: time of day does not change it.",
+   "gen": {
+    "seed": 2026,
+    "size": 256,
+    "quality": 88,
+    "textures": {
+     "detail": {
+      "kind": "gray",
+      "beta": 0.7,
+      "lo": 8,
+      "contrast": 1.3
+     },
+     "ripple": {
+      "kind": "gray",
+      "beta": 1.1,
+      "lo": 3,
+      "hi": 40,
+      "streak": true,
+      "contrast": 1.0,
+      "sharpen": 0.55
+     }
+    },
+    "decals": {
+     "dust": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#3a3c40",
+       "#4a4c50",
+       "#5c5e62"
+      ],
+      "alpha": 0.5
+     },
+     "soot": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#0a0b0c",
+       "#141518",
+       "#1e2024"
+      ],
+      "alpha": 0.7
+     },
+     "stones": {
+      "kind": "stones",
+      "size": 128,
+      "n": 8,
+      "cols": [
+       "#4a4e54",
+       "#5a5e64",
+       "#3a3e44",
+       "#6a6e72"
+      ]
+     },
+     "bones": {
+      "kind": "bones",
+      "size": 96
+     }
+    },
+    "sprites": {}
+   },
+   "bake": {
+    "texel": 48,
+    "tiltTexel": 56,
+    "smooth": true,
+    "texScale": 0.5,
+    "warp": 0.38,
+    "blend": 0.32,
+    "macro": 0.16,
+    "materials": [
+     "flag",
+     "rubble",
+     "mud",
+     "path",
+     "stone",
+     "waterbed"
+    ],
+    "rules": {
+     "floor": [
+      "flag",
+      "rubble"
+     ],
+     "floorSplit": 0.62,
+     "road": "path",
+     "path": "path",
+     "tree": "rubble",
+     "rock": "rubble",
+     "water": "waterbed",
+     "wall": "mud",
+     "exit": "flag",
+     "bank": "rubble",
+     "bankDist": 1
+    },
+    "height": {
+     "flag": 0.02,
+     "rubble": 0.06,
+     "path": 0.02,
+     "stone": 0.1,
+     "mud": -0.04,
+     "waterbed": -0.3
+    },
+    "relief": 0.55,
+    "lightDir": [
+     -1,
+     -1
+    ],
+    "water": {
+     "deep": "#06171a",
+     "shallow": "#163a3c",
+     "edgeWet": 0.55,
+     "shore": "#86b8ae",
+     "shoreAlpha": 0.45,
+     "depth": 0.5
+    },
+    "decals": [
+     {
+      "img": "dust",
+      "on": [
+       "flag",
+       "rubble"
+      ],
+      "chance": 0.06,
+      "scale": [
+       1.0,
+       1.8
+      ]
+     },
+     {
+      "img": "soot",
+      "on": [
+       "flag"
+      ],
+      "chance": 0.05,
+      "scale": [
+       1.0,
+       1.9
+      ]
+     },
+     {
+      "img": "stones",
+      "on": [
+       "flag",
+       "rubble"
+      ],
+      "chance": 0.07,
+      "scale": [
+       0.7,
+       1.1
+      ]
+     },
+     {
+      "img": "bones",
+      "on": [
+       "rubble",
+       "flag"
+      ],
+      "chance": 0.015,
+      "scale": [
+       0.8,
+       1.0
+      ]
+     }
+    ],
+    "shadows": {
+     "dir": [
+      0.55,
+      0.42
+     ],
+     "tree": [
+      1.05,
+      0.6,
+      0.48
+     ],
+     "rock": [
+      0.55,
+      0.38,
+      0.4
+     ],
+     "wall": 0.42,
+     "blur": 0.35
+    },
+    "ao": {
+     "wall": 0.5,
+     "tree": 0.25
+    },
+    "texTiles": 3,
+    "tone": {
+     "_doc": "v84m2 per-material tone at bake time: contrast = overlay of the texture on itself (0..1), lift = screen colour at liftAlpha. Makes the path a bit lighter and higher-contrast than the ground so the route reads at a glance.",
+     "path": {
+      "contrast": 0.35,
+      "lift": "#e8d4a6",
+      "liftAlpha": 0.14
+     }
+    }
+   },
+   "live": {
+    "void": "#06070a",
+    "detail": {
+     "img": "detail",
+     "alpha": 0.2,
+     "scale": 0.55,
+     "op": "overlay"
+    },
+    "water": {
+     "img": "ripple",
+     "alpha": 0.5,
+     "scale": 0.7,
+     "speed": [
+      0.05,
+      0.018
+     ],
+     "speed2": [
+      -0.03,
+      0.04
+     ],
+     "reflect": "#8fd0c6",
+     "reflectAlpha": 0.34,
+     "glints": 40,
+     "glintCol": "#cfeee6",
+     "every": 2
+    },
+    "foliage": {
+     "sprites": [
+      "rubblepile",
+      "rubblepile",
+      "bonepile"
+     ],
+     "max": 26,
+     "nearWater": 0.0,
+     "nearTree": 0.0,
+     "open": 0.012,
+     "scale": [
+      0.75,
+      1.15
+     ],
+     "keepOffPath": true,
+     "keepDoor": 2.4,
+     "sway": {
+      "amp": 0.0,
+      "speed": 0.0,
+      "gust": 0.0,
+      "gustSpeed": 0.0,
+      "wave": 0.0
+     },
+     "h": {
+      "rubblepile": 0.55,
+      "bonepile": 0.45,
+      "column": 1.6
+     },
+     "fringe": {
+      "sprites": [
+       "rubblepile",
+       "bonepile",
+       "rubblepile"
+      ],
+      "trees": [
+       "column"
+      ],
+      "treeChance": 0.16,
+      "scale": [
+       0.9,
+       1.2
+      ],
+      "inset": 0.12,
+      "top": 0.0,
+      "topTrees": 0.0,
+      "chance": 0.22
+     },
+     "path": {
+      "_doc": "v84m2 path readability: plants, reeds and wall-fringe thickets never stand on a road tile or within margin (tiles) of one; on tiles within nearDist of a road only nearMul of the usual plants are kept (0.62 = about 38% fewer); props:true applies the same to the game's own grid plants (small ones, plus the tall kinds in propKinds, e.g. reed clumps); trees and rocks on their solid tiles are kept.",
+      "margin": 0.35,
+      "nearDist": 1,
+      "nearMul": 0.62,
+      "props": true,
+      "propKinds": [
+       "reed"
+      ]
+     }
+    },
+    "treeSway": {
+     "amp": 0.0,
+     "speed": 0.0
+    },
+    "lanterns": {
+     "img": "brazier",
+     "count": 9,
+     "minGap": 6,
+     "nearPath": false,
+     "light": 3.0,
+     "flicker": 0.12,
+     "color": "#ffb070",
+     "scale": 0.6,
+     "nearWall": true
+    },
+    "banners": {
+     "count": 3,
+     "colors": [
+      "#3a2a2a",
+      "#2a2c30"
+     ],
+     "pole": "#2a2420",
+     "w": 0.42,
+     "h": 0.75,
+     "poleH": 1.9,
+     "wave": 2.2
+    },
+    "motes": {
+     "fireflies": 0,
+     "fireflyCol": "#ffffff",
+     "dust": 36,
+     "dustCol": "#c8ccd4",
+     "spread": 9
+    },
+    "fog": {
+     "col": "#080605",
+     "top": 0.42,
+     "topAlpha": 0.26,
+     "mist": 3,
+     "mistAlpha": 0.08,
+     "mistCol": "#a8acb4",
+     "drift": [
+      0.03,
+      0.01
+     ]
+    },
+    "grade": {
+     "shadow": "#28323e",
+     "shadowAlpha": 0.3,
+     "highlight": "#e8eef8",
+     "highlightAlpha": 0.08,
+     "op": "soft-light"
+    },
+    "light": {
+     "dark": 0.3,
+     "darkCol": [
+      8,
+      9,
+      12
+     ],
+     "heroFill": [
+      205,
+      215,
+      230
+     ],
+     "heroFillAlpha": 0.18,
+     "heroR": 6.0
+    },
+    "swap": {
+     "rock": {
+      "imgs": [
+       "rubblepile"
+      ],
+      "h": 0.8,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.12
+     }
+    },
+    "walls": {
+     "top": "banktop",
+     "side": "bankside",
+     "topTiles": 1,
+     "edge": 0.08,
+     "sideShade": [
+      0.2,
+      0.36
+     ],
+     "ground": "bankside",
+     "groundShade": 0.3,
+     "outerFaces": false,
+     "outerRing": 1,
+     "_outerDoc": "outerFaces false: the outer ring's wall faces that point off the map (south face of the last row, east face of the last column) are not drawn and the backdrop canopy is painted over the outer ring's ground (outerRing tiles), so no dark band runs past the map edge."
+    },
+    "occlude": {
+     "alpha": 0.42,
+     "top": 0.95,
+     "w": 0.38
+    },
+    "props": {
+     "shrine": {
+      "img": "shrine",
+      "h": 1.75,
+      "lbl": "#ffd7a8",
+      "glow": [
+       -0.06,
+       1.0,
+       0.42,
+       "#ff8a3c",
+       0.15,
+       0.32
+      ],
+      "light": 1.2,
+      "shadow": [
+       0.9,
+       0.5,
+       0.4
+      ],
+      "labelAt": 0.95
+     },
+     "crate": {
+      "img": "crate",
+      "h": 0.74,
+      "ay": 0.9,
+      "shadow": [
+       0.5,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     },
+     "relic": {
+      "img": "pedestal",
+      "h": 0.72,
+      "gem": [
+       0.95,
+       0.13,
+       "#ffd7a8",
+       "#ff8a3c"
+      ],
+      "light": 1.2,
+      "glow": [
+       0,
+       0.95,
+       0.35,
+       "#ff8a3c",
+       0.1,
+       0.4
+      ],
+      "lbl": "#ffd7a8",
+      "labelAt": 1.6,
+      "shadow": [
+       0.5,
+       0.45,
+       0.35
+      ]
+     },
+     "marker": {
+      "img": "marker",
+      "h": 1.45,
+      "lbl": "#f0d56a",
+      "lblWarn": "#ffb067",
+      "glow": [
+       -0.17,
+       0.72,
+       0.3,
+       "#ffb45a",
+       0.08,
+       0.5
+      ],
+      "shadow": [
+       0.8,
+       0.3,
+       0.35
+      ]
+     },
+     "exit": {
+      "img": "arch",
+      "h": 2.5,
+      "ay": 0.93,
+      "glow": [
+       0,
+       0.9,
+       0.7,
+       "#e07a32",
+       0.12,
+       0.35
+      ],
+      "light": 2.2,
+      "shadow": [
+       1.2,
+       1.0,
+       0.4
+      ]
+     },
+     "waypoint": {
+      "img": "waypoint",
+      "h": 1.0,
+      "ay": 0.62,
+      "occlude": false
+     },
+     "cursed": {
+      "img": "cursed",
+      "h": 0.8,
+      "ay": 0.9,
+      "lbl": "#ff9a8a",
+      "glow": [
+       0,
+       0.45,
+       0.3,
+       "#ff3a1a",
+       0.18,
+       0.35
+      ],
+      "shadow": [
+       0.55,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     }
+    },
+    "backdrop": {
+     "img": "backdrop",
+     "tiles": 5,
+     "alpha": 0.75,
+     "col": "#030304",
+     "margin": 40
+    },
+    "exposure": {
+     "col": "#808080",
+     "alpha": 0.0,
+     "op": "overlay"
+    }
+   },
+   "import": {
+    "about": "painted source art (see assets/zonegfx/CREDITS.md); src dir zonegfx-notes/act1/gen-src/spire",
+    "textures": {
+     "flag": {
+      "src": "tex_flag.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 0.9
+     },
+     "rubble": {
+      "src": "tex_rubble.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 0.82
+     },
+     "path": {
+      "src": "tex_flag.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 0.8
+     },
+     "stone": {
+      "src": "tex_walltop.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 0.8
+     },
+     "waterbed": {
+      "src": "tex_rubble.jpg",
+      "size": 256,
+      "sat": 0.6,
+      "gain": 0.35
+     },
+     "mud": {
+      "src": "tex_rubble.jpg",
+      "size": 256,
+      "sat": 0.7,
+      "gain": 0.5,
+      "gamma": 1.15
+     },
+     "banktop": {
+      "src": "tex_walltop.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 0.7
+     },
+     "backdrop": {
+      "src": "tex_walltop.jpg",
+      "size": 512,
+      "sat": 0.7,
+      "gain": 0.45
+     }
+    },
+    "sprites": {
+     "rubblepile": {
+      "src": "spr_rubble.jpg",
+      "h": 224,
+      "sat": 0.8,
+      "gain": 0.8
+     },
+     "column": {
+      "src": "spr_column.jpg",
+      "h": 384,
+      "sat": 0.8,
+      "gain": 0.85
+     },
+     "bonepile": {
+      "src": "spr_bones.jpg",
+      "h": 192,
+      "sat": 0.75,
+      "gain": 0.8
+     }
+    },
+    "strips": {
+     "bankside": {
+      "src": "tex_wallside.jpg",
+      "crop": [
+       0,
+       0,
+       1024,
+       800
+      ],
+      "size": [
+       256,
+       200
+      ],
+      "sat": 0.8,
+      "gain": 1.05
+     }
+    }
+   },
+   "use": {
+    "shrine": "act1/shrine.webp",
+    "crate": "act1/crate.webp",
+    "arch": "act1/arch.webp",
+    "marker": "act1/marker.webp",
+    "pedestal": "act1/pedestal.webp",
+    "waypoint": "act1/waypoint.webp",
+    "brazier": "act1/brazier.webp",
+    "banner": "act1/banner.webp",
+    "cursed": "act1/cursed.webp"
+   },
+   "tod": {
+    "presets": {
+     "day": {},
+     "dusk": {},
+     "dawn": {}
+    },
+    "_doc": "indoors: the clock does not change the look (night = base)"
+   }
+  },
+  "kiln": {
+   "act": 1,
+   "label": "Act 1 Sunken Kiln + Heart of the Kiln (dungeon): fire-blackened red brick floors, black slag, soot-glazed brick walls, slag heaps, brick-and-pot rubble, kiln vent stacks; LAVA tiles stay real lava (glow kept). Warm ember light. Indoors: time of day does not change it.",
+   "gen": {
+    "seed": 2026,
+    "size": 256,
+    "quality": 88,
+    "textures": {
+     "detail": {
+      "kind": "gray",
+      "beta": 0.7,
+      "lo": 8,
+      "contrast": 1.3
+     },
+     "ripple": {
+      "kind": "gray",
+      "beta": 1.1,
+      "lo": 3,
+      "hi": 40,
+      "streak": true,
+      "contrast": 1.0,
+      "sharpen": 0.55
+     }
+    },
+    "decals": {
+     "ash": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#3a3430",
+       "#4a423c",
+       "#5a524a"
+      ],
+      "alpha": 0.5
+     },
+     "soot": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#1a100c",
+       "#241812",
+       "#2e2018"
+      ],
+      "alpha": 0.4
+     },
+     "stones": {
+      "kind": "stones",
+      "size": 128,
+      "n": 8,
+      "cols": [
+       "#4a2a22",
+       "#5a3428",
+       "#2a1c18",
+       "#6a4030"
+      ]
+     },
+     "bones": {
+      "kind": "bones",
+      "size": 96
+     }
+    },
+    "sprites": {}
+   },
+   "bake": {
+    "texel": 48,
+    "tiltTexel": 56,
+    "smooth": true,
+    "texScale": 0.5,
+    "warp": 0.38,
+    "blend": 0.32,
+    "macro": 0.16,
+    "materials": [
+     "brick",
+     "slag",
+     "mud",
+     "path",
+     "stone",
+     "waterbed"
+    ],
+    "rules": {
+     "floor": [
+      "brick",
+      "slag"
+     ],
+     "floorSplit": 0.58,
+     "road": "path",
+     "path": "path",
+     "tree": "slag",
+     "rock": "slag",
+     "water": "waterbed",
+     "wall": "mud",
+     "exit": "brick",
+     "bank": "slag",
+     "bankDist": 1
+    },
+    "height": {
+     "brick": 0.02,
+     "slag": 0.05,
+     "path": 0.02,
+     "stone": 0.1,
+     "mud": -0.04,
+     "waterbed": -0.2
+    },
+    "relief": 0.55,
+    "lightDir": [
+     -1,
+     -1
+    ],
+    "water": {
+     "deep": "#ff7a1a",
+     "shallow": "#c03a08",
+     "edgeWet": 0.3,
+     "shore": "#1a0a06",
+     "shoreAlpha": 0.6,
+     "depth": 0.25
+    },
+    "decals": [
+     {
+      "img": "ash",
+      "on": [
+       "brick",
+       "slag"
+      ],
+      "chance": 0.06,
+      "scale": [
+       1.0,
+       1.8
+      ]
+     },
+     {
+      "img": "soot",
+      "on": [
+       "brick"
+      ],
+      "chance": 0.025,
+      "scale": [
+       1.0,
+       1.9
+      ]
+     },
+     {
+      "img": "stones",
+      "on": [
+       "brick",
+       "slag"
+      ],
+      "chance": 0.06,
+      "scale": [
+       0.7,
+       1.1
+      ]
+     },
+     {
+      "img": "bones",
+      "on": [
+       "slag",
+       "brick"
+      ],
+      "chance": 0.01,
+      "scale": [
+       0.8,
+       1.0
+      ]
+     }
+    ],
+    "shadows": {
+     "dir": [
+      0.55,
+      0.42
+     ],
+     "tree": [
+      1.05,
+      0.6,
+      0.48
+     ],
+     "rock": [
+      0.55,
+      0.38,
+      0.4
+     ],
+     "wall": 0.42,
+     "blur": 0.35
+    },
+    "ao": {
+     "wall": 0.5,
+     "tree": 0.25
+    },
+    "texTiles": 3,
+    "tone": {
+     "_doc": "v84m2 per-material tone at bake time: contrast = overlay of the texture on itself (0..1), lift = screen colour at liftAlpha. Makes the path a bit lighter and higher-contrast than the ground so the route reads at a glance.",
+     "path": {
+      "contrast": 0.35,
+      "lift": "#e8d4a6",
+      "liftAlpha": 0.14
+     }
+    },
+    "waterNotLava": false
+   },
+   "live": {
+    "void": "#070302",
+    "detail": {
+     "img": "detail",
+     "alpha": 0.2,
+     "scale": 0.55,
+     "op": "overlay"
+    },
+    "water": {
+     "img": "ripple",
+     "alpha": 0.35,
+     "scale": 0.6,
+     "speed": [
+      0.02,
+      0.008
+     ],
+     "speed2": [
+      -0.012,
+      0.015
+     ],
+     "reflect": "#ffb050",
+     "reflectAlpha": 0.25,
+     "glints": 30,
+     "glintCol": "#ffe0a0",
+     "every": 2
+    },
+    "foliage": {
+     "sprites": [
+      "slagheap",
+      "brickpile",
+      "slagheap"
+     ],
+     "max": 26,
+     "nearWater": 0.0,
+     "nearTree": 0.0,
+     "open": 0.012,
+     "scale": [
+      0.75,
+      1.1
+     ],
+     "keepOffPath": true,
+     "keepDoor": 2.4,
+     "sway": {
+      "amp": 0.0,
+      "speed": 0.0,
+      "gust": 0.0,
+      "gustSpeed": 0.0,
+      "wave": 0.0
+     },
+     "h": {
+      "slagheap": 0.55,
+      "brickpile": 0.5,
+      "vent": 1.7
+     },
+     "fringe": {
+      "sprites": [
+       "slagheap",
+       "brickpile",
+       "slagheap"
+      ],
+      "trees": [
+       "vent"
+      ],
+      "treeChance": 0.12,
+      "scale": [
+       0.85,
+       1.15
+      ],
+      "inset": 0.12,
+      "top": 0.0,
+      "topTrees": 0.0,
+      "chance": 0.22
+     },
+     "path": {
+      "_doc": "v84m2 path readability: plants, reeds and wall-fringe thickets never stand on a road tile or within margin (tiles) of one; on tiles within nearDist of a road only nearMul of the usual plants are kept (0.62 = about 38% fewer); props:true applies the same to the game's own grid plants (small ones, plus the tall kinds in propKinds, e.g. reed clumps); trees and rocks on their solid tiles are kept.",
+      "margin": 0.35,
+      "nearDist": 1,
+      "nearMul": 0.62,
+      "props": true,
+      "propKinds": [
+       "reed"
+      ]
+     }
+    },
+    "treeSway": {
+     "amp": 0.0,
+     "speed": 0.0
+    },
+    "lanterns": {
+     "img": "brazier",
+     "count": 4,
+     "minGap": 8,
+     "nearPath": false,
+     "light": 3.0,
+     "flicker": 0.14,
+     "color": "#ff9a48",
+     "scale": 0.6,
+     "nearWall": true
+    },
+    "banners": {
+     "count": 2,
+     "colors": [
+      "#4a1a12",
+      "#2a1a14"
+     ],
+     "pole": "#2a1810",
+     "w": 0.42,
+     "h": 0.75,
+     "poleH": 1.9,
+     "wave": 2.2
+    },
+    "motes": {
+     "fireflies": 14,
+     "fireflyCol": "#ff9a40",
+     "dust": 30,
+     "dustCol": "#c8a088",
+     "spread": 9
+    },
+    "fog": {
+     "col": "#0c0503",
+     "top": 0.42,
+     "topAlpha": 0.26,
+     "mist": 3,
+     "mistAlpha": 0.05,
+     "mistCol": "#806058",
+     "drift": [
+      0.03,
+      0.02
+     ]
+    },
+    "grade": {
+     "shadow": "#2a1410",
+     "shadowAlpha": 0.28,
+     "highlight": "#ffd8a8",
+     "highlightAlpha": 0.1,
+     "op": "soft-light"
+    },
+    "light": {
+     "dark": 0.3,
+     "darkCol": [
+      12,
+      6,
+      4
+     ],
+     "heroFill": [
+      240,
+      200,
+      170
+     ],
+     "heroFillAlpha": 0.18,
+     "heroR": 6.0
+    },
+    "swap": {
+     "rock": {
+      "imgs": [
+       "slagheap",
+       "brickpile"
+      ],
+      "h": 0.8,
+      "vary": 0.25,
+      "sway": false,
+      "dy": 0.12
+     },
+     "brazier": {
+      "imgs": [
+       "vent"
+      ],
+      "h": 1.5,
+      "vary": 0.2,
+      "sway": false,
+      "dy": 0.12
+     },
+     "boulder_kiln": {
+      "imgs": [
+       "vent"
+      ],
+      "h": 1.9,
+      "vary": 0.1,
+      "sway": false,
+      "dy": 0.12
+     }
+    },
+    "walls": {
+     "top": "banktop",
+     "side": "bankside",
+     "topTiles": 1,
+     "edge": 0.08,
+     "sideShade": [
+      0.2,
+      0.36
+     ],
+     "ground": "bankside",
+     "groundShade": 0.3,
+     "outerFaces": false,
+     "outerRing": 1,
+     "_outerDoc": "outerFaces false: the outer ring's wall faces that point off the map (south face of the last row, east face of the last column) are not drawn and the backdrop canopy is painted over the outer ring's ground (outerRing tiles), so no dark band runs past the map edge."
+    },
+    "occlude": {
+     "alpha": 0.42,
+     "top": 0.95,
+     "w": 0.38
+    },
+    "props": {
+     "shrine": {
+      "img": "shrine",
+      "h": 1.75,
+      "lbl": "#ffd7a8",
+      "glow": [
+       -0.06,
+       1.0,
+       0.42,
+       "#ff8a3c",
+       0.15,
+       0.32
+      ],
+      "light": 1.2,
+      "shadow": [
+       0.9,
+       0.5,
+       0.4
+      ],
+      "labelAt": 0.95
+     },
+     "crate": {
+      "img": "crate",
+      "h": 0.74,
+      "ay": 0.9,
+      "shadow": [
+       0.5,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     },
+     "relic": {
+      "img": "pedestal",
+      "h": 0.72,
+      "gem": [
+       0.95,
+       0.13,
+       "#ffd7a8",
+       "#ff8a3c"
+      ],
+      "light": 1.2,
+      "glow": [
+       0,
+       0.95,
+       0.35,
+       "#ff8a3c",
+       0.1,
+       0.4
+      ],
+      "lbl": "#ffd7a8",
+      "labelAt": 1.6,
+      "shadow": [
+       0.5,
+       0.45,
+       0.35
+      ]
+     },
+     "marker": {
+      "img": "marker",
+      "h": 1.45,
+      "lbl": "#f0d56a",
+      "lblWarn": "#ffb067",
+      "glow": [
+       -0.17,
+       0.72,
+       0.3,
+       "#ffb45a",
+       0.08,
+       0.5
+      ],
+      "shadow": [
+       0.8,
+       0.3,
+       0.35
+      ]
+     },
+     "exit": {
+      "img": "arch",
+      "h": 2.5,
+      "ay": 0.93,
+      "glow": [
+       0,
+       0.9,
+       0.7,
+       "#e07a32",
+       0.12,
+       0.35
+      ],
+      "light": 2.2,
+      "shadow": [
+       1.2,
+       1.0,
+       0.4
+      ]
+     },
+     "waypoint": {
+      "img": "waypoint",
+      "h": 1.0,
+      "ay": 0.62,
+      "occlude": false
+     },
+     "cursed": {
+      "img": "cursed",
+      "h": 0.8,
+      "ay": 0.9,
+      "lbl": "#ff9a8a",
+      "glow": [
+       0,
+       0.45,
+       0.3,
+       "#ff3a1a",
+       0.18,
+       0.35
+      ],
+      "shadow": [
+       0.55,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     }
+    },
+    "backdrop": {
+     "img": "backdrop",
+     "tiles": 5,
+     "alpha": 0.75,
+     "col": "#040202",
+     "margin": 40
+    },
+    "exposure": {
+     "col": "#808080",
+     "alpha": 0.0,
+     "op": "overlay"
+    }
+   },
+   "import": {
+    "about": "painted source art (see assets/zonegfx/CREDITS.md); src dir zonegfx-notes/act1/gen-src/kiln",
+    "textures": {
+     "brick": {
+      "src": "tex_brick.jpg",
+      "size": 512,
+      "sat": 0.8,
+      "gain": 1.0
+     },
+     "slag": {
+      "src": "tex_slag.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 1.05
+     },
+     "path": {
+      "src": "tex_brick.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 1.05
+     },
+     "stone": {
+      "src": "tex_slag.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 1.1
+     },
+     "waterbed": {
+      "src": "tex_lava.jpg",
+      "size": 256,
+      "sat": 1.0,
+      "gain": 1.0
+     },
+     "mud": {
+      "src": "tex_slag.jpg",
+      "size": 256,
+      "sat": 0.7,
+      "gain": 0.7,
+      "gamma": 1.15
+     },
+     "banktop": {
+      "src": "tex_slag.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 0.9
+     },
+     "backdrop": {
+      "src": "tex_slag.jpg",
+      "size": 512,
+      "sat": 0.7,
+      "gain": 0.6
+     }
+    },
+    "sprites": {
+     "slagheap": {
+      "src": "spr_slag.jpg",
+      "h": 224,
+      "sat": 0.85,
+      "gain": 0.9
+     },
+     "brickpile": {
+      "src": "spr_bricks.jpg",
+      "h": 224,
+      "sat": 0.6,
+      "gain": 0.75
+     },
+     "vent": {
+      "src": "spr_vent.jpg",
+      "h": 384,
+      "sat": 0.8,
+      "gain": 0.9
+     }
+    },
+    "strips": {
+     "bankside": {
+      "src": "tex_wallside.jpg",
+      "crop": [
+       0,
+       0,
+       1024,
+       768
+      ],
+      "size": [
+       256,
+       192
+      ],
+      "sat": 0.85,
+      "gain": 1.2
+     }
+    }
+   },
+   "use": {
+    "shrine": "act1/shrine.webp",
+    "crate": "act1/crate.webp",
+    "arch": "act1/arch.webp",
+    "marker": "act1/marker.webp",
+    "pedestal": "act1/pedestal.webp",
+    "waypoint": "act1/waypoint.webp",
+    "brazier": "act1/brazier.webp",
+    "banner": "act1/banner.webp",
+    "cursed": "act1/cursed.webp"
+   },
+   "tod": {
+    "presets": {
+     "day": {},
+     "dusk": {},
+     "dawn": {}
+    },
+    "_doc": "indoors: the clock does not change the look (night = base)"
+   }
+  },
+  "town": {
+   "act": 1,
+   "label": "Act 1 Hearthveil (town): worn cobbles and packed-earth yards, sandstone flagstone lanes (PATH tiles), fieldstone perimeter wall with timber rail, shrubs and barrels, warm hearth fill. Houses stay the game's own 3D house bakes (index.html, not in this set). Outdoors: time of day applies.",
+   "gen": {
+    "seed": 2026,
+    "size": 256,
+    "quality": 88,
+    "textures": {
+     "detail": {
+      "kind": "gray",
+      "beta": 0.7,
+      "lo": 8,
+      "contrast": 1.3
+     },
+     "ripple": {
+      "kind": "gray",
+      "beta": 1.1,
+      "lo": 3,
+      "hi": 40,
+      "streak": true,
+      "contrast": 1.0,
+      "sharpen": 0.55
+     }
+    },
+    "decals": {
+     "dust": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#4a4038",
+       "#5a5046",
+       "#6a6054"
+      ],
+      "alpha": 0.45
+     },
+     "soot": {
+      "kind": "blob",
+      "size": 128,
+      "ramp": [
+       "#1a1410",
+       "#241c16",
+       "#2e241c"
+      ],
+      "alpha": 0.35
+     },
+     "stones": {
+      "kind": "stones",
+      "size": 128,
+      "n": 7,
+      "cols": [
+       "#6a625a",
+       "#7a7268",
+       "#5a524a",
+       "#8a8276"
+      ]
+     },
+     "planks": {
+      "kind": "planks",
+      "size": 128,
+      "n": 3,
+      "col": "#4a3a2a"
+     }
+    },
+    "sprites": {}
+   },
+   "bake": {
+    "texel": 48,
+    "tiltTexel": 56,
+    "smooth": true,
+    "texScale": 0.5,
+    "warp": 0.38,
+    "blend": 0.32,
+    "macro": 0.16,
+    "materials": [
+     "cobble",
+     "earth",
+     "mud",
+     "path",
+     "stone",
+     "waterbed"
+    ],
+    "rules": {
+     "floor": [
+      "cobble",
+      "earth"
+     ],
+     "floorSplit": 0.6,
+     "road": "path",
+     "path": "path",
+     "tree": "earth",
+     "rock": "stone",
+     "water": "waterbed",
+     "wall": "mud",
+     "exit": "path",
+     "bank": "earth",
+     "bankDist": 1
+    },
+    "height": {
+     "cobble": 0.03,
+     "earth": 0.0,
+     "path": 0.02,
+     "stone": 0.1,
+     "mud": -0.04,
+     "waterbed": -0.3
+    },
+    "relief": 0.55,
+    "lightDir": [
+     -1,
+     -1
+    ],
+    "water": {
+     "deep": "#06171a",
+     "shallow": "#163a3c",
+     "edgeWet": 0.55,
+     "shore": "#86b8ae",
+     "shoreAlpha": 0.45,
+     "depth": 0.5
+    },
+    "decals": [
+     {
+      "img": "dust",
+      "on": [
+       "cobble",
+       "earth"
+      ],
+      "chance": 0.05,
+      "scale": [
+       1.0,
+       1.8
+      ]
+     },
+     {
+      "img": "soot",
+      "on": [
+       "cobble"
+      ],
+      "chance": 0.02,
+      "scale": [
+       1.0,
+       1.6
+      ]
+     },
+     {
+      "img": "stones",
+      "on": [
+       "earth"
+      ],
+      "chance": 0.05,
+      "scale": [
+       0.7,
+       1.1
+      ]
+     },
+     {
+      "img": "planks",
+      "on": [
+       "earth"
+      ],
+      "chance": 0.02,
+      "scale": [
+       0.8,
+       1.1
+      ]
+     }
+    ],
+    "shadows": {
+     "dir": [
+      0.55,
+      0.42
+     ],
+     "tree": [
+      1.05,
+      0.6,
+      0.48
+     ],
+     "rock": [
+      0.55,
+      0.38,
+      0.4
+     ],
+     "wall": 0.42,
+     "blur": 0.35
+    },
+    "ao": {
+     "wall": 0.5,
+     "tree": 0.25
+    },
+    "texTiles": 3,
+    "tone": {
+     "_doc": "v84m2 per-material tone at bake time: contrast = overlay of the texture on itself (0..1), lift = screen colour at liftAlpha. Makes the path a bit lighter and higher-contrast than the ground so the route reads at a glance.",
+     "path": {
+      "contrast": 0.25,
+      "lift": "#e8c89a",
+      "liftAlpha": 0.05
+     }
+    }
+   },
+   "live": {
+    "void": "#080604",
+    "detail": {
+     "img": "detail",
+     "alpha": 0.16,
+     "scale": 0.55,
+     "op": "overlay"
+    },
+    "water": {
+     "img": "ripple",
+     "alpha": 0.5,
+     "scale": 0.7,
+     "speed": [
+      0.05,
+      0.018
+     ],
+     "speed2": [
+      -0.03,
+      0.04
+     ],
+     "reflect": "#8fd0c6",
+     "reflectAlpha": 0.34,
+     "glints": 40,
+     "glintCol": "#cfeee6",
+     "every": 2
+    },
+    "foliage": {
+     "sprites": [
+      "grass",
+      "shrub",
+      "grass",
+      "barrels"
+     ],
+     "max": 30,
+     "nearWater": 0.0,
+     "nearTree": 0.0,
+     "open": 0.012,
+     "scale": [
+      0.8,
+      1.1
+     ],
+     "keepOffPath": true,
+     "keepDoor": 2.4,
+     "sway": {
+      "amp": 0.01,
+      "speed": 0.8,
+      "gust": 0.0,
+      "gustSpeed": 0.0,
+      "wave": 0.0
+     },
+     "h": {
+      "grass": 0.55,
+      "shrub": 0.7,
+      "barrels": 0.85
+     },
+     "fringe": {
+      "sprites": [
+       "grass",
+       "shrub",
+       "grass",
+       "barrels"
+      ],
+      "trees": [
+       "shrub"
+      ],
+      "treeChance": 0.0,
+      "scale": [
+       0.85,
+       1.15
+      ],
+      "inset": 0.12,
+      "top": 0.0,
+      "topTrees": 0.0,
+      "chance": 0.3
+     },
+     "path": {
+      "_doc": "v84m2 path readability: plants, reeds and wall-fringe thickets never stand on a road tile or within margin (tiles) of one; on tiles within nearDist of a road only nearMul of the usual plants are kept (0.62 = about 38% fewer); props:true applies the same to the game's own grid plants (small ones, plus the tall kinds in propKinds, e.g. reed clumps); trees and rocks on their solid tiles are kept.",
+      "margin": 0.35,
+      "nearDist": 1,
+      "nearMul": 0.62,
+      "props": true,
+      "propKinds": []
+     },
+     "keepKinds": {
+      "fountain": 2.2,
+      "stash": 1.6,
+      "building": 2.0
+     }
+    },
+    "treeSway": {
+     "amp": 0.0,
+     "speed": 0.0
+    },
+    "lanterns": {
+     "img": "brazier",
+     "count": 4,
+     "minGap": 7,
+     "nearPath": true,
+     "light": 2.9,
+     "flicker": 0.1,
+     "color": "#ffb060",
+     "scale": 0.58,
+     "offBuilding": 1
+    },
+    "banners": {
+     "count": 3,
+     "colors": [
+      "#6a2018",
+      "#2a2420"
+     ],
+     "pole": "#2a1e16",
+     "w": 0.42,
+     "h": 0.75,
+     "poleH": 1.9,
+     "wave": 2.2
+    },
+    "motes": {
+     "fireflies": 6,
+     "fireflyCol": "#ffb060",
+     "dust": 24,
+     "dustCol": "#d8ccbc",
+     "spread": 9
+    },
+    "fog": {
+     "col": "#100a06",
+     "top": 0.42,
+     "topAlpha": 0.24,
+     "mist": 3,
+     "mistAlpha": 0.05,
+     "mistCol": "#c8b8a8",
+     "drift": [
+      0.04,
+      0.02
+     ]
+    },
+    "grade": {
+     "shadow": "#3a2a1e",
+     "shadowAlpha": 0.24,
+     "highlight": "#ffe0b0",
+     "highlightAlpha": 0.12,
+     "op": "soft-light"
+    },
+    "light": {
+     "dark": 0.24,
+     "darkCol": [
+      10,
+      8,
+      6
+     ],
+     "heroFill": [
+      255,
+      220,
+      170
+     ],
+     "heroFillAlpha": 0.18,
+     "heroR": 6.4
+    },
+    "swap": {},
+    "walls": {
+     "top": "banktop",
+     "side": "bankside",
+     "topTiles": 1,
+     "edge": 0.08,
+     "sideShade": [
+      0.15,
+      0.3
+     ],
+     "ground": "bankside",
+     "groundShade": 0.3,
+     "outerFaces": false,
+     "outerRing": 1,
+     "_outerDoc": "outerFaces false: the outer ring's wall faces that point off the map (south face of the last row, east face of the last column) are not drawn and the backdrop canopy is painted over the outer ring's ground (outerRing tiles), so no dark band runs past the map edge."
+    },
+    "occlude": {
+     "alpha": 0.42,
+     "top": 0.95,
+     "w": 0.38
+    },
+    "props": {
+     "shrine": {
+      "img": "shrine",
+      "h": 1.75,
+      "lbl": "#ffd7a8",
+      "glow": [
+       -0.06,
+       1.0,
+       0.42,
+       "#ff8a3c",
+       0.15,
+       0.32
+      ],
+      "light": 1.2,
+      "shadow": [
+       0.9,
+       0.5,
+       0.4
+      ],
+      "labelAt": 0.95
+     },
+     "crate": {
+      "img": "crate",
+      "h": 0.74,
+      "ay": 0.9,
+      "shadow": [
+       0.5,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     },
+     "relic": {
+      "img": "pedestal",
+      "h": 0.72,
+      "gem": [
+       0.95,
+       0.13,
+       "#ffd7a8",
+       "#ff8a3c"
+      ],
+      "light": 1.2,
+      "glow": [
+       0,
+       0.95,
+       0.35,
+       "#ff8a3c",
+       0.1,
+       0.4
+      ],
+      "lbl": "#ffd7a8",
+      "labelAt": 1.6,
+      "shadow": [
+       0.5,
+       0.45,
+       0.35
+      ]
+     },
+     "marker": {
+      "img": "marker",
+      "h": 1.45,
+      "lbl": "#f0d56a",
+      "lblWarn": "#ffb067",
+      "glow": [
+       -0.17,
+       0.72,
+       0.3,
+       "#ffb45a",
+       0.08,
+       0.5
+      ],
+      "shadow": [
+       0.8,
+       0.3,
+       0.35
+      ]
+     },
+     "exit": {
+      "img": "arch",
+      "h": 2.5,
+      "ay": 0.93,
+      "glow": [
+       0,
+       0.9,
+       0.7,
+       "#e07a32",
+       0.12,
+       0.35
+      ],
+      "light": 2.2,
+      "shadow": [
+       1.2,
+       1.0,
+       0.4
+      ]
+     },
+     "waypoint": {
+      "img": "waypoint",
+      "h": 1.0,
+      "ay": 0.62,
+      "occlude": false
+     },
+     "cursed": {
+      "img": "cursed",
+      "h": 0.8,
+      "ay": 0.9,
+      "lbl": "#ff9a8a",
+      "glow": [
+       0,
+       0.45,
+       0.3,
+       "#ff3a1a",
+       0.18,
+       0.35
+      ],
+      "shadow": [
+       0.55,
+       0.7,
+       0.35
+      ],
+      "occlude": false
+     }
+    },
+    "backdrop": {
+     "img": "backdrop",
+     "tiles": 6,
+     "alpha": 0.7,
+     "col": "#050403",
+     "margin": 40
+    },
+    "exposure": {
+     "col": "#808080",
+     "alpha": 0.0,
+     "op": "overlay"
+    }
+   },
+   "import": {
+    "about": "painted source art (see assets/zonegfx/CREDITS.md); src dir zonegfx-notes/act1/gen-src/town",
+    "textures": {
+     "cobble": {
+      "src": "tex_cobble.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 0.95
+     },
+     "earth": {
+      "src": "tex_earth.jpg",
+      "size": 512,
+      "sat": 0.85,
+      "gain": 1.1
+     },
+     "path": {
+      "src": "tex_flag.jpg",
+      "size": 512,
+      "sat": 0.75,
+      "gain": 0.72,
+      "gamma": 1.1
+     },
+     "stone": {
+      "src": "tex_cobble.jpg",
+      "size": 256,
+      "sat": 0.8,
+      "gain": 1.0
+     },
+     "waterbed": {
+      "src": "tex_cobble.jpg",
+      "size": 256,
+      "sat": 0.6,
+      "gain": 0.4
+     },
+     "mud": {
+      "src": "tex_earth.jpg",
+      "size": 256,
+      "sat": 0.7,
+      "gain": 0.7,
+      "gamma": 1.15
+     },
+     "banktop": {
+      "src": "tex_cobble.jpg",
+      "size": 256,
+      "sat": 0.7,
+      "gain": 0.75
+     },
+     "backdrop": {
+      "src": "tex_earth.jpg",
+      "size": 512,
+      "sat": 0.7,
+      "gain": 0.6
+     }
+    },
+    "sprites": {
+     "shrub": {
+      "src": "spr_shrub.jpg",
+      "h": 224,
+      "sat": 0.85,
+      "gain": 0.9
+     },
+     "barrels": {
+      "src": "spr_barrels.jpg",
+      "h": 256,
+      "sat": 0.8,
+      "gain": 0.85
+     }
+    },
+    "strips": {
+     "bankside": {
+      "src": "tex_wallside.jpg",
+      "crop": [
+       0,
+       0,
+       1024,
+       740
+      ],
+      "size": [
+       256,
+       192
+      ],
+      "sat": 0.85,
+      "gain": 1.0
+     }
+    }
+   },
+   "use": {
+    "shrine": "act1/shrine.webp",
+    "crate": "act1/crate.webp",
+    "arch": "act1/arch.webp",
+    "marker": "act1/marker.webp",
+    "pedestal": "act1/pedestal.webp",
+    "waypoint": "act1/waypoint.webp",
+    "brazier": "act1/brazier.webp",
+    "banner": "act1/banner.webp",
+    "cursed": "act1/cursed.webp",
+    "grass": "wood/grass.webp"
+   },
+   "tod": {
+    "presets": {
+     "day": {
+      "fog": {
+       "col": "#5a4a3a",
+       "topAlpha": 0.1,
+       "mist": 2,
+       "mistAlpha": 0.04,
+       "mistCol": "#efe4d4"
+      },
+      "grade": {
+       "shadow": "#4a3a2a",
+       "shadowAlpha": 0.1,
+       "highlight": "#ffe2a8",
+       "highlightAlpha": 0.2
+      },
+      "backdrop": {
+       "alpha": 0.85,
+       "col": "#120c08"
+      },
+      "water": {
+       "reflect": "#e8e4dc",
+       "reflectAlpha": 0.45
+      }
+     },
+     "dusk": {
+      "fog": {
+       "col": "#2a1610",
+       "topAlpha": 0.34,
+       "mist": 8,
+       "mistAlpha": 0.12,
+       "mistCol": "#d8a888"
+      },
+      "backdrop": {
+       "alpha": 0.6,
+       "col": "#0a0604"
+      }
+     },
+     "dawn": {
+      "fog": {
+       "col": "#4a4048",
+       "topAlpha": 0.22,
+       "mist": 10,
+       "mistAlpha": 0.12,
+       "mistCol": "#e8e0e4"
+      },
+      "backdrop": {
+       "alpha": 0.7,
+       "col": "#0c0a0c"
+      }
      }
     }
    }
