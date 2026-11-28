@@ -2,6 +2,7 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
+// v84s: cache name follows VERSION (ashbound-staging-v84s); cacheZoneGfx (below) now also covers the Act 2 + Act 3 painted sets (cave, pool, archive, flats, brine, orchard, orchtown, nave, hush), all read from data/zonegfx.json.
 // v84r: cache name follows VERSION (ashbound-staging-v84r); adds the Act 1 painted zone art (cacheZoneGfx below).
 // v84q1: the cache name follows config.js VERSION (ashbound-staging-v84q1 on staging), so this build installs a fresh cache and drops v84q.
 // v84q1: Bench list/picker icons match doll-slot size; ground drops can show awaken stage art.
