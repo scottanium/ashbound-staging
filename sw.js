@@ -2,6 +2,7 @@ importScripts('./config.js');
 const CFG = self.ASHBOUND_CONFIG || {};
 const FAMILY = CFG.STAGING ? 'ashbound-staging-' : 'ashbound-pages-';
 const CACHE = FAMILY + (CFG.VERSION || 'v52');
+// v84r: cache name follows VERSION (ashbound-staging-v84r); adds the Act 1 painted zone art (cacheZoneGfx below).
 // v84q1: the cache name follows config.js VERSION (ashbound-staging-v84q1 on staging), so this build installs a fresh cache and drops v84q.
 // v84q1: Bench list/picker icons match doll-slot size; ground drops can show awaken stage art.
 // v84q adds item power, awaken bench, forge, runeword codex (ab-power, ab-bench, ab-awaken, ab-forge, ab-runes, data/power.json, data/awaken-art.json).
@@ -20,6 +21,26 @@ async function cacheSkillArt(cache) {
     await Promise.all(urls.map((u) => cache.add(u).catch(() => null)));
   } catch (err) { /* offline or no art: the game falls back to glyphs */ }
 }
+
+// v84r: cache the painted zone art of every set data/zonegfx.json maps a zone to (same names ab-zonegfx.js loads, plus borrowed use{} kit art). Best effort.
+async function cacheZoneGfx(cache) {
+  try {
+    const res = await fetch('./data/zonegfx.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const cfg = await res.json();
+    const ids = new Set(Object.values(cfg.zones || {}));
+    const urls = new Set();
+    ids.forEach((id) => {
+      const S = (cfg.sets || {})[id]; if (!S) return;
+      const I = S.import || {}, G = S.gen || {}, dir = './assets/zonegfx/' + id + '/';
+      [I.textures, I.sprites, I.strips, G.textures].forEach((o) => Object.keys(o || {}).forEach((n) => urls.add(dir + n + '.webp')));
+      Object.keys(G.decals || {}).forEach((n) => urls.add(dir + n + '.png'));
+      Object.values(S.use || {}).forEach((f) => urls.add('./assets/zonegfx/' + f));
+    });
+    await Promise.all([...urls].map((u) => cache.add(u).catch(() => null)));
+  } catch (err) { /* offline: zones fall back to the plain renderer until the art loads */ }
+}
+self.addEventListener('install', (event) => { event.waitUntil(caches.open(CACHE).then(cacheZoneGfx)); });
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
