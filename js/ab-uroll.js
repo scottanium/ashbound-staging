@@ -41,13 +41,14 @@
     for (var k in mods) o[k] = Object.prototype.hasOwnProperty.call(roll0, k) ? roll0[k] : mods[k];
     return o;
   }
-  function scaled(item, v) {
+  function scaled(item, v, key) {
     var mul = item && item.uniqueStatMul, cm = item && item.consumeMul;
     var o = { x: v };
     if (root.ABEffects && ABEffects.scaleMods) {
       if (mul != null && mul !== 1) o = ABEffects.scaleMods(o, mul);
       if (cm != null && cm !== 1) o = ABEffects.scaleMods(o, cm);
     }
+    if (root.ABPower && ABPower.on()) { var q = {}; q[key || "x"] = o.x; return ABPower.scaleMods(item, q)[key || "x"]; }
     return o.x;
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -62,10 +63,10 @@
     var dash = c.dash || "\u2013", txt, perfect;
     var cur = item.uniqueRoll && Object.prototype.hasOwnProperty.call(item.uniqueRoll, key) ? item.uniqueRoll[key] : def.mods[key];
     if (Array.isArray(r[0])) {
-      txt = fmt(scaled(item, r[0][0])) + dash + fmt(scaled(item, r[0][1])) + (c.pairJoin || " to ") + fmt(scaled(item, r[1][0])) + dash + fmt(scaled(item, r[1][1]));
+      txt = fmt(scaled(item, r[0][0], key)) + dash + fmt(scaled(item, r[0][1], key)) + (c.pairJoin || " to ") + fmt(scaled(item, r[1][0], key)) + dash + fmt(scaled(item, r[1][1], key));
       perfect = Array.isArray(cur) && cur[0] >= r[0][1] && cur[1] >= r[1][1];
     } else {
-      txt = fmt(scaled(item, r[0])) + dash + fmt(scaled(item, r[1]));
+      txt = fmt(scaled(item, r[0], key)) + dash + fmt(scaled(item, r[1], key));
       perfect = typeof cur === "number" && cur >= r[1];
     }
     return '<span class="u-range" data-range="' + esc(key) + '">(' + esc(txt) + ")</span>" +

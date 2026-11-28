@@ -2,8 +2,8 @@
 // On-disk shape is SAVE_VERSION 8 (v8 invpots: compact item sizes, stacked mana potions; v85 le-ui: affix tiers, stash tabs, Temper/Ashmarks, makings, loot filter; v6 v81s: player.tree for the Warden skill trees). v1–v6 still load; items are mapped to the
 // eight ranks, and an old Warden gets every skill point back for free on a fresh tree (level, paragon, gear, stash, story kept).
 (function (root) {
-  const VERSION = 8;
-  const SUPPORTED = [1, 2, 3, 4, 5, 6, 7, 8];
+  const VERSION = 9;
+  const SUPPORTED = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const OMIT_PLAYER = { flash: 1, moving: 1, swingT: 1 };
 
   function cloneJson(value, fallback) {
@@ -154,6 +154,8 @@
       root.ABInvPots.migrateSave(e);
     }
     if (typeof root.ABFlasks !== "undefined" && root.ABFlasks.migrate) root.ABFlasks.migrate(t);
+    // v9 (v84q): the Consume slot folds into Awaken; the consumed item goes back on the hero at stage consumeLevel/4, Remnants stay (js/ab-awaken.js). Idempotent.
+    if (typeof root.ABAwaken !== "undefined" && root.ABAwaken.migrateSave) root.ABAwaken.migrateSave(e);
     e.v = VERSION;
     return e;
   }

@@ -75,8 +75,10 @@
     var def = null;
     for (var i = 0; i < bag.length; i++) if (bag[i] && bag[i].id === aff.id) { def = bag[i]; break; }
     def = def || aff;
-    if (def.slotMods && slot && def.slotMods[slot]) return def.slotMods[slot];
-    return def.mods || aff.mods;
+    var m = (def.slotMods && slot && def.slotMods[slot]) || def.mods || aff.mods;
+    // v84q: a honed affix (js/ab-forge.js) grows by its honeMul
+    if (aff.honeMul > 0 && aff.honeMul !== 1 && m) { var o = {}; for (var k in m) { var v = m[k]; o[k] = k === "skills" ? v : Array.isArray(v) ? v.map(function (x) { return Math.round(x * aff.honeMul); }) : (typeof v === "number" ? Math.round(v * aff.honeMul * 10) / 10 : v); } return o; }
+    return m;
   }
   function frwClamp(v) {
     var a = affix();

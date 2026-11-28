@@ -44,6 +44,9 @@
     ["sets", "data/sets.json"],
     ["sustain", "data/sustain.json"],
     ["uniquesAshen", "data/uniques-ashen.json"],
+    // v84q: item power, awaken, crafting, runewords, rift ladder (js/ab-power.js ...). Optional: missing = the old flat numbers.
+    ["power", "data/power.json", true],
+    ["awakenArt", "data/awaken-art.json", true],
     // r15: loot picker config and extra campaign uniques (js/ab-lootpick.js). Optional: missing = old drop picker.
     ["lootPick", "data/lootpick.json", true],
     ["uniquesR15", "data/uniques-r15.json", true],
@@ -111,6 +114,8 @@
       });
     }
     D.consume = bag.consume || {};
+    D.power = bag.power || null;
+    D.awakenArt = bag.awakenArt || null; // v84q: per-item awaken stage art (data/awaken-art.json), missing = normal icon
     D.setDefs = bag.sets || {};
     if (bag.sets && bag.sets.sets) {
       const table = bag.sets.sets;

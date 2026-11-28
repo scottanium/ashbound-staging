@@ -33,12 +33,15 @@
     var T = {};
     if (!it) return T;
     try { var bi = root.ABFeel && ABFeel.bootImplicitAffix && ABFeel.bootImplicitAffix(it); (bi || []).forEach(function (a) { addMods(T, a && a.mods); }); } catch (e) {}
-    addMods(T, it.implicit);
-    (it.affixes || []).forEach(function (a) { addMods(T, a && a.mods); });
-    addMods(T, it.fixedMods);
-    (it.sockets || []).forEach(function (s) { if (s) addMods(T, s.mods || s.fixedMods); });
-    if (it.dmgMax) T["@dmg"] = [it.dmgMin || 0, it.dmgMax || 0];
-    if (it.defense) T["@def"] = it.defense;
+    /* v84q: lines compare at Item Power (js/ab-power.js), the same numbers the tooltip and the stat sheet use */
+    var P = root.ABPower && ABPower.on() ? function (m) { return ABPower.scaleMods(it, m); } : function (m) { return m; };
+    var N = root.ABPower && ABPower.on() ? function (k, v) { return ABPower.num(it, k, v); } : function (k, v) { return v; };
+    addMods(T, P(it.implicit));
+    (it.affixes || []).forEach(function (a) { addMods(T, P(a && a.mods)); });
+    addMods(T, P(it.fixedMods));
+    (it.sockets || []).forEach(function (s) { if (s) addMods(T, P(s.mods || s.fixedMods)); });
+    if (it.dmgMax) T["@dmg"] = [N("dmg", it.dmgMin || 0), N("dmg", it.dmgMax || 0)];
+    if (it.defense) T["@def"] = N("defense", it.defense);
     return T;
   }
   /* keys in the same order Io() prints the lines (skills first, then the rest) */

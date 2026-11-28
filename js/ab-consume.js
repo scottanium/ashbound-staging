@@ -39,6 +39,7 @@
   }
 
   function consumeSlotHtml(state, hooks) {
+    if (root.ABAwaken && ABAwaken.on()) return ""; // v84q: the Consume slot is folded into Awaken (js/ab-awaken.js)
     style();
     hooks = hooks || {};
     const player = state && state.player;
@@ -73,14 +74,16 @@
     if (!item) return "";
     const bits = [];
     const cur = player && player.consume;
-    if (cur && cur.uid === item.uid) bits.push('<div class="item-flag consume">Consumed · +' + (item.consumeLevel || 0) + "</div>");
-    else if (item.dormant) bits.push('<div class="item-flag dormant">Dormant · +' + (item.consumeLevel || 0) + " kept</div>");
+    const folded = !!(root.ABAwaken && ABAwaken.on()); // v84q: Consume folds into Awaken; only the Remnant flag stays
+    if (!folded && cur && cur.uid === item.uid) bits.push('<div class="item-flag consume">Consumed · +' + (item.consumeLevel || 0) + "</div>");
+    else if (!folded && item.dormant) bits.push('<div class="item-flag dormant">Dormant · +' + (item.consumeLevel || 0) + " kept</div>");
     if (root.ABCraft && player) {
       const key = ABCraft.uniqueKey && ABCraft.uniqueKey(item);
       if (key && ABCraft.remnantActive && ABCraft.remnantActive(player, key)) {
         bits.push('<div class="item-flag remnant">Remnant (this unique) is on this hero</div>');
       }
     }
+    if (folded) return bits.join("");
     if (root.ABCraft && ABCraft.isUnique && ABCraft.isUnique(item) && !(cur && cur.uid === item.uid) && !item.dormant) {
       if (!(player && player.consumeUnlocked)) {
         var ccfg = (ABCraft.consumeCfg && ABCraft.consumeCfg()) || {};
@@ -99,7 +102,7 @@
   }
 
   function itemActions(item, where, state) {
-    if (!item || !root.ABCraft) return { pin: "", extra: "" };
+    if (!item || !root.ABCraft || (root.ABAwaken && ABAwaken.on())) return { pin: "", extra: "" }; // v84q: Consume folded into Awaken
     const player = state && state.player;
     const pin = [];
     const extra = [];

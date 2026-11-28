@@ -19,6 +19,7 @@
     if (c.slot && it.slot !== c.slot) return false;
     if (c.lvl && ((it.ilvl || 0) < (c.lvl[0] || 0) || (it.ilvl || 0) > (c.lvl[1] == null ? 1e9 : c.lvl[1]))) return false;
     if (c.t6 && !(it.affixes || []).some(function (a) { return tierOf(a) >= 6; })) return false;
+    if (c.sock && !(it.socketMax > 0 && !it.runeword)) return false; // v84q: Sockets (empty-socket bases)
     return true;
   }
   function verdict(it) {
@@ -40,6 +41,7 @@
     if (c.slot) bits.push(label(d.slots, c.slot));
     if (c.lvl) bits.push("Lv " + (c.lvl[0] || 0) + (c.lvl[1] == null ? "+" : "\u2013" + c.lvl[1]));
     if (c.t6) bits.push(d.t6Label || "Top tier (T6+)");
+    if (c.sock) bits.push(d.sockLabel || "Sockets");
     return bits.length ? bits.join(" \u00b7 ") : (d.anyLabel || "Any item");
   }
   function button() { var f = cfg(); var n = f ? f.rules.length : 0; return '<button class="btn" data-act="le-filter-open">' + esc(D().title || "Loot Filter") + ": " + (f && f.on && n ? n + " " + (n === 1 ? "rule" : "rules") : "off") + "</button>"; }
@@ -55,6 +57,7 @@
     h += row(d.rankLabel || "Minimum rank", chips("rankMin", [["", "Any"]].concat(d.ranks || []), c.rankMin || ""));
     h += row(d.familyLabel || "Kind", chips("family", [["", "Any"]].concat(d.families || []), c.family || "") + '<span class="le-fgap"></span>' +
       '<button type="button" class="le-fchip' + (c.t6 ? " is-on" : "") + '" data-act="le-filter-pick" data-key="t6" data-val="1" aria-pressed="' + !!c.t6 + '">' + esc(d.t6Label || "Top tier (T6+)") + '</button>' +
+      '<button type="button" class="le-fchip' + (c.sock ? " is-on" : "") + '" data-act="le-filter-pick" data-key="sock" data-val="1" aria-pressed="' + !!c.sock + '">' + esc(d.sockLabel || "Sockets") + '</button>' +
       '<span class="le-fgap"></span><span class="le-flv">' + esc(d.levelLabel || "Level") + ' <button type="button" class="le-fstep" data-act="le-filter-lv" data-d="-5" aria-label="Lower">\u2212</button><b>' + (lv ? (lv[0] || 0) + "+" : "Any") + '</b><button type="button" class="le-fstep" data-act="le-filter-lv" data-d="5" aria-label="Higher">+</button></span>');
     h += row(d.slotLabel || "Slot", chips("slot", [["", "Any"]].concat(d.slots || []), c.slot || ""));
     return '<div class="le-fsheet le-fedit" role="dialog" aria-label="' + esc(d.title || "Loot Filter") + '"><div class="le-fin"><div class="le-fhead"><b>' + esc(ui.leFEdit === "new" ? (d.addLabel || "New rule") : (d.editLabel || "Edit rule")) + "</b><span>" + esc(summary(r)) + "</span></div>" + h +
@@ -100,6 +103,7 @@
       if (d.key === "act") { if ((dd.acts || []).some(function (a) { return a[0] === d.val; })) { r.act = d.val; if (r.act === "recolor" && !r.color) r.color = Object.keys(dd.colors || {})[0]; } }
       else if (d.key === "color") { if ((dd.colors || {})[d.val]) r.color = d.val; }
       else if (d.key === "t6") { if (c.t6) delete c.t6; else c.t6 = true; }
+      else if (d.key === "sock") { if (c.sock) delete c.sock; else c.sock = true; }
       else if (d.key === "rankMin" || d.key === "family" || d.key === "slot") { if (d.val) c[d.key] = d.val; else delete c[d.key]; }
       return { save: false };
     });

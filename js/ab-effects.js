@@ -50,6 +50,7 @@
   }
 
   function statMul(item) {
+    if (root.ABPower && ABPower.on()) return 1; // v84q: rarity is in Item Power (js/ab-power.js), not baked into fixedMods
     return rankField(item, "uniqueStatMul", table().statMul);
   }
 
@@ -115,7 +116,7 @@
   function scaleNums(nums, item, typ) {
     var out = {};
     var keys = typ && typ.scale || ["damage", "absorb", "heal", "mana", "amount", "move", "ias", "duration", "absorbMax"];
-    var mul = rarityMul(item) * milestoneMul(item && item.enchantLevel) * consumeMul(item);
+    var mul = rarityMul(item) * milestoneMul(item && item.enchantLevel) * consumeMul(item) * (root.ABPower ? ABPower.effectMul(item) : 1);
     var k, v;
     for (k in nums) {
       if (!Object.prototype.hasOwnProperty.call(nums, k)) continue;
@@ -135,6 +136,7 @@
 
   function effectSpec(item) {
     if (item && item.effect) return item.effect;
+    if (item && item.runeword && root.ABRunes && ABRunes.signature) { var rs = ABRunes.signature(item); if (rs) return rs; } // v84q runeword signature
     var def = item && item.uniqueId ? uniqueDef(item.uniqueId) : null;
     return def && def.effect || null;
   }
@@ -176,7 +178,7 @@
   function lineHtml(item, resolvedFx, cap) {
     if (!resolvedFx) return "";
     var typ = resolvedFx.type;
-    var name = typ.name || typ.id;
+    var name = (resolvedFx.spec && resolvedFx.spec.name) || typ.name || typ.id;
     var body = formatText(typ, resolvedFx.nums);
     var cls = cap ? "unique-sig capstone" : "unique-sig";
     return '<div class="' + cls + '"><span class="unique-sig-name">' + esc(name) + "</span> " + esc(body) + "</div>";
@@ -214,7 +216,7 @@
     var out = [], eq = player && player.equipment || {}, k, it;
     for (k in eq) {
       it = eq[k];
-      if (it && (it.uniqueId || (it.rarity === "unique")) && it.identified !== false) out.push(it);
+      if (it && (it.uniqueId || (it.rarity === "unique") || (it.runeword && root.ABRunes && ABRunes.signature(it))) && it.identified !== false) out.push(it);
     }
     return out;
   }
@@ -585,6 +587,8 @@
   }
 
   root.ABEffects = {
+    applyHit: applyHit, // v84q: Mimic Strike (js/ab-awaken.js)
+    elemPacket: elemPacket,
     attach: attach,
     handle: handle,
     tooltipHtml: tooltipHtml,
